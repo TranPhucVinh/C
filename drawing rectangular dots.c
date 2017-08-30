@@ -25,7 +25,7 @@ main() {
 			{ 
 for (int j=1; j<=m; j++)
 {
-printf("*");	
+printf("*");
 }
 printf("\n");
 			}
