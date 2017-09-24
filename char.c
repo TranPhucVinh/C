@@ -17,7 +17,20 @@ if (a =='y')
 }
 else
 {
-printf("nothing" );
+	printf("nothing here \n" );
 }
- // from here, you need to distinguished the differ between "" and ''. '' is for character, " " is for string
+ // from here, you need to distinguished the different between "" and ''. '' is for character, " " is for string
+
+// now we learn how to deal with entering the char inside if...else
+char b,c;
+b = getchar();
+if ( b == 't'  )
+{
+c =getchar();
+putchar(c);
+}
+else {
+	printf("fuck the system \n" );
+}
+
 }
