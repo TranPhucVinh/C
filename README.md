@@ -20,4 +20,8 @@ then type: ./<name of project>
 
 static: local variable but the value remain unchanged in a function
 
-**p
+**pointer**
+
+%p: to printout the address (pointer)
+
+printf("%p", a);
