@@ -19,3 +19,5 @@ then type: ./<name of project>
 **static**
 
 static: local variable but the value remain unchanged in a function
+
+**p
