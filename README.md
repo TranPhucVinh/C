@@ -31,6 +31,11 @@ static: local variable but the value remain unchanged in a function
 
 ## CHEATSHEAT
 
+**printf**
+
+printf("%d ", &a) // int
+printf("%s ", &a) // string
+
 **pointer**
 
 pointer: variable that stores address of other variable
