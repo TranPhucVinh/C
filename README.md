@@ -10,7 +10,7 @@ to run the code: cd to current c workspace:
 
 then type: ./<name of project>
 
-# "" and ''
+** " " and ' ' **
 
 '' is for character
 " " is for string
