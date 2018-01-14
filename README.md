@@ -12,5 +12,6 @@ then type: ./<name of project>
 
 **" " and ' '**
 
-'' is for character
+' ' is for character
+
 " " is for string
