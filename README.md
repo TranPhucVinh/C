@@ -1,7 +1,7 @@
 # c-programming
 store c code
 
-TO compile code C in sublime text, notepad, gedit...
+To compile code C in sublime text, notepad, gedit...
 
 follow this link:
 https://www.youtube.com/watch?v=QU8arxnpfhA
@@ -34,6 +34,7 @@ static: local variable but the value remain unchanged in a function
 **printf**
 
 printf("%d ", &a) // int
+
 printf("%s ", &a) // string
 
 **pointer**
