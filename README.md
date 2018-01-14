@@ -15,3 +15,7 @@ then type: ./<name of project>
 * ' ' is for character
 
 * " " is for string
+
+**static**
+
+static: local variable but the value remain unchanged in a function
