@@ -31,3 +31,7 @@ pointer: variable that stores address of other variable
 &: get the address of the variable
 
 printf("%p", &a);
+
+p = &a //p is the address of a
+
+*p : value at address
