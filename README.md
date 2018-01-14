@@ -22,7 +22,7 @@ int a = 8;
 
 | C | JavaScript|
 | ------- |:------:|
-| printf("%")    | console.log(a)    |
+| printf("%d ",&a)    | console.log(a)    |
 
 
 **static**
