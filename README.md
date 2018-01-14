@@ -24,6 +24,8 @@ static: local variable but the value remain unchanged in a function
 
 **pointer**
 
+pointer: variable that stores address of other variable
+
 %p: to printout the address (pointer)
 
 &: get the address of the variable
