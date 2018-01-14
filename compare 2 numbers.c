@@ -1,5 +1,5 @@
 #include <stdio.h>
-  // compare 2 numbers and print out the square of number from 1 to n
+  //print out the square of number from 1 to n
   main() {
     int n;
     printf(" enter your number: ");
