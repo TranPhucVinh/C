@@ -16,6 +16,15 @@ then type: ./<name of project>
 
 * " " is for string
 
+### COMPARE
+
+int a = 8;
+
+| C | JavaScript|
+| ------- |:------:|
+| printf("%")    | console.log(a)    |
+
+
 **static**
 
 static: local variable but the value remain unchanged in a function
