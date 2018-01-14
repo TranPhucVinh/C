@@ -16,6 +16,10 @@ then type: ./<name of project>
 
 * " " is for string
 
+**static**
+
+static: local variable but the value remain unchanged in a function
+
 ### COMPARE
 
 int a = 8;
@@ -25,9 +29,6 @@ int a = 8;
 | printf("%d ",&a)    | console.log(a)    |
 
 
-**static**
-
-static: local variable but the value remain unchanged in a function
 
 ## CHEATSHEAT
 
