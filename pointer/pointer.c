@@ -6,7 +6,7 @@ int a = 5;
 
 printf("%p ", &a);
 
-// print out the address of variable a: 0x7ffee13d1fa4 
+// print out the address of variable a: 0x7ffee13d1fa4 => address change in RAM
 
 int *p;
 
@@ -14,9 +14,8 @@ p = a;
 printf("%d ", p); // result: 5
 
 p = &a;
-printf("%d \n", p); // result: 39367436 (address of variable - pointer p)
+printf("%d \n", p); // result: 39367436 (address of variable a)
 
-*p = a;
-printf("%d ",p ); // result: 39367436 
+printf("%d ",*p ); // result: 5
 
 }
