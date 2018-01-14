@@ -25,6 +25,7 @@ static: local variable but the value remain unchanged in a function
 **pointer**
 
 %p: to printout the address (pointer)
+
 &: get the address of the variable
 
 printf("%p", &a);
