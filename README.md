@@ -1,5 +1,4 @@
 # c-programming
-store c code
 
 To compile code C in sublime text, notepad, gedit...
 
