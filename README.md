@@ -13,11 +13,6 @@ then type: ./<name of project>
 
 **stdio.h:** standard io
 
-**" " and ' '**
-
-* ' ' is for character
-
-* " " is for string
 
 **static**
 
@@ -31,7 +26,11 @@ int a = 8;
 | ------- |:------:|
 | printf("%d ",&a)    | console.log(a)    |
 
+**" " and ' '**
 
+* ' ' is for character
+
+* " " is for string
 
 ## CHEATSHEAT
 
