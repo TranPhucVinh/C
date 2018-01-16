@@ -10,6 +10,10 @@ sys/types.h - data types
 
 sys/socket.h - Internet Protocol family
 
+socket():  create an endpoint for communication
+
+ref: [sys/socket.h](http://pubs.opengroup.org/onlinepubs/7908799/xns/syssocket.h.html)
+
 ## netinet/in.h
 
 netinet/in.h - Internet Protocol family
