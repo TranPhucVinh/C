@@ -39,7 +39,6 @@ int a = 8;
 
 `````c
 printf("%d ", &a) // int
-
 printf("%s ", &a) // string
 `````
 
@@ -51,8 +50,14 @@ pointer: variable that stores address of other variable
 
 &: get the address of the variable
 
-printf("%p", &a);
 
+`````c
+printf("%p", &a);
+`````
+
+
+`````c
 p = &a //p is the address of a
+`````
 
 *p : value at address
