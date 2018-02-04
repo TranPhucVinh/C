@@ -37,9 +37,11 @@ int a = 8;
 
 **printf**
 
+```c
 printf("%d ", &a) // int
 
 printf("%s ", &a) // string
+```
 
 **pointer**
 
