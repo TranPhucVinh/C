@@ -3,7 +3,6 @@
 #include <stdio.h>
 
 int factorial (int n)
-
 {
 	int m = 1;
 	for (int i = 1; i <= n; i++)
@@ -14,9 +13,8 @@ int factorial (int n)
 }
 
 double fracture (int n)
-
-{	double m = 0.0;
-
+{	
+	double m = 0.0;
 	for (double i = 1.0; i <= n; i++)
 	{
 		m = m + (1 / i); // if you declare int i =1 in for loop, the result of (1/i) will be kept as int
@@ -25,10 +23,9 @@ double fracture (int n)
 }
 
 main()
-
 {
 	int n;
 	scanf("%d", &n);
-	printf("%d \n", factorial(n) );
-	printf("%lf \n", fracture(n) );
+	printf("%d \n", factorial(n));
+	printf("%lf \n", fracture(n));
 }
