@@ -8,6 +8,8 @@ follow this link:
 to run the code: cd to current c workspace:
 
 then type: ./<name of project>
+ 
+Format code: [Sublime Text 2 & 3 AStyle Formatter Plugin](https://packagecontrol.io/packages/SublimeAStyleFormatter)
   
 ## Acronym
 
