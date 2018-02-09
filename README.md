@@ -61,16 +61,13 @@ double d;
 double *p1; // pointer to double
 `````
 
-%p: to printout the address (pointer)
-
+%p: to print out the address
 &: get the address of the variable
 
 
 `````c
 printf("%p", &a);
 `````
-
-
 `````c
 p = &a //p is the address of a
 `````
