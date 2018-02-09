@@ -1,9 +1,9 @@
 # c-programming
 
-To compile code C in sublime text, notepad, gedit...
+To compile code C in sublime text, notepad, gedit,...
 
 follow this link:
-https://www.youtube.com/watch?v=QU8arxnpfhA
+[How to Compile and Execute C/C++ Program On Ubuntu using Terminal Gedit, Sublime Text Editor](https://www.youtube.com/watch?v=QU8arxnpfhA)
 
 to run the code: cd to current c workspace:
 
@@ -36,9 +36,10 @@ int a = 8;
 
 **printf**
 
+`````c
 printf("%d ", &a) // int
-
 printf("%s ", &a) // string
+`````
 
 **pointer**
 
@@ -48,8 +49,14 @@ pointer: variable that stores address of other variable
 
 &: get the address of the variable
 
-printf("%p", &a);
 
+`````c
+printf("%p", &a);
+`````
+
+
+`````c
 p = &a //p is the address of a
+`````
 
 *p : value at address
