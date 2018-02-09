@@ -3,8 +3,7 @@
 To compile code C in sublime text, notepad, gedit,...
 
 follow this link:
-[How to Compile and Execute C/C++ Program On Ubuntu using Terminal Gedit, Sublime Text Editor]
-(https://www.youtube.com/watch?v=QU8arxnpfhA)
+[How to Compile and Execute C/C++ Program On Ubuntu using Terminal Gedit, Sublime Text Editor](https://www.youtube.com/watch?v=QU8arxnpfhA)
 
 to run the code: cd to current c workspace:
 
