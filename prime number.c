@@ -2,31 +2,31 @@
 
 main () {
 
-	int n, count=0;
+	int n, count = 0;
 	printf(" enter the limit value " );
-	scanf("%d",&n);
+	scanf("%d", &n);
 
-	if (n<=0)
-		{ 
-printf("shitty");
-		}
-		else
+	if (n <= 0)
+	{
+		printf("shitty");
+	}
+	else
+	{
+		for (int i = 1; i <= n ; i++)
 		{
-			for (int i=1; i<=n ; i++)
+			for (int j = 1; j <= i; j++)
 			{
-              for (int j=1; j<=i; j++)
-              {
-              	if ((i%j) ==0)
-              	{
-              		count++;
-              	}
-              }
-              if (count == 2) {
-              	printf("%d ",i );
-              }
-              count =0;
+				if ((i % j) == 0)
+				{
+					count++;
+				}
 			}
+			if (count == 2) {
+				printf("%d ", i );
+			}
+			count = 0;
 		}
+	}
 }
 
 //result:
