@@ -49,7 +49,7 @@ printf("%s ", &a) // string
 
 pointer: variable that stores address of other variable
 
-%p: to printout the address (pointer)
+%p: to print out the address
 
 &: get the address of the variable
 
