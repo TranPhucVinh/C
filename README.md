@@ -50,6 +50,7 @@ printf("%s ", &a) // string
 pointer: variable that stores address of other variable
 
 *p: declare a pointer
+
 *p : value at address
 
 `````c
@@ -62,6 +63,7 @@ double *p1; // pointer to double
 `````
 
 %p: to print out the address
+
 &: get the address of the variable
 
 
