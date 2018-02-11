@@ -1,4 +1,4 @@
-A basic declaration with pointer
+**A basic declaration with pointer**
 
 `````c
 int a;
