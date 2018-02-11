@@ -27,18 +27,33 @@ static: local variable but the value remain unchanged in a function
 #### scanf
 
 `````c
-scanf("%d ", &a) // int
+scanf("%d ", &a);
 `````
-You have to type value a; then type one more to finish command. The value of **a** might not be return correctly. To print out the value of **a** correctly, 
+You have to type value a; then type one more to finish command although the value of **a** is still printed out correctly. To print out the value of **a** just after typing it, delete the space after %d
+
+`````c
+scanf("%d", &a);
+`````
+
+**Example**
+
+`````c
+#include <stdio.h>
+
+void main() {
+	int a;
+	scanf("%d ", &a);
+	printf("%d",a);
+}
+`````
 
 
 #### printf
 
 `````c
-printf("%d ", &a) // int
-printf("%s ", &a) // string
+printf("%d ", a) // int
+printf("%s ", a) // string
 `````
-
 
 ### COMPARE
 
@@ -46,7 +61,7 @@ int a = 8;
 
 | C | JavaScript|
 | ------- |:------:|
-| printf("%d ",&a)    | console.log(a)    |
+| printf("%d ",a)    | console.log(a)    |
 
 **" " and ' '**
 
