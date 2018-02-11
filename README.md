@@ -47,7 +47,6 @@ void main() {
 }
 `````
 
-
 #### printf
 
 `````c
