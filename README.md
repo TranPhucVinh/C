@@ -22,6 +22,24 @@ Ctrl +alt +f
 
 static: local variable but the value remain unchanged in a function
 
+## BEGINNER
+
+#### scanf
+
+`````c
+scanf("%d ", &a) // int
+`````
+You have to type value a; then type one more to finish command. The value of **a** might not be return correctly. To print out the value of **a** correctly, 
+
+
+#### printf
+
+`````c
+printf("%d ", &a) // int
+printf("%s ", &a) // string
+`````
+
+
 ### COMPARE
 
 int a = 8;
@@ -37,13 +55,6 @@ int a = 8;
 * " " is for string
 
 ## CHEATSHEAT
-
-**printf**
-
-`````c
-printf("%d ", &a) // int
-printf("%s ", &a) // string
-`````
 
 **pointer**
 
