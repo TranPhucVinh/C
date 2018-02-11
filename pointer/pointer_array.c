@@ -1,6 +1,6 @@
-# include <stdio.h>
-
 // use pointer to enter the values in array and display these values on screen
+
+# include <stdio.h>
 
 void main() {
 	int n, *p1, *p2, i;
