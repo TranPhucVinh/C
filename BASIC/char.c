@@ -10,7 +10,7 @@ main() {
 	putchar(a); // putchar is displaying the char on screen
 	printf("\n");
 
-	//we will find out if the number entered is lowercase or uppercase
+	
 	if (a == 'y') {
 		printf("kill bugs");
 	} else {
