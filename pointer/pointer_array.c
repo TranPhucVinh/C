@@ -15,7 +15,7 @@ void main() {
 	printf("Value of all members in array: ");
 	for (i = 0; i < n; i++)
 	{
-		printf("%d", *p2 );
+		printf("%d ", *p2 );
 		p2++;
 	}
 }
