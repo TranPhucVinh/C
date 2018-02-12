@@ -1,5 +1,6 @@
-#include <stdio.h>
 //print out the square of number from 1 to n
+
+#include <stdio.h>
 main() {
   int n;
   printf(" enter your number: ");
