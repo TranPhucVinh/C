@@ -1,4 +1,6 @@
-# c-programming
+# C
+
+## Compile
 
 To compile code C in sublime text, notepad, gedit,...
 
