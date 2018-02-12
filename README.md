@@ -13,14 +13,13 @@ Format code: [Sublime Text 2 & 3 AStyle Formatter Plugin](https://packagecontrol
 
 Ctrl +alt +f
   
-## Acronym
+### Library
 
 **stdio.h:** standard io
 
+### Data Type
 
-**static**
-
-static: local variable but the value remain unchanged in a function
+**static:** local variable but the value remain unchanged in a function
 
 ## BEGINNER
 
