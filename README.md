@@ -57,10 +57,9 @@ printf("%s ", a) // string
 
 ### COMPARE
 
-int a = 8;
-
 | C | JavaScript|
 | ------- |:------:|
+|int a = 8; | var a = 8;|
 | printf("%d ",a)    | console.log(a)    |
 
 **" " and ' '**
