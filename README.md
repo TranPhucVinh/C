@@ -43,6 +43,7 @@ printf("Integer %d ", c);
 **double** can also be declared as **long float**.
 
 float -> %f
+
 double -> %lf
 
 **static:** local variable but the value remain unchanged in a function
