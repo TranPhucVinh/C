@@ -21,6 +21,25 @@ Ctrl +alt +f
 
 ### Data Type
 
+**char**
+
+can store character or integer value
+
+`````c
+// character
+
+char c;
+c = 'a';
+printf("Character %c ", c);
+`````
+
+`````c
+// integer
+char c;
+c = 8;
+printf("Integer %d ", c);
+`````
+
 **static:** local variable but the value remain unchanged in a function
 
 ## BEGINNER
