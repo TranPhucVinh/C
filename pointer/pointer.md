@@ -33,6 +33,6 @@ p = &a //p is the address of a
 int a;
 int *p;
 
-a =5;
+a = 5;
 p = &a; // p is address of variable a
 `````
