@@ -27,7 +27,6 @@ can store character or integer value
 
 `````c
 // character
-
 char c;
 c = 'a';
 printf("Character %c ", c);
