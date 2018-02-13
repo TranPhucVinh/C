@@ -1,5 +1,7 @@
 ### fopen()
 
+Used to open the file to read or write.
+
 ````c
 FILE *file;
 file = fopen("name of file to open to read", "<mode>");
@@ -13,3 +15,6 @@ file = fopen("name of file to open to read", "<mode>");
 * a+
 * t
 * b
+
+### fgets()
+
