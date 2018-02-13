@@ -18,3 +18,11 @@ file = fopen("name of file to open to read", "<mode>");
 
 ### fgets()
 
+````c
+fgets(char *s, int n, FILE *stream);
+````
+read the content in file "stream" until encounter the new line character ('\n') or until finished reading n-1 character; then store in "s".
+
+````c
+fgets(msg, 81, stream);
+````
