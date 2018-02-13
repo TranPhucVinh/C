@@ -8,3 +8,6 @@ void main() {
 	printf("%s\n",msg );
 	fclose(stream); // without fclose() still run fine
 }
+/*
+Result: Printout the content inside file "open.c"
+*/
