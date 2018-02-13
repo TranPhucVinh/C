@@ -15,13 +15,13 @@ Format code: [Sublime Text 2 & 3 AStyle Formatter Plugin](https://packagecontrol
 
 Ctrl +alt +f
   
-### Library
+## Library
 
 **stdio.h:** standard io
 
-### Data Type
+## Data Type
 
-**char**
+### char
 
 can store character or integer value
 
@@ -38,12 +38,15 @@ char c;
 c = 8;
 printf("Integer %d ", c);
 `````
-**float and double**
+### float and double
 
 **double** can also be declared as **long float**.
 
 float -> %f
+
 double -> %lf
+
+### static
 
 **static:** local variable but the value remain unchanged in a function
 
