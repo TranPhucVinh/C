@@ -126,4 +126,5 @@ int main () {
 **Result**
 
 Enter a string : tutorialspoint.com
+
 You entered: tutorialspoint.com
