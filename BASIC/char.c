@@ -46,4 +46,4 @@ roc
 
 */
 /*
-From here, we know that getchar can be executed only one time ina program */
+From here, we know that getchar can be executed only one time in a program */
