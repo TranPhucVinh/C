@@ -50,9 +50,11 @@ So, char in C go only with one word.
 
 **double** can also be declared as **long float**.
 
+```
 float -> %f
 
 double -> %lf
+```
 
 ### static
 
