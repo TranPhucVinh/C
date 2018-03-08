@@ -24,22 +24,13 @@ then type: ./<name of project>
 Compile C++, C on terminal
 
 ```shell
-{
-    "shell_cmd": "g++ -std=c++11 -Wall \"${file}\" -o \"${file_path}/${file_base_name}\"",
-    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
-    "shell": true,
-    "working_dir": "${file_path}",
-    "selector": "source.c++, source.cxx, source.cpp, source.cc",
-
-    "variants":
-    [
-        {
-            "name": "Run",
-          "shell_cmd": "gnome-terminal -e 'bash -c \"${file_path}/${file_base_name};exec bash \"'",
-        }
-    ]
-}
+g++ output_file file.cpp
 ```
+Then
+``
+./output_file
+``
+
 **Reference:** [Sublime text 3 - compile program and run in terminal](https://stackoverflow.com/questions/21196077/sublime-text-3-compile-program-and-run-in-terminal)
 
 Format code: [Sublime Text 2 & 3 AStyle Formatter Plugin](https://packagecontrol.io/packages/SublimeAStyleFormatter)
