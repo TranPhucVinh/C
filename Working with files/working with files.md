@@ -7,6 +7,7 @@ FILE *file;
 file = fopen("name of file to open to read", "<mode>");
 ````
 **mode** include: 
+```
 * r
 * w
 * a
@@ -15,7 +16,7 @@ file = fopen("name of file to open to read", "<mode>");
 * a+
 * t
 * b
-
+```
 ### fgets()
 
 ````c
@@ -26,3 +27,18 @@ read the content in file "stream" until encounter the new line character ('\n') 
 ````c
 fgets(msg, 81, stream);
 ````
+
+### fprintf()
+
+```c
+	fprintf(stdout, "Hello, World! \n");
+```
+```
+Hello, World!
+```
+```c
+	fprintf(stderr, "Hello, World! \n");
+```
+```
+Hello, World!
+```
