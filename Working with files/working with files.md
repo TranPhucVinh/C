@@ -39,7 +39,7 @@ fprintf(stdout, "Hello, World! \n");
 Hello, World!
 ```
 
-st
+stderr
 ```c
 fprintf(stderr, "Hello, World! \n");
 ```
