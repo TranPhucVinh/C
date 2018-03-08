@@ -7,10 +7,41 @@ To compile code C in sublime text, notepad, gedit,...
 follow this link:
 [How to Compile and Execute C/C++ Program On Ubuntu using Terminal Gedit, Sublime Text Editor](https://www.youtube.com/watch?v=QU8arxnpfhA)
 
+Shell
+```shell
+{
+"cmd" : ["gcc", "$file_name", "-o", "${file_base_name}", "-lm", "-Wall"],
+"selector" : "source.c",
+"shell":false,
+"working_dir" : "$file_path"
+}
+```
+
 to run the code: cd to current c workspace:
 
 then type: ./<name of project>
- 
+
+Compile C++, C on terminal
+
+```shell
+{
+    "shell_cmd": "g++ -std=c++11 -Wall \"${file}\" -o \"${file_path}/${file_base_name}\"",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "shell": true,
+    "working_dir": "${file_path}",
+    "selector": "source.c++, source.cxx, source.cpp, source.cc",
+
+    "variants":
+    [
+        {
+            "name": "Run",
+          "shell_cmd": "gnome-terminal -e 'bash -c \"${file_path}/${file_base_name};exec bash \"'",
+        }
+    ]
+}
+```
+**Reference:** [Sublime text 3 - compile program and run in terminal](https://stackoverflow.com/questions/21196077/sublime-text-3-compile-program-and-run-in-terminal)
+
 Format code: [Sublime Text 2 & 3 AStyle Formatter Plugin](https://packagecontrol.io/packages/SublimeAStyleFormatter)
 
 Ctrl +alt +f
