@@ -41,7 +41,8 @@ Hello, World!
 ```c
 fprintf(stderr, "Hello, World! \n");
 ```
-**R
+**Result**
 ```
 Hello, World!
 ```
+(print out as red words in some compiler)
