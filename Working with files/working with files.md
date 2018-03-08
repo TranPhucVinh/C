@@ -30,6 +30,7 @@ fgets(msg, 81, stream);
 
 ### fprintf()
 
+stdout
 ```c
 fprintf(stdout, "Hello, World! \n");
 ```
@@ -38,6 +39,7 @@ fprintf(stdout, "Hello, World! \n");
 Hello, World!
 ```
 
+st
 ```c
 fprintf(stderr, "Hello, World! \n");
 ```
