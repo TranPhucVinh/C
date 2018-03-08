@@ -31,13 +31,13 @@ fgets(msg, 81, stream);
 ### fprintf()
 
 ```c
-	fprintf(stdout, "Hello, World! \n");
+fprintf(stdout, "Hello, World! \n");
 ```
 ```
 Hello, World!
 ```
 ```c
-	fprintf(stderr, "Hello, World! \n");
+fprintf(stderr, "Hello, World! \n");
 ```
 ```
 Hello, World!
