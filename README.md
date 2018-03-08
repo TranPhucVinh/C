@@ -41,7 +41,7 @@ printf("Integer %d ", c);
 
 **Notes**
 
-char c ='ab' => Warning "character constant too long for its type"
+``char c ='ab'`` => Warning "character constant too long for its type"
 => WRONG
 
 So, char in C go only with one word.
