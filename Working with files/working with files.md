@@ -33,12 +33,15 @@ fgets(msg, 81, stream);
 ```c
 fprintf(stdout, "Hello, World! \n");
 ```
+**Result**
 ```
 Hello, World!
 ```
+
 ```c
 fprintf(stderr, "Hello, World! \n");
 ```
+**R
 ```
 Hello, World!
 ```
