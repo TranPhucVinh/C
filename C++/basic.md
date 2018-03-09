@@ -95,6 +95,24 @@ main(){
 
 After entering the value of ``age`` and press enter, ``age`` value will appear then the programm stop as after entering "ENTER", this will be in buffer then getline will stop as knowing that ENTER has been pressed.
 
+```c
+#include <iostream>
+
+using namespace std;
+
+main(){
+	int age;
+	cout << "enter age: ";
+	cin >> age;
+	cout << age;
+	string sentence;
+	cout<< "what is your sentence ? \n";
+	cin.ignore(1); //ignore the last entering character, in this case is "ENTER"
+	getline(cin, sentence);
+	cout << "The whole sentence is: " << sentence;
+}
+```
+
 ### Simple dealing with input value
 
 ```c
