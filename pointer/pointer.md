@@ -36,3 +36,28 @@ int *p;
 a = 5;
 p = &a; // p is address of variable a
 `````
+### C
+
+```c++
+#include <stdio.h>
+int val =5;
+int *p = &val;
+
+void main()
+{
+printf ("Value: %d", *p);	
+}
+```
+
+### C++
+
+```c++
+#include <iostream>
+
+using namespace std;
+int val =5;
+int *p = &val;
+main(){
+	cout << "value: " << *p;
+}
+```

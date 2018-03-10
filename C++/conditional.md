@@ -39,3 +39,26 @@ cin >> a;
 	}
 }
 ```
+
+## for
+
+```c
+#include <iostream>
+
+using namespace std;
+int n;
+main(){
+	cout << "Enter value of n: ";
+	cin >> n;
+	int i, sum = 0;
+	for (i = 0 ; i <= n; i++)
+	{
+		sum += i;
+	}
+	cout << "Result: " << sum;
+}
+```
+**Result**
+```
+15
+```

@@ -147,7 +147,6 @@ class Name{
 	string name;
 };
 
-
 main(){
 	Name name;
 	cout << name.getName() << endl;
