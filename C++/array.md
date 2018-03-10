@@ -21,3 +21,38 @@ main() {
 	}
 }
 ```
+
+### Dynamic memory allocation
+
+```c
+#include <stdio.h>
+
+main() {
+	cout << "Enter the number of members: ";
+	int n;
+	cin >> n;
+	int *dynamic = new int[n];
+	for (int i = 0; i < n; i++){
+		dynamic[i] = i;
+		cout << dynamic[i] << "\n";
+	}
+}
+```
+
+After allocating, you have to terminate these dynamic memory so that the memory won't be leaked and the resources won't be wasted.
+
+```c
+#include <stdio.h>
+
+main() {
+	cout << "Enter the number of members: ";
+	int n;
+	cin >> n;
+	int *dynamic = new int[n];
+	for (int i = 0; i < n; i++){
+		dynamic[i] = i;
+		cout << dynamic[i] << "\n";
+	}
+}
+delete[] dynamic;
+```
