@@ -1,7 +1,8 @@
 Enter a char, print out this char => learn how to use getchar(); putchar()
 
-#include <stdio.h>
 ```c
+#include <stdio.h>
+
 main() {
 	char a, b[1], c[1];
 	a = getchar(); // get ASCII of the entered character
@@ -12,7 +13,7 @@ main() {
 		printf("kill bugs");
 	} else {
 		printf("nothing here \n");
-	}
+	} }
 ```
 **NOTE:** ``"" vs ''``
 
@@ -20,6 +21,9 @@ main() {
 
 Now we learn how to deal with entering the char inside if...else
 ```c
+#include <stdio.h>
+
+main() {
 	scanf("%s", b);
 	printf("%s \n", b);
 	if ((strcmp(b, "t")) == 0) // must be "t", not 't'
