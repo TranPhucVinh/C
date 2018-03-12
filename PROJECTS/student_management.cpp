@@ -36,12 +36,52 @@ Student::Student(string name, string classroom, int id, double mark){
 }
 
 string Student::getName(){
+	return _name;
+}
+void Student::setName(string name){
+	_name = name;
+}
+
+string Student::getClassroom(){
+	return _classroom;	
+}
+
+void Student::setClassroom(string classroom){
+	_classroom = classroom;
+}
+
+int Student::getID(){
+	return _id;	
+}
+
+void Student::setID(int id){
+	_id = id;
+}
+
+double Student::getMark(){
+	return _mark;
+}
+
+void Student::setMark(double mark){
+	_mark = mark;
+}
+
+void Student::enterInformation(){
 
 }
 
-Student::getID(){
-	
-}
+void Student::displayInformation(){
+
+	cin.ignore();
+	cout << "Enter student's name: ";
+	getline(cin, _name); // getline() for striung type
+	cout << "Enter id: ";
+	cin >> _id; // cin for number data type,
+	cout << "Enter classroom: ";
+	getline(cin, _classroom); // getline() for striung type
+	cout << "Enter student's mark: ";
+	cin >> _classroom; // cin for number data type
+}	
 
 main(){
 
