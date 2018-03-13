@@ -1,4 +1,4 @@
-### Workign with struct
+### Working with struct
 
 ```c
 #include <stdio.h>
