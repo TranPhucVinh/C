@@ -1,6 +1,10 @@
 
 ### Create new file
 
+``ofstream``: Outputting data to stream;
+
+``ifstream``: input data from a file, means reading data from a file
+
 Create a file and add data to this file:
 
 ```c
@@ -15,6 +19,99 @@ main() {
 	myFile.open("text.txt");
 
 	myFile << "I want Sophie Dee";
+	myFile.close();
 
 }
+```
+
+One line of code
+
+```c
+ofstream myFile("file.txt");
+```
+
+**Check status:** is_open()
+
+```c
+include <iostream>
+#include <fstream>
+
+using namespace std;
+
+main() {
+	
+	ofstream myFile("erin.txt");
+	myFile << "I want Sophie Dee";
+	if (myFile.is_open()){
+		cout << "The file is open" << endl;
+	}
+	else cout <<"File is close !! \n";
+	myFile.close();
+	if (myFile.is_open()){
+		cout << "The file is open" << endl;
+	}
+	else cout <<"File is close !! \n";
+}
+```
+
+**Result**
+
+```
+The file is open
+File is close !! 
+```
+
+### Entering data to txt file
+
+```c
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+main() {
+	
+	ofstream myFile("file.txt");
+	cout << "Enter ID, Name, Money \n";
+	int id;
+	string name;
+	double money;
+	cin >> id >> name >> money;
+	myFile << id << " " <<name << " " << money << endl;
+	myFile.close();
+}
+```
+
+### Read data from txt file
+
+We have ``file.txt``
+
+```
+124 ertyewew 5666
+```
+
+File file.txt has 3 word; we create 3 variable word1, word2, word3 correspondingly to these 3 word
+
+```c
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+main() {
+	
+	ifstream myFile("file.txt");
+	int word1;
+	string word2;
+	int word3;
+	myFile >> word1 >> word2 >> word3;
+	cout << word1 << " " <<  word2 << " " << word3;
+	myFile.close();
+}
+```
+
+**Result**
+
+```
+124 ertyewew 5666
 ```
