@@ -1,7 +1,5 @@
 ID                Name              Salary 
-2                erin                 123
-1          sophie dee                 124
-ID                Name              Salary 
-3               jayne                 156
-ID                Name              Salary 
-4                 eva                  45
+
+0                            6.94194e-310
+1                erin                 123
+2          sophie Dee                 111

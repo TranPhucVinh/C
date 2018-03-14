@@ -115,3 +115,41 @@ main() {
 ```
 124 ertyewew 5666
 ```
+
+### print out
+
+we have file.txt
+
+```
+124 ertyewew 5666
+1243 errtyewew 56666
+12 edrtyewew 5666
+```
+
+```c
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+main() {
+	
+	ifstream myFile("file.txt");
+	int word1;
+	string word2;
+	int word3;
+	while (myFile >> word1 >> word2 >> word3)
+	{
+		cout << word1 << " " <<  word2 << " " << word3 << endl;
+	}
+	myFile.close();
+}
+```
+
+**Result**
+
+```
+124 ertyewew 5666
+1243 errtyewew 56666
+12 edrtyewew 5666
+```

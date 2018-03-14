@@ -7,12 +7,11 @@ using namespace std;
 void createFile();
 void addInformation();
 // void editInformation();
-// void searchInformation();
+void search();
 // void deleteInformation();
 	
 
 main(){
-	createFile();
 	int choice;
 	cout << "Employee management program \n";
 	cout << "Enter the corresponding number  \n";
@@ -31,12 +30,10 @@ main(){
 			{
 				case 1:
 				addInformation();
-				break;
 				case 2:
-				break;
 				// editInformation();
 				case 3:
-				break;
+				search();
 				// searchInformation();
 				case 4:
 				break;
@@ -68,9 +65,42 @@ void addInformation(){
 	myFile << id << setw(20) << name << setw(20) << salary << endl;
 }
 }
-
-void createFile() {
-	ofstream openFile;
-	openFile.open("employee.txt", ios::app); //app stands for append
-	openFile << "ID " <<setw(20) << " Name " << setw(20) << "Salary " << endl;
+void searchID(){
+	ifstream myFile("employee.txt");
+	int id, salary, findID;
+	string name;
+	cout << "Enter employee's ID: ";
+	cin >> findID;
+	myFile >> id >> name >> salary;
+	if (findID == id){
+		cout << id << " " <<  name << " " << salary;
+	}
 }
+
+void searchName(){
+	cout << " ";
+}
+
+void searchSalary(){
+	cout << " ";
+}
+
+void search(){
+	int choice;
+	cout << "Enter the corresponding number \n";
+	cout << "1. Search by ID \n";
+	cout << "2. Search by name \n";
+	cout << "3. Search by salary \n";
+	cout << "Your choice: ";
+	cin >> choice;
+	switch (choice){
+	case 1:
+	searchID();
+	break;
+	case 2:
+	searchName();
+	case 3:
+	searchSalary();
+	}
+}
+
