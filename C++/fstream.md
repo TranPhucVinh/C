@@ -128,7 +128,7 @@ cout << data;
 **Result**
 
 ```
-12123123 werwtwergfd
+124 ertyewew 5666
 ```
 
 ### print out
@@ -185,10 +185,19 @@ Code:
 ifstream myFile("file.txt");
 cout << myFile.tellg() << endl;
 ```
-
 Result
 ```
 0
 ```
 (as at the beginning of the file)
+
+``fstream::seekg(2)``: start the cursor from character 3
+
+```c
+string data;
+ifstream myFile("file.txt");
+myFile.seekg(2);
+getline(myFile, data);
+cout << data;
+```
 
