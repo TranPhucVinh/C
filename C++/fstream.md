@@ -153,3 +153,22 @@ main() {
 1243 errtyewew 56666
 12 edrtyewew 5666
 ```
+
+### Cursor in fstream
+
+``fstream::tellg()`` tells the positon of the current cursor in ``get``
+
+e.g
+
+we have a file name ``file.txt``
+
+```c
+	ifstream myFile("file.txt");
+	cout << myFile.tellg() << endl;
+```
+
+Result
+```
+0
+```
+(as at the beginning of the file)
