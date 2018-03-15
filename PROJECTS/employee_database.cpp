@@ -4,7 +4,6 @@
 
 using namespace std;
 
-void createFile();
 void addInformation();
 // void editInformation();
 void search();
@@ -63,26 +62,66 @@ void addInformation(){
 	cout << "Enter employee's salary: ";
 	cin >> salary;
 	myFile << id << setw(20) << name << setw(20) << salary << endl;
+	myFile.close();
 }
 }
 void searchID(){
-	ifstream myFile("employee.txt");
-	int id, salary, findID;
+	ifstream employee("employee.txt");
+	int id;
 	string name;
+	double salary;
+	int findID;
 	cout << "Enter employee's ID: ";
 	cin >> findID;
-	myFile >> id >> name >> salary;
+	while(employee >> id >> name >> salary)
+	{
 	if (findID == id){
-		cout << id << " " <<  name << " " << salary;
+	cout << "Name" << ' ' << "Age" << ' ' << "Salary" << endl;
+	cout << id << " " <<  name << " " << salary << endl;
 	}
-}
+	}
+	employee.close();
+           }
 
 void searchName(){
-	cout << " ";
+	ifstream employee("employee.txt");
+	int id;
+	string findName;
+	double salary;
+	string name;
+	cin.ignore();
+	cout << "Enter employee's name: ";
+	getline(cin, findName);
+	// cin.ignore();
+	while(employee >> id >> name >> salary)
+	{
+	if (findName == name){
+	cout << id << " " <<  name << " " << salary << endl;
+	 }
+	else { cout << "fuck that shit";}	
+}
+	employee.close();
 }
 
+
 void searchSalary(){
-	cout << " ";
+	ifstream employee("employee.txt");
+	int id;
+	double findSalary;
+	double salary;
+	string name;
+	cin.ignore();
+	cout << "Enter the salary number you wish to search: ";
+	cin >> findSalary;
+	cin.ignore();
+	while(employee >> id >> name >> salary)
+	{
+	if (findSalary == salary){
+	cout << id << " " <<  name << " " << salary << endl;
+	 }
+	else { cout << "fuck that shit";}	
+}
+	employee.close();
 }
 
 void search(){
@@ -99,8 +138,10 @@ void search(){
 	break;
 	case 2:
 	searchName();
+	break;
 	case 3:
 	searchSalary();
+	break;
 	}
 }
 

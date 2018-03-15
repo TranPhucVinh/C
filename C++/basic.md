@@ -126,3 +126,7 @@ cin >> age;
 cout << "The next 10 years: " << age + 10 <<"\n";
 }
 ```
+
+``cin.getline()`` allows you to enter a string which has white spaces too. Its syntax is as follows : 
+
+``cin.getline( name of string , size of the string );``

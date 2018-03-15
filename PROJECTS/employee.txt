@@ -1,5 +1,3 @@
 ID                Name              Salary 
-
-0                            6.94194e-310
-1                erin                 123
-2          sophie Dee                 111
+1                abc               123
+2          abs                 111
