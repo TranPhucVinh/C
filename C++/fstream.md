@@ -41,7 +41,7 @@ using namespace std;
 main() {
 	
 	ofstream myFile("erin.txt");
-	myFile << "I want Sophie Dee";
+	myFile << "Hello, World";
 	if (myFile.is_open()){
 		cout << "The file is open" << endl;
 	}
