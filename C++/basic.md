@@ -136,9 +136,9 @@ e.g:
 **Enter a string to a file**
 
 ```c
-	ofstream myFile("file.txt");
-	char data[111];
-	cin.getline(data, 100);
-	myFile << data;
-	myFile.close();
+ofstream myFile("file.txt");
+char data[111];
+cin.getline(data, 100);
+myFile << data;
+myFile.close();
 ```

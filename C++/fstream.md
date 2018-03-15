@@ -200,4 +200,3 @@ myFile.seekg(2);
 getline(myFile, data);
 cout << data;
 ```
-
