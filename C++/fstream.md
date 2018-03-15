@@ -18,7 +18,7 @@ main() {
 	ofstream myFile;
 	myFile.open("text.txt");
 
-	myFile << "I want Sophie Dee";
+	myFile << "Hello, World";
 	myFile.close();
 
 }
