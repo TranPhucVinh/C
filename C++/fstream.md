@@ -162,6 +162,10 @@ e.g
 
 we have a file name ``file.txt``
 
+```
+12123123 werwtwergfd
+```
+
 ```c
 	ifstream myFile("file.txt");
 	cout << myFile.tellg() << endl;
@@ -172,3 +176,19 @@ Result
 0
 ```
 (as at the beginning of the file)
+
+#### Read file:
+
+	```c
+	string data;
+	ifstream myFile("file.txt");
+	getline(myFile, data)
+	cout << data;
+	```
+(from file.txt above)	
+
+**Result**
+
+```
+12123123 werwtwergfd
+```
