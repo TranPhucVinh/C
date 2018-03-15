@@ -1,4 +1,3 @@
-
 ### Create new file
 
 ``ofstream``: Outputting data to stream;
@@ -116,6 +115,22 @@ main() {
 124 ertyewew 5666
 ```
 
+#### Other way:
+
+```c
+string data;
+ifstream myFile("file.txt");
+getline(myFile, data)
+cout << data;
+```
+(from file.txt above)	
+
+**Result**
+
+```
+12123123 werwtwergfd
+```
+
 ### print out
 
 we have file.txt
@@ -165,10 +180,10 @@ we have a file name ``file.txt``
 ```
 12123123 werwtwergfd
 ```
-
+Code:
 ```c
-	ifstream myFile("file.txt");
-	cout << myFile.tellg() << endl;
+ifstream myFile("file.txt");
+cout << myFile.tellg() << endl;
 ```
 
 Result
@@ -177,18 +192,3 @@ Result
 ```
 (as at the beginning of the file)
 
-#### Read file:
-
-	```c
-	string data;
-	ifstream myFile("file.txt");
-	getline(myFile, data)
-	cout << data;
-	```
-(from file.txt above)	
-
-**Result**
-
-```
-12123123 werwtwergfd
-```
