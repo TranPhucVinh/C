@@ -131,11 +131,12 @@ cout << "The next 10 years: " << age + 10 <<"\n";
 
 ``cin.getline( name of string , size of the string );``
 
-e.g
-
+e.g:
+**Enter a string to a file**
 ```c
 	ofstream myFile("file.txt");
 	char data[111];
 	cin.getline(data, 100);
+	myFile << data;
 	myFile.close();
 ```
