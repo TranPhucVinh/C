@@ -200,3 +200,46 @@ myFile.seekg(2);
 getline(myFile, data);
 cout << data;
 ```
+
+Result
+```
+123123 werwtwergfd
+```
+
+``fstream::seekg(2)`` only reading in one line.
+
+### Searching information
+
+file.txt
+
+```
+121
+1231 345425444
+12 1
+```
+
+We want searching in line 2 and line 3
+
+```c
+string data;
+	int findID, id, id0;
+	ifstream myFile("file.txt");
+	myFile.seekg(3);
+	cout << "Enter employee's ID: ";
+	cin >> findID;
+	while(myFile >> id >> id0)
+	{
+	if (findID == id){
+	cout << "Name" << ' ' << "Age"  << endl;
+	cout << id << " " <<  id0 << endl;
+	}
+	}
+```
+
+**Result**
+
+```
+Enter employee's ID: 12
+Name Age
+12 1
+```
