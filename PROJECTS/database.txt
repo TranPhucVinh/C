@@ -1,3 +1,5 @@
 ID                Name              Salary 
 4                erin                   5
 1       Erin Cummings                  56
+2               Jayne                 567
+6          Sophie Dee                  67

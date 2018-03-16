@@ -63,6 +63,7 @@ void Employee::addInformation(){
 }
 
 void add();
+void search();
 
 main(){
 	int choice;
@@ -77,6 +78,7 @@ main(){
 
 	cout << "Your choice ";
 	cin >> choice;
+	Employee employee;
 	if ( choice >0 && choice < 6){
 		switch (choice)
 			{
@@ -101,7 +103,6 @@ main(){
 }
 
 void add() {
-	Employee employee;
 	int employeeNum;
 	cout << "Number of employee you wish to enter: ";
 	cin >> employeeNum;
@@ -110,3 +111,24 @@ void add() {
 	employee.addInformation();
 			}
 }
+
+// void search(){
+// 	int choice;
+// 	cout << "Enter the corresponding number \n";
+// 	cout << "1. Search by ID \n";
+// 	cout << "2. Search by name \n";
+// 	cout << "3. Search by salary \n";
+// 	cout << "Your choice: ";
+// 	cin >> choice;
+// 	switch (choice){
+// 	case 1:
+// 	searchID();
+// 	break;
+// 	case 2:
+// 	searchName();
+// 	break;
+// 	case 3:
+// 	searchSalary();
+// 	break;
+// 	}
+// }
