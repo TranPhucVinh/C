@@ -36,7 +36,6 @@ START:	cout << "Enter the corresponding number  \n";
 				break;
 				case 3:
 				search();
-				// searchInformation();
 				case 4:
 				break;
 				// deleteInformation();

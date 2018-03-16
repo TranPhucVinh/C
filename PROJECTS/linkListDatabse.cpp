@@ -13,7 +13,9 @@ class Employee {
 	void setMark(double salary);
 	double getMark();
 	void addInformation();
-	void search();
+	void searchID();
+	void searchName();
+	void searchSalary();
 	void edit();
 
 	private: 
@@ -62,6 +64,69 @@ void Employee::addInformation(){
 	myFile.close();
 }
 
+void Employee::searchID(){
+	ifstream employee("employee.txt");
+	int id, count = 0;
+	string name;
+	double salary;
+	int findID;
+	employee.seekg(44); // set cursor based on set(w) in file.txt
+	cout << "Enter employee's ID: ";
+	cin >> findID;
+	while(employee >> id >> name >> salary)
+	{
+	if (findID == id){
+	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
+	cout << id << setw(20) <<  name << setw(20) << salary << endl;
+	count = 1;
+	}
+	}
+	if (count == 0) {cout << " Fuck that shit \n";}
+	employee.close();
+           }
+
+void Employee::searchName(){
+	ifstream employee("employee.txt");
+	int id, count = 0;
+	string findName;
+	double salary;
+	string name;
+	employee.seekg(44);
+	cout << "Enter employee's name: ";
+	cin.ignore();
+	getline(cin, findName);
+	while(employee >> id >> name >> salary)
+	{
+	if (findName == name){
+	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
+	cout << id << setw(20) <<  name << setw(20) << salary << endl;
+	count = 1;
+	 }
+}	
+	if (count == 0) {cout << " Fuck that shit \n";}
+	employee.close();
+}
+
+
+void Employee::searchSalary(){
+	ifstream employee("employee.txt");
+	int id;
+	double findSalary;
+	double salary;
+	string name;
+	employee.seekg(44);
+	cout << "Enter the salary number you wish to search: ";
+	cin >> findSalary;
+	while(employee >> id >> name >> salary)
+	{
+	if (findSalary == salary){
+	cout << id << " " <<  name << " " << salary << endl;
+	 }
+	else { cout << "fuck that shit";}	
+}
+	employee.close();
+}
+
 void add();
 void search();
 
@@ -78,7 +143,6 @@ main(){
 
 	cout << "Your choice ";
 	cin >> choice;
-	Employee employee;
 	if ( choice >0 && choice < 6){
 		switch (choice)
 			{
@@ -112,23 +176,24 @@ void add() {
 			}
 }
 
-// void search(){
-// 	int choice;
-// 	cout << "Enter the corresponding number \n";
-// 	cout << "1. Search by ID \n";
-// 	cout << "2. Search by name \n";
-// 	cout << "3. Search by salary \n";
-// 	cout << "Your choice: ";
-// 	cin >> choice;
-// 	switch (choice){
-// 	case 1:
-// 	searchID();
-// 	break;
-// 	case 2:
-// 	searchName();
-// 	break;
-// 	case 3:
-// 	searchSalary();
-// 	break;
-// 	}
-// }
+void search(){
+	int choice;
+	Employee employee;
+	cout << "Enter the corresponding number \n";
+	cout << "1. Search by ID \n";
+	cout << "2. Search by name \n";
+	cout << "3. Search by salary \n";
+	cout << "Your choice: ";
+	cin >> choice;
+	switch (choice){
+	case 1:
+	employee.searchID();
+	break;
+	case 2:
+	employee.searchName();
+	break;
+	case 3:
+	employee.searchSalary();
+	break;
+	}
+}
