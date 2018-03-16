@@ -243,3 +243,37 @@ Enter employee's ID: 12
 Name Age
 12 1
 ```
+
+**One more example**
+
+file.txt
+
+```
+ID abs
+1   2
+2   2
+```
+
+```c
+string data;
+	int findID, id, id0;
+	ifstream myFile("file.txt");
+	myFile.seekg(7);
+	cout << "Enter employee's ID: ";
+	cin >> findID;
+	while(myFile >> id >> id0)
+	{
+	if (findID == id){
+	cout << id  << " "<< id0 << endl;
+```
+
+**Result**
+
+```
+Enter employee's ID: 1
+1 2
+```
+
+if ``myFilfe.seekg(8)`` then
+
+``Enter employee's ID: 1`` will return nothing as the cursor is in the wrong postion to read.
