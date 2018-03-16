@@ -71,6 +71,7 @@ void searchID(){
 	string name;
 	double salary;
 	int findID;
+	employee.seekg(30);
 	cout << "Enter employee's ID: ";
 	cin >> findID;
 	while(employee >> id >> name >> salary)
