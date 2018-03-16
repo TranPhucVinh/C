@@ -65,7 +65,7 @@ void Employee::addInformation(){
 }
 
 void Employee::searchID(){
-	ifstream employee("employee.txt");
+	ifstream employee("database.txt");
 	int id, count = 0;
 	string name;
 	double salary;
@@ -86,7 +86,7 @@ void Employee::searchID(){
            }
 
 void Employee::searchName(){
-	ifstream employee("employee.txt");
+	ifstream employee("database.txt");
 	int id, count = 0;
 	string findName;
 	double salary;
@@ -109,7 +109,7 @@ void Employee::searchName(){
 
 
 void Employee::searchSalary(){
-	ifstream employee("employee.txt");
+	ifstream employee("database.txt");
 	int id;
 	double findSalary;
 	double salary;
@@ -157,6 +157,7 @@ main(){
 				// search();
 				// searchInformation();
 				case 4:
+				search();
 				break;
 				// deleteInformation();
 			}
