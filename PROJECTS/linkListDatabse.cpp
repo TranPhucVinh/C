@@ -1,9 +1,112 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
+class Employee {
+	public:
+	void setID(int id);	
+	int getID();
+	void setName(string name);
+	string getName();
+	void setMark(double salary);
+	double getMark();
+	void addInformation();
+	void search();
+	void edit();
+
+	private: 
+	string _name;
+	int _id;
+	double _salary;
+};
+
+void Employee::setID(int id) {
+	_id = id;
+}
+
+int Employee::getID() {
+	return _id;
+}
+
+void Employee::setName(string name) {
+	_name = name;
+}
+
+string Employee::getName() {
+	return _name;
+}
+
+void Employee::setMark(double salary) {
+	_salary = salary;
+}
+
+double Employee::getMark() {
+	return _salary;
+}
+
+void Employee::addInformation(){
+
+	ofstream myFile;
+	myFile.open("database.txt", ios::app);
+	cin.ignore();
+	cout << "Enter employee's ID: ";
+	cin >> _id;
+	cout << "Enter employee's name: ";
+	cin.ignore(1);
+	getline(cin, _name);
+	cout << "Enter employee's salary: ";
+	cin >> _salary;
+	myFile << _id << setw(20) << _name << setw(20) << _salary << endl;
+	myFile.close();
+}
+
+void add();
 
 main(){
+	int choice;
+	int index = 0;
+	
+	cout << "Enter corresponding number: \n";
+	cout << "1. Add student's information \n";
+	cout << "2. Delete student's information \n";
+	cout << "3. Display student's information \n";
+	cout << "4. Search \n";
+	cout << "5. Exit \n";
 
+	cout << "Your choice ";
+	cin >> choice;
+	if ( choice >0 && choice < 6){
+		switch (choice)
+			{
+				case 1:
+				add();
+				// loop();
+				case 2:
+				// edit();
+				// loop();
+				break;
+				case 3:
+				// search();
+				// searchInformation();
+				case 4:
+				break;
+				// deleteInformation();
+			}
+	}	
+	else 	{
+		cout << "You fool, entering wrong number \n";
+		}
+}
+
+void add() {
+	Employee employee;
+	int employeeNum;
+	cout << "Number of employee you wish to enter: ";
+	cin >> employeeNum;
+	for (int i = 0; i < employeeNum; i++) {
+	Employee employee;
+	employee.addInformation();
+			}
 }
