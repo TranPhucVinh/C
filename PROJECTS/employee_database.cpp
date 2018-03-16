@@ -5,15 +5,15 @@
 using namespace std;
 
 void addInformation();
-// void editInformation();
+void editInformation();
 void search();
 // void deleteInformation();
-	
+void loop();
 
 main(){
 	int choice;
 	cout << "Employee management program \n";
-	cout << "Enter the corresponding number  \n";
+START:	cout << "Enter the corresponding number  \n";
 	cout << "1. Add employee's information: \n";
 	cout << "2. Edit employee's information: \n";
 	cout << "3. Search employee's information: \n";
@@ -29,8 +29,11 @@ main(){
 			{
 				case 1:
 				addInformation();
+				loop();
 				case 2:
-				// editInformation();
+				editInformation();
+				loop();
+				break;
 				case 3:
 				search();
 				// searchInformation();
@@ -67,7 +70,7 @@ void addInformation(){
 }
 void searchID(){
 	ifstream employee("employee.txt");
-	int id;
+	int id, count = 0;
 	string name;
 	double salary;
 	int findID;
@@ -79,14 +82,17 @@ void searchID(){
 	if (findID == id){
 	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
 	cout << id << setw(20) <<  name << setw(20) << salary << endl;
+	count = 1;
 	}
 	}
+	if (count == 0) {cout << " Fuck that shit \n";}
 	employee.close();
+	loop();
            }
 
 void searchName(){
 	ifstream employee("employee.txt");
-	int id;
+	int id, count = 0;
 	string findName;
 	double salary;
 	string name;
@@ -99,10 +105,12 @@ void searchName(){
 	if (findName == name){
 	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
 	cout << id << setw(20) <<  name << setw(20) << salary << endl;
+	count = 1;
 	 }
-	else if (findName != name) { cout << "fuck that shit";}	
-}
+}	
+	if (count == 0) {cout << " Fuck that shit \n";}
 	employee.close();
+	loop();
 }
 
 
@@ -123,6 +131,7 @@ void searchSalary(){
 	else { cout << "fuck that shit";}	
 }
 	employee.close();
+	loop();
 }
 
 void search(){
@@ -146,3 +155,50 @@ void search(){
 	}
 }
 
+void editInformation(){
+	fstream employee("employee.txt");
+	int id, enterID, count = 0;
+	string name, enterName;
+	double salary, enterSalary;
+	int findID;
+	employee.seekg(44); // set cursor based on set(w) in file.txt
+	cout << "Enter the ID of employee you wish to edit: ";
+	cin >> findID;
+	while(employee >> id >> name >> salary)
+	{
+	if (findID == id){
+	cin.ignore();
+	cout << "Edit ID: ";
+	cin >> enterID;
+	cout << "Edit Name: ";
+	cin.ignore(1);
+	getline(cin, enterName);
+	cout << "Edit Salary: ";
+	cin >> enterSalary;
+	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
+	cout << enterID << setw(20) <<  enterName << setw(20) << enterSalary << endl;
+	count = 1;
+	}
+	}
+	if (count == 0) {cout << " Fuck that shit \n";}
+	employee.close();
+}
+
+void loop() {
+	string resp;
+	cout << "WANT SOME MORE BLOODY ? (TYPE IN Y OR N) \n";
+	cin >> resp;
+goAgain:	if (resp == "Y") {
+		main();
+	}
+	else if (resp == "N"){
+		cout << "Thanks for your experience";
+	}
+	else 
+	{
+	cout << "You fool, entering wrong words even with only 2 choices !!! \n";
+	cout << "Enter the again, you fool! :"	;
+	cin >> resp;
+	goto goAgain;
+	}
+}
