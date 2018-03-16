@@ -1,3 +1,3 @@
 ID                Name              Salary 
-1                abc               123
-2          abs                 111
+1                  abc                  123
+2                  abs                  111

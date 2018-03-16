@@ -71,14 +71,14 @@ void searchID(){
 	string name;
 	double salary;
 	int findID;
-	employee.seekg(30);
+	employee.seekg(44); // set cursor based on set(w) in file.txt
 	cout << "Enter employee's ID: ";
 	cin >> findID;
 	while(employee >> id >> name >> salary)
 	{
 	if (findID == id){
-	cout << "Name" << ' ' << "Age" << ' ' << "Salary" << endl;
-	cout << id << " " <<  name << " " << salary << endl;
+	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
+	cout << id << setw(20) <<  name << setw(20) << salary << endl;
 	}
 	}
 	employee.close();
@@ -90,16 +90,17 @@ void searchName(){
 	string findName;
 	double salary;
 	string name;
-	cin.ignore();
+	employee.seekg(44);
 	cout << "Enter employee's name: ";
+	cin.ignore();
 	getline(cin, findName);
-	// cin.ignore();
 	while(employee >> id >> name >> salary)
 	{
 	if (findName == name){
-	cout << id << " " <<  name << " " << salary << endl;
+	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
+	cout << id << setw(20) <<  name << setw(20) << salary << endl;
 	 }
-	else { cout << "fuck that shit";}	
+	else if (findName != name) { cout << "fuck that shit";}	
 }
 	employee.close();
 }
@@ -111,10 +112,9 @@ void searchSalary(){
 	double findSalary;
 	double salary;
 	string name;
-	cin.ignore();
+	employee.seekg(44);
 	cout << "Enter the salary number you wish to search: ";
 	cin >> findSalary;
-	cin.ignore();
 	while(employee >> id >> name >> salary)
 	{
 	if (findSalary == salary){
