@@ -131,6 +131,7 @@ void Employee::searchSalary(){
 void add();
 void search();
 void display();
+void loop();
 
 main(){
 	int choice;
@@ -150,7 +151,7 @@ main(){
 			{
 				case 1:
 				add();
-				// loop();
+				loop();
 				case 2:
 				// edit();
 				// loop();
@@ -160,8 +161,10 @@ main(){
 				cout << "ID" << setw(20) << "Name"<< setw(20) << "Salary" << endl;
 				display();
 				}
+				loop();
 				case 4:
 				search();
+				loop();
 				case 5:
 				break;
 			}
@@ -216,6 +219,23 @@ void display(){
 	{
 		cout << id << setw(20) <<  firstName << " " << lastName << setw(20) << salary << endl;
 	}
-	cout << "Enter name hello \n";
 }
 
+void loop() {
+	string resp;
+	cout << "WANT SOME MORE BLOODY ? (TYPE IN Y OR N) \n";
+	cin >> resp;
+goAgain:	if (resp == "Y") {
+		main();
+	}
+	else if (resp == "N"){
+		cout << "Thanks for your experience \n";
+	}
+	else 
+	{
+	cout << "You fool, entering wrong words even with only 2 choices !!! \n";
+	cout << "Enter the again, you fool! :"	;
+	cin >> resp;
+	goto goAgain;
+	}
+}
