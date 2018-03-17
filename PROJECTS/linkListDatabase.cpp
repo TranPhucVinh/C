@@ -98,7 +98,7 @@ void Employee::searchName(){
 	while(employee >> id >> name >> salary)
 	{
 	if (findName == name){
-	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
+	cout << "ID" << setw(20) << "Name" << setw(20) << "Salary" << endl;
 	cout << id << setw(20) <<  name << setw(20) << salary << endl;
 	count = 1;
 	 }
@@ -129,6 +129,7 @@ void Employee::searchSalary(){
 
 void add();
 void search();
+void display();
 
 main(){
 	int choice;
@@ -139,11 +140,13 @@ main(){
 	cout << "2. Delete student's information \n";
 	cout << "3. Display student's information \n";
 	cout << "4. Search \n";
-	cout << "5. Exit \n";
+	cout << "5. Display database \n";
+	cout << "6. Exit \n";
+
 
 	cout << "Your choice ";
 	cin >> choice;
-	if ( choice >0 && choice < 6){
+	if ( choice >0 && choice < 7){
 		switch (choice)
 			{
 				case 1:
@@ -158,8 +161,12 @@ main(){
 				// searchInformation();
 				case 4:
 				search();
+				case 5:
+				{
+				cout << "ID" << setw(20) << "Name"<< setw(20) << "Salary" << endl;
+				display();
+				}
 				break;
-				// deleteInformation();
 			}
 	}	
 	else 	{
@@ -198,3 +205,16 @@ void search(){
 	break;
 	}
 }
+
+void display(){
+	ifstream employee("data.txt");
+	int id;
+	string name;
+	double salary;
+	employee.seekg(44);
+	while(employee >> id >> name >> salary)
+	{
+		cout << id << setw(20) <<  name << setw(20) << salary << endl;
+	}
+}
+

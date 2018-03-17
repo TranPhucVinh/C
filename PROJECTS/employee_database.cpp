@@ -79,7 +79,7 @@ void searchID(){
 	while(employee >> id >> name >> salary)
 	{
 	if (findID == id){
-	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
+	cout << "ID" << setw(20) << "Name" << setw(20) << "Salary" << endl;	
 	cout << id << setw(20) <<  name << setw(20) << salary << endl;
 	count = 1;
 	}
