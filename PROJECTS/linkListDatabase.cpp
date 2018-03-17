@@ -208,18 +208,21 @@ void search(){
 
 void display(){
 	ifstream employee("database.txt");
-	ifstream employee0("database.txt");
 	int id;
 	string firstName;
 	string lastName;
 	double salary;
 	employee.seekg(44);
-	employee0.seekg(44);
 	while (employee >> id >> firstName >> lastName >> salary)
 	{
 		cout << id << setw(20) <<  firstName << " " << lastName << setw(20) << salary << endl;
 	}
 }
+
+void edit() {
+
+}
+// PROBLEM WITH EDIT: AS CURRENTLY WORKING WITH TXT FILE so there is problem with editing the information based on the search result of id, name, salary
 
 void loop() {
 	string resp;
@@ -234,7 +237,7 @@ goAgain:	if (resp == "Y") {
 	else 
 	{
 	cout << "You fool, entering wrong words even with only 2 choices !!! \n";
-	cout << "Enter the again, you fool! :"	;
+	cout << "Enter the again, you fool!: "	;
 	cin >> resp;
 	goto goAgain;
 	}
