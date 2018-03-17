@@ -207,14 +207,19 @@ void search(){
 }
 
 void display(){
-	ifstream employee("data.txt");
+	ifstream employee("database.txt");
+	ifstream employee0("database.txt");
 	int id;
-	string name;
+	string firstName;
+	string lastName;
 	double salary;
 	employee.seekg(44);
-	while(employee >> id >> name >> salary)
+	employee0.seekg(44);
+
+	while (employee >> id >> firstName >> lastName >> salary)
 	{
-		cout << id << setw(20) <<  name << setw(20) << salary << endl;
+		cout << id << setw(20) <<  firstName << " " << lastName << setw(20) << salary << endl;
 	}
+	cout << "Enter name hello \n";
 }
 

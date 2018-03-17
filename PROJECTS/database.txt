@@ -1,5 +1,5 @@
 ID                Name              Salary 
-4                erin                   5
-1       	    ert                  56
-2       	    ghj                  56
-45              yyui o                  67
+4                erin  cummings                 5
+1       	    erin Cummings                 56
+2       	    ghj abs                 56
+5                erin                 567
