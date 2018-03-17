@@ -67,8 +67,7 @@ void Employee::addInformation(){
 void Employee::searchID(){
 	ifstream employee("database.txt");
 	int id, count = 0;
-	string firstName;
-	string lastName;
+	string firstName, lastName;
 	double salary;
 	int findID;
 	employee.seekg(44); // set cursor based on set(w) in file.txt
@@ -91,8 +90,7 @@ void Employee::searchName(){
 	int id, count = 0;
 	string findName;
 	double salary;
-	string firstName;
-	string lastName;
+	string firstName, lastName;
 	employee.seekg(44);
 	cout << "Enter employee's name: ";
 	cin.ignore();
@@ -112,20 +110,21 @@ void Employee::searchName(){
 
 void Employee::searchSalary(){
 	ifstream employee("database.txt");
-	int id;
+	int id, count;
 	double findSalary;
 	double salary;
-	string name;
+	string firstName, lastName;
 	employee.seekg(44);
 	cout << "Enter the salary number you wish to search: ";
 	cin >> findSalary;
-	while(employee >> id >> name >> salary)
+	while(employee >> id >> firstName >> lastName >> salary)
 	{
 	if (findSalary == salary){
-	cout << id << " " <<  name << " " << salary << endl;
+	cout << id << " " <<  firstName << " " << lastName << " " << salary << endl;
+	count = 1;
 	 }
-	else { cout << "fuck that shit";}	
 }
+	if (count == 0) {cout << " Fuck that shit \n";}
 	employee.close();
 }
 
