@@ -67,17 +67,18 @@ void Employee::addInformation(){
 void Employee::searchID(){
 	ifstream employee("database.txt");
 	int id, count = 0;
-	string name;
+	string firstName;
+	string lastName;
 	double salary;
 	int findID;
 	employee.seekg(44); // set cursor based on set(w) in file.txt
 	cout << "Enter employee's ID: ";
 	cin >> findID;
-	while(employee >> id >> name >> salary)
+	while(employee >> id >> firstName >> lastName >> salary)
 	{
 	if (findID == id){
-	cout << "Name" << setw(20) << "Age" << setw(20) << "Salary" << endl;
-	cout << id << setw(20) <<  name << setw(20) << salary << endl;
+	cout << "ID" << setw(20) << "Name" << setw(20) << "Salary" << endl;
+	cout << id << setw(20) <<  firstName << " " << lastName << setw(20) << salary << endl;
 	count = 1;
 	}
 	}
@@ -90,16 +91,17 @@ void Employee::searchName(){
 	int id, count = 0;
 	string findName;
 	double salary;
-	string name;
+	string firstName;
+	string lastName;
 	employee.seekg(44);
 	cout << "Enter employee's name: ";
 	cin.ignore();
 	getline(cin, findName);
-	while(employee >> id >> name >> salary)
+	while(employee >> id >> firstName >> lastName >> salary)
 	{
-	if (findName == name){
+	if (findName == firstName){
 	cout << "ID" << setw(20) << "Name" << setw(20) << "Salary" << endl;
-	cout << id << setw(20) <<  name << setw(20) << salary << endl;
+	cout << id << setw(20) <<  firstName << " " << lastName << setw(20) << salary << endl;
 	count = 1;
 	 }
 }	
@@ -136,17 +138,15 @@ main(){
 	int index = 0;
 	
 	cout << "Enter corresponding number: \n";
-	cout << "1. Add student's information \n";
-	cout << "2. Delete student's information \n";
-	cout << "3. Display student's information \n";
+	cout << "1. Add employee's information \n";
+	cout << "2. Edit employee's information \n";
+	cout << "3. Display employee's information \n";
 	cout << "4. Search \n";
-	cout << "5. Display database \n";
-	cout << "6. Exit \n";
-
-
+	cout << "5. Exit \n";
 	cout << "Your choice ";
+
 	cin >> choice;
-	if ( choice >0 && choice < 7){
+	if ( choice >0 && choice < 6){
 		switch (choice)
 			{
 				case 1:
@@ -157,15 +157,13 @@ main(){
 				// loop();
 				break;
 				case 3:
-				// search();
-				// searchInformation();
-				case 4:
-				search();
-				case 5:
 				{
 				cout << "ID" << setw(20) << "Name"<< setw(20) << "Salary" << endl;
 				display();
 				}
+				case 4:
+				search();
+				case 5:
 				break;
 			}
 	}	
@@ -215,7 +213,6 @@ void display(){
 	double salary;
 	employee.seekg(44);
 	employee0.seekg(44);
-
 	while (employee >> id >> firstName >> lastName >> salary)
 	{
 		cout << id << setw(20) <<  firstName << " " << lastName << setw(20) << salary << endl;
