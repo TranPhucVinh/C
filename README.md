@@ -2,7 +2,7 @@
 
 ## Compile
 
-To compile code C in sublime text, notepad, gedit,...
+### Compile code C in sublime text, notepad, gedit,...
 
 follow this link:
 [How to Compile and Execute C/C++ Program On Ubuntu using Terminal Gedit, Sublime Text Editor](https://www.youtube.com/watch?v=QU8arxnpfhA)
@@ -16,12 +16,11 @@ Shell
 "working_dir" : "$file_path"
 }
 ```
-
-to run the code: cd to current c workspace:
+To run the code: cd to current c workspace:
 
 then type: ./<name of project>
 
-Compile C++, C on terminal
+### Compile C++, C on terminal
 
 ```shell
 g++ output_file file.cpp
