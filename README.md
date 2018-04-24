@@ -23,7 +23,7 @@ then type: ./<name of project>
 ### Compile C++, C on terminal
 
 ```shell
-g++ output_file file.cpp
+g++ -o output_file file.cpp
 ```
 Then
 ``
