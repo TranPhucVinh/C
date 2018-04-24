@@ -1,3 +1,6 @@
+/*
+ Only save student information in buffer, lost after ending program
+*/
 #include <iostream>
 #include <iomanip> // io manipulation
 
@@ -153,6 +156,4 @@ main(){
 	//
 }
 
-// ONLY SAVE student information in buffer, lost after ending program
-
-// IN the program above, we haven;t used Student::set_() function as we haven't set any value, the value of name, id, class, mark are all enter from keyboard and are then processed
+// In the program above, we haven;t used Student::set_() function as we haven't set any value, the value of name, id, class, mark are all enter from keyboard and are then processed
