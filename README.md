@@ -67,6 +67,13 @@ printf("Integer %d ", c);
 
 So, char in C go only with one word.
 
+#### Print out
+
+```c
+char hw[] = "Hello, World!";
+	printf("%s ", hw);
+```
+
 ### float and double
 
 **double** can also be declared as **long float**.
