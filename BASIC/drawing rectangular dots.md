@@ -1,4 +1,4 @@
-/* drawing 
+Drawing 
 
 
    m 
@@ -7,8 +7,7 @@
 *      *     
 ********
 
-*/
-
+```c
 #include <stdio.h>
 
 main() {
@@ -45,3 +44,4 @@ printf("\n");
 	}
 
 } 
+```
