@@ -47,3 +47,38 @@ main()
 ```
 Jayne has id 1986 in class Free Lancer
 ```
+### Missing the line in code
+
+```c
+	printf("Enter ID: ");
+	scanf("%d", &student1.id);
+	printf("Enter name: ");
+	gets(student1.name);
+	printf("Enter class: ");
+	gets(student1.class);
+	printf(" %s has id %d in class %s ", student1.name, student1.id, student1.class);
+```
+
+The line of code gets(student1.name) will be omitted. GNU discourage you to use gets(). Just use scanf() instead. Adding fflush(stdin) will not help.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+struct student {
+	int id;
+	char name[50];
+	char class[50];
+} student1;
+
+main()
+{
+	printf("Enter ID: ");
+	scanf("%d", &student1.id);
+	printf("Enter name: ");
+	scanf("%s", &student1.name);
+	printf("Enter class: ");
+	scanf("%s", &student1.class);
+	printf(" %s has id %d in class %s ", student1.name, student1.id, student1.class);
+}
+```
