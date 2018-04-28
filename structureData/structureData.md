@@ -82,3 +82,7 @@ main()
 	printf(" %s has id %d in class %s ", student1.name, student1.id, student1.class);
 }
 ```
+
+Change ``char name[50]`` to ``char* name``
+
+Reference: [char](https://daynhauhoc.com/t/hoi-ve--lenh-fflush-stdin-trong-c/25479/5)
