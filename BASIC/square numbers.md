@@ -1,5 +1,6 @@
-//print out the square of number from 1 to n
+Print out the square of number from 1 to n
 
+```c
 #include <stdio.h>
 main() {
   int n;
@@ -12,3 +13,4 @@ main() {
     printf("%d \n", a);
   }
 }
+```
