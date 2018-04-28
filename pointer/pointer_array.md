@@ -1,5 +1,6 @@
-// use pointer to enter the values in array and display these values on screen
+Use pointer to enter the values in array and display these values on screen
 
+```c
 # include <stdio.h>
 
 void main() {
@@ -21,3 +22,4 @@ void main() {
 		p2++;
 	}
 }
+```
