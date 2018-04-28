@@ -1,7 +1,8 @@
-// Enter the value of each member in array then print out on screen.
-// Array declaration: data_type name_of_array[size_of_array]
-// The size of array is compulsory, not like array[] in JavaScript
+TARGET: Enter the value of each member in array then print out on screen.
 
+The size of array is compulsory, not like array[] in JavaScript
+
+```c
 #include <stdio.h>
 
 main() {
@@ -18,3 +19,4 @@ main() {
 		printf("Value of member %d is %d \n", i, array[i]);
 	}
 }
+```
