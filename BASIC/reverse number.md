@@ -1,5 +1,6 @@
-// enter a number, print it in reverse order: 12345 => 54321
+Enter a number, print it in reverse order: 12345 => 54321
 
+```c
 #include <stdio.h>
 
 main () {
@@ -17,3 +18,4 @@ main () {
 	}
 	printf("%d \n", number );
 }
+```
