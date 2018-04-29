@@ -61,3 +61,32 @@ main(){
 	cout << "value: " << *p;
 }
 ```
+
+### Swap
+
+```c
+#include <stdio.h>
+int a, b;
+void swap(int *change1, int *change2);
+main() {
+	printf("Enter the 2 numbers: ");
+	scanf ("%d", &a);
+	scanf("%d", &b);
+	printf("Values of a and b are %d %d \n", a, b);
+	swap(&a, &b);
+	printf("Values of a and b now are %d %d \n", a, b);
+}
+
+void swap(int *change1, int *change2){
+	int temp;
+	temp = *change1;
+	*change1= *change2;
+	*change2 = temp;
+}
+```
+```
+Enter the 2 numbers: 4
+6
+Values of a and b are 4 6 
+Values of a and b now are 6 4 
+```
