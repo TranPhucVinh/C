@@ -18,7 +18,7 @@ double fracture (int n)
 	double m = 0.0;
 	for (double i = 1.0; i <= n; i++)
 	{
-		m = m + (1 / i); // if you declare int i =1 in for loop, the result of (1/i) will be kept as int
+		m = m + (1 / i); // if you declare int i=1 in for loop, the result of (1/i) will be kept as int
 	}
 	return m;
 }
@@ -60,7 +60,7 @@ double fracture (int n)
 	double m = 0.0;
 	for (double i = 1.0; i <= n; i++)
 	{
-		m = m + (1 / i); // if you declare int i =1 in for loop, the result of (1/i) will be kept as int
+		m = m + (1 / i); // if you declare int i=1 in for loop, the result of (1/i) will be kept as int
 	}
 	return m;
 }
