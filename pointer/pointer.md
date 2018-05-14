@@ -99,6 +99,27 @@ int add(int number){
 
 What is sent to the function add(number) is the value of variable number (=6), not really number, the variable name "number" in add() is just the clone of the genuine variale "number". So the value of number still remain unchanged.
 
+### Problem solved
+
+```c
+#include <stdio.h>
+
+int add (int *number);
+
+main () {
+ int number = 6;
+ add(&number);
+ printf("%d", number);
+}
+
+int add(int *number){
+	*number = *number + 1;
+	return *number;
+}
+```
+
+**Result** 7
+
 ### Swap
 
 ```c
