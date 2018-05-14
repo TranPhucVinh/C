@@ -97,6 +97,8 @@ int add(int number){
 ```
 **Result** 6 (expect 7)
 
+What is sent to the function add(number) is the value of variable number (=6), not really number, the variable name "number" in add() is just the clone of the genuine variale "number". So the value of number still remain unchanged.
+
 ### Swap
 
 ```c
