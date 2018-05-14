@@ -36,6 +36,18 @@ int *p;
 a = 5;
 p = &a; // p is address of variable a
 `````
+
+As *p is the pointer that store the value at the address of a variable so that we can declare
+
+```c
+int *p = a; // they are both int value
+int a = 6;
+```
+
+```c
+const char *message1 = "Thread 1";
+```
+
 ### C
 
 ```c++
