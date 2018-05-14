@@ -11,6 +11,10 @@ void helloWorld (void (*function)()){
 main()
 { 	
     void (*p)() =abs;
-	  helloWorld(p);
+    helloWorld(p);
 }
 ```
+
+**Result:** ``Hello world``
+
+This can be replaced as ``helloWorld(abs);``
