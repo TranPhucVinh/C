@@ -79,6 +79,24 @@ void add(int number){
 ```
 **Result** 6 (expect 7)
 
+```c
+#include <stdio.h>
+
+int add (int number);
+
+main () {
+ int number = 6;
+ add(number);
+ printf("%d", number);
+}
+
+int add(int number){
+	number = number + 1;
+	return number;
+}
+```
+**Result** 6 (expect 7)
+
 ### Swap
 
 ```c
