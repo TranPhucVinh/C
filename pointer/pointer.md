@@ -49,6 +49,8 @@ printf ("Value: %d", *p);
 }
 ```
 
+**Result** 5
+
 ### C++
 
 ```c++
