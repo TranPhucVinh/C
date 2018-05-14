@@ -87,7 +87,8 @@ int add (int number);
 main () {
  int number = 6;
  add(number);
- printf("%d", number);
+ printf("%d \n", number);
+ printf("the return value of the function is %d \n", add(number));
 }
 
 int add(int number){
@@ -95,7 +96,11 @@ int add(int number){
 	return number;
 }
 ```
-**Result** 6 (expect 7)
+**Result** 
+```
+6 
+the return value of the function is 7 
+```
 
 What is sent to the function add(number) is the value of variable number (=6), not really number, the variable name "number" in add() is just the clone of the genuine variale "number". So the value of number still remain unchanged.
 
