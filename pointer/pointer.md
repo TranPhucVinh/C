@@ -64,6 +64,8 @@ main(){
 }
 ```
 
+### Variable pointer in fucntion 
+
 ```c
 #include <stdio.h>
 
