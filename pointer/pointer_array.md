@@ -25,7 +25,28 @@ void main() {
 address 0x7ffe8012de00 
 address 0x7ffe8012de00 
 ```
-Use pointer to enter the values in array and display these values on screen
+
+**Use pointer in array to enter the value in array**
+
+```c
+#include <stdio.h>
+
+void enterArray(int *array, int n){
+	for (int i=0;i<n;i++){
+		printf("Enter value array[%d]: \n",i );
+		scanf("%d", &array[i]);
+	}
+}
+void main() {
+	int n;
+	printf("enter number n");
+	scanf("%d", &n);
+	int array[n];
+	enterArray(array, n);
+}
+```
+
+**Use pointer to enter the values in array and display these values on screen**
 
 ```c
 #include <stdio.h>
