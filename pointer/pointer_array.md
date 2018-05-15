@@ -8,6 +8,23 @@ void main() {
 	printf("address %p", &a);
 }
 ```
+
+```c
+#include <stdio.h>
+
+void main() {
+	int a[20];
+	printf("address %p \n", &a);
+	printf("address %p \n", &a[0]);
+}
+```
+
+**Result**
+
+```
+address 0x7ffe8012de00 
+address 0x7ffe8012de00 
+```
 Use pointer to enter the values in array and display these values on screen
 
 ```c
