@@ -1,4 +1,4 @@
-### Basic without pointer
+### Basic callback without pointer
 
 ```c
 #include <stdio.h>
@@ -19,6 +19,42 @@ main()
 **Result**
 ```
 Hello world
+```
+
+### Pointer to function
+
+```c
+#include <stdio.h>
+
+int add(int a, int b){
+	return a+b;
+}
+
+int subtract(int a, int b){
+	return a-b;
+}
+
+double addNumber(int a, double b){
+	return a+b;
+}
+
+main()
+{  
+    int (*p)(int, int);
+    p = add;
+    printf("%d \n",p(5,6));
+    p = subtract;
+    printf("%d \n",p(5,8));
+    double (*pointer)(int, double);
+    pointer = addNumber;
+    printf("%f \n", pointer(8, 9.89));
+}
+```
+
+```
+11 
+-3 
+17.890000 
 ```
 
 ### With pointer
