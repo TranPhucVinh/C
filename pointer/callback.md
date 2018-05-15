@@ -43,5 +43,3 @@ main()
 **Result:** ``Hello world``
 
 This can be replaced as ``helloWorld(abs);``
-
-In c compiler, callback function must be used with pointer as the function need to know the address of the callback function to call it.
