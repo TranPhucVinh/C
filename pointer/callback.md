@@ -35,7 +35,7 @@ void helloWorld (void (*function)()){
 }
 main()
 { 	
-    void (*p)() =abs;
+    void (*p)() = abs;
     helloWorld(p);
 }
 ```
