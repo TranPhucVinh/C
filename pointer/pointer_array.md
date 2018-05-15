@@ -1,3 +1,13 @@
+Array ``arr[20]`` with variable ``arr`` is the pointer that store the value of ``arr[0]``.
+
+```c
+#include <stdio.h>
+
+void main() {
+	int a[20];
+	printf("address %p", &a);
+}
+```
 Use pointer to enter the values in array and display these values on screen
 
 ```c
