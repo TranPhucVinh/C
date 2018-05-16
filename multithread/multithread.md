@@ -1,3 +1,6 @@
+
+``g++ -o test test.cpp -lpthread``
+
 ```c
 #include <iostream>
 #include <pthread.h>
