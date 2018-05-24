@@ -47,20 +47,6 @@ char hw[] = "Hello, World!";
 	printf("%s ", hw);
 ```
 
-### float and double
-
-**double** can also be declared as **long float**.
-
-```
-float -> %f
-
-double -> %lf
-```
-
-### static
-
-**static:** local variable but the value remain unchanged in a function
-
 ## BEGINNER
 
 #### scanf
