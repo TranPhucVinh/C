@@ -57,7 +57,7 @@ main(){
 	moveDisk(diskNumber, 1, 2, 3);
 }
 
-void moveDisk(int diskNumber,int startPos,int midPos,int endPos)
+void moveDisk(int diskNumber, int startPos, int midPos, int endPos)
 {
 	if (diskNumber >1)
 	{		// move n-1 upper disk from startPos to midPos
