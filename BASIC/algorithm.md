@@ -48,29 +48,6 @@ main() {
 ```c
 #include <stdio.h>
 
-void moveDisk(int diskNumber, int startPos, int endPos, int midPos);
-
-main(){
-	int diskNumber;
-	printf("Enter disk number: ");
-	scanf("%d", &diskNumber);
-	moveDisk(diskNumber, 1, 2, 3);
-}
-
-void moveDisk(int diskNumber,int startPos,int endPos,int midPos)
-{
-	if (diskNumber >1)
-	{
-			moveDisk(diskNumber-1, startPos, midPos, endPos);
-			printf("move disk number %d from column %d to column %d \n", diskNumber, startPos, endPos);
-			moveDisk(diskNumber-1, midPos, endPos, startPos);
-	}
-		else printf("move disk number 1 from column %d to column %d \n", startPos, endPos);
-}
-```
-```c
-#include <stdio.h>
-
 void moveDisk(int diskNumber, int startPos, int midPos, int endPos);
 
 main(){
