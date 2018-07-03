@@ -23,7 +23,7 @@ main() {
 
 To only print out the value of array
 
-```
+```c
 for (i=0; i < n; i++)
 	{
 		printf("%d ", array[i]);
