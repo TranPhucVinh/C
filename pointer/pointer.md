@@ -15,7 +15,7 @@ double d;
 double *p1; // pointer to double
 `````
 
-%p: is used for pointer, like %
+%p: is used for pointer, like %d for int, %s for string
 
 &: get the address of the variable
 
