@@ -76,7 +76,7 @@ main() {
       printf("LA[%d] = %d \n", i, LA[i]);
    }
 	j=k;	
-   while( j <= n){
+   while(j<=n){
       LA[j] = LA[j+1];
       j++;
    }
