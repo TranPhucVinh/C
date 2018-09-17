@@ -25,7 +25,7 @@ Hello World
 
 ### get and set
 
-```c
+```c++
 #include <iostream>
 
 using namespace std;
@@ -56,7 +56,7 @@ Linux
 
 ### Constructor inside Class
 
-```c
+```c++
 #include <iostream>
 
 using namespace std;
@@ -92,7 +92,7 @@ Linux
 
 ### Set variable in constructor
 
-```c
+```c++
 #include <iostream>
 
 using namespace std;
@@ -121,7 +121,7 @@ main(){
 
 ### More than 1 constructor in one Class
 
-```c
+```c++
 #include <iostream>
 
 using namespace std;
