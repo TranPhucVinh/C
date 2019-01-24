@@ -16,7 +16,9 @@ double -> %lf
 
 size_t is actually unsigned int
 
+```c
 typedef unsigned int size_t;
+```
 
 so if the value of variable with size_t is negative, the result will be unpredictable
 
@@ -33,3 +35,16 @@ int main() {
 ```
 
 **Result** ``18446744073709551614``
+
+### stdint.h
+
+stdint.h - integer types
+
+include 
+
+int8_t
+int16_t
+int32_t
+uint8_t
+uint16_t
+uint32_t
