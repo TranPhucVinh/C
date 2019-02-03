@@ -17,6 +17,10 @@ B = 0000 1101
 
 A|B = 0011 1101
 
+bitwise
+
+![](bitwise.png)
+
 # Pointer
 
 [Introduction to pointers in C/C++](https://www.youtube.com/watch?v=h-HBipu_1P0)
