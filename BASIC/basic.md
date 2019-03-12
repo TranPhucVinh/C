@@ -90,6 +90,7 @@ printf("Integer %d ", c);
 => WRONG
 
 So, char in C go only with one word.
+
 #### gets()
 
 **gets()** is used to enter a string
@@ -115,8 +116,9 @@ Enter a string : tutorialspoint.com
 
 You entered: tutorialspoint.com
 ```
+### getchar(), putchar()
 
-Enter a char, print out this char => learn how to use getchar(); putchar()
+Enter a char, print out this char
 
 ```c
 #include <stdio.h>
