@@ -33,64 +33,6 @@ void main() {
 }
 `````
 
-### COMPARE
-
-| C | JavaScript|
-| ------- |:------:|
-|int a = 8; | var a = 8;|
-| printf("%d ",a)    | console.log(a)    |
-
-**" " and ' '**
-
-* ' ' is for character
-
-* " " is for string
-
-### Data Type
-
-```c
-#include <stdio.h>
-void main() {
-	double x = 3.1;
-	float y = 3.1;
-	if (x == y){
-		printf("YES\n");
-	}
-	else {
-		printf("NO\n");
-	}
-}
-```
-**Result**
-```
-NO
-```
-
-### char
-
-can store character or integer value
-
-`````c
-// character
-char c;
-c = 'a';
-printf("Character %c ", c);
-`````
-
-`````c
-// integer
-char c;
-c = 8;
-printf("Integer %d ", c);
-`````
-
-**Notes**
-
-``char c ='ab'`` => Warning "character constant too long for its type"
-=> WRONG
-
-So, char in C go only with one word.
-
 #### gets()
 
 **gets()** is used to enter a string

@@ -1,3 +1,7 @@
+### Prime number
+
+Find prime number with a limited of integer value
+
 ```c
 #include <stdio.h>
 
@@ -9,7 +13,7 @@ main () {
 
 	if (n <= 0)
 	{
-		printf("shitty");
+		printf("number must be greater than 0");
 	}
 	else
 	{
