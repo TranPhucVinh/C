@@ -37,3 +37,11 @@ shift <<= 1;
 	printf("%d", binResult);
 ```
 **Result** ``3``
+
+### lvalue, rvalue
+
+``lvale``: left value, the value on the left is modificable, usually a variable.
+
+``rvalue``: Rvalue concept pulls or fetches the value of the expression or operand on the right side of the assignment operator. 
+
+can't use ``PB5 = PB5^1;`` as PB5 is a macro, not variable
