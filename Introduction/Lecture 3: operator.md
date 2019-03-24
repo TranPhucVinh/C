@@ -49,10 +49,11 @@ shift <<= 1;
 	printf("%d \n", binResult);
 ```
 
-``
+```
 0 
 -1 
-``
+```
+
 The same result for 
 
 ```c
