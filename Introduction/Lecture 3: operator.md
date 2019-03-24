@@ -20,7 +20,9 @@ can be written as
 shift <<= 1;
 ```
 
-### Binary and Operator
+## Binary and Operator
+
+### OR and +
 
 ```c
 	int binVal0 = 0b11;
@@ -38,7 +40,27 @@ shift <<= 1;
 ```
 **Result** ``3``
 
-### lvalue, rvalue
+### bitwise
+
+```c
+	int binVal0 = 0b00;
+	int binResult = ~binVal0;
+	printf("%d \n", binVal0);
+	printf("%d \n", binResult);
+```
+
+``
+0 
+-1 
+``
+The same result for 
+
+```c
+	char binVal0 = 0b00;
+	char binResult = ~binVal0;
+```
+
+## lvalue, rvalue
 
 ``lvale``: left value, the value on the left is modificable, usually a variable.
 
