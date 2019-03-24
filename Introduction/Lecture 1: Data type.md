@@ -1,3 +1,7 @@
+# Data type
+
+![datatype.png]
+
 ### COMPARE
 
 | C | JavaScript|
@@ -11,7 +15,7 @@
 
 * " " is for string
 
-### Data Type
+### Example
 
 ```c
 #include <stdio.h>
