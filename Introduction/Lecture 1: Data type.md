@@ -1,6 +1,6 @@
 # Data type
 
-![datatype.png]
+![](datatype.png)
 
 ### COMPARE
 
