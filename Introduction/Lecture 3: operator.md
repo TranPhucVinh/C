@@ -22,6 +22,20 @@ shift <<= 1;
 
 ## Binary and Operator
 
+### unsigned char
+
+```c
+	unsigned char binVal0 = -3;
+	printf("%d \n", binVal0);
+```
+
+``253`` (1111 1101)
+
+Signed number is operated by two's implement (bitwise then OR with bit 1).
+
+3 = 0000 0011 => bitwise = 1111 1100
+=> -3 = 1111 1100+1 = 1111 1101
+
 ### OR and +
 
 ```c
@@ -59,6 +73,41 @@ The same result for
 ```c
 	char binVal0 = 0b00;
 	char binResult = ~binVal0;
+```
+
+### How it works ?
+
+```
+int binVal0 = 0b00; //binVal0 = 0b 0000 0000;
+int binResult = ~binVal0; //binResult = 0b 1111 1111;
+```
+
+When converting back to integer, the duplicate 1 bit from the left is omit, and one bit is kept for sign. So, there is 2 bit left
+
+```
+binResult = 0b11 = -1
+```
+
+### bitwise unsigned char, unsigned int
+
+```c
+	unsigned char binVal0 = 0b0;
+	unsigned char binResult = ~binVal0;
+	printf("%d \n", binResult);
+```	
+
+```
+255
+```
+
+```c
+	unsigned int binVal0 = 0b0;
+	int binResult = ~binVal0;
+	printf("%d \n", binResult);
+```	
+
+```
+-1
 ```
 
 ## lvalue, rvalue
