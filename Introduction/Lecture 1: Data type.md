@@ -115,6 +115,8 @@ uint32_t
 
 ### sprintf()
 
+Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
+
 ```c
 /* sprintf example */
 #include <stdio.h>
