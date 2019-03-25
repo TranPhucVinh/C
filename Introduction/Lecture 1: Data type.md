@@ -115,7 +115,7 @@ uint32_t
 
 ### sprintf()
 
-```
+```c
 /* sprintf example */
 #include <stdio.h>
 
