@@ -17,7 +17,7 @@ void helloworld();
 
 ``header.cpp``
 
-```c
+```c++
 #include <iostream>
 #include "header.h"
 using namespace std; // this line is optional
@@ -50,10 +50,11 @@ Hello, World!
 
 ``header.h``
 
-```c
+```cpp
 #include <iostream>
 #ifndef header_h
 #define header_h
+
 using namespace std;
 
 class Header
@@ -66,10 +67,9 @@ class Header
     int _number;
     int _lastNumber;
 };
+#endif
 
 void helloworld();
-
-#endif
 ```
 
 Notice
@@ -82,7 +82,7 @@ Without this line, there will be error when calling class Header in header.cpp
 
 ``header.cpp``
 
-```c
+```cpp
 #include <iostream>
 #include "header.h"
 using namespace std;
@@ -111,7 +111,7 @@ void helloworld(){
 
 ``test.cpp``
 
-```c
+```cpp
 #include <iostream>
 #include "header.h" //"header.h", not <header.h>
 
@@ -136,4 +136,45 @@ This number is 6
 4
 5
 Hello, World!
+```
+
+### Define value in header file, without class
+
+```cpp
+#include <iostream>
+#ifndef header_h
+#define header_h
+#define integerValue 190
+
+using namespace std;
+
+class Header
+{
+  public:
+    void hello();
+  private:
+    int _number;
+};
+#endif
+
+void helloworld();
+int value = 18;
+```
+
+```cpp
+#include <iostream>
+#include "header.h"
+
+using namespace std;
+
+int main() {
+    cout << value << endl; //18
+    cout << integerValue << endl; //190
+    return 0;
+}
+```
+
+```
+18
+190
 ```
