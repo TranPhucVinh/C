@@ -98,3 +98,43 @@ main() {
 	}
 }
 ```
+
+## continue vs break
+
+#### break
+
+```c
+for (i=0; i<10; i++){
+		if(i==5) break;
+		printf("i value is %d \n", i);
+	}
+```
+
+```
+i value is 0 
+i value is 1 
+i value is 2 
+i value is 3 
+i value is 4 
+```
+
+#### continue
+
+```c
+for (i=0; i<10; i++){
+		if(i==5) continue;
+		printf("i value is %d \n", i);
+	}
+```
+
+```
+i value is 0 
+i value is 1 
+i value is 2 
+i value is 3 
+i value is 4 
+i value is 6 
+i value is 7 
+i value is 8 
+i value is 9 
+````
