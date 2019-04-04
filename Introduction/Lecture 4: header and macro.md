@@ -139,11 +139,13 @@ Display content
 #define PRINT_HELLO_WORLD printf("Hello world")
 #define PI 3.14159
 #define a 6
+#define PIN_SPI_SS    (10)
 
 main(){
 	printf("%d \n", a);
 	printf("%f \n", PI);
 	PRINT_HELLO_WORLD;
+	printf("%d \n", PIN_SPI_SS);
 }	
 ````
 
@@ -151,6 +153,7 @@ main(){
 6
 3.14159
 Hello world
+10
 ```
 
 ### Macro with past in parameter
