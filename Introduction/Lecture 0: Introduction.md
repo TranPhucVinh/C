@@ -138,3 +138,41 @@ i value is 7
 i value is 8 
 i value is 9 
 ````
+
+**Another example**
+
+```c
+int i = 0, a=0, b=0;
+    while(i<10){
+        i++;
+        printf("i: %d \n", i);
+		if(i==5) continue;
+		a++;
+		b++;
+		printf("a: %d \n", a);
+		printf("b: %d \n", b);
+		printf("\n");
+	}
+```	
+
+```
+i: 1 
+a: 1 
+b: 1 
+
+...
+
+i: 4 
+a: 4 
+b: 4 
+
+i: 5  //a++, b++ are bypass
+
+i: 6 
+a: 5 
+b: 5 
+...
+i: 10 
+a: 9 
+b: 9 
+```
