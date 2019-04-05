@@ -77,14 +77,14 @@ The same result for
 
 ### How it works ?
 
-```
+```c
 int binVal0 = 0b00; //binVal0 = 0b 0000 0000;
 int binResult = ~binVal0; //binResult = 0b 1111 1111;
 ```
 
 When converting back to integer, the duplicate 1 bit from the left is omit, and one bit is kept for sign. So, there is 2 bit left
 
-```
+```c
 binResult = 0b11 = -1
 ```
 
