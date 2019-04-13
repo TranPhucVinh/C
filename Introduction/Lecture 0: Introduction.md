@@ -1,63 +1,114 @@
-#### printf()
+## Printed out entered value
 
-`````c
+### printf()
+
+```c
 printf("%d ", a) // int
 printf("%s ", a) // string
-`````
+```
 
 ```c
 char hw[] = "Hello, World!";
-	printf("%s ", hw);
+printf("%s ", hw);
 ```
 
-#### scanf()
+### scanf()
 
-`````c
-scanf("%d ", &a);
-`````
-You have to type value a; then type one more to finish command although the value of **a** is still printed out correctly. To print out the value of **a** just after typing it, delete the space after %d
+#### Int, Long (double), Float
 
-`````c
+```c
 scanf("%d", &a);
-`````
+scanf("%lf", &b);
+scanf("%f", &c);
+```
 
-**Example**
-
-`````c
-#include <stdio.h>
-
-void main() {
+```c
 	int a;
-	scanf("%d ", &a);
-	printf("%d",a);
-}
-`````
+   	double b;
+   	float c;
 
-#### gets()
+    scanf("%d", &a);
+	scanf("%lf", &b);
+	scanf("%f", &c);
 
-**gets()** is used to enter a string
+   printf("value %d %lf %f", a, b, c);
+```
 
-`````c
-#include <stdio.h>
-
-int main () {
-   char str[50];
-
-   printf("Enter a string : ");
-   gets(str);
-
-   printf("You entered: %s", str);
-
-   return(0);
-}
-`````
 **Result**
 
 ```
-Enter a string : tutorialspoint.com
-
-You entered: tutorialspoint.com
+123 4555.999 9.08 (value you enter)
+value 123 4555.999000 9.080000
 ```
+
+### Char and String
+
+#### Char
+
+```c
+char a;
+scanf("%c", &a);
+printf("value: %c", a);
+```
+
+**Result**
+
+```
+Enter 4 output 4
+Enter a output a
+Enter abc output a
+```
+
+#### String
+
+Because the array with ``char a[10]`` is a pointer so it doesn't need the pointer get value ``&`` in scanf.
+
+```c
+char a[10]; //10 character of string
+scanf("%s", a);
+printf("value: %s", a);
+```
+
+### Whitespace problem
+
+You have to type value a; then type one more to finish command although the value of **a** is still printed out correctly. To print out the value of **a** just after typing it, delete the space after ``%d``.
+
+```c
+scanf("%d", &a);
+```
+
+**Example**
+
+```c
+	int a;
+	scanf("%d ", &a);
+	printf("%d",a);
+```
+
+### gets()
+
+**gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler
+
+### puts()
+
+**Prototype**
+
+```c
+int puts(const char *str)
+```
+
+```c
+printf("hello \n");
+puts("hello");
+```
+
+**Result**
+
+```
+hello
+hello
+```
+
 ### getchar(), putchar()
 
 Enter a char, print out this char
@@ -77,11 +128,12 @@ main() {
 		printf("nothing here \n");
 	} }
 ```
-**NOTE:** ``"" vs ''``
+**NOTE:** ``" "`` vs ``' '``
 
-``'' is for character, " " is for string``
+``''`` is for character, ``" "`` is for string
 
-Now we learn how to deal with entering the char inside if...else
+Now we learn how to deal with entering the ``char`` inside ``if...else``
+
 ```c
 #include <stdio.h>
 
@@ -101,7 +153,7 @@ main() {
 
 ## continue vs break
 
-#### break
+### break
 
 ```c
 for (i=0; i<10; i++){
@@ -118,7 +170,7 @@ i value is 3
 i value is 4 
 ```
 
-#### continue
+### continue
 
 ```c
 for (i=0; i<10; i++){
@@ -137,7 +189,7 @@ i value is 6
 i value is 7 
 i value is 8 
 i value is 9 
-````
+```
 
 **Another example**
 

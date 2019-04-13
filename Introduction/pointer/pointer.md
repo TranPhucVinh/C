@@ -6,36 +6,37 @@ pointer: variable that stores address of other variable
 
 *p : value at address
 
-`````c
+```c
 int a;
 int *p; //pointer to integer
 char c;
 char *p0; //pointer to character
 double d;
 double *p1; // pointer to double
-`````
+```
 
-%p: is used for pointer, like %d for int, %s for string
+``%p``: is used for **pointer**, like ``%d`` for **int**, ``%s`` for **string**.
 
 &: get the address of the variable
 
 
-`````c
+```c
 printf("%p", &a);
-`````
-`````c
+```
+
+```c
 p = &a //p is the address of a
-`````
+```
 
 **A basic declaration with pointer**
 
-`````c
+```c
 int a;
 int *p;
 
 a = 5;
 p = &a; // p is address of variable a
-`````
+```
 
 As *p is the pointer that store the value at the address of a variable so that we can declare
 

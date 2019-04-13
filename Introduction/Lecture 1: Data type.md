@@ -2,20 +2,64 @@
 
 ![](datatype.png)
 
-### COMPARE
+## COMPARE
 
 | C | JavaScript|
 | ------- |:------:|
 |int a = 8; | var a = 8;|
 | printf("%d ",a)    | console.log(a)    |
 
-**" " and ' '**
+## char vs string
 
-* ' ' is for character
+### char
 
-* " " is for string
+Can store **character** or **integer value**
 
-### Example
+```c
+// character
+char c;
+c = 'a';
+printf("Character %c ", c);
+```
+
+```c
+// integer
+char c;
+c = 8;
+printf("Integer %d ", c);
+```
+
+**Notes**
+
+``char c ='ab'`` => Warning "character constant too long for its type"
+=> WRONG
+
+So, **char** in C go only with one word.
+
+### String
+
+```c
+char string[] = "hello";
+printf("%s", string);
+```
+
+**Result**
+
+```
+hello
+```
+
+### float and double
+
+**double** can also be declared as **long float**.
+
+```
+float -> %f
+
+double -> %lf
+```
+
+### Comparing float and double
 
 ```c
 #include <stdio.h>
@@ -30,44 +74,11 @@ void main() {
 	}
 }
 ```
+
 **Result**
+
 ```
 NO
-```
-
-### char
-
-can store character or integer value
-
-`````c
-// character
-char c;
-c = 'a';
-printf("Character %c ", c);
-`````
-
-`````c
-// integer
-char c;
-c = 8;
-printf("Integer %d ", c);
-`````
-
-**Notes**
-
-``char c ='ab'`` => Warning "character constant too long for its type"
-=> WRONG
-
-So, char in C go only with one word.
-
-### float and double
-
-**double** can also be declared as **long float**.
-
-```
-float -> %f
-
-double -> %lf
 ```
 
 ### static
@@ -76,13 +87,13 @@ double -> %lf
 
 ### size_t
 
-size_t is actually unsigned int
+**size_t** is actually unsigned int
 
 ```c
 typedef unsigned int size_t;
 ```
 
-so if the value of variable with size_t is negative, the result will be unpredictable
+So if the value of variable with **size_t** is negative, the result will be unpredictable
 
 ```c
 #include <iostream>
