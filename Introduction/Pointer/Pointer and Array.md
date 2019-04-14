@@ -1,3 +1,7 @@
+# Pointer vs Array
+
+An array is a constant pointer.
+
 ### Example 1
 
 Use pointer to get address and value of member of array
@@ -6,9 +10,14 @@ Use pointer to get address and value of member of array
 int *p;
 int arrayValue[3] ={1, 2, 3};
 int main(){
-   p = &arrayValue[0];
-   printf("pointer value %p \n", p);
-   printf("variable value %d \n", *p);
+   p = arrayValue;
+   printf("p: %p \n", p);
+   printf("arrayValue: %p \n", arrayValue);
+   printf("address of pointer variable: %p \n", &p);
+   printf("address of arrayValue : %p \n", &arrayValue);
+   printf("p[0]: %d \n", p[0]);
+   printf("*&p[0]: %d \n", *&p[0]);
+   printf("p[0]: %d \n", p[0]);
    return(0);
 }
 ```
@@ -16,36 +25,27 @@ int main(){
 **Result**
 
 ```
-pointer value 0x601030 
-variable value 1 
+p: 0x601030 
+arrayValue: 0x601030 
+address of pointer variable: 0x601048 
+address of arrayValue : 0x601030 
+p[0]: 1 
+*&p[0]: 1 
+p[0]: 1 
 ```
 
-Array ``arr[20]`` with variable ``arr`` is the pointer that store the value of ``arr[0]``.
+The **address of an array** is also the **address of member 0** in array.
 
 ```c
-#include <stdio.h>
-
-void main() {
-	int a[20];
-	printf("address %p", &a);
-}
-```
-
-```c
-#include <stdio.h>
-
-void main() {
-	int a[20];
-	printf("address %p \n", &a);
-	printf("address %p \n", &a[0]);
-}
+printf("address of arrayValue : %p \n", &arrayValue);
+printf("address of arrayValue[0] : %p \n", &arrayValue[0]);
 ```
 
 **Result**
 
 ```
-address 0x7ffe8012de00 
-address 0x7ffe8012de00 
+address of arrayValue : 0x601030 
+address of arrayValue[0] : 0x601030 
 ```
 
 **Use pointer in array to enter the value in array**
@@ -68,7 +68,9 @@ void main() {
 }
 ```
 
-**Use pointer to enter the values in array and display these values on screen**
+### Example 2
+
+Use pointer to enter the values in array and display these values on screen.
 
 ```c
 #include <stdio.h>
@@ -80,14 +82,12 @@ void main() {
 	scanf("%d", &n);
 	p1 = p2 = &a[0];
 	printf("Enter the value of every member: " );
-	for (i = 0; i < n; i++)
-	{
+	for (i = 0; i < n; i++){
 		scanf("%d", p1);
 		p1++;
 	}
 	printf("Value of all members in array: ");
-	for (i = 0; i < n; i++)
-	{
+	for (i = 0; i < n; i++){
 		printf("%d ", *p2 );
 		p2++;
 	}

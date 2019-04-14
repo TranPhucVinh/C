@@ -20,18 +20,15 @@ const char *message1 = "Thread 1";
 
 ``%p``: is used for **pointer**, like ``%d`` for **int**, ``%s`` for **string**.
 
-&: get the address of the variable
+``&``: get the address of the variable
 
 ## Example
 
 ### Example 1
 
 ```c
-printf("%p", &a);
-```
-
-```c
 p = &a //p is the address of a
+printf("%p", &a);
 ```
 
 ### Example 2
@@ -62,7 +59,10 @@ int *pointer = &a;
 int main(){
    p = &a;
    printf("pointer value %p \n", p);
+   printf("address of pointer variable %p \n", &p);
    printf("variable value %d \n", *p);
+   printf("*& value is %d \n", *&a);
+   printf("Value of variable pointer %p \n", pointer);
    printf("Value %d \n", *pointer);
    return(0);
 }
@@ -71,10 +71,22 @@ int main(){
 **Result**
 
 ```
-pointer value 0x60103c 
+pointer value 0x601030 
+address of pointer variable 0x601048
 variable value 9
+*& value is 9
+Value of variable pointer 0x601030 
 Value 9
 ```
+
+We can also notice that
+
+```c
+*pointer = &a;
+p = &a;
+```
+
+has returned the same value for ``p`` and ``pointer`` as the address of variable ``a``.
 
 **Program in C++**
 
@@ -89,96 +101,20 @@ main(){
 }
 ```
 
-## Variable pointer in function 
+### scanf() with pointer
+
+Prototype
+
+``scanf()`` reads formatted input from stdin.
 
 ```c
-#include <stdio.h>
-
-void add (int number);
-
-main () {
- int number = 6;
- add(number);
- printf("%d", number);
-}
-
-void add(int number){
-	number = number + 1;
-}
+int scanf(const char *format, ...)
 ```
-**Result** 6 (expect 7)
+
+**Explain**
 
 ```c
-#include <stdio.h>
-
-int add (int number);
-
-main () {
- int number = 6;
- add(number);
- printf("%d \n", number);
- printf("the return value of the function is %d \n", add(number));
-}
-
-int add(int number){
-	number = number + 1;
-	return number;
-}
-```
-**Result** 
-```
-6 
-the return value of the function is 7 
+scanf("%d", &a);
 ```
 
-What is sent to the function add(number) is the value of variable number (=6), not really number, the variable name "number" in add() is just the clone of the genuine variale "number". So the value of number still remain unchanged.
-
-### Problem solved
-
-```c
-#include <stdio.h>
-
-int add (int *number);
-
-main () {
- int number = 6;
- add(&number);
- printf("%d", number);
-}
-
-int add(int *number){
-	*number = *number + 1;
-	return *number;
-}
-```
-
-**Result** 7
-
-### Swap
-
-```c
-#include <stdio.h>
-int a, b;
-void swap(int *change1, int *change2);
-main() {
-	printf("Enter the 2 numbers: ");
-	scanf ("%d", &a);
-	scanf("%d", &b);
-	printf("Values of a and b are %d %d \n", a, b);
-	swap(&a, &b);
-	printf("Values of a and b now are %d %d \n", a, b);
-}
-
-void swap(int *change1, int *change2){
-	int temp;
-	temp = *change1;
-	*change1= *change2;
-	*change2 = temp;
-}
-```
-```
-Enter the 2 numbers: 4
-6
-Values of a and b are 4 6 
-Values of a and b now are 6 4 
-```
+To save the value of variable ``a``, we have to use ``&`` to get the address so that ``*&`` will return the value of variable a.
