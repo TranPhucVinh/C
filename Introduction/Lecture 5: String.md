@@ -1,9 +1,10 @@
+# String
+
 ### sprintf()
 
 Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
 
 ```c
-/* sprintf example */
 #include <stdio.h>
 
 int main ()
@@ -21,6 +22,8 @@ int main ()
 ```
 
 ### memset()
+
+Include in library **string.h**.
 
 ``memset()`` copies the character **c** (an unsigned char) to the first **n** characters of the string pointed to, by the argument **str**.
 
@@ -43,3 +46,30 @@ int main(){
 ```
 $$$$$$$amming with GNU-GCC
 ```
+
+### atoi()
+
+Include in library **stdlib.h**.
+
+```c
+int atoi(const char *str)
+```
+Converts the string argument **str** to an integer (type int).  If no valid conversion could be performed, it **returns zero**.
+
+**E.g**
+
+```c
+	char str[] = "C programming with GNU-GCC";
+    int a = atoi(str);
+    printf("%d \n", a);
+```    
+**Result**
+``0``
+
+```c
+    char str[] = "1234";
+    int a = atoi(str);
+    printf("%d \n", a);
+```
+**Result**
+``1234``    
