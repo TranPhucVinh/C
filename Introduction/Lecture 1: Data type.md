@@ -123,25 +123,3 @@ uint8_t
 uint16_t
 uint32_t
 ```
-
-### sprintf()
-
-Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
-
-```c
-/* sprintf example */
-#include <stdio.h>
-
-int main ()
-{
-  char buffer [50];
-  int n, a=5, b=3;
-  n=sprintf (buffer, "%d plus %d is %d", a, b, a+b);
-  printf ("[%s] is a string %d chars long\n",buffer,n);
-  return 0;
-}
-```
-
-```
-[5 plus 3 is 8] is a string 13 chars long
-```
