@@ -1,10 +1,12 @@
-**pointer**
+# Pointer
 
 pointer: variable that stores address of other variable
 
 *p: declare a pointer
 
 *p : value at address
+
+### Declare pointer variable
 
 ```c
 int a;
@@ -13,12 +15,16 @@ char c;
 char *p0; //pointer to character
 double d;
 double *p1; // pointer to double
+const char *message1 = "Thread 1";
 ```
 
 ``%p``: is used for **pointer**, like ``%d`` for **int**, ``%s`` for **string**.
 
 &: get the address of the variable
 
+## Example
+
+### Example 1
 
 ```c
 printf("%p", &a);
@@ -28,7 +34,7 @@ printf("%p", &a);
 p = &a //p is the address of a
 ```
 
-**A basic declaration with pointer**
+### Example 2
 
 ```c
 int a;
@@ -45,26 +51,32 @@ int *p = a; // they are both int value
 int a = 6;
 ```
 
+### Get value of pointer
+
+**Program in C**
+
 ```c
-const char *message1 = "Thread 1";
-```
-
-### C
-
-```c++
-#include <stdio.h>
-int val =5;
-int *p = &val;
-
-void main()
-{
-printf ("Value: %d", *p);	
+int *p;
+int a = 9;
+int *pointer = &a;
+int main(){
+   p = &a;
+   printf("pointer value %p \n", p);
+   printf("variable value %d \n", *p);
+   printf("Value %d \n", *pointer);
+   return(0);
 }
 ```
 
-**Result** 5
+**Result**
 
-### C++
+```
+pointer value 0x60103c 
+variable value 9
+Value 9
+```
+
+**Program in C++**
 
 ```c++
 #include <iostream>
@@ -77,7 +89,7 @@ main(){
 }
 ```
 
-### Variable pointer in fucntion 
+## Variable pointer in function 
 
 ```c
 #include <stdio.h>

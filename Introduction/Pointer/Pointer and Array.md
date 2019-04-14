@@ -1,3 +1,25 @@
+### Example 1
+
+Use pointer to get address and value of member of array
+
+```c
+int *p;
+int arrayValue[3] ={1, 2, 3};
+int main(){
+   p = &arrayValue[0];
+   printf("pointer value %p \n", p);
+   printf("variable value %d \n", *p);
+   return(0);
+}
+```
+
+**Result**
+
+```
+pointer value 0x601030 
+variable value 1 
+```
+
 Array ``arr[20]`` with variable ``arr`` is the pointer that store the value of ``arr[0]``.
 
 ```c
