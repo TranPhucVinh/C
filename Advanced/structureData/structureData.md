@@ -11,10 +11,9 @@ struct student {
 	char class[50];
 };
 
-main()
-{
-struct student erin = { 1977, " Erin", "Free Lancer" };
-printf(" %s has id %d in class %s ", erin.name, erin.id, erin.class);
+main() {
+	struct student erin = { 1977, " Erin", "Free Lancer" };
+	printf(" %s has id %d in class %s ", erin.name, erin.id, erin.class);
 }
 ```
 
@@ -35,8 +34,7 @@ struct student {
 	char class[50];
 } student1;
 
-main()
-{
+main(){
 	strcpy(student1.name, "Jayne"); //to set variable with char in struct
 	student1.id = 1986;
 	strcpy(student1.class, "Free Lancer");
@@ -59,7 +57,7 @@ Jayne has id 1986 in class Free Lancer
 	printf(" %s has id %d in class %s ", student1.name, student1.id, student1.class);
 ```
 
-The line of code gets(student1.name) will be omitted. GNU discourage you to use gets(). Just use scanf() instead. Adding fflush(stdin) will not help.
+The line of code ``gets(student1.name)`` will be omitted. GNU **discourage** you to use ``gets()``. Just use ``scanf()`` instead. Adding ``fflush(stdin)`` will not help.
 
 ```c
 #include <stdio.h>
@@ -71,8 +69,7 @@ struct student {
 	char class[50];
 } student1;
 
-main()
-{
+main(){
 	printf("Enter ID: ");
 	scanf("%d", &student1.id);
 	printf("Enter name: ");
@@ -84,5 +81,3 @@ main()
 ```
 
 Change ``char name[50]`` to ``char* name``
-
-Reference: [char](https://daynhauhoc.com/t/hoi-ve--lenh-fflush-stdin-trong-c/25479/5)

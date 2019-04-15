@@ -49,6 +49,37 @@ Close a socket.
 int close(int socket)
 ```
 
+## Socket Address structure
+
+Library **arpa/inet.h**.
+
+```c
+struct sockaddr{ 
+    unsigned short sa_family; /* Address family (e.g. AF_INET) */
+    char  sa_data[14] ; /* Family-specific address information */
+}; 
+
+struct in_addr{
+    unsigned long s_addr;
+};
+
+struct sockaddr_in{
+    unsigned short sin_family; /* Internet protocol (AF_INET) */
+    unsigned short sin_port; /* Address port (16 bits) */
+    struct in_addr sin_addr; /* Internet address (32 bits) */
+    char    sin_zero[8]; /* Not used, must be zero */
+};
+```
+
+**sockaddr** and **sockaddr_in** are used to set up address parameter for **client** and **server**.
+
+* **sin_family**, **sa_family**: protocolFamily.
+* **sin_port**: port of socket.
+* **sin_addr**: connect address
+* **sin_zero**: not used, set value 0.
+
+![](sockaddr.png)
+
 -----------
 
 ## netinet/in.h

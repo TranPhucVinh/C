@@ -35,7 +35,7 @@ void *memset(void *str, int c, size_t n)
 
 ```c
 int main(){
-	char str[] = "C programming with GNU-GCC";
+	  char str[] = "C programming with GNU-GCC";
     memset(str,'$',7);
     puts(str);
 }
@@ -45,6 +45,12 @@ int main(){
 
 ```
 $$$$$$$amming with GNU-GCC
+```
+
+If ``memset(str,'$',7);``, the **result** will be:
+
+```
+C programming with GNU-GCC
 ```
 
 ### atoi()
