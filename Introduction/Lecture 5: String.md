@@ -7,11 +7,10 @@ Composes a string with the same text that would be printed if format was used on
 ```c
 #include <stdio.h>
 
-int main ()
-{
+int main (){
   char buffer [50];
   int n, a=5, b=3;
-  n=sprintf (buffer, "%d plus %d is %d", a, b, a+b);
+  n = sprintf (buffer, "%d plus %d is %d", a, b, a+b);
   printf ("[%s] is a string %d chars long\n",buffer,n);
   return 0;
 }
@@ -47,7 +46,7 @@ int main(){
 $$$$$$$amming with GNU-GCC
 ```
 
-If ``memset(str,'$',7);``, the **result** will be:
+If ``memset(str,'$',0);``, the **result** will be:
 
 ```
 C programming with GNU-GCC
@@ -65,12 +64,16 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
 **E.g**
 
 ```c
-	char str[] = "C programming with GNU-GCC";
+	  char str[] = "C programming with GNU-GCC";
     int a = atoi(str);
     printf("%d \n", a);
-```    
+```   
+
 **Result**
-``0``
+
+```
+0
+```
 
 ```c
     char str[] = "1234";
