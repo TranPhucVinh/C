@@ -95,6 +95,44 @@ fprintf(stderr, "Hello, World! \n");
 Hello, World!
 ```
 
+### perror()
+
+Print out message describe error in ``stderr``.
+
+```c
+void perror(const char *str)
+```
+
+**Example**
+
+```c
+int main() {
+	perror("hello");
+}
+```
+
+**Result**
+
+```
+hello: Success
+```
+
+**Example: No such file or directory**
+
+```c
+int main() {
+	FILE *file;
+	file = fopen("text.abc", "r"); // this can be .md, .txt, ....
+	if (file == NULL) {
+		perror("Error");
+	}
+}
+```
+
+```
+Error: No such file or directory
+```
+
 ----------
 
 ### fgets()
