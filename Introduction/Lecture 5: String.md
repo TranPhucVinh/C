@@ -20,38 +20,6 @@ int main (){
 [5 plus 3 is 8] is a string 13 chars long
 ```
 
-### memset()
-
-Include in library **string.h**.
-
-``memset()`` copies the character **c** (an unsigned char) to the first **n** characters of the string pointed to, by the argument **str**.
-
-**Prototype**
-
-```c
-void *memset(void *str, int c, size_t n)
-```
-
-```c
-int main(){
-    char str[] = "C programming with GNU-GCC";
-    memset(str,'$',7);
-    puts(str);
-}
-```
-
-**Result**
-
-```
-$$$$$$$amming with GNU-GCC
-```
-
-If ``memset(str,'$',0);``, the **result** will be:
-
-```
-C programming with GNU-GCC
-```
-
 ### atoi()
 
 Include in library **stdlib.h**.

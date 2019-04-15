@@ -8,12 +8,12 @@
 struct student{
 	int id;
 	char name[50];
-	char class[50];
+	char classroom[50];
 };
 
 main(){
 	struct student erin = { 1977, " Erin", "Free Lancer" };
-	printf(" %s has id %d in class %s ", erin.name, erin.id, erin.class);
+	printf(" %s has id %d in class %s ", erin.name, erin.id, erin.classroom);
 }
 ```
 
@@ -21,6 +21,30 @@ main(){
 
 ```
 Erin has id 1977 in class Free Lancer 
+```
+
+### struct In C++
+
+```c
+#include <iostream>
+using namespace std;
+
+struct student {
+	int id;
+	string name;
+	string classroom;
+};
+
+main() {
+	struct student erin = { 1977, " Erin", "Free Lancer" };
+	cout << erin.name << " " << erin.id << " " << erin.classroom;
+
+}
+```
+
+**Result**
+```
+Erin 1977 Free Lancer
 ```
 
 ### Other

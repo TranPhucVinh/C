@@ -59,6 +59,7 @@ int *pointer = &a;
 int main(){
    p = &a;
    printf("pointer value %p \n", p);
+   printf("address value of variable a %p \n", &a);
    printf("address of pointer variable %p \n", &p);
    printf("variable value %d \n", *p);
    printf("*& value is %d \n", *&a);
@@ -72,6 +73,7 @@ int main(){
 
 ```
 pointer value 0x601030 
+address value of variable a 0x601030
 address of pointer variable 0x601048
 variable value 9
 *& value is 9
