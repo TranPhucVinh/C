@@ -185,9 +185,11 @@ int main() {
 value a after memset(): 1889 (expected 97)
 ```
 
+```
 1977 = 0000 0111 1011 1001;
 97 =  0000 0000 0110 0001;
-1889 = 0000 0111 0110 0001
+1889 = 0000 0111 0110 0001;
+```
 
 1889 has its left 1 byte is **97** (**0110 0001**) and the its  first 1 byte is still **0000 0111**.
 
