@@ -191,7 +191,7 @@ value a after memset(): 1889 (expected 97)
 1889 = 0000 0111 0110 0001;
 ```
 
-1889 has its left 1 byte is **97** (**0110 0001**) and the its  first 1 byte is still **0000 0111**.
+1889 has its right 1 byte is **97** (**0110 0001**) and the its  left 1 byte is still **0000 0111**.
 
 With ``memset(&a, 'a', 2)``, the result will be ``24929``, as now 2 byte are completely replace with 2 character **'a'**.
 
