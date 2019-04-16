@@ -169,4 +169,55 @@ value a after: 1633771873
 value erin.id before: 1889 
 ```
 
-erin.id now is effected due to the overflow value of ``memset(&a, 'a', 5)``.
+**erin.id** now is effected due to the overflow value of ``memset(&a, 'a', 5)``.
+
+### memset() problem with 4 byte number
+
+```c
+int main() {
+	int a = 1977;
+	memset(&a, 'a', 1);
+	printf("value a after memset(): %d \n", a);
+}
+```
+
+```
+value a after memset(): 1889 (expected 97)
+```
+
+1977 = 0000 0111 1011 1001;
+97 =  0000 0000 0110 0001;
+1889 = 0000 0111 0110 0001
+
+1889 has its left 1 byte is **97** (**0110 0001**) and the its  first 1 byte is still **0000 0111**.
+
+With ``memset(&a, 'a', 2)``, the result will be ``24929``, as now 2 byte are completely replace with 2 character **'a'**.
+
+### memset() with struct
+
+```c
+struct student{
+		int id;
+		char name[50];
+		char classroom[50];
+};
+
+int main() {
+	struct student erin = { 1977, " Erin", "Free Lancer" };
+
+    printf("value erin.id before: %d \n", erin.id);
+    memset(&erin.id, 'a', 2);
+    printf("value erin.id after: %d \n", erin.id);
+
+     printf("value erin.id before: %s \n", erin.name);
+    memset(&erin.name, 'a', 2);
+    printf("value erin.id after: %s \n", erin.name);
+}
+```
+
+```
+value erin.id before: 1977 
+value erin.id after: 24929 
+value erin.name before:  Erin 
+value erin.name after: aarin 
+```

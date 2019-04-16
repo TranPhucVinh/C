@@ -93,3 +93,31 @@ void main() {
 	}
 }
 ```
+
+### struct
+
+```c
+struct student{
+		int id;
+		char name[50];
+		char classroom[50];
+};
+
+int main() {
+	struct student erin = { 1977, " Erin", "Free Lancer" };
+
+	printf("value &erin: %p \n", &erin);
+	printf("value &erin.id: %p \n", &erin.id);
+	printf("value &erin.name: %p \n", &erin.name);
+	printf("value &erin.classroom: %p \n", &erin.classroom);
+}
+```
+
+```
+value &erin: 0x7ffe09debe80 
+value &erin.id: 0x7ffe09debe80 
+value &erin.name: 0x7ffe09debe84 
+value &erin.classroom: 0x7ffe09debeb6 
+```
+
+Address of ``erin`` and ``erin.id`` are the same.
