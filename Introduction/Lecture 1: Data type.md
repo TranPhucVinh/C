@@ -29,10 +29,18 @@ c = 8;
 printf("Integer %d ", c);
 ```
 
-**Notes**
+### char vs value in ASCII code
 
-``char c ='ab'`` => Warning "character constant too long for its type"
-=> WRONG
+```c
+char b = '\6';
+printf("b: %d \n", '6');	
+```
+
+**Result**: 54
+
+### Notes
+
+``char c ='ab'`` => Warning "character constant too long for its type" => **WRONG**
 
 So, **char** in C go only with one word.
 
