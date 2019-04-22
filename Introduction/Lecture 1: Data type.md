@@ -32,7 +32,6 @@ printf("Integer %d ", c);
 ### char vs value in ASCII code
 
 ```c
-char b = '\6';
 printf("b: %d \n", '6');	
 ```
 
