@@ -100,7 +100,7 @@ value a before: 9
 value a after: 24929 
 ```
 
-24929 = 110000101100001 = 01100001 + 01100001 = 'a' (ASCII code)  + 'a' (ASCII code)
+``24929 = 110000101100001 = 01100001 + 01100001 = 'a' (ASCII code)  + 'a' (ASCII code)``
 
 ## memset() handle with int overflow
 
@@ -115,7 +115,7 @@ value a before: 9
 value a after: 1633771873 
 ```
 
-1633771873 = 1100001011000010110000101100001 (16 bit-4 byte)
+``1633771873 = 1100001 01100001 01100001 01100001`` (**16 bit-4 byte**)
 
 **4 byte** is the maximum value that an integer number can store.
 
