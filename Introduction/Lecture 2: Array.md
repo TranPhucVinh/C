@@ -104,3 +104,26 @@ LA[1] = 3
 LA[2] = 7 
 LA[3] = 8 
 ```
+
+### size of an array
+
+Print out all member in array without passing in its array size in for loop
+
+```c
+int main() {
+    int i, array[] = {1, 2, 3};
+    size_t arraySize = sizeof(array)/sizeof(array[0]);
+    for (i=0; i<arraySize; i++){
+      printf("value %d: %d \n", i, array[i]);
+    }
+       return 0;
+}
+```    
+
+```
+value 0: 1 
+value 1: 2 
+value 2: 3 
+```
+
+``size_t arraySize = sizeof(array)/sizeof(array[0]);`` can also be returned with ``sizeof(array)/sizeof(int)``.
