@@ -182,7 +182,7 @@ int main() {
 ```
 
 ```
-value a after memset(): 1889 (expected 97)
+value a after memset(): 1889 (expected 97-ASCII code of 'a')
 ```
 
 ```
