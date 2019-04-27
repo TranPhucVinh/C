@@ -95,6 +95,17 @@ fprintf(stderr, "Hello, World! \n");
 Hello, World!
 ```
 
+### fgets()
+
+````c
+fgets(char *s, int n, FILE *stream);
+````
+read the content in file "stream" until encounter the new line character ('\n') or until finished reading n-1 character; then store in "s".
+
+````c
+fgets(msg, 81, stream);
+````
+
 ### perror()
 
 Print out message describe error in ``stderr``.
@@ -132,16 +143,3 @@ int main() {
 ```
 Error: No such file or directory
 ```
-
-----------
-
-### fgets()
-
-````c
-fgets(char *s, int n, FILE *stream);
-````
-read the content in file "stream" until encounter the new line character ('\n') or until finished reading n-1 character; then store in "s".
-
-````c
-fgets(msg, 81, stream);
-````

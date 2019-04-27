@@ -1,5 +1,20 @@
 # String
 
+### Get a character in a string
+
+```c
+int main() {
+    int i;
+    char hello[] = "a character";
+    printf("%c \n", hello[3]);
+    return 0;
+}
+```
+
+```
+h 
+```
+
 ### sprintf()
 
 Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
@@ -8,7 +23,7 @@ Composes a string with the same text that would be printed if format was used on
 #include <stdio.h>
 
 int main (){
-  char buffer [50];
+  char buffer[50];
   int n, a=5, b=3;
   n = sprintf (buffer, "%d plus %d is %d", a, b, a+b);
   printf ("[%s] is a string %d chars long\n",buffer,n);
