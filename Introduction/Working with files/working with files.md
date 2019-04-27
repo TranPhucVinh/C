@@ -97,14 +97,29 @@ Hello, World!
 
 ### fgets()
 
-````c
+```c
 fgets(char *s, int n, FILE *stream);
-````
+```
 read the content in file "stream" until encounter the new line character ('\n') or until finished reading n-1 character; then store in "s".
 
-````c
+```c
 fgets(msg, 81, stream);
-````
+```
+
+**Example**: Read a string enter in command line (stdin) then print out on screen
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+ 
+#define BUFFSIZE 256
+
+int main() {
+	char buffer[BUFFSIZE];
+    fgets(buffer,BUFFSIZE, stdin);
+    puts(buffer);
+}
+```
 
 ### perror()
 
