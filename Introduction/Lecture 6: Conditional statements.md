@@ -24,6 +24,41 @@ Compile ``g++ -o test test.c``
 The argument supplied is ./test and total argument is 1 
 ```
 
+## return
+
+Return in **void**
+
+```c
+void returnNumber(){
+	int a = 0, b=0;
+
+	if ((a==0)&&(b==0)){
+	 	return;
+	 }
+	printf("inside \n");
+}
+
+int main() {
+	returnNumber();
+	printf("hello world");
+}
+```
+
+**Result**
+
+```
+hello world
+```
+
+If ``a==0`` and ``b==0``, it return in ``void returnNumber()`` and end the function.
+
+If we ommitted ``if ((a==0)&&(b==0))``, the result will be
+
+```
+inside
+hello world
+```
+
 ## continue vs break
 
 ### break
@@ -102,7 +137,7 @@ a: 9
 b: 9 
 ```
 
-### exit()
+## exit()
 
 Exit the current process and return value **status** for the further process.
 
