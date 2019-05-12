@@ -15,7 +15,7 @@ int main() {
 h 
 ```
 
-### sprintf()
+## sprintf()
 
 Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
 
@@ -35,7 +35,7 @@ int main (){
 [5 plus 3 is 8] is a string 13 chars long
 ```
 
-### atoi()
+## atoi()
 
 Include in library **stdlib.h**.
 
@@ -64,4 +64,31 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
     printf("%d \n", a);
 ```
 **Result**
-``1234``    
+``1234``   
+
+## strncpy() 
+
+Copy **n** character from **src** string to **dst** string.
+
+```c
+char *strncpy(char *dest, const char *src, size_t n)
+```
+
+**E.g**
+
+```c
+#include <stdio.h>      /* for printf() and fprintf() */
+#include <stdlib.h>     /* for atoi() and exit() */
+#include <string.h>     /* for memset() */
+
+int main() {
+	char helloWorld[] = "Hello world 10 times";
+    char dest[12];
+    strncpy(dest, helloWorld, 2);
+    printf("%s \n",dest);
+}
+```
+
+```
+He
+```
