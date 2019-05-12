@@ -12,6 +12,15 @@ char hw[] = "Hello, World!";
 printf("%s ", hw);
 ```
 
+```c
+char helloWorld[] = "Hello world 10 times";
+printf("%s \n",helloWorld+3);
+```
+
+```
+lo world 10 times
+```
+
 ### scanf()
 
 #### Int, Long (double), Float
