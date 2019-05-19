@@ -127,3 +127,28 @@ value 2: 3
 ```
 
 ``size_t arraySize = sizeof(array)/sizeof(array[0]);`` can also be returned with ``sizeof(array)/sizeof(int)``.
+
+### Fail in dynamic array
+
+Enter the size of array
+
+```c
+ int i, n, array[n];
+ printf("Enter the number of members: ");
+ scanf("%d", &n);
+ printf("Enter the value of each member: ");
+	
+ for (i = 0; i < n; i++){
+   scanf("%d", &array[i]);
+ }
+ 
+ for (i=0; i < n; i++){
+   printf("Value of member %d is %d \n", i, array[i]);
+}
+```
+
+**Result**
+
+```
+Segmentation fault (core dumped)
+```
