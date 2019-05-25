@@ -17,6 +17,10 @@ h
 
 ## sprintf()
 
+```c
+int sprintf ( char * str, const char * format, ... );
+```
+
 Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
 
 ```c
@@ -35,6 +39,24 @@ int main (){
 [5 plus 3 is 8] is a string 13 chars long
 ```
 
+**E.g**: Convert **uint32_t** to **string-char[]**
+
+```c
+#include <stdio.h>      
+#include <stdlib.h>     
+#include <string.h>     
+#include <stdint.h>
+
+int main() {
+
+  char clockValue[100];
+  uint32_t int32Number = 600000000;
+  
+  sprintf(clockValue, "%d", int32Number); //convert uint_32 to String char[]
+  printf("%s\n", clockValue);
+}
+```
+
 ## atoi()
 
 Include in library **stdlib.h**.
@@ -47,7 +69,7 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
 **E.g**
 
 ```c
-	  char str[] = "C programming with GNU-GCC";
+    char str[] = "C programming with GNU-GCC";
     int a = atoi(str);
     printf("%d \n", a);
 ```   
@@ -63,6 +85,7 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
     int a = atoi(str);
     printf("%d \n", a);
 ```
+
 **Result**
 ``1234``   
 
