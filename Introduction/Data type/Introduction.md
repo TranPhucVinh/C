@@ -118,21 +118,6 @@ int main() {
 
 **Result** ``18446744073709551614``
 
-### stdint.h
-
-stdint.h - integer types
-
-include 
-
-```c
-int8_t
-int16_t
-int32_t
-uint8_t
-uint16_t
-uint32_t
-```
-
 ### sizeof()
 
 Return the amount of memory allocated to that data type in byte.
