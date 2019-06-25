@@ -23,7 +23,7 @@ main(){
 Hello World
 ```
 
-### Constructor with pass in variable
+### Constructor with arguments
 
 ```c
 #include <iostream>
