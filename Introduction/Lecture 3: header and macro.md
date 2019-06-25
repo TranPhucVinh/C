@@ -156,7 +156,7 @@ Hello world
 10
 ```
 
-### Macro with past in parameter
+### Macro with arguments
 
 ```c
 #define defineFunction(a) a+1
