@@ -64,7 +64,7 @@ int main(){
    printf("variable value %d \n", *p);
    printf("*& value is %d \n", *&a);
    printf("Value of variable pointer %p \n", pointer);
-   printf("Value %d \n", *pointer);
+   printf("Value *pointer is %d \n", *pointer);
    return(0);
 }
 ```
@@ -78,7 +78,7 @@ address of pointer variable 0x601048
 variable value 9
 *& value is 9
 Value of variable pointer 0x601030 
-Value 9
+Value *pointer is 9
 ```
 
 We can also notice that
