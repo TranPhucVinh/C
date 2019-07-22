@@ -18,9 +18,39 @@ main(){
 	hi.hello();
 }
 ```
+
 **Result**
+
 ```
 Hello World
+```
+
+### Constructor
+
+A **class constructor** is a special member function of a class that is executed whenever we create new objects of that class.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class helloWorld{
+	public:
+	helloWorld(){
+		cout << "hello world" << endl;
+	}
+};
+
+
+main(){
+	helloWorld hi;
+}
+```
+
+**Result**
+
+```
+hello world
 ```
 
 ### Constructor with arguments
@@ -125,7 +155,6 @@ main(){
 Learning C++
 Linux
 ```
-=> The constructor will print out automatically after object is being declared ``Name name``
 
 ### Set variable in constructor
 
@@ -154,6 +183,10 @@ main(){
 	Name name;
 	cout << name.getName() << endl;
 }
+```
+
+```
+Learning C++
 ```
 
 ### More than 1 constructor in one Class
@@ -200,4 +233,34 @@ Learning C++
 Learn Linux Shell
 
 Learn Node Js
+```
+
+### Destructor
+
+A **destructor** is a special member function of a class that is executed whenever an object of it's class goes out of scope or whenever the delete expression is applied to a pointer to the object of that class.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+class helloWorld{
+	public:
+	helloWorld(){
+		cout << "hello world" << endl;
+	}
+	~helloWorld(){
+		cout << "Object is being deleted" << endl;
+	}
+};
+
+
+main(){
+	helloWorld hi;
+}
+```
+
+```
+hello world
+Object is being deleted
 ```
