@@ -25,7 +25,7 @@ Hello World
 
 ### Constructor with arguments
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
