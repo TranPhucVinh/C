@@ -26,6 +26,8 @@ The argument supplied is ./test and total argument is 1
 
 ## return
 
+The **return statement** stops the execution of a function and returns a value from that function.
+
 Return in **void**
 
 ```c
