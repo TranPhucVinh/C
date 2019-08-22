@@ -288,4 +288,3 @@ if ``myFilfe.seekg(8)`` then
 ``myFile.seekg(5)`` then
 
 ``Enter employee's ID: 1`` will return nothing as the cursor is in the wrong postion to read.
-
