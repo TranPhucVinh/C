@@ -31,7 +31,7 @@ Hello World
 6
 ```
 
-**Declare variable in header file**
+### Declare variable in header file
 
 **head.h**
 
@@ -65,8 +65,8 @@ int a;
 ```c
 #include <stdio.h>
 #include "head.h"
-	
-	a = 18;
+
+a = 18;
 ```
 
 ```c

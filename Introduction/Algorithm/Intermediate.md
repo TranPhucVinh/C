@@ -6,7 +6,6 @@ Find prime number with a limited of integer value
 #include <stdio.h>
 
 main () {
-
 	int n, count = 0;
 	printf(" enter the limit value " );
 	scanf("%d", &n);
@@ -35,7 +34,7 @@ main () {
 }
 ```
 
-**Result**:
+**Result**
 
 ```
 enter the limit value 29

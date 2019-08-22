@@ -111,12 +111,12 @@ Print out all member in array without passing in its array size in for loop
 
 ```c
 int main() {
-    int i, array[] = {1, 2, 3};
-    size_t arraySize = sizeof(array)/sizeof(array[0]);
-    for (i=0; i<arraySize; i++){
+   int i, array[] = {1, 2, 3};
+   size_t arraySize = sizeof(array)/sizeof(array[0]);
+   for (i=0; i<arraySize; i++){
       printf("value %d: %d \n", i, array[i]);
-    }
-       return 0;
+   }
+   return 0;
 }
 ```    
 
@@ -133,16 +133,16 @@ value 2: 3
 Enter the size of array
 
 ```c
- int i, n, array[n];
- printf("Enter the number of members: ");
- scanf("%d", &n);
- printf("Enter the value of each member: ");
+int i, n, array[n];
+printf("Enter the number of members: ");
+scanf("%d", &n);
+printf("Enter the value of each member: ");
 	
- for (i = 0; i < n; i++){
+for (i = 0; i < n; i++){
    scanf("%d", &array[i]);
- }
+}
  
- for (i=0; i < n; i++){
+for (i=0; i < n; i++){
    printf("Value of member %d is %d \n", i, array[i]);
 }
 ```

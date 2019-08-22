@@ -45,7 +45,7 @@ main() {
 
 ### Simple function
 
-TARGET: We create function for factorial, fracture ( 1/1 +1/2 +1/3+.. +1/x)
+Create function for factorial, fracture ``1/1 +1/2 +1/3+...+1/x``
 
 ```c
 #include <stdio.h>
@@ -79,7 +79,7 @@ main()
 }
 ```
 
-OR
+Or
 
 ```c
 #include <stdio.h>

@@ -1,6 +1,21 @@
-## Printed out entered value
+### Print out string
 
-### printf()
+```c
+#include <stdio.h>
+
+int main () {
+    printf("%s \n", "Hello, World!");
+    printf("Hello, World! with no %s");
+}
+```
+**Result**
+
+```
+Hello, World!
+Hello, World! with no 5c|
+```
+
+### Printed out entered value
 
 ```c
 printf("%d ", a) // int
@@ -40,7 +55,7 @@ scanf("%f", &c);
 	scanf("%lf", &b);
 	scanf("%f", &c);
 
-   printf("value %d %lf %f", a, b, c);
+	printf("value %d %lf %f", a, b, c);
 ```
 
 **Result**
@@ -50,9 +65,7 @@ scanf("%f", &c);
 value 123 4555.999000 9.080000
 ```
 
-### Char and String
-
-#### Char
+### Char
 
 ```c
 char a;
@@ -68,7 +81,7 @@ Enter a output a
 Enter abc output a
 ```
 
-#### String
+### String
 
 Because the array with ``char a[10]`` is a pointer so it doesn't need the pointer get value ``&`` in scanf.
 
@@ -135,8 +148,10 @@ main() {
 		printf("kill bugs");
 	} else {
 		printf("nothing here \n");
-	} }
+	}
+}
 ```
+
 **NOTE:** ``" "`` vs ``' '``
 
 ``''`` is for character, ``" "`` is for string

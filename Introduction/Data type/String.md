@@ -1,5 +1,3 @@
-# String
-
 ### Get a character in a string
 
 ```c
@@ -15,7 +13,7 @@ int main() {
 h 
 ```
 
-## sprintf()
+### sprintf()
 
 ```c
 int sprintf ( char * str, const char * format, ... );
@@ -57,7 +55,7 @@ int main() {
 }
 ```
 
-## atoi()
+### atoi()
 
 Include in library **stdlib.h**.
 
@@ -89,7 +87,7 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
 **Result**
 ``1234``   
 
-## strncpy() 
+### strncpy() 
 
 Copy **n** character from **src** string to **dst** string.
 

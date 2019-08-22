@@ -26,5 +26,3 @@ int main (){
 190
 100
 ```
-
-## Define value that give impact in function

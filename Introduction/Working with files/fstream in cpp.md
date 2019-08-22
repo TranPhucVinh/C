@@ -115,7 +115,7 @@ main() {
 124 ertyewew 5666
 ```
 
-#### Other way:
+#### Other way
 
 ```c
 string data;
