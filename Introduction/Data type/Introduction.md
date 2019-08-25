@@ -12,8 +12,6 @@
 |long	 |8 bytes|-9223372036854775808 to 9223372036854775807|		
 |unsigned long|8 bytes|0 to 18446744073709551615|		
 
-
-
 ## COMPARE
 
 | C | JavaScript|
