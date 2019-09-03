@@ -1,5 +1,6 @@
 ### Define value in header file, without class
 
+**header.h**
 ```cpp
 #include <iostream>
 #ifndef header_h
@@ -20,7 +21,7 @@ class Header
 void helloworld();
 int value = 18;
 ```
-
+**main.cpp**
 ```cpp
 #include <iostream>
 #include "header.h"
@@ -96,7 +97,7 @@ void helloworld();
 extern int value;
 ```
 
-**header.h** has export variable **value** for other .cpp file to use by **extern**.
+**header.h** has export variable **value** for other ``.cpp`` file to use by **extern**.
 
 **header.cpp**
 
@@ -156,7 +157,7 @@ main(){
 	setupInt();
 }
 ```
-
+**Result**
 ```
 18
 19
