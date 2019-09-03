@@ -4,7 +4,7 @@ To compile cpp file with mupltiples header files
 g++ -o outputFile main.cpp other.cpp etc.cpp
 ```
 
-### BASIC
+### Basic
 
 ``header.h``
 
@@ -40,13 +40,13 @@ int main(){
 }
 ```
 
-#### Result
+**Result**
 
 ```
 Hello, World!
 ```
 
-### WITH CLASS
+### With class
 
 ``header.h``
 
@@ -72,7 +72,7 @@ class Header
 void helloworld();
 ```
 
-Notice
+**Notice**
 
 ```
 #ifndef header_h
