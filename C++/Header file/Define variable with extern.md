@@ -42,7 +42,7 @@ Compile: ``g++ -o main main.cpp``
 190
 ```
 
-### Error when value defined in ``.cpp``
+### Error when value defined outside class
 
 **header.h**
 
