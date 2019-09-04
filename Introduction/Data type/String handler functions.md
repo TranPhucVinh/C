@@ -1,16 +1,69 @@
-### Get a character in a string
+### gets()
+
+**gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler.
+
+### puts()
+
+**Prototype**
 
 ```c
-int main() {
-    int i;
-    char hello[] = "a character";
-    printf("%c \n", hello[3]);
-    return 0;
+int puts(const char *str)
+```
+
+```c
+printf("hello \n");
+puts("hello");
+```
+
+**Result**
+
+```
+hello
+hello
+```
+
+### getchar(), putchar()
+
+Enter a char, print out this char
+
+```c
+#include <stdio.h>
+
+main() {
+	char a, b[1], c[1];
+	a = getchar(); // get ASCII of the entered character
+
+	putchar(a); // putchar is displaying the char on screen
+	printf("\n");
+	if (a == 'y') {
+		printf("kill bugs");
+	} else {
+		printf("nothing here \n");
+	}
 }
 ```
 
-```
-h 
+**Notes:** ``" "`` vs ``' '``
+
+``''`` is for character, ``" "`` is for string
+
+Now we learn how to deal with entering the ``char`` inside ``if...else``
+
+```c
+#include <stdio.h>
+
+main() {
+	scanf("%s", b);
+	printf("%s \n", b);
+	if ((strcmp(b, "t")) == 0) // must be "t", not 't'
+	{
+		scanf("%s", c);
+		printf("%s \n", c);
+		printf("The same character \n");
+	} else {
+		printf("Different \n");
+	}
+}
 ```
 
 ### sprintf()
@@ -103,10 +156,10 @@ char *strncpy(char *dest, const char *src, size_t n)
 #include <string.h>     /* for memset() */
 
 int main() {
-	char helloWorld[] = "Hello world 10 times";
-    char dest[12];
-    strncpy(dest, helloWorld, 2);
-    printf("%s \n",dest);
+  char helloWorld[] = "Hello world 10 times";
+  char dest[12];
+  strncpy(dest, helloWorld, 2);
+  printf("%s \n",dest);
 }
 ```
 
