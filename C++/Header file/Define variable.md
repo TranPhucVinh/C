@@ -53,8 +53,8 @@ Compile: ``g++ -o main main.cpp``
 
 using namespace std;
 
-void helloworld();
 int value;
+void helloworld();
 
 #endif
 ```
