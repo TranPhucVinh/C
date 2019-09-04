@@ -1,4 +1,4 @@
-# memset()
+## memset()
 
 Include in library **string.h**.
 
@@ -12,7 +12,7 @@ It can also be inferred as **filling a block of memory with a particular value**
 void *memset(void *str, int c, size_t n)
 ```
 
-## memset() with string
+### memset() with string
 
 ```c
 int main(){
@@ -51,7 +51,9 @@ int main() {
 
 Number 48 correspond to character **0** in ASCII code.
 
-## memset() with address
+### memset() with address
+
+This program set the value in **memory** of variable **a** with new value **'a'** from 0 **character**.
 
 ```c
 int main() {
@@ -70,9 +72,7 @@ value a before: 9
 value a after: 9 
 ```
 
-This program set the value in **memory** of variable **a** with new value **'a'** from 0 **character**.
-
-**filled with 1 byte**: 
+**filled with 1 byte** 
 
 ```c
 memset(&a, 'a', 1);
@@ -87,7 +87,7 @@ value a after: 97
 
 ``'a'`` has ASCII code ``97`` (``01100001``).
 
-**filled with 2 byte**: 
+**filled with 2 byte**
 
 ```c
 memset(&a, 'a', 2);
@@ -102,7 +102,7 @@ value a after: 24929
 
 ``24929 = 110000101100001 = 01100001 + 01100001 = 'a' (ASCII code)  + 'a' (ASCII code)``
 
-## memset() handle with int overflow
+### memset() handle with int overflow
 
 ```c
 memset(&a, 'a', 4);
@@ -125,7 +125,7 @@ memset(&a, 'a', 5);
 
 The value of a is now still ``1633771873``.
 
-This overflow bit will affect other variable value in memory.
+This overflow bit will **affect other variable value in memory**.
 
 **Example**
 
