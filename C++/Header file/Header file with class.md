@@ -4,7 +4,7 @@ To compile cpp file with mupltiples header files
 g++ -o outputFile main.cpp other.cpp etc.cpp
 ```
 
-### Basic
+### Header file without class
 
 ``header.h``
 
