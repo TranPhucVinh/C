@@ -34,7 +34,9 @@ int main() {
     return 0;
 }
 ```
+Compile: ``g++ -o main main.cpp``
 
+**Result**
 ```
 18
 190
