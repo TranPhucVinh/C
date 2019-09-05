@@ -2,9 +2,9 @@
 
 pointer: variable that stores address of other variable
 
-*p: declare a pointer
+``*p``: declare a pointer
 
-*p : value at address
+``*p``: value at address
 
 ### Declare pointer variable
 
