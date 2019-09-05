@@ -17,6 +17,26 @@ int main () {
 }
 ```
 
+### Function arguments as void
+
+A function with no parameter can accept a void.
+
+```c
+#include <stdio.h>
+
+int returnNumber(void){
+   return 5;
+}
+int main () {
+   printf("returnNumber: %d \n", returnNumber());
+
+}
+```
+**Result**
+```
+returnNumber: 5
+```
+
 ### Command Line Arguments with main()
 
 ```c
