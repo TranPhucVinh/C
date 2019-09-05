@@ -19,53 +19,6 @@
 |int a = 8; | var a = 8;|
 | printf("%d ",a)    | console.log(a)    |
 
-## char vs string
-
-### char
-
-Can store **character** or **integer value**
-
-```c
-// character
-char c;
-c = 'a';
-printf("Character %c ", c);
-```
-
-```c
-// integer
-char c;
-c = 8;
-printf("Integer %d ", c);
-```
-
-### char vs value in ASCII code
-
-```c
-printf("b: %d \n", '6');	
-```
-
-**Result**: 54
-
-### Notes
-
-``char c ='ab'`` => Warning "character constant too long for its type" => **WRONG**
-
-So, **char** in C go only with one word.
-
-### String
-
-```c
-char string[] = "hello";
-printf("%s", string);
-```
-
-**Result**
-
-```
-hello
-```
-
 ### float and double
 
 **double** can also be declared as **long float**.
@@ -84,10 +37,10 @@ void main() {
 	double x = 3.1;
 	float y = 3.1;
 	if (x == y){
-		printf("YES\n");
+		printf("Yes\n");
 	}
 	else {
-		printf("NO\n");
+		printf("No\n");
 	}
 }
 ```
@@ -95,7 +48,7 @@ void main() {
 **Result**
 
 ```
-NO
+No
 ```
 
 ### static
