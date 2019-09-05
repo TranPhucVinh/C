@@ -15,7 +15,7 @@ uint32_t
 
 **uint8_t**: 8 bit Unsigned int.
 
-**E.g**: Example with bit overflow
+**E.g**: Example with **bit overflow**
 
 ```c
 #include <stdio.h>
@@ -110,3 +110,29 @@ int main (){
 ```
 String is: 80    
 ```
+
+### size_t
+
+**size_t** is used to **save the size of an object of any data type**.
+
+**size_t** is actually **long unsigned int**.
+
+```c
+typedef unsigned int size_t;
+```
+
+So if the value of variable with **size_t** is negative, the result will be unpredictable
+
+```c
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    size_t a = 0;
+    cout << a-2 << endl;
+    return 0;
+}
+```
+
+**Result** ``18446744073709551614``
