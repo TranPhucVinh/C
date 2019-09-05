@@ -19,38 +19,6 @@
 |int a = 8; | var a = 8;|
 | printf("%d ",a)    | console.log(a)    |
 
-### float and double
-
-**double** can also be declared as **long float**.
-
-```
-float -> %f
-
-double -> %lf
-```
-
-### Comparing float and double
-
-```c
-#include <stdio.h>
-void main() {
-	double x = 3.1;
-	float y = 3.1;
-	if (x == y){
-		printf("Yes\n");
-	}
-	else {
-		printf("No\n");
-	}
-}
-```
-
-**Result**
-
-```
-No
-```
-
 ### static
 
 **static:** local variable but the value remain unchanged in a function
