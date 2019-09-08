@@ -18,7 +18,3 @@
 | ------- |:------:|
 |int a = 8; | var a = 8;|
 | printf("%d ",a)    | console.log(a)    |
-
-### static
-
-**static:** local variable but the value remain unchanged in a function
