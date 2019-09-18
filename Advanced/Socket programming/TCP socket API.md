@@ -2,6 +2,8 @@
 
 Library **sys/socket.h**, included: ``socket()``, ``connect()``, ``send()``, and ``recv()``.
 
+``sys/socket.h`` only includes in Unix computer, for similar TCP socket on Windows, use ``Winsock 2``, the library that need to be installed.
+
 ### socket()
 
 Create new socket
@@ -94,4 +96,4 @@ The **htons** function converts a u_short from host to TCP/IP network byte order
 
 ## netinet/in.h
 
-netinet/in.h - Internet Protocol family
+``netinet/in.h``: Internet Protocol family
