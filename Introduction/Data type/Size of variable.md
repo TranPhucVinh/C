@@ -1,6 +1,6 @@
 ### sizeof()
 
-Return the amount of memory allocated to that data type in byte.
+Return the amount of memory allocated to that data type in **byte**.
 
 **Example 1**
 
