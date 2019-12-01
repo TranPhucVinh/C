@@ -75,6 +75,13 @@ Enter a output a
 Enter abc output a
 ```
 
+**Convert value to Hex**
+
+```c
+int a = 19;
+printf("a in hex 0x%x \n", a); //a in hex 0x13 
+```
+
 ### Print out a string as char variable
 
 Because the array with ``char a[10]`` is a pointer so it doesn't need the pointer get value ``&`` in scanf.
