@@ -1,11 +1,3 @@
-# Header file
-
-To compile with mupltiples header files
-
-``g++ -o outputFile main.c other.c etc.c``
-
-``g++ -o outputFile main.cpp other.cpp etc.cpp``
-
 ## Basic header file
 
 ### In C

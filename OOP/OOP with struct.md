@@ -1,6 +1,4 @@
-## Working with struct
-
-### Basic
+### struct in C
 
 ```c
 #include <stdio.h>
@@ -13,7 +11,7 @@ struct student{
 
 main(){
 	struct student erin = { 1977, " Erin", "Free Lancer" };
-	printf(" %s has id %d in class %s ", erin.name, erin.id, erin.classroom);
+	printf("%s has id %d in class %s \n", erin.name, erin.id, erin.classroom);
 }
 ```
 
@@ -23,7 +21,7 @@ main(){
 Erin has id 1977 in class Free Lancer 
 ```
 
-### struct In C++
+### struct in C++
 
 ```c
 #include <iostream>
@@ -37,8 +35,7 @@ struct student {
 
 main() {
 	struct student erin = { 1977, " Erin", "Free Lancer" };
-	cout << erin.name << " " << erin.id << " " << erin.classroom;
-
+	cout << erin.name << " " << erin.id << " " << erin.classroom << endl;
 }
 ```
 
@@ -47,12 +44,12 @@ main() {
 Erin 1977 Free Lancer
 ```
 
-### Other
+### Object from struct
 
 ```c
 #include <stdio.h>
 
-struct studen{
+struct student{
 	int id;
 	char name[50];
 	char class[50];
@@ -70,18 +67,6 @@ main(){
 Jayne has id 1986 in class Free Lancer
 ```
 ### Missing the line in code
-
-```c
-	printf("Enter ID: ");
-	scanf("%d", &student1.id);
-	printf("Enter name: ");
-	gets(student1.name);
-	printf("Enter class: ");
-	gets(student1.class);
-	printf(" %s has id %d in class %s ", student1.name, student1.id, student1.class);
-```
-
-The line of code ``gets(student1.name)`` will be omitted. GNU **discourage** you to use ``gets()``. Just use ``scanf()`` instead. Adding ``fflush(stdin)`` will not help.
 
 ```c
 #include <stdio.h>

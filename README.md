@@ -1,3 +1,3 @@
-# C
+# C and C++
 
-C programming
+C and C++ programming document
