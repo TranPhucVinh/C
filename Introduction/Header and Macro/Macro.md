@@ -1,4 +1,48 @@
-## Redefine macro variable
+### Introduction 
+
+````c
+#define PRINT_HELLO_WORLD printf("Hello world")
+#define PI 3.14159
+#define a 6
+#define PIN_SPI_SS    (10)
+
+main(){
+	printf("%d \n", a);
+	printf("%f \n", PI);
+	PRINT_HELLO_WORLD;
+	printf("%d \n", PIN_SPI_SS);
+}	
+````
+**Result**
+```
+6
+3.14159
+Hello world
+10
+```
+
+### Macro with arguments
+
+```c
+#define defineFunction(a) a+1
+
+main(){
+	int  result = defineFunction(6);
+	printf("%d \n", result); //7
+}	
+```
+
+```c
+#define defineFunction(returnValue) returnValue+1
+
+int a;
+
+main(){
+	printf("%d \n", defineFunction(a=14)); //15
+}
+```
+
+### Redefine macro variable
 
 **head.h**
 
