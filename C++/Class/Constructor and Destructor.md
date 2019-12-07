@@ -15,14 +15,8 @@ class helloWorld{
 
 main(){
 	helloWorld hi;
-	hi.hello();
+	hi.hello(); //Hello World
 }
-```
-
-**Result**
-
-```
-Hello World
 ```
 
 ### Constructor
@@ -43,14 +37,8 @@ class helloWorld{
 
 
 main(){
-	helloWorld hi;
+	helloWorld hi; //hello world
 }
-```
-
-**Result**
-
-```
-hello world
 ```
 
 ### Constructor with arguments
