@@ -32,6 +32,8 @@ So, **char** in C go only with one word.
 
 ### unsigned char
 
+``unsigned char`` is ``unint_8``
+
 ```c
 #include <stdio.h>
 

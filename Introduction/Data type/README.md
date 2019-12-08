@@ -18,3 +18,38 @@
 | ------- |:------:|
 |int a = 8; | var a = 8;|
 | printf("%d ",a)    | console.log(a)    |
+
+### const
+
+``const`` is used to define constant variable and can't be changed
+
+E.g: ``const int a = 19``
+
+### sizeof()
+
+Return the amount of memory allocated to that data type in **byte**.
+
+**Size of all data type**
+
+```c
+int a = 16;
+printf("Size of variable a : %d\n",sizeof(a)); //Size of variable a : 4
+printf("Size of int data type : %d\n",sizeof(int)); //Size of int data type : 4
+printf("Size of char data type : %d\n",sizeof(char)); //Size of char data type : 1
+printf("Size of float data type : %d\n",sizeof(float)); //Size of float data type : 4
+printf("Size of double data type : %d\n",sizeof(double)); //Size of double data type : 8    
+```   
+
+**Size in array**
+
+```c
+int hello[] = {1, 2, 3};
+char charHello[] = "";
+printf("sizeof: %d \n", sizeof(hello));
+printf("sizeof: %d \n", sizeof(charHello));
+```
+
+```
+sizeof: 12 (3 int number has total 12 byte)
+sizeof: 1 
+```
