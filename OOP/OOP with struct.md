@@ -48,45 +48,52 @@ Erin 1977 Free Lancer
 
 ```c
 #include <stdio.h>
+#include <string.h> // for strcpy
 
 struct student{
 	int id;
 	char name[50];
-	char class[50];
+	char job[50];
 } student1;
 
 main(){
 	strcpy(student1.name, "Jayne"); //to set variable with char in struct
 	student1.id = 1986;
-	strcpy(student1.class, "Free Lancer");
-	printf(" %s has id %d in class %s ", student1.name, student1.id, student1.class);
+	strcpy(student1.job, "Free Lancer");
+	printf(" %s has id %d with job %s \n", student1.name, student1.id, student1.job);
 }
 ```
 
 ```
-Jayne has id 1986 in class Free Lancer
+Jayne has id 1986 with job Free Lancer 
 ```
-### Missing the line in code
 
-```c
+### Enter value for struct
+
+```cpp
 #include <stdio.h>
 #include <string.h>
 
 struct student {
 	int id;
 	char name[50];
-	char class[50];
+	char job[50];
 } student1;
 
 main(){
 	printf("Enter ID: ");
 	scanf("%d", &student1.id);
-	printf("Enter name: ");
-	scanf("%s", &student1.name);
-	printf("Enter class: ");
-	scanf("%s", &student1.class);
-	printf(" %s has id %d in class %s ", student1.name, student1.id, student1.class);
-}
-```
+	getc(stdin); //To handle with issue scanf before fgets
 
-Change ``char name[50]`` to ``char* name``
+	printf("Enter name: ");
+	fgets(student1.name, 50, stdin); //fgets allow to enter value with space
+
+	//fgets() newline handler
+	int len=strlen(student1.name);
+	if(student1.name[len-1]=='\n')	student1.name[len-1]='\0';
+
+	printf("Enter job: ");
+	scanf("%s", student1.job);
+	printf("%s has id %d with job %s \n", student1.name, student1.id, student1.job);
+}	
+```

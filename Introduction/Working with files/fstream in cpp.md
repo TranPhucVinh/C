@@ -6,20 +6,18 @@
 
 Create a file and add data to this file:
 
-```c
+```cpp
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 main() {
-	
 	ofstream myFile;
 	myFile.open("text.txt");
 
 	myFile << "Hello, World";
 	myFile.close();
-
 }
 ```
 
@@ -29,16 +27,15 @@ One line of code
 ofstream myFile("file.txt");
 ```
 
-**Check status:** is_open()
+Check status: ``is_open()``
 
-```c
+```cpp
 include <iostream>
 #include <fstream>
 
 using namespace std;
 
 main() {
-	
 	ofstream myFile("erin.txt");
 	myFile << "Hello, World";
 	if (myFile.is_open()){
@@ -62,14 +59,13 @@ File is close !!
 
 ### Entering data to txt file
 
-```c
+```cpp
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 main() {
-	
 	ofstream myFile("file.txt");
 	cout << "Enter ID, Name, Money \n";
 	int id;
@@ -89,16 +85,15 @@ We have ``file.txt``
 124 ertyewew 5666
 ```
 
-File file.txt has 3 word; we create 3 variable word1, word2, word3 correspondingly to these 3 word
+File ``file.txt`` has 3 word; we create 3 variable word1, word2, word3 correspondingly to these 3 word
 
-```c
+```cpp
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 main() {
-	
 	ifstream myFile("file.txt");
 	int word1;
 	string word2;
@@ -115,9 +110,9 @@ main() {
 124 ertyewew 5666
 ```
 
-#### Other way
+**Other way**
 
-```c
+```cpp
 string data;
 ifstream myFile("file.txt");
 getline(myFile, data)
@@ -133,7 +128,7 @@ cout << data;
 
 ### print out
 
-we have file.txt
+we have ``file.txt``
 
 ```
 124 ertyewew 5666
@@ -141,14 +136,13 @@ we have file.txt
 12 edrtyewew 5666
 ```
 
-```c
+```cpp
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
 main() {
-	
 	ifstream myFile("file.txt");
 	int word1;
 	string word2;
@@ -161,13 +155,7 @@ main() {
 }
 ```
 
-**Result**
-
-```
-124 ertyewew 5666
-1243 errtyewew 56666
-12 edrtyewew 5666
-```
+**Result**: The content of ``file.txt``
 
 ### Cursor in fstream
 
@@ -180,20 +168,19 @@ we have a file name ``file.txt``
 ```
 12123123 werwtwergfd
 ```
-Code:
+
+**main.c**
+
 ```c
 ifstream myFile("file.txt");
-cout << myFile.tellg() << endl;
+cout << myFile.tellg() << endl; //Result: 0
 ```
-Result
-```
-0
-```
-(as at the beginning of the file)
+
+``0`` as at the beginning of the file
 
 ``fstream::seekg(2)``: start the cursor from character 3
 
-```c
+```cpp
 string data;
 ifstream myFile("file.txt");
 myFile.seekg(2);
@@ -201,10 +188,7 @@ getline(myFile, data);
 cout << data;
 ```
 
-Result
-```
-123123 werwtwergfd
-```
+**Result**: The content of ``file.txt``
 
 ``fstream::seekg(2)`` only reading in one line.
 
@@ -220,20 +204,19 @@ file.txt
 
 We want searching in line 2 and line 3
 
-```c
+```cpp
 string data;
-	int findID, id, id0;
-	ifstream myFile("file.txt");
-	myFile.seekg(3);
-	cout << "Enter employee's ID: ";
-	cin >> findID;
-	while(myFile >> id >> id0)
-	{
+int findID, id, id0;
+ifstream myFile("file.txt");
+myFile.seekg(3);
+cout << "Enter employee's ID: ";
+cin >> findID;
+while(myFile >> id >> id0){
 	if (findID == id){
-	cout << "Name" << ' ' << "Age"  << endl;
-	cout << id << " " <<  id0 << endl;
+		cout << "Name" << ' ' << "Age"  << endl;
+		cout << id << " " <<  id0 << endl;
 	}
-	}
+}
 ```
 
 **Result**
