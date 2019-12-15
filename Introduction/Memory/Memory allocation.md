@@ -4,7 +4,7 @@
 void *malloc(size_t size)
 ```
 
-``malloc()`` returns a pointer to the allocated memory
+``malloc()`` returns a pointer to the allocated memory.
 
 ```c
 #include <stdio.h>
