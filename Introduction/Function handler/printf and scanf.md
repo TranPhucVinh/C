@@ -114,6 +114,4 @@ printf("string is: %s\n", buf);
 
 ### Problem with scanf() before fgets()
 
-As there is ``\n`` character goes after ``scanf()``, putting ``scanf()`` before ``fgets()`` will result in losing the ``fgets()`` command handler
-
-**Problem solved**
+As there is ``\n`` character goes after ``scanf()``, putting ``scanf()`` before ``fgets()`` will result in losing the ``fgets()`` command handler.
