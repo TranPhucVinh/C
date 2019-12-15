@@ -33,3 +33,16 @@ intPointer = (int *) malloc(1);
     
 printf("Int value: %d", *intPointer); //12
 ```
+
+### free()
+
+```c
+int *intPointer;
+
+intPointer = (int *) malloc(1);
+*intPointer = 12;
+    
+printf("Int value before: %d \n", *intPointer); //12
+free(intPointer);
+printf("Int value after: %d \n", *intPointer); //0
+```
