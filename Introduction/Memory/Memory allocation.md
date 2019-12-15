@@ -6,6 +6,8 @@ void *malloc(size_t size)
 
 ``malloc()`` returns a pointer to the allocated memory.
 
+**String**
+
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,4 +21,15 @@ int main () {
    strcpy(str, "Learn malloc");
    printf("String = %s \n", str);
 }   
+```
+
+**Int**
+
+```c
+int *intPointer;
+
+intPointer = (int *) malloc(1);
+*intPointer = 12;
+    
+printf("Int value: %d", *intPointer); //12
 ```
