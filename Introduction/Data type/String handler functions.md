@@ -147,14 +147,8 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
 ```c
   char str[] = "C programming with GNU-GCC";
   int a = atoi(str);
-  printf("%d \n", a);
+  printf("%d \n", a); //Result: 0
 ```   
-
-**Result**
-
-```
-0
-```
 
 ```c
   char str[] = "1234";
