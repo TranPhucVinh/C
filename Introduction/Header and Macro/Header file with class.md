@@ -1,53 +1,3 @@
-To compile cpp file with mupltiples header files
-
-```
-g++ -o outputFile main.cpp other.cpp etc.cpp
-```
-
-### Header file without class
-
-``header.h``
-
-```c
-#include <iostream>
-using namespace std; // this line is optional
-
-void helloworld();
-```
-
-``header.cpp``
-
-```c++
-#include <iostream>
-#include "header.h"
-using namespace std; // this line is optional
-
-void helloworld(){
-	cout << "Hello, World!" << endl;
-}
-```
-
-``test.cpp``
-
-```c
-#include <iostream>
-#include "header.h" //"header.h", not <header.h>
-
-using namespace std;
-
-int main(){
-	helloworld();
-}
-```
-
-**Result**
-
-```
-Hello, World!
-```
-
-### With class
-
 ``header.h``
 
 ```cpp
@@ -125,7 +75,7 @@ int main(){
 	helloworld();
 }
 ```
-
+**Result**
 ```
 Hello, World!
 This number is 6
@@ -136,4 +86,41 @@ This number is 6
 4
 5
 Hello, World!
+```
+
+### Define value in header file, without class
+
+**header.h**
+```cpp
+#include <iostream>
+#ifndef header_h
+#define header_h
+#define integerValue 190
+
+using namespace std;
+
+class Header
+{
+  public:
+    void hello();
+  private:
+    int _number;
+};
+#endif
+
+void helloworld();
+int value = 18;
+```
+**main.cpp**
+```cpp
+#include <iostream>
+#include "header.h"
+
+using namespace std;
+
+int main() {
+    cout << value << endl; //18
+    cout << integerValue << endl; //190
+    return 0;
+}
 ```

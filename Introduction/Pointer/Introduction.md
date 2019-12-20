@@ -58,27 +58,15 @@ int a = 9;
 int *pointer = &a;
 int main(){
    p = &a;
-   printf("pointer value %p \n", p);
-   printf("address value of variable a %p \n", &a);
-   printf("address of pointer variable %p \n", &p);
-   printf("variable value %d \n", *p);
-   printf("*& value is %d \n", *&a);
-   printf("Value of variable pointer %p \n", pointer);
-   printf("Value *pointer is %d \n", *pointer);
+   printf("pointer value %p \n", p); //0x601030
+   printf("address value of variable a %p \n", &a); //0x601030
+   printf("address of pointer variable %p \n", &p); //0x601048
+   printf("variable value %d \n", *p); //9
+   printf("*& value is %d \n", *&a); //9
+   printf("Value of variable pointer %p \n", pointer); //0x601030
+   printf("Value *pointer is %d \n", *pointer); //9
    return(0);
 }
-```
-
-**Result**
-
-```
-pointer value 0x601030 
-address value of variable a 0x601030
-address of pointer variable 0x601048
-variable value 9
-*& value is 9
-Value of variable pointer 0x601030 
-Value *pointer is 9
 ```
 
 We can also notice that

@@ -78,7 +78,24 @@ ASCII value: 99
 
 However, there are special value that goes with escape sequence:
 
-![](escape-sequence.png)
+| Escape sequence | Hex value in ASCII|Character represent|
+| ------- |------|------|
+|\a |07|Alert (Beep, Bell) (added in C89)|		
+|\b |08|Backspace|			
+|\e |1B|Escape character|
+|\f	|0C|Formfeed Page Break|
+|\n	|0A|Newline (Line Feed)|
+|\r	|0D|Carriage Return|
+|\t	|09|Horizontal Tab|
+|\v	|0B|Vertical Tab|
+|\\	|5C	|Backslash|
+|\'	|27	|Apostrophe or single quotation mark|
+|\"	|22	|Double quotation mark|
+|\?	|3F	|Question mark (used to avoid trigraphs)|
+|\nnn|	any|	The byte whose numerical value is given by nnn interpreted as an octal number|
+|\xhh…|	any|	The byte whose numerical value is given by hh… interpreted as a hexadecimal number|
+|\uhhhh|none|	Unicode code point below 10000 hexadecimal|
+\Uhhhhhhhh|	none|	Unicode code point where h is a hexadecimal digit|
 
 ```c
 printf("ASCII value: %d \n", 'a');//97

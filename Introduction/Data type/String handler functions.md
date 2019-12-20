@@ -1,25 +1,16 @@
 ### gets()
 
-**gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler.
+**gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler. Just use ``scanf()`` instead.
 
 ### puts()
-
-**Prototype**
 
 ```c
 int puts(const char *str)
 ```
 
 ```c
-printf("hello \n");
-puts("hello");
-```
-
-**Result**
-
-```
-hello
-hello
+printf("hello \n"); //hello
+puts("hello"); //hello
 ```
 
 ### getchar(), putchar()
@@ -74,7 +65,7 @@ int sprintf ( char * str, const char * format, ... );
 
 Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
 
-```c
+```cpp
 #include <stdio.h>
 
 int main (){
@@ -90,21 +81,55 @@ int main (){
 [5 plus 3 is 8] is a string 13 chars long
 ```
 
-**E.g**: Convert **uint32_t** to **string-char[]**
+**E.g**: Convert ``uint32_t`` to ``string-char[]``
 
-```c
+```cpp
 #include <stdio.h>      
 #include <stdlib.h>     
 #include <string.h>     
 #include <stdint.h>
 
 int main() {
-
   char clockValue[100];
   uint32_t int32Number = 600000000;
   
   sprintf(clockValue, "%d", int32Number); //convert uint_32 to String char[]
   printf("%s\n", clockValue);
+}
+```
+
+### strcpy()
+
+```cpp
+#include <stdio.h>
+#include <string.h>
+
+int main () {
+  char dest[20];
+  strcpy(dest,"Hello, World!!");
+  printf("dest: %s\n", dest); //dest: Hello, World!!
+  return(0);
+}
+```
+
+### strncpy() 
+
+Copy **n** character from **src** string to **dst** string.
+
+```c
+char *strncpy(char *dest, const char *src, size_t n)
+```
+
+```cpp
+#include <stdio.h>      /* for printf() and fprintf() */
+#include <stdlib.h>     /* for atoi() and exit() */
+#include <string.h>     /* for memset() */
+
+int main() {
+  char helloWorld[] = "Hello world 10 times";
+  char dest[12];
+  strncpy(dest, helloWorld, 2);
+  printf("%s \n",dest); //He
 }
 ```
 
@@ -120,9 +145,9 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
 **E.g**
 
 ```c
-    char str[] = "C programming with GNU-GCC";
-    int a = atoi(str);
-    printf("%d \n", a);
+  char str[] = "C programming with GNU-GCC";
+  int a = atoi(str);
+  printf("%d \n", a);
 ```   
 
 **Result**
@@ -132,37 +157,7 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
 ```
 
 ```c
-    char str[] = "1234";
-    int a = atoi(str);
-    printf("%d \n", a);
-```
-
-**Result**
-``1234``   
-
-### strncpy() 
-
-Copy **n** character from **src** string to **dst** string.
-
-```c
-char *strncpy(char *dest, const char *src, size_t n)
-```
-
-**E.g**
-
-```c
-#include <stdio.h>      /* for printf() and fprintf() */
-#include <stdlib.h>     /* for atoi() and exit() */
-#include <string.h>     /* for memset() */
-
-int main() {
-  char helloWorld[] = "Hello world 10 times";
-  char dest[12];
-  strncpy(dest, helloWorld, 2);
-  printf("%s \n",dest);
-}
-```
-
-```
-He
+  char str[] = "1234";
+  int a = atoi(str);
+  printf("%d \n", a); //1234
 ```

@@ -1,4 +1,4 @@
-### Hello, World!
+### Print out string
 
 ```cpp
 #include <iostream>
@@ -10,14 +10,11 @@ main(){
 }
 ```
 
-``\n`` and ``endl`` is the same.
-``endl: endline``
-
-g++ compiler need main() to be int. so ``int main()`` or just simply ``main()``
+``\n`` and ``endl`` is the same. ``endl: endline``
 
 ### Type in - print out
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -32,7 +29,7 @@ main(){
 
 ### Type in: Many arguments
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -47,7 +44,7 @@ main(){
 
 ### string
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -59,11 +56,9 @@ main(){
 }
 ```
 
-**Result**
-
 ### display the whole string
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -75,9 +70,10 @@ main(){
 	cout << "The whole sentence is: " << sentence;
 }
 ```
+
 ### Problem with getline()
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -96,7 +92,7 @@ main(){
 
 After entering the value of ``age`` and press enter, ``age`` value will appear then the programm stop as after entering "ENTER", this will be in buffer then getline will stop as knowing that ENTER has been pressed.
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -107,7 +103,7 @@ main(){
 	cin >> age;
 	cout << age;
 	string sentence;
-	cout<< "what is your sentence ? \n";
+	cout << "what is your sentence ? \n";
 	cin.ignore(1); //ignore the last entering character, in this case is "ENTER"
 	getline(cin, sentence);
 	cout << "The whole sentence is: " << sentence;
@@ -116,7 +112,7 @@ main(){
 
 ### Simple dealing with input value
 
-```c
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -128,15 +124,15 @@ cout << "The next 10 years: " << age + 10 <<"\n";
 }
 ```
 
-``cin.getline()`` allows you to enter a string which has white spaces too. Its syntax is as follows : 
+### cin.getline()
 
-``cin.getline( name of string , size of the string );``
+``cin.getline()`` allows you to enter a string which has white spaces too. 
 
-e.g:
+Its syntax is as follows: ``cin.getline(name of string , size of the string);``
 
 **Enter a string to a file**
 
-```c
+```cpp
 ofstream myFile("file.txt");
 char data[111];
 cin.getline(data, 100);
@@ -146,20 +142,17 @@ myFile.close();
 
 ### setw()
 
-```c
+```cpp
 #include <iostream>
 #include <iomanip> // io manipulation
 using namespace std;
 
 main() {
-	
 	cout << "Day  		Money \n"
 	<< 	"---------------------------------\n";
 	cout << 1 <<setw(18) << 1 << "\n";
 	cout << 1 <<setw(18) << 1 << "\n";
 	cout << 1987 <<setw(18) << 1977 << "\n";
-
-
 }
 ```
 

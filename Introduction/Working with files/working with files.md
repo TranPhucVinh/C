@@ -100,7 +100,7 @@ Hello, World!
 ```c
 fgets(char *s, int n, FILE *stream);
 ```
-read the content in file "stream" until encounter the new line character ('\n') or until finished reading n-1 character; then store in "s".
+read the content in a file  or stream until encounter the new line character ('\n') or until finished reading n-1 character; then store in "s".
 
 ```c
 fgets(msg, 81, stream);
@@ -133,14 +133,8 @@ void perror(const char *str)
 
 ```c
 int main() {
-	perror("hello");
+	perror("hello"); //hello: Success
 }
-```
-
-**Result**
-
-```
-hello: Success
 ```
 
 **Example: No such file or directory**
