@@ -1,17 +1,15 @@
-### fopen()
+### Open file to read or write.
 
-Open file to read or write.
-
-**Prototype**
+``fopen()`` Open file to read, write, append,...
 
 ```c
 FILE *fopen(const char *filename, const char *mode)
 ```
 
-**Example**
+**Usage**
 
 ```c
-FILE *file;
+FILE *fptr; //file pointer
 file = fopen("text.md", "<mode>");
 ```
 
@@ -26,37 +24,10 @@ file = fopen("text.md", "<mode>");
 * t
 * b
 
-**Example: Write content to files**
+### Example
 
-```c
-#include <stdio.h>
-void main() {
-	FILE *file;
-	file = fopen("text.md", "w+"); // this can be .md, .txt, ....
-	if (file == NULL) {
-		printf("Unable to open file");
-	}
-	else {
-		fputs("Hello world", file);
-		fclose(file); // without this is ok
-	}	
-}
-```
-
-**Example: Printout the content inside file "open.c"**
-
-```c
-#include <stdio.h>
-
-void main() {
-	FILE *stream;
-	char msg[81];
-	stream = fopen("open.c","r");
-	fgets(msg, 81, stream);
-	printf("%s\n",msg );
-	fclose(stream); // without fclose() still run fine
-}
-```
+* ``readFile.c``: Read content from existed files
+* ``writeEmptyFile.c``: Write to an empty file, if file already existed, do nothing
 
 ### fprintf()
 
@@ -72,27 +43,21 @@ int fprintf(FILE *stream, const char *format, ...)
 * stdout: stream data out, output data to a stream
 * stderr: stream data error
 
-**Example: fprintf() with file**
+**Example: Write content to empty file**
 
 ```c
-int main() {
-	FILE *file;
-	file = fopen("text.md", "w+");
-	fprintf(file, "Erin");
-}
+FILE *fileptr;
+fileptr = fopen("text.md", "w+");
+fprintf(fileptr, "Erin");
 ```
 
-**Example: Print out Hello World in terminal with stdout and stderr**
+**Example: Print out string in terminal with stdout and stderr**
 
 ```c
 fprintf(stdout, "Hello, World! \n");
 ```
 ```c
 fprintf(stderr, "Hello, World! \n");
-```
-**Result**
-```
-Hello, World!
 ```
 
 ### fgets()
@@ -118,6 +83,21 @@ int main() {
 	char buffer[BUFFSIZE];
     fgets(buffer,BUFFSIZE, stdin);
     puts(buffer);
+}
+```
+
+**Example: Printout the content inside file "open.c"**
+
+```c
+#include <stdio.h>
+
+void main() {
+	FILE *stream;
+	char msg[81];
+	stream = fopen("open.c","r");
+	fgets(msg, 81, stream);
+	printf("%s\n",msg );
+	fclose(stream); // without fclose() still run fine
 }
 ```
 
@@ -147,8 +127,4 @@ int main() {
 		perror("Error");
 	}
 }
-```
-
-```
-Error: No such file or directory
 ```
