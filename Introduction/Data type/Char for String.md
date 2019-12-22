@@ -20,11 +20,19 @@ lo world 10 times
 int main() {
     int i;
     char hello[] = "a character";
-    printf("%c \n", hello[3]);
+    printf("%c \n", hello[3]); //h
     return 0;
 }
 ```
 
-```
-h 
+### String as argument in function
+
+```c
+void printString(char hw[]){
+	printf("%s ", hw);
+}
+
+int main(){
+	printString("Hello, World \n"); //Hello, World
+}
 ```
