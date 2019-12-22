@@ -36,3 +36,10 @@ int main(){
 	printString("Hello, World \n"); //Hello, World
 }
 ```
+
+### strlen()
+
+```c
+char stringSize[] = "Hello, World!";
+printf("%d", strlen(stringSize)); //13
+```
