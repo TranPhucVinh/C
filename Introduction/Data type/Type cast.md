@@ -13,11 +13,21 @@ printf("%d \n", c); //-1073741824
 
 ### Type cast
 
+**Int to Float**
+
 ```c
 float a = (float) 3;
 printf("%d \n", a);	//0
 printf("%f \n", a); //3.000
 ```    
+
+**Float to Int**
+
+```c
+int a = (int) 12.9;
+printf("%d \n", a);	//12
+printf("%f \n", a); //0
+```
 
 ### Calculation
 
