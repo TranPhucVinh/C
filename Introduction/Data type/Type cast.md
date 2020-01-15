@@ -11,6 +11,14 @@ float c = 3.1;
 printf("%d \n", c); //-1073741824
 ```
 
+### Type cast
+
+```c
+float a = (float) 3;
+printf("%d \n", a);	//0
+printf("%f \n", a); //3.000
+```    
+
 ### Calculation
 
 ```c
