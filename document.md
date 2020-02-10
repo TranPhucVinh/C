@@ -1,3 +1,7 @@
+### GCC on Windows
+
+For GCC build on Window, install ``TDM-GCC-64``.
+
 ### Compile C++, C on terminal
 
 ```shell
