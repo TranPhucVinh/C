@@ -1,8 +1,10 @@
-### Print out a string with char
+### Print out a string with char[] and pointer
 
 ```c
 char hw[] = "Hello, World!";
-printf("%s ", hw);
+char *pointerString = "Pointer String";
+printf("%s \n", hw); //Hello, World! 
+printf("%s \n", pointerString); //Pointer String 
 ```
 **Print out with index**
 ```c
