@@ -63,3 +63,14 @@ printf("Int value before: %d \n", *intPointer); //12
 free(intPointer);
 printf("Int value after: %d \n", *intPointer); //0
 ```
+
+### realloc()
+
+``realloc()`` is used to dynamically change the memory allocation of a previously allocated memory.
+
+```c
+int* intPointer = (int*) malloc (5 * sizeof(int));
+intPointer = ... //A 20 bytes memory block is dynamically allocated to intPointer
+intPointer = realloc(intPointer, 10*sizeof(int));
+intPointer = ... //The size of intPointer is changed from 20 bytes to 40 bytes dynamically
+```
