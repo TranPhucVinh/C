@@ -3,23 +3,6 @@
 ```c
 #include <stdio.h>
 
-void add (int number);
-
-main () {
- int number = 6;
- add(number);
- printf("%d", number);
-}
-
-void add(int number){
-	number = number + 1;
-}
-```
-**Result** 6 (expect 7)
-
-```c
-#include <stdio.h>
-
 int add (int number);
 
 main () {
@@ -40,7 +23,7 @@ int add(int number){
 the return value of the function is 7 
 ```
 
-What is sent to the function add(number) is the value of variable number (=6), not really number, the variable name "number" in add() is just the clone of the genuine variale "number". So the value of number still remain unchanged.
+What is sent to the function ``add(number)`` is the value of variable ``number`` ( = 6), not variable ``number``, the variable ``number`` in ``add()`` is just the clone of the genuine variale ``number``. So the value of number still remain unchanged.
 
 ### Problem solved
 
