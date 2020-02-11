@@ -18,15 +18,9 @@ int main () {
 ### Error
 
 ```c
-#include <stdio.h>
-
 void *pointer;
-
-int main () {
-   int a = 0;
-   *pointer = &a;
-    [...]
-}
+int a = 0;
+*pointer = &a;
 ```
 **Error**
 ```
@@ -37,6 +31,7 @@ test.c:7:5: error: 'void*' is not a pointer-to-object type
 ```c
 printf("Value *pointer is: %d \n", *pointer);
 ```
+
 **Error**
 ```
 test.c:8:40: error: 'void*' is not a pointer-to-object type
