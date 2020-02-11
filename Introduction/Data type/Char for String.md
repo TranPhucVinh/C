@@ -1,4 +1,4 @@
-### Print out a string with char[] and pointer
+### Print out a string with char[] and char*
 
 ```c
 char hw[] = "Hello, World!";
@@ -10,17 +10,16 @@ printf("%s \n", pointerString); //Pointer String
 ```c
 char helloWorld[] = "Hello world 10 times";
 printf("%s \n",helloWorld+3); //lo world 10 times
+char hello[] = "a character";
+printf("%c \n", hello[3]); //h
+
+char *returnChar = hello;
+printf("returnChar[0]: %c \n", returnChar[0]); //returnChar[0]: h
 ```
 
-### Get a character in a string
-
-```c
-int main() {
-    int i;
-    char hello[] = "a character";
-    printf("%c \n", hello[3]); //h
-    return 0;
-}
+**Get address of pointer char**
+```
+printf("returnChar: %p \n", returnChar); //Address of returnChar is : 0x62FE30
 ```
 
 ### String as argument in function
