@@ -1,6 +1,6 @@
 ### Pointers to void
 
-A pointer of type void * represents the address of an object.
+A pointer of type void (e.g ``void *pointerName``) represents the address of an object,  but not its type.
 
 ```c
 #include <stdio.h>
