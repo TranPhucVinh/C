@@ -17,5 +17,5 @@ printf("String: %s\n", dest); //String: Hello, World!
 const char *src = "Hello, World!";
 char *dest = (char *) malloc(15); //A memory size must be given to *dest
 memcpy(dest, src, strlen(src)+1);
-printf("String: %s\n", dest);
+printf("String: %s\n", dest); //String: Hello, World!
 ```
