@@ -29,8 +29,13 @@ void printString(char hw[]){
 	printf("%s ", hw);
 }
 
+void printStringPointer(char *hw){
+	printf("%s ", hw);
+}
+
 int main(){
 	printString("Hello, World \n"); //Hello, World
+	printStringPointer("Hello, World \n"); //Hello, World
 }
 ```
 
