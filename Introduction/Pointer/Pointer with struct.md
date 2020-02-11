@@ -1,3 +1,5 @@
+### Add number with struct issue
+
 ```c
 #include <stdio.h>
 struct add
@@ -74,6 +76,5 @@ Enter complex2 imagine 23
 Result number: 50 + 29i
 ```
 
-``(.)`` is used to access the instance inside a struct
-
-``(->)`` is used by pointer struct to access the inside instance.
+* ``(.)`` is used to access the instance inside a **struct**.
+* ``(->)`` is used by **pointer struct** to access the inside instance.
