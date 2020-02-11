@@ -6,18 +6,13 @@ A pointer of type void (e.g ``void *pointerName``) represents the address of an 
 #include <stdio.h>
 
 int main () {
-   int a = 0;
+   int a = 12;
    void *pointer = &a;
-   (void) pointer; //this line can be commented and will give the same result
-   printf("Value *(int *)pointer is: %d \n", *(int *)pointer);
-   // printf("Value *pointer is: %d \n", *pointer);
-   printf("Value pointer is: %d \n", pointer);
+   
+   printf("Value *(int *)pointer is: %d \n", *(int *)pointer); //12
+   printf("Value (int *)pointer is: %p \n", (int *)pointer); //0x7fff1f05ed4c
+   printf("Value pointer is: %p \n", pointer); //0x7fff1f05ed4c
 }
-```
-**Result**
-```
-Value *(int *)pointer is: 0
-Value pointer is: 6487620
 ```
 
 ### Error
