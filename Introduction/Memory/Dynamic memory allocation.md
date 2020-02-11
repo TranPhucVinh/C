@@ -68,7 +68,9 @@ printf("Int value after: %d \n", *intPointer); //0
 
 ``realloc()`` is used to dynamically change the memory allocation of a previously allocated memory.
 
-``void *realloc(void *ptr, size_t size); ``
+```c
+void *realloc(void *ptr, size_t size); 
+```
 
 ```c
 int* intPointer = (int*) malloc (5 * sizeof(int));
