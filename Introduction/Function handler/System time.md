@@ -1,3 +1,5 @@
+### On Windows
+
 Print out a string after every one second with library ``time.h``.
 
 ```c
@@ -20,6 +22,22 @@ int main(){
     while (1){
 		printf("Hello, World \n");
 		delay(1);
+	}
+} 
+```
+
+### On Ubuntu/Linux
+
+Print out a string after every one second with ``sleep()``.
+
+```c
+#include <stdio.h> 
+  
+// Driver code to test above function 
+int main(){ 
+    while (1){
+		printf("Hello, World \n");
+		sleep(1);
 	}
 } 
 ```
