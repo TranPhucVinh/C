@@ -16,6 +16,9 @@ char *p0; //pointer to character
 double d;
 double *p1; // pointer to double
 const char *message1 = "Thread 1";
+
+//Equal to the previous ways and will give the same result
+int* intPointer;
 ```
 
 ``%p``: is used for **pointer**, like ``%d`` for **int**, ``%s`` for **string**.
