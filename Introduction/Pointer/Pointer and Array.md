@@ -11,41 +11,22 @@ int *p;
 int arrayValue[3] ={1, 2, 3};
 int main(){
    p = arrayValue;
-   printf("p: %p \n", p);
-   printf("arrayValue: %p \n", arrayValue);
-   printf("address of pointer variable: %p \n", &p);
-   printf("address of arrayValue : %p \n", &arrayValue);
-   printf("p[0]: %d \n", p[0]);
-   printf("*&p[0]: %d \n", *&p[0]);
-   printf("p[0]: %d \n", p[0]);
+   printf("%p \n", p); //0x601030
+   printf("%p \n", arrayValue); //0x601030
+   printf("%p \n", &p); //0x601048
+   printf("address of arrayValue : %p \n", &arrayValue); //0x601030
+   printf("p[0]: %d \n", p[0]); //1
+   printf("*&p[0]: %d \n", *&p[0]); //1
+   printf("p[0]: %d \n", p[0]); //1
    return(0);
 }
-```
-
-**Result**
-
-```
-p: 0x601030 
-arrayValue: 0x601030 
-address of pointer variable: 0x601048 
-address of arrayValue : 0x601030 
-p[0]: 1 
-*&p[0]: 1 
-p[0]: 1 
 ```
 
 The **address of an array** is also the **address of member 0** in array.
 
 ```c
-printf("address of arrayValue : %p \n", &arrayValue);
-printf("address of arrayValue[0] : %p \n", &arrayValue[0]);
-```
-
-**Result**
-
-```
-address of arrayValue : 0x601030 
-address of arrayValue[0] : 0x601030 
+printf("address of arrayValue : %p \n", &arrayValue); //0x601030
+printf("address of arrayValue[0] : %p \n", &arrayValue[0]); //0x601030
 ```
 
 **Use pointer in array to enter the value in array**
@@ -106,18 +87,11 @@ struct student{
 int main() {
 	struct student erin = { 1977, " Erin", "Free Lancer" };
 
-	printf("value &erin: %p \n", &erin);
-	printf("value &erin.id: %p \n", &erin.id);
-	printf("value &erin.name: %p \n", &erin.name);
-	printf("value &erin.classroom: %p \n", &erin.classroom);
+	printf("value &erin: %p \n", &erin); //0x7ffe09debe80
+	printf("value &erin.id: %p \n", &erin.id); //0x7ffe09debe80
+	printf("value &erin.name: %p \n", &erin.name); //0x7ffe09debe84
+	printf("value &erin.classroom: %p \n", &erin.classroom); //0x7ffe09debeb6
 }
-```
-
-```
-value &erin: 0x7ffe09debe80 
-value &erin.id: 0x7ffe09debe80 
-value &erin.name: 0x7ffe09debe84 
-value &erin.classroom: 0x7ffe09debeb6 
 ```
 
 Address of ``erin`` and ``erin.id`` are the same.
