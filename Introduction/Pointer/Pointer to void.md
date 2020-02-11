@@ -44,3 +44,13 @@ printf("Value *pointer is: %d \n", *pointer);
 test.c:8:40: error: 'void*' is not a pointer-to-object type
     printf("Value *pointer is: %d \n", *pointer);
 ```
+
+### Casting pointer void to char
+
+```c
+char *hw = "Hello, World!";
+void *pointer;
+pointer = hw;
+   
+printf("Char value is: %s \n", pointer); //Hello, World!
+```
