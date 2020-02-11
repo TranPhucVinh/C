@@ -113,8 +113,6 @@ String is: 80
 
 ### size_t
 
-**size_t** is used to **save the size of an object of any data type**.
-
 **size_t** is actually **long unsigned int**.
 
 ```c

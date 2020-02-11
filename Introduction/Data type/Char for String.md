@@ -7,11 +7,7 @@ printf("%s ", hw);
 **Print out with index**
 ```c
 char helloWorld[] = "Hello world 10 times";
-printf("%s \n",helloWorld+3);
-```
-
-```
-lo world 10 times
+printf("%s \n",helloWorld+3); //lo world 10 times
 ```
 
 ### Get a character in a string
