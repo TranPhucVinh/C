@@ -1,8 +1,13 @@
+### Introduction
+
+* An array is collection of items stored at continuous memory locations.
+* The size of array in C is compulsory, not like ``array[]`` in JavaScript.
+
 ### Enter value of array
 
 Enter the value of each member in array then print out on screen.
 
-The size of array is compulsory, not like array[] in JavaScript.
+
 
 ```c
 #include <stdio.h>
@@ -118,12 +123,6 @@ int main() {
    }
    return 0;
 }
-```    
-
-```
-value 0: 1 
-value 1: 2 
-value 2: 3 
 ```
 
 ``size_t arraySize = sizeof(array)/sizeof(array[0]);`` can also be returned with ``sizeof(array)/sizeof(int)``.

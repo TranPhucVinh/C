@@ -1,3 +1,3 @@
-# C and C++
+# C
 
 C document

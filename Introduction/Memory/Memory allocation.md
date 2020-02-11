@@ -19,7 +19,7 @@ int main () {
    /* Initial memory allocation */
    str = (char *) malloc(15);
    strcpy(str, "Learn malloc");
-   printf("String = %s \n", str);
+   printf("String: %s \n", str);
 }   
 ```
 

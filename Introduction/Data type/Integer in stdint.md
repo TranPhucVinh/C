@@ -13,7 +13,7 @@ uint32_t
 
 ### Data Type 
 
-**uint8_t**: 8 bit Unsigned int.
+**uint8_t**: 8 bit unsigned int.
 
 **E.g**: Example with **bit overflow**
 
@@ -124,15 +124,7 @@ typedef unsigned int size_t;
 So if the value of variable with **size_t** is negative, the result will be unpredictable
 
 ```c
-#include <iostream>
-
-using namespace std;
-
-int main() {
-    size_t a = 0;
-    cout << a-2 << endl;
-    return 0;
-}
+size_t a = 0;
+cout << a-2 << endl; //18446744073709551614
+return 0;
 ```
-
-**Result** ``18446744073709551614``

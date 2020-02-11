@@ -45,11 +45,14 @@ printf("Size of double data type : %d\n",sizeof(double)); //Size of double data 
 ```c
 int hello[] = {1, 2, 3};
 char charHello[] = "";
+char hw[] = "Hello, World!";
 printf("sizeof: %d \n", sizeof(hello));
 printf("sizeof: %d \n", sizeof(charHello));
+printf("sizeof: %d \n", sizeof(hw));
 ```
 
 ```
 sizeof: 12 (3 int number has total 12 byte)
 sizeof: 1 
+sizeof: 14
 ```
