@@ -64,9 +64,9 @@ int main(){
    printf("pointer value %p \n", p); //0x601030
    printf("address value of variable a %p \n", &a); //0x601030
    printf("address of pointer variable %p \n", &p); //0x601048
+   printf("Value of variable pointer %p \n", pointer); //0x601030
    printf("variable value %d \n", *p); //9
    printf("*& value is %d \n", *&a); //9
-   printf("Value of variable pointer %p \n", pointer); //0x601030
    printf("Value *pointer is %d \n", *pointer); //9
    return(0);
 }
