@@ -28,7 +28,7 @@ test.c:7:5: error: 'void*' is not a pointer-to-object type
 ```
 **Solve**
 
-``c
+```c
 void *pointer;
 int a = 0;
 pointer = &a;
