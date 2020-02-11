@@ -37,7 +37,13 @@ int main(){
 
 ### strlen()
 
+``size_t strlen(const char *)``: Return length of a string
+
 ```c
 char stringSize[] = "Hello, World!";
-printf("%d", strlen(stringSize)); //13
+char *pointerString = "Pointer string";
+
+//%ld for size_t as long unsignee int
+printf("%ld", strlen(stringSize)); //13
+printf("%ld", strlen(pointerString)); //14
 ```
