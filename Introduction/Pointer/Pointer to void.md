@@ -22,17 +22,24 @@ void *pointer;
 int a = 0;
 *pointer = &a;
 ```
-**Error**
 ```
 test.c:7:5: error: 'void*' is not a pointer-to-object type
     *pointer = &a;
 ```
+**Solve**
+
+``c
+void *pointer;
+int a = 0;
+pointer = &a;
+```
+
+### Error
 
 ```c
 printf("Value *pointer is: %d \n", *pointer);
 ```
 
-**Error**
 ```
 test.c:8:40: error: 'void*' is not a pointer-to-object type
     printf("Value *pointer is: %d \n", *pointer);
