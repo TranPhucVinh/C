@@ -18,7 +18,7 @@ printf("returnChar[0]: %c \n", returnChar[0]); //returnChar[0]: h
 ```
 
 **Get address of pointer char**
-```
+```c
 printf("returnChar: %p \n", returnChar); //Address of returnChar is : 0x62FE30
 ```
 
