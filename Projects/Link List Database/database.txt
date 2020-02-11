@@ -1,5 +1,0 @@
-ID                Name              Salary 
-4                erin  cummings                 5
-1       	    erin Cummings                 56
-2       	    ghj abs                 56
-5       erin Cummings                  78
