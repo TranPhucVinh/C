@@ -32,8 +32,8 @@ Print out a string after every one second with ``sleep()``.
 
 ```c
 #include <stdio.h> 
-  
-// Driver code to test above function 
+#include <unistd.h>
+
 int main(){ 
     while (1){
 		printf("Hello, World \n");
