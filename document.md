@@ -20,11 +20,17 @@ In Windows
 ./output_file.exe
 ```
 
+Or it can be ``gcc main.c``, the compiled file will be ``a.out``
+
 To compile with mupltiples header files
 
 ``g++ -o outputFile main.c other.c etc.c``
 
 ``g++ -o outputFile main.cpp other.cpp etc.cpp``
+
+To compile with an external ``library gcc main.c -l<external-library-name>``
+
+E.g: ``gcc httpClient.c -lcurl``
 
 ### Shell script to compile
 
