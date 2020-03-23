@@ -28,7 +28,7 @@ To compile with mupltiples header files
 
 ``g++ -o outputFile main.cpp other.cpp etc.cpp``
 
-To compile with an external ``library gcc main.c -l<external-library-name>``
+To compile with an external library ``gcc main.c -l<external-library-name>``
 
 E.g: ``gcc httpClient.c -lcurl``
 
