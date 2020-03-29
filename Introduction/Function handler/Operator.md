@@ -1,6 +1,6 @@
 # operator
 
-| OR bit
+``|``: OR bit
 
 A = 0011 1100
 
@@ -31,8 +31,8 @@ shift <<= 1;
 ### unsigned char vs signed number
 
 ```c
-	unsigned char binVal0 = -3;
-	printf("%d \n", binVal0);
+unsigned char binVal0 = -3;
+printf("%d \n", binVal0);
 ```
 
 ``253`` (1111 1101)
@@ -42,31 +42,31 @@ shift <<= 1;
 3 = 0000 0011 => bitwise = 1111 1100
 => -3 = 1111 1100+1 = 1111 1101
 
-### OR and +
+### OR and ``+``
 
 ```c
-	int binVal0 = 0b11;
-	int binVal1 = 0b11;
-	int binResult = binVal0+binVal1;
-	printf("%d", binResult);
+int binVal0 = 0b11;
+int binVal1 = 0b11;
+int binResult = binVal0+binVal1;
+printf("%d", binResult);
 ```	
 **Result** ``6``
 
 ```c
-	int binVal0 = 0b11;
-	int binVal1 = 0b11;
-	int binResult = binVal0|binVal1;
-	printf("%d", binResult);
+int binVal0 = 0b11;
+int binVal1 = 0b11;
+int binResult = binVal0|binVal1;
+printf("%d", binResult);
 ```
 **Result** ``3``
 
 ### bitwise
 
 ```c
-	int binVal0 = 0b00;
-	int binResult = ~binVal0;
-	printf("%d \n", binVal0);
-	printf("%d \n", binResult);
+int binVal0 = 0b00;
+int binResult = ~binVal0;
+printf("%d \n", binVal0);
+printf("%d \n", binResult);
 ```
 
 ```
@@ -77,8 +77,8 @@ shift <<= 1;
 The same result for 
 
 ```c
-	char binVal0 = 0b00;
-	char binResult = ~binVal0;
+char binVal0 = 0b00;
+char binResult = ~binVal0;
 ```
 
 ### How it works ?
@@ -97,9 +97,9 @@ binResult = 0b11 = -1
 ### bitwise unsigned char, unsigned int
 
 ```c
-	unsigned char binVal0 = 0b0;
-	unsigned char binResult = ~binVal0;
-	printf("%d \n", binResult);
+unsigned char binVal0 = 0b0;
+unsigned char binResult = ~binVal0;
+printf("%d \n", binResult);
 ```	
 
 ```
@@ -107,9 +107,9 @@ binResult = 0b11 = -1
 ```
 
 ```c
-	unsigned int binVal0 = 0b0;
-	int binResult = ~binVal0;
-	printf("%d \n", binResult);
+unsigned int binVal0 = 0b0;
+int binResult = ~binVal0;
+printf("%d \n", binResult);
 ```	
 
 ```

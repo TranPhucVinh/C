@@ -60,13 +60,6 @@ printf("value: %c", a);
     Enter character a  -> output character a
     Enter abc -> output a
 
-**Convert value to Hex**
-
-```c
-int a = 19;
-printf("a in hex 0x%x \n", a); //a in hex 0x13 
-```
-
 ### Whitespace problem
 
 ```c
