@@ -70,3 +70,36 @@ int main (){
 190
 100
 ```
+
+### Predefine during compilation
+
+```c
+#include <stdio.h>
+
+//Variable name is not define
+main(){
+	printf("name: %d \n", name);
+}	
+```
+
+Predefine during compilation: ``gcc -D name=12 test.c``
+
+Result: ``name: 12``
+
+**Proper macro predefine with ``#ifndef``**
+
+```c
+#include <stdio.h>
+
+#ifndef name
+#define name 4
+#endif
+
+main(){
+	printf("name: %d \n", name);
+}	
+```
+
+Compile ``gcc -D name=12 test.c``
+
+Result: ``name: 12``
