@@ -1,3 +1,14 @@
+### condition with int number
+
+```c
+int main(){
+	if(-12) printf("%s", "hello");
+}
+```
+**Result**: ``hello``
+
+Negative number results in true condition.
+
 ## return
 
 The **return statement** stops the execution of a function and returns a value from that function.
