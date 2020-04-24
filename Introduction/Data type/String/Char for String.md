@@ -1,3 +1,7 @@
+### Error with string define
+
+If define ``char *rawString = "This is Hello, World string"``, there will be an error ``segment core dump`` as you are trying to modify a string literal (defined by pointer).
+
 ### Print out a string with char[] and char*
 
 ```c

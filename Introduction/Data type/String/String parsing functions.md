@@ -43,10 +43,6 @@ World
 string
 ```
 
-**Note**
-
-If define ``char *rawString = "This is Hello, World string";``, there will be an error ``segment core dump`` as you are trying to modify a string literal (defined by pointer).
-
 ### strncat() to append string
 
 ```cpp
@@ -129,3 +125,24 @@ int main(int argc, const char *argv[]) {
 ```
 
 **Result**: ``Heo, World!``
+
+### Remove the first character from a string
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+char telegramReturn[] = ",\"chat\":{\"id\":-1001452272470,\"title\":\"TMA lab 6 SW\",\"type\":\"supergroup\"";
+
+void firstCharRemove(char stringChar[500]);
+
+int main(){
+	firstCharRemove(telegramReturn);
+	printf("%s", telegramReturn);
+}
+
+void firstCharRemove(char stringChar[500]){
+    //remove character ","
+	if (stringChar[0] == ',') memmove(stringChar, stringChar+1, strlen(stringChar));
+}
+```
