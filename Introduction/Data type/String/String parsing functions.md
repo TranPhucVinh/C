@@ -64,7 +64,7 @@ printf("%s \n", hw); //Hello, World!abc
 ```cpp
 char firstChar[] = "First ";
 const char hw[50] = "Hello, World!";
-strncat(firstChar, hw, strlen(hw));
+strncat(firstChar, hw, strlen(hw)); //First Hello, World!
 printf("%s \n", firstChar);
 ```
 
