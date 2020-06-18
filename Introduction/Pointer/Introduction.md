@@ -54,7 +54,7 @@ int a = 6;
 ```c
 int *p;
 int a = 9;
-int *pointer = &a;
+int *pointer = &a; //Declare a pointer name pointer with the address of variable a
 int main(){
    p = &a;
    printf("pointer value %p \n", p); //0x601030
@@ -86,7 +86,7 @@ using namespace std;
 int val =5;
 int *p = &val;
 main(){
-	cout << "value: " << *p;
+	cout << "value: " << *p; //value: 5
 }
 ```
 
