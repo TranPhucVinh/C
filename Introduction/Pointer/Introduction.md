@@ -9,16 +9,12 @@ pointer: variable that stores address of other variable
 ### Declare pointer variable
 
 ```c
-int a;
 int *p; //pointer to integer
-char c;
 char *p0; //pointer to character
-double d;
 double *p1; // pointer to double
 const char *message1 = "Thread 1";
 
-//Equal to the previous ways and will give the same result
-int* intPointer;
+int* intPointer; //Equal to the previous ways and will give the same result
 ```
 
 ``%p``: is used for **pointer**, like ``%d`` for **int**, ``%s`` for **string**.
@@ -44,7 +40,7 @@ a = 5;
 p = &a; // p is address of variable a
 ```
 
-As *p is the pointer that store the value at the address of a variable so that we can declare
+As ``*p`` is the pointer that **store the value at the address** of a variable so that we can declare
 
 ```c
 int *p = a; // they are both int value
