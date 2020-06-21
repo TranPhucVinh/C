@@ -1,10 +1,6 @@
-### static global variable
+### static variable
 
-**Static global variables** are not visible outside of the C file they are defined in.
-
-### static local variable
-
-**Static defined local variables** do not lose their value between function calls. In other words they are global variables, but scoped to the local function they are defined in.
+**Static variables** is used to created variable that are visible to only one function, but unlike local variables that get created and destroyed everytime a function is called, static variables do not lose their value between function calls.
 
 ```c
 #include <stdio.h> 
@@ -28,4 +24,36 @@ int main(){
 
 ### static function
 
-**Static functions** are not visible outside of the C file they are defined in.
+**Static functions** are not visible outside of the object file they are defined in.
+
+**Example**
+
+``head.h``
+
+```c
+#include <stdio.h>
+
+static int returnInt();
+```
+
+``head.c``
+
+```c
+#include "head.h"
+
+static int main(){ 
+    returnInt();
+}
+```
+
+``main.c``
+
+```c
+#include "head.h"
+
+int main(){ 
+    returnInt();
+}
+```
+
+When compiling ``g++ main.c head.c``, there will be error: ``undefined reference to returnInt()``.
