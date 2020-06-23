@@ -50,6 +50,14 @@ int *ptr = &value;
 printf("after %d \n", value); //90
 ```
 
+This way also work with ``const`` variable (using ``gcc`` compiler)
+
+```cpp
+const int value = 32;
+int *ptr = &value;
+*ptr = 0;
+```
+
 ### Get value of pointer
 
 **Program in C**
