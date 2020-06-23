@@ -40,6 +40,16 @@ a = 5;
 p = &a; // p is address of variable a
 ```
 
+### Example 3: Change value of a variable with pointer
+
+```cpp
+int value = 10;
+printf("before %d \n", value); //10
+int *ptr = &value;
+*ptr = 90;
+printf("after %d \n", value); //90
+```
+
 ### Get value of pointer
 
 **Program in C**
