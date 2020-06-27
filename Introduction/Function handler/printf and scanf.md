@@ -12,6 +12,17 @@ int main () {
 
 ### Printed out entered value
 
+Print out the entered int value
+
+```c
+int a;
+
+int main(){
+    scanf("%d", &a);
+    printf("%d \n", a);
+}
+```
+
 ```c
 printf("%d ", a) // int
 printf("%s ", a) // string
