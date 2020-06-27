@@ -11,15 +11,20 @@ struct student{
 
 main(){
 	struct student erin = { 1977, " Erin", "Free Lancer" };
-	printf("%s has id %d in class %s \n", erin.name, erin.id, erin.classroom);
+	printf("%s has id %d in class %s \n", erin.name, erin.id, erin.classroom); //Erin has id 1977 in class Free Lancer 
 }
 ```
 
-**Result**
+**Size**: ``struct`` has the size of its all data member
 
+Example:
+
+```c
+struct student erin = { 1977, " Erin", "Free Lancer" };
+printf("size %d", sizeof(erin)); //104
 ```
-Erin has id 1977 in class Free Lancer 
-```
+
+Size ``104 = name[50] + classroom[50] + id (int)``
 
 ### struct in C++
 
@@ -35,13 +40,8 @@ struct student {
 
 main() {
 	struct student erin = { 1977, " Erin", "Free Lancer" };
-	cout << erin.name << " " << erin.id << " " << erin.classroom << endl;
+	cout << erin.name << " " << erin.id << " " << erin.classroom << endl; //Erin 1977 Free Lancer
 }
-```
-
-**Result**
-```
-Erin 1977 Free Lancer
 ```
 
 ### Object from struct
