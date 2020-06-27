@@ -103,3 +103,12 @@ main(){
 Compile ``gcc -D name=12 test.c``
 
 Result: ``name: 12``
+
+### Error with unary operation (pointer)
+
+```c
+#define a 6
+printf("before %d \n", &a);
+```
+
+This will give error ``lvalue required as unary ‘&’ operand``. This happen because ``a`` is ``6`` which is not ``lvalue``.
