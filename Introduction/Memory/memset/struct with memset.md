@@ -24,7 +24,7 @@ value erin.classroom after: Free Lancer
 
 ```
 1977 = 0000 0111 1011 1001
-1792 = 111 0000 0000
+1792 = 0000 0111 0000 0000
 ```
 
 The right 1 byte of 1977 is replace with 0
