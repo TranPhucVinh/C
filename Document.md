@@ -1,4 +1,16 @@
-### Compile C++, C on terminal with G++
+### GCC compiler
+
+GCC is a compiler system that supporting various programming languages.
+
+``gcc -S main.c``: Build C source code (High level language) to assembly code, the output file will be ``main.s``
+
+``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``
+
+``gcc main.c``: Compile, assemble and link source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
+
+``gcc -o main main.c``: Specify the executable output file as ``main``
+
+### G++ compiler
 
 ```shell
 g++ -o output_file file.cpp
