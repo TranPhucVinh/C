@@ -25,6 +25,17 @@
 
 E.g: ``const int a = 19``
 
+To change ``const`` variable: ``Pointer/Introduction`` -> ``Example 3: Change value of a variable with pointer``
+
+``const`` can't be used to define the array size:
+
+```
+const b = 2;
+int array[b] = {10,20};
+```
+
+**Error**:  ``variable-sized object may not be initialized``
+
 ### sizeof()
 
 Return the amount of memory allocated to that data type in **byte**.
