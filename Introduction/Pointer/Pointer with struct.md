@@ -57,14 +57,9 @@ void resultNumber(struct complex complex1, struct complex complex2, struct compl
 	complexNumber->imaginary = complex1.imaginary + complex2.imaginary;
 }
 ```
+**Result** ``Complex number: 4 +i6``
 
-```
-Enter complex1 real 5
-Enter complex1 imagine 6
-Enter complex2 real 45
-Enter complex2 imagine 23
-Result number: 50 + 29i
-```
+### Syntax
 
 * ``(.)`` is used to access the instance inside a **struct**.
 * ``(->)`` is used by **pointer struct** to access the inside instance.
