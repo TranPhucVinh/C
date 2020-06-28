@@ -21,7 +21,7 @@ main()
 Hello world
 ```
 
-### Pointer to function
+### Function pointer
 
 ```c
 #include <stdio.h>
@@ -42,22 +42,16 @@ main()
 {  
     int (*p)(int, int);
     p = add;
-    printf("%d \n",p(5,6));
+    printf("%d \n",p(5,6)); //11
     p = subtract;
-    printf("%d \n",p(5,8));
+    printf("%d \n",p(5,8)); //-3
     double (*pointer)(int, double);
     pointer = addNumber;
-    printf("%f \n", pointer(8, 9.89));
+    printf("%f \n", pointer(8, 9.89)); //17.890000 
 }
 ```
 
-```
-11 
--3 
-17.890000 
-```
-
-### With pointer
+### Function pointer as argument
 
 ```c
 #include <stdio.h>

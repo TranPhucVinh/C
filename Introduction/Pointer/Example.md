@@ -74,3 +74,19 @@ Enter the 2 numbers: 4
 Values of a and b are 4 6 
 Values of a and b now are 6 4 
 ```
+
+### scanf()
+
+``scanf()`` reads formatted input from stdin.
+
+```c
+int scanf(const char *format, ...)
+```
+
+**Explain**
+
+```c
+scanf("%d", &a);
+```
+
+To save the value of variable ``a``, we have to use ``&`` to get the address so that ``*&`` will return the value of variable a.

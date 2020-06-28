@@ -6,6 +6,8 @@ pointer: variable that stores address of other variable
 
 ``*p``: value at address
 
+All the pointer syntax works the same in both C/C++.
+
 ### Declare pointer variable
 
 ```c
@@ -60,8 +62,6 @@ int *ptr = &value;
 
 ### Get value of pointer
 
-**Program in C**
-
 ```c
 int *p;
 int a = 9;
@@ -87,34 +87,3 @@ p = &a;
 ```
 
 has returned the same value for ``p`` and ``pointer`` as the address of variable ``a``.
-
-**Program in C++**
-
-```c++
-#include <iostream>
-
-using namespace std;
-int val =5;
-int *p = &val;
-main(){
-	cout << "value: " << *p; //value: 5
-}
-```
-
-### scanf() with pointer
-
-Prototype
-
-``scanf()`` reads formatted input from stdin.
-
-```c
-int scanf(const char *format, ...)
-```
-
-**Explain**
-
-```c
-scanf("%d", &a);
-```
-
-To save the value of variable ``a``, we have to use ``&`` to get the address so that ``*&`` will return the value of variable a.
