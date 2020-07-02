@@ -36,6 +36,17 @@ int array[b] = {10,20};
 
 **Error**:  ``variable-sized object may not be initialized``
 
+### auto
+
+``auto`` is used to defined local variable
+
+```c
+void printFunction(){
+	int auto a = 19;
+	printf("%d ", a);
+}
+```
+
 ### sizeof()
 
 Return the amount of memory allocated to that data type in **byte**.
