@@ -37,8 +37,4 @@ void main() {
 }
 ```
 
-**Result**
-
-```
-No
-```
+**Result**: ``No``
