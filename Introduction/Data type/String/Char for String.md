@@ -1,27 +1,65 @@
-### Error with string define
+### Using char*
 
-If define ``char *rawString = "This is Hello, World string"``, there will be an error ``segment core dump`` as you are trying to modify a string literal (defined by pointer).
+```c
+char *pointerString = "Pointer String";
+printf("%s \n", pointerString); //Pointer String 
 
-### Print out a string with char[] and char*
+char *ptrString;
+ptrString = "Hello, World !";
+printf("%s \n", ptrString); //Hello, World !
+```
+
+Index handler:
+
+```c
+printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H 
+```
+
+Change value:
+
+```c
+char *ptrString;
+ptrString = "Hello, World !";
+printf("%s \n", ptrString); 
+
+ptrString = "Change number";
+printf("%s \n", ptrString); 
+```
+
+We cannot modify the string at later stage in program:
+
+```c
+char *ptrString;
+ptrString = "Hello, World !";
+ptrString[0] = 'a'; //Segmentation fault (core dumped)
+```
+
+### Using char[]
 
 ```c
 char hw[] = "Hello, World!";
-char *pointerString = "Pointer String";
 printf("%s \n", hw); //Hello, World! 
-printf("%s \n", pointerString); //Pointer String 
 ```
-**Print out with index**
+
+Index handler
+
 ```c
 char helloWorld[] = "Hello world 10 times";
 printf("%s \n",helloWorld+3); //lo world 10 times
-char hello[] = "a character";
-printf("%c \n", hello[3]); //h
-
-char *returnChar = hello;
-printf("returnChar[0]: %c \n", returnChar[0]); //returnChar[0]: h
+printf("%c \n", helloWorld[3]); //l
 ```
 
-**Get address of pointer char**
+Change value
+
+```c
+char hw[] = "Hello, World!";
+printf("%s \n", hw); //Hello, World! 
+hw[0] = 'a';
+printf("%s \n", hw); //aello, World! 
+```
+
+Get address of pointer char
+
 ```c
 printf("returnChar: %p \n", returnChar); //Address of returnChar is : 0x62FE30
 ```

@@ -1,8 +1,6 @@
-# API
+### ``sys/socket.h``
 
-Library **sys/socket.h**, included: ``socket()``, ``connect()``, ``send()``, and ``recv()``.
-
-``sys/socket.h`` only includes in Unix computer, for similar TCP socket on Windows, use ``Winsock 2``, the library that need to be installed.
+Library **sys/socket.h** only includes in Unix computer, for similar TCP socket on Windows, use ``Winsock 2``, the library that need to be installed.
 
 ### socket()
 
@@ -13,15 +11,21 @@ int socket(int protocolFamily, int  type, int protocol)
 ```
 
 * **protocolFamily**: ``AF_INET`` (IPv4 protocol), ``AF_INET6`` (IPv6 protocol), ``PF_INET``: Protocol Family Internet, ``AF_INET``: Address Family Internet.
-* **type**: type of socket, ``SOCK_STREAM``: used for TCP, ``SOCK_DGRAM``: used for UDP.
-* **protocol**: Protocol used, with protocolFamily = PF_INET, use ``IPPROTO_TCP`` for **TCP** and ``IPPROTO_UDP`` for **UDP**.
+* **type**: type of socket, ``SOCK_STREAM``: TCP, ``SOCK_DGRAM``: UDP.
+* **protocol**: Protocol used, with ``protocolFamily = PF_INET``, use ``IPPROTO_TCP`` for ``TCP`` and ``IPPROTO_UDP`` for ``UDP``.
+
+```c
+int sockfd = socket(domain, type, protocol)
+```
+
+**Return**: ``sockfd`` is a file descriptor
 
 ### connect()
 
 Connect to socket with specific address.
 
 ```c
-int connect(int socket,struct sockaddr *addr,unsigned int addrLength) 
+int connect(int socket, struct sockaddr *addr, unsigned int addrLength) 
 ```
 
 *  **socket**: created socket from function ``socket()``.
@@ -37,9 +41,9 @@ int send(int socket, const void *msg, unsigned int len, int flag)
 int recv(int socket, void *Buff, unsigned int len, int flag)
 ```
 
-* ``*msg``, ``*buff`` : pointer to **sent** or **received** data array.
-*  **len**: **maximum length** of data array (in byte) each time **sent** or **receive**.
-*   **flag** : set **sent** or **received** mode. ``0`` for default mode.
+* ***msg**, ***buff**: pointer to ``sent`` or ``receive`` data array.
+* **len**: maximum length of data array (in byte) each time ``sent`` or ``receive``.
+* **flag**: set ``sent`` or ``receive`` mode. ``0`` for default mode.
 
 ``send()`` and  ``receive`` return the number of byte sent or received, return ``-1`` if there is an error.
 
@@ -51,22 +55,20 @@ Close a socket.
 int close(int socket)
 ```
 
-## Socket Address structure
-
-Library **arpa/inet.h**.
+## ``arpa/inet.h``
 
 ```c
-struct sockaddr{ 
-    unsigned short sa_family; /* Address family (e.g. AF_INET) */
+struct sockaddr { 
+    unsigned short sa_family;
     char  sa_data[14] ; /* Family-specific address information */
 }; 
 
-struct in_addr{
+struct in_addr {
     unsigned long s_addr;
 };
 
 struct sockaddr_in{
-    unsigned short sin_family; /* Internet protocol (AF_INET) */
+    unsigned short sin_family;
     unsigned short sin_port; /* Address port (16 bits) */
     struct in_addr sin_addr; /* Internet address (32 bits) */
     char    sin_zero[8]; /* Not used, must be zero */
@@ -75,12 +77,10 @@ struct sockaddr_in{
 
 **sockaddr** and **sockaddr_in** are used to set up address parameter for **client** and **server**.
 
-* **sin_family**, **sa_family**: protocolFamily.
-* **sin_port**: port of socket.
+* **sin_family**, **sa_family**: protocolFamily
+* **sin_port**: port of socket
 * **sin_addr**: connect address
-* **sin_zero**: not used, set value 0.
-
-![](sockaddr.png)
+* **sin_zero**: not used, set value 0
 
 ### htons()
 
@@ -90,10 +90,8 @@ u_short htons(
 );
 ```
 
-The **htons** function converts a u_short from host to TCP/IP network byte order (which is big-endian).
+The **htons** function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
 
------------
-
-## netinet/in.h
+## Other libraries
 
 ``netinet/in.h``: Internet Protocol family

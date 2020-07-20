@@ -36,7 +36,9 @@ strcpy( data.str, "hello");
 printf( "data.str : %s\n", data.str);
 ```
 
-**Size**: Union as the size of its biggest data type member
+### Size
+
+``union`` has the size of its biggest data type member
 
 ```c
 union Data {
