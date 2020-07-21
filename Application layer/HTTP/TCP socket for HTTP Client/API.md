@@ -10,9 +10,18 @@ Create new socket
 int socket(int protocolFamily, int  type, int protocol)
 ```
 
-* **protocolFamily**: ``AF_INET`` (IPv4 protocol), ``AF_INET6`` (IPv6 protocol), ``PF_INET``: Protocol Family Internet, ``AF_INET``: Address Family Internet.
-* **type**: type of socket, ``SOCK_STREAM``: TCP, ``SOCK_DGRAM``: UDP.
-* **protocol**: Protocol used, with ``protocolFamily = PF_INET``, use ``IPPROTO_TCP`` for ``TCP`` and ``IPPROTO_UDP`` for ``UDP``.
+* **protocolFamily**: 
+
+    ``AF_INET``: IPv4 protocol (same as ``PF_INET``)
+
+    ``AF_INET6``: IPv6 protocol (same as ``PF_INET6``)
+
+    ``AF_INET`` stands for ``Address Family Internet``
+
+    ``PF_INET`` stands for ``Protocol Family Internet``
+
+* **type**: type of socket, ``SOCK_STREAM``: TCP, ``SOCK_DGRAM``: UDP
+* **protocol**: Protocol used, with ``protocolFamily = PF_INET``, use ``IPPROTO_TCP`` for ``TCP`` and ``IPPROTO_UDP`` for ``UDP``
 
 ```c
 int sockfd = socket(domain, type, protocol)
@@ -32,20 +41,20 @@ int connect(int socket, struct sockaddr *addr, unsigned int addrLength)
 *  **addr**: server address wished to connect.
 *  **addrLength**: length of Server address (byte). 4 byte for IPV4, 16 byte for IPV6.
 
-### send()
+### send() and recv()
 
 ```c
 int send(int socket, const void *msg, unsigned int len, int flag) 
 ```
 ```c
-int recv(int socket, void *Buff, unsigned int len, int flag)
+int recv(int socket, void *buff, unsigned int len, int flag)
 ```
 
 * ***msg**, ***buff**: pointer to ``sent`` or ``receive`` data array.
 * **len**: maximum length of data array (in byte) each time ``sent`` or ``receive``.
 * **flag**: set ``sent`` or ``receive`` mode. ``0`` for default mode.
 
-``send()`` and  ``receive`` return the number of byte sent or received, return ``-1`` if there is an error.
+``send()`` and  ``recv()`` return the number of byte sent or received, return ``-1`` if there is an error.
 
 ### close()
 
