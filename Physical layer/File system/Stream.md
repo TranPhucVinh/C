@@ -1,63 +1,38 @@
 ## printf()
 
-### Print out string
-
-```c
-#include <stdio.h>
-
-int main () {
-    printf("%s \n", "Hello, World!"); //Hello, World!
-}
-```
-
-### Printed out entered value
-
-Print out the entered int value
-
-```c
-int a;
-
-int main(){
-    scanf("%d", &a);
-    printf("%d \n", a);
-}
-```
-
 ```c
 printf("%d ", a) // int
 printf("%s ", a) // string
 ```
 
+**Example**: ``printf("%s \n", "Hello, World!"); //Hello, World!``
+
+**Return**: return the total print out character
+
+```c
+int returnPrintf = printf("Hello, World!\n");
+printf("%d \n", returnPrintf); //14
+```
+
 ## scanf()
 
-### Int, Long (double), Float
-
-**Enter Int, Long (double), Float variable**
+``scanf()``: Read formatted input from ``stdin``
 
 ```c
-scanf("%d", &a);
-scanf("%lf", &b);
-scanf("%f", &c);
+int scanf ( const char * format, ... );
 ```
 
-**Enter 3 variables with 3 types of data then print out**
+**Return**: number of items of the argument list successfully filled. This will return ``1`` (valid data enter) and ``0`` for invalid data enter.
+
+**Example**: Enter ``int``, ``long`` (double), ``float`` variable
 
 ```c
-int a;
-double b;
-float c;
-
-scanf("%d", &a); //Enter: 123
-scanf("%lf", &b); //Enter 4555.999
-scanf("%f", &c); //Enter: 9.08
-
-printf("value %d %lf %f", a, b, c); //value 123 4555.999000 9.080000
-
+scanf("%d", &a);    //int
+scanf("%lf", &b);   //long
+scanf("%f", &c);    //float
 ```
 
-### char
-
-**Enter and print out char variable as integer number**
+**Example**: Enter and print out ``char`` variable as ``integer`` number
 
 ```c
 char a;
@@ -76,7 +51,7 @@ printf("value: %c", a);
 ```c
 int a;
 scanf("%d ", &a);
-printf("%d",a);
+printf("%d", a);
 ```
 
 You have to type value a; then type one more to finish command although the value of ``a`` is still printed out correctly. To print out the value of ``a`` just after typing it, delete the space after ``%d``.
@@ -91,8 +66,7 @@ scanf("%s", a);
 printf("value: %s", a);
 ```
 
-If you type in value with whitespace, like ``Hello, World!``, this will just print out only ``Hello``.
-
+If you type in value with whitespace, like ``Hello, World!``, this will just print out only ``Hello,``.
 
 ### fgets()
 
