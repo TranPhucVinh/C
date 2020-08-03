@@ -34,22 +34,23 @@ int sockfd = socket(domain, type, protocol)
 Connect to socket with specific address.
 
 ```c
-int connect(int socket, struct sockaddr *addr, unsigned int addrLength) 
+int connect(int sockfd, struct sockaddr *addr, unsigned int addrLength) 
 ```
 
-*  **socket**: created socket from function ``socket()``.
+*  **sockfd**: created ``sockfd`` from function ``socket()``.
 *  **addr**: server address wished to connect.
 *  **addrLength**: length of Server address (byte). 4 byte for IPV4, 16 byte for IPV6.
 
 ### send() and recv()
 
 ```c
-int send(int socket, const void *msg, unsigned int len, int flag) 
+int send(int sockfd, const void *msg, unsigned int len, int flag) 
 ```
 ```c
-int recv(int socket, void *buff, unsigned int len, int flag)
+int recv(int sockfd, void *buff, unsigned int len, int flag)
 ```
 
+*  **sockfd**: created ``sockfd`` from function ``socket()``.
 * ***msg**, ***buff**: pointer to ``sent`` or ``receive`` data array.
 * **len**: maximum length of data array (in byte) each time ``sent`` or ``receive``.
 * **flag**: set ``sent`` or ``receive`` mode. ``0`` for default mode.
@@ -61,7 +62,7 @@ int recv(int socket, void *buff, unsigned int len, int flag)
 Close a socket.
 
 ```c
-int close(int socket)
+int close(int sockfd)
 ```
 
 ## ``arpa/inet.h``

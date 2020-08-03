@@ -1,9 +1,6 @@
 ### Using char*
 
 ```c
-char *pointerString = "Pointer String";
-printf("%s \n", pointerString); //Pointer String 
-
 char *ptrString;
 ptrString = "Hello, World !";
 printf("%s \n", ptrString); //Hello, World !
