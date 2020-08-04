@@ -57,6 +57,21 @@ int recv(int sockfd, void *buff, unsigned int len, int flag)
 
 ``send()`` and  ``recv()`` return the number of byte sent or received, return ``-1`` if there is an error.
 
+
+### read() and write()
+
+```c
+ssize_t read(int sockfd, void *buf, ssize_t N);
+```
+
+Read ``N`` bytes of ``sockfd`` into the memory ``buf``
+
+```c
+ssize_t write(int sockfd, const void *buf, ssize_t N);
+```
+
+Write ``N`` bytes from ``buf`` to the ``sockfd``
+
 ### close()
 
 Close a socket.
