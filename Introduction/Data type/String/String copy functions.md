@@ -1,62 +1,3 @@
-### gets()
-
-**gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler. Just use ``scanf()`` instead.
-
-### puts()
-
-```c
-int puts(const char *str)
-```
-
-```c
-printf("hello \n"); //hello
-puts("hello"); //hello
-```
-
-### getchar(), putchar()
-
-Enter a char, print out this char
-
-```c
-#include <stdio.h>
-
-main() {
-	char a, b[1], c[1];
-	a = getchar(); // get ASCII of the entered character
-
-	putchar(a); // putchar is displaying the char on screen
-	printf("\n");
-	if (a == 'y') {
-		printf("kill bugs");
-	} else {
-		printf("nothing here \n");
-	}
-}
-```
-
-**Notes:** ``" "`` vs ``' '``
-
-``''`` is for character, ``" "`` is for string
-
-Now we learn how to deal with entering the ``char`` inside ``if...else``
-
-```c
-#include <stdio.h>
-
-main() {
-	scanf("%s", b);
-	printf("%s \n", b);
-	if ((strcmp(b, "t")) == 0) // must be "t", not 't'
-	{
-		scanf("%s", c);
-		printf("%s \n", c);
-		printf("The same character \n");
-	} else {
-		printf("Different \n");
-	}
-}
-```
-
 ### sprintf()
 
 ```c
@@ -131,6 +72,22 @@ int main() {
   strncpy(dest, helloWorld, 2);
   printf("%s \n",dest); //He
 }
+```
+
+### bcopy()
+
+Copy ``n`` bytes from the area pointed to by ``s1`` to the area pointed to by ``s2``.
+
+```c
+void bcopy(const void *s1, void *s2, size_t n);
+```
+**Example**
+```c
+char s1[] = "Hello, World !";
+char s2[100];
+
+bcopy(s1, s2, 3);
+puts(s2); //Hel
 ```
 
 ### atoi()

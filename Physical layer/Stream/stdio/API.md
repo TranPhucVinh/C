@@ -1,6 +1,6 @@
-### Open file to read or write.
+### fopen()
 
-``fopen()`` Open file to read, write, append,...
+Open file to read, write, append,...
 
 ```c
 FILE *fopen(const char *filename, const char *mode)
@@ -24,7 +24,7 @@ file = fopen("text.md", "<mode>");
 * t
 * b
 
-### Example
+**Example**
 
 * ``readFile.c``: Read content from existed files
 * ``writeEmptyFile.c``: Write to an empty file, if file already existed, do nothing
@@ -37,13 +37,9 @@ Sends formatted output to a stream.
 int fprintf(FILE *stream, const char *format, ...) 
 ```
 
-**Stream**:
+**stream**: ``stdin``, ``stdout``, ``stderr``
 
-* stdin: stream data in, where data stream is entered
-* stdout: stream data out, output data to a stream
-* stderr: stream data error
-
-**Example: Write content to empty file**
+**Example**: Write content to empty file
 
 ```c
 FILE *fileptr;
@@ -51,7 +47,7 @@ fileptr = fopen("text.md", "w+");
 fprintf(fileptr, "Erin");
 ```
 
-**Example: Print out string in terminal with stdout and stderr**
+**Example**: Print out string in terminal with ``stdout`` and ``stderr``
 
 ```c
 fprintf(stdout, "Hello, World! \n");
@@ -62,10 +58,11 @@ fprintf(stderr, "Hello, World! \n");
 
 ### fgets()
 
+Read the content in a file or stream until encounter the new line character (``\n``) or until finished reading ``n-1`` character; then store in ``s``.
+
 ```c
 fgets(char *s, int n, FILE *stream);
 ```
-read the content in a file  or stream until encounter the new line character ('\n') or until finished reading n-1 character; then store in "s".
 
 ```c
 fgets(msg, 81, stream);
@@ -86,7 +83,7 @@ int main() {
 }
 ```
 
-**Example: Printout the content inside file "open.c"**
+**Example**: print out the content inside file ``open.c``
 
 ```c
 #include <stdio.h>

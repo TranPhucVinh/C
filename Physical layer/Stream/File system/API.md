@@ -1,3 +1,5 @@
+Library ``fcntl.h``
+
 ### open()
 
 Open file/stream
@@ -26,7 +28,7 @@ Open file/stream
 |O_TRUNC| Delete all file data if file existed and opened successfully|
 |O_TTY_INIT| Used to open I/O device|
 
-(1): If path is a FIFO, block file hoặc character special file, O_NONBLOCK will open and read/write file without blocking
+(1): If path is a ``FIFO``, ``block file`` or ``character special file``, ``O_NONBLOCK`` will open and read/write file without blocking
 
 **Return**: ``int fileDescriptor``
 

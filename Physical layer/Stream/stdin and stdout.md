@@ -1,5 +1,7 @@
 ## printf()
 
+Sends formatted output to ``stdout``
+
 ```c
 printf("%d ", a) // int
 printf("%s ", a) // string
@@ -16,7 +18,7 @@ printf("%d \n", returnPrintf); //14
 
 ## scanf()
 
-``scanf()``: Read formatted input from ``stdin``
+Read formatted input from ``stdin``
 
 ```c
 int scanf ( const char * format, ... );
@@ -93,3 +95,29 @@ printf("string is: %s\n", buf);
 ### Problem with scanf() before fgets()
 
 As there is ``\n`` character goes after ``scanf()``, putting ``scanf()`` before ``fgets()`` will result in losing the ``fgets()`` command handler.
+
+### gets()
+
+**gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler. Just use ``scanf()`` instead.
+
+### puts()
+
+Writes a string to ``stdout`` followed with a new line
+
+```c
+int puts(const char *str)
+```
+
+```c
+puts("hello"); //hello
+```
+
+### getchar(), putchar()
+
+```c
+int putchar(int char);
+int getchar(void);
+```
+
+* ``getchar()``: gets a character (an unsigned char) from ``stdin``
+* ``putchar()``: writes character (an unsigned char) ``char`` to ``stdout``
