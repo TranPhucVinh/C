@@ -27,3 +27,13 @@ printf("%s\n", buffer);
 Send HTTP request from a TCP client socket to a HTTP server: ``http-client.c``
 
 This work with all HTTP webpage and local Python HTTP server.
+
+### HTTPS request
+
+For HTTPS request, install library ``openssl``: ``sudo apt-get install libssl-dev``
+
+Compile: ``gcc -o http-client http-client.c -lssl``
+
+**Example**:
+
+Read return message from HTTPS server: ``https-request.c``
