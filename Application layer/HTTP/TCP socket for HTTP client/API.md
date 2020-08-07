@@ -12,11 +12,9 @@ int socket(int protocolFamily, int  type, int protocol)
 
 * **protocolFamily**: 
 
-    ``AF_INET``: IPv4 protocol (same as ``PF_INET``)
+    ``AF_INET`` (``Address Family Internet``): IPv4 protocol (same as ``PF_INET``)
 
     ``AF_INET6``: IPv6 protocol (same as ``PF_INET6``)
-
-    ``AF_INET`` stands for ``Address Family Internet``
 
     ``PF_INET`` stands for ``Protocol Family Internet``
 
@@ -79,6 +77,22 @@ Close a socket.
 ```c
 int close(int sockfd)
 ```
+
+### shutdown()
+
+Shut down all or part of the connection open on ``sockfd``
+
+```c
+int shutdown(int sockfd, int how)
+```
+
+``how`` determines what to shut down:
+
+* ``SHUT_RD``: No more receptions
+* ``SHUT_WR``: No more transmissions
+* ``SHUT_RDWR``: No more receptions or transmissions
+
+**Return**: ``0`` success,`` -1`` errors
 
 ## Other libraries
 

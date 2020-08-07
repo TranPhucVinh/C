@@ -1,4 +1,4 @@
-### Example
+### Sending data between 2 TCP client
 
 * ``tcp-client.c``
 * ``tcp-server.c``
@@ -21,3 +21,9 @@ else printf("finish writing: %s", buffer);
 n = read(client_fd, buffer, 1024);
 printf("%s\n", buffer);
 ```
+
+### HTTP request with TCP client socket
+
+Send HTTP request from a TCP client socket to a HTTP server: ``http-client.c``
+
+This work with all HTTP webpage and local Python HTTP server.
