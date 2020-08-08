@@ -1,5 +1,3 @@
-Library ``fcntl.h``
-
 ### open()
 
 Open file/stream

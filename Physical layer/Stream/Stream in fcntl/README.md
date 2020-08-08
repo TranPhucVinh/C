@@ -1,5 +1,3 @@
-Library ``fcntl.h``
-
 ### Example
 
 * ``readFile.c``: Read content from a file
