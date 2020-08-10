@@ -4,7 +4,9 @@
 int sprintf ( char * str, const char * format, ... );
 ```
 
-Composes a string with the same text that would be printed if format was used on printf, but instead of being printed, the content is stored as a C string in the **buffer** pointed by **str**.
+Composes a string with the same text that would be printed if format was used on ``printf()``, but instead of being printed, the content is stored as a C string in the ``buffer`` pointed by ``str``. This function can be used to convert an int to a string.
+
+**Example**
 
 ```cpp
 #include <stdio.h>
@@ -22,7 +24,7 @@ int main (){
 [5 plus 3 is 8] is a string 13 chars long
 ```
 
-**E.g**: Convert ``uint32_t`` to ``string-char[]``
+**Example**: Convert an int to a string (``uint32_t`` to ``char[]``)
 
 ```cpp
 #include <stdio.h>      
@@ -88,27 +90,4 @@ char s2[100];
 
 bcopy(s1, s2, 3);
 puts(s2); //Hel
-```
-
-### atoi()
-
-Include in library **stdlib.h**.
-
-```c
-int atoi(const char *str)
-```
-Converts the string argument **str** to an integer (type int).  If no valid conversion could be performed, it **returns zero**.
-
-**E.g**
-
-```c
-  char str[] = "C programming with GNU-GCC";
-  int a = atoi(str);
-  printf("%d \n", a); //0
-```   
-
-```c
-  char str[] = "1234";
-  int a = atoi(str);
-  printf("%d \n", a); //1234
 ```

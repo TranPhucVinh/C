@@ -1,4 +1,4 @@
-### ``strtok()``
+### strtok()
 
 ```cpp
 char * strtok ( char * str, const char * delimiters );
@@ -79,3 +79,32 @@ char hw[] = "Hello, World!";
 strcat(hw, " abc"); 
 puts(hw); //Hello, World! abc
 ```
+
+### atoi()
+
+Include in library **stdlib.h**.
+
+```c
+int atoi(const char *str)
+```
+Converts the string argument **str** to an integer (type int).  If no valid conversion could be performed, it **returns zero**.
+
+**E.g**
+
+```c
+  char str[] = "C programming with GNU-GCC";
+  int a = atoi(str);
+  printf("%d \n", a); //0
+```   
+
+```c
+  char str[] = "1234";
+  int a = atoi(str);
+  printf("%d \n", a); //1234
+```
+
+### itoa()
+
+``itoa()`` is used to convert from int to string but it is not an official function from C, use ``sprintf()`` instead.
+
+Check ``sprintf()`` in ``String copy functions.md``.
