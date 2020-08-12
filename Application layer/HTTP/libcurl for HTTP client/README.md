@@ -16,7 +16,7 @@ To build a program with libcurl (as an external library): ``gcc httpClient.c -lc
 
 * Read return data from GET request to HTTP server with ``CURLOPT_WRITEDATA``: ``get_with_curl_writedata.c``
 
-All 3 examples work fine with all HTTP webpage and local Python HTTP server.
+All 3 examples work fine with all HTTP webpage, HTTPS webpage and local Python HTTP server.
 
 ### Example: GET data from multiple route
 
