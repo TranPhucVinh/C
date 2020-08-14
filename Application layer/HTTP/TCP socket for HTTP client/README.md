@@ -1,3 +1,5 @@
+**Note**: All the program below only works with Unix socket, and don't work in Windows.
+
 ### Sending data between 2 TCP client
 
 * ``tcp-client.c``

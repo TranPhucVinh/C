@@ -6,8 +6,8 @@
 ### Example
 
 * Enter the value of each member in array then print out on screen: ``enter_value.c``
-* Adding a new number to array: ``add_new_value.c``
-* Delete member in array: ``delete_member.c``
+* Adding a new number to array from index: ``add_new_value.c``
+* Delete member in array from index: ``delete_member.c``
 
 ### size of an array
 

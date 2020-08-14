@@ -1,23 +1,38 @@
 #include <stdio.h>
-main() {
-   int LA[] = {1,3,5,7,8};
-   int k = 2, n = 5;
-   int i = 0;
-   
-   printf("Result before deleting:\n");
-	
-   for(i = 0; i<n; i++) {
-      printf("LA[%d] = %d \n", i, LA[i]);
-   }
-	j=k;	
-   while(j<=n){
-      LA[j] = LA[j+1];
-      j++;
-   }
- 	n = n-1;
-   printf("Result after deleting:\n");
-	
-   for(i = 0; i<n; i++) {
-      printf("LA[%d] = %d \n", i, LA[i]);
-   }
+
+int array[] = {1,3,5,7,8};
+int deleteIndex = 2;
+int i, j;
+size_t arraySize = sizeof(array)/sizeof(array[0]);
+
+void arrayBeforeDeleting(){
+  printf("Array before deleting: ");
+
+  for(i = 0; i < arraySize; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+}
+
+void arrayAfterDeleting(){
+  j = deleteIndex;
+
+  while(j <= arraySize){
+    array[j] = array[j+1];
+    j++;
+  }
+
+  arraySize--;
+
+  printf("Array after deleting: ");
+
+  for(i = 0; i < arraySize; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+}
+
+int main() {
+  arrayBeforeDeleting();
+  arrayAfterDeleting();
 }

@@ -1,28 +1,39 @@
 #include <stdio.h>
 
-main() {
-   int LA[] = {1,3,5,7,8};
-   int item = 10, k = 3, n = 5;
-   int i = 0, j = n;
+int array[] = {1,3,5,7,8};
+int addIndex = 2;
+int newMemberValue = 10;
+int i, j;
+size_t arraySize = sizeof(array)/sizeof(array[0]);
+
+void arrayBeforeAdding(){
+  printf("Array before adding: ");
+	
+  for(i = 0; i < arraySize; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+}
+
+void arrayAfterAdding(){
+  arraySize++;
+	
+  while(j >= addIndex){
+    array[j+1] = array[j];
+    j--;
+  }
+	
+  array[addIndex] = newMemberValue;
    
-   printf("Result before adding:\n");
+  printf("Result after adding: ");
 	
-   for(i = 0; i<n; i++) {
-      printf("LA[%d] = %d \n", i, LA[i]);
-   }
-    
-   n = n + 1;
-	
-   while(j >= k){
-      LA[j+1] = LA[j];
-      j = j - 1;
-   }
-	
-   LA[k] = item;
-   
-   printf("Result after adding:\n");
-	
-   for(i = 0; i<n; i++) {
-      printf("LA[%d] = %d \n", i, LA[i]);
-   }
+  for(i = 0; i < arraySize; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+}
+
+int main() {   
+  arrayBeforeAdding();
+  arrayAfterAdding();
 }
