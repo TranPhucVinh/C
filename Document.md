@@ -20,7 +20,7 @@ To compile with mupltiples header files
 
 **GCC on Windows**:
 
-For GCC build on Window, install ``TDM-GCC-64``.
+For GCC build on Windows, install ``TDM-GCC-64``.
 
 ### G++ compiler
 
