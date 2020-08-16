@@ -1,4 +1,4 @@
-**Error when value defined outside ``.h``**
+**Error when value defined outside header file**
 
 ``header.h``
 
@@ -14,6 +14,8 @@ int a;
 
 a = 18;
 ```
+
+``main.c``
 
 ```c
 #include "head.h"
