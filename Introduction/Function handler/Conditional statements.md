@@ -85,3 +85,21 @@ i value is 7
 i value is 8 
 i value is 9 
 ```
+
+### goto
+
+Infinite loop with ``goto``
+
+```c
+#include <stdio.h>
+
+int main(){
+	PRINT_LABEL:
+		puts("Enter print label");
+	
+	goto PRINT_LABEL;
+	return 0;
+}
+```
+
+Notice, ``goto label`` must be put in the same scope of ``goto``.
