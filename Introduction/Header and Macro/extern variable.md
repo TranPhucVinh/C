@@ -25,13 +25,15 @@ main(){
 }
 ```
 
-This will be an error
+This give compile error with ``g++``
 
 ```
 In file included from test.c:9:0:
 head.c:5:2: error: ‘a’ does not name a type
   a = 18;
 ```
+
+Compiling this on ``gcc`` won't give error and just give warning instead.
 
 ### Problem solve with extern
 
