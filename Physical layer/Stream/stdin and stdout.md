@@ -70,49 +70,10 @@ printf("value: %s", a);
 
 If you type in value with whitespace, like ``Hello, World!``, this will just print out only ``Hello,``.
 
-### fgets()
+Using ``scanf()`` is not highly recommended as it doesn't have buffer overflow protection, unless you know for certain that the input will always be of a specific format (and perhaps not even then).
 
-To print out entered string included whitespace, using ``fgets()``: ``fgets(char *s, int n, FILE *stream)``
 
-```c
-char buf[15];
-printf("Enter string: ");
-fgets(buf, 15, stdin); 
-printf("string is: %s\n", buf);
-```
-
-This will printout the entered string **followed with a new line**, to remove that new line:
-
-```c
-char buf[15];
-printf("Enter string: ");
-fgets(buf, 15, stdin); 
-int len=strlen(buf); //where buff is your char array fgets is using
-if(buf[len-1]=='\n')	buf[len-1]='\0';
-printf("string is: %s\n", buf);
-```
-
-**Error with buf[1]**: This will not allow you to enter any string
-
-```c
-char buf[1];
-printf("Enter string: ");
-fgets(buf, 1, stdin); 
-printf("string is: %c\n", buf[0]);
-```
-
-**Result**: ``Enter string: string is:``
-
-Problem solve: Change to ``fgets(buf, 2, stdin)``
-
-```c
-char buf[1];
-fgets(buf, 2, stdin); 
-```
-
-### Problem with scanf() before fgets()
-
-As there is ``\n`` character goes after ``scanf()``, putting ``scanf()`` before ``fgets()`` will result in losing the ``fgets()`` command handler.
+A proper word entering can be solved with ``fgets()``: ``Stream\stdio\API.md``
 
 ### gets()
 

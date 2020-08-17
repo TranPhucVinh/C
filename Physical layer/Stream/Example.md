@@ -1,53 +1,110 @@
-Print out the enter value
+### Print out an entered string and an entered character
+
+```c
+#include <stdio.h> 
+
+int main() 
+{ 
+   char displayString[80], enteredChar;
+      
+   scanf("%s", displayString); 
+      
+   enteredChar = getchar(); 
+      
+   printf("%s\n", displayString);       
+   printf("%c\n", enteredChar); 
+      
+   return 0; 
+} 
+```
+
+**Input**
+
+```
+Hello
+a
+```
+
+**Output** ``Hello``
+
+**Explain**: On pressing ``Enter`` (carriage return) on output screen after the first input, as the buffer of previous variable was the space for new container (as we din't clear it) , the program skips the following input of container. This problem especially happens with ``scanf()`` function.
+
+**Problem solve**: Add ``while ((getchar()) != ‘\n’)``
+
+This will reads the buffer characters till the end and discards them(including newline) and using it after the ``scanf()`` statement clears the input buffer and allows the input in the desired container.
+
+```c
+scanf("%s", displayString); 
+while ((getchar()) != '\n');
+enteredChar = getchar(); 
+```
+
+**Other example**: Enter 2 strings with ``scanf()`` and ``fgets()``
+
+```c
+char displayString1[80], displayString2[80];
+
+scanf("%s", displayString1);
+while ((getchar()) != '\n'); //Must have this line
+fgets(displayString2, 80, stdin);    
+   
+printf("%s\n", displayString1); 
+printf("%s", displayString2); 
+```
+
+### The problem doesn't happen with fgets()
+
+If putting ``fgets()`` before ``scanf()``, ``getchar()``,... nothing will happen.
+
+```c
+char displayString[80], enteredChar;
+fgets(displayString, 80, stdin); 
+
+enteredChar = getchar(); 
+printf("%s", displayString); 
+printf("%c \n", enteredChar);
+```
+
+**Input**
+
+```
+Hello, World !
+1
+```
+**Output**
+```
+display string
+1 
+```
+
+### Compare the entered string
+
+Compare the entered string:
+* If enter ``1``, print ``Enter 1``
+* If enter ``2``, print ``Enter 2``
+* If enter wrong string, print ``Enter wrong number``, then back to loop to ask user to re-enter.
+
+**Notice**: Without ``while ((getchar()) != '\n')``, the program will go back to the lable ``PRINT_LABEL`` multiple times.
 
 ```c
 #include <stdio.h>
+#define BUFFSIZE 1
 
-int a;
-
-int main(){
-   while(1){
-      scanf("%d", &a);
-      printf("%d \n", a);
-   }
-}
-```
-
-Enter a string with ``scanf()``
-
-```c
-#include <stdio.h>
-
-char enteredString[100];
+char buffer[BUFFSIZE];
 
 int main(){
-   while(1){
-      scanf("%s", enteredString);
-      printf("Entered string: %s \n", enteredString);
-   }
-}
-```
+	PRINT_LABEL:	
 
-```
-Hello, World!
-Entered string: Hello, 
-Entered string: World! 
-```
+	    fgets(buffer, 2, stdin);
+        while ((getchar()) != '\n');
 
-Using ``scanf()`` is not highly recommended as it doesn't have buffer overflow protection, unless you know for certain that the input will always be of a specific format (and perhaps not even then).
+		if (buffer[0] == '1') puts("Enter 1");
+		else if (buffer[0] == '2') puts("Enter 2");
+		else {
+			puts("Enter wrong number");
+			goto PRINT_LABEL;
+		}	
 
-
-A proper word entering can be solved with ``fgets()``
-
-```c
-#include <stdio.h>
-
-char enteredString[100];
-
-int main(){
-   while(1){
-      fgets(enteredString, 100, stdin);
-      printf("Entered string: %s", enteredString);
-   }
+	return 0;
 }
 ```

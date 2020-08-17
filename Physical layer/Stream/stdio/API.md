@@ -68,34 +68,43 @@ fgets(char *s, int n, FILE *stream);
 fgets(msg, 81, stream);
 ```
 
-**Example**: Read a string enter in command line (stdin) then print out on screen
+**Example**: Read an entered string which included space from command line (``stdin``) then prints out on screen
+
 
 ```c
-#include <stdio.h>
-#include <stdlib.h>
- 
-#define BUFFSIZE 256
-
-int main() {
-	char buffer[BUFFSIZE];
-    fgets(buffer,BUFFSIZE, stdin);
-    puts(buffer);
-}
+char buf[15];
+printf("Enter string: ");
+fgets(buf, 15, stdin); 
+printf("string is: %s\n", buf);
 ```
 
-**Example**: print out the content inside file ``open.c``
+This will printout the entered string **followed with a new line**, to remove that new line:
 
 ```c
-#include <stdio.h>
+char buf[15];
+printf("Enter string: ");
+fgets(buf, 15, stdin); 
+int len=strlen(buf); //where buff is your char array fgets is using
+if(buf[len-1]=='\n')	buf[len-1]='\0';
+printf("string is: %s\n", buf);
+```
 
-void main() {
-	FILE *stream;
-	char msg[81];
-	stream = fopen("open.c","r");
-	fgets(msg, 81, stream);
-	printf("%s\n",msg );
-	fclose(stream); // without fclose() still run fine
-}
+**Error with buf[1]**: This will not allow you to enter any string
+
+```c
+char buf[1];
+printf("Enter string: ");
+fgets(buf, 1, stdin); 
+printf("string is: %c\n", buf[0]);
+```
+
+**Result**: ``Enter string: string is:``
+
+**Problem solve**: Change to ``fgets(buf, 2, stdin)``
+
+```c
+char buf[1];
+fgets(buf, 2, stdin); 
 ```
 
 ### perror()
