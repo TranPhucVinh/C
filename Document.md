@@ -38,9 +38,9 @@ To compile with mupltiples header files
 
 ``g++ -o outputFile main.cpp other.cpp etc.cpp``
 
-A ``.c`` source code with ``CPP`` syntax can be compiled normally:
+A ``C`` source code with ``CPP`` syntax can be compiled normally: ``g++ test.c``
 
-**Example**:
+``test.c``
 
 ```cpp
 #include <iostream>

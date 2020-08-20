@@ -27,7 +27,7 @@ a
 
 **Output** ``Hello``
 
-**Explain**: On pressing ``Enter`` (carriage return) on output screen after the first input, as the buffer of previous variable was the space for new container (as we din't clear it) , the program skips the following input of container. This problem especially happens with ``scanf()`` function.
+**Explain**: On pressing ``Enter`` (carriage return) on output screen after the first input, as the buffer of previous variable was the space for new container (as we didn't clear it) , the program skips the following input of container. This problem especially happens with ``scanf()`` function.
 
 **Problem solve**: Add ``while ((getchar()) != ‘\n’)``
 
