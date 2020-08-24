@@ -49,7 +49,7 @@ printf("String: %s \n", str); //Hello World
 printf("Int value: %d \n", *intPointer); //1024
 ```    
 
-Both ``intPointer`` and ``str`` has overflow its allocated memory (1 byte) but the data is not overflow. That is because ``malloc(size)`` returns a location in memory where at least size bytes are available for you to use. You are likely to be able to write to the bytes immediately after ``s[size]``, but those bytes may belong to other bits of your program, which will cause problems later in the execution.
+Both ``intPointer`` and ``str`` has overflow its allocated memory (1 byte) but the data is not overflow. That is because ``malloc(size)`` returns a location in memory where at least size bytes are available for you to use. You are likely to be able to write data to a string with ``char[]`` like ``displayString[size]``, but those bytes may belong to other bits of your program, which will cause problems later in the execution.
 
 ### free()
 

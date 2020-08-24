@@ -26,6 +26,9 @@ int scanf ( const char * format, ... );
 
 **Return**: number of items of the argument list successfully filled. This will return ``1`` (valid data enter) and ``0`` for invalid data enter.
 
+
+``scanf("%d", &a)``: Get the entered value from ``stdin`` and stored in the address of variable ``a``.
+
 **Example**: Enter ``int``, ``long`` (double), ``float`` variable
 
 ```c
