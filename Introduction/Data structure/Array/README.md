@@ -3,11 +3,20 @@
 * An array is collection of items stored at continuous memory locations.
 * The size of array in C is compulsory, not like ``array[]`` in JavaScript.
 
-### Example
+### Features
 
-* Enter the value of each member in array then print out on screen: ``enter_value.c``
-* Adding a new number to array from index: ``add_new_value.c``
-* Delete member in array from index: ``delete_member.c``
+An array support those features:
+
+* Create
+* Read
+* Update
+* Delete
+
+Example:
+
+* Create and Read: : ``create_and_read.c`` (enter the value of each member in array then print out on screen)
+* Update: ``update.c`` (adding a new number to array from index)
+* Delete: ``delete.c`` (delete member in array from index)
 
 ### size of an array
 
@@ -47,6 +56,8 @@ Segmentation fault (core dumped)
 
 ### Multi-dimension array
 
+**Example 1**
+
 ```c
 int a[3][4] = {  
    {0, 1, 2, 3} ,   /*  initializers for row indexed by 0 */
@@ -55,4 +66,30 @@ int a[3][4] = {
 };
 
 printf("%d: ", a[2][3]); //11
+```
+
+**Example 2**: Multiple string with 2-dimension array
+
+```cpp
+#include <stdio.h>
+
+char ch_arr[3][10] = {
+                         "spike",
+                         "tom",
+                         "jerry"
+                     };
+
+main() {
+	for (int i=0; i < 3; i++){
+		printf("string: %s \n", ch_arr + i);
+	}
+}
+```
+
+**Output**
+
+```
+string: spike 
+string: tom 
+string: jerry 
 ```
