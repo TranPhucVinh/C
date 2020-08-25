@@ -71,3 +71,33 @@ main(){
 	printf("databaseNode0 has id %d with string value %s \n", databaseNode0.id, databaseNode0.stringValue);
 }	
 ```
+
+### Nested struct
+
+```c
+struct linkedDatabaseNode{
+    int id;
+    char stringValue[50];
+};
+
+struct databaseNode  
+{
+   int id;
+   struct linkedDatabaseNode nextNode;
+};
+
+int main()
+{
+    struct databaseNode databaseNode0 = {1, 2, "Displayed string"};
+    printf("Member databaseNode0 has id %d\n", databaseNode0.id); 
+
+    printf("ID of databaseNode0 from linkedDatabaseNode is %d, and the displayed string: %s", databaseNode0.nextNode.id, databaseNode0.nextNode.stringValue);
+}
+```
+
+**Output**
+
+```
+Member databaseNode0 has id 1
+ID of databaseNode0 from linkedDatabaseNode is 2, and the displayed string: Displayed string
+```
