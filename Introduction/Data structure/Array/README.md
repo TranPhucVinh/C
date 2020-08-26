@@ -1,6 +1,6 @@
 ### Introduction
 
-* An array is collection of items stored at continuous memory locations.
+* An array is collection of items stored at **continuous memory** locations.
 * The size of array in C is compulsory, not like ``array[]`` in JavaScript.
 
 ### Features
@@ -14,9 +14,21 @@ An array support those features:
 
 Example:
 
-* Create and Read: : ``create_and_read.c`` (enter the value of each member in array then print out on screen)
-* Update: ``update.c`` (adding a new number to array from index)
-* Delete: ``delete.c`` (delete member in array from index)
+**Create**
+
+* Create array: ``create_array.c``
+* Create new member from index: ``create_new_member.c``
+
+**Read**
+* Simply read from ``index`` with ``array[index]``
+
+**Update**
+
+* Update value for array member from index: ``array[index] = new_value``
+
+**Delete**
+
+* Delete member in array from index: ``delete.c`` 
 
 ### size of an array
 
