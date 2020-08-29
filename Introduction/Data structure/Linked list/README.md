@@ -4,7 +4,7 @@ Unlike arrays, linked list elements are not stored at a contiguous location; the
 
 ### Features
 
-A link list support those features:
+A linked list support those features:
 
 * Create
 * Read
