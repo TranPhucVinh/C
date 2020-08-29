@@ -28,6 +28,7 @@ Example:
 * Read all nodes from linked list with the first node as argument: ``read_link_list_with_first_node.c``
 * Read all nodes from linked list without the first node as argument: ``read_link_list_without_first_node.c``
 * Read node value at specific index (the only way to find a node at a specific index is to looping the whole link list): ``read_link_list_with_index.c``
+    * ``Argument 1``: Index of the node to read
 
 **Update**
 
