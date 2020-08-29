@@ -37,7 +37,7 @@ int main () {
 returnNumber: 5
 ```
 
-### C Function overloading
+### Function overloading
 
 C doesn't support function overloading as it is not an OOP language
 
@@ -60,28 +60,34 @@ int main(){
 
 For function overloading information, check ``Function.md`` in ``Cplusplus\Introduction\OOP``.
 
-### Command Line Arguments with main()
+### Command line arguments with main()
 
 ```c
 int main( int argc, char *argv[] ){}
 ```
 
-It is possible to pass **some values** from the command line to your C programs when they are executed. These values are called **command line arguments** and many times they are important for your program especially when you want to control your program from outside **instead of hard coding** those values inside the code.
+It is possible to pass some values from the command line to your C programs when they are executed. These values are called **command line arguments**.
 
-The command line arguments are handled using **main()** function arguments where ``argc`` refers to the **number of arguments** passed, and ``argv[]`` is a **pointer array** which points to **each argument** passed to the program.
+* ``argc``: number of arguments passed
+* ``argv[]``: pointer array which points to each argument passed to the program
+
+**Example**
 
 ```c
-int main( int argc, char *argv[] )  {
-      printf("The argument supplied is %s and total argument is %d \n", argv[0], argc);
+#include <stdio.h>
+
+int main(int argc, char *argv[])  {
+    printf("argv[0]: %s \n", argv[0]);
+    printf("argv[1]: %s \n", argv[1]);
+    printf("Total argument: %d", argc);
 }
 ```
+**Input** ``./a.out Hello``
 
-Compile ``g++ -o test test.c``
-
-Then run ``./test``
-
-**Result**
+**Output**
 
 ```
-The argument supplied is ./test and total argument is 1 
+argv[0]: ./a.out 
+argv[1]: Hello
+Total argument: 4
 ```
