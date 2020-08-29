@@ -35,3 +35,33 @@ int main()
 ```
 
 Problem solved with struct pointer: ``Physical layer/Memory/Pointer/struct pointer.md``
+
+### struct pointer issue
+
+```c
+#include <stdio.h> 
+#include <stdlib.h>
+  
+struct databaseNode { 
+    int id;
+    int intValue;
+}; 
+
+int main() 
+{ 
+    struct databaseNode *node0;
+    node0->id = 1;
+    node0->intValue = 100;
+    return 0; 
+} 
+```
+**Output**: ``Segmentation fault``
+
+Problem solved:
+
+```c
+node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode));
+
+node0->id = 1;
+node0->intValue = 100;
+```

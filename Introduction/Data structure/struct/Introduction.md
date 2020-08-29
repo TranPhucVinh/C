@@ -1,4 +1,4 @@
-### Introduction
+### Build a struct
 
 ```c
 #include <stdio.h>
@@ -23,7 +23,7 @@ struct databaseNode databaseNode0 = {1, "String value"};
 printf("size %d", sizeof(databaseNode0)); //56
 ```
 
-Size ``104 = id (int) + stringValue[50]``
+Size ``56 = id (int) + stringValue[50]``
 
 ### Object from struct
 
