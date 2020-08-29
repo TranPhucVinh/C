@@ -1,5 +1,7 @@
 ### malloc
 
+In library ``stdlib.h``
+
 ```c
 void *malloc(size_t size)
 ```

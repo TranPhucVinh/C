@@ -36,7 +36,7 @@ int main()
 
 Problem solved with struct pointer: ``Physical layer/Memory/Pointer/struct pointer.md``
 
-### struct pointer issue
+### Struct pointer set value issue
 
 ```c
 #include <stdio.h> 

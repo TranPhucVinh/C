@@ -31,6 +31,6 @@ All 3 examples work fine with all HTTP webpage, HTTPS webpage and local Python H
 
 Send data every 1 second to server with POST request
 
-**HTTP server**: ```http_server_receive_data.py``
+**HTTP server**: ``http_server_receive_data.py``
 
 **HTTP client**: ``http_client_send_data.c``
