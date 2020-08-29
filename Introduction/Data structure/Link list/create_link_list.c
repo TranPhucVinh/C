@@ -1,0 +1,32 @@
+#include <stdio.h> 
+  
+struct databaseNode { 
+    int id;
+    int intValue;
+    struct databaseNode* nextNode; 
+}; 
+
+//Insert value to Next node and link 2 nodes to each other
+void insertNodeValues(struct databaseNode *currrentNode, struct databaseNode *nextNode, int id, int intValue)  {
+    nextNode->id = id;
+    nextNode->intValue = intValue;
+    currrentNode->nextNode = nextNode;
+}
+
+int main() 
+{ 
+    struct databaseNode node0 = {1, 100};
+    struct databaseNode node1, node2;
+    insertNodeValues(&node0, &node1, 2, 200);
+    insertNodeValues(&node1, &node2, 3, 300);
+    node2.nextNode = NULL; //End link list
+
+    // Accessing data members of node1 using node0 
+    printf("Node 1 ID node1.link->id: %d \n", node0.nextNode->id); 
+    printf("Node 1 intValue node1.link->intValue: %d \n", node0.nextNode->intValue);
+
+    // Accessing data members of node2 using node1 
+    printf("Node 2 ID node1.link->id: %d \n", node1.nextNode->id); 
+    printf("Node 2 intValue node1.link->intValue: %d \n", node1.nextNode->intValue);
+    return 0; 
+} 
