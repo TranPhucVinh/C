@@ -19,7 +19,7 @@ const char *message1 = "Thread 1";
 int* intPointer; //Equal to the previous ways and will give the same result
 ```
 
-``%p``: is used for **pointer**, like ``%d`` for **int**, ``%s`` for **string**.
+``%p``: used for pointer and address value of a variable
 
 ``&``: get the address of the variable
 
@@ -31,6 +31,8 @@ int* intPointer; //Equal to the previous ways and will give the same result
 p = &a //p is the address of a
 printf("%p", &a);
 ```
+
+**Note**: ``*&a`` is ``a``.
 
 ### Example 2
 

@@ -1,4 +1,4 @@
-## Variable pointer in function 
+### Variable pointer in function 
 
 ```c
 #include <stdio.h>
@@ -25,7 +25,7 @@ the return value of the function is 7
 
 What is sent to the function ``add(number)`` is the value of variable ``number`` ( = 6), not variable ``number``, the variable ``number`` in ``add()`` is just the clone of the genuine variale ``number``. So the value of number still remain unchanged.
 
-### Problem solved
+**Problem solved**
 
 ```c
 #include <stdio.h>
@@ -45,6 +45,27 @@ int add(int *number){
 ```
 
 **Result** 7
+
+**Pointer assign to variable**
+
+```c
+#include <stdio.h>
+
+int number = 9;
+int *pointer = &number;
+
+int add(int *number);
+
+main () {
+    add(pointer);
+    printf("%d", number); //10
+}
+
+int add(int *number){
+	*number = *number + 1;
+	return *number;
+}
+```
 
 ### Swap
 
@@ -75,18 +96,44 @@ Values of a and b are 4 6
 Values of a and b now are 6 4 
 ```
 
-### scanf()
+### Get value of pointer
 
-``scanf()`` reads formatted input from stdin.
-
-```c
-int scanf(const char *format, ...)
-```
-
-**Explain**
+Can't change the pointing address of pointer when pointer is a function argument
 
 ```c
-scanf("%d", &a);
+#include <stdio.h>
+
+int number1 = 9;
+int number2 = 90;
+int *pointer = &number1;
+
+void changeValue (int *pptr);
+
+int main () {
+    printf("*pointer before %d \n", *pointer);
+    changeValue(pointer);
+    printf("*pointer after %d \n", *pointer);
+}
+
+void changeValue (int *pptr){
+    pptr = &number2; //change pointing address of the arugment pointer
+}
+```
+**Output**
+```
+*pointer before 9
+pointer after 9
 ```
 
-To save the value of variable ``a``, we have to use ``&`` to get the address so that ``*&`` will return the value of variable a.
+**Problem solved**
+
+```c
+void changeValue (int *pptr){
+    *pptr = number2;
+}
+```
+**Output**
+```
+*pointer before 9
+*pointer after 90
+```
