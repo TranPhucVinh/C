@@ -44,7 +44,7 @@ void displayLinkList(){
 
 int main(int argc, char *argv[])
 { 
-    int insertIndex, id, intValue;
+    int updateIndex, id, intValue;
     char *splitString;
     long ret;
 
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
         ret = strtol(argv[1], &splitString, 10);
 
         if (!strlen(splitString)) {
-            insertIndex = ret;
+            updateIndex = ret;
         }  else {
             puts("You have entered the invalid index value");
             return 0;            
@@ -91,11 +91,11 @@ int main(int argc, char *argv[])
 
 	puts("Link list before update");
 	displayLinkList();
-    if(updateNodeAtIndex(insertIndex, id, intValue)){
+    if(updateNodeAtIndex(updateIndex, id, intValue)){
         puts("\nLink list after update");
     	displayLinkList();
     } else {
-            printf("Can't find the node at index=%d", insertIndex);
+            printf("Can't find the node at index=%d", updateIndex);
     }
     return 0; 
 } 
