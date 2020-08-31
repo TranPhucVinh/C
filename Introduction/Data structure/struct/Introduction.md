@@ -14,17 +14,6 @@ main(){
 }
 ```
 
-**Size**: ``struct`` has the size of its all data member
-
-Example:
-
-```c
-struct databaseNode databaseNode0 = {1, "String value"};
-printf("size %d", sizeof(databaseNode0)); //56
-```
-
-Size ``56 = id (int) + stringValue[50]``
-
 ### Object from struct
 
 Set up value for struct's member
