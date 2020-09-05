@@ -103,3 +103,47 @@ int main(){
 ```
 
 Notice, ``goto label`` must be put in the same scope of ``goto``.
+
+### assert
+
+``assert()`` is a macro that is used to check specific conditions at runtime (when a program is under execution) and is very useful while debugging a program. 
+
+To ``assert()``, you must include ``assert.h``
+
+``assert(condition)``:
+
+* If ``condition==true``: Keep program execution
+* If ``condition==false``: Program terminates, and an error message is displayed on the screen specifying the filename, the line number, the function name, the condition that does not hold.
+
+```c
+#include <stdio.h>
+#include <assert.h>
+ 
+int main() {
+  int a, b;
+ 
+  printf("Input two integers to divide: \n");
+  scanf("%d%d", &a, &b);
+ 
+  assert(b != 0);
+ 
+  printf("%d/%d = %.2f\n", a, b, a/(float)b);
+ 
+  return 0;
+}
+```
+
+If error, output: ``Assertion failed: b != 0, file test.c, line 10``
+
+Always terminates with ``assert(0)``
+
+```c
+printf("Hello, World ! \n");
+assert(0);
+```
+**Output**
+
+```
+Hello, World !
+Assertion failed: 0, file test.c, line 6
+```

@@ -30,6 +30,8 @@ Open file/stream
 
 **Return**: ``int fileDescriptor``
 
+For **File descriptor** information check ``unistd.md``
+
 ### read()
 
 ``read(int fileDescription, char *bufferRead, size_t number_of_byte_to_read)``

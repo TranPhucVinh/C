@@ -80,6 +80,10 @@ strcat(hw, " abc");
 puts(hw); //Hello, World! abc
 ```
 
+### strol()
+
+Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Example.md``
+
 ### atoi()
 
 Include in library **stdlib.h**.
@@ -101,6 +105,14 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
   char str[] = "1234";
   int a = atoi(str);
   printf("%d \n", a); //1234
+```
+
+The function stops reading the input string at the first character that it cannot recognize as part of a number.
+
+```c
+char str[] = "123abc";
+int a = atoi(str);
+printf("%d \n", a); //123
 ```
 
 ### itoa()

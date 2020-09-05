@@ -6,7 +6,13 @@ Read up to ``count`` bytes from file descriptor ``fd`` into the buffer starting 
 ssize_t read(int fd, void *buf, size_t count);
 ```
 
-``0`` for terminal ``fd``
+**File descriptor**: Represent the index of file pointer in the file table of process
+
+Value:
+
+* 0: STDIN
+* 1: STDOUT
+* 2: STDERR
 
 ### write()
 
