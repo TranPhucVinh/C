@@ -6,6 +6,8 @@ Exit the current process and return value **status** for the further process.
 void exit(int status) 
 ```
 
+**Example**
+
 ```c
 #include <stdio.h>
 #include <stdlib.h> // For exit()
@@ -20,6 +22,7 @@ int main(){
 
 **Result** ``number: 0 ``
 
+This example program runs on both Windows and Linux.
 
 ### Get process name
 

@@ -1,3 +1,5 @@
+## For Unix socket
+
 **Note**: All the program below only works with Unix socket, and don't work in Windows.
 
 ### Sending data between 2 TCP client
@@ -39,3 +41,7 @@ Compile: ``gcc -o http-client http-client.c -lssl``
 **Example**:
 
 Read return message from HTTPS server: ``https-request.c``
+
+## For Windows
+
+For TCP socket in Windows, use library ``winsock2.h`` which is built-in in GCC compiler.

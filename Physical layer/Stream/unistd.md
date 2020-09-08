@@ -24,6 +24,8 @@ ssize_t write(int fd, const void *buf, size_t count);
 
 ### Example
 
+All the examples below run on both Windows and Linux.
+
 **Example 1**: Read entered value from terminal and print out
 
 ```c
