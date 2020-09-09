@@ -37,31 +37,37 @@ Compiling this on ``gcc`` won't give error and just give warning instead.
 
 ### Problem solve with extern
 
-``header.h``
+``head.h``
 
 ```c
+#include <stdio.h>
+
 void helloworld();
 extern int value;
 ```
 
-``header.h`` has exported variable ``value`` for other ``.cpp`` file to use by ``extern``.
+``head.h`` has exported variable ``value`` for other ``.cpp`` file to use by ``extern``.
 
-``header.cpp``
+``head.c``
 
 ```c
+#include "head.h"
+
 int value = 16; 
 
 void helloworld(){
-	cout << value << endl;
+	printf("%d\n", value);
 }
 ```
 
-Note that, to use variable **int**, it must be ``int value = 16``, not ``value = 16``.
+Note that, to use variable ``value`` in ``g++``, it must be ``int value = 16``, not ``value = 16``. Assign ``value = 16`` just gives warning in ``gcc``.
 
-``main.cpp``
+``main.c``
 
 ```c
-main(){
+#include "head.h"
+
+int main(){
 	helloworld(); //16
 }
 ```
@@ -70,44 +76,37 @@ main(){
 
 Define variable with extern in 2 functions.
 
-``header.h``
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-void helloworld();
-void setupInt();
-extern int value;
-```
-
-``header.cpp``
-
-```cpp
-#include "header.h"
-using namespace std;
-
-//define variable value in function helloworld
-void helloworld(){
-	int value = 18;
-	cout << value << endl;
-}
-
-//define variable value in function setupInt
-void setupInt(){
-	int value = 19;
-	cout << value << endl;
-}
-```
-
-``main.cpp``
+``head.h``
 
 ```c
-#include "header.h"
+#include <stdio.h>
 
-main(){
-	helloworld(); //18
-	setupInt(); //19
+void func1();
+void func2();
+extern int value;
+```
+``head.c``
+```c
+#include "head.h"
+
+//define variable value in function func1
+void func1(){
+	int value = 18;
+	printf("%d\n", value);
+}
+
+//define variable value in function func2
+void func2(){
+	int value = 19;
+	printf("%d\n", value);
+}
+```
+``main.c``
+```c
+#include "head.h"
+
+int main(){
+	func1(); //18
+	func2(); //19
 }
 ```
