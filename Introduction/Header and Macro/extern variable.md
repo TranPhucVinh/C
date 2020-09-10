@@ -110,3 +110,36 @@ int main(){
 	func2(); //19
 }
 ```
+
+### main.c call variable from other file without library included
+
+``head.h``
+
+```c
+#include <stdio.h>
+
+int a;
+```
+
+``head.c``
+
+```c
+#include "head.h"
+
+int a = 120;
+```
+
+``main.c``
+
+```c
+//"head.h" is not included
+#include <stdio.h>
+
+extern int a;
+
+int main(int argc, char *argv[])
+{
+   printf("%d", a); //120
+   return 0;
+}
+```
