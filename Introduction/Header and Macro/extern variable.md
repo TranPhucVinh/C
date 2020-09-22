@@ -46,7 +46,7 @@ void helloworld();
 extern int value;
 ```
 
-``head.h`` has exported variable ``value`` for other ``.cpp`` file to use by ``extern``.
+``head.h`` has exported variable ``value`` for other ``.c`` file to use by ``extern``.
 
 ``head.c``
 
