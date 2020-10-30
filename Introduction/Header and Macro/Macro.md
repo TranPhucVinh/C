@@ -21,6 +21,19 @@ Hello world
 10
 ```
 
+Using ``\`` to add a new line when define macro
+
+```c
+#include <stdio.h>
+
+#define PI   \
+3.14
+
+int main()
+{
+   printf("%lf", PI);
+}
+```
 ### Macro with arguments
 
 ```c
