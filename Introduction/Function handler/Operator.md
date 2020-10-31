@@ -1,12 +1,22 @@
 # operator
 
-``|``: OR bit
+### OR bit (``|``)
 
-A = 0011 1100
+```c
+int binVal0 = 0b110;
+int binVal1 = 0b111;
+int binResult = binVal0 | binVal1;
+printf("%d", binResult); //7 (0b111)
+```
 
-B = 0000 1101
+### AND bit (``&``)
 
-A|B = 0011 1101
+```c
+int binVal0 = 0b110;
+int binVal1 = 0b111;
+int binResult = binVal0 & binVal1;
+printf("%d", binResult); //6 (0b110)
+```
 
 ### Bitwise
 
