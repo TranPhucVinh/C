@@ -55,6 +55,24 @@ main(){
 }
 ```
 
+Call multiple functions in a macro function
+
+```c
+#include <stdio.h>
+#define defineFunction(a) a+1; printf("Line 1\n"); printf("Line 2\n")
+
+int main(){
+   int result = defineFunction(6);
+   printf("%d", result);
+}		
+```
+
+```
+Line 1
+Line 2
+7
+```
+
 ### Redefine macro variable
 
 **head.h**
