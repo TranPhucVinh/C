@@ -109,6 +109,8 @@ argv[1]: Hello
 Total argument: 2
 ```
 
+**Example**: ``Rectangle calculation`` in ``Example projects\Intermediate.md``
+
 ### Variable Arguments
 
 For **Variable Arguments** use, an ``int`` variable is required to represent the total number variable arguments passed.
