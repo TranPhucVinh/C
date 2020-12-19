@@ -17,6 +17,22 @@ int main () {
 }
 ```
 
+Short term function data type
+
+```c
+#include <stdio.h>
+
+int add(int, int);
+
+int main () {
+   printf("%d\n", add(3,4)); //7
+}
+
+int add(int a, int b){
+   return a+b;
+}
+```
+
 ### Local variable setup with {}
 
 ```c
