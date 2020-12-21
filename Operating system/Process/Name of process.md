@@ -1,6 +1,6 @@
 ## exit()
 
-Exit the current process and return value **status** for the further process.
+Exit the current program (as a process) and return value ``status`` for the further process.
 
 ```c
 void exit(int status) 
