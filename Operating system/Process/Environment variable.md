@@ -1,19 +1,3 @@
-### Embedded command
-
-Run embedded Unix or Windows command in ``C`` source code
-
-```c
-#include <stdlib.h>
-
-main() {
-	system("ls"); //Run ls command
-}
-```
-
-On Windows, the ``a.exe`` of this file will run normally in Git Bash and will result in error ``command not found`` in Command Prompt.
-
-``system("dir");`` will run properly in Command prompt.
-
 ### printenv()
 
 Get environment variable with ``printenv()``. ``environ`` is defined as a global variable in the Glibc source file ``posix/environ.c`` (so this program just runs on Unix).
