@@ -102,6 +102,20 @@ int main (){
 100
 ```
 
+### The difference between #if defined(WIN32) and #ifdef(WIN32)
+
+The difference between the two is that #ifdef can only use a single condition, while ``#if defined(NAME)`` can do compound conditionals.
+
+```c
+#if defined(WIN32) && !defined(UNIX)
+/* Do windows stuff */
+#elif defined(UNIX) && !defined(WIN32)
+/* Do linux stuff */
+#else
+/* Error, both can't be defined or undefined same time */
+#endif
+```
+
 ### Predefine during compilation
 
 ```c
