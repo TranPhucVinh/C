@@ -4,11 +4,19 @@ GCC is a compiler system that supporting various programming languages.
 
 ``gcc -S main.c``: Build C source code (High level language) to assembly code, the output file will be ``main.s``
 
-``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``
+``gcc -o main main.c``: Specify the executable output file as ``main``
 
 ``gcc main.c``: Compile, assemble and link source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
 
-``gcc -o main main.c``: Specify the executable output file as ``main``
+**For object file**:
+
+``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``.
+
+Notice: Only a ``.c`` file result in a ``.o`` file. So ``gcc -c test1.c test2.c`` results in ``test.o`` and ``test1.o``.
+
+Notice: Cannot specify -o with -c, -S or -E with multiple files, so ``gcc -c test.c test1.c -o test.o`` will be error, as ``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``.
+
+**External library**
 
 To compile with an external library ``gcc main.c -l<external-library-name>``
 
