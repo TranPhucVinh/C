@@ -1,4 +1,4 @@
-### GCC compiler
+## GCC compiler
 
 GCC is a compiler system that supporting various programming languages.
 
@@ -8,15 +8,21 @@ GCC is a compiler system that supporting various programming languages.
 
 ``gcc main.c``: Compile, assemble and link source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
 
-**For object file**:
+### For object file
 
 ``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``.
 
-Notice: Only a ``.c`` file result in a ``.o`` file. So ``gcc -c test1.c test2.c`` results in ``test.o`` and ``test1.o``.
+**Notice**: Only a ``.c`` file result in a ``.o`` file
 
-Notice: Cannot specify -o with -c, -S or -E with multiple files, so ``gcc -c test.c test1.c -o test.o`` will be error, as ``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``.
+``gcc -c test1.c test2.c`` results in ``test.o`` and ``test1.o``.
 
-**External library**
+**Notice**: Cannot specify -o with -c, -S or -E with multiple files
+
+``gcc -c test.c test1.c -o test.o`` will be error
+
+``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``
+
+### External library
 
 To compile with an external library ``gcc main.c -l<external-library-name>``
 
@@ -26,11 +32,11 @@ To compile with mupltiples header files
 
 ``gcc -o outputFile main.c other.c etc.c``
 
-**GCC on Windows**:
+### GCC on Windows
 
 For GCC build on Windows, install ``TDM-GCC-64``.
 
-### G++ compiler
+## G++ compiler
 
 ```shell
 g++ -o output_file file.cpp
