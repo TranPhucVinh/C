@@ -54,9 +54,3 @@ varC: 0
 ```c
 signed char varB = -19; //-19
 ```
-
-### char
-
-```c
-char varB = -19; //-19
-```
