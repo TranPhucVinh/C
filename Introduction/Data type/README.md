@@ -12,6 +12,8 @@
 |long	 |8 bytes|-9223372036854775808 to 9223372036854775807|		
 |unsigned long|8 bytes|0 to 18446744073709551615|		
 
+The default ``char`` type is ``signed char``. If compile by ``MSVC`` with ``/J`` option, ``char`` will switch to ``unsigned char``.
+
 ## Compare
 
 | C | JavaScript|
