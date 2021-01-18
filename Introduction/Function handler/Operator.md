@@ -38,20 +38,6 @@ shift <<= 1;
 
 ## Binary and Operator
 
-### unsigned char vs signed number
-
-```c
-unsigned char binVal0 = -3;
-printf("%d \n", binVal0);
-```
-
-``253`` (1111 1101)
-
-**Signed number** is operated by two's implement (bitwise then OR with bit 1).
-
-3 = 0000 0011 => bitwise = 1111 1100
-=> -3 = 1111 1100+1 = 1111 1101
-
 ### OR and ``+``
 
 ```c

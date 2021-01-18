@@ -35,6 +35,29 @@ So, **char** in C go only with one word.
 ``unsigned char`` is ``unint_8``
 
 ```c
+unsigned char binVal0 = -3;
+printf("%d \n", binVal0);
+```
+
+``253`` (1111 1101)
+
+**Signed number** is operated by two's implement (bitwise then OR with bit 1).
+
+3 = 0000 0011 => bitwise = 1111 1100
+=> -3 = 1111 1100+1 = 1111 1101
+
+```c
+unsigned char number = -3000;
+printf("%d \n", number);
+```
+
+``72`` (0100 1000)
+
+As ``-3000`` is ``010001001000`` so bits after 8th bit is remove, so only ``01001000`` is left for ``72``
+
+**Example**
+
+```c
 #include <stdio.h>
 
 int main (){
