@@ -1,34 +1,26 @@
 ### char variable
 
-Can store **character** or **integer value**
-
 ```c
-// character
-char c;
-c = 'a';
-printf("Character %c ", c);
+char c = 'a';  
+printf("Character: %c ", c); //Character: a
 ```
 
 ```c
-// integer
-char c;
-c = 8;
-printf("Integer %d ", c);
+char c = 8;
+printf("Integer: %d ", c); //Integer: 8
 ```
-
-### char vs value in ASCII code
 
 ```c
-printf("b: %d \n", '6');	
+char c = 48;
+printf("Character: %c ", c); //Character: 0
 ```
 
-**Result**: 54
+```c
+char c ='ab';
+printf("Character %c ", c); //b (Only the last character is returned)
+```
 
-### Notes
-
-``char c ='ab'`` => Warning "character constant too long for its type" => **WRONG**
-
-So, **char** in C go only with one word.
+Convert character to ASCII value: ``printf("b: %d \n", '6')``: ``b: 54``
 
 ### unsigned char
 
@@ -84,10 +76,4 @@ varC: 0
 
 ```c
 signed char varB = -19; //-19
-```
-
-### char
-
-```c
-char varB = -19; //-19
 ```
