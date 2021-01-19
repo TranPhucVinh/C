@@ -39,13 +39,19 @@ printf("%d \n", binVal0);
 => -3 = 1111 1100+1 = 1111 1101
 
 ```c
-unsigned char number = -3000;
-printf("%d \n", number);
+unsigned char signedNumber = -3000;
+printf("%d \n", signedNumber); //72
+unsigned char unsignedNumber = 3000;
+printf("%d \n", unsignedNumber); //184
 ```
 
-``72`` (0100 1000)
+``72``: 0100 1000
 
 As ``-3000`` is ``010001001000`` so bits after 8th bit is remove, so only ``01001000`` is left for ``72``
+
+``3000``: ``101110111000``
+
+``184`` is ``10111000``
 
 **Example**
 
