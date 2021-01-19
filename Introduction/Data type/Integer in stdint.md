@@ -1,4 +1,4 @@
-``int``: overflow value is 2147483647 (4-b
+``int``: overflow value is ``2147483647`` (4-byte)
 
 ### stdint.h
 
@@ -17,50 +17,9 @@ uint32_t
 
 **uint8_t**: 8 bit unsigned int.
 
-**E.g**: Example with **bit overflow**
+**Example**:
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>     
-#include <stdint.h>
-
-uint8_t return8BitNumber(uint8_t number){
-    return number;
-}
-
-int main (){
-  printf("8 bit number is: %d", return8BitNumber(1023)); //1023: 10 bit
-}
-```
-
-**Compile**:  
-
-```
-warning: large integer implicitly truncated to unsigned type [-Woverflow]
-printf("8 bit number is: %d", return8BitNumber(1023));
-```
-
-**Result**
-
-```
-8 bit number is: 255
-```
-
-**With signed number**
-
-```c
-printf("8 bit number is: %d", return8BitNumber(-9));
-```
-
-```
-8 bit number is: 247
-```
-
-```
-247 = 11110111 
-9 = 1001 => -9 = 9 (implement 1) + 1 = 0110 + 1 = 1111 0111
-```
+For examples with signed number and overflow number, check: ``Data type/Char for Integer.md``
 
 ### Convert to char
 
