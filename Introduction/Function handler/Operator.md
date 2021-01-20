@@ -44,17 +44,15 @@ shift <<= 1;
 int binVal0 = 0b11;
 int binVal1 = 0b11;
 int binResult = binVal0+binVal1;
-printf("%d", binResult);
+printf("%d", binResult); //6
 ```	
-**Result** ``6``
 
 ```c
 int binVal0 = 0b11;
 int binVal1 = 0b11;
 int binResult = binVal0|binVal1;
-printf("%d", binResult);
+printf("%d", binResult); //3
 ```
-**Result** ``3``
 
 ### bitwise
 
@@ -95,22 +93,14 @@ binResult = 0b11 = -1
 ```c
 unsigned char binVal0 = 0b0;
 unsigned char binResult = ~binVal0;
-printf("%d \n", binResult);
+printf("%d \n", binResult); //255
 ```	
-
-```
-255
-```
 
 ```c
 unsigned int binVal0 = 0b0;
 int binResult = ~binVal0;
-printf("%d \n", binResult);
+printf("%d \n", binResult); //-1
 ```	
-
-```
--1
-```
 
 ## lvalue, rvalue
 
@@ -119,3 +109,23 @@ printf("%d \n", binResult);
 ``rvalue``: Rvalue concept pulls or fetches the value of the expression or operand on the right side of the assignment operator. 
 
 can't use ``PB5 = PB5^1;`` as PB5 is a macro, not variable
+
+## The difference between ``++i`` and ``i++``
+
+``++i`` will increment the value of i, and then return the incremented value to ``j``
+
+```c
+int i,j;
+j = i++;
+```
+
+``j=1, i=1``
+
+``i++`` will return its initial value firt to ``j`` then increases its value
+
+```c
+int i,j;
+j = ++i;
+```
+
+``j=0, i=1``
