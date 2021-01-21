@@ -75,31 +75,35 @@ Line 2
 
 ### Redefine macro variable
 
-**head.h**
-
-```c
-#define integerValue 190
-```
-
-**main.c**
+With ``#define``
 
 ```c
 #include <stdio.h>
-#include "head.h"
+#define integerValue 190
 
 int main (){
-  printf("%d \n", integerValue);
+  printf("%d \n", integerValue);//190
   #undef integeValue
   #define integerValue 100
-  printf("%d \n", integerValue);
+  printf("%d \n", integerValue);//100
 }
 ```
 
-**Result**
+With traditional variable definition
 
+```c
+int integerValue = 200;
+printf("%d \n", integerValue); //200
+#undef integeValue
+#define integerValue 100
+printf("%d \n", integerValue); //100
 ```
-190
-100
+
+With just ``#undef integeValue``, the value still unchanges
+```c
+printf("%d \n", integerValue); //190
+#undef integeValue
+printf("%d \n", integerValue); //190
 ```
 
 ### The difference between #if defined(WIN32) and #ifdef(WIN32)
