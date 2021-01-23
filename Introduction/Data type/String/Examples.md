@@ -1,4 +1,13 @@
-### Delete a specific character from a string
+**Example 1.0**: Delete garbage value of a string
+
+```c
+uint8_t displayString[30];
+printf("%s\n", displayString); //Print garbage value
+memset(displayString, 0, strlen(displayString));
+printf("%s\n", displayString); //Print NULl string
+```
+
+**Example 1.1**: Delete a specific character from a string
 
 ```cpp
 #include <stdio.h>
@@ -31,7 +40,7 @@ Before parse: Hello, World
 After parse: Heo, Word 
 ```
 
-### Split a string by sub string
+**Example 2**: Split a string by sub string
 
 ```cpp
 #include <stdio.h>
@@ -56,7 +65,7 @@ int main(int argc, const char *argv[]) {
 
 **Result**: ``Heo, World!``
 
-### Remove the first character from a string
+**Example 3**: Remove the first character from a string
 
 ```c
 #include <stdio.h>
@@ -77,7 +86,7 @@ void firstCharRemove(char stringChar[500]){
 }
 ```
 
-### Split number and character from a string with strtol()
+**Example 4**: Split number and character from a string with ``strtol()``
 
 ```c
 #include <stdio.h>
