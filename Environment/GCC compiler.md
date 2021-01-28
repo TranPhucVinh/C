@@ -1,5 +1,3 @@
-## GCC compiler
-
 GCC is a compiler system that supporting various programming languages.
 
 ``gcc -S main.c``: Build C source code (High level language) to assembly code, the output file will be ``main.s``
@@ -32,47 +30,54 @@ To compile with mupltiples header files
 
 ``gcc -o outputFile main.c other.c etc.c``
 
-### GCC on Windows
+### GCC flags
 
-For GCC build on Windows, install ``TDM-GCC-64``.
+``-I``: include files
 
-## G++ compiler
+**Example 1**: Include 1 file
 
-```shell
-g++ -o output_file file.cpp
+In folder ``test``, there is ``test.h``
+
+```c
+int a = 9;
 ```
 
-In Linux: ``./output_file``
+In folder ``test/main``, there is ``test.c``
 
-In Windows: ``./output_file.exe``
-
-To compile with mupltiples header files
-
-``g++ -o outputFile main.c other.c etc.c``
-
-``g++ -o outputFile main.cpp other.cpp etc.cpp``
-
-A ``C`` source code with ``CPP`` syntax can be compiled normally: ``g++ test.c``
-
-``test.c``
-
-```cpp
-#include <iostream>
-
-using namespace std;
+```c
+#include <stdio.h>
+#include "test.h"
 
 int main(){
-  cout << "hello cpp";
+	printf("%d", a);
 }
 ```
 
-### Shell script to compile
+To compile ``test.c``: ``gcc -I.. test.c``
 
-```shell
-{
-  "cmd" : ["gcc", "$file_name", "-o", "${file_base_name}", "-lm", "-Wall"],
-  "selector" : "source.c",
-  "shell":false,
-  "working_dir" : "$file_path"
+**Example 2**: To include many files
+
+In another folder ``test/test 1``, there is ``test1.h``
+
+```c
+int b = 10;
+```
+
+In folder ``test/main``, there is ``test.c``
+
+```c
+#include <stdio.h>
+#include "test.h"
+#include "test1.h"
+
+int main(){
+	printf("%d", a);
+  printf("%d", b);
 }
 ```
+
+To compile ``test.c``: `` gcc -I.. -I../test\ 1 test.c``
+
+## On Windows
+
+For GCC build on Windows, install ``TDM-GCC-64``.
