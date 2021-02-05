@@ -78,6 +78,10 @@ int main(){
 
 To compile ``test.c``: `` gcc -I.. -I../test\ 1 test.c``
 
+``-D``: Define flag
+
+Predefine during compilation with -D flag: Check ``Introduction/Header and Macro/Macro.md``
+
 ## On Windows
 
 For GCC build on Windows, install ``TDM-GCC-64``.
