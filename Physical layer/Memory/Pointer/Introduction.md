@@ -89,3 +89,26 @@ p = &a;
 ```
 
 has returned the same value for ``p`` and ``pointer`` as the address of variable ``a``.
+
+### ``sizeof()``
+
+In 64-bit computer
+
+```c
+int a;
+sizeof(&a); //8
+```
+
+```c
+char *test = "1";
+printf("%d", sizeof(test)); //8
+```
+
+``sizeof(&a)`` and ``sizeof(test)`` are 8 byte they store the 64-bit address.
+
+To get size of a string point by ``char*``, use ``strlen()``
+
+```c
+char *test = "123";
+strlen(test)); //3
+```
