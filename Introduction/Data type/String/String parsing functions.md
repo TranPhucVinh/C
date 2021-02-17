@@ -80,6 +80,15 @@ strcat(hw, " abc");
 puts(hw); //Hello, World! abc
 ```
 
+To append a string with a char, add ``&``
+
+```c
+char hw[] = "Hello, World!";
+char returnChar = 'a';
+strncat(hw, &returnChar, 1);
+printf("%s \n", hw); //Hello, World!a
+```
+
 ### strol()
 
 Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Example.md``
