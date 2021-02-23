@@ -131,3 +131,5 @@ strcpy(displayString,"Hello, World!!");
 *** stack smashing detected ***: ./a.out terminated
 Aborted (core dumped)
 ```
+
+To fix overflow issue, using Heap memory with malloc. Check: ``Physical layer/Memory/Dynamic memory allocation.md``
