@@ -1,4 +1,4 @@
-### Variable pointer in function 
+### Example 1: Change value of variable by pointer in a function
 
 ```c
 #include <stdio.h>
@@ -46,7 +46,7 @@ int add(int *number){
 
 **Result** 7
 
-**Pointer assign to variable**
+### Example 1.1: Pointer assign to variable
 
 ```c
 #include <stdio.h>
@@ -67,7 +67,13 @@ int add(int *number){
 }
 ```
 
-### Swap
+### Example 1.2
+
+Change value of a string by function using pointer.
+
+Check: ``Change value of a string by function using pointer`` in ``Introduction/Data type/String/Char for String.md``.
+
+### Example 2: swapping value
 
 ```c
 #include <stdio.h>
