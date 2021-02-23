@@ -27,9 +27,7 @@ int main (){
 **Example**: Convert an int to a string (``uint32_t`` to ``char[]``)
 
 ```cpp
-#include <stdio.h>      
-#include <stdlib.h>     
-#include <string.h>     
+#include <stdio.h>        
 #include <stdint.h>
 
 int main() {

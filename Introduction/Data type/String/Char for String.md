@@ -1,4 +1,4 @@
-### Using char*
+## Using char*
 
 ```c
 char *ptrString;
@@ -12,7 +12,7 @@ Index handler:
 printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H 
 ```
 
-Change value:
+### Change value
 
 ```c
 char *ptrString;
@@ -30,6 +30,10 @@ char *ptrString;
 ptrString = "Hello, World !";
 ptrString[0] = 'a'; //Segmentation fault (core dumped)
 ```
+
+### sizeof()
+
+For ``sizeof()`` and way to get size of a ``char*`` string, check  ``sizeof()`` in ``Physical layer/Memory/Pointer/Introduction.md``
 
 ### Using char[]
 
@@ -78,6 +82,29 @@ int main(){
 }
 ```
 
+### Change value of a string by function using pointer
+
+```c
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+uint8_t str[] = "Hello";
+
+void printString(uint8_t *hw){
+	strcpy(hw, "Test");
+
+	// hw = "Test"; 
+	// This won't work as the address of hw is different from str
+}
+
+int main(){
+	printf("%s \n", str);
+	printString(str);
+	printf("%s \n", str);
+}
+```
+
 ### strlen()
 
 ``size_t strlen(const char *)``: Return length of a string
@@ -89,4 +116,18 @@ char *pointerString = "Pointer string";
 //%ld for size_t as long unsignee int
 printf("%ld", strlen(stringSize)); //13
 printf("%ld", strlen(pointerString)); //14
+```
+
+### Overflow string char buffer
+
+```c
+char displayString[1];
+strcpy(displayString,"Hello, World!!");
+```
+
+**Error**:
+
+```
+*** stack smashing detected ***: ./a.out terminated
+Aborted (core dumped)
 ```
