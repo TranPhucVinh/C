@@ -39,6 +39,28 @@ main() {
 Before parse: Hello, World 
 After parse: Heo, Word 
 ```
+**Example 1.2**: Change value of a string by function using pointer
+
+```c
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+uint8_t str[] = "Hello";
+
+void printString(uint8_t *hw){
+	strcpy(hw, "Test");
+
+	// hw = "Test"; 
+	// This won't work as the address of hw is different from str
+}
+
+int main(){
+	printf("%s \n", str);
+	printString(str);
+	printf("%s \n", str);
+}
+```
 
 **Example 2**: Split a string by sub string
 

@@ -31,11 +31,41 @@ ptrString = "Hello, World !";
 ptrString[0] = 'a'; //Segmentation fault (core dumped)
 ```
 
+**Error**: Error when changing the string value with both ``strcat()`` and ``strncat()``.
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+  char *hw = "Hello, World!";
+  char *returnChar = "ab";
+  // strncat(hw, returnChar, 2);
+  strcat(hw, returnChar);
+  printf("%s\n", hw);
+}
+```
+**Result**: ``Segmentation fault (core dumped)``
+
+``strcat()`` and ``strncat()`` require ``hw`` to be the string char array to store the value while ``char *hw`` has fix address and memory size.
+
+### Function returns a string
+
+```c
+char *returnString(){
+  return "Hello, World !";
+}
+
+int main(){
+	printf("%s ", returnString());
+}
+```
+
 ### sizeof()
 
 For ``sizeof()`` and way to get size of a ``char*`` string, check  ``sizeof()`` in ``Physical layer/Memory/Pointer/Introduction.md``
 
-### Using char[]
+## Using char[]
 
 ```c
 char hw[] = "Hello, World!";
@@ -80,29 +110,6 @@ int main(){
 	char str1[] = "Hello, World \n";
 	printString(str1); //Hello, World
 	printStringPointer(str1); //Hello, World
-}
-```
-
-### Change value of a string by function using pointer
-
-```c
-#include <stdio.h>
-#include <stdint.h>
-#include <string.h>
-
-uint8_t str[] = "Hello";
-
-void printString(uint8_t *hw){
-	strcpy(hw, "Test");
-
-	// hw = "Test"; 
-	// This won't work as the address of hw is different from str
-}
-
-int main(){
-	printf("%s \n", str);
-	printString(str);
-	printf("%s \n", str);
 }
 ```
 
