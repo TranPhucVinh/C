@@ -7,29 +7,40 @@ An array is a constant pointer.
 Use pointer to get address and value of member of array
 
 ```c
+#include <stdio.h>
+
 int *p;
-int arrayValue[3] ={1, 2, 3};
-int main(){
-   p = arrayValue;
-   printf("%p \n", p); //0x601030
-   printf("%p \n", arrayValue); //0x601030
-   printf("%p \n", &p); //0x601048
-   printf("address of arrayValue : %p \n", &arrayValue); //0x601030
-   printf("p[0]: %d \n", p[0]); //1
-   printf("*&p[0]: %d \n", *&p[0]); //1
-   printf("p[0]: %d \n", p[0]); //1
-   return(0);
+int arrayValue[3] = {1, 2, 3};
+
+int main(){ 
+	p = arrayValue;
+	printf("%p \n", p); //0x601038
+	printf("%p \n", &p); //0x601050
+	printf("%p \n", arrayValue); //0x601038
+	printf("%p \n", &arrayValue); //0x601038
+	printf("%p \n", &arrayValue[0]); //0x601038
+	printf("%d \n", p[0]); //1
+	printf("%d \n", &p[0]); //6295608 = 0x601038
+	printf("%p \n", &p[0]); //0x601038
+	printf("%d \n", *&p[0]); //1
+	return(0);
 }
 ```
 
-The **address of an array** is also the **address of member 0** in array.
+**Note**: The **address of an array** is also the **address of member 0** in array.
+
+The same result for string char
 
 ```c
-printf("address of arrayValue : %p \n", &arrayValue); //0x601030
-printf("address of arrayValue[0] : %p \n", &arrayValue[0]); //0x601030
+char displayString[] = "Hello, World!";
+
+printf("%p\n", displayString); //0x7fff8ab00140
+printf("%p\n", &displayString);//0x7fff8ab00140
 ```
 
-**Use pointer in array to enter the value in array**
+### Example 2
+
+Use pointer in array to enter the value in array
 
 ```c
 #include <stdio.h>
@@ -49,7 +60,7 @@ void main() {
 }
 ```
 
-### Example 2
+### Example 3
 
 Use pointer to enter the values in array and display these values on screen.
 

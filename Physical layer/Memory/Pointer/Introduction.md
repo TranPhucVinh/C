@@ -19,9 +19,14 @@ const char *message1 = "Thread 1";
 int* intPointer; //Equal to the previous ways and will give the same result
 ```
 
-``%p``: used for pointer and address value of a variable
-
 ``&``: get the address of the variable
+
+``%p``: is used to print ouf the hex value.
+
+```c
+int a = 11;
+printf("%p", a); //0xb
+```
 
 ## Example
 
