@@ -77,8 +77,9 @@ void printStringPointer(char *hw){
 }
 
 int main(){
-	printString("Hello, World \n"); //Hello, World
-	printStringPointer("Hello, World \n"); //Hello, World
+	char str1[] = "Hello, World \n";
+	printString(str1); //Hello, World
+	printStringPointer(str1); //Hello, World
 }
 ```
 
