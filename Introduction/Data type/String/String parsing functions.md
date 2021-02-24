@@ -43,7 +43,9 @@ World
 string
 ```
 
-### strncat() to append string
+## Append string
+
+### strncat()
 
 ```cpp
 char *strncat(char *dest, const char *src, size_t n)
@@ -55,20 +57,11 @@ char *strncat(char *dest, const char *src, size_t n)
 
 ```cpp
 char hw[] = "Hello, World!";
-strncat(hw, "abc", 3); 
-printf("%s \n", hw); //Hello, World!abc   
+char addedChar[] = "abc";
+strncat(hw, addedChar, 3); //Hello, World!abc   
 ```
 
-**Example**: Append from index 0
-
-```cpp
-char firstChar[] = "First ";
-const char hw[50] = "Hello, World!";
-strncat(firstChar, hw, strlen(hw)); 
-printf("%s \n", firstChar); //First Hello, World!
-```
-
-### strcat() to append string
+### strcat()
 
 ```c
 char *strcat(char *dest, const char *src);
@@ -77,7 +70,11 @@ char *strcat(char *dest, const char *src);
 ```c
 char hw[] = "Hello, World!";
 strcat(hw, " abc"); 
-puts(hw); //Hello, World! abc
+```
+```c
+char hw[] = "Hello, World!";
+char addedChar[] = "abc";
+strcat(hw, addedChar); 
 ```
 
 To append a string with a char, add ``&``
@@ -85,15 +82,14 @@ To append a string with a char, add ``&``
 ```c
 char hw[] = "Hello, World!";
 char returnChar = 'a';
-strncat(hw, &returnChar, 1);
-printf("%s \n", hw); //Hello, World!a
+strncat(hw, &returnChar, 1); //Hello, World!a
 ```
 
-### strol()
+## strol()
 
 Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Example.md``
 
-### atoi()
+## atoi()
 
 Include in library **stdlib.h**.
 
@@ -105,15 +101,15 @@ Converts the string argument **str** to an integer (type int).  If no valid conv
 **E.g**
 
 ```c
-  char str[] = "C programming with GNU-GCC";
-  int a = atoi(str);
-  printf("%d \n", a); //0
+char str[] = "C programming with GNU-GCC";
+int a = atoi(str);
+printf("%d \n", a); //0
 ```   
 
 ```c
-  char str[] = "1234";
-  int a = atoi(str);
-  printf("%d \n", a); //1234
+char str[] = "1234";
+int a = atoi(str);
+printf("%d \n", a); //1234
 ```
 
 The function stops reading the input string at the first character that it cannot recognize as part of a number.
