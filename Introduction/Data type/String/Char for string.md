@@ -2,8 +2,27 @@
 
 ```c
 char *ptrString;
+
+int main(){ 
+  ptrString = "Hello, World !";
+  printf("%s \n", ptrString); //Hello, World !
+}  
+```
+
+Compile with ``G++`` gives warning:
+```
+warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+```
+
+Compile error with ``G++`` and ``GCC``:
+
+```c
+char *ptrString;
 ptrString = "Hello, World !";
-printf("%s \n", ptrString); //Hello, World !
+
+int main(){ 
+  printf("%s \n", ptrString); //Hello, World !
+}  
 ```
 
 Index handler:
