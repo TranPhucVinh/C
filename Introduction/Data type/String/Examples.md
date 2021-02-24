@@ -61,6 +61,25 @@ int main(){
 	printf("%s \n", str);
 }
 ```
+Other way by using array index
+```
+char displayString[] = "Hello";
+
+void printString(char *changedString){
+  char otherString[] = "Change string";
+  int index = 0;
+  while(index < strlen(changedString)){
+    changedString[index] =   otherString[index];
+    index++;
+  }
+}
+
+int main(){
+	printf("%s \n", displayString); //Hello
+	printString(displayString);
+	printf("%s \n", displayString); //Chang
+}
+```
 
 **Example 2**: Split a string by sub string
 
