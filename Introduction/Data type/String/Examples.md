@@ -62,7 +62,7 @@ int main(){
 }
 ```
 Other way by using array index
-```
+```c
 char displayString[] = "Hello";
 
 void printString(char *changedString){
