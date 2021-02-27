@@ -1,7 +1,7 @@
 **Example 1.0**: Delete garbage value of a string
 
 ```c
-uint8_t displayString[30];
+char displayString[30];
 printf("%s\n", displayString); //Print garbage value
 memset(displayString, 0, strlen(displayString));
 printf("%s\n", displayString); //Print NULl string
