@@ -80,10 +80,6 @@ int main(){
 }
 ```
 
-### sizeof()
-
-For ``sizeof()`` and way to get size of a ``char*`` string, check  ``sizeof()`` in ``Physical layer/Memory/Pointer/Introduction.md``
-
 ## Using char[]
 
 ```c
@@ -132,17 +128,31 @@ int main(){
 }
 ```
 
-### strlen()
+## Size of a string char
 
 ``size_t strlen(const char *)``: Return length of a string
 
-```c
-char stringSize[] = "Hello, World!";
-char *pointerString = "Pointer string";
+``sizeof()``: For ``sizeof()`` and way to get size of a ``char*`` string, check  ``sizeof()`` in ``Physical layer/Memory/Pointer/Introduction.md``
 
-//%ld for size_t as long unsignee int
-printf("%ld", strlen(stringSize)); //13
-printf("%ld", strlen(pointerString)); //14
+**Example**
+```c
+char string1[20];
+printf("%d\n", strlen(string1)); //3
+printf("%d\n", sizeof(string1)); //20
+char string2[] = "Hello, World !";//14 characters
+printf("%d\n", strlen(string2)); //14
+printf("%d\n", sizeof(string2)); //15
+char *string3;
+printf("%d\n", sizeof(string3));//8
+char *string4 = "Hello, World !";
+printf("%d\n", strlen(string4));//14
+printf("%d\n", sizeof(string4));//8
+```
+
+This will result in core dumped error:
+```c
+char *string3;
+printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
 ```
 
 ### Overflow string char buffer
