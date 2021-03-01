@@ -115,7 +115,7 @@ int main(int argc, char *argv[])  {
     printf("Total argument: %d", argc);
 }
 ```
-**Input** ``./a.out Hello``
+**Input**: ``./a.out Hello``
 
 **Output**
 
@@ -126,6 +126,18 @@ Total argument: 2
 ```
 
 **Example**: ``Rectangle calculation`` in ``Example projects\Intermediate.md``
+
+To enter a string in ``*argv[]``, use ``\``:
+
+**Input**: ``./a.out Hello,\ World !``
+
+**Output**
+
+```
+argv[0]: ./a.out 
+argv[1]: Hello, World !
+Total argument: 2
+```
 
 ### Variable Arguments
 
