@@ -106,28 +106,7 @@ int main(int argc, const char *argv[]) {
 
 **Result**: ``Heo, World!``
 
-**Example 3**: Remove the first character from a string
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-char telegramReturn[] = ",\"chat\":{\"id\":-1001452272470,\"title\":\"TMA lab 6 SW\",\"type\":\"supergroup\"";
-
-void firstCharRemove(char stringChar[500]);
-
-int main(){
-	firstCharRemove(telegramReturn);
-	printf("%s", telegramReturn);
-}
-
-void firstCharRemove(char stringChar[500]){
-    //remove character ","
-	if (stringChar[0] == ',') memmove(stringChar, stringChar+1, strlen(stringChar));
-}
-```
-
-**Example 4**: Split number and character from a string with ``strtol()``
+**Example 3**: Split number and character from a string with ``strtol()``
 
 ```c
 #include <stdio.h>
@@ -173,6 +152,16 @@ int main(int argc, char *argv[]) {
     return(0);
 }
 ```
+**Input** ``./a.out 123abc``
+
+**Output**
+
+```
+The number (unsigned long integer) is 123
+String part is: abc
+ptr null
+```
+
 **Input** ``./a.out 123``
 
 **Output**

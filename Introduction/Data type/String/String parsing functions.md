@@ -87,6 +87,10 @@ strncat(hw, &returnChar, 1); //Hello, World!a
 
 ## strol()
 
+```c
+long int strtol(const char *str, char **endptr, int base)
+```
+
 Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Example.md``
 
 ## atoi()
