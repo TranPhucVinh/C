@@ -52,10 +52,10 @@ Set all value to 0 in array: ``bzero(hello, sizeof(hello))``
 #include <string.h>
 
 int main() {
-    char displayString[] = "a character";
-	printf("before: %s \n", displayString);
-    bzero(displayString, 1);
-    printf("after: %s \n", displayString);
+    char displayedString[] = "a character";
+	printf("before: %s \n", displayedString);
+    bzero(displayedString, 1);
+    printf("after: %s \n", displayedString);
     return 0;
 }
 ```

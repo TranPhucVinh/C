@@ -5,13 +5,13 @@
 
 int main() 
 { 
-   char displayString[80], enteredChar;
+   char displayedString[80], enteredChar;
       
-   scanf("%s", displayString); 
+   scanf("%s", displayedString); 
       
    enteredChar = getchar(); 
       
-   printf("%s\n", displayString);       
+   printf("%s\n", displayedString);       
    printf("%c\n", enteredChar); 
       
    return 0; 
@@ -34,7 +34,7 @@ a
 This will reads the buffer characters till the end and discards them(including newline) and using it after the ``scanf()`` statement clears the input buffer and allows the input in the desired container.
 
 ```c
-scanf("%s", displayString); 
+scanf("%s", displayedString); 
 while ((getchar()) != '\n');
 enteredChar = getchar(); 
 ```
@@ -42,14 +42,14 @@ enteredChar = getchar();
 **Other example**: Enter 2 strings with ``scanf()`` and ``fgets()``
 
 ```c
-char displayString1[80], displayString2[80];
+char displayedString1[80], displayedString2[80];
 
-scanf("%s", displayString1);
+scanf("%s", displayedString1);
 while ((getchar()) != '\n'); //Must have this line
-fgets(displayString2, 80, stdin);    
+fgets(displayedString2, 80, stdin);    
    
-printf("%s\n", displayString1); 
-printf("%s", displayString2); 
+printf("%s\n", displayedString1); 
+printf("%s", displayedString2); 
 ```
 
 ### The problem doesn't happen with fgets()
@@ -57,11 +57,11 @@ printf("%s", displayString2);
 If putting ``fgets()`` before ``scanf()``, ``getchar()``,... nothing will happen.
 
 ```c
-char displayString[80], enteredChar;
-fgets(displayString, 80, stdin); 
+char displayedString[80], enteredChar;
+fgets(displayedString, 80, stdin); 
 
 enteredChar = getchar(); 
-printf("%s", displayString); 
+printf("%s", displayedString); 
 printf("%c \n", enteredChar);
 ```
 

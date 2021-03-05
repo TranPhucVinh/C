@@ -158,8 +158,8 @@ printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
 ### Overflow string char buffer
 
 ```c
-char displayString[1];
-strcpy(displayString,"Hello, World!!");
+char displayedString[1];
+strcpy(displayedString,"Hello, World!!");
 ```
 
 **Error**:

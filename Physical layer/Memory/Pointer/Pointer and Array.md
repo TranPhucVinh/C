@@ -32,10 +32,10 @@ int main(){
 The same result for string char
 
 ```c
-char displayString[] = "Hello, World!";
+char displayedString[] = "Hello, World!";
 
-printf("%p\n", displayString); //0x7fff8ab00140
-printf("%p\n", &displayString);//0x7fff8ab00140
+printf("%p\n", displayedString); //0x7fff8ab00140
+printf("%p\n", &displayedString);//0x7fff8ab00140
 ```
 
 ### Example 2

@@ -1,10 +1,10 @@
 **Example 1.0**: Delete garbage value of a string
 
 ```c
-char displayString[30];
-printf("%s\n", displayString); //Print garbage value
-memset(displayString, 0, strlen(displayString));
-printf("%s\n", displayString); //Print NULl string
+char displayedString[30];
+printf("%s\n", displayedString); //Print garbage value
+memset(displayedString, 0, strlen(displayedString));
+printf("%s\n", displayedString); //Print NULl string
 ```
 
 **Example 1.1**: Delete a specific character from a string
@@ -63,7 +63,7 @@ int main(){
 ```
 Other way by using array index
 ```c
-char displayString[] = "Hello";
+char displayedString[] = "Hello";
 
 void printString(char *changedString){
   char otherString[] = "Change string";
@@ -75,9 +75,9 @@ void printString(char *changedString){
 }
 
 int main(){
-	printf("%s \n", displayString); //Hello
-	printString(displayString);
-	printf("%s \n", displayString); //Chang
+	printf("%s \n", displayedString); //Hello
+	printString(displayedString);
+	printf("%s \n", displayedString); //Chang
 }
 ```
 

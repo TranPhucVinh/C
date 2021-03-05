@@ -35,15 +35,15 @@ collect2: error: ld returned 1 exit status
 ```c
 #include <stdio.h>
 
-extern char displayString1[], displayString2[];
+extern char displayedString1[], displayedString2[];
 ```
 
 ``head.c``
 ```c
 #include "head.h"
 
-char displayString1[] = "Hello, World String 1";
-char displayString2[] = "Hello, World String 2";
+char displayedString1[] = "Hello, World String 1";
+char displayedString2[] = "Hello, World String 2";
 ```
 
 ``main.c``
@@ -51,7 +51,7 @@ char displayString2[] = "Hello, World String 2";
 #include "head.h"
 
 int main(){
-	puts(displayString1);
-	puts(displayString2);
+	puts(displayedString1);
+	puts(displayedString2);
 }
 ```
