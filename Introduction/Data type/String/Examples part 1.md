@@ -1,3 +1,5 @@
+### Example 1
+
 **Example 1.0**: Delete garbage value of a string
 
 ```c
@@ -39,47 +41,79 @@ main() {
 Before parse: Hello, World 
 After parse: Heo, Word 
 ```
-**Example 1.2**: Change value of a string by function using pointer
+### Example 2
+
+Change value of a string by function using pointer
+
+**Using strcpy()**
 
 ```c
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 
-uint8_t str[] = "Hello";
+char displayedString[] = "Hello";
 
-void printString(uint8_t *hw){
-	strcpy(hw, "Test");
+void changeString(uint8_t *stringParameter){
+	strcpy(stringParameter, "Test");
 
 	// hw = "Test"; 
 	// This won't work as the address of hw is different from str
 }
 
 int main(){
-	printf("%s \n", str);
-	printString(str);
-	printf("%s \n", str);
+	printf("%s \n", displayedString);
+	changeString(displayedString);
+	printf("%s \n", displayedString);
 }
 ```
-Other way by using array index
+**Using array index**
 ```c
 char displayedString[] = "Hello";
 
-void printString(char *changedString){
+void changeString(char *stringParameter){
   char otherString[] = "Change string";
   int index = 0;
-  while(index < strlen(changedString)){
-    changedString[index] =   otherString[index];
+  while(index < strlen(stringParameter)){
+    stringParameter[index] =   otherString[index];
     index++;
   }
 }
 
 int main(){
 	printf("%s \n", displayedString); //Hello
-	printString(displayedString);
+	changeString(displayedString);
 	printf("%s \n", displayedString); //Chang
 }
 ```
+
+**Notice 1**: If declare
+
+```c
+char *displayedString = "Hello";
+```
+
+Then the ``changeString()`` function in 2 ways doesn't work and results in ``Segmentation fault (core dumped)``.
+
+See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for the examples in Arduino framework.
+
+**Notice 2**:
+
+Passing the string to ``changeString()`` results in Segmentation fault
+
+```c
+void changeString(char *stringParameter){
+	printf("%s \n", stringParameter);// Hello, World !
+	strcpy(stringParameter, "Test");
+	printf("%s \n", stringParameter);//Segmentation fault (core dumped)
+}
+
+int main(){
+	changeString("Hello, World !");
+}
+```
+
+See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for the examples in Arduino framework.
 
 **Example 2**: Split a string by sub string
 
