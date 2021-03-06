@@ -57,8 +57,8 @@ char displayedString[] = "Hello";
 void changeString(uint8_t *stringParameter){
 	strcpy(stringParameter, "Test");
 
-	// hw = "Test"; 
-	// This won't work as the address of hw is different from str
+	// stringParameter = "Test"; 
+	// This won't work as the address of stringParameter is different from displayedString
 }
 
 int main(){
