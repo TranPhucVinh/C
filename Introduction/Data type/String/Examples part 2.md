@@ -19,7 +19,59 @@ void firstCharRemove(char stringChar[500]){
 }
 ```
 
-**Example 2**: Remove a specific index character from executed argument
+### Example 2
+
+Remove a specific index character from a string
+
+**Example 2.1**: Remove a specific index character from a string
+
+```c
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+
+char modifiedString[] = "Hello, World !";
+
+void splitStringByIndex(int index, char* string);
+
+int main(){
+	splitStringByIndex(1, modifiedString);//Hllo, World !
+	splitStringByIndex(1, modifiedString);//Hlo, World !
+	splitStringByIndex(1, modifiedString);//Hlo, World !
+}
+
+void splitStringByIndex(int index, char* string){
+	int i = index;
+
+	while(i <= strlen(string)){
+		string[i] = string[i+1];
+		i++;
+	}
+	printf("%s\n", string);
+}
+```
+**Notice 1**: 
+
+Calling ``splitStringByIndex(1, "Hello, World !")`` results in ``Segmentation fault (core dumped)``
+
+See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for passing a pure string to function ``splitStringByIndex()`` in Arduino framework.
+
+
+**Notice 2**
+
+If declare:
+
+```c
+char* modifiedString = "Hello, World !";
+
+splitStringByIndex(1, modifiedString);
+```
+
+This will result in ``Segmentation fault (core dumped)``.
+
+See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for declaring with a string pointer in Arduino framework.
+
+**Example 2.2**: Remove a specific index character from executed argument
 
 * argv[1]: Index to remove character
 * argv[2]: String to process
