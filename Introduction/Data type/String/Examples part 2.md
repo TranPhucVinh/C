@@ -50,6 +50,24 @@ void splitStringByIndex(int index, char* string){
 	printf("%s\n", string);
 }
 ```
+
+To avoid changing the same string every time calling the function:
+
+```c
+void splitStringByIndex(int index, char* string){
+	char newString[100]; //Can't declare: char *newString for later strcpy() function
+	strcpy(newString, string);
+
+	int i = index;
+
+	while(i <= strlen(newString)){
+		newString[i] = newString[i+1];
+		i++;
+	}
+	printf("%s\n", newString);
+}
+```
+
 **Notice 1**: 
 
 Calling ``splitStringByIndex(1, "Hello, World !")`` results in ``Segmentation fault (core dumped)``
@@ -112,6 +130,17 @@ int main(int argc, char *argv[]) {
 }
 
 void splitStringByIndex(int index, char* string){
+	//Avoid changing the same string every time calling the function
+	char newString[100]; //Can't use char *newString
+	strcpy(newString, string);
+
+	int i = index;
+
+	while(i <= strlen(newString)){
+		newString[i] = newString[i+1];
+		i++;
+	}
+
 	int i = index;
 
 	while(i <= strlen(string)){
