@@ -50,6 +50,8 @@ ptrString = "Hello, World !";
 ptrString[0] = 'a'; //Segmentation fault (core dumped)
 ```
 
+See also: ``Char for string.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for the example of modifying a string by index in Arduino framework.
+
 **Error**: Error when changing the string value with both ``strcat()`` and ``strncat()``.
 
 ```c
