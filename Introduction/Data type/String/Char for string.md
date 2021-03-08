@@ -1,11 +1,11 @@
 ## Using char*
 
 ```c
-char *ptrString;
+char *displayedString;
 
 int main(){ 
-  ptrString = "Hello, World !";
-  printf("%s \n", ptrString); //Hello, World !
+  displayedString = "Hello, World !";
+  printf("%s \n", displayedString); //Hello, World !
 }  
 ```
 
@@ -17,12 +17,19 @@ warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-stri
 Compile error with ``G++`` and ``GCC``:
 
 ```c
-char *ptrString;
-ptrString = "Hello, World !";
+char *displayedString;
+displayedString = "Hello, World !";
 
 int main(){ 
-  printf("%s \n", ptrString); //Hello, World !
+  printf("%s \n", displayedString);
 }  
+```
+
+**Error**:
+
+```
+error: conflicting types for ‘displayedString’
+error: initializer element is not computable at load time
 ```
 
 Index handler:
