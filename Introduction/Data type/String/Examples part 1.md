@@ -5,7 +5,7 @@
 ```c
 char displayedString[30];
 printf("%s\n", displayedString); //Print garbage value
-memset(displayedString, 0, strlen(displayedString)-1);
+memset(displayedString, 0, sizeof(displayedString));
 printf("%s\n", displayedString); //Print NULl string
 ```
 
