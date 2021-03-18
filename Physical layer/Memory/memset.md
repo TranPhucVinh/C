@@ -1,10 +1,10 @@
-## memset()
-
 ```c
 void *memset(void *str, int c, size_t n)
 ```
 
 ``memset()`` copies the character ``c`` (unsigned char) to the first ``n`` characters of the string pointed to ``str``.
+
+``memset()`` locates in ``string.h``.
 
 ### memset() with string
 
@@ -72,21 +72,17 @@ This overflow bit will **affect other variable value in memory**.
 struct student{
 		int id;
 		char name[50];
-		char classroom[50];
 };
 
 int main() {
 	int a = 9;
-	struct student erin = { 1977, " Erin", "Free Lancer" };
-
-	printf("value &a: %p \n", &a); //value &a: 0x7fff03bba02c 
-	printf("value &erin before: %p \n", &erin); //value &erin before: 0x7fff03bba030 
+	struct student erin = {1977, " Erin"};
 
 	printf("value a before: %d \n", a); //value a before: 9 
     memset(&a, 'a', 4);
     printf("value a after: %d \n", a); //value a after: 1633771873 
 
-    printf("value erin.id before: %d \n", erin.id); //value erin.id before: 1977 
+    printf("value erin.id: %d \n", erin.id); //value erin.id: 1977 
 }
 ```
 
@@ -97,10 +93,23 @@ With ``memset(&a, 'a', 5)``, the result will be
 ```
 value a before: 9 
 value a after: 1633771873 
-value erin.id before: 1889 
+value erin.id: 1889
 ```
 
 ``erin.id`` now is effected due to the overflow value of ``memset(&a, 'a', 5)``.
+
+The same overflow issue with normally declare 2 consecutive variable:
+
+```c
+int a = 9;
+int id = 1977;
+
+printf("value a before: %d \n", a); //value a before: 9 
+memset(&a, 'a', 5);
+printf("value a after: %d \n", a); //value a after: 1633771873 
+
+printf("id: %d \n", id); //1889 
+```
 
 ### memset() problem with 4 byte number
 
