@@ -69,12 +69,12 @@ char *strcat(char *dest, const char *src);
 **Example**
 ```c
 char hw[] = "Hello, World!";
-strcat(hw, " abc"); 
+strcat(hw, " abc");//Hello, World! abc
 ```
 ```c
 char hw[] = "Hello, World!";
 char addedChar[] = "abc";
-strcat(hw, addedChar); 
+strcat(hw, addedChar);//Hello, World! abc
 ```
 
 To append a string with a char, add ``&``
