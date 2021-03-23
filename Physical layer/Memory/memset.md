@@ -39,7 +39,7 @@ So ``memset(&a, 'a', 2)``: will give the result: ``value a after: 24929``.
 
 Explain:
 
-``24929 = 110000101100001 = 01100001 + 01100001 = 'a' + 'a'``
+``24929 = 0110 0001 0110 0001``
 
 ### Overflow memset()
 
@@ -54,7 +54,7 @@ value a before: 9
 value a after: 1633771873 
 ```
 
-``1633771873 = 1100001 01100001 01100001 01100001`` (**16 bit-4 byte**)
+``1633771873 = 0110 0001 0110 0001 0110 0001 0110 0001`` (**16 bit-4 byte**)
 
 **4 byte** is the maximum value that an integer number can store.
 

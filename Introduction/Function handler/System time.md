@@ -41,3 +41,23 @@ int main(){
 	}
 } 
 ```
+
+An inefficient to delay 1 second as its delay time varies in vavrious processing core:
+
+```c
+void delayOneSecond();  
+
+int main(){ 
+    while (1){
+      printf("Hello, World \n");
+      delayOneSecond();
+	}
+} 
+
+void delayOneSecond(){
+  int c, d;
+  for (c = 1; c <= 32767; c++){
+    for (d = 1; d <= 32767; d++){};
+  }
+}
+```
