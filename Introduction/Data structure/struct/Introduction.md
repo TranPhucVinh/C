@@ -14,6 +14,13 @@ main(){
 }
 ```
 
+Can define value like this way:
+```c
+struct databaseNode databaseNode0 = {
+    .id = 1,
+    .stringValue = "String value"
+  };
+```
 ### Object from struct
 
 Set up value for struct's member
