@@ -1,4 +1,6 @@
-### condition with int number
+``for(;;)`` is equal to ``while(1)``.
+
+### Condition with int number
 
 ```c
 int main(){
