@@ -5,7 +5,7 @@
 ```c
 #include <stdio.h>
 
-void helloworld(){
+void displayString(){
 	printf("Hello World \n");
 }
 
@@ -18,7 +18,7 @@ int value = 6;
 #include "head.h"
 
 int main(){
-	helloworld(); //Hello World
+	displayString(); //Hello World
 	printf("%d \n", value); //6
 }
 ```
@@ -30,7 +30,7 @@ int main(){
 ```cpp
 #include <stdio.h>
 
-void helloworld();
+void displayString();
 ```
 
 ``head.c``
@@ -38,7 +38,7 @@ void helloworld();
 ```cpp
 #include "head.h"
 
-void helloworld(){
+void displayString(){
     printf("Hello World \n");
 }
 ```
@@ -49,6 +49,6 @@ void helloworld(){
 #include "head.h"
 
 int main(){
-	helloworld(); //Hello World
+	displayString(); //Hello World
 }
 ```
