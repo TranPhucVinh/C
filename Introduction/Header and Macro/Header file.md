@@ -23,7 +23,7 @@ int main(){
 }
 ```
 
-**Define function, variable in ``.c`` file.**
+**Define function in ``.c`` file.**
 
 ``head.h``
 
@@ -52,3 +52,5 @@ int main(){
 	displayString(); //Hello World
 }
 ```
+
+For variables defined in header file, check the related ``extern`` document.
