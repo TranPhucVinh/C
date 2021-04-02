@@ -6,17 +6,17 @@ Open file to read, write, append,...
 FILE *fopen(const char *filename, const char *mode)
 ```
 
-**Usage**
+**Example**
 
 ```c
 FILE *fptr; //file pointer
-file = fopen("text.md", "<mode>");
+file = fopen("text.md", "r"); //Open text.md to read
 ```
 
 **Mode**:
 
 * r: read
-* w: write
+* w: write, create the file if not existed
 * a: append
 * r+: open a file to write and read, file must existed
 * w+: open an empty file to write and read
