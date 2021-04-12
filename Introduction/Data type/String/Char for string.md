@@ -9,12 +9,12 @@ int main(){
 }  
 ```
 
-Compile with ``G++`` gives warning:
+This program compiles normally with ``GCC``.
+
+Compiling with ``G++`` gives warning:
 ```
 warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
 ```
-
-Compile error with ``G++`` and ``GCC``:
 
 ```c
 char *displayedString;
@@ -24,6 +24,8 @@ int main(){
   printf("%s \n", displayedString);
 }  
 ```
+
+Compile error with ``G++`` and ``GCC``:
 
 **Error**:
 
@@ -43,10 +45,10 @@ printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H
 ```c
 char *ptrString;
 ptrString = "Hello, World !";
-printf("%s \n", ptrString); 
+printf("%s \n", ptrString);  //Hello, World ! 
 
 ptrString = "Change number";
-printf("%s \n", ptrString); 
+printf("%s \n", ptrString);  //Change number
 ```
 
 We cannot modify the string at later stage in program:

@@ -6,7 +6,7 @@ In library ``stdlib.h``
 void *malloc(size_t size)
 ```
 
-``malloc()`` returns a pointer to the allocated memory. The value is store in **Heap memory**.
+``malloc()`` returns a pointer to the allocated memory. The value is stored in **Heap memory**.
 
 **String**
 
