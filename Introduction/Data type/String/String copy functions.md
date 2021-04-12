@@ -41,6 +41,11 @@ int main() {
 
 ### strcpy()
 
+```c
+char* strcpy(char* destination, const char* source);
+```
+``strcpy()`` returns the copied string.
+
 ```cpp
 #include <stdio.h>
 #include <string.h>

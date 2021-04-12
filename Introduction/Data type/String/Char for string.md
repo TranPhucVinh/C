@@ -34,7 +34,17 @@ error: conflicting types for ‘displayedString’
 error: initializer element is not computable at load time
 ```
 
-Index handler:
+### Error with strcpy()
+
+```c
+char *displayedString;
+strcpy(displayedString,  "Hello, World !");
+```
+**Error**: ``Segmentation fault (core dumped)``
+
+**Problem solved**: Check: ``Physical layer/Memory/Dynamic memory allocation.md``
+
+### Index handler
 
 ```c
 printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H 
