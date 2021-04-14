@@ -97,3 +97,25 @@ int main()
 Member databaseNode0 has id 1
 ID of databaseNode0 from linkedDatabaseNode is 2, and the displayed string: Displayed string
 ```
+
+### struct function
+
+```c
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+struct databaseNode displayString();
+
+main(){
+   displayString();
+}
+
+struct databaseNode displayString(){
+   struct databaseNode node0;
+
+   printf("Hello, World !\n");
+   return node0;
+}
+```
