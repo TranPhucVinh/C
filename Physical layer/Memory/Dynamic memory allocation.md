@@ -36,6 +36,23 @@ intPointer = (int *) malloc(1);
 printf("Int value: %d", *intPointer); //12
 ```
 
+**Example**: Create an int array with dynamic memory
+
+```c
+#define arraySize 3
+
+int main(){
+   int* intArray = (int*) malloc (arraySize * sizeof(int));
+
+   for (int i = 0; i < arraySize; i++){
+      intArray[i] = i;
+   }
+   for (int i = 0; i < arraySize; i++){
+      printf("intArray[%d]: %d\n", i, intArray[i]);
+   }
+}
+```
+
 ### Trying to overflow buffer with malloc
 
 ```c
@@ -76,7 +93,7 @@ void *realloc(void *ptr, size_t size);
 
 ```c
 int* intPointer = (int*) malloc (5 * sizeof(int));
-intPointer = ... //A 20 bytes memory block is dynamically allocated to intPointer
+intPointer = ... //A 20 bytes memory block is dynamically allocated to intPointer as an array
 intPointer = realloc(intPointer, 10*sizeof(int));
 intPointer = ... //The size of intPointer is changed from 20 bytes to 40 bytes dynamically
 ```
