@@ -54,7 +54,7 @@ Change value of a string by function using pointer
 
 char displayedString[] = "Hello";
 
-void changeString(uint8_t *stringParameter){
+void changeString(char *stringParameter){
 	strcpy(stringParameter, "Test");
 
 	// stringParameter = "Test"; 
@@ -62,7 +62,23 @@ void changeString(uint8_t *stringParameter){
 }
 
 int main(){
-	printf("%s \n", displayedString);
+	printf("%s \n", displayedString); //Hello
+	changeString(displayedString);
+	printf("%s \n", displayedString); //Test
+}
+```
+Change value a dynamic memory string:
+```c		
+#define bufferSize 100
+
+char *displayedString;
+
+void changeString(char *stringParameter){
+	strcpy(stringParameter, "Test");
+}
+
+int main(){
+	displayedString = (char*) malloc (bufferSize * sizeof(char));
 	changeString(displayedString);
 	printf("%s \n", displayedString);
 }
