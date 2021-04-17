@@ -7,7 +7,7 @@ char ch_arr[3][10] = {"string 1", "string 2", "string 3"};
 
 main() {
 	for (int i=0; i < 3; i++){
-		printf("char[%i]: %s \n", i, ch_arr[i]);
+		printf("ch_arr[%i]: %s \n", i, ch_arr[i]);
 	}
 }
 ```
@@ -15,7 +15,13 @@ main() {
 Index of the string can be handled by this way:
 
 ```c
-printf("char[%i][10]: %s \n", i, ch_arr + i);
+printf("ch_arr[%i]: %s \n", i, ch_arr + i);
+```
+
+To get a character inside the string: 
+
+```c
+printf("ch_arr[0][1]: %c \n", ch_arr[0][1]); //t
 ```
 
 **Example 2**: Set and read value from a string array
