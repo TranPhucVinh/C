@@ -68,7 +68,7 @@ Segmentation fault (core dumped)
 
 ### Multi-dimension array
 
-**Example 1**
+**Example 1**:
 
 ```c
 int a[3][4] = {  
@@ -80,28 +80,4 @@ int a[3][4] = {
 printf("%d: ", a[2][3]); //11
 ```
 
-**Example 2**: Multiple string with 2-dimension array
-
-```cpp
-#include <stdio.h>
-
-char ch_arr[3][10] = {
-                         "spike",
-                         "tom",
-                         "jerry"
-                     };
-
-main() {
-	for (int i=0; i < 3; i++){
-		printf("string: %s \n", ch_arr + i);
-	}
-}
-```
-
-**Output**
-
-```
-string: spike 
-string: tom 
-string: jerry 
-```
+**String array**: Check ``String array.md``
