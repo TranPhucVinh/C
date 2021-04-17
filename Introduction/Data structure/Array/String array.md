@@ -7,7 +7,7 @@ char ch_arr[3][10] = {"string 1", "string 2", "string 3"};
 
 main() {
 	for (int i=0; i < 3; i++){
-		printf("char[%i][10]: %s \n", i, ch_arr[i]);
+		printf("char[%i]: %s \n", i, ch_arr[i]);
 	}
 }
 ```
@@ -33,7 +33,7 @@ main() {
       strcpy(ch_arr[i], "Hello, World !");
    }
 	for (int i=0; i < MEMBER; i++){
-		printf("char[%i][10]: %s \n", i, ch_arr[i]);
+		printf("char[%i]: %s \n", i, ch_arr[i]);
 	}
 }
 ```
@@ -47,7 +47,7 @@ main() {
 The result will be: (overflow)
 
 ```
-char[0][10]: Hello, WorHello, WorHello, World ! 
-char[1][10]: Hello, WorHello, World ! 
-char[2][10]: Hello, World ! 
+char[0]: Hello, WorHello, WorHello, World ! 
+char[1]: Hello, WorHello, World ! 
+char[2]: Hello, World ! 
 ```
