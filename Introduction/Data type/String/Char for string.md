@@ -133,6 +133,24 @@ Get address of pointer char
 printf("returnChar: %p \n", returnChar); //Address of returnChar is : 0x62FE30
 ```
 
+Call a function that returns a string in ``strcpy()``
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+char getStringReturned[50];
+
+char *returnString(){
+  return "Hello, World !";
+}
+
+int main(){
+  strcpy(getStringReturned, returnString());
+	printf("%s ", getStringReturned);
+}
+```
+
 ### String as argument in function
 
 ```c
