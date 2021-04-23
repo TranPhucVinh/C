@@ -42,6 +42,8 @@ strcpy(displayedString,  "Hello, World !");
 ```
 **Error**: ``Segmentation fault (core dumped)``
 
+The same problem will happen to similar functions like ``sprintf()``, ``strncpy()``.
+
 **Problem solved**: Check: ``Physical layer/Memory/Dynamic memory allocation.md``
 
 ### Index handler
