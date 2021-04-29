@@ -14,7 +14,7 @@
 
 With Microsoft C++ 32-bit and 64-bit compilers, int has the range -2,147,483,648 to 2,147,483,647.
 
-The default ``char`` type is ``signed char``. If compile by ``MSVC`` with ``/J`` option, ``char`` will switch to ``unsigned char``.
+In ``GCC`` and ``G++``, the default ``char`` type is ``signed char``. If compile by ``MSVC`` with ``/J`` option, ``char`` will switch to ``unsigned char``.
 
 ### const
 
