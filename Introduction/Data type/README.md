@@ -16,13 +16,6 @@ With Microsoft C++ 32-bit and 64-bit compilers, int has the range -2,147,483,648
 
 The default ``char`` type is ``signed char``. If compile by ``MSVC`` with ``/J`` option, ``char`` will switch to ``unsigned char``.
 
-## Compare
-
-| C | JavaScript|
-| ------- |:------:|
-|int a = 8; | var a = 8;|
-| printf("%d ",a)    | console.log(a)    |
-
 ### const
 
 ``const`` is used to define constant variable and can't be changed
