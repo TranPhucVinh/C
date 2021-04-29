@@ -93,6 +93,26 @@ long int strtol(const char *str, char **endptr, int base)
 
 Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Examples.md``
 
+### strtoul()
+
+Convert a string to unsigned long
+
+```c
+unsigned long int strtoul (const char *__restrict __nptr, char **__restrict __endptr, int __base)
+```
+**Example**
+```c
+strtoul("12asdas", NULL, 10);   //12
+strtoul("Hello", NULL, 10);     //0
+```
+Problem with ``char`` number
+```c
+char number = strtoul("127", NULL, 10);   //127
+char number = strtoul("128", NULL, 10);   //-128
+```
+
+**Explain**: As char is defined as signed char by default (1 byte of char includes 1 sign bit and 6 bits for storing number), so 128 has overflow 7 bit data, so it returns the signed number.
+
 ## atoi()
 
 Include in library **stdlib.h**.
