@@ -1,8 +1,15 @@
 ### char variable
 
+Convert character to ASCII value: ``printf("b: %d \n", '6')``: ``b: 54``
+
 ```c
 char c = 'a';  
 printf("Character: %c ", c); //Character: a
+```
+
+```c
+char c ='ab';
+printf("Character %c ", c); //b (Only the last character is returned)
 ```
 
 ```c
@@ -16,11 +23,11 @@ printf("Character: %c ", c); //Character: 0
 ```
 
 ```c
-char c ='ab';
-printf("Character %c ", c); //b (Only the last character is returned)
+char number = 128;
+printf("number: %d ", number); //-128
 ```
 
-Convert character to ASCII value: ``printf("b: %d \n", '6')``: ``b: 54``
+**Explain**: As char is defined as signed char by default (1 byte of char includes 1 sign bit and 6 bits for storing number), so 128 has overflow 7 bit data, so it returns the signed number.
 
 ### unsigned char
 
@@ -28,10 +35,8 @@ Convert character to ASCII value: ``printf("b: %d \n", '6')``: ``b: 54``
 
 ```c
 unsigned char binVal0 = -3;
-printf("%d \n", binVal0);
+printf("%d \n", binVal0); //253 (1111 1101)
 ```
-
-``253`` (1111 1101)
 
 **Signed number** is operated by two's implement (bitwise then OR with bit 1).
 

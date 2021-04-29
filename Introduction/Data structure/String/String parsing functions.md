@@ -111,7 +111,7 @@ char number = strtoul("127", NULL, 10);   //127
 char number = strtoul("128", NULL, 10);   //-128
 ```
 
-**Explain**: As char is defined as signed char by default (1 byte of char includes 1 sign bit and 6 bits for storing number), so 128 has overflow 7 bit data, so it returns the signed number.
+**Explain**: This happens as char is defined as signed char by default. 
 
 ## atoi()
 
