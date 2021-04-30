@@ -2,7 +2,7 @@
 
 Unlike arrays, linked list elements are not stored at a contiguous location; the elements are linked using pointers.
 
-### Type of basiclinked list data structure
+### Type of basic linked list data structure
 
 * Singly linked list
 * Doubly linked list
