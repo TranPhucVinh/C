@@ -70,29 +70,6 @@ int main () {
 returnNumber: 5
 ```
 
-### Function overloading
-
-C doesn't support function overloading as it is not an OOP language
-
-This will give error
-
-```c
-int number(int a){
-	return a;
-}
-
-int number(int a, int b){
-	return a+b;
-}
-
-int main(){
-    number(1);
-    number(1, 2);
-}
-```
-
-For function overloading information, check ``Function.md`` in ``Cplusplus\Introduction\OOP``.
-
 ### Command line arguments with main()
 
 ```c
