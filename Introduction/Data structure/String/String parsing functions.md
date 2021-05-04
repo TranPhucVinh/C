@@ -10,9 +10,7 @@ A sequence of calls to this function split ``str`` into tokens, which are sequen
 
 **In subsequent calls**, the function expects a null pointer and uses the position right after the end of the last token as the new starting location for scanning.
 
-**Example**
-
-Split string ``This is Hello, World string`` by space
+**Example 1**: Split string ``This is Hello, World string`` by space
 
 ```cpp
 #include <stdio.h>
@@ -41,6 +39,17 @@ is
 Hello,
 World
 string
+```
+**Example 2**: Split string ``Hello,{World!}`` by ``{``.
+
+```c
+char rawString[] = "Hello,{World!}";
+char *splitString;
+
+splitString = strtok(rawString,"{");
+printf("%s\n", splitString);
+splitString = strtok (NULL, "");
+printf("%s\n", splitString);
 ```
 
 ## Append string
