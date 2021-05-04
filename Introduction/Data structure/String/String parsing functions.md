@@ -47,9 +47,9 @@ char rawString[] = "Hello,{World!}";
 char *splitString;
 
 splitString = strtok(rawString,"{");
-printf("%s\n", splitString);
+printf("%s\n", splitString);//Hello,
 splitString = strtok (NULL, "");
-printf("%s\n", splitString);
+printf("%s\n", splitString);//World!}
 ```
 
 ## Append string
