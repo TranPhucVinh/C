@@ -25,6 +25,8 @@ int main () {
 }   
 ```
 
+Size of the variable allocated by malloc can't be get as there is no portable way to find out the size of a malloc'ed block.
+
 **Int**
 
 ```c
