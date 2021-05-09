@@ -103,6 +103,15 @@ int main(){
 }
 ```
 
+To return a char array or an array in general in a function, use ``static``:
+
+```c
+char *returnString(){
+	static char string[14];
+	strcpy(string, "Hello, World !");
+	return string;
+}
+```
 ## Using char[]
 
 ```c
