@@ -51,11 +51,22 @@ char* strcpy(char* destination, const char* source);
 #include <string.h>
 
 int main () {
-  char dest[20];
-  strcpy(dest,"Hello, World!!");
-  printf("dest: %s\n", dest); //dest: Hello, World!!
+  char string[20];
+  strcpy(string,"Hello, World!!");
+  printf("string: %s\n", string); //string: Hello, World!!
   return(0);
 }
+```
+**Note**: ``char* destination`` must have the size at least equal to the size of ``const char* source``. If ``char* destination`` has smaller size, there might be problem in the next operation of the program
+
+**Example**
+
+```c
+char string1[3], string2[3];
+strcpy(string1, "Hello, World !");
+strcpy(string2, "Hello, World !");
+printf("%s\n", string1);//HelHello, World !
+printf("%s\n", string2);//Hello, World !
 ```
 
 ### strncpy() 
