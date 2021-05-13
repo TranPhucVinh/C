@@ -1,4 +1,4 @@
-## Using char*
+### Define
 
 ```c
 char *displayedString;
@@ -32,6 +32,23 @@ Compile error with ``G++`` and ``GCC``:
 ```
 error: conflicting types for ‘displayedString’
 error: initializer element is not computable at load time
+```
+
+**Other way to define**
+
+```c
+#include <stdio.h>
+
+#define HOST "example.com"
+#define PORT "80"
+#define PATH "/"
+
+char *REQUEST = "GET " PATH " HTTP/1.0\r\n"
+    "Host: "HOST":"PORT"\r\n"
+    "User-Agent: esp-idf/1.0 esp32\r\n"
+    "\r\n";
+
+printf("string: %s", REQUEST);
 ```
 
 ### Error with strcpy()
@@ -102,112 +119,3 @@ int main(){
 	printf("%s ", returnString());
 }
 ```
-
-## Using char[]
-
-```c
-char hw[] = "Hello, World!";
-printf("%s \n", hw); //Hello, World! 
-```
-
-Index handler
-
-```c
-char helloWorld[] = "Hello world 10 times";
-printf("%s \n",helloWorld+3); //lo world 10 times
-printf("%c \n", helloWorld[3]); //l
-```
-
-Change value
-
-```c
-char hw[] = "Hello, World!";
-printf("%s \n", hw); //Hello, World! 
-hw[0] = 'a';
-printf("%s \n", hw); //aello, World! 
-```
-
-Get address of pointer char
-
-```c
-printf("returnChar: %p \n", returnChar); //Address of returnChar is : 0x62FE30
-```
-
-Call a function that returns a string in ``strcpy()``
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-char getStringReturned[50];
-
-char *returnString(){
-  return "Hello, World !";
-}
-
-int main(){
-  strcpy(getStringReturned, returnString());
-	printf("%s ", getStringReturned);
-}
-```
-
-### String as argument in function
-
-```c
-void printString(char hw[]){
-	printf("%s ", hw);
-}
-
-void printStringPointer(char *hw){
-	printf("%s ", hw);
-}
-
-int main(){
-	char str1[] = "Hello, World \n";
-	printString(str1); //Hello, World
-	printStringPointer(str1); //Hello, World
-}
-```
-
-## Size of a string char
-
-``size_t strlen(const char *)``: Return length of a string
-
-``sizeof()``: For ``sizeof()`` and way to get size of a ``char*`` string, check  ``sizeof()`` in ``Physical layer/Memory/Pointer/Introduction.md``
-
-**Example**
-```c
-char string1[20];
-printf("%d\n", strlen(string1)); //3
-printf("%d\n", sizeof(string1)); //20
-char string2[] = "Hello, World !";//14 characters
-printf("%d\n", strlen(string2)); //14
-printf("%d\n", sizeof(string2)); //15
-char *string3;
-printf("%d\n", sizeof(string3));//8
-char *string4 = "Hello, World !";
-printf("%d\n", strlen(string4));//14
-printf("%d\n", sizeof(string4));//8
-```
-
-This will result in core dumped error:
-```c
-char *string3;
-printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
-```
-
-### Overflow string char buffer
-
-```c
-char displayedString[1];
-strcpy(displayedString,"Hello, World!!");
-```
-
-**Error**:
-
-```
-*** stack smashing detected ***: ./a.out terminated
-Aborted (core dumped)
-```
-
-To fix overflow issue, using Heap memory with malloc. Check: ``Physical layer/Memory/Dynamic memory allocation.md``
