@@ -5,11 +5,12 @@
 #include <unistd.h>         /* for close() */
 #include <sys/types.h> 
 #include <netinet/in.h>
+
 #define MAXPENDING 5
 #define BUFFSIZE 256
-#define PORT 8888
+#define PORT 8000
 
-int server_fd, client_fd, n;
+int server_fd, client_fd;
 socklen_t clntLen;
 char buffer[BUFFSIZE];
 struct sockaddr_in serv_addr, cli_addr;
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]){
     if (bind(server_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
         error("ERROR on binding");
 
-    // thiet lap che do cho ket noi cho socket server
+    // Set up connection mode for socket server
     if (listen(server_fd, MAXPENDING) < 0)
         error("ERROR on binding");
 
@@ -44,15 +45,15 @@ int main(int argc, char *argv[]){
     // wait for client to connect, return new socket with client
     if ((client_fd = accept(server_fd, (struct sockaddr *) &cli_addr, &clntLen)) < 0){
         error("accept() failed");
-    } else printf("New client connected");
+    } else printf("New client connected\n");
 
     //Delete buffer
     bzero(buffer, BUFFSIZE);
 
     //Client handler
     while(1){
-        n = recv(client_fd, buffer, BUFFSIZE, 0);
-        printf("%s", buffer);
+        recv(client_fd, buffer, BUFFSIZE, 0);
+        printf("Received message: %s", buffer);
 
         bzero(buffer, BUFFSIZE);         //Delete buffer
         

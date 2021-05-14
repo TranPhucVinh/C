@@ -5,13 +5,13 @@
 #include <string.h>     /* for memset() */
 #include <unistd.h>     /* for close() */
 
-#define BUFFSIZE 256
-#define PORT 8888
+#define HOST "192.168.107.219"
+#define PORT 8000
 
-int sockfd, n;
+#define BUFFSIZE 256
+int sockfd;
 struct sockaddr_in serv_addr;
 char buffer[BUFFSIZE];
-char *servIP;
 
 void error(const char *msg){
     perror(msg);
@@ -19,10 +19,9 @@ void error(const char *msg){
 }
  
 int main(){
-    servIP = "192.168.0.103";
-            
+
     serv_addr.sin_family      = PF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr(servIP);          
+    serv_addr.sin_addr.s_addr = inet_addr(HOST);          
     serv_addr.sin_port        = htons(PORT);
 
     // Create TCP socket

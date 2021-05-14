@@ -2,12 +2,12 @@
 
 **Note**: All the program below only works with Unix socket, and don't work in Windows.
 
-### Sending data between 2 TCP client
+### Sending data between only 2 TCP client
 
 * ``tcp-client.c``
 * ``tcp-server.c``
 
-TCP client sends entered string to TCP server.
+TCP client sends the entered string to TCP server. TCP server can't receive the message from one more TCP client.
 
 Sending and receiving process can be executed with
 
