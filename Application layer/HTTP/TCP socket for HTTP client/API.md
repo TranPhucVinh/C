@@ -51,7 +51,7 @@ int recv(int sockfd, void *buff, unsigned int len, int flag)
 *  **sockfd**: created ``sockfd`` from function ``socket()``.
 * ***msg**, ***buff**: pointer to ``sent`` or ``receive`` data array.
 * **len**: maximum length of data array (in byte) each time ``sent`` or ``receive``.
-* **flag**: set ``sent`` or ``receive`` mode. ``0`` for default mode.
+* **flag**: set ``sent`` or ``receive`` mode. If set to ``0``, ``recv()`` is generally equivalent to ``read()``.
 
 ``send()`` and  ``recv()`` return the number of byte sent or received, return ``-1`` if there is an error.
 
@@ -68,6 +68,8 @@ ssize_t write(int sockfd, const void *buf, ssize_t N);
 ```
 
 Write ``N`` bytes from ``buf`` to the ``sockfd``
+
+**Note**: If a zero-length datagram is pending, ``read()`` and ``recv()`` with a flags argument of zero provide different behavior.  In this circumstance, ``read()`` has no effect (the datagram remains pending), while ``recv()`` consumes the pending datagram.
 
 ### listen()
 
