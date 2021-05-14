@@ -2,10 +2,20 @@
 
 **Example 1.0**: Delete garbage value of a string
 
+Using ``memset()``
+
 ```c
 char displayedString[30];
 printf("%s\n", displayedString); //Print garbage value
 memset(displayedString, 0, sizeof(displayedString));
+printf("%s\n", displayedString); //Print NULl string
+```
+Using ``bzero()``
+
+```c
+char displayedString[30];
+printf("%s\n", displayedString); //Print garbage value
+bzero(displayedString, sizeof(displayedString));
 printf("%s\n", displayedString); //Print NULl string
 ```
 
