@@ -1,5 +1,7 @@
 Library ``sys/time.h``
 
+**Note**: The value of ``tv_usec`` is always less than one million.
+
 **Example 1**: Get current time of day in Unix-alike system
 
 ```c
