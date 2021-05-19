@@ -1,26 +1,3 @@
-### Basic callback without pointer
-
-```c
-#include <stdio.h>
-
-void hello(){
-	printf("Hello world \n");
-}
-
-void helloWorld (void function()){
-	function();
-}
-
-main()
-{  
-    helloWorld(hello);
-}
-```
-**Result**
-```
-Hello world
-```
-
 ### Function pointer
 
 ```c
