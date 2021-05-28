@@ -1,25 +1,16 @@
 ### Introduction 
 
 ````c
-#define PRINT_HELLO_WORLD printf("Hello world")
-#define PI 3.14159
-#define a 6
-#define PIN_SPI_SS    (10)
+#define PRINT_HELLO_WORLD printf("Hello, World !")
+#define a 		6
+#define b    	(10)
 
 main(){
-	printf("%d \n", a);
-	printf("%f \n", PI);
-	PRINT_HELLO_WORLD;
-	printf("%d \n", PIN_SPI_SS);
+	printf("%d \n", a);//6
+	PRINT_HELLO_WORLD;//Hello, World !
+	printf("%d \n", b);//10
 }	
 ````
-**Result**
-```
-6
-3.14159
-Hello world
-10
-```
 
 Using ``\`` to add a new line when define macro
 
@@ -73,6 +64,21 @@ Line 2
 7
 ```
 
+### Using macro to define
+
+Define an int variable with a macro function
+
+```c
+#define DEFINE_INT_VARIABLE(id) int id
+
+int main()
+{  
+ DEFINE_INT_VARIABLE(a);
+ a = 29;
+ printf("%d\n", a);//29
+}
+```
+
 ### Redefine macro variable
 
 With ``#define``
@@ -106,7 +112,7 @@ printf("%d \n", integerValue); //190
 printf("%d \n", integerValue); //190
 ```
 
-### The difference between #if defined(WIN32) and #ifdef(WIN32)
+### The difference between #if defined() and #ifdef()
 
 The difference between the two is that #ifdef can only use a single condition, while ``#if defined(NAME)`` can do compound conditionals.
 
