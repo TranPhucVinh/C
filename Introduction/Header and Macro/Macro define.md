@@ -5,48 +5,36 @@
 #define a 		6
 #define b    	(10)
 
-main(){
-	printf("%d \n", a);//6
-	PRINT_HELLO_WORLD;//Hello, World !
-	printf("%d \n", b);//10
-}	
+printf("%d \n", a);//6
+PRINT_HELLO_WORLD;//Hello, World !
+printf("%d \n", b);//10
 ````
 
 Using ``\`` to add a new line when define macro
 
 ```c
-#include <stdio.h>
-
 #define PI   \
 3.14
 
-int main()
-{
-   printf("%lf", PI);
-}
+printf("%lf", PI);
 ```
-### Macro with arguments
+### Macro functions with arguments
 
 ```c
 #define defineFunction(a) a+1
 
-main(){
-	int  result = defineFunction(6);
-	printf("%d \n", result); //7
-}	
+int  result = defineFunction(6);
+printf("%d \n", result); //7
 ```
+
+Argument can be passed to the marco function
 
 ```c
-#define defineFunction(returnValue) returnValue+1
-
 int a;
-
-main(){
-	printf("%d \n", defineFunction(a=14)); //15
-}
+printf("%d \n", defineFunction(a=6)); //7
 ```
 
-Call multiple functions in a macro function
+Perform multiples instruction inside a macro function
 
 ```c
 #include <stdio.h>
@@ -79,20 +67,46 @@ int main()
 }
 ```
 
+### Stringizing operator (#)
+
+The # operator turns the argument it precedes into a quoted string. 
+
+```c
+#define RETURN_STRING(displayedString) #displayedString
+
+char text[20];
+strcpy(text, RETURN_STRING(Hello World !));
+printf("%s\n", text);//Hello World !
+```
+
+``#`` doesn't support character ``,``:
+
+```c
+strcpy(text, RETURN_STRING(Hello, World !));//Error
+```
+
+Using ``#`` to define:
+
+```c
+#define RETURN_STRING(id) int id = #id
+
+RETURN_STRING(HELLO_WORLD);
+printf("%s\n", HELLO_WORLD);//HELLO_WORLD	
+```
+
+When using ``#`` to define, space and sensitive character like ``,``, ``;`` or ``!`` can't contain.
+
 ### Redefine macro variable
 
 With ``#define``
 
 ```c
-#include <stdio.h>
 #define integerValue 190
 
-int main (){
-  printf("%d \n", integerValue);//190
-  #undef integeValue
-  #define integerValue 100
-  printf("%d \n", integerValue);//100
-}
+printf("%d \n", integerValue);//190
+#undef integeValue
+#define integerValue 100
+printf("%d \n", integerValue);//100
 ```
 
 With traditional variable definition
@@ -112,21 +126,9 @@ printf("%d \n", integerValue); //190
 printf("%d \n", integerValue); //190
 ```
 
-### The difference between #if defined() and #ifdef()
+### Predefine 
 
-The difference between the two is that #ifdef can only use a single condition, while ``#if defined(NAME)`` can do compound conditionals.
-
-```c
-#if defined(WIN32) && !defined(UNIX)
-/* Do windows stuff */
-#elif defined(UNIX) && !defined(WIN32)
-/* Do linux stuff */
-#else
-/* Error, both can't be defined or undefined same time */
-#endif
-```
-
-### Predefine during compilation
+Predefine during compilation using flag ``-D``
 
 ```c
 #include <stdio.h>
@@ -141,7 +143,7 @@ Predefine during compilation: ``gcc -D name=12 test.c``
 
 Result: ``name: 12``
 
-**Proper macro predefine with ``#ifndef``**
+Predefine with ``#ifndef``
 
 ```c
 #include <stdio.h>
@@ -155,15 +157,4 @@ main(){
 }	
 ```
 
-Compile ``gcc -D name=12 test.c``
-
-Result: ``name: 12``
-
-### Error with unary operation (pointer)
-
-```c
-#define a 6
-printf("before %d \n", &a);
-```
-
-This will give error ``lvalue required as unary ‘&’ operand``. This happen because ``a`` is ``6`` which is not ``lvalue``.
+If compile ``gcc -D name=12 test.c``, then result is ``name: 12``
