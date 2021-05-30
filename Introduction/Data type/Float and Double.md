@@ -38,3 +38,11 @@ void main() {
 ```
 
 **Result**: ``No``
+
+## Unable to get the int value
+
+```c
+int a = (float) 12;
+int b = 1;
+printf("%lf %lf\n", a, b);//0.0 0.0
+```
