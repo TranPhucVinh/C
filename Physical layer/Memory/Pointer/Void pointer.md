@@ -1,5 +1,3 @@
-### Pointers to void
-
 A pointer of type void (e.g ``void *pointerName``) represents the address of an object,  but not its type. With ``void*``, you can cast the type of this pointer to any other type.
 
 ```c
@@ -55,17 +53,20 @@ pointer = hw;
 printf("Char value is: %s \n", pointer); //Hello, World!
 ```
 
-### Pointer of pointer
+### void pointer as function argument
 
 ```c
-int number1 = 9;
+void display_string(void *a){
+	printf("%s\n", a);
+}
 
-int *ptr = &number1;
-int **pptr = &ptr;
+void display_int_number(void *a){
+	printf("%d\n", a);
+}
 
-int main(){
-  printf("ptr: %p \n", ptr);
-  printf("pptr: %p \n", pptr);
-  printf("**pptr: %d \n", **pptr); //9
+int main()
+{  
+	display_string("hello");//hello
+	display_int_number(18);//18
 }
 ```
