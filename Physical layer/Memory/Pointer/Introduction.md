@@ -1,31 +1,46 @@
-# Pointer
+A pointer is a variable that stores address of other variable.
 
-pointer: variable that stores address of other variable
+* ``*p``: declare a pointer
+* ``*p``: value at address
+* ``&``: get the address of the variable
+* ``%p``: is used to print out the address as it can print out the hex value.
 
-``*p``: declare a pointer
+All the pointer syntax works identically in both C/C++.
 
-``*p``: value at address
-
-All the pointer syntax works the same in both C/C++.
-
-### Declare pointer variable
+## Declare pointer variable
 
 ```c
 int *p; //pointer to integer
+int* intPointer; //Equal to the previous ways and will give the same result
+
 char *p0; //pointer to character
 double *p1; // pointer to double
-const char *message1 = "Thread 1";
-
-int* intPointer; //Equal to the previous ways and will give the same result
+const char *displayedString = "Hello, World !";//String pointer declaration
 ```
 
-``&``: get the address of the variable
+**Wrong declaration and operation that must be avoided**
 
-``%p``: is used to print ouf the hex value.
+The define below give compilation error in G++:
+
+```
+error: invalid conversion from ‘int’ to ‘int*’ [-fpermissive]
+  int *number = 12;
+```
+
+But this define gives warning in GCC and has the result:
 
 ```c
-int a = 11;
-printf("%p", a); //0xb
+int *number = 12;
+printf("*number: %d", *number);//Segmentation fault (core dumped)
+printf("number: %d", number);//12
+```
+
+``number: 12`` is totally wrong as ``number`` is expected to store the address.
+
+**Note**: Except string pointer declarion (``char *displayedString = "Hello, World !"``), you musn't set the value to the pointer variable when defining them:
+
+```c
+int *number = 12;//Must not do it
 ```
 
 ## Example

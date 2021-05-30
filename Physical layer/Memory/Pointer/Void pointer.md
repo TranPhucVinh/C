@@ -70,3 +70,15 @@ int main()
 	display_int_number(18);//18
 }
 ```
+
+This example is compiled normally with GCC. 
+
+With G++, there will be error:
+
+```
+error: invalid conversion from ‘const void*’ to ‘void*’ [-fpermissive]
+  display_string("hello");
+
+error: invalid conversion from ‘int’ to ‘void*’ [-fpermissive]
+  display_int_number(18);
+```
