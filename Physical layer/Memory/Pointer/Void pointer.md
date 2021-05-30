@@ -87,21 +87,28 @@ error: invalid conversion from ‘int’ to ‘void*’ [-fpermissive]
 
 ```c
 void display_string(void *a){
-	char *displayedString;
-	displayedString = (char*) a;
-	printf("%s\n", displayedString);
+	printf("%s\n", (char*) a);
+}
+
+void display_int_number(void *a){
+	printf("%d\n", *(int*) a);
 }
 
 int main()
 {  
 	char displayedString[] = "Hello, World !";
+    int number = 18;
 	display_string(displayedString);
+    display_int_number(&number);
 }
 ```
 
-If passing ``display_string("Hello, World !")``, there will be error:
+If passing ``display_string("Hello, World !")`` and ``display_int_number(18)``, there will be error:
 
 ```
 error: invalid conversion from ‘const void*’ to ‘void*’ [-fpermissive]
   display_string("Hello, World !");
+
+error: invalid conversion from ‘int’ to ‘void*’ [-fpermissive]
+  display_int_number(18);
 ```
