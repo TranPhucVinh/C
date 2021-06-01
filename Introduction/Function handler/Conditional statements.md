@@ -11,11 +11,11 @@ int main(){
 
 Negative number results in true condition.
 
-## return
+### return
 
-The **return statement** stops the execution of a function and returns a value from that function.
+The ``return`` statement stops the execution of a function and returns a value from that function.
 
-Return in **void**
+Return in ``void``
 
 ```c
 void returnNumber(){
@@ -48,7 +48,26 @@ inside
 hello world
 ```
 
-## continue vs break
+### switch
+
+Error ``jump to case label [-fpermissive]`` might happen if the instruction inside ``case`` is not put inside ``{}``. 
+
+**Problem solved**
+
+```c
+switch (number){
+	case 1:
+    {
+        display_string_1();
+        break;
+    }
+	case 2:
+	{
+		display_string_2();
+        break;
+	}
+}
+```
 
 ### break
 
