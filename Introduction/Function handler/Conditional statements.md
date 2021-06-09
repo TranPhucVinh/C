@@ -69,6 +69,8 @@ switch (number){
 }
 ```
 
+String char can't be passed into ``switch case``.
+
 ### break
 
 ```c
