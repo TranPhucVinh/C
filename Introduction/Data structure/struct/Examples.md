@@ -1,4 +1,6 @@
-### Build a struct
+## Example 1
+
+Build a struct
 
 ```c
 #include <stdio.h>
@@ -67,8 +69,53 @@ main(){
 	printf("databaseNode0 has id %d with string value %s \n", databaseNode0.id, databaseNode0.stringValue);
 }	
 ```
+## Example 2
 
-### Nested struct
+### struct as a function argument
+```c
+#include <stdio.h>
+
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+void structFunction(struct databaseNode node);
+
+main(){
+	struct databaseNode node = {1, "String value"};
+	structFunction(node);
+}
+
+void structFunction(struct databaseNode node){
+	printf("id is %d and string value is %s \n", node.id, node.stringValue);
+}
+```
+### struct function
+
+```c
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+struct databaseNode displayString();
+
+main(){
+   displayString();
+}
+
+struct databaseNode displayString(){
+   struct databaseNode node0;
+
+   printf("Hello, World !\n");
+   return node0;
+}
+```
+
+## Example 3
+
+Nested struct
 
 ```c
 struct linkedDatabaseNode{
@@ -96,26 +143,4 @@ int main()
 ```
 Member databaseNode0 has id 1
 ID of databaseNode0 from linkedDatabaseNode is 2, and the displayed string: Displayed string
-```
-
-### struct function
-
-```c
-struct databaseNode {
-	int id;
-	char stringValue[50];
-};
-
-struct databaseNode displayString();
-
-main(){
-   displayString();
-}
-
-struct databaseNode displayString(){
-   struct databaseNode node0;
-
-   printf("Hello, World !\n");
-   return node0;
-}
 ```
