@@ -1,4 +1,4 @@
-A pointer of type void (e.g ``void *pointerName``) represents the address of an object,  but not its type. With ``void*``, you can cast the type of this pointer to any other type.
+A pointer of type void (e.g ``void *pointerName``) represents the address of an object, but not its type. With ``void*``, you can cast the type of this pointer to any other type.
 
 ```c
 #include <stdio.h>
@@ -55,7 +55,11 @@ printf("Char value is: %s \n", pointer); //Hello, World!
 
 ### void pointer as function argument
 
+**void pointer for int and string array as function argument**
+
 ```c
+#include <stdio.h>
+
 void display_string(void *a){
 	printf("%s\n", a);
 }
@@ -64,10 +68,18 @@ void display_int_number(void *a){
 	printf("%d\n", a);
 }
 
+void display_int_array(void *array, int size){
+	int *intArray = (int *) array;
+	for (int i = 0; i < size; i++){
+		printf("array[%d]: %d\n", i, intArray[i]);
+	}
+}
+
 int main()
 {  
 	display_string("hello");//hello
 	display_int_number(18);//18
+  display_int_array(array, arraySize);
 }
 ```
 
@@ -86,6 +98,8 @@ error: invalid conversion from ‘int’ to ‘void*’ [-fpermissive]
 **Problem solved**
 
 ```c
+#include <stdio.h>
+
 void display_string(void *a){
 	printf("%s\n", (char*) a);
 }
@@ -97,9 +111,9 @@ void display_int_number(void *a){
 int main()
 {  
 	char displayedString[] = "Hello, World !";
-    int number = 18;
+  int number = 18;
 	display_string(displayedString);
-    display_int_number(&number);
+  display_int_number(&number);
 }
 ```
 
@@ -111,4 +125,42 @@ error: invalid conversion from ‘const void*’ to ‘void*’ [-fpermissive]
 
 error: invalid conversion from ‘int’ to ‘void*’ [-fpermissive]
   display_int_number(18);
+```
+**void pointer for for data structure as function argument**
+
+Handle with data structure like:
+
+* Array
+* struct
+
+```c
+#include <stdio.h>
+
+int array[] = {1, 2, 3};
+int arraySize = sizeof(array)/sizeof(int); 
+
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+void display_int_array(void *array, int size){
+	int *intArray = (int *) array;
+	for (int i = 0; i < size; i++){
+		printf("array[%d]: %d\n", i, intArray[i]);
+	}
+}
+
+void display_struct(void *object){
+	struct databaseNode structObject = *(struct databaseNode *) object;
+
+	printf("id is %d and string value is %s \n", structObject.id, structObject.stringValue);
+}
+
+int main()
+{  
+	struct databaseNode node = {1, "String value"};
+	display_int_array(array, arraySize);
+	display_struct(&node);
+}
 ```
