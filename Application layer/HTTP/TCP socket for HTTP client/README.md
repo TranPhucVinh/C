@@ -28,9 +28,7 @@ printf("%s\n", buffer);
 
 ### HTTP request with TCP client socket
 
-Send HTTP request from a TCP client socket to a HTTP server: ``http-client.c``
-
-This work with all HTTP webpage and local Python HTTP server.
+GET request to a HTTP server like ``example.com`` or local HTTP server: ``get_data.c``
 
 ### HTTPS request
 
