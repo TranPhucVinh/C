@@ -53,6 +53,23 @@ pointer = hw;
 printf("Char value is: %s \n", pointer); //Hello, World!
 ```
 
+### Change value of variable by void pointer in a function
+
+```c
+int add(void *number);
+
+main () {
+ int number = 1;
+ add(&number);
+ printf("%d", number);
+}
+
+int add(void *number){
+	*(int*)number = *(int*)number + 1;
+	return *(int*)number;
+}
+```
+
 ### void pointer as function argument
 
 **void pointer for int and string array as function argument**
