@@ -32,27 +32,3 @@ struct stat {
 ```
 
 **Return**: On success, ``0`` is returned.  On error, ``-1`` is returned, and errno is set appropriately.
-
-**Example**: Enter filename then print out the information about a file such as inode, file type, user ID,...
-
-```c
-#include <stdio.h>
-#include <sys/stat.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[]) {
-	struct stat statBuffer;
-
-	if (argc != 2) {
-		puts("You haven't entered enough parameter to execute");
-		exit(0);
-	}
-
-	if (!stat(argv[1], &statBuffer)){
-		printf("ID of device containing file st_dev: %ld", statBuffer.st_dev);
-		printf("Inode number st_ino: %ld", statBuffer.st_ino);
-	} else {
-		puts("File not exist");
-	}
-}	
-```
