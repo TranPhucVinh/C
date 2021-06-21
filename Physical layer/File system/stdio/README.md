@@ -1,4 +1,16 @@
-* ``readAndStore.c``: Read 10 bytes data from every line of file ``json.txt`` then store in an array string
+### Examples
+
+``readAndStore.c``: Read 10 bytes data from every line of file ``json.txt`` then store in an array string
+
+``basic_file_operation.c``: Basic operation with file
+
+* Read content of a file
+* Create a new file
+* Write data to a file
+* Delete an existed file
+* List all file in the directory
+
+### Notes
 
 ``json.txt``
 

@@ -107,6 +107,14 @@ char buf[1];
 fgets(buf, 2, stdin); 
 ```
 
+### remove()
+
+Remove a file
+
+```c
+int remove ( const char * filename );
+```
+
 ### perror()
 
 Print out message describe error in ``stderr``.
