@@ -56,6 +56,29 @@ fprintf(stdout, "Hello, World! \n");
 fprintf(stderr, "Hello, World! \n");
 ```
 
+### fread()
+
+```c
+size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
+```
+
+Read totally ``nmemb*size`` bytes (including ``\n``) of data from ``stream`` and stores to ``ptr``.
+
+```c
+#define ELEMENT_NUMBERS 3
+#define READ_SIZE 2
+#define BUFFER_SIZE 2
+
+FILE *fp;
+char buffer[BUFFER_SIZE];
+
+fp = fopen("README.md", "r");
+
+fread(buffer, READ_SIZE, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
+printf("%s\n", buffer);
+fclose(fp);
+```
+
 ### fgets()
 
 Read the content in a file or stream until encounter the new line character (``\n``) or until finished reading ``n-1`` character; then store in ``s``.
@@ -69,7 +92,6 @@ fgets(msg, 81, stream);
 ```
 
 **Example**: Read an entered string which included space from command line (``stdin``) then prints out on screen
-
 
 ```c
 char buf[15];

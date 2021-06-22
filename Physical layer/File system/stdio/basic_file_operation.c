@@ -1,14 +1,22 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#define BUFFER_SIZE 100
+#define READ_SIZE   50
 
 void listAllFile(char *directory);
 void createFile(char *filename);
 void readFile(char *filename);
+void readFileToBuffer(char *filename, char *buffer, int readSize);
 void writeToFile(char *file, char *data);
 void deleteFile(char *filename);
 
 int main(void)
 {
+    char buffer[BUFFER_SIZE];
+    readFileToBuffer("Interview.md", buffer, READ_SIZE);
     return(0);
 }
 
@@ -43,6 +51,16 @@ void readFile(char *filename){
     }
 
     fclose(fptr);
+}
+
+void readFileToBuffer(char *filename, char *buffer, int readSize){
+    FILE *fp;
+
+    fp = fopen(filename, "r");
+
+    fread(buffer, readSize, 1, fp); //set element number to 1 to read readSize bytes
+    printf("%s\n", buffer);
+    fclose(fp);
 }
 
 void writeToFile(char *file, char *data){
