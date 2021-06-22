@@ -39,10 +39,35 @@ void main() {
 
 **Result**: ``No``
 
-## Unable to get the int value
+## Problem with typecast
+
+### Unable to get the int value
 
 ```c
 int a = (float) 12;
 int b = 1;
 printf("%lf %lf\n", a, b);//0.0 0.0
+```
+**Problem solve**
+
+```c
+int a = 12;
+int b = 1;
+printf("%lf %lf\n", (float) a, (float) b);//12.0 1.0
+```
+### Wrong calculation
+
+```c
+int a = 1;
+int b = 70;
+float c = (float) ((a*16*16+b)/10);
+printf("%lf\n", c);//32.0; expected 32.6
+```
+**Problem solve**
+
+```c
+int a = 1;
+int b = 70;
+float c = ((float)a*16*16+ (float) b)/10;
+printf("%lf\n", c);//32.5999
 ```
