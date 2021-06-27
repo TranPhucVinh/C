@@ -3,13 +3,19 @@
 ```c
 #include <stdio.h>
 
-char ch_arr[3][10] = {"string 1", "string 2", "string 3"};
+char string_array[3][10] = {"string 1", "string 2", "string 3"};
 
 main() {
 	for (int i=0; i < 3; i++){
-		printf("ch_arr[%i]: %s \n", i, ch_arr[i]);
+		printf("string_array[%i]: %s \n", i, string_array[i]);
 	}
 }
+```
+
+Or define:
+
+```c
+char *string_array[3] = {"string 1", "string 2", "string 3"};
 ```
 
 Index of the string can be handled by this way:
