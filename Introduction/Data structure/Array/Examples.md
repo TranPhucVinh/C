@@ -22,6 +22,8 @@ void intArray(int *array, int size){
 
 ### Example 2
 
+Multidimensional array
+
 ```c
 int a[3][4] = {  
    {0, 1, 2, 3} ,   /*  initializers for row indexed by 0 */
