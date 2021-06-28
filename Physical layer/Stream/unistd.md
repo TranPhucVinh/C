@@ -22,6 +22,21 @@ Writes up to ``count`` bytes from the buffer starting at ``buf`` to the file ref
 ssize_t write(int fd, const void *buf, size_t count);
 ```
 
+Write a string to screen
+
+```c
+#define STDOUT_FD 0
+char displayedString = "Hello, World !";
+write(STDOUT_FD, displayedString, sizeof(displayedString));
+```
+
+Notice that you can't use ``write()`` more than 2 times because only one ``write()`` is effected.
+
+```c
+write(STDOUT_FD, displayedString, sizeof(displayedString));//This line will be printed
+write(STDOUT_FD, displayedString, sizeof(displayedString));//This line will not be printed
+```
+
 ### Example
 
 All the examples below run on both Windows and Linux.
