@@ -26,7 +26,7 @@ Write a string to screen
 
 ```c
 #define STDOUT 1
-char displayedString = "Hello, World !";
+char displayedString[] = "Hello, World !";
 write(STDOUT, displayedString, sizeof(displayedString));
 write(STDOUT, "Display string", 14);
 ```
