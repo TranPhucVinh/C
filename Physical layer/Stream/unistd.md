@@ -25,16 +25,10 @@ ssize_t write(int fd, const void *buf, size_t count);
 Write a string to screen
 
 ```c
-#define STDOUT_FD 0
+#define STDOUT 1
 char displayedString = "Hello, World !";
-write(STDOUT_FD, displayedString, sizeof(displayedString));
-```
-
-Notice that you can't use ``write()`` more than 2 times because only one ``write()`` is effected.
-
-```c
-write(STDOUT_FD, displayedString, sizeof(displayedString));//This line will be printed
-write(STDOUT_FD, displayedString, sizeof(displayedString));//This line will not be printed
+write(STDOUT, displayedString, sizeof(displayedString));
+write(STDOUT, "Display string", 14);
 ```
 
 ### Example
