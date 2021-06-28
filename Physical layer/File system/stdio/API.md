@@ -129,6 +129,19 @@ char buf[1];
 fgets(buf, 2, stdin); 
 ```
 
+### fputs()
+
+```c
+FILE *fptr;
+char displayedString[] = "Hello, World !"
+fputs(displayedString, fptr);
+```
+
+Print out a string to ``stdout``
+
+```c
+fputs("Hello, World ! 1\n", stdout);
+```
 ### remove()
 
 Remove a file
