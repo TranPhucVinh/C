@@ -100,6 +100,9 @@ void uart_data_parsing(char *data);
 
 /*
     The buffer for each member must be bigger enough to store the parse value. If its size is not big, there will be problem of losing the value
+    E.g:
+    checksum[8] for 2 int values
+    environment_humidity[9] for 2 int values and a '.' symbol
 */    
 char dcd_header[1], id[8], checksum[8];
 char environment_humidity[9], environment_temperature[9], soil_humidity[9], soil_temperature[9];
