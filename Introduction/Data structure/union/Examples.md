@@ -98,6 +98,9 @@ char value[] = {0x24, 0x00, 0x01, 0x1A, 0x05, 0x1f, 0x20, 0x2F, 0x1C, 0x17, 0x20
 
 void uart_data_parsing(char *data);
 
+/*
+    The buffer for each member must be bigger enough to store the parse value. If its size is not big, there will be problem of losing the value
+*/    
 char dcd_header[1], id[8], checksum[8];
 char environment_humidity[9], environment_temperature[9], soil_humidity[9], soil_temperature[9];
 
