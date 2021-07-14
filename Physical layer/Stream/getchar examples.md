@@ -12,6 +12,7 @@ E.g: If entering ``1234``, the software will display
 
 ```c
 #include <stdio.h> 
+#include <stdlib.h> //for atoi()
 #include <string.h> 
 
 int main() 
@@ -30,6 +31,8 @@ int main()
             index += 1;
         }    
     }
+    int displayedNumber = atoi(volumeStringArray); //Display 0123 to 123
+    sprintf(volumeStringArray, "%d", displayedNumber);
     strcat(displayedString, volumeStringArray);
     strcat(displayedString, " ml");
     printf("%s", displayedString);
