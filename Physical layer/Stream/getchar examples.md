@@ -1,3 +1,5 @@
+For ``getchar()``, use n+1 buffer to properly store n member.
+
 Simulate the string entered problem with Keypad on MCU with getchar() in C.
 
 ### Example 1
@@ -15,7 +17,7 @@ E.g: If entering ``1234``, the software will display
 int main() 
 { 
     char enteredChar;
-    char volumeStringArray[5];//for getchar(), use n+1 buffer to properly store n member
+    char volumeStringArray[5];//Use 5 index to properly store 4 value
     memset(volumeStringArray, 0, sizeof(volumeStringArray));
     
     int index = 0;
@@ -23,7 +25,7 @@ int main()
     while (enteredChar != '#'){
         enteredChar = getchar();
         //Only accept number from 0 to 9 to be entered
-        if ((enteredChar >= 48) && (enteredChar <= 57)) {
+        if ((enteredChar >= 48) && (enteredChar <= 57)&&(index < 4)) {
             volumeStringArray[index] = enteredChar;
             index += 1;
         }    
