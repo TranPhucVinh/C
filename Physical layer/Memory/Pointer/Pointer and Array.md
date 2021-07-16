@@ -34,6 +34,11 @@ char displayedString[] = "Hello, World!";
 printf("%p\n", displayedString); //0x7fff8ab00140
 printf("%p\n", &displayedString);//0x7fff8ab00140
 ```
+Get value of by index of an array by pointer
+```c
+int array[] = {1, 342, 3};
+printf("%d ", *(array+0));
+```
 
 ### Example 2
 
