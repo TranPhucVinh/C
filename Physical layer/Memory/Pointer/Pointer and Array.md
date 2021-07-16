@@ -1,5 +1,3 @@
-# Pointer vs Array
-
 An array is a constant pointer.
 
 ### Example 1
@@ -15,7 +13,6 @@ int arrayValue[3] = {1, 2, 3};
 int main(){ 
 	p = arrayValue;
 	printf("%p \n", p); //0x601038
-	printf("%p \n", &p); //0x601050
 	printf("%p \n", arrayValue); //0x601038
 	printf("%p \n", &arrayValue); //0x601038
 	printf("%p \n", &arrayValue[0]); //0x601038
@@ -85,24 +82,3 @@ void main() {
 	}
 }
 ```
-
-### struct
-
-```c
-struct student{
-		int id;
-		char name[50];
-		char classroom[50];
-};
-
-int main() {
-	struct student erin = { 1977, " Erin", "Free Lancer" };
-
-	printf("value &erin: %p \n", &erin); //0x7ffe09debe80
-	printf("value &erin.id: %p \n", &erin.id); //0x7ffe09debe80
-	printf("value &erin.name: %p \n", &erin.name); //0x7ffe09debe84
-	printf("value &erin.classroom: %p \n", &erin.classroom); //0x7ffe09debeb6
-}
-```
-
-Address of ``erin`` and ``erin.id`` are the same.
