@@ -26,3 +26,4 @@ int main(){
 }
 ```
 
+A ``C`` source file can be compiled normally with other ``CPP`` header files: ``g++ main.c test.cpp``
