@@ -20,6 +20,24 @@ void intArray(int *array, int size){
 }
 ```
 
+Change value of an array by a function
+```c
+void intArray(int *array, int size);
+int array[] = {1, 2, 3};
+
+int main()
+{  
+	int arraySize = sizeof(array)/sizeof(int); 
+	intArray(array, arraySize);
+}
+
+void intArray(int *array, int size){
+	for (int i = 0; i < size; i++){
+		array[i] = i+100;
+	}
+}
+```
+
 ### Example 2
 
 Multidimensional array
