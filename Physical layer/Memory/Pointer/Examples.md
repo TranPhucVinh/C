@@ -35,7 +35,7 @@ int add (int *number);
 main () {
  int number = 6;
  add(&number);
- printf("%d", number);
+ printf("%d", number);//7
 }
 
 int add(int *number){
@@ -43,8 +43,6 @@ int add(int *number){
 	return *number;
 }
 ```
-
-**Result** 7
 
 ### Example 1.1: Pointer assign to variable
 
@@ -122,7 +120,7 @@ int main () {
 }
 
 void changeValue (int *pptr){
-    pptr = &number2; //change pointing address of the arugment pointer
+    pptr = &number2; //change pointing address of the argument pointer
 }
 ```
 **Output**
