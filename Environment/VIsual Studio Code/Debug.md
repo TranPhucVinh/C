@@ -37,12 +37,6 @@ Set up debug environment, which finally result in ``launch.json`` file.
 }
 ```
 
-**Debug steps**:
-
-1/ compile: ``gcc test.c -g``
-
-2/ Add breakpoints and start running debug
-
 ### Linux
 
 If ``launch.json`` is not found, create ``launch.json`` in ``.vscode`` then button ``Add configuration`` will automatic appear to automatically generate configurations information 
@@ -102,3 +96,9 @@ To make things easier, use ``launch.json`` config from Windows like above but re
     ]
 }
 ```
+
+## Debug steps
+
+1/ compile: ``gcc test.c -g``
+
+2/ Add breakpoints and start running debug
