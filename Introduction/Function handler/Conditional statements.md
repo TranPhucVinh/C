@@ -1,6 +1,6 @@
 ``for(;;)`` is equal to ``while(1)``.
 
-### Condition with int number
+## Condition with int number
 
 ```c
 int main(){
@@ -11,7 +11,7 @@ int main(){
 
 Negative number results in true condition.
 
-### return
+## return
 
 The ``return`` statement stops the execution of a function and returns a value from that function.
 
@@ -48,7 +48,7 @@ inside
 hello world
 ```
 
-### switch
+## switch
 
 Error ``jump to case label [-fpermissive]`` might happen if the instruction inside ``case`` is not put inside ``{}``. 
 
@@ -71,7 +71,7 @@ switch (number){
 
 String char can't be passed into ``switch case``.
 
-### break
+## break
 
 ```c
 for (i=0; i<10; i++){
@@ -88,7 +88,7 @@ i value is 3
 i value is 4 
 ```
 
-### continue
+## continue
 
 ```c
 for (i=0; i<10; i++){
@@ -109,9 +109,45 @@ i value is 8
 i value is 9 
 ```
 
-### goto
+## goto
 
-Infinite loop with ``goto``
+**Example 1**: Example of ``goto``
+```c
+#include <stdio.h>
+
+int main(){
+    goto LABEL_0;
+	LABEL_0:
+		puts("Label 0");
+    LABEL_1:    
+        puts("Label 1");
+        printf("outside goto\n");
+
+	return 0;
+}
+```
+**Result**
+
+```
+Label 0
+Label 1
+outside goto
+```
+
+To enter only ``LABEL_0``:
+
+```c
+goto LABEL_0;
+	LABEL_0:
+		puts("Label 0");
+		return 0;		
+    LABEL_1:    
+        puts("Label 1");
+        printf("outside goto\n");
+		
+	return 0;
+```
+**Example 2**: Infinite loop with ``goto``
 
 ```c
 #include <stdio.h>
@@ -127,7 +163,7 @@ int main(){
 
 Notice, ``goto label`` must be put in the same scope of ``goto``.
 
-### assert
+## assert
 
 ``assert()`` is a macro that is used to check specific conditions at runtime (when a program is under execution) and is very useful while debugging a program. 
 
