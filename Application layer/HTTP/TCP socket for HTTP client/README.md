@@ -30,15 +30,19 @@ printf("%s\n", buffer);
 
 GET request to a HTTP server like ``example.com`` or local HTTP server: ``get_data.c``
 
-### HTTPS request
+## HTTPS request
 
 For HTTPS request, install library ``openssl``: ``sudo apt-get install libssl-dev``
 
 Compile: ``gcc -o http-client http-client.c -lssl``
 
-**Example**:
+### Examples
 
 Read return message from HTTPS server: ``https-request.c``
+
+Read return message from ``howsmyssl.com/a/check``: ``howmyssl_https_request.c``
+
+**Notice**: The return value read from ``howsmyssl.com/a/check` is different from reading them directly from web browser, due to security reason.
 
 ## For Windows
 
