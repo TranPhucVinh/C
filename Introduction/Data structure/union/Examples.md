@@ -1,5 +1,38 @@
 ## Example 1
 
+``union`` as function argument
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+union data {
+   int i;
+   float f;
+   char str[20];
+}; 
+
+void unionFunction(union data data0);
+
+int main(){
+    union data dataObject;
+    unionFunction(dataObject);
+}
+
+void unionFunction(union data data0){
+    data0.i = 1;
+    printf("data.i: %d\n", data0.i);
+
+    data0.f = 1.0;
+    printf("data.f: %f\n", data0.f);
+
+    strcpy( data0.str, "hello");
+    printf("data.str: %s\n", data0.str);
+}
+```
+
+## Example 2
+
 ``struct`` inside a ``union``
 
 ```c
@@ -25,7 +58,7 @@ int main(){
 	printf("header.check_sum: %s\n", data.header.check_sum);
 }
 ```
-## Example 2
+## Example 3
 
 Split a string with the following sequence ``id``,  ``command`` and ``check_sum``
 
@@ -72,7 +105,7 @@ printf("%s\n", frame.data.id);//12345
 printf("%s\n", frame.data.command);//2345
 printf("%s\n", frame.data.check_sum);//5
 ```
-## Example 3
+## Example 4
 
 Parsing a char array into the following fields
 
