@@ -69,16 +69,13 @@ To make things easier, use ``launch.json`` config from Windows like above but re
 
 ```json
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
+            "program": "${workspaceFolder}/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -91,14 +88,10 @@ To make things easier, use ``launch.json`` config from Windows like above but re
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ]
+            ],
+            "preLaunchTask": "C/C++: gcc build active file"
         }
     ]
 }
 ```
-
-## Debug steps
-
-1/ compile: ``gcc test.c -g``
-
-2/ Add breakpoints and start running debug
+After setting ``launch.json``, add breakpoints and runs the debug icon of Visual Studio Code.
