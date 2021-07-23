@@ -12,17 +12,13 @@ printf("The value of the second enum: %d, %d, %d, %d, %d, %d, %d", value7 , valu
 The value of the first enum: 10, 11, 12, 13, 10, 16, 17
 The value of the second enum: 0, 1, 2, 3, 1, 12, 13
 ```
+**Notice**: After declaring, the ``enum`` all variable inisde ``enum`` (``value0``, ``value1``, ...) are all constant and unique.
 
-Add name to ``enum``
-
-```c
-enum databaseEnum {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
-```
-
-``databaseEnum1`` is just the name of the ``enum`` and has no value:
+Add name to ``enum`` and declare object
 
 ```c
-printf("value of databaseEnum: %d \n", databaseEnum1); //Give compilation error: 'databaseEnum' undeclared 
+enum enumObject {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
+enum enumObject enumObject0;
 ```
 
 ### object of enum
