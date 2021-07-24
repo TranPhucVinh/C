@@ -224,3 +224,4 @@ void uart_data_parsing(char *data){
     sprintf(checksum, "%x", frame.data.checksum[0]);
 }
 ```
+**Note**: For not using ``printf()`` and ``write()`` function to display the result, set up debug with GDB to watch the variable. Parsed variables like ``dcd_header[1]``, ``id[8]``, ``checksum[8]``,... must be declared as local variable inside ``uart_data_parsing()`` for ``Watch`` in GDB.
