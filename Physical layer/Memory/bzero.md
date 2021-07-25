@@ -9,6 +9,8 @@ void bzero(void *s, size_t n);
 * ``s``: the buffer that zeros are copied into
 * ``n``: the number of zeros to be copied into the buffer
 
+``bzero()`` is not part of the standard library, it belongs to POSIX.
+
 **Example**
 
 ```c
