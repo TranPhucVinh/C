@@ -1,4 +1,4 @@
-### strtok()
+## strtok()
 
 ```cpp
 char * strtok ( char * str, const char * delimiters );
@@ -51,76 +51,6 @@ printf("%s\n", splitString);//Hello,
 splitString = strtok (NULL, "");
 printf("%s\n", splitString);//World!}
 ```
-
-## Append string
-
-### strncat()
-
-```cpp
-char *strncat(char *dest, const char *src, size_t n)
-```
-
-* ``dest``: the string where we want to append.
-* ``src``: the string from which ‘n’ characters are going to append.
-* ``n``: represents the maximum number of character to be appended. size_t is an unsigned integral type.
-
-```cpp
-char hw[] = "Hello, World!";
-char addedChar[] = "abc";
-strncat(hw, addedChar, 3); //Hello, World!abc   
-```
-
-### strcat()
-
-```c
-char *strcat(char *dest, const char *src);
-```
-**Example**
-```c
-char hw[] = "Hello, World!";
-strcat(hw, " abc");//Hello, World! abc
-```
-```c
-char hw[] = "Hello, World!";
-char addedChar[] = "abc";
-strcat(hw, addedChar);//Hello, World! abc
-```
-
-To append a string with a char, add ``&``
-
-```c
-char hw[] = "Hello, World!";
-char returnChar = 'a';
-strncat(hw, &returnChar, 1); //Hello, World!a
-```
-
-## strol()
-
-```c
-long int strtol(const char *str, char **endptr, int base)
-```
-
-Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Examples part 3.md``
-
-### strtoul()
-
-Convert a string to unsigned long
-
-```c
-unsigned long int strtoul (const char *__restrict __nptr, char **__restrict __endptr, int __base)
-```
-**Example**
-```c
-strtoul("12asdas", NULL, 10);   //12
-strtoul("Hello", NULL, 10);     //0
-```
-Problem with ``char`` number
-```c
-char number = strtoul("127", NULL, 10);   //127
-char number = strtoul("128", NULL, 10);   //-128
-```
-
-**Explain**: This happens as char is defined as signed char by default. 
 
 ## atoi()
 
