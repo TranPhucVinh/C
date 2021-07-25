@@ -9,10 +9,34 @@ char *strncat(char *dest, const char *src, size_t n)
 * ``n``: represents the maximum number of character to be appended. size_t is an unsigned integral type.
 
 ```c
-char hw[] = "Hello, World!";
+char displayedString[] = "Hello, World!";
 char addedChar[] = "abc";
-strncat(hw, addedChar, 3); //Hello, World!abc   
+strncat(displayedString, addedChar, 3); //Hello, World!abc   
 ```
+
+However, using ``char displayedString[]`` for strncat will result in error concatentation. Take this example: 
+
+```c
+int count = 10;
+char displayedString[] = "Hello, World!";
+char addedChar[] = "abc";
+
+while (count) {
+  strncat(displayedString, addedChar, 3);
+  printf("displayedString: %s, count: %d\n", displayedString, count);
+  strcpy(displayedString, "Hello, World!");
+  count--;
+}
+```
+```c
+displayedString: Hello, World!abc, count: 10
+displayedString: Hello, World!bc, count: 9
+displayedString: Hello, World!c, count: 8
+displayedString: Hello, World!, count: 7
+displayedString: Hello, World!, count: 6
+...
+```
+**Problem solved**: ``char displayedString[20] = "Hello, World!";``
 
 ## strcat()
 
@@ -65,7 +89,7 @@ Count: 1633771837
 
 ### Problem solved
 
-To use ``strcat()`` in a loop, the displayedString must have the size which is bigger than the later expected concatenated string to store the value. If the size is smaller than the expected string, there will still be the infinite error loop.
+To use ``strcat()`` in a loop, the ``displayedString`` must have the size which is bigger than the later expected concatenated string to store the value. If the size is smaller than the expected string, there will still be the infinite error loop.
 
 Change the size of ``displayedString`` to be bigger: ``char displayedString[30] = "Received from PC: ";``
 
