@@ -1,3 +1,57 @@
+## strcat()
+
+```c
+char *strcat(char *dest, const char *src);
+```
+**Example**
+```c
+char hw[] = "Hello, World!";
+strcat(hw, " abc");//Hello, World! abc
+```
+```c
+char hw[] = "Hello, World!";
+char addedChar[] = "abc";
+strcat(hw, addedChar);//Hello, World! abc
+```
+
+To append a string with a char, add ``&``
+
+```c
+char hw[] = "Hello, World!";
+char returnChar = 'a';
+strncat(hw, &returnChar, 1); //Hello, World!a
+```
+
+### strcat() in a loop
+
+```c
+char addedString[] = "a";
+char displayedString[] = "Received from PC: ";
+int count = 10;
+
+int main(){
+  while (count) {
+    strcat(displayedString, addedString);
+    printf("displayedString %s, count %d\n", displayedString, count);
+    count--;
+  }
+}
+```
+
+Result (infinite error loop)
+
+```
+displayedString Received from PC: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, count 1633771797
+displayedString Received from PC: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, count 1633771796
+displayedString Received from PC: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, count 1633771795
+```
+
+### Problem solved
+
+To use ``strcat()`` in a loop, the ``displayedString`` must have the size which is bigger than the later expected concatenated string to store the value. If the size is smaller than the expected string, there will still be the infinite error loop.
+
+Change the size of ``displayedString`` to be bigger: ``char displayedString[30] = "Received from PC: ";``
+
 ## strncat()
 
 ```cpp
@@ -37,61 +91,6 @@ displayedString: Hello, World!, count: 6
 ...
 ```
 **Problem solved**: ``char displayedString[20] = "Hello, World!";``
-
-## strcat()
-
-```c
-char *strcat(char *dest, const char *src);
-```
-**Example**
-```c
-char hw[] = "Hello, World!";
-strcat(hw, " abc");//Hello, World! abc
-```
-```c
-char hw[] = "Hello, World!";
-char addedChar[] = "abc";
-strcat(hw, addedChar);//Hello, World! abc
-```
-
-To append a string with a char, add ``&``
-
-```c
-char hw[] = "Hello, World!";
-char returnChar = 'a';
-strncat(hw, &returnChar, 1); //Hello, World!a
-```
-
-### strcat() in a loop
-
-```c
-char addedString[] = "a";
-
-char displayedString[] = "Received from PC: ";
-int count = 10;
-
-int main(){
-  while (count) {
-    strcat(displayedString, addedString);
-    printf("Count: %d\n", count);
-    count--;
-  }
-}
-```
-
-Result (infinite error loop)
-
-```
-Count: 1633771839
-Count: 1633771838
-Count: 1633771837
-```
-
-### Problem solved
-
-To use ``strcat()`` in a loop, the ``displayedString`` must have the size which is bigger than the later expected concatenated string to store the value. If the size is smaller than the expected string, there will still be the infinite error loop.
-
-Change the size of ``displayedString`` to be bigger: ``char displayedString[30] = "Received from PC: ";``
 
 ## strol()
 
