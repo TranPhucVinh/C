@@ -94,4 +94,4 @@ To make things easier, use ``launch.json`` config from Windows like above but re
     ]
 }
 ```
-After setting ``launch.json``, add breakpoints and runs the debug icon of Visual Studio Code.
+After setting ``launch.json``, add breakpoints and runs the debug icon of Visual Studio Code. Notice that breakpoint must be add for the variables to be watched. If breakpoints are not added, GDB will not display anything.
