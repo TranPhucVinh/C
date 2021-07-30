@@ -28,7 +28,7 @@ To change ``const`` variable: ``Pointer/Introduction`` -> ``Example 3: Change va
 
 ``const`` can't be used to define the array size:
 
-```
+```c
 const b = 2;
 int array[b] = {10,20};
 ```
@@ -44,6 +44,34 @@ void printFunction(){
 	int auto a = 19;
 	printf("%d ", a);
 }
+```
+
+### extern
+
+``extern`` variables are also known as global variables, they are variables defined outside any function block. 
+
+Access global variable if there is a local variable with same name:
+
+```c
+int x = 50; // Global x
+ 
+int main()
+{
+    int x = 10; // Local x
+    {
+        extern int x;
+        printf("Value of global x is %d\n", x);
+    }
+    printf("Value of local x is %d\n", x);
+    return 0;
+}
+```
+**Note**
+Must have ``{}``, without ``{}`` there will be error 
+
+```
+error: extern declaration of ‘x’ follows declaration with no linkage
+         extern int x;
 ```
 
 ### sizeof()

@@ -1,5 +1,3 @@
-``extern`` variables are also known as global variables, they are variables defined outside any function block. 
-
 **Error when value defined outside header file**
 
 ``header.h``
