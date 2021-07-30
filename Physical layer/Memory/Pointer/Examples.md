@@ -71,6 +71,45 @@ Change value of a string by function using pointer.
 
 Check: ``Change value of a string by function using pointer`` in ``Introduction/Data type/String/Char for String.md``.
 
+
+### Example 1.3: Change value of a variable with pointer
+
+Change both local or global variable by using pointer
+```cpp
+int value = 10;
+printf("before %d \n", value); //10
+int *ptr = &value;
+*ptr = 90;
+printf("after %d \n", value); //90
+```
+
+This way also work with local ``const`` variable using ``GCC`` compiler.
+
+```cpp
+int main(){
+	const int value = 32;
+	int *ptr = &value;
+	*ptr = 0;
+}
+```
+
+This program gives error on ``G++``:
+
+```
+error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
+   int *ptr = &value;
+```
+
+This way can't change global ``const`` variable and results in ``Segment fault`` :
+
+```c
+const int value = 32;
+int main(){  
+  
+	int *ptr = &value;
+	*ptr = 0;
+}
+```
 ### Example 2: swapping value
 
 ```c

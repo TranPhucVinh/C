@@ -43,9 +43,7 @@ printf("number: %d", number);//12
 int *number = 12;//Must not do it
 ```
 
-## Example
-
-### Example 1
+## Examples
 
 ```c
 p = &a //p is the address of a
@@ -54,32 +52,12 @@ printf("%p", &a);
 
 **Note**: ``*&a`` is ``a``.
 
-### Example 2
-
 ```c
 int a;
 int *p;
 
 a = 5;
 p = &a; // p is address of variable a
-```
-
-### Example 3: Change value of a variable with pointer
-
-```cpp
-int value = 10;
-printf("before %d \n", value); //10
-int *ptr = &value;
-*ptr = 90;
-printf("after %d \n", value); //90
-```
-
-This way also work with ``const`` variable (using ``gcc`` compiler)
-
-```cpp
-const int value = 32;
-int *ptr = &value;
-*ptr = 0;
 ```
 
 ### Get value of pointer
