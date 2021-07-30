@@ -68,6 +68,21 @@ This overflow bit will **affect other variable value in memory**.
 
 **Example**
 
+The overflow issue with normally declared for 2 consecutive variables:
+
+```c
+int a = 9;
+int id = 1977;
+
+printf("value a before: %d \n", a); //value a before: 9 
+memset(&a, 'a', 5);
+printf("value a after: %d \n", a); //value a after: 1633771873 
+
+printf("id: %d \n", id); //1889 
+```
+
+The overflow issue with ``struct``:
+
 ```c
 struct student{
 		int id;
@@ -97,19 +112,6 @@ value erin.id: 1889
 ```
 
 ``erin.id`` now is effected due to the overflow value of ``memset(&a, 'a', 5)``.
-
-The same overflow issue with normally declare 2 consecutive variable:
-
-```c
-int a = 9;
-int id = 1977;
-
-printf("value a before: %d \n", a); //value a before: 9 
-memset(&a, 'a', 5);
-printf("value a after: %d \n", a); //value a after: 1633771873 
-
-printf("id: %d \n", id); //1889 
-```
 
 ### memset() problem with 4 byte number
 
