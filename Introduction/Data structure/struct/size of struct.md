@@ -92,3 +92,15 @@ The variable are stacked in the memory like:
 |int id|id|id|id|id|
 |char stringValue[7]|stringValue|stringValue|stringValue|stringValue|
 |char stringValue[7]|stringValue|stringValue|stringValue|**padding**|
+
+## Disable struct padding
+
+```c
+struct databaseNode
+{
+    int id;
+    char stringValue[7];
+} __attribute__((packed)) node;
+
+sizeof(node);//11
+```
