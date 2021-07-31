@@ -1,4 +1,6 @@
-### Example 1: Change value of variable by pointer in a function
+### Example 1
+
+Change value of variable by pointer in a function
 
 ```c
 #include <stdio.h>
@@ -71,7 +73,6 @@ Change value of a string by function using pointer.
 
 Check: ``Change value of a string by function using pointer`` in ``Introduction/Data type/String/Char for String.md``.
 
-
 ### Example 1.3: Change value of a variable with pointer
 
 Change both local or global variable by using pointer
@@ -83,7 +84,7 @@ int *ptr = &value;
 printf("after %d \n", value); //90
 ```
 
-This way also work with local ``const`` variable using ``GCC`` compiler.
+Changing the value of local or global ``const`` variable.
 
 ```cpp
 int main(){
@@ -92,24 +93,26 @@ int main(){
 	*ptr = 0;
 }
 ```
+This program gives warning on ``GCC``:
 
+```
+warning: initialization discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+     int *ptr = &value;
+```
 This program gives error on ``G++``:
 
 ```
 error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
    int *ptr = &value;
 ```
-
-This way can't change global ``const`` variable and results in ``Segment fault`` :
+**Problem solved**: Use ``(int*)`` and ``volatile``
 
 ```c
-const int value = 32;
-int main(){  
-  
-	int *ptr = &value;
-	*ptr = 0;
-}
+const int value = 210;
+int *ptr = (int*)&value;
+*ptr = 90;
 ```
+
 ### Example 2: swapping value
 
 ```c
