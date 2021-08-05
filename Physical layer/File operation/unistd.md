@@ -1,3 +1,5 @@
+``unistd.h`` provides access to the POSIX OS API.
+
 ### read()
 
 Read up to ``count`` bytes from file descriptor ``fd`` into the buffer starting at ``buf``.
@@ -10,9 +12,9 @@ ssize_t read(int fd, void *buf, size_t count);
 
 Value:
 
-* 0: STDIN
-* 1: STDOUT
-* 2: STDERR
+* 0: stdin file descriptor
+* 1: stdout file descriptor
+* 2: stderr file descriptor
 
 ### write()
 
@@ -25,13 +27,13 @@ ssize_t write(int fd, const void *buf, size_t count);
 Write a string to screen
 
 ```c
-#define STDOUT 1
+#define STDOUT_FD 1
 char displayedString[] = "Hello, World !";
-write(STDOUT, displayedString, sizeof(displayedString));
-write(STDOUT, "Display string", 14);
+write(STDOUT_FD, displayedString, sizeof(displayedString));
+write(STDOUT_FD, "Display string", 14);
 ```
 
-### Example
+### Examples
 
 All the examples below run on both Windows and Linux.
 
@@ -41,10 +43,12 @@ All the examples below run on both Windows and Linux.
 #include <stdio.h>
 #include <unistd.h>
 
+#define STDIN_FD 0
+
 int main(){
     char buffer[10];
 
-    read(0, buffer, 10);
+    read(STDIN_FD, buffer, 10);
     puts(buffer);
 }
 ```
@@ -61,14 +65,15 @@ int fd;
 int main(){
     char buffer[10];
 
+    /*
+        unistd has no API to open a file so use open() from fcntl
+    */
     fd = open("test.md", O_RDONLY);
     
     read(fd, buffer, 10);
     puts(buffer);
 }
 ```
-
-For ``open()``, check ``Stream/File system/API.md``
 
 **Example 3**: Open a file to write
 
