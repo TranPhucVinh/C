@@ -4,7 +4,7 @@
 
 Open file/stream
 
-``int fileDescription = int open(const char *path, int mode)``
+``int fileDescriptor = int open(const char *path, int mode)``
 
 * path: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
 * mode:
@@ -30,4 +30,15 @@ Open file/stream
 
 (1): If path is a ``FIFO``, ``block file`` or ``character special file``, ``O_NONBLOCK`` will open and read/write file without blocking
 
-For **File descriptor** information check ``unistd.md``
+### File descriptor
+
+```c
+const char filePath[] = "test.txt";
+fileDescriptor = open(filePath, O_WRONLY);
+```
+
+If this ``open()`` line of code is run the first time inside the source code and ``test.txt`` exists, then ``fileDescription`` is ``3``.
+
+``0``, ``1`` and ``2`` are file descriptor value of ``stdin``, ``stdout`` and ``stderr``
+
+However, ``open("/dev/stdin", O_RDONLY)`` returns ``3``.
