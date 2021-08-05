@@ -1,3 +1,5 @@
+``fcntl.h``: file control options
+
 ### open()
 
 Open file/stream
