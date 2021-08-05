@@ -2,9 +2,9 @@
 
 Open file/stream
 
-``int open(const char *path, int mode)``
+``int fileDescription = int open(const char *path, int mode)``
 
-* path: path of file/stream
+* path: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
 * mode:
 
 | Mode | Description|NOTE
@@ -27,8 +27,6 @@ Open file/stream
 |O_TTY_INIT| Used to open I/O device|
 
 (1): If path is a ``FIFO``, ``block file`` or ``character special file``, ``O_NONBLOCK`` will open and read/write file without blocking
-
-**Return**: ``int fileDescriptor``
 
 For **File descriptor** information check ``unistd.md``
 
