@@ -7,6 +7,8 @@ A pointer is a variable that stores address of other variable.
 
 All the pointer syntax works identically in both C/C++.
 
+In computer science, a **reference** is a value that enables a program to indirectly access a particular ``datum``, such as a variable's value or a record, in the computer's memory or in some other storage device. Pointers are the most primitive type of reference.
+
 ## Declare pointer variable
 
 ```c
