@@ -31,11 +31,3 @@ Open file/stream
 (1): If path is a ``FIFO``, ``block file`` or ``character special file``, ``O_NONBLOCK`` will open and read/write file without blocking
 
 For **File descriptor** information check ``unistd.md``
-
-### read()
-
-``read(int fileDescription, char *bufferRead, size_t number_of_byte_to_read)``
-
-### write()
-
-``write(int fileDescription, char *bufferWrite, size_t number_of_byte_to_write)``
