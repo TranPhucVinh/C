@@ -42,3 +42,12 @@ If this ``open()`` line of code is run the first time inside the source code and
 ``0``, ``1`` and ``2`` are file descriptor value of ``stdin``, ``stdout`` and ``stderr``
 
 However, ``open("/dev/stdin", O_RDONLY)`` returns ``3``.
+
+Everytime any file open (the same file or not), ``fileDescriptor`` will increase by ``1``.
+
+```c
+fileDescription = open(filePath, O_RDONLY);
+printf("%d", fileDescription);//3
+fileDescription = open(filePath, O_RDONLY);
+printf("%d", fileDescription);//4
+```
