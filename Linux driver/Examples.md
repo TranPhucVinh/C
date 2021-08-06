@@ -22,3 +22,21 @@ void module_remove(void)
 module_init(module_initialize);
 module_exit(module_remove);
 ```
+
+Using delay with ``msleep()`` in ``linux/delay.h``
+
+```c
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/delay.h>
+
+MODULE_LICENSE("GPL");
+
+int module_initialize(void)
+{
+        printk("Hello, World !\n");
+        msleep(5000);
+        printk("After 1000ms\n");
+        return 0;
+}
+```
