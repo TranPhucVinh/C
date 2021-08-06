@@ -46,8 +46,9 @@ However, ``open("/dev/stdin", O_RDONLY)`` returns ``3``.
 Everytime any file open (the same file or not), ``fileDescriptor`` will increase by ``1``.
 
 ```c
-fileDescription = open(filePath, O_RDONLY);
+char filePath[] = "test.txt";
+fileDescription = open(filePath, O_RDONLY);//Open test.txt
 printf("%d", fileDescription);//3
-fileDescription = open(filePath, O_RDONLY);
+fileDescription = open(filePath, O_RDONLY);//Open test.txt again
 printf("%d", fileDescription);//4
 ```
