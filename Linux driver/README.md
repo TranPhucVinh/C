@@ -20,9 +20,9 @@ Then simply run the Makefile with ``make``
 
 ``test.ko`` files along with other files will appear.
 
-To insert the module: ``insmode test.ko``
+To insert the module: ``insmod test.ko``
 
-To remove the module: ``rmmode test.ko``
+To remove the module: ``rmmod test.ko``
 
 ### Examples
 
@@ -30,7 +30,7 @@ To remove the module: ``rmmode test.ko``
 
 **Result**
 
-Run ``dmesg|grep`` to detect what is log to the kernel by ``printk()``
+Run ``dmesg|grep`` to detect what is printed to the kernel log ``printk()``.
 
 **Notice**: Without ``MODULE_LICENSE("GPL")`` there will be warning
 
