@@ -41,6 +41,36 @@ Explain:
 
 ``24929 = 0110 0001 0110 0001``
 
+### Change const variable with memeset()
+
+Change ``const`` variable with ``memset()``
+
+```c
+const int a = 10;
+memset(&a, 'a', 1);
+```
+
+**Result**
+
+Compile with ``gcc`` gives warning:
+
+```
+warning: passing argument 1 of ‘memset’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+```
+
+Compile with ``g++`` gives error:
+
+```
+error: invalid conversion from ‘const void*’ to ‘void*’ [-fpermissive]
+    memset(&a, 'a', 1);
+```
+**Problem solved**
+
+```c
+volatile const int a = 10;
+memset((void*)&a, 'a', 1);
+```
+
 ### Overflow memset()
 
 ```c
