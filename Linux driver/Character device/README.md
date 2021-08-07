@@ -8,6 +8,29 @@ To create a new character device, change all names in ``alloc_chrdev_region()``,
 
 To remove the character device: ``sudo rm /dev/character_device_name``
 
+* ``character_device_operation.c``: Operation with character device
+
+To send data to the character device: ``echo "Hello, World !" > /dev/character_device_name``
+
+**Error**: If ``dev_write()`` function return 0, there will be error as using ``echo`` to send data will result in the infinite loop.
+
+```c
+char data[100];
+/*
+    This function gives infinite loop error
+*/
+ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
+{
+	memset(data, 0, sizeof(data));
+	copy_from_user(data, buf, len);
+	printk("write data: %s\n", data);
+	return 0;
+}
+```
+**Explain**
+
+This happen as the write system call (``dev_write()``) returns to userspace with ``0``. However, since your userspace code is using ``stdio``, then your userspace code tries the write again, assuming the system call simply didn't write out all the data. If you return the length of the input, then stdio will know all the data was written.
+
 ## API
 
 ### dev_t
@@ -47,6 +70,8 @@ int cdev_add(struct cdev *dev, dev_t num, unsigned int count);
 * ``num``: the first device number to which this device responds,
 * ``count``: the number of device numbers that should be associated with the device
 
+**Note**: If ``count = 0``, it means no device can associate with this character device. Then working with this character device like ``cat /dev/character_device_name`` or ``echo "Data" > /dev/character_device_name`` will gives error: ``No such device or address``.
+
 ### struct class
 
 ```c
@@ -68,3 +93,7 @@ const char **fmt...);
 * ``dev_t devt``: the ``dev_t`` for the char device to be added
 * ``void *drvdata``: the data to be added to the device for callbacks
 * ``const char *fmt``: string for the device’s name
+
+## linux/cdev.h
+
+* ``copy_from_user()``

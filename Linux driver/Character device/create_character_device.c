@@ -25,7 +25,7 @@ int device_init(void)
 	character_device = cdev_alloc();
 	character_device->owner = THIS_MODULE;
 	character_device->dev = dev_id;
-	cdev_add(character_device, dev_id, 0);
+	cdev_add(character_device, dev_id, 1);
 	device_class = class_create(THIS_MODULE, "Device class name");
 	device = device_create(device_class, NULL, dev_id, NULL, "Character device");
 
