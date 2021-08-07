@@ -6,6 +6,8 @@ After creating successfully, a new device is found on ``/dev``.
 
 To create a new character device, change all names in ``alloc_chrdev_region()``, ``class_create`` and ``device_create()``. If they have the same name, a new character device belong to a kernel module can't be inserted.
 
+To remove the character device: ``sudo rm /dev/character_device_name``
+
 ## API
 
 ### dev_t
