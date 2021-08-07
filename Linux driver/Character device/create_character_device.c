@@ -35,7 +35,7 @@ int device_init(void)
 
 void device_exit(void)
 {
-	printk("goodbye\n");
+	printk("Device remove\n");
 	unregister_chrdev_region(dev_id, 0);
 	cdev_del(character_device);
 }

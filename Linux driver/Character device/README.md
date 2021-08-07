@@ -36,7 +36,14 @@ int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned count, const ch
 
 ### struct cdev
 
-Character device struct
+``struct cdev``: character device struct
+
+```c
+int cdev_add(struct cdev *dev, dev_t num, unsigned int count);
+```
+
+* ``num``: the first device number to which this device responds,
+* ``count``: the number of device numbers that should be associated with the device
 
 ### struct class
 
