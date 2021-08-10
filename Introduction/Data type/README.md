@@ -24,7 +24,7 @@ In ``GCC`` and ``G++``, the default ``char`` type is ``signed char``. If compile
 
 E.g: ``const int a = 19``
 
-To change ``const`` variable: ``Pointer/Introduction`` -> ``Example 3: Change value of a variable with pointer``
+To change ``const`` variable: ``Pointer/Examples.md`` -> ``Example 1.3: Change value of a variable with pointer``
 
 ``const`` can't be used to define the array size:
 
