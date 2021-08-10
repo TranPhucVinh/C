@@ -23,3 +23,11 @@ Convert int to hex using ``%p``
 int a = 11;
 printf("%p", a); //0xb
 ```
+
+Get first byte and last byte of a 2 byte int variable
+
+```c
+int value = 0x1234;
+uint8_t lastByte = (uint8_t)value;  //0x34
+uint8_t firstByte = value>>8;       //0x12
+```
