@@ -53,7 +53,7 @@ int main (){
 Char with correspond ASCII code: P
 ```
 
-### Convert unsigned int to String
+### Convert unsigned int to string char array
 
 ```c
 uint32_t return8BitNumber(uint32_t number){
