@@ -31,7 +31,7 @@ for (uint8_t i = 0; i < 256; i++){
 }
 ```
 
-This for loop will run forever as max value of ``uint8_t`` is ``255``.
+This for loop will run forever as max value of ``uint8_t`` is ``255``. When ``i`` reaches ``256``, it will be ``0``.
 
 ### Convert to char
 
