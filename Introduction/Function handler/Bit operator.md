@@ -30,6 +30,20 @@ int binResult = binVal0 & binVal1;
 printf("%d", binResult); //6 (0b110)
 ```
 
+## XOR bit (^)
+
+```
+0^0=0
+1^1=0
+1^0=1
+```
+
+```c
+int binVal0 = 0b1011;
+int binVal1 = 0b0100;
+int binResult = binVal0 ^ binVal1; //0b1111
+```
+
 ### Bit shifting
 
 | Operator |7|6|5|4|3|2|1|0|Value|
