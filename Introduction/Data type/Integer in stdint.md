@@ -15,13 +15,23 @@ Library **stdint** include integer types.
 |int64_t|Signed| −9,223,372,036,854,775,808	to 9,223,372,036,854,775,807|
 |uint64_t|Unsigned|0 to 18,446,744,073,709,551,615|
 
-### Data Type 
+### Examples
 
-**uint8_t**: 8 bit unsigned int.
-
-**Example**:
+**Example 1**:
 
 For examples with signed number and overflow number, check: ``Data type/Char for Integer.md``
+
+**Example 2**:
+
+Overflow issue inside for loop with ``uint8_t``:
+
+```c
+for (uint8_t i = 0; i < 256; i++){
+  printf("i: %d\n", i);
+}
+```
+
+This for loop will run forever as max value of ``uint8_t`` is ``255``.
 
 ### Convert to char
 
