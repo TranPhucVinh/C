@@ -4,7 +4,9 @@
 
 Open file/stream
 
-``int fileDescriptor = int open(const char *path, int mode)``
+```c
+int fileDescriptor = int open(const char *path, int mode)
+```
 
 * path: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
 * mode:
