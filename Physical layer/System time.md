@@ -1,15 +1,39 @@
-Library ``sys/time.h``
+Library ``sys/time.h`` defines:
+
+```c
+struct timeval
+{
+  __time_t tv_sec;		/* Seconds.  */
+  __suseconds_t tv_usec;	/* Microseconds.  */
+};
+```
+
+```c
+gettimeofday(&tv, NULL);
+```
 
 **Note**: The value of ``tv_usec`` is always less than one million.
+
+Library ``time.h`` defines
+
+```c
+localtime()
+```
+```c
+asctime()
+```
+```c
+strftime()
+```
 
 ### Example 1
 
 Get current time of day in Unix-alike system
 
 ```c
+#include <stdio.h>
 #include <time.h>
 #include <sys/time.h>
-#include <stdio.h>
 
 int main() {
   struct timeval tv;
@@ -37,7 +61,6 @@ Delay for a number of seconds
 
 ```c
 #include <stdio.h>
-#include <string.h>
 #include <sys/time.h>
 
 void delaySeconds(long seconds);
@@ -85,9 +108,9 @@ An inefficient way to delay 1 second as its delay time varies in vavrious proces
 void delayOneSecond();  
 
 int main(){ 
-    while (1){
-      printf("Hello, World \n");
-      delayOneSecond();
+  while (1){
+    printf("Hello, World \n");
+    delayOneSecond();
 	}
 } 
 
