@@ -32,9 +32,14 @@ Get current time with ``time.h``
 int main() {
     time_t currentTime;
     time(&currentTime); //Get current time and save to currentTime
-    // printf("%s", ctime(&currentTime));//Wed Aug 18 01:00:26 2021
+    printf("%s", ctime(&currentTime));//Wed Aug 18 01:00:26 2021
     return(0);
 }
+```
+``currentTime`` can also be defined as:
+
+```c
+time_t currentTime = time(NULL);
 ```
 
 Get day, month and year with ``localtime()``
