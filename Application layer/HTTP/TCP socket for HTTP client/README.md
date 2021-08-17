@@ -1,7 +1,3 @@
-## For Unix socket
-
-**Note**: All the program below only works with Unix socket, and don't work in Windows.
-
 ### Sending data between only 2 TCP client
 
 * ``tcp-client.c``
@@ -43,7 +39,3 @@ Read return message from HTTPS server: ``https-request.c``
 Read return message from ``howsmyssl.com/a/check``: ``howmyssl_https_request.c``
 
 **Notice**: The return value read from ``howsmyssl.com/a/check` is different from reading them directly from web browser, due to security reason.
-
-## For Windows
-
-For TCP socket in Windows, use library ``winsock2.h`` which is built-in in GCC compiler.

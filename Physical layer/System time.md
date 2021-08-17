@@ -2,7 +2,9 @@ Library ``sys/time.h``
 
 **Note**: The value of ``tv_usec`` is always less than one million.
 
-**Example 1**: Get current time of day in Unix-alike system
+### Example 1
+
+Get current time of day in Unix-alike system
 
 ```c
 #include <time.h>
@@ -28,7 +30,10 @@ int main() {
   return 0;
 }
 ```
-**Example 2**: Delay for a number of seconds
+
+### Example 2
+
+Delay for a number of seconds
 
 ```c
 #include <stdio.h>
@@ -58,37 +63,7 @@ void delaySeconds(long seconds){
 }
 ```
 
-## Other libraries
-
-### On Windows
-
-Print out a string after every one second with library ``time.h``.
-
-```c
-#include <stdio.h> 
-#include <time.h> 
-
-void delay(int number_of_seconds) 
-{ 
-    // Converting time into milli_seconds 
-    int milli_seconds = 1000 * number_of_seconds; 
-  
-    clock_t start_time = clock(); // Storing start time 
-  
-    // looping till required time is not achieved 
-    while (clock() < start_time + milli_seconds) 		; 
-} 
-  
-// Driver code to test above function 
-int main(){ 
-    while (1){
-		printf("Hello, World \n");
-		delay(1);
-	}
-} 
-```
-
-### On Ubuntu/Linux
+### Example 3
 
 Print out a string after every one second with ``sleep()``.
 

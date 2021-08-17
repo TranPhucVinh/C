@@ -1,0 +1,1 @@
+For TCP socket in Windows, use library ``winsock2.h`` which is built-in in GCC compiler.
