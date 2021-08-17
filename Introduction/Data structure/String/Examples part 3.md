@@ -1,6 +1,6 @@
 ### Example 3
 
-Split number and character from a string with ``strtol()``
+Split number and character from a string with ``strtol()``. ``strtol()`` is defined in ``stdlib``
 
 ```c
 #include <stdio.h>
@@ -29,15 +29,9 @@ String part is:Hello
 Parse a string include hex number
 
 ```c
-#include <stdio.h>
-
-int main(void)
-{
-    char sendString[] = "ab";
-    int number = strtol(sendString, NULL, 16);
-    printf("%d\n", number);//171
-    return(0);
-}
+char sendString[] = "ab";
+int number = strtol(sendString, NULL, 16);
+printf("%d\n", number);//171
 ```
 
 Split the entered string from executed argument
