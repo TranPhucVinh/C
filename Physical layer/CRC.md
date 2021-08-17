@@ -2,6 +2,16 @@
 
 Perform a CRC-16-IBM generation on sender side
 
+**Calculation steps**
+
+* The starting value is 0xFFFF.
+* Perform an XOR operation of this value and the slave address.
+* Right shift the result.
+* When the overflow bit of the result operation becomes 1, perform an XOR operation of the result from step 3 above and the fix value 0xA001.
+* Repeat steps 3 and 4 until 8 shift operations have been performed.
+
+**Program**
+
 ```c
 #include <stdio.h>
 
