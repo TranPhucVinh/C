@@ -16,17 +16,35 @@ gettimeofday(&tv, NULL);
 
 Library ``time.h`` defines
 
-```c
-localtime()
-```
-```c
-asctime()
-```
-```c
-strftime()
-```
+* ``time()``
+* ``localtime()``
+* ``asctime()``
+* ``strftime()``
 
 ### Example 1
+
+Get current time with ``time.h``
+
+```c
+#include <stdio.h>
+#include <time.h>
+
+int main() {
+    time_t currentTime;
+    time(&currentTime); //Get current time and save to currentTime
+    // printf("%s", ctime(&currentTime));//Wed Aug 18 01:00:26 2021
+    return(0);
+}
+```
+
+Get day, month and year with ``localtime()``
+
+```c
+time_t currentTime;
+time(&currentTime); //Get current time and save to currentTime
+struct tm *time_value = localtime(&currentTime);
+printf("Day: %d, month: %d, year: %d", time_value->tm_mday, time_value->tm_mon, time_value->tm_year);
+```
 
 Get current time of day in Unix-alike system
 
@@ -45,9 +63,9 @@ int main() {
   t = tv.tv_sec;
 
   info = localtime(&t);
-  printf("%s",asctime (info));
+  printf("%s", asctime(info));
   strftime (buffer, sizeof buffer, "Today is %A, %B %d.\n", info);
-  printf("%s",buffer);
+  printf("%s", buffer);
   strftime (buffer, sizeof buffer, "The time is %I:%M %p.\n", info);
   printf("%s",buffer);
 
