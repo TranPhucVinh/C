@@ -1,3 +1,3 @@
-# C
+# About
 
-C document
+C document and software mostly implemented for Unix system.
