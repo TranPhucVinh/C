@@ -4,7 +4,6 @@ Using ``module_init()`` and ``module_exit()``.
 
 ```c
 #include <linux/module.h>
-#include <linux/kernel.h>
 
 MODULE_LICENSE("GPL");
 
@@ -22,6 +21,7 @@ void module_remove(void)
 module_init(module_initialize);
 module_exit(module_remove);
 ```
+**Notice**: When using ``module_init()`` and ``module_exit()``, library ``linux/kernel.h`` is not required.
 
 Using delay with ``msleep()`` in ``linux/delay.h``
 
