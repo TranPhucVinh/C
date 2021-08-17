@@ -42,6 +42,8 @@ Run ``dmesg|grep`` to detect what is printed to the kernel log ``printk()``.
 
 ``module_init()`` vs ``init_module()`` and ``module_exit()`` vs ``cleanup_module()``
 
+Define in ``linux/init.h``
+
 ```c
 /* Each module must use one module_init(). */
 #define module_init(initfn)                 \
