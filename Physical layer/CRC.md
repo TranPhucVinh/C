@@ -32,6 +32,13 @@ int sender_crc_calculate(int *modbus_rtu_frame, int size){
 int main(){
     int crc_16_ibm = sender_crc_calculate(modbus_rtu_frame, sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]));
     printf("%p\n", crc_16_ibm);//0x0944
+
+    //Then form an array include CRC
+    uint8_t modbus_rtu_frame_with_crc[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x04, crc_16_ibm, crc_16_ibm>>8};
+
+    for (int i=0; i < sizeof(modbus_rtu_frame_with_crc)/sizeof(modbus_rtu_frame_with_crc[0]); i++){
+        printf("%p ", modbus_rtu_frame_with_crc[i]);
+    }
 }
 ```
 ### Receiver
