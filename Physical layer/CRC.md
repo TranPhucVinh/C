@@ -16,18 +16,21 @@ Perform a CRC-16-IBM generation on sender side
 #include <stdio.h>
 
 int modbus_rtu_frame[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x04};
-int crc_16_ibm;
 
-int main(){
-    crc_16_ibm = 0xffff;
-    for (int i = 0; i < sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]); i++){
+int sender_crc_calculate(int *modbus_rtu_frame, int size){
+    int crc_16_ibm = 0xffff;
+    for (int i = 0; i < size; i++){
         crc_16_ibm ^= modbus_rtu_frame[i];
         for (int j = 0; j < 8; j ++){
             if ((crc_16_ibm & 0x01) == 1) crc_16_ibm = ((crc_16_ibm>>1)^0xa001);
             else crc_16_ibm = crc_16_ibm >> 1;
         }
     }
+    return crc_16_ibm;
+}
 
+int main(){
+    int crc_16_ibm = sender_crc_calculate(modbus_rtu_frame, sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]));
     printf("%p\n", crc_16_ibm);//0x0944
 }
 ```
@@ -46,19 +49,23 @@ If there is error, like ``modbus_rtu_frame[2]`` has received the wrong value lik
 ```c
 #include <stdio.h>
 
-int modbus_rtu_frame[] = {0x01, 0x03, 0x05, 0x00, 0x00, 0x04, 0x944};
-int crc_16_ibm;
+int modbus_rtu_frame[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x944};
 
-int main(){
-    crc_16_ibm = 0xffff;
-    for (int i = 0; i < sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]); i++){
+int receiver_crc_calculate(int *modbus_rtu_frame, int size){
+    int crc_16_ibm = 0xffff;
+    for (int i = 0; i < size; i++){
         crc_16_ibm ^= modbus_rtu_frame[i];
         for (int j = 0; j < 8; j ++){
             if ((crc_16_ibm & 0x01) == 1) crc_16_ibm = ((crc_16_ibm>>1)^0xa001);
             else crc_16_ibm = crc_16_ibm >> 1;
         }
     }
+    return crc_16_ibm;
+}
 
-    printf("%p\n", crc_16_ibm);//0xcc
+int main(){
+    int crc_16_ibm = receiver_crc_calculate(modbus_rtu_frame, sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]));
+    if (!crc_16_ibm) printf("No error happens during transmission with CRC is %d", crc_16_ibm);
+    else printf("Error happens during transmission with CRC is %p\n", crc_16_ibm);
 }
 ```
