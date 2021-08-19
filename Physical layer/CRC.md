@@ -55,6 +55,7 @@ If there is error, like ``modbus_rtu_frame[2]`` has received the wrong value lik
 
 ```c
 #include <stdio.h>
+#include <stdint.h>
 
 int modbus_rtu_frame[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x944};
 
