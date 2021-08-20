@@ -20,6 +20,11 @@ Library ``time.h`` defines
 * ``localtime()``
 * ``asctime()``
 * ``strftime()``
+* ``clock()``: returns the number of clock ticks elapsed since the start of the program
+
+```c
+#define CLOCKS_PER_SEC  ((clock_t) 1000000)
+```
 
 ### Example 1
 
@@ -49,6 +54,12 @@ time_t currentTime;
 time(&currentTime); //Get current time and save to currentTime
 struct tm *time_value = localtime(&currentTime);
 printf("Day: %d, month: %d, year: %d", time_value->tm_mday, time_value->tm_mon, time_value->tm_year);
+```
+Get total second with ``clock()``:
+```c
+delaySeconds(5); //Function delaySeconds() defines in Example 3
+int ticks = clock();
+printf("total second: %f", (float) ticks/CLOCKS_PER_SEC);//total second: 4.766941
 ```
 
 Get current time of day in Unix-alike system
