@@ -100,7 +100,7 @@ int main(){
 void delaySeconds(long seconds){
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
-	long totalSecond = 0;//ESP-IDF requires initialize for this variable
+	long totalSecond = 0;
 	long previousTime = tv.tv_sec;
 	while (totalSecond - previousTime < seconds){
 		gettimeofday(&tv, NULL);
