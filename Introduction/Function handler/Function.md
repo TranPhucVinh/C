@@ -33,6 +33,15 @@ int add(int a, int b){
 }
 ```
 
+Get function name with ``__FUNCTION__``, ``__func__`` and ``__PRETTY_FUNCTION__``:
+
+```c
+void displayString(){
+	printf("%s\n",  __FUNCTION__);//displayString
+	printf("%s\n",  __func__);    //displayString
+	printf("%s\n",  __PRETTY_FUNCTION__);//displayString
+}
+```
 ### Local variable setup with {}
 
 ```c
@@ -61,13 +70,9 @@ int returnNumber(void){
    return 5;
 }
 int main () {
-   printf("returnNumber: %d \n", returnNumber());
+   printf("returnNumber: %d \n", returnNumber());//returnNumber: 5
 
 }
-```
-**Result**
-```
-returnNumber: 5
 ```
 
 ### Command line arguments with main()

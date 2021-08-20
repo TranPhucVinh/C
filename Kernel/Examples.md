@@ -93,3 +93,15 @@ void cleanup_module(void)
 ```
 
 Then build and insert this kernel module: ``kernel_module_2.ko``
+
+After that, ``kernel_module_1`` will be used by ``kernel_module_2``. ``lsmod`` will give:
+
+```
+Module                  Size  Used by
+kernel_module_2    16384  0
+kernel_module_1    16384  1 kernel_module_2
+```
+
+``rmmod kernel_module_1`` gives error ``ERROR: Module kernel_module_1 is in use by: kernel_module_2``
+
+To remove ``kernel_module_1``, user has to remove ``kernel_module_2``.
