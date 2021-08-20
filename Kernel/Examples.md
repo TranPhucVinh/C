@@ -40,3 +40,56 @@ int module_initialize(void)
         return 0;
 }
 ```
+
+### Example 2
+
+Sharing variables between multiple kernel modules
+
+``kernel_module_1.c`` will export variable ``a``
+
+```c
+#include<linux/module.h>
+#include<linux/kernel.h>
+
+MODULE_LICENSE("GPL");
+
+int a = 1024;
+EXPORT_SYMBOL(a);
+
+int init_module(void)
+{
+        printk("This is Kernel module 1\n");
+        return 0;
+}
+
+void cleanup_module(void)
+{
+        printk(KERN_INFO "clean up module\n");
+}
+```
+
+Then build and insert this kernel module: ``kernel_module_1.ko``
+
+``kernel_module_2.ko`` will get variable ``a``:
+
+```c
+#include<linux/module.h>
+#include<linux/kernel.h>
+
+MODULE_LICENSE("GPL");
+
+extern int a;//This inform the OS that variable a is somewhere else
+
+int init_module(void)
+{
+        printk("Value a is %d\n", a);
+        return 0;
+}
+
+void cleanup_module(void)
+{
+        printk(KERN_INFO "clean up module\n");
+}
+```
+
+Then build and insert this kernel module: ``kernel_module_2.ko``
