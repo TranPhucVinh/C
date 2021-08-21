@@ -20,6 +20,12 @@ void intArray(int *array, int size){
 }
 ```
 
+Or can define:
+
+```c
+void intArray(int array[], int size);
+```
+
 Change value of an array by a function
 ```c
 void intArray(int *array, int size);
