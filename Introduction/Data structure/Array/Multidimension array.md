@@ -1,3 +1,40 @@
+### Multidimensional array
+
+```c
+int a[3][4] = {  
+   {0, 1, 2, 3} ,   /*  initializers for row indexed by 0 */
+   {4, 5, 6, 7} ,   /*  initializers for row indexed by 1 */
+   {8, 9, 10, 11}   /*  initializers for row indexed by 2 */
+};
+
+printf("%d: ", a[2][3]); //11
+```
+The missing value when the array size is smaller than the row or column size is set by ``0``.
+
+```c
+int a[3][4] = {  
+   {0, 1, 2} ,
+   {4, 7} ,
+   {8, 9, 10, 11}
+};
+
+printf("%d", a[0][3]); //0
+```
+
+Multidimension array is can be defined simply by ``{}`` as ``GCC`` and ``G++`` consider multidimension array as a one dimension array.
+
+```c
+#define row 	2
+#define column 	3
+
+int array[row][column] = {1, 2, 3, 4, 5, 6};
+
+printf("array[%d][%d]: %d", 0, 1, array[1][1]);//5
+printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
+```
+
+## String array
+
 **Example 1**: Read value from a string array
 
 ```c
