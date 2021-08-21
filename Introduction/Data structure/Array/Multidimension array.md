@@ -35,7 +35,9 @@ printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 
 ## String array
 
-**Example 1**: Read value from a string array
+### Example 1
+
+Read value from a string array
 
 ```c
 #include <stdio.h>
@@ -49,25 +51,27 @@ main() {
 }
 ```
 
+Index of the string can be handled by this way:
+
+```c
+printf("string_array[%i]: %s \n", i, string_array + i);
+```
+
+To get a character inside the string: 
+
+```c
+printf("string_array[0][1]: %c \n", string_array[0][1]); //t
+```
+
 Or define:
 
 ```c
 char *string_array[3] = {"string 1", "string 2", "string 3"};
 ```
 
-Index of the string can be handled by this way:
+### Example 2
 
-```c
-printf("ch_arr[%i]: %s \n", i, ch_arr + i);
-```
-
-To get a character inside the string: 
-
-```c
-printf("ch_arr[0][1]: %c \n", ch_arr[0][1]); //t
-```
-
-**Example 2**: Set and read value from a string array
+Set and read value from a string array
 
 ```c
 #include <stdio.h>
