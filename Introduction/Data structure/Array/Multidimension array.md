@@ -35,7 +35,7 @@ printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 
 ## String array
 
-### Example 1
+### Define with 2-dimension array
 
 Read value from a string array
 
@@ -44,7 +44,7 @@ Read value from a string array
 
 char string_array[3][10] = {"string 1", "string 2", "string 3"};
 
-main() {
+int main() {
 	for (int i=0; i < 3; i++){
 		printf("string_array[%i]: %s \n", i, string_array[i]);
 	}
@@ -63,10 +63,34 @@ To get a character inside the string:
 printf("string_array[0][1]: %c \n", string_array[0][1]); //t
 ```
 
-Or define:
+### Define with char pointer
 
 ```c
 char *string_array[3] = {"string 1", "string 2", "string 3"};
+```
+
+This gives no error in GCC and gives warning in G++:
+
+```
+warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+```
+
+```c
+#include <stdio.h>
+
+char *string_array[3] = {"string 1", "string 2", "string 3"};
+
+int main() {
+	for (int i=0; i < 3; i++){
+		printf("string_array[%i]: %s \n", i, string_array[i]);
+	}
+
+	//Get value of index 2
+	printf("string_array[2]: %s\n", *(string_array + 2));
+
+	//Get a character inside the string: 
+	printf("string_array[2][2]: %c\n", (*(string_array + 2))[2]);
+}
 ```
 
 ### Example 2
