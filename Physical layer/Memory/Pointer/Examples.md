@@ -108,9 +108,9 @@ error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
 **Problem solved**: Use ``(int*)`` and ``volatile``
 
 ```c
-const int value = 210;
+volatile const int value = 32;
 int *ptr = (int*)&value;
-*ptr = 90;
+*ptr = 0;
 ```
 
 ### Example 2: swapping value
