@@ -95,3 +95,47 @@ void intArray(int *array, int size){
 	}
 }
 ```
+### Function returns an array
+
+Using stack memory with ``static``:
+
+```c
+#include <stdio.h>
+
+int *returnArray();
+int main(){
+	int *array_pointer;
+	array_pointer = returnArray();
+	printf("%d", *(array_pointer + 1));//1
+}
+
+int *returnArray(){
+	static int array[] = {1, 2, 3};
+	return array;
+}
+```
+
+Using heap memory with ``malloc()``:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define arraySize 3
+
+int *returnArray();
+int main(){
+	int *array_pointer;
+	array_pointer = returnArray();
+	printf("%d", *(array_pointer + 2));
+}
+
+int *returnArray(){
+	int *array = (int*) malloc (arraySize * sizeof(int));
+	for (int i = 0; i < arraySize; i++){
+      array[i] = i;
+	}
+
+	return array;
+}
+```
