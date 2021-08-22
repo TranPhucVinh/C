@@ -59,6 +59,28 @@ Segmentation fault (core dumped)
 
 ### Array as an argument of a function
 
+Using array with size
+
+```c
+#include <stdio.h>
+
+void intArray(int array[3]);
+int array[] = {1, 2, 3};
+
+int main()
+{  
+	intArray(array);
+}
+
+void intArray(int array[3]){
+	for (int i = 0; i < 3; i++){
+		printf("array[%d]: %d\n", i, array[i]);
+	}
+}
+```
+
+Using array pointer
+
 ```c
 #include <stdio.h>
 
