@@ -2,8 +2,14 @@
 
 **Create**
 
+On stack memory:
+
 * Create array: ``create_array.c``
 * Create new member from index: ``create_new_member.c``
+
+On heap memory: 
+
+* Create an array: Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``.
 
 **Read**
 * Simply read from ``index`` with ``array[index]``
