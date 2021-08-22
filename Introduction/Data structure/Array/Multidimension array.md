@@ -1,4 +1,6 @@
-### Multidimensional array
+## Multidimensional array
+
+### Create a 2 dimension array on stack memory
 
 ```c
 int a[3][4] = {  
@@ -32,6 +34,10 @@ int array[row][column] = {1, 2, 3, 4, 5, 6};
 printf("array[%d][%d]: %d", 0, 1, array[1][1]);//5
 printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 ```
+
+### Create a 2 dimension array on heap memory
+
+Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``: ``Example 2: Create a 2 dimension int array with malloc()``.
 
 ## String array
 
