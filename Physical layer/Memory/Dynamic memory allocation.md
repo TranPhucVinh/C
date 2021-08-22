@@ -75,7 +75,6 @@ Array:
 #define rowSize 3
 #define columnSize 3
 
-char *returnString();
 int main(){
 	int **int_array = (int**) malloc(columnSize * sizeof(int*));
 
@@ -91,7 +90,7 @@ int main(){
 		}	
 	}
 
-	printf("%d", int_array[2][0]); //11
+	printf("%d", int_array[2][0]); //6
 }
 ```
 
