@@ -39,98 +39,56 @@ printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 
 Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``: ``Example 2: Create a 2 dimension int array with malloc()``.
 
-## String array
+### 2D array as a function parameter
 
-### Define with 2-dimension array
-
-Read value from a string array
+With ``array[row][column]``:
 
 ```c
 #include <stdio.h>
 
-char string_array[3][10] = {"string 1", "string 2", "string 3"};
+#define row 	2
+#define column 	3
 
-int main() {
-	for (int i=0; i < 3; i++){
-		printf("string_array[%i]: %s \n", i, string_array[i]);
-	}
+void twoDimensionArray(int array[row][column]);
+
+int array[row][column] = 
+{
+	{1, 2, 3},
+	{4, 5, 6}
+};
+
+int main()
+{  
+	twoDimensionArray(array);
+}
+
+void twoDimensionArray(int array[row][column]){
+	printf("%d\n", array[1][2]);//6
 }
 ```
-
-Index of the string can be handled by this way:
-
-```c
-printf("string_array[%i]: %s \n", i, string_array + i);
-```
-
-To get a character inside the string: 
-
-```c
-printf("string_array[0][1]: %c \n", string_array[0][1]); //t
-```
-
-### Define with char pointer
-
-```c
-char *string_array[3] = {"string 1", "string 2", "string 3"};
-```
-
-This gives no error in GCC and gives warning in G++:
-
-```
-warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
-```
-
+With ``array[][column]``:
 ```c
 #include <stdio.h>
 
-char *string_array[3] = {"string 1", "string 2", "string 3"};
+#define ROW_SIZE 		2
+#define COLUMN_SIZE 	3
 
-int main() {
-	for (int i=0; i < 3; i++){
-		printf("string_array[%i]: %s \n", i, string_array[i]);
-	}
+void twoDimensionArray(int array[][COLUMN_SIZE], int rowSize);
 
-	//Get value of index 2
-	printf("string_array[2]: %s\n", *(string_array + 2));
+int array[ROW_SIZE][COLUMN_SIZE] = 
+{
+	{1, 2, 3},
+	{4, 5, 6}
+};
 
-	//Get a character inside the string: 
-	printf("string_array[2][2]: %c\n", (*(string_array + 2))[2]);
+int main()
+{  
+	twoDimensionArray(array, ROW_SIZE);
 }
-```
 
-### Example 1
-
-Set and read value from a string array
-
-```c
-#include <stdio.h>
-
-#define MEMBER      3
-#define STRING_SIZE 20
-
-char ch_arr[MEMBER][STRING_SIZE];
-
-main() {
-   for (int i=0; i < MEMBER; i++){
-      strcpy(ch_arr[i], "Hello, World !");
-   }
-	for (int i=0; i < MEMBER; i++){
-		printf("char[%i]: %s \n", i, ch_arr[i]);
+void twoDimensionArray(int array[][COLUMN_SIZE], int rowSize){
+	for (int column = 0; column < COLUMN_SIZE; column++){
+		for (int row = 0; row < ROW_SIZE; row++) printf("array[%d][%d]: %d\n", row, column, array[row][column]);
 	}
 }
-```
-
-**Notice**: ``STRING_SIZE`` must be big enough to store the read string from array, if its size is not enough, there will be overflow error.
-
-```c
-#define STRING_SIZE 10
-```
-
-The result will be: (overflow)
-
-```
-char[0]: Hello, WorHello, WorHello, World ! 
-char[1]: Hello, WorHello, World ! 
-char[2]: Hello, World ! 
 ```
