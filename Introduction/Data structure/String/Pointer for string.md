@@ -1,5 +1,11 @@
-### Define
+## Define
 
+```c
+char *displayedString = "displayedString";
+
+printf("%s \n", displayedString); //Hello, World !
+```
+Or can define:
 ```c
 char *displayedString;
 
@@ -34,7 +40,11 @@ error: conflicting types for ‘displayedString’
 error: initializer element is not computable at load time
 ```
 
-**Other way to define**
+### Define a pointer array on heap memory
+
+Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``: ``malloc()``.
+
+### Other way to define
 
 ```c
 #include <stdio.h>
