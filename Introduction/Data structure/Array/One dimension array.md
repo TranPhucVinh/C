@@ -134,7 +134,8 @@ int *returnArray();
 int main(){
 	int *array_pointer;
 	array_pointer = returnArray();
-	printf("%d", *(array_pointer + 1));//1
+	printf("%d\n", *(array_pointer + 1));//2
+	printf("%d\n", array_pointer[2]);//3
 }
 
 int *returnArray(){
@@ -155,7 +156,8 @@ int *returnArray();
 int main(){
 	int *array_pointer;
 	array_pointer = returnArray();
-	printf("%d", *(array_pointer + 2));
+	printf("%d\n", array_pointer[1]);//1
+	printf("%d\n", *(array_pointer + 2));//2
 }
 
 int *returnArray(){

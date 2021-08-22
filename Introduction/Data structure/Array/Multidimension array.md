@@ -1,5 +1,3 @@
-## Multidimensional array
-
 ### Create a 2 dimension array on stack memory
 
 ```c
