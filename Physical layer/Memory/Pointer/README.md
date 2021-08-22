@@ -22,7 +22,13 @@ const char *displayedString = "Hello, World !";//String pointer declaration
 
 **Wrong declaration and operation that must be avoided**
 
-The define below give compilation error in G++:
+```c
+int *number = 12;
+printf("*number: %d", *number);//Segmentation fault (core dumped)
+printf("number: %d", number);//12
+```
+
+This gives compilation error in G++:
 
 ```
 error: invalid conversion from ‘int’ to ‘int*’ [-fpermissive]
@@ -32,7 +38,6 @@ error: invalid conversion from ‘int’ to ‘int*’ [-fpermissive]
 But this define gives warning in GCC and has the result:
 
 ```c
-int *number = 12;
 printf("*number: %d", *number);//Segmentation fault (core dumped)
 printf("number: %d", number);//12
 ```
@@ -43,6 +48,17 @@ printf("number: %d", number);//12
 
 ```c
 int *number = 12;//Must not do it
+```
+
+The same error with multidimension array:
+
+```c
+int **int_array = {{1, 2, 3}, {4, 5, 6}};//Must not do it
+```
+**Error**
+
+```
+error: scalar object ‘int_array’ requires one element in initializer
 ```
 
 ## Examples
