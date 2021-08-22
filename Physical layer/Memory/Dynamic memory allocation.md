@@ -1,4 +1,4 @@
-### malloc
+### malloc()
 
 In library ``stdlib.h``
 
@@ -38,7 +38,7 @@ intPointer = (int *) malloc(1);
 printf("Int value: %d", *intPointer); //12
 ```
 
-**Example**: Create an int array with dynamic memory
+**Example 1**: Create a one dimension int array with ``malloc()``
 
 ```c
 #define arraySize 3
@@ -52,6 +52,46 @@ int main(){
    for (int i = 0; i < arraySize; i++){
       printf("intArray[%d]: %d\n", i, intArray[i]);
    }
+}
+```
+
+**Example 2**: Create a 2 dimension int array with ``malloc()``
+
+Array:
+
+```
+{  
+   {0, 1, 2} ,
+   {3, 4, 5} ,
+   {6, 7, 8}
+};
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define rowSize 3
+#define columnSize 3
+
+char *returnString();
+int main(){
+	int **int_array = (int**) malloc(columnSize * sizeof(int*));
+
+	for (int row = 0; row < rowSize; row++){
+		int_array[row] = (int*) malloc(columnSize * sizeof(int));
+	}
+
+	int index = 0;
+	for (int row = 0; row < rowSize; row++){
+		for (int column = 0; column < rowSize; column++){
+			int_array[row][column] = index;
+			index += 1;
+		}	
+	}
+
+	printf("%d", int_array[2][0]); //11
 }
 ```
 
