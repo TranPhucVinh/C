@@ -120,11 +120,34 @@ int main(){
 }
 ```
 
-To return a char array or an array in general in a function, use ``static``:
+Using stack memory with ``static``:
 
 ```c
 char *returnString(){
 	static char string[14];
+	strcpy(string, "Hello, World !");
+	return string;
+}
+```
+Using heap memory with ``malloc()``:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define stringSize 20
+
+char *returnString();
+int main(){
+	char *returnedString;
+	returnedString = returnString();
+	printf("%s", returnedString);
+}
+
+char *returnString(){
+	char *string;
+	string = (char*) malloc(stringSize);
 	strcpy(string, "Hello, World !");
 	return string;
 }
