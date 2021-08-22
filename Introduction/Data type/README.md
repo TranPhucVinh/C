@@ -82,12 +82,13 @@ Return the amount of memory allocated to that data type in **byte**.
 
 ```c
 int a = 16;
-printf("Size of variable a : %d\n",sizeof(a)); //Size of variable a : 4
-printf("Size of int data type : %d\n",sizeof(int)); //Size of int data type : 4
-printf("Size of char data type : %d\n",sizeof(char)); //Size of char data type : 1
-printf("Size of float data type : %d\n",sizeof(float)); //Size of float data type : 4
-printf("Size of double data type : %d\n",sizeof(double)); //Size of double data type : 8    
-```   
+printf("Size of variable a: %d\n", sizeof(a)); //Size of variable a : 4
+printf("Size of int data type: %d\n", sizeof(int)); //Size of int data type : 4
+printf("Size of int*: %d\n", sizeof(int*)); //Size of int*: 8
+printf("Size of char data type: %d\n", sizeof(char)); //Size of char data type : 1
+printf("Size of float data type: %d\n", sizeof(float)); //Size of float data type : 4
+printf("Size of double data type: %d\n", sizeof(double)); //Size of double data type : 8     
+```
 
 **Size in array**
 
