@@ -2,7 +2,7 @@ An array is a constant pointer.
 
 ### Example 1
 
-Use pointer to get address and value of member of array
+Use pointer to get address and value of member of a one dimension array
 
 ```c
 #include <stdio.h>
@@ -38,6 +38,16 @@ Get value of by index of an array by pointer
 ```c
 int array[] = {1, 342, 3};
 printf("%d ", *(array+0));
+```
+
+Use pointer to get value of a multidimension array:
+
+```c
+int (*array_pointer)[3];
+int array[2][3] = {{0, 1}, {2, 3}};
+
+array_pointer = array;
+printf("%d %d\n", array_pointer[0][0], array_pointer[1][1]);//0 3
 ```
 
 ### Example 2
