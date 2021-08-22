@@ -61,6 +61,8 @@ int **int_array = {{1, 2, 3}, {4, 5, 6}};//Must not do it
 error: scalar object ‘int_array’ requires one element in initializer
 ```
 
+To work with ``int *number`` and ``int **int_array``, check ``Dynamic memory allocation.md`` in ``Physical layer/Memory/``.
+
 ## Examples
 
 ```c
