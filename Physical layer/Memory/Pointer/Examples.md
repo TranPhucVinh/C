@@ -8,21 +8,16 @@ Change value of variable by pointer in a function
 int add (int number);
 
 main () {
- int number = 6;
- add(number);
- printf("%d \n", number);
- printf("the return value of the function is %d \n", add(number));
+	int number = 6;
+	add(number);
+	printf("%d \n", number);//6
+	printf("add(number): %d \n", add(number));//add(number): 7 
 }
 
 int add(int number){
 	number = number + 1;
 	return number;
 }
-```
-**Result** 
-```
-6 
-the return value of the function is 7 
 ```
 
 What is sent to the function ``add(number)`` is the value of variable ``number`` ( = 6), not variable ``number``, the variable ``number`` in ``add()`` is just the clone of the genuine variale ``number``. So the value of number still remain unchanged.

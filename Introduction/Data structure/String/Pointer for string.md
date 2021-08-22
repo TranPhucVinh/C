@@ -40,7 +40,7 @@ error: conflicting types for ‘displayedString’
 error: initializer element is not computable at load time
 ```
 
-### Define a pointer array on heap memory
+### Define a string pointer on heap memory
 
 Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``: ``malloc()``.
 
