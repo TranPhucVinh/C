@@ -1,0 +1,97 @@
+### Operations for array
+
+**Create**
+
+* Create array: ``create_array.c``
+* Create new member from index: ``create_new_member.c``
+
+**Read**
+* Simply read from ``index`` with ``array[index]``
+
+**Update**
+
+* Update value for array member from index: ``array[index] = new_value``
+
+**Delete**
+
+* Delete member in array from index: ``delete.c`` 
+
+### size of an array
+
+```c
+int array[] = {1, 2, 3};
+size_t arraySize = sizeof(array)/sizeof(array[0]);//12
+```
+
+``size_t arraySize = sizeof(array)/sizeof(array[0]);`` can also be returned with ``sizeof(array)/sizeof(int)``.
+
+Using this method is only right when you are dealing with arrays not received as parameters. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
+
+### Fail in dynamic array
+
+Enter the size of array
+
+```c
+int i, n, array[n];
+printf("Enter the number of members: ");
+scanf("%d", &n);
+
+for (i = 0; i < n; i++){    
+   array[i] = i;
+}
+
+for (i=0; i < n; i++){
+   printf("Value of member %d is %d \n", i, array[i]);
+}
+```
+
+**Result**
+
+```
+Segmentation fault (core dumped)
+```
+
+### Array as an argument of a function
+
+```c
+#include <stdio.h>
+
+void intArray(int *array, int size);
+int array[] = {1, 2, 3};
+
+int main()
+{  
+	int arraySize = sizeof(array)/sizeof(int); 
+	intArray(array, arraySize);
+}
+
+void intArray(int *array, int size){
+	for (int i = 0; i < size; i++){
+		printf("array[%d]: %d\n", i, array[i]);
+	}
+}
+```
+
+Or can define:
+
+```c
+void intArray(int array[], int size);
+```
+
+Change value of an array by a function
+```c
+void intArray(int *array, int size);
+int array[] = {1, 2, 3};
+
+int main()
+{  
+	int arraySize = sizeof(array)/sizeof(int); 
+	intArray(array, arraySize);
+}
+
+void intArray(int *array, int size){
+	for (int i = 0; i < size; i++){
+		array[i] = i+100;
+	}
+}
+```

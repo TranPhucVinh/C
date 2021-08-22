@@ -93,7 +93,7 @@ int main() {
 }
 ```
 
-### Example 2
+### Example 1
 
 Set and read value from a string array
 
