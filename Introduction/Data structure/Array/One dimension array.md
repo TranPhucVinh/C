@@ -79,6 +79,12 @@ void intArray(int array[3]){
 }
 ```
 
+Or can define:
+
+```c
+void intArray(int array[], int size);
+```
+
 Using array pointer
 
 ```c
@@ -98,12 +104,6 @@ void intArray(int *array, int size){
 		printf("array[%d]: %d\n", i, array[i]);
 	}
 }
-```
-
-Or can define:
-
-```c
-void intArray(int array[], int size);
 ```
 
 Change value of an array by a function
