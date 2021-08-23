@@ -1,6 +1,6 @@
-### Operations for array
+## Operations for array
 
-**Create**
+### Create
 
 On stack memory:
 
@@ -11,29 +11,7 @@ On heap memory:
 
 * Create an array: Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``.
 
-**Read**
-* Simply read from ``index`` with ``array[index]``
-
-**Update**
-
-* Update value for array member from index: ``array[index] = new_value``
-
-**Delete**
-
-* Delete member in array from index: ``delete.c`` 
-
-### size of an array
-
-```c
-int array[] = {1, 2, 3};
-size_t arraySize = sizeof(array)/sizeof(array[0]);//12
-```
-
-``size_t arraySize = sizeof(array)/sizeof(array[0]);`` can also be returned with ``sizeof(array)/sizeof(int)``.
-
-Using this method is only right when you are dealing with arrays not received as parameters. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
-
-### Fail in dynamic array
+**Fail in dynamically assigned the size of array**
 
 Enter the size of array
 
@@ -57,7 +35,32 @@ for (i=0; i < n; i++){
 Segmentation fault (core dumped)
 ```
 
-### Array as an argument of a function
+### Read
+
+* Simply read from ``index`` with ``array[index]``
+
+### Update
+
+* Update value for array member from index: ``array[index] = new_value``
+
+### Delete
+
+* Delete member in array from index: ``delete.c`` 
+
+### size of an array
+
+```c
+int array[] = {1, 2, 3};
+size_t arraySize = sizeof(array)/sizeof(array[0]);//12
+```
+Or
+```c
+size_t arraySize = sizeof(array)/sizeof(int);
+```
+
+Using this method is only right when you are dealing with arrays not received as parameters. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
+
+## Array as an argument of a function
 
 Using array with size
 
@@ -123,7 +126,7 @@ void intArray(int *array, int size){
 	}
 }
 ```
-### Function returns an array
+## Function returns an array
 
 Using stack memory with ``static``:
 
