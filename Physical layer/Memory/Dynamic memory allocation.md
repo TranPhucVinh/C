@@ -84,7 +84,7 @@ int main(){
 
 	int index = 0;
 	for (int row = 0; row < rowSize; row++){
-		for (int column = 0; column < rowSize; column++){
+		for (int column = 0; column < columnSize; column++){
 			int_array[row][column] = index;
 			index += 1;
 		}	
