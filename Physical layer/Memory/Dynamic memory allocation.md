@@ -70,7 +70,6 @@ Array:
 ```c
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define rowSize 3
 #define columnSize 3
@@ -89,8 +88,6 @@ int main(){
 			index += 1;
 		}	
 	}
-
-	printf("%d", int_array[2][0]); //6
 }
 ```
 
