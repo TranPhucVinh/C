@@ -135,21 +135,3 @@ intPointer = ... //A 20 bytes memory block is dynamically allocated to intPointe
 intPointer = realloc(intPointer, 10*sizeof(int));
 intPointer = ... //The size of intPointer is changed from 20 bytes to 40 bytes dynamically
 ```
-### new keyword for dynamic memory allocation
-
-``new`` keyword is only available in ``G++`` and is not available in ``GCC``.
-
-```c
-#include <stdio.h>
-
-int main()
-{  
-	int *int_number = new int[1];
-	int *int_array = new int[2];
-	*int_number = 12;
-	int_array[0] = 1;
-	int_array[1] = 2;
-	printf("int_number: %d\n", *int_number); //12
-	printf("int_array[1]: %d\n", int_array[1]); //2
-}
-```
