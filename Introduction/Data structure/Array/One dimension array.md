@@ -29,7 +29,7 @@ for (i=0; i < n; i++){
 }
 ```
 
-**Result**
+Result
 
 ```
 Segmentation fault (core dumped)
@@ -37,7 +37,10 @@ Segmentation fault (core dumped)
 
 ### Read
 
-* Simply read from ``index`` with ``array[index]``
+Read from ``index`` with:
+
+* ``array[index]``
+* ``*(array + index)``
 
 ### Update
 
