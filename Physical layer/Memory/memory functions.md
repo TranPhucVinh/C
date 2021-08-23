@@ -1,4 +1,4 @@
-### ``memcpy()``
+### memcpy()
 
 ``memcpy()`` copies n characters from memory area str2 to memory area str1.
 
