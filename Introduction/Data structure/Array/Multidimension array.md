@@ -63,6 +63,14 @@ int main(){
 }
 ```
 
+### Read value from a 2 dimension array
+
+Read from ``row`` and ``column`` with:
+
+* ``array[row][column]``
+* ``(*(array+row))[column]``
+* ``*(*(int_array+row))+column``
+
 ## 2D array as a function parameter
 
 ### Using array[row][column]
