@@ -91,7 +91,7 @@ int main(){
 }
 ```
 
-### Trying to overflow buffer with malloc
+### Trying to overflow buffer with malloc()
 
 ```c
 char *str;
