@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-
-#include <netinet/tcp.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
+#include <unistd.h> //for write(), read() and close()
+#include <sys/socket.h> //for listen(), send() and recv()
 #include <netdb.h>
 
 #define BUFFER_SIZE 1024
