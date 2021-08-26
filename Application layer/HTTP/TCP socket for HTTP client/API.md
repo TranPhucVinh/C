@@ -1,6 +1,6 @@
 ### ``sys/socket.h``
 
-Library **sys/socket.h** only includes in Unix computer, for similar TCP socket on Windows, use ``Winsock 2``, the library that need to be installed.
+Library ``sys/socket.h`` only includes in Unix computer, for similar TCP socket on Windows, use ``Winsock 2``, the library that need to be installed.
 
 ### socket()
 
@@ -10,7 +10,7 @@ Create new socket
 int socket(int protocolFamily, int  type, int protocol)
 ```
 
-* **protocolFamily**: 
+* ``protocolFamily``: 
 
     ``AF_INET`` (``Address Family Internet``): IPv4 protocol (same as ``PF_INET``)
 
@@ -18,14 +18,14 @@ int socket(int protocolFamily, int  type, int protocol)
 
     ``PF_INET`` stands for ``Protocol Family Internet``
 
-* **type**: type of socket, ``SOCK_STREAM``: TCP, ``SOCK_DGRAM``: UDP
-* **protocol**: Protocol used, with ``protocolFamily = PF_INET``, use ``IPPROTO_TCP`` for ``TCP`` and ``IPPROTO_UDP`` for ``UDP``
+* ``type``: type of socket, ``SOCK_STREAM``: TCP, ``SOCK_DGRAM``: UDP
+* ``protocol``: Protocol used, with ``protocolFamily = PF_INET``, use ``IPPROTO_TCP`` for ``TCP`` and ``IPPROTO_UDP`` for ``UDP``
 
 ```c
 int sockfd = socket(domain, type, protocol)
 ```
 
-**Return**: ``sockfd`` is a file descriptor
+``Return``: ``sockfd`` is a file descriptor
 
 ### connect()
 
@@ -35,9 +35,9 @@ Connect to socket with specific address.
 int connect(int sockfd, struct sockaddr *addr, unsigned int addrLength) 
 ```
 
-*  **sockfd**: created ``sockfd`` from function ``socket()``.
-*  **addr**: server address wished to connect.
-*  **addrLength**: length of Server address (byte). 4 byte for IPV4, 16 byte for IPV6.
+*  ``sockfd``: created ``sockfd`` from function ``socket()``.
+*  ``addr``: server address wished to connect.
+*  ``addrLength``: length of Server address (byte). 4 byte for IPV4, 16 byte for IPV6.
 
 ### send() and recv()
 
@@ -48,26 +48,12 @@ int send(int sockfd, const void *msg, unsigned int len, int flag)
 int recv(int sockfd, void *buff, unsigned int len, int flag)
 ```
 
-*  **sockfd**: created ``sockfd`` from function ``socket()``.
-* ***msg**, ***buff**: pointer to ``sent`` or ``receive`` data array.
-* **len**: maximum length of data array (in byte) each time ``sent`` or ``receive``.
-* **flag**: set ``sent`` or ``receive`` mode. If set to ``0``, ``recv()`` is generally equivalent to ``read()``.
+* ``sockfd``: created ``sockfd`` from function ``socket()``.
+* ``*msg``, ``*buff``: pointer to ``sent`` or ``receive`` data array.
+* ``len``: maximum length of data array (in byte) each time ``sent`` or ``receive``.
+* ``flag``: set ``sent`` or ``receive`` mode. If set to ``0``, ``recv()`` is generally equivalent to ``read()``.
 
 ``send()`` and  ``recv()`` return the number of byte sent or received, return ``-1`` if there is an error.
-
-### read() and write()
-
-```c
-ssize_t read(int sockfd, void *buf, ssize_t N);
-```
-
-Read ``N`` bytes of ``sockfd`` into the memory ``buf``
-
-```c
-ssize_t write(int sockfd, const void *buf, ssize_t N);
-```
-
-Write ``N`` bytes from ``buf`` to the ``sockfd``
 
 **Note**: If a zero-length datagram is pending, ``read()`` and ``recv()`` with a flags argument of zero provide different behavior.  In this circumstance, ``read()`` has no effect (the datagram remains pending), while ``recv()`` consumes the pending datagram.
 
@@ -133,12 +119,12 @@ struct sockaddr_in{
 };
 ```
 
-**sockaddr** and **sockaddr_in** are used to set up address parameter for **client** and **server**.
+``sockaddr`` and ``sockaddr_in`` are used to set up address parameter for client and server.
 
-* **sin_family**, **sa_family**: protocolFamily
-* **sin_port**: port of socket
-* **sin_addr**: connect address
-* **sin_zero**: not used, set value 0
+* ``sin_family``, ``sa_family``: protocolFamily
+* ``sin_port``: port of socket
+* ``sin_addr``: connect address
+* ``sin_zero``: not used, set value 0
 
 ### htons
 
@@ -148,7 +134,7 @@ u_short htons(
 );
 ```
 
-The **htons** function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
+The ``htons`` function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
 
 ### hostent
 
