@@ -38,4 +38,14 @@ Read return message from HTTPS server: ``https-request.c``
 
 Read return message from ``howsmyssl.com/a/check``: ``howmyssl_https_request.c``
 
-**Notice**: The return value read from ``howsmyssl.com/a/check` is different from reading them directly from web browser, due to security reason.
+**Notice**:
+
+The return value read from ``howsmyssl.com/a/check` is different from reading them directly from web browser, due to security reason.
+
+This HTTPS request (without ``Connection: close``) also works:
+
+```
+GET https://www.howsmyssl.com/a/check HTTP/1.1
+Host:howsmyssl.com
+User-Agent: esp-idf/1.0 esp32
+```
