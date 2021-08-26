@@ -33,6 +33,14 @@ write(STDOUT_FD, displayedString, sizeof(displayedString));
 write(STDOUT_FD, "Display string", 14);
 ```
 
+### close()
+
+Close a file descriptor, so that it no longer refers to any file and may be reused. 
+
+```c
+int close(int fd);
+```
+
 ### Examples
 
 All the examples below run on both Windows and Linux.
