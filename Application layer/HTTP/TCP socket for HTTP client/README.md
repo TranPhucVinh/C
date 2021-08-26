@@ -40,7 +40,7 @@ Read return message from ``howsmyssl.com/a/check``: ``howmyssl_https_request.c``
 
 **Notice**:
 
-The return value read from ``howsmyssl.com/a/check` is different from reading them directly from web browser, due to security reason.
+The return value read from ``howsmyssl.com/a/check`` is different from various reading devices like web browser, IoT devices, OS process,... as it depends on the way the HTTP client performs the HTTPS request.
 
 This HTTPS request (without ``Connection: close``) also works:
 
