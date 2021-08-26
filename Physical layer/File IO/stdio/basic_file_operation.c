@@ -12,11 +12,10 @@ void readFile(char *filename);
 void readFileToBuffer(char *filename, char *buffer, int readSize);
 void writeToFile(char *file, char *data);
 void deleteFile(char *filename);
+void renameFile(char *oldFileName, char *newFileName);
 
 int main(void)
 {
-    char buffer[BUFFER_SIZE];
-    readFileToBuffer("Interview.md", buffer, READ_SIZE);
     return(0);
 }
 
@@ -78,6 +77,11 @@ void writeToFile(char *file, char *data){
 void deleteFile(char *filename){
     if (!remove(filename)) printf("Delete file successfully");
     else printf("Unable to delete the file");
+}
+
+void renameFile(char *oldFileName, char *newFileName){
+    if (!rename(oldFileName, newFileName)) printf("Rename file sucessfully\n");
+    else printf("Unable to rename file\n");
 }
 
 /*

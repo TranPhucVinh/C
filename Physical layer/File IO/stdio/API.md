@@ -87,10 +87,6 @@ Read the content in a file or stream until encounter the new line character (``\
 fgets(char *s, int n, FILE *stream);
 ```
 
-```c
-fgets(msg, 81, stream);
-```
-
 **Example**: Read an entered string which included space from command line (``stdin``) then prints out on screen
 
 ```c
@@ -142,6 +138,17 @@ Print out a string to ``stdout``
 ```c
 fputs("Hello, World ! 1\n", stdout);
 ```
+
+### rename()
+
+Rename a file
+
+```c
+int rename(const char *old_filename, const char *new_filename)
+```
+
+**Return**: ``0`` if rename successfully, ``1`` if unable to rename file
+
 ### remove()
 
 Remove a file
