@@ -42,9 +42,9 @@ int socket(int protocolFamily, int  type, int protocol)
 
     ``AF_INET`` (``Address Family Internet``): IPv4 protocol (same as ``PF_INET``)
 
-    ``AF_INET6``: IPv6 protocol (same as ``PF_INET6``)
-
     ``PF_INET`` stands for ``Protocol Family Internet``
+
+    ``AF_INET6``: IPv6 protocol (same as ``PF_INET6``)
 
 * ``type``: type of socket, ``SOCK_STREAM``: TCP, ``SOCK_DGRAM``: UDP
 * ``protocol``: Protocol used, with ``protocolFamily = PF_INET``, use ``IPPROTO_TCP`` for ``TCP`` and ``IPPROTO_UDP`` for ``UDP``
