@@ -42,6 +42,32 @@ struct databaseNode displayString(){
 }
 ```
 
+``struct`` a type with ``typedef``:
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+typedef struct databaseNode Database;
+
+Database displayString();
+
+int main() {
+	displayString();
+}
+
+Database displayString(){
+    Database node;
+    node.id = 1;
+    strcpy(node.stringValue, "Hello, World !");
+    printf("node.id %d, node.stringValue: %s\n", node.id, node.stringValue);
+}
+```
 ## Example 2
 
 Nested struct
