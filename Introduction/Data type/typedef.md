@@ -1,10 +1,19 @@
 ``typedef`` can be used to give a type a new name.
 
 ```c
-typedef int integerNumber;
+#include <stdio.h>
+
+typedef int integer;
+
+integer displayFunction();
 
 int main() {
-	integerNumber a = 19;
-	printf("%d", a); //19
+	integer a = 19;
+	printf("%d\n", a); //19
+    printf("%d\n", displayFunction()); //4
+}
+
+integer displayFunction(){
+    return 4;
 }
 ```
