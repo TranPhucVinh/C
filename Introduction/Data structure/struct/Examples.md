@@ -23,6 +23,9 @@ void structFunction(struct databaseNode node){
 ### struct function
 
 ```c
+#include <stdio.h>
+#include <string.h>
+
 struct databaseNode {
 	int id;
 	char stringValue[50];
@@ -31,14 +34,16 @@ struct databaseNode {
 struct databaseNode displayString();
 
 main(){
-   displayString();
+    struct databaseNode returnNode = displayString();
+    printf("returnNode.id: %d, returnNode.stringValue: %s", returnNode.id, returnNode.stringValue);
 }
 
 struct databaseNode displayString(){
-   struct databaseNode node0;
+    struct databaseNode node;
+    node.id = 1;
+    strcpy(node.stringValue, "Hello, World !");
 
-   printf("Hello, World !\n");
-   return node0;
+    return node;
 }
 ```
 
