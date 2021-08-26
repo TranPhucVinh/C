@@ -1,6 +1,34 @@
-### ``sys/socket.h``
+## sys/socket.h
 
-Library ``sys/socket.h`` only includes in Unix computer, for similar TCP socket on Windows, use ``Winsock 2``, the library that need to be installed.
+### listen()
+
+Listen for connections on a socket
+
+```c
+int listen(int sockfd, int backlog);
+```
+
+``backlog``: defines the maximum length to which the queue of pending connections for ``sockfd`` may grow. If a connection request arrives when the queue is full, the client may receive an error with an indication of ``ECONNREFUSED`` or, if the underlying protocol supports retransmission, the request may be ignored so that a later reattempt at connection succeeds.
+
+### send() and recv()
+
+```c
+int send(int sockfd, const void *msg, unsigned int len, int flag) 
+```
+```c
+int recv(int sockfd, void *buff, unsigned int len, int flag)
+```
+
+* ``sockfd``: created ``sockfd`` from function ``socket()``.
+* ``*msg``, ``*buff``: pointer to ``sent`` or ``receive`` data array.
+* ``len``: maximum length of data array (in byte) each time ``sent`` or ``receive``.
+* ``flag``: set ``sent`` or ``receive`` mode. If set to ``0``, ``recv()`` is generally equivalent to ``read()``.
+
+``send()`` and  ``recv()`` return the number of byte sent or received, return ``-1`` if there is an error.
+
+**Note**: If a zero-length datagram is pending, ``read()`` and ``recv()`` with a flags argument of zero provide different behavior.  In this circumstance, ``read()`` has no effect (the datagram remains pending), while ``recv()`` consumes the pending datagram.
+
+## netdb.h
 
 ### socket()
 
@@ -21,11 +49,7 @@ int socket(int protocolFamily, int  type, int protocol)
 * ``type``: type of socket, ``SOCK_STREAM``: TCP, ``SOCK_DGRAM``: UDP
 * ``protocol``: Protocol used, with ``protocolFamily = PF_INET``, use ``IPPROTO_TCP`` for ``TCP`` and ``IPPROTO_UDP`` for ``UDP``
 
-```c
-int sockfd = socket(domain, type, protocol)
-```
-
-``Return``: ``sockfd`` is a file descriptor
+**Return**: A file descriptor for the created socket
 
 ### connect()
 
@@ -38,42 +62,6 @@ int connect(int sockfd, struct sockaddr *addr, unsigned int addrLength)
 *  ``sockfd``: created ``sockfd`` from function ``socket()``.
 *  ``addr``: server address wished to connect.
 *  ``addrLength``: length of Server address (byte). 4 byte for IPV4, 16 byte for IPV6.
-
-### send() and recv()
-
-```c
-int send(int sockfd, const void *msg, unsigned int len, int flag) 
-```
-```c
-int recv(int sockfd, void *buff, unsigned int len, int flag)
-```
-
-* ``sockfd``: created ``sockfd`` from function ``socket()``.
-* ``*msg``, ``*buff``: pointer to ``sent`` or ``receive`` data array.
-* ``len``: maximum length of data array (in byte) each time ``sent`` or ``receive``.
-* ``flag``: set ``sent`` or ``receive`` mode. If set to ``0``, ``recv()`` is generally equivalent to ``read()``.
-
-``send()`` and  ``recv()`` return the number of byte sent or received, return ``-1`` if there is an error.
-
-**Note**: If a zero-length datagram is pending, ``read()`` and ``recv()`` with a flags argument of zero provide different behavior.  In this circumstance, ``read()`` has no effect (the datagram remains pending), while ``recv()`` consumes the pending datagram.
-
-### listen()
-
-Listen for connections on a socket
-
-```c
-int listen(int sockfd, int backlog);
-```
-
-``backlog``: defines the maximum length to which the queue of pending connections for ``sockfd`` may grow. If a connection request arrives when the queue is full, the client may receive an error with an indication of ``ECONNREFUSED`` or, if the underlying protocol supports retransmission, the request may be ignored so that a later reattempt at connection succeeds.
-
-### close()
-
-Close a socket.
-
-```c
-int close(int sockfd)
-```
 
 ### shutdown()
 
@@ -91,15 +79,45 @@ int shutdown(int sockfd, int how)
 
 **Return**: ``0`` success,`` -1`` errors
 
-## Other libraries
+### Other functions
 
-``netinet/in.h``: Internet Protocol family
+```c
+struct hostent *hp;
+```
 
-## struct
+```c
+herror();
+```
 
-## sockaddr, in_addr, sockaddr_in
+```c
+gethostbyname()
+```
 
-Library ``arpa/inet.h``
+### htons
+
+```c
+u_short htons(
+  u_short hostshort
+);
+```
+
+The ``htons`` function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
+
+### hostent
+
+```c
+struct hostent {
+    char  *h_name;            /* official name of host */
+    char **h_aliases;         /* alias list */
+    int    h_addrtype;        /* host address type */
+    int    h_length;          /* length of address */
+    char **h_addr_list;       /* list of addresses */
+}
+```
+
+## arpa/inet.h
+
+### sockaddr, in_addr, sockaddr_in
 
 ```c
 struct sockaddr { 
@@ -126,24 +144,6 @@ struct sockaddr_in{
 * ``sin_addr``: connect address
 * ``sin_zero``: not used, set value 0
 
-### htons
+## Other libraries
 
-```c
-u_short htons(
-  u_short hostshort
-);
-```
-
-The ``htons`` function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
-
-### hostent
-
-```c
-struct hostent {
-    char  *h_name;            /* official name of host */
-    char **h_aliases;         /* alias list */
-    int    h_addrtype;        /* host address type */
-    int    h_length;          /* length of address */
-    char **h_addr_list;       /* list of addresses */
-}
-```
+``netinet/in.h``: Internet Protocol family
