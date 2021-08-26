@@ -1,1 +1,1 @@
-For TCP socket in Windows, use library ``winsock2.h`` which is built-in in GCC compiler.
+For TCP socket on Windows, use library  ``Winsock 2`` (``winsock2.h``) which is built-in in GCC compiler.
