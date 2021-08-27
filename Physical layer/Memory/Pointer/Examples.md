@@ -66,7 +66,7 @@ int add(int *number){
 
 Change value of a string by function using pointer.
 
-Check: ``Change value of a string by function using pointer`` in ``Introduction/Data type/String/Char for String.md``.
+Check: ``Example 2 Change value of a string by function using pointer`` in ``Introduction/Data structure/String/Examples part 1.md``.
 
 ### Example 1.3: Change value of a variable with pointer
 
