@@ -54,3 +54,27 @@ int main() {
 	multipleArgumentsFunction(3, "String 1", "String 2", "String 3");
 }  
 ```
+
+Change value of a string as a variable length argument
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h> //for va_list, va_start(), va_end()
+
+int multipleArgumentsFunction(int totalArgument,...){
+	va_list valist;
+	va_start(valist, totalArgument);
+
+	strcpy(va_arg(valist, char*), "Display string");
+	va_end(valist); //clean up the memory assigned to va_list variable.
+	return 0;
+}
+
+int main() {
+	char displayedString[] = "Hello, World !";
+	printf("%s\n", displayedString);//Hello, World !
+	multipleArgumentsFunction(1, displayedString);
+	printf("%s\n", displayedString);//Display string
+} 
+```
