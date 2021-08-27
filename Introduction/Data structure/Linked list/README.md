@@ -16,3 +16,7 @@ A linked list support those features:
 * Read
 * Update
 * Delete
+
+### Application
+
+* Using single link list to append the input text box during WiFi configuration: Library ``esp32_wifi_manager`` in ``ESP-IDF/Link layer/``.
