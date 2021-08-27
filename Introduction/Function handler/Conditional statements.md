@@ -1,5 +1,18 @@
 ``for(;;)`` is equal to ``while(1)``.
 
+Condition of a loop can be changed normally. Example:
+
+```c
+//This program will run as an indefinite loop
+int i = 0;
+int a = 10;
+while (i < a){
+	i += 1;
+	a += 1;
+	printf("i %d, a %d\n", i, a);
+}
+```
+
 ## Condition with int number
 
 ```c
