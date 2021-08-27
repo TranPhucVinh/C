@@ -83,6 +83,39 @@ String 1
 String 2
 ```
 
+``int totalArgument`` can be outside function ``multipleArgumentsFunction()``
+
+```c
+#include <stdio.h>
+#include <stdarg.h> //for va_list, va_start(), va_end()
+
+int totalArgument = 3;
+
+int multipleArgumentsFunction(char *displayedString,...){
+	va_list valist;
+	va_start(valist, totalArgument);
+
+	printf("%s\n", displayedString);//String 1
+	printf("%s\n", va_arg(valist, char*));//String 2
+	printf("%s\n", va_arg(valist, char*));//String 3
+	printf("%s\n", va_arg(valist, char*));//String 4
+	va_end(valist); //clean up the memory assigned to va_list variable.
+	return 0;
+}
+
+int main() {
+	multipleArgumentsFunction("String 1", "String 2", "String 3", "String 4");
+} 
+```
+
+**Note**: This function gives warning in both G++ and GCC
+
+```
+test.c:48:2: warning: second parameter of ‘va_start’ not last named argument [-Wvarargs]
+  va_start(valist, totalArgument);
+  ^
+```
+
 Change value of a string as a variable length argument
 
 ```c
