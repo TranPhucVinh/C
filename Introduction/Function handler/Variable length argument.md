@@ -55,6 +55,34 @@ int main() {
 }  
 ```
 
+``int totalArgument`` can goes behind other argument inside the function
+
+```c
+#include <stdio.h>
+#include <stdarg.h> //for va_list, va_start(), va_end()
+
+int multipleArgumentsFunction(const char *displayedString, int totalArgument,...){
+	printf("%s\n", displayedString);
+
+	va_list valist;
+	va_start(valist, totalArgument);
+
+	printf("%s\n", va_arg(valist, char*));
+	printf("%s\n", va_arg(valist, char*));
+	va_end(valist); //clean up the memory assigned to va_list variable.
+	return 0;
+}
+
+int main() {
+	multipleArgumentsFunction("Hello, World !", 2, "String 1", "String 2");
+} 
+```
+```
+Hello, World !
+String 1
+String 2
+```
+
 Change value of a string as a variable length argument
 
 ```c
