@@ -33,53 +33,6 @@ void unionFunction(union data data0){
 
 ## Example 2
 
-Using ``struct`` inside ``union`` to split a string with the following sequence ``id``,  ``command`` and ``check_sum``
-
-E.g: ``12345`` has ``id`` is ``1``, ``command`` is ``234`` and ``check_sum`` is ``5``.
-
-```c
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-
-#define STDOUT_FD 1
-char value[] = "12345";
-
-union data_frame {
-    struct data {
-        char id[1];
-        char command[3];
-        char check_sum[1];
-    } data;
-    char data_storage[5];
-};
-
-int main(){
-    union data_frame frame;
-
-    strcpy(frame.data_storage, value);
-
-    write(STDOUT_FD, frame.data.id, sizeof(frame.data.id));
-    printf("\n");
-    write(STDOUT_FD, frame.data.command, sizeof(frame.data.command));
-    printf("\n");
-    write(STDOUT_FD, frame.data.check_sum, sizeof(frame.data.check_sum));
-    printf("\n");
-}
-```
-**Note**
-
-As memory order, the order of members defined inside ``struct data`` must follow the expected parsing order of the string, i.e ``id``, ``command`` and ``check_sum``.
-
-Using ``printf()`` like this will cause error:
-
-```c
-printf("%s\n", frame.data.id);//12345
-printf("%s\n", frame.data.command);//2345
-printf("%s\n", frame.data.check_sum);//5
-```
-## Example 3
-
 Parsing a char array into the following fields
 
 Char array: ``0x24 0x00 0x01 0x1A 0x05 0x1F 0x20 0x2F 0x1C 0x17 0x20 0x61``
