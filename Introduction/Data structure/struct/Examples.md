@@ -127,7 +127,7 @@ void struct_data_parsing(char *data){
         char port[3];
     } data_frame;
 
-    memcpy(&data_frame, data, 22);
+    memcpy(&data_frame, data, strlen(data));
     strcpy(host, data_frame.host);
     strcpy(port, data_frame.port);
 }
