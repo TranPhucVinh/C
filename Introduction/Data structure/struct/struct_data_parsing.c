@@ -25,8 +25,7 @@ void struct_data_parsing(char *data){
         char checksum[1];
     } data_frame;
 
-    // For char array with hex value, using strcpy() will result in error
-    memcpy(&data_frame, data, 12);
+    memcpy(&data_frame, data, 12);//As char* data is an array, so use fix value here (12), not strlen(data)
 
     //dcd_header parsing
     sprintf(dcd_header, "%c", data_frame.dcd_header[0]);
