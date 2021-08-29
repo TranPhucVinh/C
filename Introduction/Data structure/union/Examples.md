@@ -33,34 +33,7 @@ void unionFunction(union data data0){
 
 ## Example 2
 
-``struct`` inside a ``union``
-
-```c
-union data_frame {
-    struct header {
-        char id[1];
-        char command[3];
-        char check_sum[1];
-    } header;//must give the name for struct header
-    char data[5];
-};
-
-int main(){
-    union data_frame data;
-
-    strcpy(data.data, "12345");
-    printf("data: %s\n", data.data);
-    strcpy(data.header.id, "6");
-	printf("header.id: %s\n", data.header.id);
-    strcpy(data.header.command, "789");
-	printf("header.command: %s\n", data.header.command);
-    strcpy(data.header.check_sum, "0");
-	printf("header.check_sum: %s\n", data.header.check_sum);
-}
-```
-## Example 3
-
-Split a string with the following sequence ``id``,  ``command`` and ``check_sum``
+Using ``struct`` inside ``union`` to split a string with the following sequence ``id``,  ``command`` and ``check_sum``
 
 E.g: ``12345`` has ``id`` is ``1``, ``command`` is ``234`` and ``check_sum`` is ``5``.
 
@@ -105,7 +78,7 @@ printf("%s\n", frame.data.id);//12345
 printf("%s\n", frame.data.command);//2345
 printf("%s\n", frame.data.check_sum);//5
 ```
-## Example 4
+## Example 3
 
 Parsing a char array into the following fields
 
