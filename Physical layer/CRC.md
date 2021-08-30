@@ -33,7 +33,10 @@ int main(){
     int crc_16_ibm = sender_crc_calculate(modbus_rtu_frame, sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]));
     printf("%p\n", crc_16_ibm);//0x0944
 
-    //Then form an array include CRC
+    /*
+        Then form an array include CRC
+        uint8_t modbus_rtu_frame_with_crc[] = {... data member ..., crc_low_byte, crc_high_byte};
+    */
     uint8_t modbus_rtu_frame_with_crc[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x04, crc_16_ibm, crc_16_ibm>>8};
 
     for (int i=0; i < sizeof(modbus_rtu_frame_with_crc)/sizeof(modbus_rtu_frame_with_crc[0]); i++){
@@ -76,4 +79,32 @@ int main(){
     if (!crc_16_ibm) printf("No error happens during transmission with CRC is %d", crc_16_ibm);
     else printf("Error happens during transmission with CRC is %p\n", crc_16_ibm);
 }
+```
+For proper storing and display, use ``uint8_t`` for ``modbus_rtu_frame`` and use ``uint8_t`` as ``receiver_crc_calculate()`` function parameter:
+
+```c
+uint8_t modbus_rtu_frame[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09};
+int receiver_crc_calculate(uint8_t *modbus_rtu_frame, int size){
+    //Identical declartion like example above
+}    
+```
+
+If using ``uint8_t modbus_rtu_frame[]`` and ``int`` as ``receiver_crc_calculate()`` function parameter, there will be CRC error:
+
+```c
+uint8_t modbus_rtu_frame[] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09};
+int receiver_crc_calculate(int *modbus_rtu_frame, int size){
+    //Identical declartion like example above
+}    
+
+int main(){
+    int crc_16_ibm = receiver_crc_calculate((int*)modbus_rtu_frame, sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]));
+    if (!crc_16_ibm) printf("No error happens during transmission with CRC is %d", crc_16_ibm);
+    else printf("Error happens during transmission with CRC is %p\n", crc_16_ibm);
+}
+```
+**Result**
+
+```
+Error happens during transmission with CRC is 0xd040
 ```
