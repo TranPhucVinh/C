@@ -5,6 +5,15 @@ int a = 19;
 printf("a: 0x%x \n", a); //0x13 
 ```
 
+Create a hex number from 2 hex variable
+
+```c
+char moisure[] = {0x0, 0x74};//Form number 0x0074
+
+char temp_moisure[8];
+sprintf(temp_moisure, "0x%x%x", moisure[0], moisure[1]);
+```
+
 Convert hex to int
 
 ```c
