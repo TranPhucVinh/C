@@ -10,7 +10,10 @@ printf("size of negative float number is: %d", sizeof(y));
 float number is: -3.100000
 size of negative float number is: 4
 ```
-
+Limit float dgigit to 2 number
+```c
+printf("float number is: %.2f",y);
+```
 ### float and double
 
 **double** can also be declared as **long float**.
