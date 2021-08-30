@@ -6,51 +6,32 @@ E.g: ``12345`` has ``id`` is ``1``, ``command`` is ``234`` and ``check_sum`` is 
 
 ```c
 #include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
 #define STDOUT_FD 1
+char value[] = "12345";
 
-extern "C" {
-   void app_main();
-}
+union data_frame {
+    struct data {
+        char id[1];
+        char command[3];
+        char check_sum[1];
+    } data;
+    char data_storage[5];
+};
 
-char displayedString[] = "12345";
+int main(){
+    union data_frame frame;
 
-void displayString(void *pvParam);
+    strcpy(frame.data_storage, value);
 
-void app_main()
-{
-    xTaskCreate(displayString, "Display string", 2048, NULL, 1, NULL);
-}
-
-void displayString(void *pvParam){
-    union data_frame {
-        struct data {
-            char id[1];
-            char command[3];
-            char check_sum[1];
-        } data;
-        char data_storage[5];
-    };
-
-	union data_frame frame;
-
-  	while(1){
-		strcpy(frame.data_storage, displayedString);
-
-		write(STDOUT_FD, frame.data.id, sizeof(frame.data.id)); //1
-		printf("\n");
-		write(STDOUT_FD, frame.data.command, sizeof(frame.data.command));//234
-		printf("\n");
-		write(STDOUT_FD, frame.data.check_sum, sizeof(frame.data.check_sum));//5
-		printf("\n");
-
-		vTaskDelay(1000 / portTICK_PERIOD_MS);
-	}
-  vTaskDelete(NULL);
+    write(STDOUT_FD, frame.data.id, sizeof(frame.data.id));
+    printf("\n");
+    write(STDOUT_FD, frame.data.command, sizeof(frame.data.command));
+    printf("\n");
+    write(STDOUT_FD, frame.data.check_sum, sizeof(frame.data.check_sum));
+    printf("\n");
 }
 ```
 **Note**: Using ``printf()`` like this will cause error:
