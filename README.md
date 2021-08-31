@@ -1,3 +1,3 @@
 # About
 
-C document and software mostly implemented for Unix system followed its OS architecture.
+C document and software for Unix-based applications, followed its OS architecture.
