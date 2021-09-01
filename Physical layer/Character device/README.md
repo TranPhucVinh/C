@@ -79,7 +79,7 @@ struct class *class_create(struct module *owner, const char *name);
 ```
 
 * ``struct module *owner``: pointer to the module that is to “own” this struct class
-* ``const char *name`: pointer to a string for the name of this class.
+* ``const char *name``: pointer to a string for the name of this class.
 
 ### struct device
 
