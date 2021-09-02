@@ -30,19 +30,18 @@ Enter filename then print out the information about a file such as inode, file t
 ```c
 #include <stdio.h>
 #include <sys/stat.h>
-#include <stdlib.h>
 
 int main(int argc, char *argv[]) {
 	struct stat statBuffer;
 
 	if (argc != 2) {
-		puts("You haven't entered enough parameter to execute");
-		exit(0);
+		puts("You haven't entered enough parameter to execute\n");
+        return 0;
 	}
 
 	if (!stat(argv[1], &statBuffer)){
-		printf("ID of device containing file st_dev: %ld", statBuffer.st_dev);
-		printf("Inode number st_ino: %ld", statBuffer.st_ino);
+		printf("ID of device containing file st_dev: %ld\n", statBuffer.st_dev);
+		printf("Inode number st_ino: %ld\n", statBuffer.st_ino);
 	} else {
 		puts("File not exist");
 	}
