@@ -23,30 +23,6 @@ int main(void)
 }
 ```
 
-### Example 2
-
-Enter filename then print out the information about a file such as inode, file type, user ID,...
-
-```c
-#include <stdio.h>
-#include <sys/stat.h>
-
-int main(int argc, char *argv[]) {
-	struct stat statBuffer;
-
-	if (argc != 2) {
-		puts("You haven't entered enough parameter to execute\n");
-        return 0;
-	}
-
-	if (!stat(argv[1], &statBuffer)){
-		printf("ID of device containing file st_dev: %ld\n", statBuffer.st_dev);
-		printf("Inode number st_ino: %ld\n", statBuffer.st_ino);
-	} else {
-		puts("File not exist");
-	}
-}	
-```
 ### Example 3
 
 Read data from USB port (``/dev/ttyUSB0``, ``/dev/ttyACM0``,...)
