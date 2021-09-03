@@ -1,26 +1,59 @@
-A pointer is a variable that stores address of other variable.
+In computer science, a **reference** is a value that enables a program to indirectly access a particular ``datum``, such as a variable's value or a record, in the computer's memory or in some other storage device. **Pointers** are the most primitive type of reference.
+
+A pointer is a variable that stores address of other variable. All the pointer syntax works identically in both C/C++.
 
 * ``*p``: declare a pointer
 * ``*p``: value at address
 * ``&``: get the address of the variable
 * ``%p``: is used to print out the address as it can print out the hex value.
 
-All the pointer syntax works identically in both C/C++.
-
-In computer science, a **reference** is a value that enables a program to indirectly access a particular ``datum``, such as a variable's value or a record, in the computer's memory or in some other storage device. **Pointers** are the most primitive type of reference.
-
 ## Declare pointer variable
 
 ```c
-int *p; //pointer to integer
-int* intPointer; //Equal to the previous ways and will give the same result
+int *intPointer; //pointer to integer
+``` 
 
+Or it can be
+
+```c
+int* intPointer;
+```
+
+```c
 char *p0; //pointer to character
 double *p1; // pointer to double
 const char *displayedString = "Hello, World !";//String pointer declaration
 ```
 
-**Wrong declaration and operation that must be avoided**
+### Get value of pointer
+
+```c
+int *p;
+int a = 9;
+p = &a; //variable p now stores the address of variable a
+int *pointer = &a; //variable pointer now stores the address of variable a
+printf("pointer value %p \n", p); //0x601030
+printf("address value of variable a %p \n", &a); //0x601030
+printf("address of pointer variable %p \n", &p); //0x601048
+printf("Value of variable pointer %p \n", pointer); //0x601030
+printf("variable value %d \n", *p); //9
+printf("*& value is %d \n", *&a); //9
+printf("Value *pointer is %d \n", *pointer); //9
+return(0);
+```
+
+**Note**: ``*&a`` is ``a``.
+
+Set value for a variable by pointer:
+
+```c
+int number;
+int *pointer = &number;
+*pointer = 190;
+printf("number: %d\n", number);//190
+```
+
+### Wrong declaration and operation that must be avoided
 
 ```c
 int *number = 12;
@@ -63,52 +96,7 @@ error: scalar object ‘int_array’ requires one element in initializer
 
 To work with ``int *number`` and ``int **int_array``, check ``Dynamic memory allocation.md`` in ``Physical layer/Memory/``.
 
-## Examples
-
-```c
-p = &a //p is the address of a
-printf("%p", &a);
-```
-
-**Note**: ``*&a`` is ``a``.
-
-```c
-int a;
-int *p;
-
-a = 5;
-p = &a; // p is address of variable a
-```
-
-### Get value of pointer
-
-```c
-int *p;
-int a = 9;
-int *pointer = &a; //Declare a pointer name pointer with the address of variable a
-int main(){
-   p = &a;
-   printf("pointer value %p \n", p); //0x601030
-   printf("address value of variable a %p \n", &a); //0x601030
-   printf("address of pointer variable %p \n", &p); //0x601048
-   printf("Value of variable pointer %p \n", pointer); //0x601030
-   printf("variable value %d \n", *p); //9
-   printf("*& value is %d \n", *&a); //9
-   printf("Value *pointer is %d \n", *pointer); //9
-   return(0);
-}
-```
-
-We can also notice that
-
-```c
-*pointer = &a;
-p = &a;
-```
-
-has returned the same value for ``p`` and ``pointer`` as the address of variable ``a``.
-
-### ``sizeof()``
+### sizeof()
 
 In 64-bit computer
 
