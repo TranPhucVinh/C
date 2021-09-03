@@ -41,7 +41,7 @@ fileDescriptor = open(filePath, O_WRONLY);
 
 If this ``open()`` line of code is run the first time inside the source code and ``test.txt`` exists, then ``fileDescription`` is ``3``.
 
-``0``, ``1`` and ``2`` are file descriptor value of ``stdin``, ``stdout`` and ``stderr``
+``0``, ``1`` and ``2`` are file descriptor value of ``stdin``, ``stdout`` and ``stderr``. In an interactive shell or program, these three descriptors are normally connected to the terminal.
 
 However, ``open("/dev/stdin", O_RDONLY)`` returns ``3``.
 
