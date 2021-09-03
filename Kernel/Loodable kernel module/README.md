@@ -57,3 +57,18 @@ static inline exitcall_t __exittest(void)       \
 { return exitfn; }                  \
 void cleanup_module(void) __attribute__((alias(#exitfn)));
 ```
+
+### printk() and log level
+
+| Name| Alias function |
+| ------- |:------:|
+| KERN_EMERG    | ``pr_emerg()``    |
+| KERN_ALERT    | ``pr_alert()``   |
+| KERN_CRIT    | ``pr_crit()``|
+|KERN_ERR |``pr_err()``|
+|KERN_WARNING|``pr_warn()``|
+|KERN_NOTICE|``pr_notice()``|
+|KERN_INFO|``pr_info()``|
+|KERN_DEBUG|``pr_debug()`` and ``pr_devel()`` if DEBUG is defined|
+|KERN_DEFAULT||
+|KERN_CONT|``pr_cont()``|
