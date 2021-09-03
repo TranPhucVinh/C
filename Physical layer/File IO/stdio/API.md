@@ -24,11 +24,6 @@ file = fopen("text.md", "r"); //Open text.md to read
 * t
 * b
 
-**Example**
-
-* ``readFile.c``: Read content from existed files
-* ``writeEmptyFile.c``: Write to an empty file, if file already existed, do nothing
-
 ### fprintf()
 
 Sends formatted output to a stream.
