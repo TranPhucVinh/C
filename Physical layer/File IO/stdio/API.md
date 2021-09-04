@@ -73,12 +73,28 @@ fread(buffer, READ_SIZE, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_S
 printf("%s\n", buffer);
 fclose(fp);
 ```
+
+Read 2 entered characters from ``stdin`` and print out
+
+```c
+#define READ_SIZE 1
+#define BUFFER_SIZE 2
+
+char buffer[BUFFER_SIZE];
+
+while (1){
+	fread(buffer, READ_SIZE, BUFFER_SIZE, stdin);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
+	printf("%s\n", buffer);
+}
+```
+
 ### fwrite()
 
 ```c
 size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
 ```
 
+Print out a string to ``stdout``
 ```c
 #define WRITE_SIZE 1
 
