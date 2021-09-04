@@ -63,4 +63,6 @@ int fileDescription = open(filePath, O_RDONLY);
 printf("%d\n", errno);
 ```
 
+If the file is exist and no error happen, ``errno`` is ``0``.
+
 If the file is not exist, ``errno`` will be ``2`` (``ENOENT``).
