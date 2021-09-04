@@ -28,7 +28,7 @@ Library ``time.h`` defines
 
 ### Example 1
 
-Get current time with ``time.h``
+Get current time with ``time()``
 
 ```c
 #include <stdio.h>
