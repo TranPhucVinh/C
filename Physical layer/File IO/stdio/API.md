@@ -73,6 +73,27 @@ fread(buffer, READ_SIZE, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_S
 printf("%s\n", buffer);
 fclose(fp);
 ```
+### fwrite()
+
+```c
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
+```
+
+```c
+#define WRITE_SIZE 1
+
+char displayedString[] = "Hello, World !";
+fwrite(displayedString , WRITE_SIZE , sizeof(displayedString) , stdout);
+```
+**Note**: For ``displayedString`` to be displayed inside a ``while()`` loop, it must have a ``\n`` character.
+
+```c
+while (1){
+	char displayedString[] = "Hello, World !111";
+	fwrite(displayedString , WRITE_SIZE , sizeof(displayedString) , stdout);
+	delaySeconds(1);
+}
+```
 
 ### fgets()
 
