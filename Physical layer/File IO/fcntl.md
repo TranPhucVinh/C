@@ -8,7 +8,7 @@ Open file/stream
 int fileDescriptor = int open(const char *path, int mode)
 ```
 
-* path: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
+* ``path``: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
 * mode:
 
 | Mode | Description|NOTE
@@ -54,3 +54,13 @@ printf("%d", fileDescription);//3
 fileDescription = open(filePath, O_RDONLY);//Open test.txt again
 printf("%d", fileDescription);//4
 ```
+
+Check error with ``errno`` of library ``errno.h``
+
+```c
+#include <errno.h>
+int fileDescription = open(filePath, O_RDONLY);
+printf("%d\n", errno);
+```
+
+If the file is not exist, ``errno`` will be ``2`` (``ENOENT``).
