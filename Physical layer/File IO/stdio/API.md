@@ -210,9 +210,9 @@ int main() {
 ```c
 int main() {
 	FILE *file;
-	file = fopen("text.abc", "r"); // this can be .md, .txt, ....
+	file = fopen("text.abc", "r");
 	if (file == NULL) {
-		perror("Error");
+		perror("Error");//Error: No such file or directory
 	}
 }
 ```
