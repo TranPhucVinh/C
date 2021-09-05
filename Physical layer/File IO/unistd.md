@@ -1,5 +1,7 @@
 ``unistd.h`` provides access to the POSIX OS API.
 
+## API
+
 ### read()
 
 Read up to ``count`` bytes from file descriptor ``fd`` into the buffer starting at ``buf``.
@@ -10,7 +12,7 @@ ssize_t read(int fd, void *buf, size_t count);
 
 **File descriptor**: Represent the index of file pointer in the file table of process
 
-Value:
+3 default file descriptor values:
 
 * 0: stdin file descriptor
 * 1: stdout file descriptor
@@ -41,11 +43,13 @@ Close a file descriptor, so that it no longer refers to any file and may be reus
 int close(int fd);
 ```
 
-### Examples
+## Examples
 
 All the examples below run on both Windows and Linux.
 
-**Example 1**: Read entered value from terminal and print out
+### Example 1
+
+Read entered value from terminal and print out
 
 ```c
 #include <stdio.h>
@@ -61,7 +65,29 @@ int main(){
 }
 ```
 
-**Example 2**: Open a file to read
+Inside the ``while()`` loop, using ``read()`` with other ``stdout`` functions like ``puts()``, ``printf()``, ... results in garbage value printing and other ``stdout`` error.
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
+#define STDIN_FD 	0
+#define STDOUT_FD 	1
+
+int main() {
+	while(1){
+		char buffer[10];
+        bzero(buffer, sizeof(buffer));//Empty the previously entered buffer
+		read(STDIN_FD, buffer, sizeof(buffer));
+		write(STDOUT_FD, buffer, sizeof(buffer));
+	}
+}
+```
+
+### Example 2
+
+Open a file to read
 
 ```c
 #include <stdio.h>
@@ -83,7 +109,9 @@ int main(){
 }
 ```
 
-**Example 3**: Open a file to write
+### Example 3
+
+Open a file to write
 
 ```c
 #include <stdio.h>
