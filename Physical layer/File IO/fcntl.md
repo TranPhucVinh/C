@@ -1,5 +1,7 @@
 ``fcntl.h``: file control options
 
+## API
+
 ### open()
 
 Open file/stream
@@ -32,7 +34,21 @@ int fileDescriptor = int open(const char *path, int mode)
 
 (1): If path is a ``FIFO``, ``block file`` or ``character special file``, ``O_NONBLOCK`` will open and read/write file without blocking
 
-### File descriptor
+### creat()
+
+```c
+int fileDescriptor = int creat(const char * pathname , mode_t mode);
+```
+
+Calling ``creat()`` is equivalent to the following ``open()`` call:
+
+```c
+fd = open(pathname, O_WRONLY | O_CREAT | O_TRUNC, mode);
+```
+
+Because the ``open()`` flags argument provides greater control over how the file is opened (e.g., we can specify ``O_RDWR`` instead of ``O_WRONLY``), ``creat()`` is now obsolete, although it may still be seen in older programs.
+
+## File descriptor
 
 ```c
 const char filePath[] = "test.txt";
