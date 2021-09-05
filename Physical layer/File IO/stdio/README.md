@@ -1,8 +1,8 @@
 ### Examples
 
-``readAndStore.c``: Read 10 bytes data from every line of file ``json.txt`` then store in an array string
+``read_and_store.c``: Read 10 bytes data from every line of file ``json.txt`` then store in an array string
 
-``basic_file_operation.c``: Basic operation with file
+``basic_file_operations.c``: Basic operation with file
 
 * Read content of a file
 * Create a new file
