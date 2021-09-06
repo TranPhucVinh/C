@@ -5,6 +5,8 @@ int ioctl(int fd , int request , ... /* argp */);
 
 ``request`` are defined in ``ioctls.h``
 
+Value returned on success depends on request, or ``–1`` on error.
+
 ## Examples
 
 **Example 1**: Get size of the terminal running the current C program
