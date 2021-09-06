@@ -14,9 +14,11 @@ ssize_t read(int fd, void *buf, size_t count);
 
 3 default file descriptor values:
 
-* 0: stdin file descriptor
-* 1: stdout file descriptor
-* 2: stderr file descriptor
+```c
+#define	STDIN_FILENO	0	/* Standard input.  */
+#define	STDOUT_FILENO	1	/* Standard output.  */
+#define	STDERR_FILENO	2	/* Standard error output.  */
+```
 
 ### write()
 
@@ -29,10 +31,9 @@ ssize_t write(int fd, const void *buf, size_t count);
 Write a string to screen
 
 ```c
-#define STDOUT_FD 1
 char displayedString[] = "Hello, World !";
-write(STDOUT_FD, displayedString, sizeof(displayedString));
-write(STDOUT_FD, "Display string", 14);
+write(STDOUT_FILENO, displayedString, sizeof(displayedString));
+write(STDOUT_FILENO, "Display string", 14);
 ```
 
 ### close()
@@ -49,41 +50,24 @@ All the examples below run on both Windows and Linux.
 
 ### Example 1
 
-Read entered value from terminal and print out
-
-```c
-#include <stdio.h>
-#include <unistd.h>
-
-#define STDIN_FD 0
-
-int main(){
-    char buffer[10];
-
-    read(STDIN_FD, buffer, 10);
-    puts(buffer);
-}
-```
-
-Inside the ``while()`` loop, using ``read()`` with other ``stdout`` functions like ``puts()``, ``printf()``, ... results in garbage value printing and other ``stdout`` error.
+Inside the ``while()`` loop, read entered value from terminal and print out:
 
 ```c
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 
-#define STDIN_FD 	0
-#define STDOUT_FD 	1
-
 int main() {
 	while(1){
 		char buffer[10];
         bzero(buffer, sizeof(buffer));//Empty the previously entered buffer
-		read(STDIN_FD, buffer, sizeof(buffer));
-		write(STDOUT_FD, buffer, sizeof(buffer));
+		read(STDIN_FILENO, buffer, sizeof(buffer));
+		write(STDOUT_FILENO, buffer, sizeof(buffer));
 	}
 }
 ```
+
+**Note**: Using ``read()`` with other ``stdout`` functions like ``puts()``, ``printf()``, ... results in garbage value printing and other ``stdout`` error.
 
 ### Example 2
 
