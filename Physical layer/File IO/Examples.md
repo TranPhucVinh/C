@@ -23,7 +23,35 @@ int main(void)
 }
 ```
 
-### Example 3
+### Example 2
+
+Read entered data from the current running terminal (``/dev/tty``)
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+const char filePath[] = "/dev/tty";
+char bufferRead[20];
+
+int fileDescription;
+void delaySeconds(long seconds);
+
+int main(){
+   fileDescription = open(filePath, O_RDONLY); //READ ONLY
+   while(1){
+	   bzero(bufferRead, sizeof(bufferRead));
+      if(fileDescription < 0) return 1;
+      else {
+         read(fileDescription, bufferRead, sizeof(bufferRead));
+         printf("%s", bufferRead);
+      }
+   }
+    return 0;
+}
+```
 
 Read data from USB port (``/dev/ttyUSB0``, ``/dev/ttyACM0``,...)
 
