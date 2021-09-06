@@ -2,7 +2,7 @@ All signals are defined in library ``signal.h`` in C Standard Library.
 
 ## Linux signal
 
-The C standard defines only 6 signals. They are all defined in ``signal.h`` header (``csignal`` header in C++):
+The C standard defines only 6 signals. They are all defined as macro in ``signal.h`` header (``csignal`` header in C++):
 
 * ``SIGABRT`` (Signal Abort): Abnormal termination, such as is initiated by the function.
 * ``SIGFPE`` (Signal Floating-Point Exception): Erroneous arithmetic operation, such as zero divide or an operation resulting in overflow (not necessarily with a floating-point operation).

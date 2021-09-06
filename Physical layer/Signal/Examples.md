@@ -4,9 +4,7 @@ Print out a string if signal ``12`` (``SIGUSR2``) is sent to PID of this process
 
 ```c
 #include <stdio.h>
-#include <signal.h> 
-  
-#define SIGUSR2 12  
+#include <signal.h>   
 
 void signal_handler(int signalNumber){
 	if (signalNumber == SIGUSR2){
