@@ -24,3 +24,5 @@ int main(void) {
 	return (0);
 }
 ```
+
+Get size of the terminal running the current C program when changing its size by mouse, check ``Example 2: Working with SIGWINCH signal`` in ``Signal/Examples.md``.
