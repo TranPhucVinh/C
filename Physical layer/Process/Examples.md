@@ -1,10 +1,16 @@
 ### Example 1
 
+Get process ID with ``getpid()``
+
+```c
+printf("PID %d\n", getpid());
+```
+
 Enter the id of a process (if existed) then print out this process name.
 
 ```c
+
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(){
 	FILE *fptr;
@@ -19,7 +25,7 @@ int main(){
 
 	if (fptr == NULL){
 		printf("No process id matching = %d \n", id);
-		exit(0);
+		return 0;
 	}
 
 	c = fgetc(fptr);
@@ -29,6 +35,6 @@ int main(){
 	}
 
 	fclose(fptr);
-	return 0;
+	return 1;
 }
 ```

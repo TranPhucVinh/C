@@ -21,6 +21,14 @@ int main(int argc, char *argv[])
 }
 ```
 
+### getpid()
+
+```c
+#include <unistd.h>
+pid_t getpid(void);
+```
+``getpid()`` returns the process ID of the calling process. (This is often used by routines that generate unique temporary filenames.)
+
 ### Get variable environment
 
 ``char *getenv(const char *name)`` searches for the environment string pointed to by name and returns the associated value to the string.
