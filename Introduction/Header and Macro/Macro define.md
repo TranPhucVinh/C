@@ -94,7 +94,7 @@ RETURN_STRING(HELLO_WORLD);
 printf("%s\n", HELLO_WORLD);//HELLO_WORLD	
 ```
 
-When using ``#`` to define, space and sensitive character like ``,``, ``;`` or ``!`` can't contain.
+Definition with ``#`` doesn't support space and sensitive character like ``,``, ``;`` or ``!``.
 
 ### Redefine macro variable
 
