@@ -1,3 +1,16 @@
+## __DATE__ and __TIME__
+
+```c
+#include <stdio.h> 
+
+int main(){ 
+	printf("Date: %s\n", __DATE__);
+	printf("Time: %s\n", __TIME__);
+}
+```
+
+## sys/time
+
 Library ``sys/time.h`` defines:
 
 ```c
