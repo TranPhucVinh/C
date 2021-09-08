@@ -54,22 +54,23 @@ int a;
 
 can't use ``PB5 = PB5^1;`` as PB5 is a macro, not variable
 
-## ``++i`` and ``i++``
+## ++i and i++
 
 ``++i`` will increment the value of i, and then return the incremented value to ``j``
 
 ```c
 int i,j;
-j = i++;
+j = ++i;
 ```
 
 ``j=1, i=1``
+
 
 ``i++`` will return its initial value first to ``j`` then increases its value
 
 ```c
 int i,j;
-j = ++i;
+j = i++;
 ```
 
 ``j=0, i=1``
