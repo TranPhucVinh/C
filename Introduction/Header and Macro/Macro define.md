@@ -79,13 +79,21 @@ strcpy(text, RETURN_STRING(Hello World !));
 printf("%s\n", text);//Hello World !
 ```
 
-``#`` doesn't support character ``,``:
+Definition with ``#`` doesn't support space and sensitive character like ``,``, ``;`` or ``!``.
 
 ```c
 strcpy(text, RETURN_STRING(Hello, World !));//Error
 ```
 
-Using ``#`` to define:
+Using ``#`` to define string char variable:
+
+```c
+#define RETURN_STRING(id) const char *id = #id
+
+RETURN_STRING(string_variable);
+printf("%s\n", string_variable);//string_variable	
+```
+As ``#`` related to string variable, declare with other data type will give warning or error
 
 ```c
 #define RETURN_STRING(id) int id = #id
@@ -94,7 +102,11 @@ RETURN_STRING(HELLO_WORLD);
 printf("%s\n", HELLO_WORLD);//HELLO_WORLD	
 ```
 
-Definition with ``#`` doesn't support space and sensitive character like ``,``, ``;`` or ``!``.
+**Error**: 
+
+```
+error: invalid conversion from ‘const char*’ to ‘int’ [-fpermissive]
+```
 
 ### Redefine macro variable
 
