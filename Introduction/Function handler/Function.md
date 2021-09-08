@@ -1,3 +1,5 @@
+## Functions
+
 ### Create function
 
 ```c
@@ -40,22 +42,6 @@ void displayString(){
 	printf("%s\n",  __FUNCTION__);//displayString
 	printf("%s\n",  __func__);    //displayString
 	printf("%s\n",  __PRETTY_FUNCTION__);//displayString
-}
-```
-### Local variable setup with {}
-
-```c
-#include <stdio.h>
-
-int a = 20;
-int main(int argc, char *argv[])
-{
-   {
-      int a = 10;
-      printf("%d \n", a); //10: local variable
-   }
-   printf("%d", a); //20: global variable
-   return 0;
 }
 ```
 
@@ -119,4 +105,29 @@ To enter a string in ``*argv[]``, use ``\``:
 argv[0]: ./a.out 
 argv[1]: Hello, World !
 Total argument: 2
+```
+
+## Variable
+
+### Local variable setup with {}
+
+```c
+#include <stdio.h>
+
+int a = 20;
+int main(int argc, char *argv[])
+{
+   {
+      int a = 10;
+      printf("%d \n", a); //10: local variable
+   }
+   printf("%d", a); //20: global variable
+   return 0;
+}
+```
+### Special character
+
+```c
+int _ = 9;
+printf("_: %d\n", _);//9
 ```
