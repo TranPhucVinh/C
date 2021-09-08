@@ -18,6 +18,10 @@ Using ``\`` to add a new line when define macro
 
 printf("%lf", PI);
 ```
+**Can't get address of macros by &**
+
+Macros are never allocated a memory. Before the code is compiled, the compiler does a text search in the file and replace all Macros with their value.
+
 ### Macro functions with arguments
 
 ```c
