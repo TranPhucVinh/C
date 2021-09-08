@@ -35,6 +35,30 @@ Result
 Segmentation fault (core dumped)
 ```
 
+Array size might not be declared by a variable:
+
+```c
+int b = 2;
+int array[b] = {1, 2};
+```
+
+Compiled in GCC gives:
+
+```
+error: variable-sized object may not be initialized
+```
+
+But this compiled normally on G++ without warning.
+
+Problem solved for GCC:
+
+```c
+int b = 2;
+int array[b];
+array[0] = 1;
+array[1] = 2;
+```
+
 ### Read
 
 Read from ``index`` with:
