@@ -26,15 +26,6 @@ E.g: ``const int a = 19``
 
 To change ``const`` variable: ``Pointer/Examples.md`` -> ``Example 1.3: Change value of a variable with pointer``
 
-``const`` can't be used to define the array size:
-
-```c
-const b = 2;
-int array[b] = {10,20};
-```
-
-**Error**:  ``variable-sized object may not be initialized``
-
 ### auto
 
 ``auto`` is used to defined local variable
