@@ -104,6 +104,18 @@ int main(){
 }
 ```
 
+To read a file send by ``<`` operator:
+
+```c
+int main(){
+    char buffer[10];
+    
+    read(STDIN_FILENO, buffer, sizeof(buffer));
+	write(STDOUT_FILENO, buffer, sizeof(buffer));
+}
+```
+**Run**: ``./a.out < test.c``
+
 To a file from specific index:
 
 ```c
