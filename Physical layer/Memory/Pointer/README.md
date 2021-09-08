@@ -22,7 +22,6 @@ int* intPointer;
 ```c
 char *p0; //pointer to character
 double *p1; // pointer to double
-const char *displayedString = "Hello, World !";//String pointer declaration
 ```
 
 ### Get value of pointer
@@ -95,6 +94,26 @@ error: scalar object ‘int_array’ requires one element in initializer
 ```
 
 To work with ``int *number`` and ``int **int_array``, check ``Dynamic memory allocation.md`` in ``Physical layer/Memory/``.
+
+### const pointer
+
+String declaration with pointer is highly recommended to use ``const char*``:
+
+```c
+const char *displayedString = "Hello, World !";
+```
+
+``const`` pointer for other variable
+
+```c
+const int *pointer;
+
+int a = 10;
+pointer = &a;
+printf("pointer: %d\n", *pointer);//10
+a = 19;
+printf("pointer: %d\n", *pointer);//19
+```
 
 ### sizeof()
 
