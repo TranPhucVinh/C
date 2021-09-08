@@ -44,6 +44,20 @@ Close a file descriptor, so that it no longer refers to any file and may be reus
 int close(int fd);
 ```
 
+### lseek
+
+```c
+off_t lseek(int fildes, off_t offset, int whence);
+```
+
+Reposition read/write file ``offset``
+
+| whence | Description|
+| ------- |:------:|
+|SEEK_SET | The offset is set to offset bytes|
+|SEEK_CUR|The offset is set to its current location plus offset bytes|
+|SEEK_END|The offset is set to the size of the file plus offset bytes|
+
 ## Examples
 
 All the examples below run on both Windows and Linux.
@@ -83,14 +97,22 @@ int fd;
 int main(){
     char buffer[10];
 
-    /*
-        unistd has no API to open a file so use open() from fcntl
-    */
     fd = open("test.md", O_RDONLY);
     
     read(fd, buffer, 10);
     puts(buffer);
 }
+```
+
+To a file from specific index:
+
+```c
+int fd;
+char buffer[10];
+
+fd = open("README.md", O_RDONLY);
+lseek(fd, 10, SEEK_SET);
+read(fd, buffer, 10);
 ```
 
 ### Example 3
