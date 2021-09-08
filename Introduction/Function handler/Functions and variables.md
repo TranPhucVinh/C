@@ -131,3 +131,21 @@ int main(int argc, char *argv[])
 int _ = 9;
 printf("_: %d\n", _);//9
 ```
+```c
+#include <stdio.h> 
+
+int main(){ 
+	int var = var;
+	printf("var: %d\n", var);//var: 0
+}
+```
+So this gives the same result:
+
+```c
+#include <stdio.h> 
+int var = 9;
+int main(){ 
+	int var = var;
+	printf("var: %d\n", var);//var: 0
+}
+```
