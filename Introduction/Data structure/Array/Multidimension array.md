@@ -154,7 +154,7 @@ void twoDimensionArray(int *array, int row, int column){
 ```
 ### Can't use pointer of pointer
 
-This function declaration gives ``Segment fault``
+Accessing 2D array member with index from a pointer of pointer array like this gives ``Segment fault``
 
 ```c
 void intArray(int **array){
