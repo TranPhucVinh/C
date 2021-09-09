@@ -36,6 +36,8 @@ write(STDOUT_FILENO, displayedString, sizeof(displayedString));
 write(STDOUT_FILENO, "Display string", 14);
 ```
 
+This function can be used to write string to a file: ``./a.out > temp.txt``
+
 ### close()
 
 Close a file descriptor, so that it no longer refers to any file and may be reused. 
