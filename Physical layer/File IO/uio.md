@@ -90,9 +90,9 @@ const char filePath[] = "temp.txt";
 int fileDescription;
 
 struct iovec iov[3];
-char writeString1[20] = "Write string 1";
-char writeString2[20] = "Write string 2";
-char writeString3[20] = "Write string 3";
+char writeString1[] = "Write string 1";
+char writeString2[] = "Write string 2";
+char writeString3[] = "Write string 3";
 
 int main(){
     //Initiate parameter to for iov
@@ -109,4 +109,10 @@ int main(){
     if (writev(fileDescription, iov, TOTAL_IOVECTOR) == -1) printf("Unable to write to file\n");
     return 0;
 }
+```
+
+Write out to ``stdout``:
+
+```c
+writev(STDOUT_FILENO, iov, TOTAL_IOVECTOR)
 ```
