@@ -105,7 +105,7 @@ int main(){
     iov[2].iov_base = writeString3;
     iov[2].iov_len = sizeof(writeString3);
 
-    fileDescription = open(filePath, O_WRONLY); //READ ONLY
+    fileDescription = open(filePath, O_WRONLY);//Write only
     if (writev(fileDescription, iov, TOTAL_IOVECTOR) == -1) printf("Unable to write to file\n");
     return 0;
 }
