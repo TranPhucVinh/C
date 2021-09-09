@@ -74,3 +74,39 @@ int main(){
     return 0;
 }
 ```
+### Example 2
+
+Write multiples string stored in ``struct iovec`` to a file:
+
+```c
+#include <stdio.h>
+#include <sys/uio.h>//for writev()
+#include <fcntl.h>
+
+#define TOTAL_IOVECTOR 3
+
+const char filePath[] = "temp.txt";
+
+int fileDescription;
+
+struct iovec iov[3];
+char writeString1[20] = "Write string 1";
+char writeString2[20] = "Write string 2";
+char writeString3[20] = "Write string 3";
+
+int main(){
+    //Initiate parameter to for iov
+    iov[0].iov_base = writeString1;
+    iov[0].iov_len = sizeof(writeString1);
+    
+    iov[1].iov_base = writeString2;
+    iov[1].iov_len = sizeof(writeString2);
+
+    iov[2].iov_base = writeString3;
+    iov[2].iov_len = sizeof(writeString3);
+
+    fileDescription = open(filePath, O_WRONLY); //READ ONLY
+    if (writev(fileDescription, iov, TOTAL_IOVECTOR) == -1) printf("Unable to write to file\n");
+    return 0;
+}
+```
