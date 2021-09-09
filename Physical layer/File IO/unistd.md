@@ -38,6 +38,13 @@ write(STDOUT_FILENO, "Display string", 14);
 
 This function can be used to write string to a file: ``./a.out > temp.txt``
 
+By using ``/dev/tty``:
+
+```c
+char displayedString[] = "Hello, World ! a new string";
+int fileDescriptor = open("/dev/tty", O_WRONLY);//Write only
+write(fileDescriptor, displayedString, sizeof(displayedString));
+```
 ### close()
 
 Close a file descriptor, so that it no longer refers to any file and may be reused. 
