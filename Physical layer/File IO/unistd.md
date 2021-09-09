@@ -82,6 +82,15 @@ ssize_t pwrite(int fd , const void * buf , size_t count , off_t offset );
 
 As ``pread()`` and ``pwrite()`` work with ``lseek()``, they doesn't operate with ``/dev/tty``.
 
+### truncate() and ftruncate()
+
+```c
+int truncate(const char * pathname , off_t length );
+int ftruncate(int fd , off_t length );
+```
+
+If the file is longer than ``length``, the excess data is lost. If the file is currently shorter than length, it is extended by padding with a sequence of null bytes or a hole.
+
 ## Examples
 
 ### Example 1
