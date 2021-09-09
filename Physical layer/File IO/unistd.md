@@ -84,6 +84,8 @@ As ``pread()`` and ``pwrite()`` work with ``lseek()``, they doesn't operate with
 
 ### truncate() and ftruncate()
 
+The ``truncate()`` and ``ftruncate()`` system calls set the size of a file to the value specified by length.
+
 ```c
 int truncate(const char * pathname , off_t length );
 int ftruncate(int fd , off_t length );
