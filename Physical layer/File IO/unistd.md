@@ -58,9 +58,22 @@ Reposition read/write file ``offset``
 |SEEK_CUR|The offset is set to its current location plus offset bytes|
 |SEEK_END|The offset is set to the size of the file plus offset bytes|
 
-## Examples
+### pread() and pwrite()
 
-All the examples below run on both Windows and Linux.
+``pread()``: Returns number of bytes read, 0 on EOF, or –1 on error
+
+```c
+ssize_t pread(int fd , void * buf , size_t count , off_t offset );
+```
+``pwrite()``: Returns number of bytes written, or –1 on error
+
+```c
+ssize_t pwrite(int fd , const void * buf , size_t count , off_t offset );
+```
+
+As ``pread()`` and ``pwrite()`` work with ``lseek()``, they doesn't operate with ``/dev/tty``.
+
+## Examples
 
 ### Example 1
 
