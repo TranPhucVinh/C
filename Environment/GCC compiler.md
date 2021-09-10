@@ -2,7 +2,7 @@ GCC is a compiler system that supporting various programming languages.
 
 ``gcc -S main.c``: Build C source code (High level language) to assembly code, the output file will be ``main.s``
 
-``gcc -o main main.c``: Specify the executable output file as ``main``
+``gcc -o main main.c``: Specify the executable output file as ``main``. To run: ``./main``
 
 ``gcc main.c``: Compile, assemble and link source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
 
