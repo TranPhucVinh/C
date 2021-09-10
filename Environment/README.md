@@ -4,6 +4,14 @@ Manual document for functions prototype can be accessed by ``man function_protot
 
 E.g: ``man scanf``
 
+### nm
+
+List symbols from object files
+
+```sh
+nm a.out
+```
+
 ### Shell script to compile
 
 ```shell
