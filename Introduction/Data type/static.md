@@ -33,7 +33,7 @@ int main(){
 ```c
 #include <stdio.h>
 
-static int returnInt();
+static void displayString();
 ```
 
 ``head.c``
@@ -41,8 +41,8 @@ static int returnInt();
 ```c
 #include "head.h"
 
-static int main(){ 
-    returnInt();
+static void displayString(){
+	printf("Hello, World !\n");
 }
 ```
 
@@ -52,8 +52,12 @@ static int main(){
 #include "head.h"
 
 int main(){ 
-    returnInt();
+    displayString();
 }
 ```
 
-When compiling ``g++ main.c head.c``, there will be error: ``undefined reference to returnInt()``.
+When compiling, there will be error: 
+
+```
+main.c:(.text+0x5): undefined reference to `displayString()'
+```
