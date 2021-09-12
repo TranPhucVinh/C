@@ -3,6 +3,9 @@
 #include <linux/init.h>
 #include <linux/cdev.h>
 
+#define BASE_MINOR              0
+#define TOTAL_MINOR_NUMBER      1
+
 MODULE_LICENSE("GPL");
 
 dev_t dev_id;
@@ -15,7 +18,7 @@ int device_init(void)
 {
 	int ret;
 
-	ret = alloc_chrdev_region(&dev_id, 0, 1, "alloc_chrdev_region");
+	ret = alloc_chrdev_region(&dev_id, BASE_MINOR, TOTAL_MINOR_NUMBER, "alloc_chrdev_region");
 	if(ret)
 	{
 		printk("can not register major no\n");

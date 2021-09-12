@@ -1,6 +1,6 @@
 ## Examples
 
-* ``create_character_device.c``: Create a new character device.
+* ``create_character_device.c``: Create a new character device named ``Character device``.
 
 After creating successfully, a new device is found on ``/dev``.
 
@@ -84,15 +84,14 @@ struct class *class_create(struct module *owner, const char *name);
 ### struct device
 
 ```c
-struct device *device_create(struct class *cls, struct device *parent, dev_t devt,
-const char **fmt...);
+struct device *device_create(struct class *cls, struct device *parent, dev_t devt, void * drvdata, const char **fmt...);
 ```
 
 * ``struct class *class``: pointer to the struct class that this device should be registered to
 * ``struct device *parent``: pointer to the parent ``struct device`` of this new device, if any
 * ``dev_t devt``: the ``dev_t`` for the char device to be added
 * ``void *drvdata``: the data to be added to the device for callbacks
-* ``const char *fmt``: string for the device’s name
+* ``const char *fmt``: string for the device’s name, the name that will appear on ``/dev``
 
 ## linux/cdev.h
 
