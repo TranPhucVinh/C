@@ -24,6 +24,8 @@ To insert the module: ``insmod test.ko``
 
 To remove the module: ``rmmod test.ko``
 
+View module information: ``modinfo test.ko``
+
 ### Examples
 
 * ``ubuntu_kernel_module.c``: The very first kernel module built on Ubuntu 16.04
