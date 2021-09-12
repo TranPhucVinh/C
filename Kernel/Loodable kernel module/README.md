@@ -20,7 +20,7 @@ Then simply run the Makefile with ``make``
 
 ``test.ko`` files along with other files will appear.
 
-To insert the module: ``insmod test.ko``
+To insert the module: ``insmod test.ko``. After inserting, module ``test`` will be available in ``/sys/module``.
 
 To remove the module: ``rmmod test.ko``
 
