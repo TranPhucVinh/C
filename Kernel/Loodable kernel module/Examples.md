@@ -41,6 +41,12 @@ int module_initialize(void)
 }
 ```
 
+Header ``linux/delay.h`` provides functions for delay without sleep. These functions can be used in interrupt (atomic) context:
+
+* ``ndelay(ns)`` - wait for given number of nanoseconds,
+* ``udelay(us)`` - wait for given number of microseconds,
+* ``mdelay(ms)`` - wait for given number of milliseconds.
+
 ### Example 2
 
 Sharing variables between multiple kernel modules
