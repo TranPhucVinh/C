@@ -7,6 +7,12 @@ int ioctl(int fd , int request , ... /* argp */);
 
 Value returned on success depends on request, or ``–1`` on error.
 
+``ioctl()`` information is divided into the following topics:
+* Terminals
+* Sockets
+* STREAMS
+* ACLs
+
 ## Examples
 
 **Example 1**: Get size of the terminal running the current C program
