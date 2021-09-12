@@ -54,8 +54,8 @@ Sharing variables between multiple kernel modules
 ``kernel_module_1.c`` will export variable ``a``
 
 ```c
-#include<linux/module.h>
-#include<linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kernel.h>
 
 MODULE_LICENSE("GPL");
 
@@ -79,8 +79,8 @@ Then build and insert this kernel module: ``kernel_module_1.ko``
 ``kernel_module_2.ko`` will get variable ``a``:
 
 ```c
-#include<linux/module.h>
-#include<linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kernel.h>
 
 MODULE_LICENSE("GPL");
 
@@ -111,3 +111,11 @@ kernel_module_1    16384  1 kernel_module_2
 ``rmmod kernel_module_1`` gives error ``ERROR: Module kernel_module_1 is in use by: kernel_module_2``
 
 To remove ``kernel_module_1``, user has to remove ``kernel_module_2``.
+
+**Note**: ``kernel_module_1`` (include ``EXPORT_SYMBOL()`` for variable ``a`` must be inserted first in order for ``kernel_module_2`` to be installed. If ``kernel_module_1`` is not installed, when installing ``kernel_module_2``, there will be error:
+
+```
+insmod: ERROR: could not insert module kernel_module_2.ko: Unknown symbol in module
+```
+
+That happen as variable ``a`` is not defined.
