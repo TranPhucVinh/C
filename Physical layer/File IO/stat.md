@@ -56,10 +56,25 @@ int main(int argc, char *argv[]) {
     if (!stat(filePath, &statBuffer)){
 		printf("ID of device containing file st_dev: %ld\n", statBuffer.st_dev);
 		printf("Inode number st_ino: %ld\n", statBuffer.st_ino);
+        printf("Mode of file: %o\n", statBuffer.st_mode);//View file type + file permission under octal
 	} else {
 		puts("File not exist");
 	}
 }		
+```
+
+For file type + file permission, if it returns:
+
+```
+Mode of file: 100777
+```
+
+``777`` are file permission for owner, group and others
+
+``100000`` stands for regular file type
+
+```c
+#define	__S_IFREG	0100000	/* Regular file.  */
 ```
 
 ### fstat()
