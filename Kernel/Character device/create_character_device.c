@@ -5,6 +5,8 @@
 
 #define BASE_MINOR              0
 #define TOTAL_MINOR_NUMBER      1
+#define DEVICE_NAME				"Character device"
+#define CLASS_NAME				"Class name"
 
 MODULE_LICENSE("GPL");
 
@@ -29,8 +31,8 @@ int device_init(void)
 	character_device->owner = THIS_MODULE;
 	character_device->dev = dev_id;
 	cdev_add(character_device, dev_id, 1);
-	device_class = class_create(THIS_MODULE, "Device class name");
-	device = device_create(device_class, NULL, dev_id, NULL, "Character device");
+	device_class = class_create(THIS_MODULE, CLASS_NAME);
+	device = device_create(device_class, NULL, dev_id, NULL, DEVICE_NAME);
 
 	return 0;
 }
