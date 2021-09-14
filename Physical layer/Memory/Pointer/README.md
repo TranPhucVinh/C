@@ -52,6 +52,19 @@ int *pointer = &number;
 printf("number: %d\n", number);//190
 ```
 
+Address of function:
+
+```c
+void displayString(){
+	printf("Hello, World !\n");
+}
+
+int main(int argc, char *argv[]) {
+	printf("%d\n", displayString);//Has same value with  &displayString
+	printf("%d\n", &displayString);//Has same value with displayString
+}	
+```
+
 ### Wrong declaration and operation that must be avoided
 
 ```c
