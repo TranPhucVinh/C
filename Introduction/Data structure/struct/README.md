@@ -21,6 +21,12 @@ struct databaseNode databaseNode0 = {
     .stringValue = "String value"
   };
 ```
+This compile normally on GCC but gives error in G++:
+
+```
+error: C99 designator ‘stringValue’ outside aggregate initializer
+};
+```
 ### Object from struct
 
 Set up value for struct's member
