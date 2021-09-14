@@ -1,7 +1,6 @@
-Include common algorithm
+Example:
 
 - Draw square with dots
-- Seperate function
 - Find prime number
-- Sort number
+- Select Sort
 - Hanoi Tower
