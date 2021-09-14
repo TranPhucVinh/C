@@ -57,7 +57,7 @@ int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned count, const ch
 * ``dev_t *dev``: output parameter for first assigned number
 * ``unsigned baseminor``: first of the requested range of minor numbers
 * ``unsigned count``: the number of minor numbers required
-* ``const char *name``: the name of the associated device or driver
+* ``const char *name``: the name of the associated device or driver, that name will appear in ``/proc/devices``
 
 ### struct cdev
 
@@ -79,7 +79,7 @@ struct class *class_create(struct module *owner, const char *name);
 ```
 
 * ``struct module *owner``: pointer to the module that is to “own” this struct class
-* ``const char *name``: pointer to a string for the name of this class.
+* ``const char *name``: pointer to a string for the name of this class, that name will appear in ``/sys/class/``.
 
 ### struct device
 
