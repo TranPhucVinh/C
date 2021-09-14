@@ -74,6 +74,8 @@ int cdev_add(struct cdev *dev, dev_t num, unsigned int count);
 
 ### struct class
 
+The driver creates/destroys the class using those APIs:
+
 ```c
 struct class *class_create(struct module *owner, const char *name);
 ```
@@ -81,7 +83,13 @@ struct class *class_create(struct module *owner, const char *name);
 * ``struct module *owner``: pointer to the module that is to “own” this struct class
 * ``const char *name``: pointer to a string for the name of this class, that name will appear in ``/sys/class/``.
 
+```c
+void class_destroy (struct class *cls);
+```
+
 ### struct device
+
+The driver creates the device nodes using those APIs:
 
 ```c
 struct device *device_create(struct class *cls, struct device *parent, dev_t devt, void * drvdata, const char **fmt...);
@@ -92,6 +100,10 @@ struct device *device_create(struct class *cls, struct device *parent, dev_t dev
 * ``dev_t devt``: the ``dev_t`` for the char device to be added
 * ``void *drvdata``: the data to be added to the device for callbacks
 * ``const char *fmt``: string for the device’s name, the name that will appear on ``/dev``
+
+```c
+void device_destroy (struct class * class, dev_t devt);
+```
 
 ## linux/cdev.h
 
