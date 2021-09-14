@@ -73,6 +73,34 @@ Database displayString(){
     printf("node.id %d, node.stringValue: %s\n", node.id, node.stringValue);
 }
 ```
+Define function of struct using function pointer:
+
+```c
+#include <stdio.h>
+
+int add_two_number(int number1, int number2){
+	return number1 + number2;
+}
+
+int subtract_two_number(int number1, int number2){
+	return number1 - number2;
+}
+
+struct databaseNode {
+	int (*add_function_pointer)(int, int);
+	int (*subtract_function_pointer)(int, int);
+};
+
+int main(){
+	struct databaseNode databaseNode0 = {
+		.add_function_pointer = add_two_number,
+		.subtract_function_pointer = subtract_two_number
+	};	
+
+	printf("Add 2 numbers: %d\n", databaseNode0.add_function_pointer(30, 60));
+	printf("Subtract 2 numbers: %d\n", databaseNode0.subtract_function_pointer(12, 120));
+}
+```
 ## Example 2
 
 Nested struct
