@@ -1,4 +1,7 @@
-Bit field defines the maximum bit that a variable can store in a struct.
+Bit field defines the maximum bit that a variable can store in a struct. This will save the memory of a struct.
+
+### Examples
+
 
 ### Overflow issue 
 

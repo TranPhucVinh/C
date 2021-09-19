@@ -15,13 +15,17 @@ Library **stdint** include integer types.
 |int64_t|Signed| −9,223,372,036,854,775,808	to 9,223,372,036,854,775,807|
 |uint64_t|Unsigned|0 to 18,446,744,073,709,551,615|
 
+``%u`` is used for unsigned int.
+
+``int`` uses its first bit for number sign.
+
 ### Examples
 
-**Example 1**:
+**Example 1**
 
-For examples with signed number and overflow number, check: ``Data type/Char for Integer.md``
+For examples with signed number and overflow number, check: ``Data type/Char for integer.md``
 
-**Example 2**:
+**Example 2**
 
 Overflow issue inside for loop with ``uint8_t``:
 
