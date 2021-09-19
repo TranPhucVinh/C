@@ -17,7 +17,7 @@ Library **stdint** include integer types.
 
 ``%u`` is used for unsigned int.
 
-``int`` uses its first bit for number sign.
+``int`` uses its first bit for number's sign. If the first bit is ``1``, this number will be marked as negative number.
 
 ### Examples
 
