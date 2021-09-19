@@ -61,6 +61,27 @@ int main () {
 }
 ```
 
+### Recursive function
+
+Use recursive to calculate the sum from ``1`` to ``n``:
+
+```c
+#include <stdio.h>
+
+int sum_of_numbers(int x);
+
+int main()
+{  
+	int number = 20;
+	printf("Sum from 1 to %d: %d", number, sum_of_numbers(number));
+}
+
+int sum_of_numbers(int number){
+	if (number == 1) return 1;
+	return number + sum_of_numbers(number - 1);
+}
+```
+
 ### Command line arguments with main()
 
 ```c
