@@ -3,6 +3,8 @@
 ```c
 char hw[] = "Hello, World!";
 printf("%s \n", hw); //Hello, World! 
+unsigned char displayedString[] = "Hello, World !";
+printf("%s\n", displayedString);////Hello, World!
 ```
 
 Index handler
