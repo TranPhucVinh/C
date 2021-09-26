@@ -1,3 +1,11 @@
+Using formated output in ``printf()``:
+
+```c
+const char* string_output_format = "Displayed string: %s\n";
+char displayedString[] = "Hello, World !";
+printf(string_output_format, displayedString);       
+```
+
 ### Print out an entered string and an entered character
 
 ```c
