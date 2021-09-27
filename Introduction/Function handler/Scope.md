@@ -32,3 +32,24 @@ int main()
    return 0; 
 } 
 ```
+**Example**: An example of using global and local variables named ``a`` and ``b``.
+```c
+int a = 10, b = 20;
+int add_function(int);
+int main() 
+{ 
+   int a = 5;
+   a = add_function(a);    
+   printf("a: %d", a);//15
+   return 0; 
+} 
+
+int add_function(int b){
+   /*
+      a=10 as using global a
+      global variable b is not use, as using local variable b
+   */   
+   b = b + a;
+   return b;
+}
+```
