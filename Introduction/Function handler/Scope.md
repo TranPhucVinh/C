@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 ### Static scoping
 
-In static scoping (or lexical scoping), definition of a variable is resolved by searchig its containing block or function. If that fails, then searching the outer containing block and so on.
+In static scoping (or lexical scoping), definition of a variable is resolved by searching its containing block or function. If that fails, then searching the outer containing block and so on. ``C`` programming language follows static scoping, not dynamic scoping.
 
 ```c
 int a = 10, b = 20;
