@@ -130,22 +130,6 @@ Total argument: 2
 
 ## Variable
 
-### Local variable setup with {}
-
-```c
-#include <stdio.h>
-
-int a = 20;
-int main(int argc, char *argv[])
-{
-   {
-      int a = 10;
-      printf("%d \n", a); //10: local variable
-   }
-   printf("%d", a); //20: global variable
-   return 0;
-}
-```
 ### Special character
 
 ```c
