@@ -20,9 +20,9 @@ int add(int number){
 }
 ```
 
-What is sent to the function ``add(number)`` is the value of variable ``number`` ( = 6), not variable ``number``, the variable ``number`` in ``add()`` is just the clone of the genuine variale ``number``. So the value of number still remain unchanged.
+The operation above is called **pass by value**. What is sent to the function ``add(number)`` is the value of variable ``number`` ( = 6), not variable ``number``, the variable ``number`` in ``add()`` is just the clone of the genuine variale ``number``. So the value of number still remain unchanged.
 
-**Problem solved**
+**Problem solved**: Using pass by reference
 
 ```c
 #include <stdio.h>

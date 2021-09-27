@@ -1,5 +1,7 @@
 In computer science, a **reference** is a value that enables a program to indirectly access a particular ``datum``, such as a variable's value or a record, in the computer's memory or in some other storage device. **Pointers** are the most primitive type of reference.
 
+The parameter to a function can be a copy of a value that is represented by variable, which is known as **pass by value**, or can be a reference to a memory space that stores value of variable, which is known as **pass by reference**.
+
 A pointer is a variable that stores address of other variable. All the pointer syntax works identically in both C/C++.
 
 * ``*p``: declare a pointer
