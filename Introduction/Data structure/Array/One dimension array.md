@@ -185,7 +185,11 @@ int *returnArray();
 int main(){
 	int *array_pointer;
 	array_pointer = returnArray();
-	printf("%d\n", array_pointer[1]);//1
+   	int index = 1;
+	printf("array_pointer[%d]: %d\n", index, array_pointer[index]);//1
+	printf("Address of array_pointer %p\n", array_pointer);//Has the same address with array inside returnArray()
+	free(array_pointer);//Free dynamic memory after using
+	printf("array_pointer[%d]: %d\n", index, array_pointer[index]);//0
 }
 
 int *returnArray(){
@@ -193,7 +197,7 @@ int *returnArray(){
 	for (int i = 0; i < arraySize; i++){
       array[i] = i;
 	}
-
+	printf("Address of array %p\n", array);
 	return array;
 }
 ```
