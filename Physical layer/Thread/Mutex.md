@@ -32,6 +32,57 @@ void *thread_function(void *ptr){
 
 With ``RANGE`` is less than ``10000``, that data race issue doesn't happen, as the time 2 tasks race to take the resouce ``share_value`` is short.
 
+Solve the data race issue above with mutex, even with multiple threads, not just 2 tasks
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+
+#define RANGE 10000
+
+int share_value;
+
+void *thread_function(void *ptr);
+
+pthread_mutex_t lock;
+
+int main()
+{  
+	pthread_t thread_1, thread_2, thread_3;
+	int thread_1_return, thread_2_return, thread_3_return;
+
+	thread_1_return = pthread_create(&thread_1, NULL, thread_function, NULL);
+    thread_2_return = pthread_create(&thread_2, NULL, thread_function, NULL);
+    thread_3_return = pthread_create(&thread_3, NULL, thread_function, NULL);
+	pthread_join(thread_1, NULL);
+    pthread_join(thread_2, NULL);
+    pthread_join(thread_3, NULL);
+    printf("share_value after executing 2 threads: %d\n", share_value);
+}
+
+void *thread_function(void *ptr){
+	for (int i = 0; i < RANGE; i++) {
+      pthread_mutex_lock(&lock);
+      share_value++;
+      pthread_mutex_unlock(&lock);
+   }   
+}
+```
+
+It's better to ``init()`` and ``destroy()`` the mutex after executing:
+
+```cpp
+int main()
+{  
+    pthread_mutex_init(&lock, NULL);
+	pthread_t thread_1, thread_2, thread_3;
+	/*
+        Other threads definitions and executions like above
+    */
+    pthread_mutex_destroy(&lock);
+}
+```
+
 ## Examples
 
 ### Example 1
