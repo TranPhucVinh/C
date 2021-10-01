@@ -34,16 +34,6 @@ void *func_thread_1(void *ptr){
 }
 ```
 
-Get the parameter of the thread
-
-```c
-thread1_return = pthread_create(&thread_1, NULL, func_thread_1, 56);
-
-void *func_thread_1(void *ptr){
-	printf("Parameter is %d\n", ptr);
-}
-```
-
 Get the parameter of the thread by passing a variable
 
 ```c
