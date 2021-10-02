@@ -1,9 +1,10 @@
 ## Define
 
 ```c
-char *displayedString = "displayedString";
+char *displayedString = "Hello, World !";
 
 printf("%s \n", displayedString); //Hello, World !
+printf("%p\n", &displayedString); //0x601038
 ```
 Or can define:
 ```c
