@@ -44,6 +44,26 @@ void *func_thread_1(void *ptr){
 	printf("Parameter is %d\n", ptr);//56
 }
 ```
+Get return from a thread and store to a variable:
+
+```c
+int main()
+{  
+    int **array_pointer;
+	pthread_t thread_1;
+	int thread1_return;
+
+	thread1_return = pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_join(thread_1, (void**)array_pointer);
+    printf("value: %d\n", **array_pointer);
+}
+
+void *func_thread_1(void *ptr){
+	int *array = (int*) malloc (sizeof(int));
+    *array = 123;
+	return array;
+}
+```
 ### Example 2
 
 Enter value for struct member using thread 
