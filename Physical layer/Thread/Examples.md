@@ -49,13 +49,14 @@ Get return from a thread and store to a variable:
 ```c
 int main()
 {  
-    int **array_pointer;
+    int **thread_1_return;
 	pthread_t thread_1;
-	int thread1_return;
+	int thread_1_create;
 
-	thread1_return = pthread_create(&thread_1, NULL, func_thread_1, NULL);
-	pthread_join(thread_1, (void**)array_pointer);
-    printf("value: %d\n", **array_pointer);
+	thread_1_create = pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_join(thread_1, (void**)thread_1_return);
+    printf("value: %d\n", **thread_1_return);
+    free(thread_1_return);
 }
 
 void *func_thread_1(void *ptr){
