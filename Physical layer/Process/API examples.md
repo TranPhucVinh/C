@@ -32,3 +32,59 @@ int main(int argc, char *argv[])  {
 ```
 
 Then ``function_operation()`` will be run 4 times. Calling ``fork()`` ``n`` times will result in running ``function_operation()`` ``2^n`` times.
+
+### wait()
+
+Take this ``fork()`` example. We want child process to print out from ``0`` to ``5`` and parent process to print out from ``6`` to ``10``.
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	int number;
+	if (!pid) number = 0;
+	else {
+		number = 6;
+	}	
+	for (int i = number; i < number + 5; i++) {
+		printf("%d ", i);
+	}	
+}
+```
+**Result**: ``6 7 8 9 10 0 1 2 3 4``
+
+Problem solve: Using ``wait()``
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	int number;
+	if (!pid) number = 0;
+	else {
+		number = 6;
+		wait(NULL);
+	}	
+	for (int i = number; i < number + 5; i++) {
+		printf("%d ", i);
+	}	
+}
+```
+
+``wait()`` operations:
+
+```
+    parent
+   ---------🠊 wait()----🠊 resume
+  |                         🠉
+  |                         |
+fork()                      |
+  |                         |
+  |--------🠊 exec() ----🠊 exit()
+    child
+```
