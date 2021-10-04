@@ -1,10 +1,44 @@
-### fork()
+## fork()
 
 ```c
-int fork(void)
+pid_t fork(void);
 ```
 
-Clone the calling process, creating an exact copy. Return -1 for errors, 0 to the new process, and the process ID of the new process to the old process.
+Clone the calling process, creating an exact copy. 
+
+Return
+
+* ``-1`` for errors
+* ``pid`` of the forked process 
+* ``0`` as the forked process has been created successfully
+
+Execution orders of ``fork()`` when forking the process successfully:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	function_operation();
+}
+```
+
+**Stage 1**: Execute origin process
+
+```c
+pid = pid_of_forked_process;
+function_operation();
+```
+
+**Stage 2**: Execute the forked process
+
+```c
+pid = 0;
+function_operation();
+```
+
+### Examples
 
 ```c
 #include <stdio.h>
@@ -22,19 +56,20 @@ Before forkingPID: 0
 ```
 ``Before forking`` is printed 2 times as it is not followed by a newline.
 
-Executing functions before ``fork()`` and get the pid:
+Executing functions before ``fork()`` and get the ID of the origin and forked process:
 
 ```c
 int main(int argc, char *argv[])  {
 	printf("Before forking\n");
 	int pid = fork();
-	printf("PID: %d\n", pid);
+	if (!pid) printf("Forked process has ID: %d\n", getpid());
+	else printf("Origin process has ID: %d \n", getpid());
 }
 ```
 ```
 Before forking
-PID: 1354
-PID: 0
+Origin process has ID: 6441 
+Forked process has ID: 6442
 ```
 
 Running multiple ``fork()``
