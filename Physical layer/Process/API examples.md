@@ -11,14 +11,30 @@ Clone the calling process, creating an exact copy. Return -1 for errors, 0 to th
 #include <unistd.h>
 
 int main(int argc, char *argv[])  {
+	printf("Before executing process");
 	int pid = fork();
 	printf("Fork from PID: %d\n", pid);
 }
 ```
 ```
-Fork from PID: 29056
+Before executing processFork from PID: 1233
+Before executing processFork from PID: 0
+```
+``Before executing process`` is printed 2 times as it is not followed by a newline.
+
+```c
+int main(int argc, char *argv[])  {
+	printf("Before executing process\n");
+	int pid = fork();
+	printf("Fork from PID: %d\n", pid);
+}
+```
+```
+Before executing process
+Fork from PID: 1354
 Fork from PID: 0
 ```
+
 Running multiple ``fork()``
 ```c
 #include <stdio.h>
