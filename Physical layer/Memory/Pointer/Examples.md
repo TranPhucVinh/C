@@ -1,4 +1,4 @@
-### Example 1
+## Example 1
 
 Change value of variable by pointer in a function
 
@@ -62,9 +62,11 @@ int add(int *number){
 }
 ```
 
-**An example of passing by value**:
+### An example of passing by value
 
-```
+Get address of a variable then store into a pointer.
+
+```c
 #include <stdio.h>
 
 int a = 8;
@@ -80,12 +82,34 @@ int main()
 	int* ptr;
 	ptr = &b;
 	foo(ptr);
-	printf("*ptr: %d", *ptr);//8
+	printf("*ptr: %d", *ptr);//10, expected 8
 	return 0;
 }
 ```
 We expect ``ptr`` to store the address value of ``a`` but ``ptr`` passed to ``foo()`` is the value of ``ptr`` (i.e ``&b``).
 
+**Problem solved**
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int a = 100;
+
+void foo(int *ptr)
+{
+	*ptr = (unsigned long)&a;//type cast unsigned long to %p of &a
+}
+
+int main()
+{
+	int temp;
+	foo(&temp);
+	int *temp_pointer;
+	temp_pointer = (int*)temp;
+	printf("temp: %d", *temp_pointer);
+	return 0;
+}
+```
 ### Example 1.2
 
 Change value of a string by function using pointer.
@@ -132,7 +156,9 @@ int *ptr = (int*)&value;
 *ptr = 0;
 ```
 
-### Example 2: swapping value
+## Example 2
+
+Swapping value
 
 ```c
 #include <stdio.h>
