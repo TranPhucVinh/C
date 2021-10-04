@@ -101,6 +101,7 @@ It is possible to pass some values from the command line to your C programs when
 int main(int argc, char *argv[])  {
     printf("argv[0]: %s \n", argv[0]);
     printf("argv[1]: %s \n", argv[1]);
+    printf("argv[1][0]: %c \n", argv[1][0]);
     printf("Total argument: %d", argc);
 }
 ```
@@ -111,6 +112,7 @@ int main(int argc, char *argv[])  {
 ```
 argv[0]: ./a.out 
 argv[1]: Hello
+argv[1][0]: H
 Total argument: 2
 ```
 
@@ -118,7 +120,7 @@ Total argument: 2
 
 To enter a string in ``*argv[]``, use ``\``:
 
-**Input**: ``./a.out Hello,\ World !``
+**Input**: ``./a.out Hello,\ World\ !``
 
 **Output**
 
