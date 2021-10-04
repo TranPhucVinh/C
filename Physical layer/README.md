@@ -1,3 +1,5 @@
+``size a.out``: displays the size of the text, initialized data, and uninitialized data (bss) segments of binary executable file ``a.out``
+
 ### Embedded command
 
 Run embedded Unix or Windows commands in ``C`` source code
