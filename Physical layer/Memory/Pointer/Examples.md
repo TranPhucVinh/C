@@ -62,6 +62,30 @@ int add(int *number){
 }
 ```
 
+**An example of passing by value**:
+
+```
+#include <stdio.h>
+
+int a = 8;
+int b = 10;
+
+void foo(int *ptr)
+{
+	ptr = &a;
+}
+
+int main()
+{
+	int* ptr;
+	ptr = &b;
+	foo(ptr);
+	printf("*ptr: %d", *ptr);//8
+	return 0;
+}
+```
+We expect ``ptr`` to store the address value of ``a`` but ``ptr`` passed to ``foo()`` is the value of ``ptr`` (i.e ``&b``).
+
 ### Example 1.2
 
 Change value of a string by function using pointer.
