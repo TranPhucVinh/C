@@ -1,11 +1,5 @@
 ### Example 1
 
-Get process ID with ``getpid()``
-
-```c
-printf("PID %d\n", getpid());
-```
-
 Enter the id of a process (if existed) then print out this process name.
 
 ```c
