@@ -13,26 +13,28 @@ Clone the calling process, creating an exact copy. Return -1 for errors, 0 to th
 int main(int argc, char *argv[])  {
 	printf("Before forking");
 	int pid = fork();
-	printf("Fork from PID: %d\n", pid);
+	printf("PID: %d\n", pid);
 }
 ```
 ```
-Before forkingFork from PID: 1233
-Before forkingFork from PID: 0
+Before forkingPID: 1233
+Before forkingPID: 0
 ```
 ``Before forking`` is printed 2 times as it is not followed by a newline.
+
+Executing functions before ``fork()`` and get the pid:
 
 ```c
 int main(int argc, char *argv[])  {
 	printf("Before forking\n");
 	int pid = fork();
-	printf("Fork from PID: %d\n", pid);
+	printf("PID: %d\n", pid);
 }
 ```
 ```
 Before forking
-Fork from PID: 1354
-Fork from PID: 0
+PID: 1354
+PID: 0
 ```
 
 Running multiple ``fork()``
