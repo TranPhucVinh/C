@@ -34,24 +34,35 @@ void *func_thread_1(void *ptr){
 }
 ```
 
-Get the parameter of the thread
-
-```c
-thread1_return = pthread_create(&thread_1, NULL, func_thread_1, 56);
-
-void *func_thread_1(void *ptr){
-	printf("Parameter is %d\n", ptr);
-}
-```
-
 Get the parameter of the thread by passing a variable
 
 ```c
 int number = 56;
-thread1_return = pthread_create(&thread_1, NULL, func_thread_1, (void*)number);
+thread_1_create = pthread_create(&thread_1, NULL, func_thread_1, &number);
 
 void *func_thread_1(void *ptr){
-	printf("Parameter is %d\n", ptr);//56
+	printf("Parameter is %d\n", *((int*)ptr));//56
+}
+```
+Get return from a thread and store to a variable:
+
+```c
+int main()
+{  
+    int **thread_1_return;
+	pthread_t thread_1;
+	int thread_1_create;
+
+	thread_1_create = pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_join(thread_1, (void**)thread_1_return);
+    printf("value: %d\n", **thread_1_return);
+    free(thread_1_return);
+}
+
+void *func_thread_1(void *ptr){
+	int *array = (int*) malloc (sizeof(int));
+    *array = 123;
+	return array;
 }
 ```
 ### Example 2
