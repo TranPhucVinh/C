@@ -21,13 +21,17 @@ int main(int argc, char *argv[])
 }
 ```
 
-### getpid()
+### getpid() and getppid()
 
 ```c
 #include <unistd.h>
-pid_t getpid(void);
+
+printf("PID %d\n", getpid());
+printf("Parent PID %d\n", getppid());
 ```
-``getpid()`` returns the process ID of the calling process. (This is often used by routines that generate unique temporary filenames.)
+``getpid()`` returns the process ID of the calling process (this is often used by routines that generate unique temporary filenames)
+
+``getppid()`` returns the ID of the parent, the process that crate the child process.
 
 ### Get variable environment
 
