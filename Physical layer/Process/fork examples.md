@@ -141,3 +141,5 @@ fork()                      |
   |--------🠊 exec() ----🠊 exit()
     child
 ```
+
+So putting ``wait()`` inside child process execution gives no effect.
