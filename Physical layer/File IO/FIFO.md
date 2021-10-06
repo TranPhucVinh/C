@@ -33,10 +33,11 @@ While the program is blocking, run another program that interact with ``FIFO 1``
 
 ## Example 2
 
-Communication between 2 process using FIFO. Process ``fifo_write`` writes data to FIFO ``FIFO 1``. Process ``fifo_read`` reads data from FIFO ``FIFO 1``.
+Communication between 2 process using FIFO. Process ``fifo_write`` writes data to FIFO ``FIFO 1`` every 1 second. Process ``fifo_read`` reads data from FIFO ``FIFO 1`` every 1 second.
 
 ``fifo_write.c``
 
+```c
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -46,7 +47,7 @@ Communication between 2 process using FIFO. Process ``fifo_write`` writes data t
 void delaySeconds(long seconds);
 
 #define FIFO_NAME 		"FIFO 1"
-#define FILE_PERMISSION	 0777 //Octal value for file permission 777
+#define FILE_PERMISSION	 0777
 
 int main(int argc, char *argv[])  {
 	char writeString[50];
@@ -87,5 +88,49 @@ void delaySeconds(long seconds){
 		totalSecond = tv.tv_sec;
 	}
 }
+```
 
-``
+``fifo_read.c``
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+
+void delaySeconds(long seconds);
+
+#define FIFO_NAME 		"FIFO 1"
+#define FILE_PERMISSION	 0777
+
+int main(int argc, char *argv[])  {
+	char readBuffer[50];
+    
+	int fd = open(FIFO_NAME, O_RDONLY);//Open for read
+	if (fd == -1) {
+		printf("Unable to open %s", FIFO_NAME);
+		return 0;
+	}	
+
+	printf("Opened\n");
+
+    while(1){
+        read(fd, readBuffer, sizeof(readBuffer));
+        printf("Received: %s", readBuffer);
+        delaySeconds(1);    
+    }
+
+	close(fd);
+}
+
+void delaySeconds(long seconds){
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	long totalSecond = 0;
+	long previousTime = tv.tv_sec;
+	while (totalSecond - previousTime < seconds){
+		gettimeofday(&tv, NULL);
+		totalSecond = tv.tv_sec;
+	}
+}
+```
