@@ -3,33 +3,19 @@
 **Decimal value**
 
 ```c    
-printf("%c", 67); 
+printf("%c", 67); //C (Character 'C' has ASCII code 67)
 ```
-
-```
-C
-```
-
-**C** has ASCII code 67
 
 **Hex value**
 
 ```c
-printf("%c", 0x30);
-```
-
-```
-0
+printf("%c", 0x30);//0 (Character '0')
 ```
 
 ### ASCII code
 
 ```c
-printf("ASCII value: %d \n", ' ');
-```
-
-```
-ASCII value: 32 
+printf("ASCII value: %d \n", ' ');//ASCII value: 32 
 ```
 
 ### Escape sequence
@@ -129,7 +115,7 @@ printf("ASCII value: %d \n", '\10');
 ASCII value: 8 
 ```
 
-C compiler will understand that the passed-in value after escape sequencer ``\`` is a octal number (10 **octal** has decimal value **8**)
+C compiler will understand that the passed-in value after escape sequencer ``\`` is a octal number (Octal value ``10`` has decimal value ``8``)
 
 ### Other escape sequences
 
