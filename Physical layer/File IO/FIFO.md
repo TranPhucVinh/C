@@ -150,7 +150,6 @@ int main(int argc, char *argv[])  {
 	}	
 	//implementations like fifo_write.c above
 ```
-**Problem when tranmission between 2 process with normal file**: 
 
 ``./fifo_write``
 
