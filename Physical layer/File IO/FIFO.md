@@ -134,39 +134,3 @@ void delaySeconds(long seconds){
 	}
 }
 ```
-Normal file can be used for transmission between 2 process like above. ``fifo_read.c`` implements like above, ``fifo_write.c`` need some edit:
-
-```c
-#define FILE_NAME 		"temp"
-#define FILE_PERMISSION	 0777
-
-int main(int argc, char *argv[])  {
-	//implementations like fifo_write.c above
-	creat(FIFO_NAME, FILE_PERMISSION);
-	int fd = open(FILE_NAME, O_WRONLY);//Open for write
-	if (fd == -1) {
-		printf("Unable to open %s", FILE_NAME);
-		return 0;
-	}	
-	//implementations like fifo_write.c above
-```
-
-``./fifo_write``
-
-```
-Opened
-Write message with index 0
-Write message with index 1
-Ctr+C //We stop after index 1
-```
-
-``./fifo_read``` will read:
-
-```
-Write message with index 0
-Write message with index 1
-Write message with index 1
-Write message with index 1
-Write message with index 1
-//Write message with index 1 wil be read indefinitely
-```
