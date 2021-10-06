@@ -25,7 +25,7 @@ int main(int argc, char *argv[])  {
 	int pid = fork();
 	if (!pid) {
 		int x = 123;
-		printf("Writting to x value\n");
+		printf("Writting to fd[1]\n");
 		write(fd[1], &x, sizeof(int));
 		close(fd[1]);
 	}	
@@ -33,7 +33,26 @@ int main(int argc, char *argv[])  {
 		int y;
 		read(fd[0], &y, sizeof(int));
 		close(fd[0]);
-		printf("Data from forked process %d\n", y);
+		printf("Data from fd[0] %d\n", y);
 	}	
 }
 ```
+
+For string:
+
+```c
+if (!pid) {
+	char displayedString[] = "Hello, World !";
+	printf("Writting to fd[1]\n");
+	write(fd[1], &displayedString, sizeof(displayedString));
+	close(fd[1]);
+}	
+else {
+	char receivedString[50];
+	read(fd[0], receivedString, sizeof(receivedString));
+	close(fd[0]);
+	printf("Data from fd[0]: %s\n", receivedString);
+}	
+```
+
+**Note**: User must create the ``pipe()`` before forking the process. If the pipe is created after forking, the program will be hanged.
