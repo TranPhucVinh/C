@@ -39,6 +39,7 @@ int fileDescriptor = int open(const char *path, int mode)
 ```c
 int fileDescriptor = int creat(const char * pathname , mode_t mode);
 ```
+``mode_t`` takes octal value like ``0777`` for better mode clarification.
 
 Calling ``creat()`` is equivalent to the following ``open()`` call:
 
