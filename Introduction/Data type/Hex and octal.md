@@ -1,3 +1,5 @@
+## Hex
+
 Convert int to hex using ``%x``
 
 ```c
@@ -39,4 +41,14 @@ Get first byte and last byte of a 2 byte int variable
 int value = 0x1234;
 uint8_t lastByte = (uint8_t)value;  //0x34
 uint8_t firstByte = value>>8;       //0x12
+```
+## Octal
+
+Octal number is indicated by ``0``
+
+```c
+int a = 0777;
+
+printf("%o\n", a);//777
+printf("%d\n", a);//511
 ```
