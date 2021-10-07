@@ -1,17 +1,5 @@
-```c
-int pipe(int fd[2]);
-```
+**Example 1**: Write value to ``fd[1]`` and read from ``fd[0]`` from the origin and child process.
 
-``pipe()`` create a one-way communication channel (pipe). If successful, 2 file descriptors are stored in ``fd``. ``fd[1]`` is used for writting, ``fd[0]`` is used for reading.
-
-**Return**
-
-* ``0``: success
-* ``-1``: error
-
-If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, the process that perform the writing operation will be executed first.
-
-**Example 1**: Write value to ``fd[1]`` and read from ``fd[0]``
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -43,7 +31,7 @@ For string:
 ```c
 if (!pid) {
 	char displayedString[] = "Hello, World !";
-	printf("Writting to fd[1]\n");
+	printf("Writing to fd[1]\n");
 	write(fd[1], &displayedString, sizeof(displayedString));
 	close(fd[1]);
 }	
