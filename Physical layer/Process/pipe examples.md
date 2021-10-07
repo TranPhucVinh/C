@@ -1,4 +1,6 @@
-**Example 1**: Write value to ``fd[1]`` and read from ``fd[0]`` from the origin and child process.
+### Example 1
+
+Write value to ``fd[1]`` and read from ``fd[0]`` from the origin and child process.
 
 ```c
 #include <stdio.h>
@@ -44,3 +46,43 @@ else {
 ```
 
 **Note**: User must create the ``pipe()`` before forking the process. If the pipe is created after forking, the program will be hanged.
+
+### Example 2
+
+Communication between orgin and forked process. Origin process send a string to forked process, forked process receives that string and modifies it then sends back to the origin process.
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main(int argc, char *argv[])  {
+	int fd[2];
+	if(pipe(fd) == -1){
+		printf("An error occured when opening the pipe\n");
+		return 1;
+	}
+	int pid = fork();
+	char originMessage[] = "Message";
+	
+	char receivedString[100];
+	char sendString[100];
+	if (!pid){
+		if (read(fd[0], receivedString, sizeof(receivedString)) == -1) printf("Unable to read data from fd[0]");
+		else {
+			printf("Execute 1\n");
+			sprintf(sendString, "%s: Message from forked process send back to origin message", receivedString);
+		}
+		if (write(fd[1], sendString, sizeof(sendString)) == -1) printf("Unable to write data to fd[1]");
+		else printf("Execute 2\n");
+	} else {
+		if (write(fd[1], originMessage, sizeof(originMessage)) == -1) printf("Unable to write data to fd[1]");
+		wait(NULL);
+		if (read(fd[0], receivedString, sizeof(receivedString)) == -1) printf("Unable to read data from fd[0]");	
+		else printf("Data from fd[0]: %s\n", receivedString);
+	}
+
+	close(fd[1]);
+	close(fd[0]);
+}
+```
