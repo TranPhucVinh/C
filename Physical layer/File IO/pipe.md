@@ -9,7 +9,7 @@ int pipe(int fd[2]);
 * ``0``: success
 * ``-1``: error
 
-If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, the process that perform the writing operation will be executed first.
+If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, but if ``fd[0]`` is empty, the process that perform the writing operation will be executed first. If ``fd[0]`` already has data, reading ``fd[0]`` can executed before writing to ``fd[1]`` normally.
 
 ## Examples
 
