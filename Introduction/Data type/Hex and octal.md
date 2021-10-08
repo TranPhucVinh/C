@@ -42,6 +42,31 @@ int value = 0x1234;
 uint8_t lastByte = (uint8_t)value;  //0x34
 uint8_t firstByte = value>>8;       //0x12
 ```
+## BCD
+
+BCD encoded for number ``16``: 
+
+```
+1 = 0b0001
+6 = 0b0110
+```
+
+``16`` will be BCD encodded as ``0b00010110``, which will be ``22`` when encoded back to decimal.
+
+```c
+// Convert from decimal to BCD
+int decToBCD(__uint8_t num)
+{
+	return ((num/10 * 16) + (num % 10));
+}
+
+// Convert from BCD (Binary-Coded Decimal) to Decimal
+int bcdToDec(byte num)
+{
+	return ((num/16 * 10) + (num % 16));
+}
+```
+
 ## Octal
 
 Octal number is indicated by ``0``
