@@ -61,7 +61,7 @@ int decToBCD(__uint8_t num)
 }
 
 // Convert from BCD (Binary-Coded Decimal) to Decimal
-int bcdToDec(byte num)
+int bcdToDec(__uint8_t num)
 {
 	return ((num/16 * 10) + (num % 16));
 }
