@@ -4,11 +4,15 @@ Perform a CRC-16-IBM generation on sender side
 
 **Calculation steps**
 
-* The starting value is 0xFFFF.
-* Perform an XOR operation of this value and the slave address.
-* Right shift the result.
-* When the overflow bit of the result operation becomes 1, perform an XOR operation of the result from step 3 above and the fix value 0xA001.
-* Repeat steps 3 and 4 until 8 shift operations have been performed.
+1. Load a 16–bit register with FFFF hex (all 1’s). Call this the CRC register.
+2. Exclusive OR the first 8–bit byte of the message with the low–order byte of the 16–bit CRC register, putting the result in the CRC register.
+3. Shift the CRC register one bit to the right (toward the LSB), zero–filling the MSB. Extract and examine the LSB.
+4. If the LSB was 0: Repeat Step 3 (another shift).
+If the LSB was 1 (AND with ``0x01``): Exclusive OR the CRC register with the polynomial value ``0xA001`` (``1010 0000 0000 0001``).
+5. Repeat Steps 3 and 4 until 8 shifts have been performed. When this is done, a complete 8–bit byte will have been
+processed.
+6. Repeat Steps 2 through 5 for the next 8–bit byte of the message. Continue doing this until all bytes have been processed.
+7. The final content of the CRC register is the CRC value
 
 **Program**
 
