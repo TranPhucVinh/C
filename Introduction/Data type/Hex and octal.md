@@ -39,8 +39,8 @@ Get first byte and last byte of a 2 byte int variable
 
 ```c
 int value = 0x1234;
-uint8_t LSB = (uint8_t)value;  //0x34, last byte
-uint8_t MSB = value>>8;       //0x12; first byte
+int LSB = (uint8_t)value;  //0x34, last byte
+int MSB = value>>8;       //0x12; first byte
 ```
 ## BCD
 
