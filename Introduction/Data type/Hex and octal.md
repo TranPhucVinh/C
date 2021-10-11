@@ -49,6 +49,21 @@ int msb = 0x12;
 int lsb = 0x34;
 int value = msb<<8 | lsb;
 ```
+Or
+
+```c
+int msb = 0x12;
+int lsb = 0x34;
+
+int value = (msb<<8) + lsb;
+```
+**Note**:
+If define:
+
+```c
+int value = msb<<8 + lsb;
+```
+It will be interpreted as ``value = msb<<(8 + lsb)`` so the result will be totally wrong.
 
 ## BCD
 
