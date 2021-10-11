@@ -47,7 +47,7 @@ Form a 16-bit number from MSB and LSB byte
 ```c
 int msb = 0x12;
 int lsb = 0x34;
-int value = msb<<8 | lsb<<0;
+int value = msb<<8 | lsb;
 ```
 
 ## BCD
