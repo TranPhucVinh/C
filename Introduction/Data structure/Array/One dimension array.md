@@ -78,7 +78,11 @@ Read from ``index`` with:
 
 ```c
 int array[] = {1, 2, 3};
-size_t arraySize = sizeof(array)/sizeof(array[0]);//12
+int data[3] =
+sizeof(array);//12
+sizeof(data);
+size_t arraySize = sizeof(array)/sizeof(array[0]);//3
+size_t dataSize = sizeof(array)/sizeof(array[0]);//3
 ```
 Or
 ```c
