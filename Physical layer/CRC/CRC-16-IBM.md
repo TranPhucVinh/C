@@ -35,7 +35,7 @@ int sender_crc_calculate(int *modbus_rtu_frame, int size){
 
 int main(){
     int crc_16_ibm = sender_crc_calculate(modbus_rtu_frame, sizeof(modbus_rtu_frame)/sizeof(modbus_rtu_frame[0]));
-    printf("%p\n", crc_16_ibm);//0x0944
+    printf("%p\n", crc_16_ibm);//0x0f24
 
     /*
         Then form an array include CRC
