@@ -88,7 +88,29 @@ int main()
 ```
 We expect ``ptr`` to store the address value of ``a`` but ``ptr`` passed to ``foo()`` is the value of ``ptr`` (i.e ``&b``).
 
-**Problem solved**
+**Problem solved**: Using ``memcpy()``
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int a = 8;
+int b = 10;
+
+void foo(int *ptr)
+{
+	memcpy(ptr, &a, sizeof(int));
+}
+
+int main()
+{
+	int* ptr;
+	ptr = &b;
+	foo(ptr);
+	printf("*ptr: %d", *ptr);//10, expected 8
+	return 0;
+}
+```
 
 ### Example 1.2
 
