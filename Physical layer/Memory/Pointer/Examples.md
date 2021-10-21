@@ -64,6 +64,28 @@ int add(int *number){
 
 ### An example of passing by value
 
+Set value to a variable by dereferencing another variable
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int a = 100;
+
+void foo(int *ptr)
+{
+	*ptr = (unsigned long)&a;//type cast unsigned long to %p of &a
+}
+
+int main()
+{
+	int temp;
+	foo(&temp);
+	int *temp_pointer;
+	temp_pointer = (int*)temp;
+	printf("temp: %d", *temp_pointer);
+	return 0;
+}
+```
 Get address of a variable then store into a pointer.
 
 ```c
@@ -89,27 +111,7 @@ int main()
 We expect ``ptr`` to store the address value of ``a`` but ``ptr`` passed to ``foo()`` is the value of ``ptr`` (i.e ``&b``).
 
 **Problem solved**
-```c
-#include <stdio.h>
-#include <stdlib.h>
 
-int a = 100;
-
-void foo(int *ptr)
-{
-	*ptr = (unsigned long)&a;//type cast unsigned long to %p of &a
-}
-
-int main()
-{
-	int temp;
-	foo(&temp);
-	int *temp_pointer;
-	temp_pointer = (int*)temp;
-	printf("temp: %d", *temp_pointer);
-	return 0;
-}
-```
 ### Example 1.2
 
 Change value of a string by function using pointer.
