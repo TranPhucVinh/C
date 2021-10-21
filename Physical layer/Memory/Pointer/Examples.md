@@ -82,7 +82,7 @@ int main()
 	int* ptr;
 	ptr = &b;
 	foo(ptr);
-	printf("*ptr: %d", *ptr);//10, expected 8
+	printf("*ptr: %d", *ptr);//8
 	return 0;
 }
 ```
