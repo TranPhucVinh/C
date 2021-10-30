@@ -18,6 +18,13 @@ With Microsoft C++ 32-bit and 64-bit compilers, int has the range -2,147,483,648
 
 In ``GCC`` and ``G++``, the default ``char`` type is ``signed char``. If compile by ``MSVC`` with ``/J`` option, ``char`` will switch to ``unsigned char``.
 
+``E`` is for power of 10. E.g:
+
+```c
+int number = 4E2;
+printf("%d\n", pid);//400
+```
+
 ### const
 
 ``const`` is used to define constant variable and can't be changed

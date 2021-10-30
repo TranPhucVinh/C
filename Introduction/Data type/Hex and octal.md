@@ -39,9 +39,32 @@ Get first byte and last byte of a 2 byte int variable
 
 ```c
 int value = 0x1234;
-uint8_t lastByte = (uint8_t)value;  //0x34
-uint8_t firstByte = value>>8;       //0x12
+int LSB = (uint8_t)value;  //0x34, last byte
+int MSB = value>>8;       //0x12; first byte
 ```
+Form a 16-bit number from MSB and LSB byte
+
+```c
+int msb = 0x12;
+int lsb = 0x34;
+int value = msb<<8 | lsb;
+```
+Or
+
+```c
+int msb = 0x12;
+int lsb = 0x34;
+
+int value = (msb<<8) + lsb;
+```
+**Note**:
+If define:
+
+```c
+int value = msb<<8 + lsb;
+```
+It will be interpreted as ``value = msb<<(8 + lsb)`` so the result will be totally wrong.
+
 ## BCD
 
 BCD encoded for number ``16``: 
