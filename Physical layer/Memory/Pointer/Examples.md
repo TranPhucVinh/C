@@ -114,6 +114,39 @@ int main()
 }
 ```
 
+Use a variable to store the address of other variable then changes that variable value
+
+```c
+#include <stdio.h>
+#include <stdint.h>
+
+int a = 8;
+int b = 10;
+
+void foo(unsigned long int* pon)
+{
+	*pon = (unsigned long int)&a;
+}
+
+int main()
+{
+	unsigned long int ptr;
+	ptr = (unsigned long int)&b;
+
+	//To view the value mapped by ptr before changing the function
+	int* ptr_b;
+    ptr_b = &b;
+	printf("*ptr: %d\n", *ptr_b);//10
+
+	foo(&ptr);
+
+	//To view the value mapped by ptr after changing the function
+    int expect_a = *(int*)(ptr);
+	printf("*ptr: %d\n", expect_a);//8
+	return 0;
+}
+```
+
 ### Example 1.2
 
 Change value of a string by function using pointer.
