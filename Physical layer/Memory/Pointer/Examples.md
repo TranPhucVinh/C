@@ -89,7 +89,33 @@ int main()
 ```
 We expect ``ptr`` to store the address value of ``a`` but ``ptr`` passed to ``foo()`` is the value of ``ptr`` (i.e ``&b``).
 
-**Problem solved**: Using ``memcpy()``
+**Problem solved**: 
+
+Using recursive pointer:
+
+```c
+#include <stdio.h>
+
+int a = 8;
+int b = 10;
+
+void foo(int *ptr)
+{
+	*ptr = (unsigned long int)&a;
+}
+
+int main()
+{
+	int* ptr;
+	ptr = &b;
+	printf("*ptr: %d\n", *ptr);//10
+	foo((int*)&ptr);
+	printf("*ptr: %d\n", *ptr);//10, expected 8
+	return 0;
+}
+```
+
+Using ``memcpy()``
 
 ```c
 #include <stdio.h>
