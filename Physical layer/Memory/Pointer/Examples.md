@@ -144,7 +144,6 @@ Use a variable to store the address of other variable then changes that variable
 
 ```c
 #include <stdio.h>
-#include <stdint.h>
 
 int a = 8;
 int b = 10;
