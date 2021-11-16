@@ -86,11 +86,12 @@ strtof(const char* str, char **endptr);
 
 int main()
 {
-    char array[] = "1.2 2.3";//Must include space between the numbers
-    char* pend;
+     char array[] = "34.56 8.91 123.45";
+    char *pend;
 
     float f1 = strtof(array, &pend);
-    float f2 = strtof(pend, NULL);
-    printf("f1: %.2f, f2: %.2f\n", f1, f2);//f1: 1.20, f2: 2.30
+    float f2 = strtof(pend, &pend);
+    float f3 = strtof(pend, NULL);
+    printf("f1: %.2f, f2: %.2f f3: %.2f\n", f1, f2, f3);
 }
 ```
