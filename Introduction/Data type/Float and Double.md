@@ -74,3 +74,23 @@ int b = 70;
 float c = ((float)a*16*16+ (float) b)/10;
 printf("%lf\n", c);//32.5999
 ```
+### Convert string to float
+
+```c
+strtof(const char* str, char **endptr);
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h> //For strtof()
+
+int main()
+{
+    char array[] = "1.2 2.3";//Must include space between the numbers
+    char* pend;
+
+    float f1 = strtof(array, &pend);
+    float f2 = strtof(pend, NULL);
+    printf("f1: %.2f, f2: %.2f\n", f1, f2);//f1: 1.20, f2: 2.30
+}
+```
