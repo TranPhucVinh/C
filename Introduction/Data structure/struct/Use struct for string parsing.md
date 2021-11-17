@@ -81,6 +81,10 @@ Result:
 * humidity = 75.00
 * soil_humidity = 16.40
 
+So parsing a raw string containing number into string number will cause errror.
+
+**Problem solved**: Convert string to hex value, check **Example 2**
+
 ## Example 2
 
 Parsing a char array into the following fields
@@ -89,10 +93,10 @@ Char array: ``0x24 0x00 0x01 0x1A 0x05 0x1F 0x20 0x2F 0x1C 0x17 0x20 0x61``
 
 * DCD header: ``$`` (``0x24``)
 * ID: ``0001`` (``0x00`` ``0x01``)
-* Environment humidity: ``26,05`` (``0x1A`` ``0x05``)
-* Environment temperature: ``31,32``(``0x1F`` ``0x20``)
-* Soil humidity: ``47,28`` (``0x2F`` ``0x1C``)
-* Soil temperature: ``23,32`` (``0x17`` ``0x20``)
+* Environment humidity: ``26.05`` (``0x1A`` ``0x05``)
+* Environment temperature: ``31.32``(``0x1F`` ``0x20``)
+* Soil humidity: ``47.28`` (``0x2F`` ``0x1C``)
+* Soil temperature: ``23.32`` (``0x17`` ``0x20``)
 * Checksum: 0x61 (OR 11 bytes give 0x0261, 0x61 is the lower byte)
 
 **Program**: ``struct_data_parsing.c``
