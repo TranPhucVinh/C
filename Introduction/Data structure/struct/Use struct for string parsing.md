@@ -1,17 +1,17 @@
-### Example 1
+## Example 1
 
 Split a string with the following sequence ``host`` and ``port``
 
 ```c
 #include <stdio.h>
 
+char displayed[] = "demo.thingsboard.io443";
 char host[19];
 char port[3];
 
 void struct_data_parsing(char *data);
 
 int main() {
-	char displayed[] = "demo.thingsboard.io443";
 	struct_data_parsing(displayed);
 } 
 
@@ -27,23 +27,24 @@ void struct_data_parsing(char *data){
 }
 ```
 
-(View the result by ``gdb``)
+Result: View the result by ``gdb``
 
-### Example 2
+* host: demo.thingsboard.io
+* port: 443
 
-Parse a string to global variable:
+**Error when parsing in the similar manner**: Parse a string to global variable:
 
 Array: ``130.8175.0016.40``
 
 * id = 1
 * temperature = 30.81
 * humidity = 75.00
-* soil_humidity = 16.40
+* soil_humidity = 26.40
 
 ```c
 #include <stdio.h>
 
-char value[] = "130.8175.006.40";
+char value[] = "130.8175.0026.40";
 
 char id[1];
 char temperature[5], humidity[5], soil_humidity[5];
@@ -64,7 +65,7 @@ void struct_data_parsing(char *value){
 		char soil_humidity[5];
     } data_frame;
 
-    memcpy(&data_frame, value, 16);
+    memcpy(&data_frame, value, strlen(value));
 
 	strcpy(id, data_frame.id);
     strcpy(temperature, data_frame.temperature);
@@ -75,12 +76,12 @@ void struct_data_parsing(char *value){
 
 Result:
 
-* id = 0
+* id = 7
 * temperature = 16.04
-* humidity = 05.00
+* humidity = 75.00
 * soil_humidity = 16.40
 
-### Example 3
+## Example 2
 
 Parsing a char array into the following fields
 
