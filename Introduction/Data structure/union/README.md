@@ -71,3 +71,34 @@ union Data {
 
 printf("size of data: %d", sizeof(data)); //20: size of str[20]
 ```
+
+## union as function argument
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+union data {
+   int i;
+   float f;
+   char str[20];
+}; 
+
+void unionFunction(union data data0);
+
+int main(){
+    union data dataObject;
+    unionFunction(dataObject);
+}
+
+void unionFunction(union data data0){
+    data0.i = 1;
+    printf("data.i: %d\n", data0.i);
+
+    data0.f = 1.0;
+    printf("data.f: %f\n", data0.f);
+
+    strcpy( data0.str, "hello");
+    printf("data.str: %s\n", data0.str);
+}
+```
