@@ -143,7 +143,24 @@ See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/Stri
 
 ### Example 2
 
-Split a string by sub string
+``strstr()``: Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null pointer if ``str2`` is not part of ``str1``.
+
+**Return**: A pointer to the first occurrence in str1 of the entire sequence of characters specified in str2, or a null pointer if the sequence is not present in ``str1``.
+
+Find a substring inside a string with ``strstr()``
+
+```c
+char displayedString[] = "Hello, World !";
+char *leftString;
+
+int main(int argc, char *argv[]){
+    leftString = strstr(displayedString, "or");
+	if (leftString != NULL)	printf("%s\n", leftString);
+	else printf("NULL\n");
+}
+```
+
+Split a string by substring
 
 ```cpp
 #include <stdio.h>
