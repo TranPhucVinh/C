@@ -32,9 +32,9 @@ Result: View the result by ``gdb``
 * host: demo.thingsboard.io
 * port: 443
 
-**Error when parsing in the similar manner**: Parse a string to global variable:
+**Error when parsing the string array into the string numbers**:
 
-Array: ``130.8175.0016.40``
+Parse string array ``130.8175.0016.40`` into:
 
 * id = 1
 * temperature = 30.81

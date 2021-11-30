@@ -93,5 +93,8 @@ int main()
     float f2 = strtof(pend, &pend);
     float f3 = strtof(pend, NULL);
     printf("f1: %.2f, f2: %.2f f3: %.2f\n", f1, f2, f3);
+    
+    float f4 = strtof("12.34", NULL);
+    printf("f4: %.2f\n", f1);//12.34
 }
 ```
