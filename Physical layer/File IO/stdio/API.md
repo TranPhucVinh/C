@@ -24,6 +24,15 @@ file = fopen("text.md", "r"); //Open text.md to read
 * t
 * b
 
+Get the file descriptor value from file pointer with ``fileno()``:
+
+```c
+char filePath[] = "test.c";
+FILE *fptr; //file pointer
+fptr = fopen(filePath, "r");
+printf("fileno: %ld\n", fileno(fptr));
+```
+
 ### fprintf()
 
 Sends formatted output to a stream.
@@ -186,7 +195,7 @@ int rename(const char *old_filename, const char *new_filename)
 Remove a file
 
 ```c
-int remove ( const char * filename );
+int remove(const char *filename);
 ```
 
 ### perror()
