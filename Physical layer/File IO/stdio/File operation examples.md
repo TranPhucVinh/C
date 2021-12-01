@@ -24,6 +24,32 @@ int main(int argc, char *argv[]) {
 }	
 ```
 
+Using ``sys/stat.h``:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+
+#define ELEMENT_NUMBERS 1
+long file_size;
+
+int main(int argc, char *argv[]) {
+   struct stat statBuffer;
+   char filePath[] = "README.md";
+
+   if (!stat(filePath, &statBuffer)){
+      long fileSize = statBuffer.st_size;
+      char *buffer;
+      buffer = (char *) malloc(fileSize);
+      FILE *fp;
+      fp = fopen(filePath, "r"); //Open text.md to read
+      fread(buffer, fileSize, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
+      printf("%s\n", buffer);
+   }   
+}	
+```
+
 ## Other examples
 
 ``read_and_store.c``: Read 10 bytes data from every line of file ``json.txt`` then store in an array string
