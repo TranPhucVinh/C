@@ -8,7 +8,7 @@
 
 void listAllFile(char *directory);
 void createFile(char *filename);
-void readFile(char *filename);
+char *readFile(char *filename)
 void readFileToBuffer(char *filename, char *buffer, int readSize);
 void writeToFile(char *file, char *data);
 void deleteFile(char *filename);
@@ -31,25 +31,21 @@ void createFile(char *filename){
 	}	
 }
 
-void readFile(char *filename){
-    FILE *fptr; //file pointer
-    char c;
+char *readFile(char *filename){
+    FILE *fp;
 
-    // Open file
-    fptr = fopen(filename, "r");
-    if (fptr == NULL){
-        printf("Cannot open file \n");
-        return;
-    }
+    fp = fopen(filename, "r");
+    fseek(fp, 0L, SEEK_END);
+    long file_size = ftell(fp);
+    fseek(fp, 0L, SEEK_SET);
 
-    // Read contents from file
-    c = fgetc(fptr);
-    while (c != EOF){
-        printf("%c", c);
-        c = fgetc(fptr);
-    }
+    static char *buffer;
+    buffer = (char *) malloc(file_size);
+    bzero(buffer, file_size);//delete garbage value
 
-    fclose(fptr);
+    fread(buffer, file_size, 1, fp);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
+    fclose(fp);
+    return buffer;
 }
 
 void readFileToBuffer(char *filename, char *buffer, int readSize){
