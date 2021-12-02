@@ -22,7 +22,7 @@ file = fopen("text.md", "r"); //Open text.md to read
 * w+: open an empty file to write and read
 * a+: open a file to read and append
 * t
-* ``b`` and ``rb``: open non-text files
+* ``b`` and ``rb``: open non-text files like image
 
 Get the file descriptor value from file pointer with ``fileno()``:
 
