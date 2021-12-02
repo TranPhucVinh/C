@@ -1,14 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <dirent.h>
 #include <fcntl.h>
 #include <unistd.h>
 
-#define BUFFER_SIZE 100
-#define READ_SIZE   50
+#define ELEMENT_NUMBERS 1
 
 void listAllFile(char *directory);
 void createFile(char *filename);
-char *readFile(char *filename)
+char *readFile(char *filename);
 void readFileToBuffer(char *filename, char *buffer, int readSize);
 void writeToFile(char *file, char *data);
 void deleteFile(char *filename);
@@ -16,7 +17,8 @@ void renameFile(char *oldFileName, char *newFileName);
 
 int main(void)
 {
-    return(0);
+   printf("%s\n", readFile("README.md"));
+   return(0);
 }
 
 void createFile(char *filename){
@@ -32,20 +34,20 @@ void createFile(char *filename){
 }
 
 char *readFile(char *filename){
-    FILE *fp;
+   FILE *fp;
 
-    fp = fopen(filename, "r");
-    fseek(fp, 0L, SEEK_END);
-    long file_size = ftell(fp);
-    fseek(fp, 0L, SEEK_SET);
+   fp = fopen(filename, "r");
+   fseek(fp, 0L, SEEK_END);
+   long file_size = ftell(fp);
+   fseek(fp, 0L, SEEK_SET);
 
-    static char *buffer;
-    buffer = (char *) malloc(file_size);
-    bzero(buffer, file_size);//delete garbage value
+   static char *buffer;
+   buffer = (char *) malloc(file_size);
+   bzero(buffer, file_size);//delete garbage value
 
-    fread(buffer, file_size, 1, fp);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
-    fclose(fp);
-    return buffer;
+   fread(buffer, file_size, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*file_size from fp
+   fclose(fp);
+   return buffer;
 }
 
 void readFileToBuffer(char *filename, char *buffer, int readSize){
