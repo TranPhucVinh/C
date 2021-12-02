@@ -68,6 +68,11 @@ size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
 
 Read totally ``nmemb*size`` bytes (including ``\n``) of data from ``stream`` and stores to ``ptr``.
 
+* ``ptr``: pointer to a block of memory with a minimum size of ``size*nmemb`` bytes.
+* ``size``: size in bytes of each element to be read.
+* ``nmemb``: This is the number of elements, each one with a size of size bytes.
+* ``stream``: This is the pointer to a ``FILE`` object that specifies an input stream.
+
 ```c
 #define ELEMENT_NUMBERS 3
 #define READ_SIZE 2
@@ -96,6 +101,22 @@ while (1){
 	printf("%s\n", buffer);
 }
 ```
+
+The difference between:
+
+```c
+fread(read_buffer, 1024, 1, fptr);
+```
+```c
+fread(read_buffer, 1, 1024, fptr);
+```
+
+Both function read 1024 from ``fptr``, however with ``n = fread(read_buffer, 1, 1024, fptr);``, we can keep on the reading of file by chunk. For example, with a file with size ``1347`` bytes, after reading ``1024``, there are still left ``323``. So we will keep reading the left ``323``. ``n = fread()`` this time will return ``323``. 
+
+Check 2 examples for that implementations
+
+* Example ``Read big file in chunk with read size of each element = 1.``
+* ``http_server_returns_beautiful_html_files.c`` in ``ESP8266-RTOS-SDK``
 
 ### fwrite()
 

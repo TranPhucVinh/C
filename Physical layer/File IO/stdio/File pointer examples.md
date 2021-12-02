@@ -50,6 +50,38 @@ int main(int argc, char *argv[]) {
 }	
 ```
 
+Read big file in chunk with read size of each element = 1.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void)
+{
+    FILE *fptr;
+    fptr = fopen("README.md", "r");
+    if (fptr == NULL) {
+		printf("Unable to open file\n");
+	} else {
+        int n = 0;
+        char* read_buffer;
+        read_buffer = (char*)malloc(1024);
+        do
+        {
+            bzero(read_buffer, 1024);
+            n = fread(read_buffer, 1, 1024, fptr);
+            printf("%s", read_buffer);
+        } while (n > 0);
+        printf("\n");
+        free(read_buffer);
+        fclose(fptr);
+    }
+}
+```
+
+This method helps reading big file by chunk and perform small operation every small chunk. Check ``http_server_returns_beautiful_html_files.c`` in ``ESP8266-RTOS-SDK`` as file like image can only by read by chunk and is returned as small HTTP chunk by the HTTP server to HTTP client. Reading the whole image file at one time and returns it to the HTTP client will result in the failure image or the error image.
+
 ## Other examples
 
 ``read_and_store.c``: Read 10 bytes data from every line of file ``json.txt`` then store in an array string
