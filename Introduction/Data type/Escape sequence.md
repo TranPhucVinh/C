@@ -1,23 +1,3 @@
-### Data type and ASCII code
-
-**Decimal value**
-
-```c    
-printf("%c", 67); //C (Character 'C' has ASCII code 67)
-```
-
-**Hex value**
-
-```c
-printf("%c", 0x30);//0 (Character '0')
-```
-
-### ASCII code
-
-```c
-printf("ASCII value: %d \n", ' ');//ASCII value: 32 
-```
-
 ### Escape sequence
 
 **New line**
