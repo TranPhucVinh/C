@@ -1,5 +1,3 @@
-### Escape sequence
-
 **New line**
 
 ```c
@@ -14,6 +12,16 @@ world!
 New line ``LF`` (line feed) has ASCII code ``0x0a``
 
 The escape sequence ``\n`` does not stand for a backslash followed by the letter n, because the backslash causes an "escape" from the normal way characters are interpreted by the compiler. After seeing the backslash, the compiler expects another character to complete the escape sequence, and then translates the escape sequence into the bytes it is intended to represent. 
+
+### Hexadecimal character escape
+
+``\x`` indicates a hexadecimal character escape
+
+```c
+char number_1 = '\x12\x34';//equal to 0x1234
+char number_2 = 0x1234;
+printf("%d\n", number_1 - number_2);//0
+```
 
 ### ASCII code with escape symbol
 
