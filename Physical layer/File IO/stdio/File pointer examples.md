@@ -9,18 +9,22 @@ Check size of a file then read that file:
 #define ELEMENT_NUMBERS 1
 long file_size;
 
+char file_name[] = "test.c";
 int main(int argc, char *argv[]) {
-   FILE *fp;
-   fp = fopen("test.c", "r"); //Open text.md to read
-   fseek(fp, 0L, SEEK_END);
-   file_size = ftell(fp);
+	FILE *fp;
+	fp = fopen(file_name, "r");
+	if (fp){
+		fseek(fp, 0L, SEEK_END);
+		file_size = ftell(fp);
 
-   fseek(fp, 0L, SEEK_SET);
+		fseek(fp, 0L, SEEK_SET);
 
-   char *buffer;
-   buffer = (char *) malloc(file_size);
-   fread(buffer, file_size, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
-   printf("%s\n", buffer);
+		char *buffer;
+		buffer = (char *) malloc(file_size);
+		bzero(buffer, file_size);
+		fread(buffer, file_size, ELEMENT_NUMBERS, fp);
+		printf("%s\n", buffer);
+	} else printf("Unable to open file %s\n", file_name);
 }	
 ```
 
