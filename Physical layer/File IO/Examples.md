@@ -93,3 +93,22 @@ void delaySeconds(long seconds){
 	}
 }
 ```
+Write "H" and "L" to turn on, off LED in MCU connected to USB port (``/dev/ttyUSB0``, ``/dev/ttyACM0``,...)
+
+```c
+const char filePath[] = "/dev/ttyACM0";
+
+int fileDescription;
+void delaySeconds(long seconds);
+
+int main(){
+	fileDescription = open(filePath, O_WRONLY); //READ ONLY
+	while(1){
+		write(fileDescription, "H", sizeof("H"));
+		delaySeconds(2);
+		write(fileDescription, "L", sizeof("L"));
+		delaySeconds(2);
+	}
+    return 0;
+}
+```
