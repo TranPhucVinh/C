@@ -10,25 +10,29 @@ A sequence of calls to this function split ``str`` into tokens, which are sequen
 
 **In subsequent calls**, the function expects a null pointer and uses the position right after the end of the last token as the new starting location for scanning.
 
-**Example 1**: Split string ``This is Hello, World string`` by space
+**Example 1**: Split string with ``strok()``
+
+Split string ``ABCD`` seperated by character ``C``
 
 ```cpp
-#include <stdio.h>
-#include <string.h>
+char* splitString = "ABCD";
+char* separator;
+separator = strtok(splitString, "C");
+Serial.println(separator); //AB
+```
 
-int main(){
-    char rawString[] = "This is Hello, World string";
-    char *splitString;
-    
-    splitString = strtok(rawString," ");
+Split string ``This is Hello, World string`` by space
 
-    while (splitString != NULL)
-    {
-        printf("%s\n", splitString);
-        splitString = strtok (NULL, " ");
-    }
+```cpp
+char rawString[] = "This is Hello, World string";
+char *splitString;
 
-    return 0;
+splitString = strtok(rawString," ");
+
+while (splitString != NULL)
+{
+    printf("%s\n", splitString);
+    splitString = strtok (NULL, " ");
 }
 ```
 **Result**
