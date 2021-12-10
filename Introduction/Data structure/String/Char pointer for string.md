@@ -115,14 +115,15 @@ See also: ``Char for string.md`` in ``AVR-Arduino-framework/Introduction/Data ty
 #include <string.h>
 
 int main(){
-  char *hw = "Hello, World!";
-  char *returnChar = "ab";
-  // strncat(hw, returnChar, 2);
-  strcat(hw, returnChar);
-  printf("%s\n", hw);
+    char *displayedString = "Hello, World!";
+  char *changedString = "ab";
+  strcat(displayedString, changedString);
+  printf("%s\n", changedString);
 }
 ```
 **Result**: ``Segmentation fault (core dumped)``
+
+If adding ``memset()`` and ``bzero()``, the same error still happens: ``memset(displayedString, 0, strlen(displayedString))`` or ``bzero(displayedString, strlen(displayedString));``
 
 ``strcat()`` and ``strncat()`` require ``hw`` to be the string char array to store the value while ``char *hw`` has fix address and memory size.
 
