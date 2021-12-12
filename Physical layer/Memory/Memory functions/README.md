@@ -39,3 +39,20 @@ memmove(str1, str2, sizeof(str2));
 puts("\nstr1 after memmove "); 
 puts(str1); //World
 ```
+**Example**: Remove the first character of a string
+
+```c
+char displayedString[] = "1Hello, World !";
+void firstCharRemove(char *modifiedString);
+
+int main(){
+  printf("%s\n", displayedString);
+  firstCharRemove(displayedString);
+  printf("%s\n", displayedString);
+}
+
+void firstCharRemove(char *modifiedString){
+	//remove character "1"
+	if (modifiedString[0] == '1') memmove(modifiedString, modifiedString+1, strlen(modifiedString));
+}
+```

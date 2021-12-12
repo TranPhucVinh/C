@@ -62,7 +62,7 @@ char *REQUEST = "GET " PATH " HTTP/1.0\r\n"
 printf("string: %s", REQUEST);
 ```
 
-### Error with strcpy()
+### Error when using strcpy() to define or set value
 
 ```c
 char *displayedString;
@@ -72,7 +72,7 @@ strcpy(displayedString,  "Hello, World !");
 
 The same problem will happen to similar functions like ``sprintf()``, ``strncpy()`` and ``memmove()``
 
-**Problem solved**: Check: ``Physical layer/Memory/Dynamic memory allocation.md``
+**Problem solved**: Using dynamic memory allocation
 
 ### Index handler
 
@@ -80,8 +80,15 @@ The same problem will happen to similar functions like ``sprintf()``, ``strncpy(
 printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H 
 ```
 
-### Change value
+## Change value
 
+```c
+char *displayedString = "Hello, World !";
+printf("%s \n", displayedString); //Hello, World !
+displayedString = "Change number";
+printf("%s \n", displayedString); //Change number
+```
+Or
 ```c
 char *ptrString;
 ptrString = "Hello, World !";
@@ -91,7 +98,7 @@ ptrString = "Change number";
 printf("%s \n", ptrString);  //Change number
 ```
 
-We cannot modify the string at later stage in program:
+We cannot modify the string at later stage in program, like using index
 
 ```c
 char *ptrString;
@@ -108,18 +115,19 @@ See also: ``Char for string.md`` in ``AVR-Arduino-framework/Introduction/Data ty
 #include <string.h>
 
 int main(){
-  char *hw = "Hello, World!";
-  char *returnChar = "ab";
-  // strncat(hw, returnChar, 2);
-  strcat(hw, returnChar);
-  printf("%s\n", hw);
+    char *displayedString = "Hello, World!";
+  char *changedString = "ab";
+  strcat(displayedString, changedString);
+  printf("%s\n", changedString);
 }
 ```
 **Result**: ``Segmentation fault (core dumped)``
 
+If adding ``memset()`` and ``bzero()``, the same error still happens: ``memset(displayedString, 0, strlen(displayedString))`` or ``bzero(displayedString, strlen(displayedString));``
+
 ``strcat()`` and ``strncat()`` require ``hw`` to be the string char array to store the value while ``char *hw`` has fix address and memory size.
 
-### Function returns a string
+## Function returns a string
 
 ```c
 char *returnString(){
