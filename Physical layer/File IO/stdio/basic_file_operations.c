@@ -34,20 +34,25 @@ void createFile(char *filename){
 }
 
 char *readFile(char *filename){
-   FILE *fp;
+    FILE *fp;
 
-   fp = fopen(filename, "r");
-   fseek(fp, 0L, SEEK_END);
-   long file_size = ftell(fp);
-   fseek(fp, 0L, SEEK_SET);
+    fp = fopen(filename, "r");
+    if (fp != NULL) {
+        fseek(fp, 0L, SEEK_END);
+        long file_size = ftell(fp);
+        fseek(fp, 0L, SEEK_SET);
 
-   static char *buffer;
-   buffer = (char *) malloc(file_size);
-   bzero(buffer, file_size);//delete garbage value
+        static char *buffer;
+        buffer = (char *) malloc(file_size);
+        bzero(buffer, file_size);//delete garbage value
 
-   fread(buffer, file_size, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*file_size from fp
-   fclose(fp);
-   return buffer;
+        fread(buffer, file_size, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*file_size from fp
+        fclose(fp);
+        return buffer;
+   } else {
+       printf("Unable to open file %s", filename);
+       return "NULL";
+    }
 }
 
 void readFileToBuffer(char *filename, char *buffer, int readSize){
