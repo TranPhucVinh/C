@@ -77,6 +77,8 @@ printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
 
 ### Overflow string char buffer
 
+Error **Stack smashing detected** happens due to buffer overflow
+
 ```c
 char displayedString[1];
 strcpy(displayedString,"Hello, World!!");
