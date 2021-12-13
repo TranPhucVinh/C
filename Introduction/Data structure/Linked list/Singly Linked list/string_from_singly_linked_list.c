@@ -13,7 +13,7 @@ void insertNodeValues(struct characterNode *currrentNode, struct characterNode *
     currrentNode->nextNode = nextNode;
 }
 
-void formStringWithLinkList(struct characterNode *firstNode, char *_originalString, char *_displayedString){
+void formStringWithLinkList(char *_originalString, char *_displayedString){
 	int index = 0;
 	struct characterNode *currrentNode;
 
@@ -21,6 +21,7 @@ void formStringWithLinkList(struct characterNode *firstNode, char *_originalStri
 		Must allocate memory for firstNode. Without this, there will be error:
 		*** stack smashing detected ***
 	*/
+	struct characterNode *firstNode;
 	firstNode = (struct characterNode*) malloc(sizeof(struct characterNode));
 
 	while (index < strlen(_originalString)){
@@ -43,39 +44,24 @@ void formStringWithLinkList(struct characterNode *firstNode, char *_originalStri
     currrentNode->nextNode = NULL; //End link list
 
 	struct characterNode *ptr = firstNode;
-	
-	int string_length;
-	//Get length of link list database to allocate the string char pointer with length
-	while(ptr != NULL)
-	{        
-		string_length += 1;
-		ptr = ptr->nextNode;
-	}
-
-	printf("String length %d\n", string_length);
-	_displayedString = (char*) malloc(string_length);
 
 	ptr = firstNode;
 	index = 0;
 	while(ptr != NULL)
 	{        
 		_displayedString[index] = ptr->character;
-		printf("%c\n", _displayedString[index]);
       	ptr = ptr->nextNode;
+		index += 1;
 	}
-	printf("%s\n", _displayedString);
 }
 
 int main() 
 { 
 	char originalString[] = "Hello, World !";
 	char *displayedString;
-
-    struct characterNode *firstNode;
-
-	formStringWithLinkList(firstNode, originalString, displayedString);
-
-	// printf("%s\n", displayedString);
+	displayedString = (char*) malloc (100);
+	formStringWithLinkList(originalString, displayedString);
+	printf("%s\n", displayedString);
 
     return 0; 
 } 
