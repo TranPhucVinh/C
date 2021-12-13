@@ -78,6 +78,23 @@ int main(){
 }
 ```
 Change value a dynamic memory string:
+
+```c
+void formString(char *_displayedString);
+
+int main () {
+   	char *displayedString;
+	formString(displayedString);
+	printf("String: %s \n", displayedString);//NULLs
+}   
+
+void formString(char *_displayedString){
+	_displayedString = (char *) malloc(15);
+	strcpy(_displayedString, "Learn malloc");
+	printf("formString: %s\n", _displayedString);//Learn malloc
+}
+```
+**Problem solve**
 ```c		
 #define bufferSize 100
 
