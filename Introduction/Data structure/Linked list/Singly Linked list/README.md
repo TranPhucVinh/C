@@ -1,3 +1,5 @@
+## Operations
+
 ### Structure of a Singly Linked list data structure
 
 ```
@@ -38,3 +40,7 @@ Delete node at specific index: ``delete_node_with_index.c``
 Argument when executing: 
 
 * ``Argument 1``: Index to delete
+
+## Examples
+
+* Form a string by linked list from the orginal string: ``string_from_singly_linked_list.c``
