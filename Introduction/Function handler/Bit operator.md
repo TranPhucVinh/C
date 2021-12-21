@@ -1,3 +1,13 @@
+## NOt operator !
+
+```c
+int a = 100;
+int b = 0;
+a = !a;
+b = !b;
+printf("a: %d, b: %d", a, b);//0, 1
+```
+
 ## OR bit with | and +
 
 ```c
@@ -71,13 +81,6 @@ printf("%d \n", binVal0);   //0
 printf("%d \n", binResult); //-1
 ```
 
-The same result for 
-
-```c
-char binVal0 = 0b00;
-char binResult = ~binVal0;
-```
-
 **Explain**
 
 ```c
@@ -89,6 +92,13 @@ When converting back to integer, the duplicate 1 bit from the left is omit, and 
 
 ```c
 binResult = 0b11 = -1
+```
+Other decimal value
+```c
+int binVal0 = 5;
+int binResult = ~binVal0;
+printf("%d \n", binVal0);   //5
+printf("%d \n", binResult); //-6 = 1111111111111010
 ```
 
 ### bitwise unsigned char, unsigned int
