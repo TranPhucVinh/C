@@ -1,4 +1,4 @@
-## NOt operator !
+## NOT operator !
 
 ```c
 int a = 100;
