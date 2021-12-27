@@ -5,35 +5,37 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include <sys/time.h>
+
 #define ELEMENT_NUMBERS 1
 
-void listAllFile(char *directory);
-void createFile(char *filename);
-char *readFile(char *filename);
-void readFileToBuffer(char *filename, char *buffer, int readSize);
-void writeToFile(char *file, char *data);
-void deleteFile(char *filename);
-void renameFile(char *oldFileName, char *newFileName);
+void list_all_files(char *directory);
+void create_file(char *filename);
+char *read_file(char *filename);
+void read_file_to_buffer(char *filename, char *buffer, int readSize);
+void write_to_file(char *file, char *data);
+void delete_file(char *filename);
+void rename_file(char *oldFileName, char *newFileName);
 
 int main(void)
 {
-   printf("%s\n", readFile("README.md"));
-   return(0);
+    printf("%s\n", read_file("README.md"));
+    return(0);
 }
 
-void createFile(char *filename){
-    FILE *fptr;
-	fptr = fopen(filename, "w+");
-	if (fptr == NULL) {
+void create_file(char *filename){
+    FILE *fp;
+	fp = fopen(filename, "w+");
+	if (fp == NULL) {
 		printf("Unable to create file");
 	}
 	else {
         printf("File create successfully");
-        fclose(fptr);
+        fclose(fp);
 	}	
 }
 
-char *readFile(char *filename){
+char *read_file(char *filename){
     FILE *fp;
 
     fp = fopen(filename, "r");
@@ -42,7 +44,7 @@ char *readFile(char *filename){
         long file_size = ftell(fp);
         fseek(fp, 0L, SEEK_SET);
 
-        static char *buffer;
+        char *buffer;
         buffer = (char *) malloc(file_size);
         bzero(buffer, file_size);//delete garbage value
 
@@ -55,7 +57,7 @@ char *readFile(char *filename){
     }
 }
 
-void readFileToBuffer(char *filename, char *buffer, int readSize){
+void read_file_to_buffer(char *filename, char *buffer, int readSize){
     FILE *fp;
 
     fp = fopen(filename, "r");
@@ -65,24 +67,24 @@ void readFileToBuffer(char *filename, char *buffer, int readSize){
     fclose(fp);
 }
 
-void writeToFile(char *file, char *data){
-    FILE *fptr;
-	fptr = fopen(file, "w+");
-	if (fptr == NULL) {
+void write_to_file(char *file, char *data){
+    FILE *fp;
+	fp = fopen(file, "w+");
+	if (fp == NULL) {
 		printf("Unable to open file");
 	}
 	else {
-		fputs(data, fptr);
-		fclose(fptr);
+		fputs(data, fp);
+		fclose(fp);
 	}	
 }
 
-void deleteFile(char *filename){
+void delete_file(char *filename){
     if (!remove(filename)) printf("Delete file successfully");
     else printf("Unable to delete the file");
 }
 
-void renameFile(char *oldFileName, char *newFileName){
+void rename_file(char *oldFileName, char *newFileName){
     if (!rename(oldFileName, newFileName)) printf("Rename file sucessfully\n");
     else printf("Unable to rename file\n");
 }
@@ -90,7 +92,7 @@ void renameFile(char *oldFileName, char *newFileName){
 /*
     List all files inside a directory
 */
-void listAllFile(char *directory){
+void list_all_files(char *directory){
     DIR *d;
     struct dirent *dir;
     d = opendir(directory);
