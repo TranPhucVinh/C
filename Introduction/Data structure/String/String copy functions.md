@@ -4,19 +4,23 @@
 int sprintf ( char * str, const char * format, ... );
 ```
 
-Composes a string with the same text that would be printed if format was used on ``printf()``, but instead of being printed, the content is stored as a C string in the ``buffer`` pointed by ``str``. This function can be used to convert an int to a string.
+Composes a string with the same text that would be printed if format was used on ``printf()``, but instead of being printed, the content is stored as a C string in the ``buffer`` pointed by ``str``. This function can be used to convert an int to a string. The real size of the format string is returned, not size of the string buffer used to store.
 
 ### Example
 
 ```cpp
-char buffer[50];
-int n, a=5, b=3;
-n = sprintf (buffer, "%d plus %d is %d", a, b, a+b);
-printf ("[%s] is a string %d chars long\n",buffer,n);
+int string_size;
+char string_buffer[30];
+
+string_size = sprintf(string_buffer, "%d", 12);
+printf("%s %d\n", string_buffer, string_size);
+string_size = sprintf(string_buffer, "%s", "Hello, World !");
+printf("%s %d\n", string_buffer, string_size);
 ```
 
 ```
-[5 plus 3 is 8] is a string 13 chars long
+12 2
+Hello, World ! 14
 ```
 
 Convert an int to a string (``uint32_t`` to ``char[]``)

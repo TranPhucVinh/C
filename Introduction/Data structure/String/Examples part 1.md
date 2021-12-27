@@ -79,6 +79,8 @@ int main(){
 ```
 Change value a dynamic memory string:
 
+This is a wrong implementation and results in a NULL string
+
 ```c
 void formString(char *_displayedString);
 

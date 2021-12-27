@@ -89,6 +89,10 @@ printf("%d \n", a); //123
 
 ### itoa()
 
-``itoa()`` is used to convert from int to string but it is not an official function from C, use ``sprintf()`` instead.
+``itoa()`` converts an integer value to a null-terminated string using the specified ``base``.
 
-Check ``sprintf()`` in ``String copy functions.md``.
+```c
+char *itoa ( int value, char * str, int base );
+```
+
+``itoa()`` is not defined in ANSI-C and is not part of C++, but is supported by some compilers. Use ``sprintf()`` instead.
