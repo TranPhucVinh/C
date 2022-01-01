@@ -89,7 +89,7 @@ Or
 size_t arraySize = sizeof(array)/sizeof(int);
 ```
 
-Using this method is only right when you are dealing with arrays not received as parameters. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
+Using this method is only right when you are dealing with **arrays not received as function parameters**. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
 
 ## Array as an argument of a function
 
