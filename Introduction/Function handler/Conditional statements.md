@@ -1,5 +1,3 @@
-``for(;;)`` is equal to ``while(1)``.
-
 Condition of a loop can be changed normally. Example:
 
 ```c
@@ -71,6 +69,36 @@ If we ommitted ``if ((a==0)&&(b==0))``, the result will be
 inside
 hello world
 ```
+
+## for
+
+Omit 1st expression
+
+```c
+int index = 0;
+for(; index < 10; index++){
+	printf("index: %d\n", index);
+}
+```
+**Result**: Print out from ``0`` to ``9``.
+
+Omit 2nd expression, the 2nd expression now is ``true``
+
+```c
+for(int index = 0;;index++){
+        printf("index: %d\n", index);
+}
+```    
+Omit 3nd expression
+```c
+int index = 0;
+for(int index = 0;index<10;){
+	printf("index: %d\n", index);
+}
+```
+**Result**: Print out ``0`` forever.
+
+``for(;;)`` is equal to ``while(1)``.
 
 ## switch
 
