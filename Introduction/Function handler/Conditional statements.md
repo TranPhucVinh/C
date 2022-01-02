@@ -12,6 +12,17 @@ while (i < a){
 	printf("i %d, a %d\n", i, a);
 }
 ```
+Condition when setting variable can be false (``0``) when the variable is set to ``0``:
+
+```c
+int a  = 20, b = 0;
+
+int main(){
+    if (a=b) printf("true");
+    else printf("false");
+}
+```
+**Result**: ``false``
 
 ## Condition with int number
 
