@@ -1,3 +1,7 @@
+## Bitwise operator
+
+A bitwise operation operates on a bit string, a bit array or a binary numeral (considered as a bit string) at the level of its individual bits. Bitwise operators might be NOT, AND, OR, XOR,...
+
 ## NOT operator !
 
 ```c
@@ -31,7 +35,7 @@ int binResult = binVal0|binVal1;
 printf("%d", binResult); //3
 ```
 
-## AND bit (``&``)
+## AND operator (``&``)
 
 ```c
 int binVal0 = 0b110;
@@ -40,7 +44,7 @@ int binResult = binVal0 & binVal1;
 printf("%d", binResult); //6 (0b110)
 ```
 
-## XOR bit (^)
+## XOR operator (^)
 
 ```
 0^0=0
@@ -72,7 +76,7 @@ can be written as
 shift <<= 1;
 ```
 
-## bitwise
+## Complement operator (~)
 
 ```c
 int binVal0 = 0b00;
@@ -101,7 +105,7 @@ printf("%d \n", binVal0);   //5
 printf("%d \n", binResult); //-6 = 1111111111111010
 ```
 
-### bitwise unsigned char, unsigned int
+### Complement unsigned char, unsigned int
 
 ```c
 unsigned char binVal0 = 0b0;
