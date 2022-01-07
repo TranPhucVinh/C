@@ -2,6 +2,36 @@
 
 A bitwise operation operates on a bit string, a bit array or a binary numeral (considered as a bit string) at the level of its individual bits. Bitwise operators might be NOT, AND, OR, XOR,...
 
+## Mask or bitmask
+
+A mask or bitmask is data that is used for bitwise operations. Common bitmask functions are masking bits to 1, masking bits to 0, querying the status of a bit and toggling bit values.
+
+Examples: 
+
+Masking bits to ``1``
+
+```
+    10010101
+ OR 11110000
+  = 11110101
+```
+
+Masking bits to ``0``
+
+```
+    10010101
+AND 00001111
+  = 00000101
+```
+
+Querying the status of a bit
+
+```
+    10011101
+AND 00001000
+  = 00001000
+```
+
 ## NOT operator !
 
 ```c
