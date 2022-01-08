@@ -5,14 +5,24 @@
 
 char **file_name_array;
 
-int total_files = 0;
-int file_index = 0;
+char **form_file_name_array();
 
 int main()
 {
+    file_name_array = form_file_name_array(".");
+    for (int i=0; i < 5; i++){
+		printf("%s \n", file_name_array[i]);
+	}
+}
+
+char **form_file_name_array(char *folder_name){
+    char **file_name_array;
+    int total_files = 0;
+    int file_index = 0;
+
     DIR *d;
     struct dirent *dir;
-    d = opendir(".");
+    d = opendir(folder_name);
     if (d)
     {
         while ((dir = readdir(d)) != NULL)
@@ -43,7 +53,5 @@ int main()
         file_index += 1;
     }
 
-    for (int i=0; i < total_files; i++){
-		printf("%s \n", file_name_array[i]);
-	}
+    return file_name_array;
 }
