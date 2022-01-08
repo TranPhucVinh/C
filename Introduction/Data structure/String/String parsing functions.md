@@ -18,7 +18,7 @@ Split string ``ABCD`` seperated by character ``C``
 char* splitString = "ABCD";
 char* separator;
 separator = strtok(splitString, "C");
-Serial.println(separator); //AB
+printf("%s", separator); //AB
 ```
 
 Split string ``This is Hello, World string`` by space
@@ -44,16 +44,17 @@ Hello,
 World
 string
 ```
-**Example 2**: Split string ``Hello,{World!}`` by ``{``.
+**Example 2**: Split string for csv data
 
 ```c
-char rawString[] = "Hello,{World!}";
-char *splitString;
+char csv_data[] = "data_1,data_2,_data_3";
 
-splitString = strtok(rawString,"{");
-printf("%s\n", splitString);//Hello,
-splitString = strtok (NULL, "");
-printf("%s\n", splitString);//World!}
+char *data_1, *data_2, *data_3;
+
+data_1 = strtok(csv_data,",");
+data_2 = strtok (NULL, ",");
+data_3 = strtok (NULL, ",");
+printf("data 1 %s, data 2: %s, data 3: %s\n", data_1, data_2, data_3);
 ```
 
 ## atoi()
