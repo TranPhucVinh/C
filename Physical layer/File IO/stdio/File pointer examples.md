@@ -95,15 +95,3 @@ This method helps reading big file by chunk and perform small operation every sm
 * Write data to a file
 * Delete an existed file
 * List all file in the directory
-
-### Notes
-
-``json.txt``
-
-```
-170604d9cc
-180604d9cc
-1e0604d9cd
-```
-
-**Notice**: For 10 bytes data and a new line (``\n``) to read in ``fgets()``, the read buffer must be 12 bytes (for ``n-1`` byte read).
