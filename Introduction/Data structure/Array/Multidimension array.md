@@ -35,7 +35,7 @@ printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 
 ### Create a 2 dimension array on heap memory
 
-For a 2 dimension array with ``row`` and ``column`` on heap memory: Check ``Example 2: Create a 2 dimension int array with malloc()`` in ``Dynamic memory allocation.md`` inside ``Physical layer/Memory``.
+For a 2 dimension array with ``row`` and ``column`` on heap memory: Check [Example 2: Create a 2 dimension int array with malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory/Using%20stdlib.md) in ``Dynamic memory allocation`` inside ``Physical layer/Memory``.
 
 Create a 2 dimension array with ``row`` stored on stack memory and ``column`` stored on heap memory:
 
