@@ -195,7 +195,7 @@ int main()
 		}	
 	}
 
-	intArray((int**)int_array);
+	intArray((int**)int_array);//array[1][2] 5
 }
 
 void intArray(int **array){
