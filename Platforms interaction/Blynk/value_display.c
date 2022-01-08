@@ -1,8 +1,3 @@
-### Example 1
-
-Send data to Blynk ``Value Display``
-
-```c
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -95,4 +90,3 @@ void delaySeconds(long seconds){
 		totalSecond = tv.tv_sec;
 	}
 }
-```
