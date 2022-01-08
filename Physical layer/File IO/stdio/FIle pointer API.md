@@ -220,3 +220,38 @@ int fseek( FILE * stream, long int offset, int origin);
 long int ftell ( FILE * stream );
 ```
 Get current position in ``stream``. Returns the current value of the position indicator of the stream.
+
+## Delimited string input
+
+```c
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+```
+
+If ``*lineptr`` is ``NULL``, then ``getline()`` will allocate a buffer for storing the line, which should be freed by the user program. (In this case, the value in ``*n`` is ignored.)
+
+Alternatively, before calling ``getline()``, ``*lineptr`` can contain a pointer to a ``malloc()``, allocated buffer ``*n`` bytes in size.
+
+**Example**: Read every line of a file
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    FILE *fp;
+    char *line = NULL;
+    size_t len = 0;
+
+   	fp = fopen("README.md", "r");
+    if (fp == NULL)
+        exit(EXIT_FAILURE);
+
+	while (getline(&line, &len, fp) != -1) {
+        printf("%s", line);
+    }
+
+   	free(line);
+    exit(EXIT_SUCCESS);
+}
+```
