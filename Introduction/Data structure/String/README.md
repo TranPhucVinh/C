@@ -1,7 +1,6 @@
 ### Operations
 
-Char array as string:
-
-Char pointer as string:
+* [Char array as string](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/Char%20array%20as%20string.md)
+* [Char pointer as string](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/Char%20pointer%20as%20string.md)
 
 ### API
