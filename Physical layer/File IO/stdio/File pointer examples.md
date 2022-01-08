@@ -88,8 +88,6 @@ This method helps reading big file by chunk and perform small operation every sm
 
 ## Other examples
 
-``read_and_store.c``: Read 10 bytes data from every line of file ``json.txt`` then store in an array string
-
 ``basic_file_operations.c``: Basic operation with file
 
 * Read content of a file
