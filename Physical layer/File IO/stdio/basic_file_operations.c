@@ -19,6 +19,7 @@ void rename_file(char *oldFileName, char *newFileName);
 
 int main(void)
 {
+    list_all_files("."); //List all files in current folder
     printf("%s\n", read_file("README.md"));
     return(0);
 }
