@@ -1,4 +1,4 @@
-### Pointer of pointer
+### Create
 
 ```c
 int number1 = 9;
@@ -12,3 +12,7 @@ int main(){
   printf("**pptr: %d \n", **pptr); //9
 }
 ```
+
+### Applications
+
+* [Create a 2 dimension int array with malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory/Using%20stdlib.md)
