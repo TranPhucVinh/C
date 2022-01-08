@@ -95,3 +95,5 @@ This method helps reading big file by chunk and perform small operation every sm
 * Write data to a file
 * Delete an existed file
 * List all file in the directory
+
+``read_all_files.c``: Read all files of a directory then store inside a dynamic string array
