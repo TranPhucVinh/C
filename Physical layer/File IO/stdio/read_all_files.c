@@ -5,20 +5,20 @@
 
 char **file_name_array;
 
-char **form_file_name_array();
+int get_total_files(char *folder_name);
+char **form_file_name_array(char *folder_name, int total_files);
 
 int main()
 {
-    file_name_array = form_file_name_array(".");
-    for (int i=0; i < 5; i++){
+    int total_files = get_total_files(".");
+    file_name_array = form_file_name_array(".", total_files);
+    for (int i=0; i < total_files; i++){
 		printf("%s \n", file_name_array[i]);
 	}
 }
 
-char **form_file_name_array(char *folder_name){
-    char **file_name_array;
+int get_total_files(char *folder_name){
     int total_files = 0;
-    int file_index = 0;
 
     DIR *d;
     struct dirent *dir;
@@ -34,8 +34,16 @@ char **form_file_name_array(char *folder_name){
         }  
     }
 
-    printf("total files %d\n", total_files);
     closedir(d);
+    return total_files;
+}
+
+char **form_file_name_array(char *folder_name, int total_files){
+    char **file_name_array;
+    DIR *d;
+    struct dirent *dir;
+    
+    int file_index = 0;
 
     d = opendir("."); //Open dir again to read all files
     file_name_array = (char**) malloc(total_files * sizeof(char*));
