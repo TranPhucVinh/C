@@ -33,6 +33,8 @@ printf("array[%d][%d]: %d", 0, 1, array[1][1]);//5
 printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 ```
 
+Get column size: ``sizeof(array[0])/sizeof(array[0][0])``
+
 ### Create a 2 dimension array on heap memory
 
 For a 2 dimension array with ``row`` and ``column`` on heap memory: Check [Example 2: Create a 2 dimension int array with malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory/Using%20stdlib.md) in ``Dynamic memory allocation`` inside ``Physical layer/Memory``.
