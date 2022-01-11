@@ -102,6 +102,14 @@ int main() {
 }
 ```
 
+Convert epoch time to human readable time:
+
+```c
+time_t currentTime;
+currentTime = 1641196080;//total second since Epoch
+printf("%s", ctime(&currentTime));//Mon Jan  3 14:48:00 2022
+```    
+
 ### Example 2
 
 Delay for a number of seconds
