@@ -86,6 +86,34 @@ int main(void)
 
 This method helps reading big file by chunk and perform small operation every small chunk. Check ``http_server_returns_beautiful_html_files.c`` in ``ESP8266-RTOS-SDK`` as file like image can only by read by chunk and is returned as small HTTP chunk by the HTTP server to HTTP client. Reading the whole image file at one time and returns it to the HTTP client will result in the failure image or the error image.
 
+### Read a specific line of a line
+
+```c
+#include <stdio.h>
+#define LINE_NUMBER 10
+
+int main()
+{
+    int index = 1;
+
+    char filename[] = "README.md";
+    FILE *fp = fopen(filename, "r");
+    if (fp)
+    {
+        char line_buffer[256];
+        while (fgets(line_buffer, sizeof(line_buffer), fp))
+        {
+            if (index == LINE_NUMBER)
+            {
+                printf("index %d %s\n", index, line_buffer);
+            }
+            index++;
+        }
+        fclose(fp);
+    }
+}
+```
+
 ## Other examples
 
 ``basic_file_operations.c``: Basic operation with file
