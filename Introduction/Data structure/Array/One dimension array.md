@@ -59,6 +59,14 @@ array[0] = 1;
 array[1] = 2;
 ```
 
+**Fail in static array with size as variable**
+
+```c
+int a = 9;
+static int array[a];
+```
+Error: ``A variable length array cannot have static storage duration``
+
 ### Read
 
 Read from ``index`` with:
