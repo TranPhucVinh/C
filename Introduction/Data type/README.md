@@ -33,6 +33,23 @@ E.g: ``const int a = 19``
 
 To change ``const`` variable: ``Pointer/Examples.md`` -> ``Example 1.3: Change value of a variable with pointer``
 
+Local ``const`` variable inside a function is fine and gives no issue:
+
+```c
+#include <stdio.h>
+
+int const_test(int a){
+    const int b = a;
+    return b;
+}
+
+int main(int argc, char *argv[]) {
+    printf("%d\n", const_test(1));//1
+    printf("%d\n", const_test(2));//2
+    printf("%d\n", const_test(3));//3
+}
+```
+
 ### auto
 
 ``auto`` is used to defined local variable
