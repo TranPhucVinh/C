@@ -33,6 +33,16 @@ sprintf(clockValue, "%d", int32Number); //convert uint_32 to string char[]
 printf("%s\n", clockValue);
 ```
 
+## snprintf()
+
+```c
+char displayed_string[] = "String: %s ";
+char buffer[50];
+
+snprintf(buffer, 50, displayed_string, "Hello, World !");
+printf("%s", buffer);//String: Hello, World ! 
+```
+
 ### Error
 
 If the message length to form is bigger than the storage buffer, there will be an overflow, then the message could get copied to the memory address of message, with will effect other variable inside the program. This case especially happen to data structure like ``union ``.
