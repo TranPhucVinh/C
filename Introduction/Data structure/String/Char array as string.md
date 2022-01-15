@@ -16,7 +16,7 @@ printf("%s\n", displayedString);////Hello, World!
 #define PORT "80"
 #define PATH "/"
 
-char *REQUEST = "GET " PATH " HTTP/1.0\r\n"
+char REQUEST[] = "GET " PATH " HTTP/1.0\r\n"
     "Host: "HOST":"PORT"\r\n"
     "User-Agent: esp-idf/1.0 esp32\r\n"
     "\r\n";
