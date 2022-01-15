@@ -45,23 +45,6 @@ error: initializer element is not computable at load time
 
 Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``: ``malloc()``.
 
-### Other way to define
-
-```c
-#include <stdio.h>
-
-#define HOST "example.com"
-#define PORT "80"
-#define PATH "/"
-
-char *REQUEST = "GET " PATH " HTTP/1.0\r\n"
-    "Host: "HOST":"PORT"\r\n"
-    "User-Agent: esp-idf/1.0 esp32\r\n"
-    "\r\n";
-
-printf("string: %s", REQUEST);
-```
-
 ### Error when using strcpy() to define or set value
 
 ```c
