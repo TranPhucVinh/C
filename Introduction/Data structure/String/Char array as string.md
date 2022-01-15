@@ -7,6 +7,25 @@ unsigned char displayedString[] = "Hello, World !";
 printf("%s\n", displayedString);////Hello, World!
 ```
 
+**Other way to define**
+
+```c
+#include <stdio.h>
+
+#define HOST "example.com"
+#define PORT "80"
+#define PATH "/"
+
+char *REQUEST = "GET " PATH " HTTP/1.0\r\n"
+    "Host: "HOST":"PORT"\r\n"
+    "User-Agent: esp-idf/1.0 esp32\r\n"
+    "\r\n";
+
+printf("string: %s", REQUEST);
+```
+
+This define can identically implemented with [char pointer](https://github.com/TranPhucVinh/C/edit/master/Introduction/Data%20structure/String/Char%20pointer%20as%20string.md)
+
 Index handler
 
 ```c
