@@ -10,24 +10,6 @@ printf("Parent PID %d\n", getppid());
 
 ``getppid()`` returns the ID of the parent, the process that crate the child process.
 
-### Get variable environment
-
-``char *getenv(const char *name)`` searches for the environment string pointed to by name and returns the associated value to the string.
-
-This run on both Windows and Unix.
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-int main () {
-   printf("PATH : %s\n", getenv("PATH"));
-   printf("HOME : %s\n", getenv("HOME"));
-   printf("ROOT : %s\n", getenv("ROOT"));
-
-   return(0);
-}
-```
 ## exit()
 
 Exit the current program (as a process) and return value ``status`` for the further process.
