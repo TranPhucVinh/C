@@ -25,11 +25,11 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-**Result**: File ``FIFO 1``, program blocks after running ``open(FIFO_NAME, O_WRONLY)``.
+**Result**: File ``FIFO 1`` is created. The program then blocks after running ``open(FIFO_NAME, O_WRONLY)``.
 
-That happens as apening a FIFO created by ``mkfifo()`` for reading normally blocks until some other process opens the same FIFO for writing, and vice versa.
+That happens as opening a FIFO created by ``mkfifo()`` for reading normally blocks until some other process opens the same FIFO for writing, and vice versa.
 
-While the program is blocking, run another program that interact with ``FIFO 1`` like ``cat FIFO\ 1``. It will then stop blocking.
+While the program is blocking, running another program that interact with ``FIFO 1`` like ``cat FIFO\ 1``. It will then stop blocking.
 
 ## Example 2
 
