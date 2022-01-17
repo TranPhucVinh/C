@@ -19,3 +19,7 @@ Once it has reached ``32,767``, the process ID counter is reset to 300, rather t
 # API
 
 [API.md](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/API.md)
+
+# Examples
+
+* Using pipe to communicate between parent and child process: [pipe examples] (https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/pipe%20examples.md)
