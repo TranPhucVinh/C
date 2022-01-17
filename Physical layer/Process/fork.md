@@ -4,13 +4,13 @@
 pid_t fork(void);
 ```
 
-Clone the calling process, creating an exact copy. 
+Clone the calling process, creating an exact copy known as the child porcess
 
 Return
 
 * ``-1`` for errors
-* ``pid`` of the forked process 
-* ``0`` as the forked process has been created successfully
+* ``pid`` of the child process 
+* ``0`` as the child process has been created successfully
 
 Execution orders of ``fork()`` when forking the process successfully:
 
@@ -31,7 +31,7 @@ pid = pid_of_forked_process;
 function_operation();
 ```
 
-**Stage 2**: Execute the forked process
+**Stage 2**: Execute the child process
 
 ```c
 pid = 0;
@@ -56,7 +56,7 @@ Before forkingPID: 0
 ```
 ``Before forking`` is printed 2 times as it is not followed by a newline.
 
-Executing functions before ``fork()`` and get the ID of the origin and forked process:
+Executing functions before ``fork()`` and get the ID of the origin and child process:
 
 ```c
 #include <stdio.h>
