@@ -1,6 +1,6 @@
 ### Example 1
 
-Write value to ``fd[1]`` and read from ``fd[0]`` from the origin and child process.
+Write value to ``fd[1]`` and read from ``fd[0]`` from the parent and child process.
 
 ```c
 #include <stdio.h>
@@ -49,7 +49,7 @@ else {
 
 ### Example 2
 
-Communication between orgin and forked process. Origin process send a string to forked process, forked process receives that string and modifies it then sends back to the origin process.
+Communication between parent and child process. Parent process send a string to child process, child process receives that string and modifies it then sends back to the parent process.
 
 ```c
 #include <stdio.h>
