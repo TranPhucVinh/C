@@ -59,17 +59,20 @@ Before forkingPID: 0
 Executing functions before ``fork()`` and get the ID of the origin and forked process:
 
 ```c
+#include <stdio.h>
+#include <unistd.h>
+
 int main(int argc, char *argv[])  {
 	printf("Before forking\n");
 	int pid = fork();
-	if (!pid) printf("Forked process has ID: %d\n", getpid());
-	else printf("Origin process has ID: %d \n", getpid());
+	if (!pid) printf("Child process has ID: %d\n", getpid());
+	else printf("Origin process's ID: %d and child process's ID: %d\n", getpid(), pid);
 }
 ```
 ```
 Before forking
-Origin process has ID: 6441 
-Forked process has ID: 6442
+Origin process's ID: 20845 and child process's ID: 20846
+Child process has ID: 20846
 ```
 
 Running multiple ``fork()``
@@ -86,7 +89,7 @@ int main(int argc, char *argv[])  {
 
 Then ``function_operation()`` will be run 4 times. Calling ``fork()`` ``n`` times will result in running ``function_operation()`` ``2^n`` times.
 
-### wait()
+## wait()
 
 A call to ``wait()`` blocks the calling process until one of its child processes exits or a signal is received. 
 
