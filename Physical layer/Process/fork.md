@@ -20,7 +20,7 @@ Execution orders of ``fork()`` when forking the process successfully:
 
 int main(int argc, char *argv[])  {
 	int pid = fork();
-	function_operation();
+	function_operation();//pseudo-code
 }
 ```
 
@@ -88,6 +88,8 @@ Then ``function_operation()`` will be run 4 times. Calling ``fork()`` ``n`` time
 
 ### wait()
 
+A call to ``wait()`` blocks the calling process until one of its child processes exits or a signal is received. 
+
 Take this ``fork()`` example. We want child process to print out from ``0`` to ``5`` and parent process to print out from ``6`` to ``10``.
 
 ```c
@@ -128,6 +130,8 @@ int main(int argc, char *argv[])  {
 	}	
 }
 ```
+
+**Result**: ``0 1 2 3 4 6 7 8 9 10``
 
 ``wait()`` operations:
 
