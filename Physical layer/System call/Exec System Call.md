@@ -14,3 +14,13 @@ int main()  {
 	execl("/bin/ping", "/bin/ping", "google.com", NULL);
 }
 ```
+
+```c
+int execlp(const char *file, const char *arg, ..., NULL );
+```
+
+E.g:
+
+```c
+execlp("ping", "ping", "google.com", NULL);
+```
