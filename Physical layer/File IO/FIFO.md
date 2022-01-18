@@ -31,6 +31,8 @@ That happens as opening a FIFO created by ``mkfifo()`` for reading normally bloc
 
 While the program is blocking, running another program that interact with ``FIFO 1`` like ``cat FIFO\ 1``. It will then stop blocking.
 
+Once you have created a FIFO special file in this way, any process can open it for reading or writing, in the same way as an ordinary file. However, it has to be open at both ends simultaneously before you can proceed to do any input or output operations on it.
+
 ## Example 2
 
 Communication between 2 process using FIFO. Process ``fifo_write`` writes data to FIFO ``FIFO 1`` every 1 second. Process ``fifo_read`` reads data from FIFO ``FIFO 1`` every 1 second.
@@ -65,7 +67,6 @@ int main(int argc, char *argv[])  {
 	printf("Opened\n");
 
     int index = 0;
-	// for(index = 0; index < 10; index++){
 	while(1){
         sprintf(writeString, "Hello, World !; index: %d\n", index);
         if (write(fd, writeString, sizeof(writeString)) != -1) {
