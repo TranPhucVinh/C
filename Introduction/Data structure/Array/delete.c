@@ -1,38 +1,28 @@
 #include <stdio.h>
 
 int array[] = {1,3,5,7,8};
-int deleteIndex = 2;
-int i, j;
-size_t arraySize = sizeof(array)/sizeof(array[0]);
+size_t array_size = sizeof(array)/sizeof(array[0]);
 
-void arrayBeforeDeleting(){
-  printf("Array before deleting: ");
-
-  for(i = 0; i < arraySize; i++) {
+void display_array(){
+  for(int i = 0; i < array_size; i++) {
     printf("%d ", array[i]);
   }
   printf("\n");
 }
 
-void arrayAfterDeleting(){
-  j = deleteIndex;
+void delete_member(int delete_index){
+    while(delete_index <= array_size){
+        array[delete_index] = array[delete_index+1];
+        delete_index++;
+    }
 
-  while(j <= arraySize){
-    array[j] = array[j+1];
-    j++;
-  }
-
-  arraySize--;
-
-  printf("Array after deleting: ");
-
-  for(i = 0; i < arraySize; i++) {
-    printf("%d ", array[i]);
-  }
-  printf("\n");
+    array_size--;
 }
 
 int main() {
-  arrayBeforeDeleting();
-  arrayAfterDeleting();
+    printf("Array before deleting: ");
+    display_array();
+    delete_member(2);
+    printf("Array after deleting: ");
+    display_array();
 }
