@@ -35,6 +35,7 @@ int scanf ( const char * format, ... );
 scanf("%d", &a);    //int
 scanf("%lf", &b);   //long
 scanf("%f", &c);    //float
+scanf("%d%d", &a, &b); //More than 1 value can be passed to scanf
 ```
 
 **Example**: Enter and print out ``char`` variable as ``integer`` number
