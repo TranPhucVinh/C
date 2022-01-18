@@ -35,3 +35,14 @@ int execv(const char *path, char *const argv[]);
 char *command_array[] = {"/bin/ping", "google.com", NULL};
 execv("/bin/ping", command_array);
 ```
+
+```c
+int execvp(const char *file, char *const argv[]);
+```
+
+``execvp()`` has the same feature like `` execlp()`` but takes all argument as the pointer array ``argv``. 
+
+```c
+char *command_array[] = {"ping", "google.com", NULL};
+execvp("ping", command_array);
+```
