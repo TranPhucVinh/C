@@ -24,3 +24,14 @@ E.g:
 ```c
 execlp("ping", "ping", "google.com", NULL);
 ```
+
+```c
+int execv(const char *path, char *const argv[]);
+```
+
+``execv()`` has the same feature like ``execl()`` but takes all argument as the pointer array ``argv``
+
+```c
+char *command_array[] = {"/bin/ping", "google.com", NULL};
+execv("/bin/ping", command_array);
+```
