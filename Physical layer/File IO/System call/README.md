@@ -37,4 +37,4 @@ Normally, a process inherits three open file descriptors when it is started by t
 
 # Examples
 
-[Examples]()
+[Examples](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/Examples.md)

@@ -97,7 +97,7 @@ int main(){
 }
 ```
 
-## Example 2: Terminal and peripheral operation
+## Example 2: Terminal and peripheral operations
 
 Inside the ``while()`` loop, read entered value from terminal and print out:
 
