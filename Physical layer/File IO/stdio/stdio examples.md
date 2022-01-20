@@ -116,3 +116,26 @@ int main(){
 	return 0;
 }
 ```
+
+### Print out all files inside a folder with library dirent.h
+
+```c
+#include <stdio.h>
+#include <dirent.h>
+
+int main(void)
+{
+    DIR *d;
+    struct dirent *dir;
+    d = opendir("."); //. for current folder
+    if (d)
+    {
+        while ((dir = readdir(d)) != NULL)
+        {
+            printf("%s\n", dir->d_name);
+        }
+        closedir(d);
+    }
+    return(0);
+}
+```
