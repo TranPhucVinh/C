@@ -92,6 +92,52 @@ displayedString: Hello, World!, count: 6
 ```
 **Problem solved**: ``char displayedString[20] = "Hello, World!";``
 
+## Dynamically append a char pointer as string
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void string_append(char **str, const char *str2) {
+    char *tmp = NULL;
+
+    // Reset *str
+    if ( *str != NULL && str2 == NULL ) {
+        free(*str);
+        *str = NULL;
+        return;
+    }
+
+    // Initial copy
+    if (*str == NULL) {
+        *str = (char*) malloc( strlen(str2)+1);
+        memcpy(*str, str2, strlen(str2));
+    }
+    else { // Append
+        tmp = (char*) malloc(strlen(*str)+1);
+        memcpy(tmp, *str, strlen(*str));
+        *str = (char*) malloc(strlen(*str)+strlen(str2)+1);
+        memcpy( *str, tmp, strlen(tmp) );
+        memcpy( *str + strlen(*str), str2, strlen(str2) );
+        free(tmp);
+    }
+
+}
+
+int main(int argc, char *argv[]) {
+    char *str = "one";
+    string_append(&str, ",");
+    string_append(&str, "two");
+    string_append(&str, ",three");
+
+    printf("str=%s\n", str);
+
+    string_append(&str, NULL);
+    return 0;
+}
+```
+
 ## strol()
 
 ```c

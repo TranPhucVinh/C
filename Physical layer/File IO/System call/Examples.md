@@ -46,7 +46,7 @@ read(fd, buffer, 10);
 
 ``lseek(STDIN_FILENO, 10, SEEK_SET)`` will return ``-1`` for ``/dev/tty`` but will return a normal ``fd`` for  ``./a.out < test.c``.
 
-**Read the whole file**:
+**Read the whole file by chunk**:
 
 ```c
 #include <stdio.h>
