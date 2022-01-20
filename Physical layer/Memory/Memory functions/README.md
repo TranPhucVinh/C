@@ -22,6 +22,25 @@ memcpy(dest, src, strlen(src)+1);
 printf("String: %s\n", dest); //String: Hello, World!
 ```
 
+``memcpy()`` in specific position
+
+```c
+char *dest = (char *) malloc(15);
+memcpy(dest, "123", 3);
+printf("String: %s\n", dest);//String: 123
+memcpy(dest+1, "456", 3);
+printf("String: %s\n", dest);//String: 1456
+memcpy(dest+4, "456", 3);
+printf("String: %s\n", dest);//String: 1456456
+
+memcpy(dest+10, "456", 3);
+/*
+	String: 1456456 -> the string now is not appended after the previous appending as dest+10 
+	result in discontinuous memory
+*/
+printf("String: %s\n", dest);
+```
+
 ### memmove()
 
 ``memmove()`` copies a block of memory from a location to another.
