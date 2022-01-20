@@ -57,6 +57,34 @@ data_3 = strtok (NULL, ",");
 printf("data 1 %s, data 2: %s, data 3: %s\n", data_1, data_2, data_3);
 ```
 
+## strol()
+
+```c
+long int strtol(const char *str, char **endptr, int base)
+```
+
+Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Examples part 3.md``
+
+## strtoul()
+
+Convert a string to unsigned long
+
+```c
+unsigned long int strtoul (const char *__restrict __nptr, char **__restrict __endptr, int __base)
+```
+**Example**
+```c
+strtoul("12asdas", NULL, 10);   //12
+strtoul("Hello", NULL, 10);     //0
+```
+Problem with ``char`` number
+```c
+char number = strtoul("127", NULL, 10);   //127
+char number = strtoul("128", NULL, 10);   //-128
+```
+
+**Explain**: This happens as char is defined as signed char by default. 
+
 ## atoi()
 
 Include in library **stdlib.h**.
