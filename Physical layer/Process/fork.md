@@ -65,7 +65,12 @@ Then ``function_operation()`` will be run 4 times. Calling ``fork()`` ``n`` time
 
 ## wait()
 
-A call to ``wait()`` blocks the calling process until one of its child processes exits or a signal is received. 
+```c
+#include <sys/wait.h>
+pid_t wait(int *wstatus);
+```
+
+A call to ``wait()`` blocks the calling process until one of its child processes exits or a signal is received. If ``wstatus`` is not `` NULL``, ``wait()`` store status  information in the ``wstatus``. ``wait()`` return the ``pid`` of parent process.
 
 Take this ``fork()`` example. We want child process to print out from ``0`` to ``5`` and parent process to print out from ``6`` to ``10``.
 
