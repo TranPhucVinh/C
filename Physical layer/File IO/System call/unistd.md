@@ -89,4 +89,19 @@ The ``dup()`` system call creates a copy of a file descriptor.
 
 **Examples**
 
-* ``dup_write_number_to_file.c``: Write number from ``1`` ``to`` 100 using a file descriptor created by ``dup()``
+* ``dup_write_number_to_file.c``: Write number from ``1`` to ``100`` to a file using a file descriptor created by ``dup()``
+
+Print out number from ``1`` to ``100`` in terminal (``STDOUT_FILENO``) using a file descriptor created by ``dup()``:
+
+```c
+int copy_fd = dup(STDOUT_FILENO);
+
+while(number < 100){
+    sprintf(write_buffer, "%d\n", number);
+    write(STDOUT_FILENO, write_buffer, strlen(write_buffer));      
+    number += 1;
+    sprintf(write_buffer, "%d\n", number);
+    write(copy_fd, write_buffer, strlen(write_buffer));
+    number += 1;
+} 
+```

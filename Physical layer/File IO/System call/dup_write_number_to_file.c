@@ -27,6 +27,7 @@ int main()
         sprintf(write_buffer, "%d\n", number);
         write(copy_fd, write_buffer, strlen(write_buffer));
         number += 1;
-    }     
+    }  
+    free(write_buffer);
     return 0;
 }
