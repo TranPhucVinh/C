@@ -39,7 +39,7 @@ Close a file descriptor, so that it no longer refers to any file and may be reus
 int close(int fd);
 ```
 
-### lseek
+### lseek()
 
 ```c
 off_t lseek(int fildes, off_t offset, int whence);
@@ -78,3 +78,15 @@ int ftruncate(int fd , off_t length );
 ```
 
 If the file is longer than ``length``, the excess data is lost. If the file is currently shorter than length, it is extended by padding with a sequence of null bytes or a hole.
+
+### dup() and dup2()
+
+The ``dup()`` system call creates a copy of a file descriptor.
+
+* It uses the lowest-numbered unused descriptor for the new descriptor.
+* If the copy is successfully created, then the original and copy file descriptors may be used interchangeably.
+* They both refer to the same open file description and thus share file offset and file status flags.
+
+**Examples**
+
+* ``dup_write_number_to_file.c``: Write number from ``1`` ``to`` 100 using a file descriptor created by ``dup()``
