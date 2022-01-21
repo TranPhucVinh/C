@@ -105,3 +105,27 @@ while(number < 100){
     number += 1;
 } 
 ```
+
+The ``dup2()`` system call is similar to ``dup()`` but the basic difference between them is that instead of using the lowest-numbered unused file descriptor, it uses the descriptor number specified by the user.
+
+```c
+int dup2(int oldfd, int newfd);
+```
+
+If ``newfd`` was previously opened, it is silently closed before being reused.
+
+This program write the content in ``printf()`` to a file instead of ``STDOUT_FILENO``:
+
+```c
+#include<unistd.h>
+#include<stdio.h>
+#include<fcntl.h>
+  
+int main()
+{
+    int fd = open("test.txt",O_WRONLY | O_APPEND);
+    dup2(fd, STDOUT_FILENO);          
+    printf("Write to test.txt\n");  
+    return 0;
+}
+```
