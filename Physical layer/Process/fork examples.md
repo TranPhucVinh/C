@@ -121,9 +121,9 @@ int main(int argc, char *argv[])  {
 
 Then ``function_operation()`` will be run 4 times. Calling ``fork()`` ``n`` times will result in running ``function_operation()`` ``2^n`` times.
 
-### Kill both child and parent process with SIGKILL signal
+### Terminate both child and parent process with SIGKILL signal
 
-SIGKILL signal inside parent process 
+``SIGKILL`` signal inside parent process 
 
 ```c
 int main(int argc, char *argv[])  {
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-SIGKILL signal inside child process 
+``SIGKILL`` signal inside child process 
 
 ```c
 int main(int argc, char *argv[])  {
@@ -157,6 +157,32 @@ int main(int argc, char *argv[])  {
         while (1){
             printf("parent process number: %d\n", parent_number);
             parent_number += 1;
+            usleep(DELAY_TIME);
+        }
+    }
+}
+```
+### Stop and stop process with fork()
+
+If ``number`` is ``5``, stop for parent process for 5 seconds then continues
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <signal.h>   
+
+#define DELAY_TIME 1000000
+int number;
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	if (pid) {
+        while (1){
+            printf("number: %d\n", number);
+            if (number == 5){
+                kill(pid, SIGSTOP);
+                usleep(DELAY_TIME*5);
+                kill(pid, SIGCONT);
+            } 
+            number += 1;
             usleep(DELAY_TIME);
         }
     }
