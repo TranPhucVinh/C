@@ -48,8 +48,37 @@ Before forking
 Origin process's ID: 20845 and child process's ID: 20846
 Child process has ID: 20846
 ```
+Running child process inside ``while(1)`` loop:
+```c
+#include <stdio.h>
+#include <unistd.h>
 
-Running multiple ``fork()``
+#define DELAY_TIME 1000000
+int number;
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	if (!pid) {
+        while (1){
+            printf("number: %d\n", number);
+            number += 1;
+            usleep(DELAY_TIME);
+        }
+    } 
+	else printf("Parent process has finished execution\n");
+}
+```
+Result:
+
+```
+username$hostname:~/pwd$ ./a.out
+Parent process has finished execution
+number: 0
+username$hostname:~/pwd$ number: 1
+number: 2
+... (keeping running forever)
+```
+
+**Running multiple fork()**
 ```c
 #include <stdio.h>
 #include <unistd.h>
