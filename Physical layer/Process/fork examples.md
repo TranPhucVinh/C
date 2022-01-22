@@ -34,7 +34,7 @@ Before forking
 Origin process's ID: 20845 and child process's ID: 20846
 Child process has ID: 20846
 ```
-Running child process inside ``while(1)`` loop:
+Running child process inside infinite loop:
 
 ```c
 #include <stdio.h>
@@ -64,9 +64,50 @@ number: 0
 username$hostname:~/pwd$ number: 1
 number: 2
 ... (keeping running forever)
+username$hostname:~/pwd$ ^C //Ctr+C to cancel
+username$hostname:~/pwd$ ^C number: 500
+number: 501
+... (program will then keep running forever)
 ```
 
-**Running multiple fork()**
+Running both child and parent process inside infinite loops:
+
+```c
+int child_number, parent_number;
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	if (!pid) {
+        while (1){
+            printf("child process number: %d\n", child_number);
+            child_number += 1;
+            usleep(DELAY_TIME);
+        }
+    } 
+	else  {
+        while (1){
+            printf("parent process number: %d\n", parent_number);
+            parent_number += 1;
+            usleep(DELAY_TIME);
+        }
+    }
+}
+```
+
+```
+username$hostname:~/pwd$ ./a.out
+parent process number: 0
+child process number: 0
+parent process number: 1
+child process number: 1
+parent process number: 2
+child process number: 2
+username$hostname:~/pwd$ ^C //Ctr+C to cancel
+```
+
+``Ctr+C`` to cancel the program running both child and parent process inside infinite loop will end the program properly.
+
+### Running multiple fork()
+
 ```c
 #include <stdio.h>
 #include <unistd.h>
