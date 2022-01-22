@@ -24,6 +24,19 @@ Run ``ps aux|grep a.out`` to find PID of ``a.out``. E.g PID of ``a.out`` is ``12
 
 Run ``kill -12 12976``
 
+To send signal to that ``a.out`` by other C process, using ``kill()``:
+
+```c
+#include <stdio.h>
+#include <signal.h>   
+
+#define PID 19499
+
+int main(){ 
+    kill(PID, SIGUSR2);
+}
+```
+
 ### Example 2
 
 Working with ``SIGWINCH`` signal: If changing the current terminal size by mouse, the size of the terminal is printed out.
