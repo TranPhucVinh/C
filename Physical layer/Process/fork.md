@@ -40,7 +40,7 @@ int main(int argc, char *argv[])  {
 	printf("Before forking\n");
 	int pid = fork();
 	if (!pid) printf("Child process has ID: %d\n", getpid());
-	else printf("Origin process's ID: %d and child process's ID: %d\n", getpid(), pid);
+	else printf("Parent process's ID: %d and child process's ID: %d\n", getpid(), pid);
 }
 ```
 ```
