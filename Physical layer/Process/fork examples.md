@@ -120,3 +120,22 @@ int main(int argc, char *argv[])  {
 ```
 
 Then ``function_operation()`` will be run 4 times. Calling ``fork()`` ``n`` times will result in running ``function_operation()`` ``2^n`` times.
+
+### Kill both child and parent process with SIGKILL signal
+
+```c
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	if (!pid) {
+        while (1){
+            printf("child process number: %d\n", child_number);
+            child_number += 1;
+            usleep(DELAY_TIME);
+        }
+    } 
+	else  {
+        usleep(DELAY_TIME*5);
+        kill(pid, SIGKILL);
+    }
+}
+```
