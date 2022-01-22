@@ -22,7 +22,7 @@ In other terminal
 
 Run ``ps aux|grep a.out`` to find PID of ``a.out``. E.g PID of ``a.out`` is ``12976``
 
-Run ``kill -12 1234``
+Run ``kill -12 12976``
 
 ### Example 2
 
