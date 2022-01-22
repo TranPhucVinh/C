@@ -164,7 +164,8 @@ int main(int argc, char *argv[])  {
 ```
 ### Stop and stop process with fork()
 
-If ``number`` is ``5``, stop for parent process for 5 seconds then continues
+In parent process, if ``number`` is ``5``, stop for parent process for 5 seconds then continues
+
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -187,4 +188,21 @@ int main(int argc, char *argv[])  {
         }
     }
 }
+```
+If using that flow inside the child process, the program will be blocked when ``number`` reaches ``5``:
+
+```c
+int pid = fork();
+if (!pid) {
+        while (1){
+            printf("number: %d\n", number);
+            if (number == 5){
+                kill(pid, SIGSTOP);
+                usleep(DELAY_TIME*5);
+                kill(pid, SIGCONT);
+            } 
+            number += 1;
+            usleep(DELAY_TIME);
+        }
+    }
 ```
