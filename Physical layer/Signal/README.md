@@ -56,6 +56,13 @@ sighandler_t signal(int signum, sighandler_t signal_handler);
 void signal_handler(int signalNumber);
 ```
 
+### kill()
+
+```c
+int kill(pid_t pid, int sig);
+```
+Send signal (``sig``) to a process specified by ``pid``.
+
 ### sigset_t
 
 * ``sigset_t``: represents a set of signals
