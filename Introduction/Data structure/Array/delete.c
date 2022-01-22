@@ -11,7 +11,7 @@ void display_array(){
 }
 
 void delete_member(int delete_index){
-    while(delete_index <= array_size){
+    while(delete_index < array_size){
         array[delete_index] = array[delete_index+1];
         delete_index++;
     }
