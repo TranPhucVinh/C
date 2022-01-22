@@ -9,6 +9,31 @@ int main(){
 }
 ```
 
+## unistd.h
+
+```c
+typedef unsigned long useconds_t;
+```
+
+```c
+int usleep(useconds_t usec);
+```
+
+``usleep``: suspend execution for microsecond intervals
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+#define DELAY_TIME 1000000
+
+int main(int argc, char *argv[])  {
+	while(1){
+        printf("Hello\n");// \n must have for proper print out
+        usleep(DELAY_TIME);
+    }
+}
+```
 ## sys/time
 
 Library ``sys/time.h`` defines:
