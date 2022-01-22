@@ -1,4 +1,4 @@
-### Example 1
+### Example 1: SIGUSR2 signal
 
 Print out a string if signal ``12`` (``SIGUSR2``) is sent to PID of this process
 
@@ -37,7 +37,29 @@ int main(){
 }
 ```
 
-### Example 2
+### Example 2: SIGKILL signal
+
+Self-terminated a process after printing from ``0`` to ``10``:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <signal.h>   
+
+int pid;
+int number;
+
+int main(){  
+    pid = getpid();
+    while (1){
+        printf("%d\n", number);
+        if (number == 10) kill(pid, SIGKILL);
+        else number += 1;
+    }
+}
+```
+
+### Example 3
 
 Working with ``SIGWINCH`` signal: If changing the current terminal size by mouse, the size of the terminal is printed out.
 
