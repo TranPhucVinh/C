@@ -1,4 +1,4 @@
-### Example 1
+### Example 1: SIGUSR2 signal
 
 Print out a string if signal ``12`` (``SIGUSR2``) is sent to PID of this process
 
@@ -22,9 +22,44 @@ In other terminal
 
 Run ``ps aux|grep a.out`` to find PID of ``a.out``. E.g PID of ``a.out`` is ``12976``
 
-Run ``kill -12 1234``
+Run ``kill -12 12976``
 
-### Example 2
+To send signal to that ``a.out`` by other C process, using ``kill()``:
+
+```c
+#include <stdio.h>
+#include <signal.h>   
+
+#define PID 19499
+
+int main(){ 
+    kill(PID, SIGUSR2);
+}
+```
+
+### Example 2: SIGKILL signal
+
+Self-terminated a process after printing from ``0`` to ``10``:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <signal.h>   
+
+int pid;
+int number;
+
+int main(){  
+    pid = getpid();
+    while (1){
+        printf("%d\n", number);
+        if (number == 10) kill(pid, SIGKILL);
+        else number += 1;
+    }
+}
+```
+
+### Example 3
 
 Working with ``SIGWINCH`` signal: If changing the current terminal size by mouse, the size of the terminal is printed out.
 

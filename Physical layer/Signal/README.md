@@ -37,6 +37,8 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 
 ``SIGWINCH``: a signal sent upon the resizing of a window. When the number of columns or rows changes, ``SIGWINCH`` is raised to the foreground processes attached to the terminal.
 
+``SIGKILL``: immediately terminate a process
+
 ## API
 
 ### signal()
@@ -53,6 +55,13 @@ sighandler_t signal(int signum, sighandler_t signal_handler);
 ```c
 void signal_handler(int signalNumber);
 ```
+
+### kill()
+
+```c
+int kill(pid_t pid, int sig);
+```
+Send signal (``sig``) to a process specified by ``pid``.
 
 ### sigset_t
 
