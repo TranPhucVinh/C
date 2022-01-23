@@ -14,6 +14,14 @@ When a new process is created, it is assigned the next sequentially available pr
 
 Once it has reached ``32,767``, the process ID counter is reset to 300, rather than 1. This is done because many low-numbered process IDs are in permanent use by system processes and daemons, and thus time would be wasted searching for an unused process ID in this range.
 
+## Jobs
+
+A job is a process that the shell manages. Each job is assigned a sequential job ID. Because a job is a process, each job has an associated PID. There are three types of job statuses:
+
+1. **Foreground**: When you enter a command in a terminal window, the command occupies that terminal window until it completes. This is a foreground job.
+2. **Background**: When you enter an ampersand (&) symbol at the end of a command line, the command runs without occupying the terminal window.
+3. **Stopped**: If you press Control + Z for a foreground job, or enter the stop command for a background job, the job stops. 
+
 # API
 
 [API.md](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/API.md)
