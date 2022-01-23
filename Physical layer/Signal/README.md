@@ -33,6 +33,8 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 63) SIGRTMAX-1	64) SIGRTMAX	
 ```
 
+``SIGUSR1`` and ``SIGUSR2`` are user defined signal
+
 ``SIGQUIT``: ``SIGQUIT`` signal is similar to ``SIGINT``
 
 ``SIGWINCH``: a signal sent upon the resizing of a window. When the number of columns or rows changes, ``SIGWINCH`` is raised to the foreground processes attached to the terminal.
