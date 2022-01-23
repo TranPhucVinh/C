@@ -41,7 +41,7 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 
 ``SIGWINCH``: a signal sent upon the resizing of a window. When the number of columns or rows changes, ``SIGWINCH`` is raised to the foreground processes attached to the terminal.
 
-``SIGKILL``: immediately terminate a process
+``SIGKILL``: immediately terminate a process, ``SIGKILL`` cannot be caught or ignored, and the receiving process cannot perform any clean-up upon receiving this signal.
 
 ## API
 
