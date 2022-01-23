@@ -2,6 +2,8 @@
 
 Print out a string if signal ``12`` (``SIGUSR2``) is sent to PID of this process
 
+Using ``signal()``:
+
 ```c
 #include <stdio.h>
 #include <signal.h>   
@@ -12,6 +14,22 @@ void signal_handler(int signalNumber){
 
 int main(){ 
 	signal(SIGUSR2, signal_handler);
+	while(1);//Start an infinite loop and handle with signal
+}
+```
+
+Using ``sigaction()``:
+
+```c
+void signal_handler(int signal_number){
+	printf("You have entered signal number: %d\n", signal_number); 
+}
+
+int main(){ 
+    struct sigaction sa;
+    sa.sa_handler = &signal_handler;
+
+    sigaction(SIGUSR2, &sa, NULL);
 	while(1);//Start an infinite loop and handle with signal
 }
 ```
