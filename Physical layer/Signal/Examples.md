@@ -7,9 +7,7 @@ Print out a string if signal ``12`` (``SIGUSR2``) is sent to PID of this process
 #include <signal.h>   
 
 void signal_handler(int signalNumber){
-	if (signalNumber == SIGUSR2){
-		printf("You have entered signal number: %d\n", signalNumber); 
-	}
+	printf("You have entered signal number: %d\n", signalNumber); 
 }
 
 int main(){ 
