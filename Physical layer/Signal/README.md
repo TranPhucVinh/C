@@ -55,8 +55,29 @@ sighandler_t signal(int signum, sighandler_t signal_handler);
 * ``signal_handler``: The ``signal_handler`` function has prototype
 
 ```c
-void signal_handler(int signalNumber);
+void signal_handler(int signal_number);
 ```
+
+### sigaction()
+
+```c
+int sigaction(int signum, const struct sigaction *restrict act, struct sigaction *restrict oldact);
+```
+
+* ``act``: If act is non-NULL, the new action for signal ``signum`` is installed from ``act``.
+* ``oldact``: If oldact is non-NULL, the previous action is saved in ``oldact``.
+
+```c
+struct sigaction 
+{
+	_sig_func_ptr sa_handler;
+	sigset_t sa_mask;
+	int sa_flags;
+};
+```
+
+* ``sa_mask``: A mask of signals which should be blocked
+* ``sa_flags``: A set of flags which modify the behavior of the signal.
 
 ### kill()
 
