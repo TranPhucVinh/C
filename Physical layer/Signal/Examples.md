@@ -53,6 +53,21 @@ int main(){
 }
 ```
 
+Using ``Ctr+Z`` for ``SIGTSTP`` signal:
+
+```c
+void signal_handler(int signal_number){
+	printf("You have entered signal number: %d\n", signal_number); 
+}
+
+int main(){ 
+	signal(SIGTSTP, signal_handler);
+	while(1);//Start an infinite loop and handle with signal
+}
+```
+
+Then pressing ``Ctr+Z`` won't stop the process and just cause the program to simply print out the string ``You have entered signal number: 20``. That happen as ``Ctr+Z`` sends the suspend signal on most Linux terminals, so with the signal handler function the program won't stop execution on the terminal.
+
 ### Example 2: SIGKILL signal
 
 Self-terminated a process after printing from ``0`` to ``10``:
