@@ -1,6 +1,6 @@
 ### Example 1: SIGUSR2 signal
 
-Print out a string if signal ``12`` (``SIGUSR2``) is sent to PID of this process
+Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
 
 Using ``signal()``:
 
@@ -8,11 +8,12 @@ Using ``signal()``:
 #include <stdio.h>
 #include <signal.h>   
 
-void signal_handler(int signalNumber){
-	printf("You have entered signal number: %d\n", signalNumber); 
+void signal_handler(int signal_number){
+	printf("You have entered signal number: %d\n", signal_number); 
 }
 
 int main(){ 
+	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
 	while(1);//Start an infinite loop and handle with signal
 }
