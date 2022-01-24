@@ -1,4 +1,4 @@
-### Example 1: SIGUSR2 signal
+### Example 1: Communicate by signals
 
 Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
 
@@ -6,10 +6,16 @@ Using ``signal()``:
 
 ```c
 #include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 #include <signal.h>   
 
 void signal_handler(int signal_number){
-	printf("You have entered signal number: %d\n", signal_number); 
+	char displayed_string[50];
+	bzero(displayed_string, 50);
+	
+	snprintf(displayed_string, sizeof(displayed_string), "Signal %d is caught\n", signal_number);
+	write(STDOUT_FILENO, displayed_string, sizeof(displayed_string)); 
 }
 
 int main(){ 
