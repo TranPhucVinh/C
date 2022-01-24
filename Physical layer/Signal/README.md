@@ -60,6 +60,8 @@ sighandler_t signal(int signum, sighandler_t signal_handler);
 void signal_handler(int signal_number);
 ```
 
+``signal_handler()`` runs asynchronously, it can interrupt the program at any point. Some functions are listed a async-signal-safe, which includes ``write()``, not ``printf()``. So using ``printf()`` is not recommended and may cause the program with signal to crash in some case.
+
 ### sigaction()
 
 ```c
