@@ -88,9 +88,9 @@ printf("value: %d\n", *thread_1_return);//123
 
 Enter value for struct member using thread 
 
-```c
-#include<stdio.h>
-#include<pthread.h>
+```cpp
+#include <stdio.h>
+#include <pthread.h>
 
 struct databaseNode {
 	int id;

@@ -51,9 +51,9 @@ int main()
 	pthread_t thread_1, thread_2, thread_3;
 	int thread_1_return, thread_2_return, thread_3_return;
 
-	thread_1_return = pthread_create(&thread_1, NULL, thread_function, NULL);
-    thread_2_return = pthread_create(&thread_2, NULL, thread_function, NULL);
-    thread_3_return = pthread_create(&thread_3, NULL, thread_function, NULL);
+	thread_1_return = pthread_create(&thread_1, NULL, thread_function, "Thread 1");
+    thread_2_return = pthread_create(&thread_2, NULL, thread_function, "Thread 2");
+    thread_3_return = pthread_create(&thread_3, NULL, thread_function, "Thread 3");
 	pthread_join(thread_1, NULL);
     pthread_join(thread_2, NULL);
     pthread_join(thread_3, NULL);
@@ -62,9 +62,10 @@ int main()
 
 void *thread_function(void *ptr){
 	for (int i = 0; i < RANGE; i++) {
-      pthread_mutex_lock(&lock);
-      share_value++;
-      pthread_mutex_unlock(&lock);
+		if(!pthread_mutex_lock(&lock)){//pthread_mutex_lock() returns 0 if success.
+			share_value++;
+			pthread_mutex_unlock(&lock);
+		} else printf("%s fails to lock\n", (char*)ptr);
    }   
 }
 ```
@@ -83,6 +84,41 @@ int main()
 }
 ```
 
+### Using pthread_mutex_trylock
+
+With ``pthread_mutex_trylock()``, if fails to lock the mutex, the thread will handle other task
+
+```c
+/*
+    int main() and other operations are like 
+    pthread_mutex_lock() example
+*/
+void *thread_function(void *ptr){
+	for (int i = 0; i < RANGE; i++) {
+      	if (!pthread_mutex_trylock(&lock)){
+			share_value++;
+			pthread_mutex_unlock(&lock);
+		} else {
+			printf("Didn't get lock in %s, %d\n", (char*)ptr, lock_count);
+			lock_count += 1;
+		}
+   }   
+}
+```
+**Result**
+
+```
+Didn't get lock in Thread 2, 0
+Didn't get lock in Thread 1, 1
+Didn't get lock in Thread 2, 2
+Didn't get lock in Thread 2, 3
+...
+
+Didn't get lock in Thread 3, 244
+Didn't get lock in Thread 2, 245
+Didn't get lock in Thread 1, 117
+share_value after executing 2 threads: 29753
+```
 ## Examples
 
 ### Example 1
