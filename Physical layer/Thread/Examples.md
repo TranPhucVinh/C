@@ -63,8 +63,7 @@ int main()
 
 	thread_1_create = pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	pthread_join(thread_1, (void**)thread_1_return);
-    printf("value: %d\n", **thread_1_return);
-    free(thread_1_return);
+    printf("value: %d\n", **thread_1_return);//123
 }
 
 void *func_thread_1(void *ptr){
