@@ -1,18 +1,25 @@
-### Example 1: SIGUSR2 signal
+### Example 1: Communicate by signals
 
-Print out a string if signal ``12`` (``SIGUSR2``) is sent to PID of this process
+Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
 
 Using ``signal()``:
 
 ```c
 #include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 #include <signal.h>   
 
-void signal_handler(int signalNumber){
-	printf("You have entered signal number: %d\n", signalNumber); 
+void signal_handler(int signal_number){
+	char displayed_string[50];
+	bzero(displayed_string, 50);
+	
+	snprintf(displayed_string, sizeof(displayed_string), "Signal %d is caught\n", signal_number);
+	write(STDOUT_FILENO, displayed_string, sizeof(displayed_string)); 
 }
 
 int main(){ 
+	signal(SIGUSR1, signal_handler);
 	signal(SIGUSR2, signal_handler);
 	while(1);//Start an infinite loop and handle with signal
 }

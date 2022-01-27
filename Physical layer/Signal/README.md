@@ -41,7 +41,7 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 
 ``SIGWINCH``: a signal sent upon the resizing of a window. When the number of columns or rows changes, ``SIGWINCH`` is raised to the foreground processes attached to the terminal.
 
-``SIGKILL``: immediately terminate a process
+``SIGKILL``: immediately terminate a process, ``SIGKILL`` cannot be caught or ignored, and the receiving process cannot perform any clean-up upon receiving this signal.
 
 ## API
 
@@ -59,6 +59,8 @@ sighandler_t signal(int signum, sighandler_t signal_handler);
 ```c
 void signal_handler(int signal_number);
 ```
+
+``signal_handler()`` runs asynchronously, it can interrupt the program at any point. Some functions are listed a async-signal-safe, which includes ``write()``, not ``printf()``. So using ``printf()`` is not recommended and may cause the program with signal to crash in some case.
 
 ### sigaction()
 
