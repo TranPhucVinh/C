@@ -75,6 +75,21 @@ int main(){
 
 Then pressing ``Ctr+Z`` won't stop the process and just cause the program to simply print out the string ``You have entered signal number: 20``. That happen as ``Ctr+Z`` sends the suspend signal on most Linux terminals, so with the signal handler function the program won't stop execution on the terminal.
 
+The same behavior happen with ``Ctr+C`` as ``SIGINT``:
+
+```
+//Other operations like above
+signal(SIGINT, signal_handler);
+//Other operations like above
+```
+**Result**
+
+```
+^CYou have entered signal number: 2
+^CYou have entered signal number: 2
+^CYou have entered signal number: 2
+```
+
 ### Example 2: SIGKILL signal
 
 Self-terminated a process after printing from ``0`` to ``10``:
