@@ -11,23 +11,6 @@
 
 TCP client sends the entered string to TCP server. TCP server can't receive the message from one more TCP client.
 
-Sending and receiving process can be executed with
-
-``send()`` in ``tcp-client.c``
-
-```c
-if (send(sockfd, buffer, strlen(buffer)-1, 0) < 0) 
-    error("ERROR writing to socket");
-else printf("finish writing: %s", buffer);    
-```
-
-``read()`` in ``tcp-server.c``
-
-```c
-n = read(client_fd, buffer, 1024);
-printf("%s\n", buffer);
-```
-
 ### HTTP request with TCP client socket
 
 * GET request to a HTTP server like ``example.com`` or local HTTP server: ``get_data.c``

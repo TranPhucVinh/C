@@ -28,6 +28,23 @@ int recv(int sockfd, void *buff, unsigned int len, int flag)
 
 **Note**: If a zero-length datagram is pending, ``read()`` and ``recv()`` with a flags argument of zero provide different behavior.  In this circumstance, ``read()`` has no effect (the datagram remains pending), while ``recv()`` consumes the pending datagram.
 
+Sending and receiving process can be executed with
+
+``send()`` in [tcp-client.c](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP/TCP%20socket%20for%20HTTP%20client/tcp-client.c)
+
+```c
+if (send(sockfd, buffer, strlen(buffer)-1, 0) < 0) 
+    error("ERROR writing to socket");
+else printf("finish writing: %s", buffer);    
+```
+
+``read()`` in [tcp-server.c](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP/TCP%20socket%20for%20HTTP%20client/tcp-server.c)
+
+```c
+n = read(client_fd, buffer, 1024);
+printf("%s\n", buffer);
+```
+
 ## netdb.h
 
 ### socket()
