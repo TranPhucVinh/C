@@ -15,11 +15,19 @@ int main()
 
 	thread1_return = pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	pthread_join(thread_1, NULL);
+	printf("thread_1 finish executing\n");
 }
 
 void *func_thread_1(void *ptr){
 	printf("Hello, World !\n");
 }
+```
+
+**Result**
+
+```
+Hello, World !
+thread_1 finish executing
 ```
 
 Using function ``delaySeconds()`` in ``System time``, delay the displayed string in the thread every 2 seconds:
