@@ -54,6 +54,8 @@ void *func_thread_1(void *ptr){
 ```
 Get return from a thread and store to a variable:
 
+Using pointer of pointer:
+
 ```c
 int main()
 {  
@@ -72,6 +74,16 @@ void *func_thread_1(void *ptr){
 	return array;
 }
 ```
+
+Using pointer:
+
+```c
+int *thread_1_return;
+pthread_join(thread_1, (void**)&thread_1_return);
+printf("value: %d\n", *thread_1_return);//123
+//Other operations like above
+```
+
 ### Example 2
 
 Enter value for struct member using thread 
