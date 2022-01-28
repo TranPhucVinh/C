@@ -16,7 +16,7 @@ Handle error:
 
 For the max accepted number of ``2147483646``, the result must be ``unsigned long int``, not ``int``.
 
-Program: ``sum_from_1_to_n.c``
+Program: [sum_from_1_to_n.c](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/sum_from_1_to_n.c)
 
 ## Algorithm
 

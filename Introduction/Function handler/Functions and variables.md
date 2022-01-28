@@ -130,6 +130,8 @@ argv[1]: Hello, World !
 Total argument: 2
 ```
 
+**Application**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
+
 ## Variable
 
 ### Special character

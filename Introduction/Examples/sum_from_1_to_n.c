@@ -30,6 +30,6 @@ int main(int argc, char *argv[]) {
 		else if (n < 0) printf("User has entered negative number: %s\n", argv[1]);	
 		else printf("User has entered invalid number: %s\n", argv[1]);
 	} else {
-		printf("Too arguments for ./a.out while program expected only 1 argument\n");
+		printf("Too many arguments for ./a.out while program expected only 1 argument\n");
 	}
 }
