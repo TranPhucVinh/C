@@ -1,6 +1,8 @@
-Example:
+## Examples
 
 - Draw square with dots
 - Find prime number
-- Select Sort
-- Hanoi Tower
+
+## Algorithm
+
+[Select sort]()
