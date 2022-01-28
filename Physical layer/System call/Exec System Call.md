@@ -46,3 +46,19 @@ int execvp(const char *file, char *const argv[]);
 char *command_array[] = {"ping", "google.com", NULL};
 execvp("ping", command_array);
 ```
+### return value
+
+All ``exec()`` only return value if it encounter error. Without error, the command inside all ``exec()`` system calls will execute the return value won't print out.
+
+E.g:
+
+```c
+int exit_status = execlp("ls", "ls", NULL);//Result if ls command wil print out
+printf("%d\n", exit_status);//This won't print out
+```
+
+Error command:
+```c
+int exit_status = execlp("lsa", "lsa", NULL);
+printf("%d\n", exit_status);//-1
+```
