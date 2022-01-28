@@ -82,7 +82,7 @@ int sum_of_numbers(int number){
 }
 ```
 
-Application: [Hanoi tower]()
+Application: [Hanoi tower](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/Hanoi_tower.c)
 
 ### Command line arguments with main()
 
@@ -117,8 +117,6 @@ argv[1]: Hello
 argv[1][0]: H
 Total argument: 2
 ```
-
-**Example**: ``Rectangle calculation`` in ``Example projects\Intermediate.md``
 
 To enter a string in ``*argv[]``, use ``\``:
 
