@@ -60,6 +60,7 @@ printf("data 1 %s, data 2: %s, data 3: %s\n", data_1, data_2, data_3);
 ## strol()
 
 ```c
+#include <stdlib.h>
 long int strtol(const char *str, char **endptr, int base)
 ```
 

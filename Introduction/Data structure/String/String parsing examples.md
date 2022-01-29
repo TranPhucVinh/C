@@ -1,57 +1,4 @@
-### Example 1
-
-**Example 1.0**: Delete garbage value of a string
-
-Using ``memset()``
-
-```c
-char displayedString[30];
-printf("%s\n", displayedString); //Print garbage value
-memset(displayedString, 0, sizeof(displayedString));
-printf("%s\n", displayedString); //Print NULl string
-```
-Using ``bzero()``
-
-```c
-char displayedString[30];
-printf("%s\n", displayedString); //Print garbage value
-bzero(displayedString, sizeof(displayedString));
-printf("%s\n", displayedString); //Print NULl string
-```
-
-**Example 1.1**: Delete a specific character from a string
-
-```cpp
-#include <stdio.h>
-
-void removeCharFromString(char *stringChar, char c){
-    if (NULL == stringChar) return;
-
-    char *parsedString = stringChar;
-
-    while (*stringChar){
-        if (*stringChar != c){
-            *parsedString++ = *stringChar;
-        }
-        stringChar++;
-    }
-    *parsedString = '\0';
-}
-
-main() {
-    char stringToRemove[] = "Hello, World";
-    printf("Before parse: %s \n", stringToRemove);
-	removeCharFromString(stringToRemove, 'l');
-    printf("After parse: %s \n", stringToRemove);
-}
-```
-**Result**
-
-```
-Before parse: Hello, World 
-After parse: Heo, Word 
-```
-### Example 2
+## Example 1
 
 Change value of a string by function using pointer
 
@@ -160,7 +107,7 @@ int main(){
 
 See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for the examples in Arduino framework.
 
-### Example 2
+## Example 2
 
 ``strstr()``: Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null pointer if ``str2`` is not part of ``str1``.
 
@@ -203,3 +150,116 @@ int main(int argc, const char *argv[]) {
 ```
 
 **Result**: ``Heo, World!``
+
+## Example 3
+
+Parsing for IP address
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void parseBytes(const char* stringParameter, char sep, unsigned long* stringResult, int maxBytes, int base);
+
+int main(){
+	char ipString[] = "192.168.255.255";
+    /*
+		ip array must be unsigned long for being converted by strtoul. If set as char ip[4], the result will be signed number as char by default is signed number
+	*/	
+	unsigned long ip[4];
+
+	parseBytes(ipString, '.', ip, 4, 10);
+
+	printf("ip[1]: %d\n", ip[0]);
+	printf("ip[2]: %d\n", ip[1]);
+	printf("ip[3]: %d\n", ip[2]);
+	printf("ip[4]: %d\n", ip[3]);
+}
+
+void parseBytes(const char* stringParameter, char sep, unsigned long* stringResult, int maxBytes, int base) {
+    for (int i = 0; i < maxBytes; i++) {
+        stringResult[i] = strtoul(stringParameter, NULL, base);  // Convert byte: strtoul: string to unsigned long
+        stringParameter = strchr(stringParameter, sep);               // Find next separator
+        if (stringParameter == NULL || *stringParameter == '\0') {
+            break;                            // No more separators, exit
+        }
+        stringParameter++;                                // Point to next character after separator
+    }
+}
+```
+## Example 4
+
+Split number and character from a string with ``strtol()``.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    char str[] = "12Hello";
+    char *ptr;
+    long ret;
+
+    ret = strtol(str, &ptr, 10);
+    printf("The number (unsigned long integer) is %ld\n", ret);
+    printf("String part is: %s\n", ptr);
+    if (!strlen(ptr)) puts("ptr null");
+    return(0);
+}
+```
+**Output**
+
+```
+The number (unsigned long integer) is 12
+String part is:Hello
+```
+
+Parse a string include hex number
+
+```c
+char sendString[] = "ab";
+int number = strtol(sendString, NULL, 16);
+printf("%d\n", number);//171
+```
+
+Split the entered string from executed argument
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    char *ptr;
+    long ret;
+
+    if (argc > 1){
+        ret = strtol(argv[1], &ptr, 10);
+        printf("The number (unsigned long integer) is %ld\n", ret);
+        printf("String part is:%s\n", ptr);
+        if (!strlen(ptr)) puts("No string found in argument");
+    } else puts("You haven't entered anything");   
+    return(0);
+}
+```
+**Input** ``./a.out 123abc``
+
+**Output**
+
+```
+The number (unsigned long integer) is 123
+String part is: abc
+ptr null
+```
+
+**Input** ``./a.out 123``
+
+**Output**
+
+```
+The number (unsigned long integer) is 123
+String part is:
+ptr null
+```
