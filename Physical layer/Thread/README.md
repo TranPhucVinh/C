@@ -1,4 +1,4 @@
-## Fundamental concepts
+# Fundamental concepts
 
 ``pthreads``: POSIX threads
 
@@ -26,3 +26,33 @@ The flow of that example:
 Execute thread 1 (``pthread_join()``) -> Perform program operation behind ``pthread_join()``.
 
 If the thread is an infinite loop, the program operation behind ``pthread_join()`` can't be reached.
+
+### Applications
+
+Use 2 threads to calculate the sum from ``1`` to ``2147483646``: . This example will take 3 seconds to perform will the raw function call will take 5 seconds to execute.
+
+Using 3 thread will cause overflow error when compiling:
+
+```c
+range_1.lower_range = 0;
+range_1.upper_range = N/3;
+
+range_2.lower_range = N/3 + 1;
+range_2.upper_range = 2*N/3;
+
+range_3.lower_range = 2*N/3 + 1;
+range_3.upper_range = N;
+```
+
+Problem solve: 
+
+```c
+range_1.lower_range = 0;
+range_1.upper_range = N/3;
+
+range_2.lower_range = N/3 + 1;
+range_2.upper_range = N/3 + N/3;
+
+range_3.lower_range = N/3 + N/3 + 1;
+range_3.upper_range = N;
+```

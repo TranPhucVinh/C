@@ -98,6 +98,8 @@ int main()
 
     printf("value: %d\n", *thread_1_return);//123
 	printf("value: %d\n", *thread_2_return);//123
+	free(thread_1_return);
+	free(thread_2_return);
 }
 
 void *func_thread_1(void *ptr){
