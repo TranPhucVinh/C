@@ -190,3 +190,23 @@ void parseBytes(const char* stringParameter, char sep, unsigned long* stringResu
 ```
 ## Example 4
 
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+char displayed_string[] = "Hello, World !";
+
+int main(){
+	size_t string_size = sizeof(displayed_string);
+	printf("size: %d\n", string_size);
+	char *new_string;
+	new_string = (char*) malloc(string_size * sizeof(char));
+
+	for (int i = 0; i < string_size; i++)
+    {
+        new_string[i] = displayed_string[string_size - 2 - i];
+    }
+	new_string[string_size] = NULL;
+	printf("New string: %s\n", new_string);
+}
+```

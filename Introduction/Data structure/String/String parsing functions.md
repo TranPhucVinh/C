@@ -196,3 +196,5 @@ char *itoa ( int value, char * str, int base );
 ### strrev()
 
 ``strrev()`` is used to reverse a string and works only with older versions of Microsoft C.
+
+To reverse a string with raw string API: Reverse string example
