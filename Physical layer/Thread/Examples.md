@@ -82,6 +82,31 @@ printf("value: %d\n", *thread_1_return);//123
 //Other operations like above
 ```
 
+To get return value from multiple threads:
+
+```c
+int main()
+{  
+    int *thread_1_return, *thread_2_return;
+	pthread_t thread_1, thread_2;
+
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_create(&thread_2, NULL, func_thread_1, NULL);
+
+	pthread_join(thread_1, (void**)&thread_1_return);
+	pthread_join(thread_2, (void**)&thread_2_return);
+
+    printf("value: %d\n", *thread_1_return);//123
+	printf("value: %d\n", *thread_2_return);//123
+}
+
+void *func_thread_1(void *ptr){
+	int *number = (int*) malloc (sizeof(int));
+    *number = 123;
+	return number;
+}
+```
+
 ### Example 2
 
 Enter value for struct member using thread 
