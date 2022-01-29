@@ -67,9 +67,9 @@ int main()
 }
 
 void *func_thread_1(void *ptr){
-	int *array = (int*) malloc (sizeof(int));
-    *array = 123;
-	return array;
+	int *number = (int*) malloc (sizeof(int));
+    *number = 123;
+	return number;
 }
 ```
 
