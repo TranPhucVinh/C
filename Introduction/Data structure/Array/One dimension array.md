@@ -99,6 +99,37 @@ size_t arraySize = sizeof(array)/sizeof(int);
 
 Using this method is only right when you are dealing with **arrays not received as function parameters**. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
 
+Get size of array by function:
+
+```c
+int array[] = {1, 2, 3};
+
+int get_array_size(int *array)
+{
+    int size = 0;
+    while (array[size] != 0) ++size;
+    return size;
+}
+
+
+printf("Array size: %d\n", get_array_size(array));//Array size: 3
+```
+
+For string as char array or char pointer:
+
+```c
+char *displayed_string = "Hello, World !";
+
+int get_string_size(char *string)
+{
+    int size = 0;
+    while (string[size] != 0) ++size;
+    return size;
+}
+
+printf("String size %d\n", get_string_size(displayed_string));//String size: 14
+```
+
 ## Array as an argument of a function
 
 Using array with size
