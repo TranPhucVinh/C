@@ -64,7 +64,73 @@ printf("data 1 %s, data 2: %s, data 3: %s\n", data_1, data_2, data_3);
 long int strtol(const char *str, char **endptr, int base)
 ```
 
-Split number and character from a string with ``strtol()``: ``Split number and character from a string with strtol()`` in ``Examples part 3.md``
+Split number and character from a string with ``strtol()``:
+
+```c
+char str[] = "12Hello";
+char *ptr;
+long ret;
+
+ret = strtol(str, &ptr, 10);
+printf("The number (unsigned long integer) is %ld\n", ret);
+printf("String part is: %s\n", ptr);
+if (!strlen(ptr)) puts("ptr null");
+```
+
+**Output**
+
+```
+The number (unsigned long integer) is 12
+String part is:Hello
+```
+
+Parse a string include hex number
+
+```c
+char sendString[] = "ab";
+int number = strtol(sendString, NULL, 16);
+printf("%d\n", number);//171
+```
+
+Split the entered string from executed argument
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(int argc, char *argv[]) {
+    char *ptr;
+    long ret;
+
+    if (argc > 1){
+        ret = strtol(argv[1], &ptr, 10);
+        printf("The number (unsigned long integer) is %ld\n", ret);
+        printf("String part is:%s\n", ptr);
+        if (!strlen(ptr)) puts("No string found in argument");
+    } else puts("You haven't entered anything");   
+    return(0);
+}
+```
+**Input** ``./a.out 123abc``
+
+**Output**
+
+```
+The number (unsigned long integer) is 123
+String part is: abc
+ptr null
+```
+
+**Input** ``./a.out 123``
+
+**Output**
+
+```
+The number (unsigned long integer) is 123
+String part is:
+ptr null
+```
 
 ## strtoul()
 
@@ -126,3 +192,7 @@ char *itoa ( int value, char * str, int base );
 ```
 
 ``itoa()`` is not defined in ANSI-C and is not part of C++, but is supported by some compilers. Use ``sprintf()`` instead.
+
+### strrev()
+
+``strrev()`` is used to reverse a string and works only with older versions of Microsoft C.
