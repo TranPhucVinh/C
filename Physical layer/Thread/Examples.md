@@ -11,9 +11,8 @@ void *func_thread_1(void *ptr);
 int main()
 {  
 	pthread_t thread_1;
-	int thread1_return;
 
-	thread1_return = pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	pthread_join(thread_1, NULL);
 	printf("thread_1 finish executing\n");
 }
@@ -61,9 +60,8 @@ int main()
 {  
     int **thread_1_return;
 	pthread_t thread_1;
-	int thread_1_create;
 
-	thread_1_create = pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	pthread_join(thread_1, (void**)thread_1_return);
     printf("value: %d\n", **thread_1_return);//123
 }

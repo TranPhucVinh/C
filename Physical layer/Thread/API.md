@@ -45,6 +45,8 @@ The ``attr`` argument points to a ``pthread_attr_t`` structure whose contents ar
 
 Before returning, a successful call to ``pthread_create()`` stores the ID of the new thread in the buffer pointed to by ``thread``; this identifier is used to refer to the thread in subsequent calls to other pthreads functions.
 
+On success, ``pthread_create()`` returns ``0``; on error, it returns an ``error number``, and the contents of ``*thread`` are ``undefined``.
+
 ### pthread_join()
 
 ```c
