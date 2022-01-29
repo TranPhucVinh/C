@@ -190,6 +190,8 @@ void parseBytes(const char* stringParameter, char sep, unsigned long* stringResu
 ```
 ## Example 4
 
+Reverse a string
+
 ```c
 #include <stdio.h>
 #include <stdlib.h>
