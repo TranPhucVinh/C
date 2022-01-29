@@ -169,9 +169,16 @@ void display_int_array(void *array, int size){
 }
 
 void display_struct(void *object){
+	//Must use a temporary struct variable structObject
 	struct databaseNode structObject = *(struct databaseNode *) object;
 
 	printf("id is %d and string value is %s \n", structObject.id, structObject.stringValue);
+	
+	/*
+		Must not use this way, this wil give error:
+		Expression must have struct or union type but it has type "void*" 
+		printf("id is %d and string value is %s \n", *(struct databaseNode *) object.id, *(struct databaseNode *)object.stringValue);
+	*/
 }
 
 int main()
