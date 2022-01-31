@@ -43,7 +43,8 @@ printf("String: %s\n", dest);
 
 ### memmove()
 
-``memmove()`` copies a block of memory from a location to another.
+Like ``memcpy()``, ``memmove()`` copies n characters from memory area ``str2`` to memory area ``str1``.
+
 
 ```cpp
 char str1[] = "Hello";
