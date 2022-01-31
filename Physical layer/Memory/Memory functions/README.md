@@ -46,18 +46,17 @@ printf("String: %s\n", dest);
 ``memmove()`` copies a block of memory from a location to another.
 
 ```cpp
-char str1[] = "Hello";  // Array of size 100 
-char str2[]  = "World";  // Array of size 5 
+char str1[] = "Hello";
+char str2[]  = "World";
 
-puts("str1 before memmove "); 
-puts(str1); //Hello
+printf("str1: %s, str %s\n", str1, str2);//str1: Hello, str World
 
 /* Copies contents of str2 to sr1 */
 memmove(str1, str2, sizeof(str2)); 
 
-puts("\nstr1 after memmove "); 
-puts(str1); //World
+printf("str1: %s, str %s\n", str1, str2);//str1: World, str World
 ```
+
 **Example**: Remove the first character of a string
 
 ```c
