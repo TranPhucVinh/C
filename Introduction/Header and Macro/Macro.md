@@ -71,6 +71,20 @@ int main()
 }
 ```
 
+### The difference between #if defined() and #ifdef()
+
+The difference between the two is that ``#ifdef`` can only use a single condition, while ``#if defined(NAME)`` can do compound conditionals.
+
+```c
+#if defined(WIN32) && !defined(UNIX)
+/* Do windows stuff */
+#elif defined(UNIX) && !defined(WIN32)
+/* Do linux stuff */
+#else
+/* Error, both can't be defined or undefined same time */
+#endif
+```
+
 ### Stringizing operator (#)
 
 The # operator turns the argument it precedes into a quoted string. 
