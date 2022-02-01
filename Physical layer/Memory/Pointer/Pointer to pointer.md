@@ -1,3 +1,5 @@
+Pointer to pointer is also known as double pointer.
+
 ### Create
 
 ```c
