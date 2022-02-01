@@ -41,6 +41,17 @@ error: conflicting types for ‘displayedString’
 error: initializer element is not computable at load time
 ```
 
+**Get size**
+
+``size_t strlen(const char *)``: Return length of a char pointer string
+
+This will result in core dumped error:
+
+```c
+char *string3;
+printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
+```
+
 ### Define a string pointer on heap memory
 
 Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``: ``malloc()``.

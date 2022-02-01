@@ -67,31 +67,16 @@ int main(){
 }
 ```
 
-## Size of a string char
+## Get size of string char
 
-``size_t strlen(const char *)``: Return length of a string
-
-``sizeof()``: For ``sizeof()`` and way to get size of a ``char*`` string, check  ``sizeof()`` in ``Physical layer/Memory/Pointer/Introduction.md``
+Use ``sizeof()`` function:
 
 **Example**
 ```c
 char string1[20];
-printf("%d\n", strlen(string1)); //3
 printf("%d\n", sizeof(string1)); //20
 char string2[] = "Hello, World !";//14 characters
-printf("%d\n", strlen(string2)); //14
 printf("%d\n", sizeof(string2)); //15
-char *string3;
-printf("%d\n", sizeof(string3));//8
-char *string4 = "Hello, World !";
-printf("%d\n", strlen(string4));//14
-printf("%d\n", sizeof(string4));//8
-```
-
-This will result in core dumped error:
-```c
-char *string3;
-printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
 ```
 
 ### Overflow string char buffer
