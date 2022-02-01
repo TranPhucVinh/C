@@ -52,7 +52,6 @@ printf("Value of variable pointer %p \n", pointer); //0x601030
 printf("variable value %d \n", *p); //9
 printf("*& value is %d \n", *&a); //9
 printf("Value *pointer is %d \n", *pointer); //9
-return(0);
 ```
 
 **Note**: ``*&a`` is ``a``.
@@ -122,26 +121,6 @@ error: scalar object ‘int_array’ requires one element in initializer
 
 To work with ``int *number`` and ``int **int_array``, check ``Dynamic memory allocation.md`` in ``Physical layer/Memory/``.
 
-### const pointer
-
-String declaration with pointer is highly recommended to use ``const char*``:
-
-```c
-const char *displayedString = "Hello, World !";
-```
-
-``const`` pointer for other variable
-
-```c
-const int *pointer;
-
-int a = 10;
-pointer = &a;
-printf("pointer: %d\n", *pointer);//10
-a = 19;
-printf("pointer: %d\n", *pointer);//19
-```
-
 ### sizeof()
 
 In 64-bit computer
@@ -164,3 +143,27 @@ To get size of a string point by ``char*``, use ``strlen()``
 char *test = "123";
 strlen(test)); //3
 ```
+
+## const pointer
+
+String declaration with pointer is highly recommended to use ``const char*``:
+
+```c
+const char *displayedString = "Hello, World !";
+```
+
+``const`` pointer for other variable
+
+```c
+const int *pointer;//or it can be int const* pointer
+
+int a = 10, b = 20;
+pointer = &a;
+printf("pointer: %d\n", *pointer);//10
+a = 19;
+printf("pointer: %d\n", *pointer);//19
+pointer = &b;
+printf("pointer: %d\n", *pointer);//20
+```
+
+Declaration way effect the way to get and set value of const pointer, using ``const int *pointer`` like above will have the different way to get and set the value of from ``int* const pointer``
