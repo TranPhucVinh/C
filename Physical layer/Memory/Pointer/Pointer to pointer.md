@@ -1,3 +1,5 @@
+Pointer to pointer is also known as double pointer.
+
 ### Create
 
 ```c
@@ -15,5 +17,6 @@ int main(){
 
 ### Applications
 
+* [Array of pointer](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Array/Array%20of%20pointer.md)
 * [Create a 2 dimension int array with malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory/Using%20stdlib.md)
 * [Thread creation: Get return from a thread and store to a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#example-1)
