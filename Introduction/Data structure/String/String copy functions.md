@@ -62,7 +62,7 @@ Although overflow will not happen in this case but if ``displayedString`` is a m
 ```c
 char* strcpy(char* destination, const char* source);
 ```
-``strcpy()`` returns the copied string.
+``strcpy()`` returns the copied string. Memory of ``destination`` must be allocated first (by char pointer or char array).
 
 ```cpp
 char string[20];
@@ -83,7 +83,7 @@ printf("%s\n", string2);//Hello, World !
 
 ## strncpy() 
 
-Copy **n** character from **src** string to **dst** string.
+Copy ``n`` character from ``src`` string to ``dest`` string.
 
 ```c
 char *strncpy(char *dest, const char *src, size_t n)
@@ -94,6 +94,20 @@ char helloWorld[] = "Hello world 10 times";
 char dest[12];
 strncpy(dest, helloWorld, 2);
 printf("%s \n",dest); //He
+```
+
+## strdup()
+
+```c
+strdup(const char* s);
+```
+
+``strdup()`` will return a new dynamically allocated char pointer duplicated from ``const char *s`` or return ``NULL`` if fail allocation. The new dynamically allocated char pointer resulted from ``strdup()`` should be then ``free()``.
+
+```c
+char *new_string = strdup("Hello, World !");
+printf("%s", new_string);
+free(new_string);
 ```
 
 ## bcopy()
