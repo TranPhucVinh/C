@@ -55,6 +55,24 @@ Line 1
 Line 2
 7
 ```
+
+**Macro function side effect**
+
+```c
+#define SQUARE(x) (x*x)
+
+printf("square(%d) = %d", 3, SQUARE(1+2));//5
+```
+
+Although we expect the result is ``9`` but the result is actually ``5 = 1 + 1*2* + 2``
+
+Problem solve:
+
+```c
+#define SQUARE(x) ((x)*(x))
+printf("square(%d) = %d", 3, SQUARE(1+2));//9
+```
+
 **Choosing between macro and function**
 
 Macro create the inline code which will the shorten the execution time of the program, while the function takes longer time to execute.
