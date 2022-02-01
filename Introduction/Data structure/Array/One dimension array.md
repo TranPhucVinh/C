@@ -42,6 +42,13 @@ int b = 2;
 int array[b] = {1, 2};
 ```
 
+Or
+
+```c
+const int b = 2;
+int array[b] = {1, 2};
+```
+
 Compiled in GCC gives:
 
 ```
@@ -53,7 +60,7 @@ But this compiled normally on G++ without warning.
 Problem solved for GCC:
 
 ```c
-int b = 2;
+int b = 2;//or const int b =2
 int array[b];
 array[0] = 1;
 array[1] = 2;
