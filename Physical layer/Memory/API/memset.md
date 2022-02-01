@@ -1,10 +1,9 @@
 ```c
+#include <string.h>
 void *memset(void *str, int c, size_t n)
 ```
 
 ``memset()`` copies the character ``c`` (unsigned char) to the first ``n`` characters of the string pointed to ``str``.
-
-``memset()`` locates in ``string.h``.
 
 ### memset() with string
 
