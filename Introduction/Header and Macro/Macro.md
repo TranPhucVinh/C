@@ -55,6 +55,15 @@ Line 1
 Line 2
 7
 ```
+**Choosing between macro and function**
+
+Macro create the inline code which will the shorten the execution time of the program, while the function takes longer time to execute.
+
+If a macro is executed 20 times, then 20 lines of macro code will be added to the preprocessor which will expand the size of the compiled program (``.exe``, ``.dll``, ``.lib``,...)
+
+If a function is called 20 times, only 1 copy of that function will be used inside the program, which will make the program size smaller than using the macro correspondingly.
+
+It depends on execution times and program size requirement to choose between macro and function.
 
 ### Using macro to define
 
