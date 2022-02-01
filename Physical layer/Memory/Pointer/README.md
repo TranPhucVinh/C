@@ -170,3 +170,20 @@ printf("pointer: %d\n", *pointer);//20
 ```
 
 Declaration way effect the way to get and set value of const pointer, using ``const int *pointer`` like above will have the different way to get and set the value of from ``int* const pointer``
+
+Compilation error in ``GCC`` and ``G++``:
+
+```c
+int a = 2, b = 10;
+int* const pointer;
+pointer = &a;//This give compilation error in GCC
+```
+Set value for ``int* const pointer``:
+```c
+int a = 2, b = 10;
+int* const pointer = &a;
+printf("%d\n", *pointer);//2
+
+//Setting pointer to other address now give compilation error in GCC and G++
+//pointer = &b;
+```
