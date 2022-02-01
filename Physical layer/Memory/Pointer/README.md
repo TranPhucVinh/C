@@ -144,7 +144,7 @@ char *test = "123";
 strlen(test)); //3
 ```
 
-## const pointer
+## pointer to const
 
 String declaration with pointer is highly recommended to use ``const char*``:
 
@@ -169,9 +169,11 @@ pointer = &b;
 printf("pointer: %d\n", *pointer);//20
 ```
 
-Declaration way effect the way to get and set value of const pointer, using ``const int *pointer`` like above will have the different way to get and set the value of from ``int* const pointer``
+## const pointer
 
-Compilation error in ``GCC`` and ``G++``:
+A const pointer doesn't allow the pointer to change the address at later state of the program.
+
+This gives compilation error in ``GCC`` and ``G++``:
 
 ```c
 int a = 2, b = 10;
