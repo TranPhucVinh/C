@@ -155,7 +155,10 @@ const char *displayedString = "Hello, World !";
 ``const`` pointer for other variable
 
 ```c
-const int *pointer;//or it can be int const* pointer
+/*
+	int const* pointer or const int* pointer will give the same result
+*/
+const int *pointer;
 
 int a = 10, b = 20;
 pointer = &a;
