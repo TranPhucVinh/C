@@ -102,7 +102,7 @@ printf("number: %d", number);//12
 
 ``number: 12`` is totally wrong as ``number`` is expected to store the address.
 
-**Note**: Except string pointer declarion (``char *displayedString = "Hello, World !"``), you musn't set the value to the pointer variable when defining them:
+**Note**: Except char pointer as string declarion (``char *displayed_string = "Hello, World !"``), you musn't set the value to the pointer variable when defining them:
 
 ```c
 int *number = 12;//Must not do it
@@ -121,7 +121,9 @@ error: scalar object ‘int_array’ requires one element in initializer
 
 To work with ``int *number`` and ``int **int_array``, check ``Dynamic memory allocation.md`` in ``Physical layer/Memory/``.
 
-### sizeof()
+### Size of the pointer variable.
+
+To get size of the pointer variable, use ``sizeof()``. Size of the pointer variable doesn't depend on its type as it stores the address of other variable and address of a variable has ``int`` type. So size of a pointer variable is ``int``.
 
 In 64-bit computer
 
@@ -133,15 +135,6 @@ sizeof(&a); //8
 ```c
 char *test = "1";
 printf("%d", sizeof(test)); //8
-```
-
-``sizeof(&a)`` and ``sizeof(test)`` are 8 byte they store the 64-bit address.
-
-To get size of a string point by ``char*``, use ``strlen()``
-
-```c
-char *test = "123";
-strlen(test)); //3
 ```
 
 ## pointer to const
