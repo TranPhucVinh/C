@@ -1,11 +1,3 @@
-### How does CPU access a variable ?
-
-A 8-bit CPU can access a 1 byte (8-bit) variable in 1 CPU cyle. So for a n-byte variable, it takes the CPU ``n`` CPU cycle to access
-
-A 64-bit CPU can access a 8 byte (64-bit) variable in 1 CPU cyle. So for a 8*n byte variable, it takes the CPU ``n`` CPU cycle to access
-
-**Note**: 64-bit CPU is used for the following programs execution.
-
 ### Data struct padding
 
 **Note**:

@@ -27,7 +27,18 @@ int main()
 
 Heap memory block is allocated during run-time. When the size of heap memory is not enough for the program, the OS has the mechanism to increase the heap memory size.
 
-## Pointer
+## Data alignment 
 
+### How does CPU access a variable ?
+
+A 8-bit CPU can access a 1 byte (8-bit) variable in 1 CPU cyle. So for a n-byte variable, it takes the CPU ``n`` CPU cycle to access
+
+A 64-bit CPU can access a 8 byte (64-bit) variable in 1 CPU cyle. So for a 8*n byte variable, it takes the CPU ``n`` CPU cycle to access
+
+### Data alignment
+
+In present day CPU, the read/write operation depend on the size of ``word`` (32-bit OS has ``word`` size of 4 byte). Data aligment is the way of arranging data so that its size is the multiple of ``word``, i.e ``4k`` bytes. For **data alignment**, we have to add the **dummy byte** in some cases, sometimes known as **padding data**. Data alignment will increase the performance of the system as the read/write operation on the block data now have the size of multiples of word.
+
+## Pointer
 
 # API

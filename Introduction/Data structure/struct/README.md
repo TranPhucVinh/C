@@ -1,11 +1,11 @@
-## Operations
+## Fundamental concepts
 
 Basic operations: ``Basic operations.md``
 
 ### Other definitions
 
-* Size of struct: ``size of struct.md``
-* Struct pointer: ``struct pointer and memory.md``
+* [Size of struct]()
+* [Struct pointer](struct pointer and memory.md)
 * Bit field: ``Bit field.md``
 * Self referential struct: ``Self referential struct.md``
 
