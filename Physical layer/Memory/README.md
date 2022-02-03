@@ -37,7 +37,7 @@ A 64-bit CPU can access a 8 byte (64-bit) variable in 1 CPU cyle. So for a 8*n b
 
 ### Data alignment
 
-In present day CPU, the read/write operation depend on the size of ``word`` (32-bit OS has ``word`` size of 4 byte). Data aligment is the way of arranging data so that its size is the multiple of ``word``, i.e ``4k`` bytes. For **data alignment**, we have to add the **dummy byte** in some cases, sometimes known as **padding data**. Data alignment will increase the performance of the system as the read/write operation on the block data now have the size of multiples of word.
+In present day CPU, the read/write operation depend on the size of ``word`` (32-bit OS has ``word`` size of 4 byte). Data aligment is the way of arranging data so that its size is the multiple of ``word``, i.e ``4*k`` bytes (``k`` = 0, 1, 2,...). For **data alignment**, we have to add the **dummy byte** in some cases, sometimes known as **padding data**. Data alignment will increase the performance of the system as the read/write operation on the block data now have the size of multiples of word.
 
 ## Pointer
 
