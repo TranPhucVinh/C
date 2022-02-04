@@ -1,51 +1,39 @@
 ### Build a struct
 
+Struct as data type
+
 ```c
 #include <stdio.h>
 
-struct databaseNode {
+struct struct_data_type {
 	int id;
-	char stringValue[50];
+	char string_value[50];
 };
 
-main(){
-	struct databaseNode databaseNode0 = {1, "String value"};
-	printf("Member databaseNode0 has id %d with string value: %s \n", databaseNode0.id, databaseNode0.stringValue); //Member databaseNode0 has id 1 with string value: String value
+int main(){
+    struct struct_data_type value_0 = {0, "Value 0"};//struct as type for varaible
+	struct struct_data_type array[2];//struct as type for array
+	struct struct_data_type value_1 = {1, "Value 1"};
+	struct struct_data_type value_2 = {2, "Value 2"};
+	array[0] = value_1;
+	array[1] = value_2;
+    printf("%d, %s\n", value_0.id,value_0.string_value);//0, Value 0
+	printf("%d, %s\n", array[0].id, array[0].string_value);//1, Value 1
 }
 ```
 
 Can define value like this way:
 ```c
-struct databaseNode databaseNode0 = {
-    .id = 1,
-    .stringValue = "String value"
-  };
+struct struct_data_type value_0 = {
+	.id = 0,
+	.string_value = "Value 0"
+};
 ```
 This compile normally on GCC but gives error in G++:
 
 ```
 error: C99 designator ‘stringValue’ outside aggregate initializer
 };
-```
-
-### struct as array type
-
-```c
-#include <stdio.h>
-
-struct databaseNode {
-	int id;
-	char stringValue[50];
-};
-
-int main(){
-	struct databaseNode nodeArray[2];
-	struct databaseNode databaseNode0 = {1, "Database node 0"};
-	struct databaseNode databaseNode1 = {2, "Database node 1"};
-	nodeArray[0] = databaseNode0;
-	nodeArray[1] = databaseNode1;
-	printf("nodeArray[0].id: %d, nodeArray[0].stringValue: %s\n", nodeArray[0].id, nodeArray[0].stringValue);
-}
 ```
 
 ### Object from struct
