@@ -1,7 +1,7 @@
 The device model involves terms like **device**, **driver**, and **bus**:
-• **device**: a physical or virtual object which attaches to a bus.
-• **driver**: a software entity which may probe for and be bound to devices, and which can perform certain management functions.
-• **bus**: a device which serves as an attachment point for other devices.
+* **device**: a physical or virtual object which attaches to a bus.
+* **driver**: a software entity which may probe for and be bound to devices, and which can perform certain management functions.
+* **bus**: a device which serves as an attachment point for other devices.
 
 ## The Simplest Drivers
 
@@ -25,4 +25,4 @@ Drivers that have been compiled into the kernel directly register their objects 
 
 In Linux, every device is identified by two numbers: a **major number** and a **minor number**. When accessing a device file, the major number selects which device driver is being called to perform the input/output operation. The major number is used by the kernel to identify the correct device driver when the device is accessed. The role of the minor number is device dependent, and is handled internally within the driver. 
 
-For instance, the i.MX7D has several hardware UART ports. The same driver can be used to control all the UARTS, but each physical UART needs its own device node, so the device nodes for these UARTS will all have the same major number, but will have unique **minor numbers**.
+For instance, the i.MX7D has several hardware UART ports. The same driver can be used to control all the UARTs, but each physical UART needs its own device node, so the device nodes for these UARTS will all have the same major number, but will have unique minor numbers.
