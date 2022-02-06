@@ -6,3 +6,4 @@
 ## API
 
 * [String copy functions](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20copy%20functions.md)
+* [String append functions](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20append%20functions.md)
