@@ -1,5 +1,7 @@
 Variable length argument is a feature that allows a function to receive any number of arguments. 
 
+**Applications**: ``sprintf()``,...
+
 For **Variable length argument** to be used, an ``int`` variable is required to represent the total number variable arguments passed.
 
 ### va_arg()
