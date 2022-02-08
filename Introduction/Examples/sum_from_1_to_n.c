@@ -5,9 +5,9 @@
 #define NUMBER_LIMIT 2147483647
 
 //As calculation to max int number will exceed the max int value so use unsigned long int
-unsigned long int calculation(int n){
-	long int sum = 0;
-	for (int i = 0; i <= n; i++){
+unsigned long int calculation(unsigned long int n){
+	unsigned long int sum = 0;
+	for (unsigned long int i = 0; i <= n; i++){
 		sum += i;
 	}
 	return sum;
@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 	if (argc == 1) printf("User haven't entered number n\n");
 	else if (argc == 2) {
 		int n = atoi(argv[1]);
-		if ((n>0) && (n<NUMBER_LIMIT)) {
+		if ((n>0) && (n<=NUMBER_LIMIT)) {
 
 			//Handle case string include number + characters/symbols, e.g: 123abc
 			char *temp_string_number;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 			int str_size = strlen(argv[1]);
 			if (str_size == strlen(temp_string_number))	printf("sum from 0 to %d: %lu\n", n, calculation(n));
 			else printf("Entered number include invalid string or symbol: %s\n", argv[1]);
-		} else if (n >= NUMBER_LIMIT) printf("Program doesn't support calculation with number > limit number\n");
+		} else if (n > NUMBER_LIMIT) printf("Program doesn't support calculation with number > limit number %d\n", NUMBER_LIMIT);
 		else if (n < 0) printf("User has entered negative number: %s\n", argv[1]);	
 		else printf("User has entered invalid number: %s\n", argv[1]);
 	} else {
