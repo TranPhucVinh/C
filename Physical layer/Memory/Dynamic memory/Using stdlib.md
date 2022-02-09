@@ -89,6 +89,14 @@ int main(){
 		}	
 	}
     printf("%d\n", int_array[2][3]);
+    
+        //Free all allocated memory location of the rows
+	for (int row = 0; row < row_size; row++){
+		free(int_array[row]);
+	}
+
+    //Finally free the memory location of the int_array
+    free(int_array);
 }
 ```
 
