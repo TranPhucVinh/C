@@ -61,9 +61,9 @@ Array:
 
 ```
 {  
-   {0, 1, 2} ,
-   {3, 4, 5} ,
-   {6, 7, 8}
+   {0, 1, 2, 3} ,
+   {4, 5, 6, 7} ,
+   {8, 9, 10, 11}
 };
 ```
 
@@ -71,23 +71,24 @@ Array:
 #include <stdio.h>
 #include <stdlib.h>
 
-#define rowSize 3
-#define columnSize 3
+#define row_size 3
+#define column_size 4
 
 int main(){
-	int **int_array = (int**) malloc(columnSize * sizeof(int*));
+	int **int_array = (int**) malloc(row_size * sizeof(int*));
 
-	for (int row = 0; row < rowSize; row++){
-		int_array[row] = (int*) malloc(columnSize * sizeof(int));
+	for (int row = 0; row < row_size; row++){
+		int_array[row] = (int*) malloc(column_size * sizeof(int));
 	}
 
 	int index = 0;
-	for (int row = 0; row < rowSize; row++){
-		for (int column = 0; column < columnSize; column++){
+	for (int row = 0; row < row_size; row++){
+		for (int column = 0; column < column_size; column++){
 			int_array[row][column] = index;
 			index += 1;
 		}	
 	}
+    printf("%d\n", int_array[2][3]);
 }
 ```
 
