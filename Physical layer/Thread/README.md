@@ -23,7 +23,8 @@ The following Linux-specific features are also per-thread:
 
 The flow of that example:
 
-Execute thread 1 (``pthread_join()``) -> Perform program operation behind ``pthread_join()``.
+* **Step 1**: Execute thread 1 (``pthread_join()``)
+* **Step 2**: Perform program operation behind ``pthread_join()``
 
 If the thread is an infinite loop, the program operation behind ``pthread_join()`` can't be reached.
 
