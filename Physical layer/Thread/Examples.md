@@ -1,6 +1,4 @@
-### Example 1
-
-Create a thread to print out a string
+## Create a thread to print out a string
 
 ```c
 #include <stdio.h>
@@ -51,9 +49,10 @@ void *func_thread_1(void *ptr){
 	printf("Parameter is %d\n", *((int*)ptr));//56
 }
 ```
-Get return from a thread and store to a variable:
 
-Using pointer of pointer:
+## Get return from a thread and store to a variable
+
+**Using pointer of pointer**
 
 ```c
 int main()
@@ -73,7 +72,7 @@ void *func_thread_1(void *ptr){
 }
 ```
 
-Using pointer:
+**Using pointer**
 
 ```c
 int *thread_1_return;
@@ -109,9 +108,7 @@ void *func_thread_1(void *ptr){
 }
 ```
 
-### Example 2
-
-Enter value for struct member using thread 
+### Enter value for struct member using thread 
 
 ```cpp
 #include <stdio.h>
@@ -146,9 +143,7 @@ void *start_routine_thread(void *ptr){
 	fgets(databaseNode0.stringValue, 50, stdin); //fgets allow to enter value with space
 }
 ```
-### Example 3
-
-Sharing values between 2 threads
+### Sharing values between 2 threads
 
 ```c
 #include<stdio.h>
@@ -162,8 +157,8 @@ int main(void){
 	int start_routine_thread_return_1, start_routine_thread_return_2;
 	pthread_t start_routine_thread_id_1, start_routine_thread_id_2;//pointer thread for HTTP client
 
-	start_routine_thread_return_1 = pthread_create(&start_routine_thread_id_1, NULL, start_routine_thread_1, NULL);//HTTP client thread
-    start_routine_thread_return_2 = pthread_create(&start_routine_thread_id_2, NULL, start_routine_thread_2, NULL);//HTTP client thread
+	start_routine_thread_return_1 = pthread_create(&start_routine_thread_id_1, NULL, start_routine_thread_1, NULL);
+    start_routine_thread_return_2 = pthread_create(&start_routine_thread_id_2, NULL, start_routine_thread_2, NULL);
 
 	pthread_join(start_routine_thread_id_1, NULL);
     pthread_join(start_routine_thread_id_2, NULL);
