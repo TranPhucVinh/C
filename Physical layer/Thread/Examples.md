@@ -83,6 +83,8 @@ printf("value: %d\n", *thread_1_return);//123
 
 To get return value from multiple threads:
 
+Using pointer:
+
 ```c
 int main()
 {  
@@ -99,6 +101,41 @@ int main()
 	printf("value: %d\n", *thread_2_return);//123
 	free(thread_1_return);
 	free(thread_2_return);
+}
+
+void *func_thread_1(void *ptr){
+	int *number = (int*) malloc (sizeof(int));
+    *number = 123;
+	return number;
+}
+```
+
+Using pointer to pointer:
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+
+void *func_thread_1(void *ptr);
+
+int main()
+{  
+    int **thread_1_return, **thread_2_return;
+    thread_1_return = (int**)malloc(sizeof(int*));
+    thread_2_return = (int**)malloc(sizeof(int*));
+
+	pthread_t thread_1, thread_2;
+
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_create(&thread_2, NULL, func_thread_1, NULL);
+
+	pthread_join(thread_1, (void**)thread_1_return);
+	pthread_join(thread_2, (void**)thread_2_return);
+    printf("value: %d\n", **thread_1_return);//123
+	printf("value: %d\n", **thread_2_return);//123
+	free(*thread_1_return);
+	free(*thread_2_return);
 }
 
 void *func_thread_1(void *ptr){

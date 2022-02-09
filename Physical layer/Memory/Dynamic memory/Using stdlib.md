@@ -8,7 +8,7 @@ void *malloc(size_t size)
 
 ``malloc()`` returns a pointer to the allocated memory. The value is stored in **Heap memory**.
 
-Size of the variable allocated by ``malloc()`` can't be get as there is no portable way to find out the size of a malloc'ed block.
+Size of the variable allocated by ``malloc()`` can't be gotten as there is no portable way to find out the size of a malloc'ed block.
 
 **String**
 
