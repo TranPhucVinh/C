@@ -14,17 +14,17 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 
-``test.o`` is the object file built from ``test.c``.
+``loadable_kernel_module.o`` is the object file built from ``loadable_kernel_module.c``.
 
 Then simply run the Makefile with ``make``
 
-``test.ko`` files along with other files will appear.
+``loadable_kernel_module.ko`` files along with other files will appear.
 
-To insert the module: ``insmod test.ko``. After inserting, module ``test`` will be available in ``/sys/module``.
+To insert the module: ``insmod loadable_kernel_module.ko``. After inserting, module ``loadable_kernel_module`` will be available in ``/sys/module``.
 
-To remove the module: ``rmmod test.ko``
+To remove the module: ``rmmod loadable_kernel_module.ko``
 
-View module information: ``modinfo test.ko``
+View module information: ``modinfo loadable_kernel_module.ko``
 
 ### Examples
 
@@ -32,7 +32,7 @@ View module information: ``modinfo test.ko``
 
 **Result**
 
-Run ``dmesg|grep`` to detect what is printed to the kernel log ``printk()``.
+Run ``dmesg|grep loadable_kernel_module`` to detect what is printed to the kernel log ``printk()``.
 
 **Notice**: Without ``MODULE_LICENSE("GPL")`` there will be warning
 
