@@ -22,6 +22,23 @@ int main(){
 
 ``1 2``
 
+**static variable** can be shared normally between headers files and source files.
+
+``head.h``
+
+```c
+#include <stdio.h>
+static int a = 10;
+```
+``main.c``
+```c
+#include "head.h"
+
+int main(){ 
+    printf("a: %d", a);
+}
+```
+
 ### static function
 
 **Static functions** are not visible outside of the object file they are defined in.
