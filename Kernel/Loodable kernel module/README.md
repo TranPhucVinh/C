@@ -60,7 +60,11 @@ static inline exitcall_t __exittest(void)       \
 void cleanup_module(void) __attribute__((alias(#exitfn)));
 ```
 
-### printk() and log level
+### printk()
+
+All ``printk()`` messages are printed to the kernel log buffer.
+
+Log level
 
 | Name| Alias function |
 | ------- |:------:|
