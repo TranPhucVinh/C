@@ -34,6 +34,8 @@ AND 00001000
 
 ## NOT operator !
 
+Change the whole value from ``0`` to ``1`` and ``diffrent from 0`` to ``0``:
+
 ```c
 int a = 100;
 int b = 0;
