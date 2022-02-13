@@ -83,6 +83,10 @@ If a function is called 20 times, only 1 copy of that function will be used insi
 
 It depends on execution times and program size requirement to choose between macro and function.
 
+### Using macro to define
+
+Check [Using macro to define](https://github.com/TranPhucVinh/C/blob/master/Introduction/Macro/Using%20macro%20to%20define.md)
+
 ## Stringizing operator (#)
 
 The # operator turns the argument it precedes into a quoted string. 
