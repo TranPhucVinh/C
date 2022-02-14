@@ -10,7 +10,7 @@ To remove the character device: ``sudo rm /dev/character_device_name``
 
 * ``character_device_operation.c``: Operation with character device
 
-To send data to the character device: ``echo "Hello, World !" > /dev/character_device_name``
+To send data to the character device: ``echo "Hello, World !" > /dev/character_device_name``. As sending the data from user space (using ``echo``) to kernel space (print out with ``printk()``, use ``copy_from_user()`` to get that data from the user space).
 
 **Error**: If ``dev_write()`` function return 0, there will be error as using ``echo`` to send data will result in the infinite loop.
 

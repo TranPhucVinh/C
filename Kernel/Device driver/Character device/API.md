@@ -86,4 +86,4 @@ struct file_operations {
 ```
 ## linux/cdev.h
 
-* ``copy_from_user()``
+* ``copy_from_user()``: Copy a block of data from user space, with less checking.
