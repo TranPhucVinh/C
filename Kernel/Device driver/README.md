@@ -9,6 +9,14 @@ User space applications are not allowed to access peripheral registers, storage 
 
 Device drivers can be kernel modules or statically built into the kernel image. The default kernel builds most drivers into the kernel statically, so they are started automatically. A kernel module is not necessarily a device driver; it is an extension of the kernel. The kernel modules are loaded into virtual memory of the kernel. Building a device driver as a module makes the development easier since it can be loaded, tested, and unloaded without rebooting the kernel. The kernel modules are usually located in ``/lib/modules/<kernel_version>/`` on the root filesystem.
 
+![](https://github.com/TranPhucVinh/Kicad/blob/master/Images/device_driver.png)
+
+A device driver has 3 sides:
+
+* One side talk to the rest of the kernel.
+* One talk to the hardware
+* One talk to the user
+
 ## Character Drivers
 
 Linux requires a mechanism to transfer data from the kernel to user space. This transfer of data is handled via device nodes, which are also known as virtual files.
