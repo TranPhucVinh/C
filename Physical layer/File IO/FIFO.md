@@ -1,3 +1,9 @@
+# Fundamental concepts
+
+A named pipe (also known as a **FIFO** for its behavior) is an extension to the traditional pipe concept on Unix and Unix-like systems, and is one of the methods of inter-process communication (IPC).
+
+# Examples
+
 ## Example 1
 
 Create a FIFO
