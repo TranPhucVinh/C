@@ -30,6 +30,8 @@ int fd = int open(const char *path, int mode)
 
 (1): If path is a ``FIFO``, ``block file`` or ``character special file``, ``O_NONBLOCK`` will open and read/write file without blocking
 
+**Return**: ``fd`` if file successfully opened or ``-1`` if error open, e.g: file not exist
+
 ### creat()
 
 ```c
