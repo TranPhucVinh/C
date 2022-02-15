@@ -19,7 +19,7 @@ To remove the character device: ``sudo rm /dev/character_device_name``
 * Send data to the character device
 * Read response data from character device
 
-## Send data to the character device
+### Send data to the character device
 
 * Change permission of the character device: ``sudo chmod 777 /dev/character_device_name``
 * Then ``echo "Hello, World !" > /dev/character_device_name``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``, use ``copy_from_user()`` to get that data/string from the user space.
@@ -45,7 +45,7 @@ ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t 
 
 This happen as the write system call (``dev_write()``) returns to userspace with ``0``. However, since your userspace code is using ``stdio``, then your userspace code tries the write again, assuming the system call simply didn't write out all the data. If you return the length of the input, then stdio will know all the data was written.
 
-## Read response data from character device
+### Read response data from character device
 
 In terminal (userspace): Use ``cat /dev/character_device_name`` to read the reponse string sent from kernel space.
 
