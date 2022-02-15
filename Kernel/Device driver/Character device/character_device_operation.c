@@ -4,6 +4,9 @@
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
 
+#define DEVICE_NAME					"fops_character_device"
+#define DEVICE_CLASS				"fops_device_class"
+
 MODULE_LICENSE("GPL");
 
 dev_t dev_id;
@@ -36,10 +39,18 @@ int dev_close(struct inode *inodep, struct file *filep)
 	return 0;
 }
 
+
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
-	printk("read\n");
-	return 0;
+	/*
+		Must have \n for proper sending as user read with cat /dev/character_device
+		without \n, cat /dev/character_device will read empty
+	*/
+	char responsed_string[] = "Response string from kernel space to user space\n";
+	int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
+	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
+	else printk("%d bytes could not be send\n", bytes_response);
+	return sizeof(responsed_string);
 }
 
 char data[100];
@@ -47,7 +58,7 @@ ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t 
 {
 	memset(data, 0, sizeof(data));
 	copy_from_user(data, buf, len);
-	printk("write data: %s\n", data);
+	printk("String read from userspace: %s\n", data);
 	return sizeof(data);
 }
 
@@ -68,8 +79,8 @@ int device_init(void)
 	character_device->dev = dev_id;
 
 	cdev_add(character_device, dev_id, 1);
-	device_class = class_create(THIS_MODULE, "fops_device_class");
-	device = device_create(device_class, NULL, dev_id, NULL, "fops_character_device");
+	device_class = class_create(THIS_MODULE, DEVICE_CLASS);
+	device = device_create(device_class, NULL, dev_id, NULL, DEVICE_NAME);
 
 	return 0;
 }

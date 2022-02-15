@@ -84,6 +84,21 @@ struct file_operations {
     int (*release) (struct inode *, struct file *);
 };
 ```
+
+``file_operations write()`` function pointer mapped to the write operation from user space to kernel space, e.g ``echo "Data" > /dev/character_device_name`` 
+
+``file_operations read()`` function pointer mapped to the read operation as kernel space response data to user space and userspace read that responsed data by ``cat /dev/character_device_name``
+
 ## linux/cdev.h
 
 * ``copy_from_user()``: Copy a block of data from user space, with less checking.
+
+```c
+unsigned long __copy_to_user (	void __user * to, const void * from, unsigned long n);
+```
+
+* ``void __user * to``: Destination address, in user space.
+* ``const void * from``: Source address, in kernel space.
+* ``unsigned long n``: Number of bytes to copy.
+
+Returns number of bytes that could not be copied. On success, this will be zero.
