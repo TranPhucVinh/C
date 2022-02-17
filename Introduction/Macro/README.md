@@ -134,6 +134,7 @@ The ``##`` pre-processing operator performs token pasting. When a macro is expan
 #include <stdio.h>
 
 #define number_cat(a,b) a##b
+#define double_cat(a,b,c) a##b##c
 #define string_cat(c,d) c##d
 
 int main(){
@@ -141,6 +142,7 @@ int main(){
    char cd[] = "Hello";
    printf("%d\n", number_cat(x,y));//10
    printf("%d\n", number_cat(1,2));//12
+   printf("%d\n", double_cat(1,2,3));//123
    printf("%s\n", string_cat(c,d));//Hello
    return 0;
 }
