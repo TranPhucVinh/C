@@ -94,9 +94,7 @@ The # operator turns the argument it precedes into a quoted string.
 ```c
 #define RETURN_STRING(displayedString) #displayedString
 
-char text[20];
-strcpy(text, RETURN_STRING(Hello World !));
-printf("%s\n", text);//Hello World !
+printf("%s\n", RETURN_STRING(Hello World !));//Hello World !
 ```
 
 Definition with ``#`` doesn't support space and sensitive character like ``,``, ``;`` or ``!``.
