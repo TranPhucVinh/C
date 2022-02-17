@@ -147,3 +147,22 @@ int main(){
    return 0;
 }
 ```
+**Error**
+
+```c
+#define number_cat(a,b) a##b
+
+printf("%d\n", number_cat(number_cat(1,2), 2));//Error
+```
+
+This will give error:
+
+```
+test.c:6:44: error: pasting ")" and "2" does not give a valid preprocessing token
+    printf("%d\n", number_cat(number_cat(1,2), 2));
+test.c:6:44: error: ‘number_cat’ was not declared in this scope
+    printf("%d\n", number_cat(number_cat(1,2), 2));
+                                            ^
+```
+
+That happen as ``number_cat(number_cat(1,2), 2) = 1##2##2``. ``1##2##2`` is not defined.
