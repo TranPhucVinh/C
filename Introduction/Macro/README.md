@@ -125,3 +125,22 @@ printf("%s\n", HELLO_WORLD);//HELLO_WORLD
 ```
 error: invalid conversion from ‘const char*’ to ‘int’ [-fpermissive]
 ```
+
+## Token-pasting operator (##)
+
+The ``##`` pre-processing operator performs token pasting. When a macro is expanded, the two tokens on either side of each ``##`` operator are combined into a single token, which then replaces the ``##`` and the two original tokens in the macro expansion.
+
+```c
+#include <stdio.h>
+
+#define number_cat(a,b) a##b
+#define string_cat(c,d) c##d
+
+int main(){
+   int xy = 10;
+   char cd[] = "Hello";
+   printf("%d\n", number_cat(x,y));
+   printf("%s\n", string_cat(c,d));
+   return 0;
+}
+```
