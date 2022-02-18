@@ -198,7 +198,7 @@ int main(){
 	*ptr = 0;
 }
 ```
-This program gives warning on ``GCC``:
+This program gives warning on ``GCC`` (but ``value`` can still be changed from ``32`` to ``0``)
 
 ```
 warning: initialization discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
@@ -210,6 +210,9 @@ This program gives error on ``G++``:
 error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
    int *ptr = &value;
 ```
+
+Then do optimization in the above program: ``gcc -O test.c`` (same for ``-O1``, ``-O2``, ``-O3``), the warning and result still be like compiling with ``gcc test.c``. Notice that those compilation process are executed on Ubuntu 16.04.
+
 **Problem solved**: Use ``(int*)`` and ``volatile``
 
 ```c

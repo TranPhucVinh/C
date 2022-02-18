@@ -82,4 +82,8 @@ To compile ``test.c``: `` gcc -I.. -I../test\ 1 test.c``
 
 ``-D``: Define flag
 
-Predefine during compilation with -D flag: Check ``Introduction/Header and Macro/Macro.md``.
+Predefine during compilation with -D flag: Check [Macro document: Using macro to define](https://github.com/TranPhucVinh/C/blob/master/Introduction/Macro/Using%20macro%20to%20define.md).
+
+## Optimizations
+
+Optimizations flags: ``-O``, ``-O1``, ``-O2``, ``-O3``.
