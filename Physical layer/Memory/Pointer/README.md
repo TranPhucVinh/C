@@ -137,7 +137,9 @@ char *test = "1";
 printf("%d", sizeof(test)); //8
 ```
 
-## pointer to const
+## Pointer and const
+
+### pointer to const
 
 String declaration with pointer is highly recommended to use ``const char*``:
 
@@ -162,7 +164,7 @@ pointer = &b;
 printf("pointer: %d\n", *pointer);//20
 ```
 
-## const pointer
+### const pointer
 
 A const pointer doesn't allow the pointer to change the address at later state of the program.
 
@@ -181,4 +183,28 @@ printf("%d\n", *pointer);//2
 
 //Setting pointer to other address now give compilation error in GCC and G++
 //pointer = &b;
+```
+
+## NULL pointer
+
+Null pointer actually means a pointer that does not point to any valid location. We define a pointer to be null when we want to make sure that the pointer does not point to any valid location and not to use that pointer to change anything. If we don't use null pointer, then we can't verify whether this pointer points to any valid location or not.
+
+```c
+int a = 10;
+
+int main () {
+	int *ptr = NULL;
+	ptr = &a;
+	printf("%d",  *ptr);//10
+}   
+```
+
+**Error**: If get ``*ptr`` after declaring NULL, there will segment fault error
+
+```c
+int a = 10;
+int *ptr = NULL;
+printf("%d",  *ptr);//Segment fault
+ptr = &a;
+printf("%d",  *ptr);
 ```
