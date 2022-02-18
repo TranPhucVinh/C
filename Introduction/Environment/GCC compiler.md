@@ -1,10 +1,10 @@
 GCC is a compiler system that supporting various programming languages.
 
+``gcc main.c``: Compile, assemble and link source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
+
 ``gcc -S main.c``: Build C source code (High level language) to assembly code, the output file will be ``main.s``
 
 ``gcc -o main main.c``: Specify the executable output file as ``main``. To run: ``./main``
-
-``gcc main.c``: Compile, assemble and link source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
 
 ### For object file
 
@@ -20,7 +20,7 @@ GCC is a compiler system that supporting various programming languages.
 
 ``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``
 
-### External library
+## External libraries
 
 To compile with an external library ``gcc main.c -l<external-library-name>``
 
@@ -30,7 +30,7 @@ To compile with mupltiples header files
 
 ``gcc -o outputFile main.c other.c etc.c``
 
-### GCC flags
+### Include files
 
 ``-I``: include files
 
@@ -78,10 +78,8 @@ int main(){
 
 To compile ``test.c``: `` gcc -I.. -I../test\ 1 test.c``
 
+## Predefine
+
 ``-D``: Define flag
 
-Predefine during compilation with -D flag: Check ``Introduction/Header and Macro/Macro.md``
-
-## On Windows
-
-For GCC build on Windows, install ``TDM-GCC-64``.
+Predefine during compilation with -D flag: Check ``Introduction/Header and Macro/Macro.md``.
