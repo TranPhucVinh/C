@@ -6,6 +6,41 @@ GCC is a compiler system that supporting various programming languages.
 
 ``gcc -o main main.c``: Specify the executable output file as ``main``. To run: ``./main``
 
+To compile with multiple files (with or even without header file): ``gcc main.c file_1.c file_2.c``
+
+Compile with multiple files when there is no header file:
+
+``head.c``
+
+```c
+#include <stdio.h>
+
+void display_string(){
+	printf("Hello\n");
+}
+```
+``main.c``
+```c
+#include <stdio.h>
+
+int main(){ 
+    display_string();
+}
+```
+Compile: ``gcc main.c head.c``
+
+This gives warning but work normally:
+```
+main.c:4:5: warning: implicit declaration of function ‘display_string’ [-Wimplicit-function-declaration]
+     display_string();
+```
+Compile those files on G++ gives error: ``gcc main.c head.c``
+
+```
+main.c:4:19: error: ‘display_string’ was not declared in this scope
+     display_string();
+```
+
 ### For object file
 
 ``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``.
@@ -25,10 +60,6 @@ GCC is a compiler system that supporting various programming languages.
 To compile with an external library ``gcc main.c -l<external-library-name>``
 
 E.g: ``gcc httpClient.c -lcurl``
-
-To compile with mupltiples header files
-
-``gcc -o outputFile main.c other.c etc.c``
 
 ### Include files
 
