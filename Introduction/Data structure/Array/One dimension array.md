@@ -4,7 +4,7 @@
 
 On stack memory:
 
-* Create array: ``create_array.c``
+* Create array and manually enter the value for each array member: ``create_array.c``
 * Create new member from index: ``create_new_member.c``
 
 On heap memory: 

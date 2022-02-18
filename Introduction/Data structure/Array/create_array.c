@@ -1,14 +1,19 @@
 #include <stdio.h>
 
-main() {
-	int i, n, array[100];
-	printf("Enter the number of members: ");
-	scanf("%d", &n);
-	printf("Enter the value of each member: ");
-	for (i = 0; i < n; i++){
+void set_value_for_array(int *array, int n){
+	for (int i=0;i<n;i++){
+		printf("Enter value array[%d]:",i );
 		scanf("%d", &array[i]);
 	}
-	for (i=0; i < n; i++){
+}
+void main() {
+	int n;
+	printf("enter number n:");
+	scanf("%d", &n);
+	int array[n];
+	set_value_for_array(array, n);
+
+	for (int i=0; i < n; i++){
 		printf("Value of member %d is %d \n", i, array[i]);
 	}
 }
