@@ -1,9 +1,21 @@
 ## Wild pointer
 
-### Wrong declaration and operation that must be avoided
+A pointer that is not initialized to any valid address or NULL is considered as **wild pointer**. Wild pointer point to some arbitrary memory location and may cause a program to crash or behave badly.
 
 ```c
-int *number = 12;
+int main()
+{
+  int *p;  /* wild pointer */
+   /* Some unknown memory location is being corrupted. 
+   This should never be done. */ 
+  *p = 12; 
+}
+```
+
+This is a wrong declaration and operation that must be avoided:
+
+```c
+int *number = 12;//Wild pointer
 printf("*number: %d", *number);//Segmentation fault (core dumped)
 printf("number: %d", number);//12
 ```

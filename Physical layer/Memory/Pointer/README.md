@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
 
 ### Types of pointer
 
-Check ![types of pointer document]()
+Check ![types of pointer document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
 
 ### Size of the pointer variable.
 
