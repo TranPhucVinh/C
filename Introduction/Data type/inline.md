@@ -1,6 +1,6 @@
 ## inline
 
-Inline Function are those function whose definitions are small and be substituted at the place where its function call is happened. Function substitution is totally compiler choice. The argument passing and stack maintenance is skipped and it results in faster code execution, but it increases code size, particularly if the inline function is large or one inline function is used often
+**Inline function** are those function whose definitions are small and be substituted at the place where its function call is happened. Function substitution is totally compiler choice. The argument passing and stack maintenance is skipped and it results in faster code execution, but it increases code size, particularly if the inline function is large or one inline function is used often
 
 ```c
 #include <stdio.h>
