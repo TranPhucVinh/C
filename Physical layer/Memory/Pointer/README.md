@@ -184,6 +184,11 @@ printf("%d\n", *pointer);//2
 //Setting pointer to other address now give compilation error in GCC and G++
 //pointer = &b;
 ```
+### Const pointer to a const interger
+
+```c
+int const * a const;
+```
 
 ## NULL pointer
 
