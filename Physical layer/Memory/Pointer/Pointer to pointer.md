@@ -3,15 +3,18 @@ Pointer to pointer is also known as double pointer.
 ### Create
 
 ```c
-int number1 = 9;
+#include <stdio.h>
 
-int *ptr = &number1;
-int **pptr = &ptr;
+int number = 9;
+
+int *pointer = &number;
+int **double_pointer = &pointer;
 
 int main(){
-  printf("ptr: %p \n", ptr);
-  printf("pptr: %p \n", pptr);
-  printf("**pptr: %d \n", **pptr); //9
+	printf("*pointer: %d \n", *pointer);//9
+	printf("Address of pointer: %p \n", &pointer);//0x601040
+	printf("double_pointer: %p \n", double_pointer);//0x601040
+	printf("**double_pointer: %d \n", **double_pointer);//9
 }
 ```
 
