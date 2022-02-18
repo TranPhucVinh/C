@@ -45,6 +45,23 @@ void change_value(struct databaseNode node){
    strcpy(node.stringValue, "Change string");
 }
 ```
+**Problem solved**: Using struct pointer
+
+```c
+void change_value(struct databaseNode *node);
+
+main(){
+	struct databaseNode node = {1, "String value"};
+   printf("before: id is %d and string value is %s \n", node.id, node.stringValue);
+	change_value(&node);
+   printf("after: id is %d and string value is %s \n", node.id, node.stringValue);
+}
+
+void change_value(struct databaseNode *node){
+	node->id = 100;
+   strcpy(node->stringValue, "Changed string");
+}
+```
 ### struct function
 
 ```c
