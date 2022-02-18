@@ -1,4 +1,4 @@
-A pointer of type void (e.g ``void *pointerName``) represents the address of an object, but not its type. With ``void*``, you can cast the type of this pointer to any other type.
+A pointer of type void (e.g ``void *pointerName``) represents the address of an object, but not its type, i.e it points to a variable that can be of any type. With ``void*``, you can cast the type of this pointer to any other type.
 
 ```c
 #include <stdio.h>
