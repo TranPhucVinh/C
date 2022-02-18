@@ -1,4 +1,4 @@
-### Function pointer
+### Declare function pointer
 
 ```c
 #include <stdio.h>
