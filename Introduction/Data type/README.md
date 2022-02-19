@@ -25,6 +25,10 @@ int number = 4E2;
 printf("%d\n", pid);//400
 ```
 
+### Endianness
+
+**Endianness** is the order or sequence of bytes of a word of digital data in computer memory. Endianness is primarily expressed as **big-endian (BE)** or **little-endian (LE)**. A big-endian system stores the most significant byte of a word at the smallest memory address and the least significant byte at the largest. A little-endian system, in contrast, stores the least-significant byte at the smallest address.
+
 ### const
 
 ``const`` is used to define constant variable and can't be changed
