@@ -102,7 +102,7 @@ int main()
 	printf("Sum from 1 to %d: %d", number, sum_of_numbers(number));
 }
 ```
-**Compile**:
+**Compile**: This give warning in GCC
 
 ```c
 test.c: In function ‘main’:
@@ -114,6 +114,9 @@ test.c:8:41: note: in expansion of macro ‘sum_of_numbers’
 ```
 
 **Result**: ``Sum from 1 to 1: 1``
+
+This program gives error in G++: ``error: ‘sum_of_numbers’ was not declared in this scope``
+
 ## Stringizing operator (#)
 
 The # operator turns the argument it precedes into a quoted string. 
