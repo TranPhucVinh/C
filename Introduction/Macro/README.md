@@ -1,13 +1,15 @@
 ## Introduction 
 
 ````c
-#define PRINT_HELLO_WORLD printf("Hello, World !")
 #define a 		6
 #define b    	(10)
+#define RETURN_INT() 		10
+#define PRINT_HELLO_WORLD printf("Hello, World !")
 
 printf("%d \n", a);//6
-PRINT_HELLO_WORLD;//Hello, World !
 printf("%d \n", b);//10
+PRINT_HELLO_WORLD;//Hello, World !
+printf("%d \n", RETURN_INT());//10
 ````
 
 Using ``\`` to add a new line when define macro
@@ -18,6 +20,19 @@ Using ``\`` to add a new line when define macro
 
 printf("%lf", PI);
 ```
+**Can't use return in macro function**:
+
+```c
+#define RETURN_INT() return 10 //This is wrong and must not be done
+```
+
+Error:
+
+```
+test.c:6:24: error: expected primary-expression before ‘return’
+ #define RETURN_INT()   return 10;
+```
+
 **Can't get address of macros by &**
 
 Macros are never allocated a memory. Before the code is compiled, the compiler does a text search in the file and replace all Macros with their value.
