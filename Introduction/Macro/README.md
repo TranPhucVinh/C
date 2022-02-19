@@ -22,7 +22,7 @@ printf("%lf", PI);
 
 Macros are never allocated a memory. Before the code is compiled, the compiler does a text search in the file and replace all Macros with their value.
 
-### Macro functions with arguments
+## Macro functions with arguments
 
 ```c
 #define defineFunction(a) a+1
@@ -87,6 +87,33 @@ It depends on execution times and program size requirement to choose between mac
 
 Check [Using macro to define](https://github.com/TranPhucVinh/C/blob/master/Introduction/Macro/Using%20macro%20to%20define.md)
 
+### Can't use recursive in macro
+
+This example with recursive function for sum from 1 to n results in failure operation:
+
+```c
+#include <stdio.h>
+
+#define sum_of_numbers(number) (number = 1) ? 1 : number + sum_of_numbers(number - 1)
+
+int main()
+{  
+	int number = 20;
+	printf("Sum from 1 to %d: %d", number, sum_of_numbers(number));
+}
+```
+**Compile**:
+
+```c
+test.c: In function ‘main’:
+test.c:3:60: warning: implicit declaration of function ‘sum_of_numbers’ [-Wimplicit-function-declaration]
+ #define sum_of_numbers(number) (number = 1) ? 1 : number + sum_of_numbers(numbe
+                                                            ^
+test.c:8:41: note: in expansion of macro ‘sum_of_numbers’
+  printf("Sum from 1 to %d: %d", number, sum_of_numbers(number));
+```
+
+**Result**: ``Sum from 1 to 1: 1``
 ## Stringizing operator (#)
 
 The # operator turns the argument it precedes into a quoted string. 
