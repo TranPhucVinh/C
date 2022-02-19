@@ -40,6 +40,12 @@ Short hand
 ```c
 variable = (condition) ? expressionTrue : expressionFalse;
 ```
+Example:
+
+```c
+int number = 20;
+number = 20 ? printf("true") : printf("false");
+```
 
 ## return
 
