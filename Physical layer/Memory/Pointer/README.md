@@ -9,7 +9,7 @@ A pointer is a variable that stores address of other variable. All the pointer s
 * ``&``: get the address of the variable
 * ``%p``: is used to print out the address as it can print out the hex value.
 
-## Declare pointer variable
+## Declare pointer
 
 ```c
 int *intPointer; //pointer to integer
@@ -38,6 +38,35 @@ void foo(uintptr_t &object_ptr)
 }
 ```
 
+**Address of function**
+
+```c
+void displayString(){
+	printf("Hello, World !\n");
+}
+
+int main(int argc, char *argv[]) {
+	printf("%d\n", displayString);//Has same value with  &displayString
+	printf("%d\n", &displayString);//Has same value with displayString
+}	
+```
+
+### Size of the pointer variable.
+
+To get size of the pointer variable, use ``sizeof()``. Size of the pointer variable doesn't depend on its type as it stores the address of other variable and address of a variable has ``int`` type. So size of a pointer variable is ``int``.
+
+In 64-bit computer
+
+```c
+int a;
+sizeof(&a); //8
+```
+
+```c
+char *test = "1";
+printf("%d", sizeof(test)); //8
+```
+
 ### Get value of pointer
 
 ```c
@@ -56,6 +85,8 @@ printf("Value *pointer is %d \n", *pointer); //9
 
 **Note**: ``*&a`` is ``a``.
 
+### Set value with pointer
+
 Set value for a variable by pointer:
 
 ```c
@@ -65,35 +96,31 @@ int *pointer = &number;
 printf("number: %d\n", number);//190
 ```
 
-Address of function:
+Set value at specific register address:
+
+E.g: Set value at register address ``6295624``
 
 ```c
-void displayString(){
-	printf("Hello, World !\n");
-}
+#include <stdio.h>
 
-int main(int argc, char *argv[]) {
-	printf("%d\n", displayString);//Has same value with  &displayString
-	printf("%d\n", &displayString);//Has same value with displayString
-}	
+int *ptr;
+
+int main() 
+{
+	ptr = (int *)6295624; 
+	*ptr = 12;
+	printf("*ptr: %d", *ptr);//12
+	return 0;
+}
 ```
 
-### Types of pointer
+**Note**: The compiler for that program to work properly is a pure ANSI compiler. For GCC, register address can't be set abritrarily. To work with the program above with the address like ``6295624``, the address ``6295624`` must be the GCC allowable address. User must find the allowable address first with ``&`` for a dummy variable. E.g:
+
+```c
+int dummy_variable;
+printf("%d", &pdummy_variable);//print out the address of dummy_variable first to find the allowable address
+```
+
+## Types of pointer
 
 Check ![types of pointer document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
-
-### Size of the pointer variable.
-
-To get size of the pointer variable, use ``sizeof()``. Size of the pointer variable doesn't depend on its type as it stores the address of other variable and address of a variable has ``int`` type. So size of a pointer variable is ``int``.
-
-In 64-bit computer
-
-```c
-int a;
-sizeof(&a); //8
-```
-
-```c
-char *test = "1";
-printf("%d", sizeof(test)); //8
-```
