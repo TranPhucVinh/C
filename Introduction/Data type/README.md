@@ -29,6 +29,23 @@ printf("%d\n", pid);//400
 
 **Endianness** is the order or sequence of bytes of a word of digital data in computer memory. Endianness is primarily expressed as **big-endian (BE)** or **little-endian (LE)**. A big-endian system stores the most significant byte of a word at the smallest memory address and the least significant byte at the largest. A little-endian system, in contrast, stores the least-significant byte at the smallest address.
 
+Program to determine if a machine is LE or BE:
+
+```c
+#include <stdio.h>
+
+int main() 
+{
+   unsigned int i = 1;
+   char *c = (char*)&i;
+   if (*c) printf("Little endian");
+   else printf("Big endian");
+   return 0;
+}
+```
+
+**Explain**: This program casts the address of a variable from 2 byte (unsigned int) to 1 byte (char). If the machine is LE then ``*c`` will get the value of ``i`` normally. If the machine is BE then the value of ``i`` is stored in the largest memory. That largest memory location will then be lost after casting from unsigned int to char and ``*c`` won't have the proper value of ``i``.
+
 ### const
 
 ``const`` is used to define constant variable and can't be changed
