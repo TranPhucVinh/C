@@ -33,6 +33,14 @@ int main(){
 
 Negative number results in true condition.
 
+## if else
+
+Short hand
+
+```c
+variable = (condition) ? expressionTrue : expressionFalse;
+```
+
 ## return
 
 The ``return`` statement stops the execution of a function and returns a value from that function.
