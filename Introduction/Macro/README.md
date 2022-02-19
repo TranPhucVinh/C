@@ -71,7 +71,29 @@ Line 2
 7
 ```
 
-**Macro function side effect**
+### Using if else inside macro function
+
+To use if else, the macro fucntion must be the expression, which is ``({ })``
+
+```c
+#include <stdio.h>
+
+//return_number now works as return keyword like in normal function
+#define INT_NUMBER(number) 		({\
+	int return_number;\
+	if (number == 10) return_number = 123;\
+	else return_number = 456;\
+	return_number;\ 
+})
+
+int main()
+{  
+	int number = 10;
+	printf("%d \n", INT_NUMBER(number));//123
+}
+```
+
+### Macro function side effect
 
 ```c
 #define SQUARE(x) (x*x)
@@ -88,7 +110,7 @@ Problem solve:
 printf("square(%d) = %d", 3, SQUARE(1+2));//9
 ```
 
-**Choosing between macro and function**
+### Choosing between macro and function
 
 Macro create the inline code which will the shorten the execution time of the program, while the function takes longer time to execute.
 
