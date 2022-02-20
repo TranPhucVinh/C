@@ -14,6 +14,13 @@ When a new process is created, it is assigned the next sequentially available pr
 
 Once it has reached ``32,767``, the process ID counter is reset to 300, rather than 1. This is done because many low-numbered process IDs are in permanent use by system processes and daemons, and thus time would be wasted searching for an unused process ID in this range.
 
+### Stages of a Linux process
+
+* Waiting: Process wait for resource
+* Running: Process is currently being executed
+* Stopped: Process is stopped after successful execution
+* Zombie: Process has stopped but still active in the process table
+
 ## Jobs
 
 A job is a process that the shell manages. Each job is assigned a sequential job ID. Because a job is a process, each job has an associated PID. There are three types of job statuses:
