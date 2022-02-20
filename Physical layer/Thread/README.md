@@ -1,5 +1,9 @@
 # Fundamental concepts
 
+In computer science, a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system.
+
+## POSIX threads
+
 ``pthreads``: POSIX threads
 
 Compile: ``gcc test.c -lpthread``
