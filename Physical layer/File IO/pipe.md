@@ -6,6 +6,8 @@ int pipe(int fd[2]);
 
 ``pipe()`` create a one-way communication channel (pipe). If successful, 2 file descriptors are stored in ``fd``. ``fd[1]`` is used for writting, ``fd[0]`` is used for reading.
 
+``pipe()`` is a system call that can only be used for communication inside a process or between the parent and child process. ``pipe()`` can't be used for communication between 2 seperated process like ``a1.out`` and ``a2.out``.
+
 **Return**
 
 * ``0``: success
