@@ -52,10 +52,11 @@ int main(int argc, char *argv[]){
 
     //Client handler
     while(1){
-        recv(client_fd, buffer, BUFFSIZE, 0);
-        printf("Received message: %s", buffer);
-
-        bzero(buffer, BUFFSIZE);         //Delete buffer
+        int bytes_received = recv(client_fd, buffer, BUFFSIZE, 0);
+        if (bytes_received) {
+            printf("Received message: %s", buffer);
+            bzero(buffer, BUFFSIZE);         //Delete buffer
+        }
         
         // n = read(client_fd, buffer, 1024);
         // printf("%s\n", buffer);
