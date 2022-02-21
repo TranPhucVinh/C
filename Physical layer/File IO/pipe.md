@@ -1,3 +1,5 @@
+## API
+
 ```c
 int pipe(int fd[2]);
 ```
@@ -13,7 +15,9 @@ If a process tries to read before something is written to the pipe, the process 
 
 ## Examples
 
-**Example 1**: Write value to ``fd[1]`` and read from ``fd[0]``
+### Example 1: Communicate inside 1 process
+
+Write value to ``fd[1]`` and read from ``fd[0]``
 
 ```c
 #include <stdio.h>
@@ -58,3 +62,6 @@ int main(int argc, char *argv[])  {
 	printf("Data from fd[0]: %s\n", receivedString);
 }
 ```
+### Example 2: Communicate between parent and child process
+
+[Check fork example with pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/pipe%20examples.md)
