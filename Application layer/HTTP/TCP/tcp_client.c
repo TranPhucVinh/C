@@ -5,7 +5,7 @@
 #include <string.h>     /* for memset() */
 #include <unistd.h>     /* for close() */
 
-#define HOST "192.168.107.219"
+#define HOST "127.0.0.1"
 #define PORT 8000
 
 #define BUFFSIZE 256
@@ -18,8 +18,7 @@ void error(const char *msg){
     exit(0);
 }
  
-int main(){
-
+void socket_parameter_init(){
     serv_addr.sin_family      = PF_INET;
     serv_addr.sin_addr.s_addr = inet_addr(HOST);          
     serv_addr.sin_port        = htons(PORT);
@@ -33,7 +32,11 @@ int main(){
     if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<0){
         error("ERROR connecting");
     } else printf("connect to server success \n");
+}
 
+int main(){
+    socket_parameter_init();
+    
     // Send data
     while(1){
         printf("message: ");

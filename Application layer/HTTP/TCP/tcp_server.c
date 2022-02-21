@@ -19,9 +19,8 @@ void error(const char *msg){
     perror(msg);
     exit(0);
 }
- 
-int main(int argc, char *argv[]){
 
+void socket_parameter_init(){
     //Create socket server
     if ((server_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0){
         error("ERROR opening socket");
@@ -49,7 +48,11 @@ int main(int argc, char *argv[]){
 
     //Delete buffer
     bzero(buffer, BUFFSIZE);
+}
 
+int main(int argc, char *argv[]){
+    socket_parameter_init();
+    
     //Client handler
     while(1){
         int bytes_received = recv(client_fd, buffer, BUFFSIZE, 0);
