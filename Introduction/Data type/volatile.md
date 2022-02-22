@@ -2,7 +2,11 @@
 
 The ``volatile`` keyword is intended to prevent the compiler from applying any optimizations on objects that can change in ways that cannot be determined by the compiler. Objects declared as volatile are omitted from optimization because their values can be changed by code outside the scope of current code at any time.
 
-Volatile keyword is useful for memory-mapped peripheral registers, global variables modified by an interrupt service routine, global variables accessed by multiple tasks within a multi-threaded application
+Volatile keyword is useful for:
+
+* Memory-mapped peripheral registers
+* Global variables modified by an interrupt service routine
+* Global variables accessed by multiple tasks within a multi-threaded application
 
 ### Applications
 
