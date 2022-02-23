@@ -25,92 +25,7 @@ int number = 4E2;
 printf("%d\n", pid);//400
 ```
 
-### Endianness
-
-**Endianness** is the order or sequence of bytes of a word of digital data in computer memory. Endianness is primarily expressed as **big-endian (BE)** or **little-endian (LE)**. A big-endian system stores the most significant byte of a word at the smallest memory address and the least significant byte at the largest. A little-endian system, in contrast, stores the least-significant byte at the smallest address.
-
-Program to determine if a machine is LE or BE:
-
-```c
-#include <stdio.h>
-
-int main() 
-{
-   unsigned int i = 1;
-   char *c = (char*)&i;
-   if (*c) printf("Little endian");
-   else printf("Big endian");
-   return 0;
-}
-```
-
-**Explain**: This program casts the address of a variable from 2 byte (unsigned int) to 1 byte (char). If the machine is LE then ``*c`` will get the value of ``i`` normally. If the machine is BE then the value of ``i`` is stored in the largest memory. That largest memory location will then be lost after casting from unsigned int to char and ``*c`` won't have the proper value of ``i``.
-
-### const
-
-``const`` is used to define constant variable and can't be changed
-
-E.g: ``const int a = 19``
-
-To change ``const`` variable: ``Pointer/Examples.md`` -> ``Example 1.3: Change value of a variable with pointer``
-
-Local ``const`` variable inside a function is fine and gives no issue:
-
-```c
-#include <stdio.h>
-
-int const_test(int a){
-    const int b = a;
-    return b;
-}
-
-int main(int argc, char *argv[]) {
-    printf("%d\n", const_test(1));//1
-    printf("%d\n", const_test(2));//2
-    printf("%d\n", const_test(3));//3
-}
-```
-
-### auto
-
-``auto`` is used to defined local variable
-
-```c
-void printFunction(){
-	int auto a = 19;
-	printf("%d ", a);
-}
-```
-
-### extern
-
-``extern`` variables are also known as global variables, they are variables defined outside any function block. 
-
-Access global variable if there is a local variable with same name:
-
-```c
-int x = 50; // Global x
- 
-int main()
-{
-    int x = 10; // Local x
-    {
-        extern int x;
-        printf("Value of global x is %d\n", x);
-    }
-    printf("Value of local x is %d\n", x);
-    return 0;
-}
-```
-**Note**
-Must have ``{}``, without ``{}`` there will be error 
-
-```
-error: extern declaration of ‘x’ follows declaration with no linkage
-         extern int x;
-```
-
-### sizeof()
+## sizeof()
 
 Return the amount of memory allocated to that data type in **byte**.
 
@@ -142,3 +57,32 @@ sizeof: 12 (3 int number has total 12 byte)
 sizeof: 1 
 sizeof: 14
 ```
+
+## Endianness
+
+**Endianness** is the order or sequence of bytes of a word of digital data in computer memory. Endianness is primarily expressed as **big-endian (BE)** or **little-endian (LE)**. A big-endian system stores the most significant byte of a word at the smallest memory address and the least significant byte at the largest. A little-endian system, in contrast, stores the least-significant byte at the smallest address.
+
+Program to determine if a machine is LE or BE:
+
+```c
+#include <stdio.h>
+
+int main() 
+{
+   unsigned int i = 1;
+   char *c = (char*)&i;
+   if (*c) printf("Little endian");
+   else printf("Big endian");
+   return 0;
+}
+```
+
+**Explain**: This program casts the address of a variable from 2 byte (unsigned int) to 1 byte (char). If the machine is LE then ``*c`` will get the value of ``i`` normally. If the machine is BE then the value of ``i`` is stored in the largest memory. That largest memory location will then be lost after casting from unsigned int to char and ``*c`` won't have the proper value of ``i``.
+
+## Keywords
+
+* const
+* auto
+* extern
+
+Check keywords document for more information.
