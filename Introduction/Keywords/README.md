@@ -1,3 +1,11 @@
+Available keywords:
+
+* const
+* auto
+* extern
+* inline
+* static
+
 # const
 
 ``const`` is used to define constant variable and can't be changed

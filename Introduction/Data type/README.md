@@ -78,11 +78,3 @@ int main()
 ```
 
 **Explain**: This program casts the address of a variable from 2 byte (unsigned int) to 1 byte (char). If the machine is LE then ``*c`` will get the value of ``i`` normally. If the machine is BE then the value of ``i`` is stored in the largest memory. That largest memory location will then be lost after casting from unsigned int to char and ``*c`` won't have the proper value of ``i``.
-
-## Keywords
-
-* const
-* auto
-* extern
-
-Check keywords document for more information.
