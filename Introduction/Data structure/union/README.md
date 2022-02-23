@@ -24,6 +24,23 @@ printf("str: %s \n", data.str);//str: hello
 
 **Exlain**: Variable f corrupt because the final value assigned to the variable has occupied the memory location and this is the reason that the value of str member is getting printed very well.
 
+When setting the value with smaller data type like below, that smaller data type won't be affected:
+
+```c
+#include <stdio.h>
+
+union data {
+   int int_value;
+   char char_value;
+} data; 
+
+int main (){
+   data.int_value = 19;
+   printf("%d", data.int_value);//19
+   printf("%d", data.char_value);//19
+}
+```
+
 ### Problem solved
 
 ```c
