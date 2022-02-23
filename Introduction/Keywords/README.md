@@ -3,8 +3,10 @@ Available keywords:
 * const
 * auto
 * extern
-* inline
-* static
+* [inline](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/inline.md)
+* [static](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/static.md)
+* [typedef](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/typedef.md)
+* [volatile](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/volatile.md)
 
 # const
 
