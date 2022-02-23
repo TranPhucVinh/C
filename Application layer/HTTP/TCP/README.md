@@ -10,3 +10,5 @@
 * ``tcp-server.c``
 
 TCP client sends the entered string to TCP server. TCP server can't receive the message from one more TCP client.
+
+TCP sockets program can be used to inter process communication.
