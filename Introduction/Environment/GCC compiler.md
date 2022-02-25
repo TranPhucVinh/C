@@ -1,8 +1,8 @@
 GCC is a compiler system that supporting various programming languages.
 
-``gcc main.c``: Compile, assemble and link source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
+# Build source file
 
-``gcc -S main.c``: Build C source code (High level language) to assembly code, the output file will be ``main.s``
+``gcc main.c``: Build the whole source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
 
 ``gcc -o main main.c``: Specify the executable output file as ``main``. To run: ``./main``
 
@@ -40,20 +40,6 @@ Compile those files on G++ gives error: ``gcc main.c head.c``
 main.c:4:19: error: ‘display_string’ was not declared in this scope
      display_string();
 ```
-
-### For object file
-
-``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``.
-
-**Notice**: Only a ``.c`` file result in a ``.o`` file
-
-``gcc -c test1.c test2.c`` results in ``test.o`` and ``test1.o``.
-
-**Notice**: Cannot specify -o with -c, -S or -E with multiple files
-
-``gcc -c test.c test1.c -o test.o`` will be error
-
-``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``
 
 ## External libraries
 
@@ -118,3 +104,21 @@ Predefine during compilation with -D flag: Check [Macro document: Using macro to
 ## Optimizations
 
 Optimizations flags: ``-O``, ``-O1``, ``-O2``, ``-O3``.
+
+# Specific steps inside build process
+
+``gcc -S main.c``: Compile source file into assembly code, the output file will be ``main.s``
+
+### Compile and assemble
+
+``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``.
+
+**Notice**: Only a ``.c`` file result in a ``.o`` file
+
+``gcc -c test1.c test2.c`` results in ``test.o`` and ``test1.o``.
+
+**Notice**: Cannot specify -o with -c, -S or -E with multiple files
+
+``gcc -c test.c test1.c -o test.o`` will be error
+
+``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``
