@@ -1,8 +1,8 @@
 Available keywords:
 
-* const
-* auto
-* extern
+* [const](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#const)
+* [auto](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#auto)
+* [extern](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#extern)
 * [inline](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/inline.md)
 * [static](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/static.md)
 * [typedef](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/typedef.md)
