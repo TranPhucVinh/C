@@ -221,3 +221,7 @@ int main(){
 	printf("Subtract 2 numbers: %d\n", databaseNode0.subtract_function_pointer(12, 120));
 }
 ```
+
+# Memory problem with struct
+
+Check ``Overflow memset()`` in ``Physical layer/Memory/memset.md``

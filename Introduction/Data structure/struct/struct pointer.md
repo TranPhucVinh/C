@@ -1,10 +1,6 @@
-### Memory problem with struct
-
-Check ``Overflow memset()`` in ``Physical layer/Memory/memset.md``
-
 ### struct pointer
 
-Create a struct pointer
+Create a struct pointer: Use a struct pointer object to set value for a struct object
 
 ```c
 #include <stdio.h>
@@ -26,9 +22,9 @@ int main()
     printf("Enter int value: ");
     scanf("%d", &databaseNodePtr->intValue);
 
-    printf("databaseNode:\n");
-    printf("ID: %d\n", databaseNodePtr->id);
-    printf("intValue: %d", databaseNodePtr->intValue);
+    printf("databaseNode1:\n");
+    printf("ID: %d\n", databaseNode1.id);
+    printf("intValue: %d\n", databaseNode1.intValue);
 
     return 0;
 }
