@@ -1,6 +1,6 @@
 ## Fundamental concepts
 
-[Fundamental concepts]()
+Check [Fundamental concepts document](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Fundamental%20concepts.md)
 
 ### Other definitions
 
@@ -11,5 +11,5 @@
 
 ## Examples
 
-* [Examples]()
-* [Use struct for string parsing]()
+* [Examples](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/struct/Examples)
+* [Use struct for string parsing](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Examples/Use%20struct%20for%20string%20parsing.md)

@@ -174,3 +174,7 @@ int main()
 Member databaseNode0 has id 1
 ID of databaseNode0 from linkedDatabaseNode is 2, and the displayed string: Displayed string
 ```
+
+## Use struct for string parsing
+
+Check [Use struct for string parsing document](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Examples/Use%20struct%20for%20string%20parsing.md)
