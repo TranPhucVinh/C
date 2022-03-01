@@ -123,4 +123,4 @@ printf("%d", &pdummy_variable);//print out the address of dummy_variable first t
 
 ## Types of pointer
 
-Check ![types of pointer document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
+Check [types of pointer document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
