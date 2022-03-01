@@ -1,6 +1,6 @@
 ### Build a struct
 
-Struct as data type
+Struct as data type and create an object from that struct
 
 ```c
 #include <stdio.h>
@@ -22,7 +22,7 @@ int main(){
 }
 ```
 
-Can define value like this way:
+Can define an object value like this way:
 ```c
 struct struct_data_type value_0 = {
 	.id = 0,
@@ -35,25 +35,17 @@ This compile normally on GCC but gives error in G++:
 error: C99 designator ‘stringValue’ outside aggregate initializer
 };
 ```
-
-### Object from struct
-
-Set up value for struct's member
+Or by this way:
 
 ```c
-#include <stdio.h>
-#include <string.h> // for strcpy
-
 struct databaseNode {
 	int id;
 	char stringValue[50];
 } databaseNode0;
 
-main(){
-	strcpy(databaseNode0.stringValue, "Name"); //to set variable with char in struct
-	databaseNode0.id = 2;
-	printf("Member databaseNode0 has id %d with string value %s \n", databaseNode0.id, databaseNode0.stringValue);
-}
+strcpy(databaseNode0.stringValue, "Name"); //to set variable with char in struct
+databaseNode0.id = 2;
+printf("Member databaseNode0 has id %d with string value %s \n", databaseNode0.id, databaseNode0.stringValue);
 ```
 **Output**
 ```
