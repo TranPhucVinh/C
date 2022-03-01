@@ -1,4 +1,9 @@
-### struct pointer
+## Syntax
+
+* ``.``: access the instance inside a **struct object**
+* ``->``: used by **pointer struct object** to access the value
+
+## Create a struct pointer
 
 Create a struct pointer: Use a struct pointer object to set value for a struct object
 
@@ -30,9 +35,7 @@ int main()
 }
 ```
 
-Problem solved with struct pointer: ``Physical layer/Memory/Pointer/struct pointer.md``
-
-### Struct pointer set value issue
+### Set value for struct pointer
 
 ```c
 #include <stdio.h> 
@@ -60,4 +63,50 @@ node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode));
 
 node0->id = 1;
 node0->intValue = 100;
+```
+
+Problem solved with struct pointer: ``Physical layer/Memory/Pointer/struct pointer.md``
+
+## Pass by value and pass by reference with struct pointer
+
+As the issue of **pass by value**, passing a struct by value to a function to change its member value won't give effect:
+
+```c
+#include <stdio.h>
+
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+void change_value(struct databaseNode node);
+
+main(){
+	struct databaseNode node = {1, "String value"};
+   printf("before: id is %d and string value is %s \n", node.id, node.stringValue);//before: id is 1 and string value is String value
+	change_value(node);
+   printf("after: id is %d and string value is %s \n", node.id, node.stringValue);//after: id is 1 and string value is String value 
+}
+
+void change_value(struct databaseNode node){
+	node.id = 100;
+   strcpy(node.stringValue, "Change string");
+}
+```
+**Problem solved**: Using struct pointer
+
+```c
+void change_value(struct databaseNode *node);
+
+main(){
+	struct databaseNode node = {1, "String value"};
+   printf("before: id is %d and string value is %s \n", node.id, node.stringValue);
+	change_value(&node);
+   printf("after: id is %d and string value is %s \n", node.id, node.stringValue);
+}
+
+void change_value(struct databaseNode *node){
+	node->id = 100;
+   strcpy(node->stringValue, "Changed string");
+}
 ```
