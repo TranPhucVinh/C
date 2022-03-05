@@ -117,6 +117,23 @@ printf("Int value: %d \n", *intPointer); //1024
 
 Both ``intPointer`` and ``str`` has overflow its allocated memory (1 byte) but the data is not overflow. That is because ``malloc(size)`` returns a location in memory where at least size bytes are available for you to use. You are likely to be able to write data to a string with ``char[]`` like ``displayedString[size]``, but those bytes may belong to other bits of your program, which will cause problems later in the execution.
 
+Getting the size of a ``malloc()`` string with ``strlen()`` right after it is dynammically allocated **is wrong**.
+
+E.g:
+
+```c
+str = (char *) malloc(15);
+printf("size %d \n", strlen(str)); //0
+```
+
+After setting value:
+
+```c
+str = (char *) malloc(15);
+strcpy(str, "Learn malloc");
+printf("size %d \n", strlen(str)); //12
+```
+
 ### free()
 
 ```c
