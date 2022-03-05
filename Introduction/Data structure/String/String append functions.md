@@ -52,6 +52,21 @@ To use ``strcat()`` in a loop, the ``displayedString`` must have the size which 
 
 Change the size of ``displayedString`` to be bigger: ``char displayedString[30] = "Received from PC: ";``
 
+### Note
+
+Be careful that the appended string will be added right after the ``0`` character (as the NULL delimiter) in the ``dest`` string:
+
+```c
+char hw[10] = {0, 'H','e','l'};
+strcat(hw, "abc");
+printf("%s \n", hw);//abc
+```
+```c
+char hw[10] = {'H','e', 0, 'l'};
+strcat(hw, "abc");
+printf("%s \n", hw);//Heabc
+
+```
 ## strncat()
 
 ```cpp
