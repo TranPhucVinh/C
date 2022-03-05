@@ -52,7 +52,6 @@ int socket_connect(char *host, in_port_t port){
 int main(int argc, char *argv[]){
 	int fd;
     char send_value[100];
-    char https_request[500];
    
     while (1){
         sprintf(send_value, "{'esp-idf-number':%d}", send_number);
