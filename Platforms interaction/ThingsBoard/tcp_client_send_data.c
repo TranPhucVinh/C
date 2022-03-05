@@ -10,11 +10,14 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
-#define BUFFER_SIZE 1024
+#define HOST          "demo.thingsboard.io"
+#define PORT          80
+#define TOKEN         "ky9YeJlntAnb3MzqqEYz"
 
-char HTTP_REQUEST[200] = "POST /api/v1/gG5svlcW9VB5fVQBpCNC/telemetry HTTP/1.1\r\nHost: ";
-char sendValue[100] = "{\"string-value\": \"Hello, World!\"}";
-char stringLength[10];
+char *form_http_request();
+char *form_json_string();
+
+int  send_number = 0;
 
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
@@ -45,37 +48,40 @@ int socket_connect(char *host, in_port_t port){
 
 int main(int argc, char *argv[]){
 	int fd;
-	char buffer[BUFFER_SIZE];
-
-	if(argc < 3){
-		fprintf(stderr, "Usage: %s <hostname> <port>\n", argv[0]);
-		exit(1); 
-	}
-
-	sprintf(stringLength, "%ld", strlen(sendValue));
-	
-	//Form a HTTP request like: "GET / HTTP/1.1\r\n Host: 192.168.0.103\r\n\r\n";
-	strcat(HTTP_REQUEST, argv[1]);
-	strcat(HTTP_REQUEST, "\r\nContent-Type: application/json");
-	strcat(HTTP_REQUEST, "\r\nContent-Length: ");
-	strcat(HTTP_REQUEST, stringLength);
-	strcat(HTTP_REQUEST, "\r\n\r\n");
-	strcat(HTTP_REQUEST, sendValue);
-	strcat(HTTP_REQUEST, "\r\n");
-	
-	puts(HTTP_REQUEST);
-
-	fd = socket_connect(argv[1], atoi(argv[2])); 
-	write(fd, HTTP_REQUEST, strlen(HTTP_REQUEST)); // write(fd, char[]*, len);  
-	bzero(buffer, BUFFER_SIZE);
-	
-	// while(read(fd, buffer, BUFFER_SIZE - 1) != 0){
-	// 	fprintf(stderr, "%s", buffer);
-	// 	bzero(buffer, BUFFER_SIZE);
-	// }
-
-	shutdown(fd, SHUT_RDWR); 
-	close(fd); 
-
+    char send_value[100];
+    char https_request[500];
+   
+    while (1){
+        sprintf(send_value, "{'esp-idf-number':%d}", send_number);
+        fd = socket_connect(HOST, PORT);
+        char *http_request = form_http_request(send_value);
+        printf("%s\n", http_request);
+        write(fd, http_request, strlen(http_request)); // write(fd, char[]*, len);  
+        shutdown(fd, SHUT_RDWR); 
+        close(fd); 
+        send_number += 1;
+        sleep(1);
+    }
 	return 0;
+}
+
+char *form_http_request(char *data){
+	static char http_request[500];
+    char string_length[11];
+    sprintf(string_length, "%ld", strlen(data));
+
+    bzero(http_request, sizeof(http_request));
+    strcat(http_request, "POST /api/v1/");
+    strcat(http_request, TOKEN);
+    strcat(http_request, "/telemetry HTTP/1.1\r\n");
+    strcat(http_request, "Host: ");
+    strcat(http_request, HOST);
+    strcat(http_request, "\r\n");
+    strcat(http_request, "Content-Type: application/json\r\n");
+    strcat(http_request, "Content-Length: ");
+    strcat(http_request, string_length);
+    strcat(http_request, "\r\n\r\n");
+    strcat(http_request, data);
+
+	return http_request;
 }
