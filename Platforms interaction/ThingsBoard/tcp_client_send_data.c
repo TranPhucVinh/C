@@ -13,6 +13,9 @@
 #define HOST          "demo.thingsboard.io"
 #define PORT          80
 #define TOKEN         "ky9YeJlntAnb3MzqqEYz"
+#define BUFFSIZE        256
+
+char    response_buffer[BUFFSIZE];
 
 char *form_http_request();
 char *form_json_string();
@@ -22,7 +25,7 @@ int  send_number = 0;
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
 	struct sockaddr_in addr;
-	int on = 1, sock;     
+	int sock;     
 
 	if((hp = gethostbyname(host)) == NULL){
 		herror("gethostbyname");
@@ -56,11 +59,18 @@ int main(int argc, char *argv[]){
         fd = socket_connect(HOST, PORT);
         char *http_request = form_http_request(send_value);
         printf("%s\n", http_request);
-        write(fd, http_request, strlen(http_request)); // write(fd, char[]*, len);  
+        write(fd, http_request, strlen(http_request));
+
+        while(read(fd, response_buffer, BUFFSIZE - 1) != 0){
+            fprintf(stderr, "%s\n", response_buffer);
+            bzero(response_buffer, BUFFSIZE);
+            break;
+	    }
+
         shutdown(fd, SHUT_RDWR); 
         close(fd); 
         send_number += 1;
-        sleep(1);
+        sleep(3);
     }
 	return 0;
 }
