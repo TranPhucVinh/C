@@ -57,22 +57,22 @@ int socket_connect(char *host, in_port_t port){
 int main(int argc, char *argv[]){
 	int fd;
    
-    while (1){
-        fd = socket_connect(HOST, PORT);
-        char *http_request = form_http_request();
-        printf("Request: %s\n", http_request);
-        write(fd, http_request, strlen(http_request));
+	fd = socket_connect(HOST, PORT);
+	char *http_request = form_http_request();
+	printf("Request: %s\n", http_request);
+	write(fd, http_request, strlen(http_request));
 
-        while(read(fd, response_buffer, BUFFSIZE - 1) != 0){
-            fprintf(stderr, "Response: %s\n", response_buffer);
-            bzero(response_buffer, BUFFSIZE);
-            break;
-	    }
+	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
+	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
+	while(read(fd, response_buffer, BUFFSIZE) != 0) {
+		break;
+	}
 
-        shutdown(fd, SHUT_RDWR); 
-        close(fd); 
-        sleep(3);
-    }
+	shutdown(fd, SHUT_RDWR); 
+	close(fd); 
+
+	printf("%s", response_buffer);
+
 	return 0;
 }
 
@@ -105,7 +105,6 @@ char *form_http_request(){
 	strcat(http_request, " HTTP/1.1\r\nHost: ");
 	strcat(http_request, HOST);
 	strcat(http_request, "\r\nContent-Type: application/json");
-    strcat(http_request, "\r\nAccept: application/json");
     strcat(http_request, "\r\nContent-Length: ");
     strcat(http_request, data_length);
     strcat(http_request, "\r\n\r\n");
