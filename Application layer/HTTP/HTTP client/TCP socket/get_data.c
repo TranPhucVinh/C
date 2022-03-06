@@ -5,9 +5,13 @@
 #include <sys/socket.h> //for listen(), send() and recv()
 #include <netdb.h>
 
+#define HOST "example.com"
+#define PORT 80
+#define PATH "/"
+
 #define BUFFER_SIZE 1024
 
-char HTTP_REQUEST[100] = "GET / HTTP/1.1\r\nHost: ";
+char *form_http_request();
 
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
@@ -40,27 +44,36 @@ int main(int argc, char *argv[]){
 	int fd;
 	char buffer[BUFFER_SIZE];
 
-	if(argc < 3){
-		fprintf(stderr, "Usage: %s <hostname> <port>\n", argv[0]);
-		exit(1); 
-	}
+    while (1){
 
-	//Form a HTTP request like: "GET / HTTP/1.1\r\n Host: 192.168.0.103\r\n\r\n";
-	strcat(HTTP_REQUEST, argv[1]);
-	strcat(HTTP_REQUEST, "\r\nConnection: close");
-	strcat(HTTP_REQUEST, "\r\n\r\n");
+        fd = socket_connect(HOST, PORT); 
+        char *http_request = form_http_request();
 
-	fd = socket_connect(argv[1], atoi(argv[2])); 
-	write(fd, HTTP_REQUEST, strlen(HTTP_REQUEST)); // write(fd, char[]*, len);  
-	bzero(buffer, BUFFER_SIZE);
-	
-	while(read(fd, buffer, BUFFER_SIZE - 1) != 0){
-		fprintf(stderr, "%s", buffer);
-		bzero(buffer, BUFFER_SIZE);
-	}
+        write(fd, http_request, strlen(http_request)); // write(fd, char[]*, len);  
+        bzero(buffer, BUFFER_SIZE);
+        
+        while(read(fd, buffer, BUFFER_SIZE - 1) != 0){
+            fprintf(stderr, "%s", buffer);
+            bzero(buffer, BUFFER_SIZE);
+        }
 
-	shutdown(fd, SHUT_RDWR); 
-	close(fd); 
-
+        shutdown(fd, SHUT_RDWR); 
+        close(fd); 
+        
+        sleep(1);
+    }
 	return 0;
+}
+
+char *form_http_request(){
+	static char http_request[500];
+
+	bzero(http_request, sizeof(http_request));
+	strcat(http_request, "GET ");
+	strcat(http_request, PATH);
+	strcat(http_request, " HTTP/1.0\r\nHost:");
+	strcat(http_request, HOST);
+	strcat(http_request, "\r\nConnection: close\r\n\r\n");
+
+	return http_request;
 }

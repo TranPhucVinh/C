@@ -2,7 +2,7 @@
 
 ## HTTP request
 
-* GET request to a HTTP server like ``example.com`` or local HTTP server: ``get_data.c``
+* GET request ``example.com``: ``get_data.c``
 * Send data to a local HTTP server: ``send_data.c``
 
 ## HTTPS request
