@@ -25,7 +25,7 @@ char    response_buffer[BUFFSIZE];
 char *form_http_request();
 char *form_json_string();
 
-int  send_number = 0;
+const cJSON *token, *refreshToken;
 
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]){
    
 	fd = socket_connect(HOST, PORT);
 	char *http_request = form_http_request();
-	printf("Request: %s\n", http_request);
+	// printf("Request: %s\n", http_request);
 	write(fd, http_request, strlen(http_request));
 
 	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
@@ -71,7 +71,42 @@ int main(int argc, char *argv[]){
 	shutdown(fd, SHUT_RDWR); 
 	close(fd); 
 
-	printf("%s", response_buffer);
+	//response_buffer = HTTP response header + JWT as JSON type
+	char* temp_json_parsed;
+	strtok(response_buffer, "{");
+	temp_json_parsed = strtok(NULL, "}");
+
+	int jwt_json_size = strlen(temp_json_parsed) + 2;//2 for "{"" and "}"
+	char jwt_json[jwt_json_size];
+	bzero(jwt_json, jwt_json_size);
+
+	strcat(jwt_json, "{");
+	strcat(jwt_json, temp_json_parsed);
+	strcat(jwt_json, "}");
+
+	printf("%s\n", jwt_json);
+
+	cJSON *jwt = cJSON_Parse(jwt_json);
+	if (jwt == NULL)
+	{
+		const char *error_ptr = cJSON_GetErrorPtr();
+		if (error_ptr != NULL)
+		{
+			fprintf(stderr, "Error before: %s\n", error_ptr);
+		}
+	}
+
+	token = cJSON_GetObjectItemCaseSensitive(jwt, "token");
+	if (cJSON_IsString(token) && (token->valuestring != NULL))
+	{
+		printf("token: \"%s\"\n", token->valuestring);
+	} else printf("Fail");
+
+	refreshToken = cJSON_GetObjectItemCaseSensitive(jwt, "refreshToken");
+	if (cJSON_IsString(refreshToken) && (refreshToken->valuestring != NULL))
+	{
+		printf("refreshToken: \"%s\"\n", refreshToken->valuestring);
+	} else printf("Fail");
 
 	return 0;
 }

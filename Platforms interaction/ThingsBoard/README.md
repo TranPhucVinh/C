@@ -7,4 +7,4 @@ Send data to ThingsBoard Live Demo HTTP server (not HTTPS):
 
 ## Server side API
 
-Get JWT: ``get_jwt.c``
+Get JWT and parsed into ``token`` and ``refreshToken``: ``get_jwt.c``
