@@ -18,14 +18,26 @@
 #define USER        "tranphucvinh96@gmail.com"
 #define PASSWORD    "iotdev_admin"
 
-#define BUFFSIZE        4096 //Size must be big to get all JWT
+#define BUFFSIZE        	4096 //Size must be big to get all JWT
+#define TOKEN_SIZE			600
+#define REFRESH_TOKEN_SIZE	500 
 
-char    response_buffer[BUFFSIZE];
+char *form_jwt_http_request();
+char *form_login_json_string(char *user, char *password);
+void get_jwt(char *_token, char *_refreshToken, int read_buffer_size);
+int  socket_connect(char *host, in_port_t port);
 
-char *form_http_request();
-char *form_json_string();
+char token[TOKEN_SIZE], refreshToken[REFRESH_TOKEN_SIZE];
 
-const cJSON *token, *refreshToken;
+int main(int argc, char *argv[]){
+	bzero(token, TOKEN_SIZE);
+	bzero(refreshToken, REFRESH_TOKEN_SIZE);
+
+	get_jwt(token, refreshToken, BUFFSIZE);
+	printf("token: %s\n", token);
+	printf("refreshToken: %s\n", refreshToken);
+	return 0;
+}
 
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
@@ -54,17 +66,19 @@ int socket_connect(char *host, in_port_t port){
 	return sock;
 }
 
-int main(int argc, char *argv[]){
-	int fd;
+void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
+	const 	cJSON *token, *refreshToken;
+	char    response_buffer[read_buffer_size];
+	int 	fd;
    
 	fd = socket_connect(HOST, PORT);
-	char *http_request = form_http_request();
-	// printf("Request: %s\n", http_request);
+	char *http_request = form_jwt_http_request();
+	// printf("DEBUG: %s\n", http_request);
 	write(fd, http_request, strlen(http_request));
 
 	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
 	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
-	while(read(fd, response_buffer, BUFFSIZE) != 0) {
+	while(read(fd, response_buffer, read_buffer_size) != 0) {
 		break;
 	}
 
@@ -84,7 +98,7 @@ int main(int argc, char *argv[]){
 	strcat(jwt_json, temp_json_parsed);
 	strcat(jwt_json, "}");
 
-	printf("%s\n", jwt_json);
+	// printf("DEBUG: %s\n", jwt_json);
 
 	cJSON *jwt = cJSON_Parse(jwt_json);
 	if (jwt == NULL)
@@ -99,40 +113,48 @@ int main(int argc, char *argv[]){
 	token = cJSON_GetObjectItemCaseSensitive(jwt, "token");
 	if (cJSON_IsString(token) && (token->valuestring != NULL))
 	{
-		printf("token: \"%s\"\n", token->valuestring);
-	} else printf("Fail");
+		/*
+			strcpy() for char token[TOKEN_SIZE]
+			not _token = token->valuestring -> This will return NULL
+		*/
+		strcpy(_token, token->valuestring);
+	} else printf("Fail to get token");
 
 	refreshToken = cJSON_GetObjectItemCaseSensitive(jwt, "refreshToken");
 	if (cJSON_IsString(refreshToken) && (refreshToken->valuestring != NULL))
 	{
-		printf("refreshToken: \"%s\"\n", refreshToken->valuestring);
-	} else printf("Fail");
-
-	return 0;
+		/*
+			strcpy() for refreshToken[REFRESH_TOKEN_SIZE]
+			not refreshToken = refreshToken->valuestring -> This will return NULL
+		*/
+		strcpy(_refreshToken, refreshToken->valuestring);
+	} else printf("Fail to get refreshToken");
 }
 
-char *form_json_string(){
+char *form_login_json_string(char *user, char *password){
     cJSON *json = cJSON_CreateObject();
-    cJSON *user = NULL, *password = NULL;
+    cJSON *_user = NULL, *_password = NULL;
 
     if (json == NULL) return NULL;
 
-    user = cJSON_CreateString(USER);
-    if (user == NULL) return NULL;
+    _user = cJSON_CreateString(user);
+    if (_user == NULL) return NULL;
 
-    password = cJSON_CreateString(PASSWORD);
-    if (password == NULL) return NULL;
+    _password = cJSON_CreateString(password);
+    if (_password == NULL) return NULL;
 
-    cJSON_AddItemToObject(json, "username", user);
-    cJSON_AddItemToObject(json, "password", password);
+    cJSON_AddItemToObject(json, "username", _user);
+    cJSON_AddItemToObject(json, "password", _password);
     char *jsonString = cJSON_Print(json);//Form a JSON string with cJSON_Print()
     return jsonString;
 }
 
-char *form_http_request(){
+char *form_jwt_http_request(){
 	static char http_request[500];
     char data_length[11];
-    sprintf(data_length, "%ld", strlen(form_json_string()));
+	char *login_json_string = form_login_json_string(USER, PASSWORD);
+
+    sprintf(data_length, "%ld", strlen(login_json_string));
 
 	bzero(http_request, sizeof(http_request));
 	strcat(http_request, "POST ");
@@ -143,7 +165,7 @@ char *form_http_request(){
     strcat(http_request, "\r\nContent-Length: ");
     strcat(http_request, data_length);
     strcat(http_request, "\r\n\r\n");
-    strcat(http_request, form_json_string());
+    strcat(http_request, login_json_string);
 
 	return http_request;
 }
