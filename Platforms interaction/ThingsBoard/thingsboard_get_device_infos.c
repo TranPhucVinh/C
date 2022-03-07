@@ -31,12 +31,16 @@ int main(int argc, char *argv[]){
 	http_response = http_request_for_api_with_jwt(API, "GET", token, BUFFSIZE);
 
 	char *customer_id;
+	char *customer_devices;
 
 	customer_id = get_customer_id(http_response, CUSTOMER_ID_SIZE);
-	get_all_customer_devices(customer_id);
+	customer_devices = get_all_customer_devices(customer_id);
+
+	printf("customer_devices: %s", customer_devices);
 
 	free(http_response);
 	free(customer_id);
+	free(customer_devices);
 
 	return 0;
 }
@@ -88,27 +92,40 @@ char *get_customer_id(char *http_response, int customer_id_size){
 #define GET_DEVICE_INFO		"/api/customer/"
 
 char *get_all_customer_devices(char *customer_id){
-	char    response_buffer[BUFFSIZE];
+	char    *response_buffer;
 	int 	fd;
 
-	printf("%s\n", token);
+	response_buffer = (char*) malloc(BUFFSIZE * sizeof(char));
+	bzero(response_buffer, BUFFSIZE);
 
-	char get_device_info_http_request[500];
-	bzero(get_device_info_http_request, sizeof(get_device_info_http_request));
+	char http_request[1024];//Must be big to store token
+	bzero(http_request, sizeof(http_request));
 
-	strcat(get_device_info_http_request, "GET ");
-	strcat(get_device_info_http_request, GET_DEVICE_INFO);
-	strcat(get_device_info_http_request, customer_id);
-	strcat(get_device_info_http_request, "/deviceInfos?pageSize=");	
-	strcat(get_device_info_http_request, PAGE_SIZE);	
-	strcat(get_device_info_http_request, "&page=");
-	strcat(get_device_info_http_request, PAGE);	
-	strcat(get_device_info_http_request, " HTTP/1.1\r\nHost: ");
-	strcat(get_device_info_http_request, HOST);
-	strcat(get_device_info_http_request, "\r\nContent-Type: application/json");
-    strcat(get_device_info_http_request, "\r\nX-Authorization: Bearer ");
-	strcat(get_device_info_http_request, token);
-	strcat(get_device_info_http_request, "\r\nConnection: close\r\n\r\n");
+	strcat(http_request, "GET ");
+	strcat(http_request, GET_DEVICE_INFO);
+	strcat(http_request, customer_id);
+	strcat(http_request, "/deviceInfos?pageSize=");	
+	strcat(http_request, PAGE_SIZE);	
+	strcat(http_request, "&page=");
+	strcat(http_request, PAGE);	
+	strcat(http_request, " HTTP/1.1\r\nHost: ");
+	strcat(http_request, HOST);
+	strcat(http_request, "\r\nContent-Type: application/json");
+    strcat(http_request, "\r\nX-Authorization: Bearer ");
+	strcat(http_request, token);
+	strcat(http_request, "\r\nConnection: close\r\n\r\n");
 
-	printf("http_request: %s\n", get_device_info_http_request);
+	fd 		= socket_connect();
+	write(fd, http_request, strlen(http_request));
+
+	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
+	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
+	while(read(fd, response_buffer, BUFFSIZE) != 0) {
+		break;
+	}
+
+	shutdown(fd, SHUT_RDWR); 
+	close(fd); 
+
+	return response_buffer;
 }

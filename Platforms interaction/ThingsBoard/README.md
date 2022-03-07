@@ -14,3 +14,5 @@ Get JWT and parsed into ``token`` and ``refreshToken`` with ``thingsboard`` libr
 Read response from ``/api/auth/user``: ``thingsboard_auth_user.c``
 
 Get customer ID: ``thingsboard_get_customer_id.c``
+
+Get customer device infos: ``thingsboard_get_device_infos.c``
