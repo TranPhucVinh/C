@@ -12,3 +12,5 @@ Get JWT and parsed into ``token`` and ``refreshToken``: ``raw_api_get_jwt.c``
 Get JWT and parsed into ``token`` and ``refreshToken`` with ``thingsboard`` library: ``thingsboard_get_jwt.c``
 
 Read response from ``/api/auth/user``: ``thingsboard_auth_user.c``
+
+Get customer ID: ``thingsboard_get_customer_id.c``
