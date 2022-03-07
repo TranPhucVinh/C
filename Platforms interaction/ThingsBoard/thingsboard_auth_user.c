@@ -15,6 +15,8 @@
 
 char token[TOKEN_SIZE], refreshToken[REFRESH_TOKEN_SIZE];
 
+char *http_response = NULL;
+
 int main(int argc, char *argv[]){
 	_server_side_api_param_init(HOST, PORT, LOGIN_PATH, USER, PASSWORD);
 
@@ -25,6 +27,9 @@ int main(int argc, char *argv[]){
 	// printf("debug token: %s\n", token);
 	// printf("debug refreshToken: %s\n", refreshToken);
 
-	http_request_for_api_with_jwt(API, "GET", token, BUFFSIZE);
+	http_response = http_request_for_api_with_jwt(API, "GET", token, BUFFSIZE);
+	printf("%s\n", http_response);
+	free(http_response);
+
 	return 0;
 }

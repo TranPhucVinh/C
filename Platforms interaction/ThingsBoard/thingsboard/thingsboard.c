@@ -88,7 +88,6 @@ char *form_http_request_for_api_with_jwt(char *api, char *_method, char *_token)
 	strcat(http_request, _token);
 	strcat(http_request, "\r\nConnection: close\r\n\r\n");
 	
-	printf("DEBUG %s\n", http_request);
 	return http_request;
 }
 
@@ -155,10 +154,13 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 	} else printf("Fail to get refreshToken");
 }
 
-void http_request_for_api_with_jwt(char *api, char *method, char *_token, int read_buffer_size){
+char *http_request_for_api_with_jwt(char *api, char *method, char *_token, int read_buffer_size){
 	int 	fd;
-	char    response_buffer[read_buffer_size];
+	char    *response_buffer;
 
+	response_buffer = (char*) malloc(read_buffer_size * sizeof(char));
+	bzero(response_buffer, read_buffer_size);
+	
 	fd 		= socket_connect(_host, _port);
 
 	char *http_request = form_http_request_for_api_with_jwt(api, method, _token);
@@ -174,5 +176,5 @@ void http_request_for_api_with_jwt(char *api, char *method, char *_token, int re
 	shutdown(fd, SHUT_RDWR); 
 	close(fd); 
 
-	printf("DEBUG: %s\n", response_buffer);
+	return response_buffer;
 }

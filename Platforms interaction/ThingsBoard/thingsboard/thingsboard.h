@@ -20,5 +20,5 @@ char *form_jwt_http_request();
 char *form_http_request_for_api_with_jwt(char *api, char *_method, char *_token);
 char *form_login_json_string();
 void get_jwt(char *_token, char *_refreshToken, int read_buffer_size);
-void http_request_for_api_with_jwt(char *api, char *method, char *_token, int read_buffer_size);
+char *http_request_for_api_with_jwt(char *api, char *method, char *_token, int read_buffer_size);
 int  socket_connect();
