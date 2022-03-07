@@ -75,7 +75,7 @@ char *form_jwt_http_request(){
 }
 
 char *form_http_request_for_api_with_jwt(char *api, char *_method, char *_token){
-	static char http_request[500];
+	static char http_request[1024];//Must be big to store token
 
 	bzero(http_request, sizeof(http_request));
 	strcat(http_request, _method);
@@ -96,7 +96,7 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 	char    response_buffer[read_buffer_size];
 	int 	fd;
    
-	fd = socket_connect(_host, _port);
+	fd = socket_connect();
 	char *http_request = form_jwt_http_request();
 
 	write(fd, http_request, strlen(http_request));
@@ -160,8 +160,8 @@ char *http_request_for_api_with_jwt(char *api, char *method, char *_token, int r
 
 	response_buffer = (char*) malloc(read_buffer_size * sizeof(char));
 	bzero(response_buffer, read_buffer_size);
-	
-	fd 		= socket_connect(_host, _port);
+
+	fd 		= socket_connect();
 
 	char *http_request = form_http_request_for_api_with_jwt(api, method, _token);
 
