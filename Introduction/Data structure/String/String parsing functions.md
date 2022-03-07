@@ -4,7 +4,7 @@
 char * strtok ( char * str, const char * delimiters );
 ```
 
-A sequence of calls to this function split ``str`` into tokens, which are sequences of contiguous characters separated by ``any of the characters`` that are part of delimiters.
+A sequence of calls to this function split ``str`` into tokens, which are sequences of contiguous characters separated by ``any of the characters`` that are part of delimiters. **delimiters** only accept 1 character, if there is more than 1 character, there will segment fault error.
 
 **On a first call**, the function expects a C string as argument for ``str``, whose first character is used as the starting location to scan for tokens.
 
@@ -19,6 +19,14 @@ char* splitString = "ABCD";
 char* separator;
 separator = strtok(splitString, "C");
 printf("%s", separator); //AB
+```
+
+Passing more then 1 character for delimiters cause segment fault error
+
+```c
+//This is wrong and cause Segment fault error
+char* splitString = "ABCD";
+separator = strtok(splitString, "BC");
 ```
 
 Split string ``This is Hello, World string`` by space
