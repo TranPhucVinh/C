@@ -74,6 +74,24 @@ char *form_jwt_http_request(){
 	return http_request;
 }
 
+char *form_http_request_for_other_api(char *_method, char *api, char *_token){
+	static char http_request[500];
+
+	bzero(http_request, sizeof(http_request));
+	strcat(http_request, _method);
+	strcat(http_request, " ");
+	strcat(http_request, api);
+	strcat(http_request, " HTTP/1.1\r\nHost: ");
+	strcat(http_request, _host);
+	strcat(http_request, "\r\nContent-Type: application/json");
+    strcat(http_request, "\r\nX-Authorization: Bearer ");
+	strcat(http_request, _token);
+	strcat(http_request, "\r\nConnection: close\r\n\r\n");
+	
+	printf("DEBUG %s\n", http_request);
+	return http_request;
+}
+
 void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 	const 	cJSON *token, *refreshToken;
 	char    response_buffer[read_buffer_size];
@@ -81,7 +99,7 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
    
 	fd = socket_connect(_host, _port);
 	char *http_request = form_jwt_http_request();
-	// printf("DEBUG: %s\n", http_request);
+
 	write(fd, http_request, strlen(http_request));
 
 	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
@@ -105,8 +123,6 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 	strcat(jwt_json, "{");
 	strcat(jwt_json, temp_json_parsed);
 	strcat(jwt_json, "}");
-
-	// printf("DEBUG: %s\n", jwt_json);
 
 	cJSON *jwt = cJSON_Parse(jwt_json);
 	if (jwt == NULL)
@@ -137,4 +153,26 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 		*/
 		strcpy(_refreshToken, refreshToken->valuestring);
 	} else printf("Fail to get refreshToken");
+}
+
+void http_request_for_other_api(char *_token, char *api, int read_buffer_size){
+	int 	fd;
+	char    response_buffer[read_buffer_size];
+
+	fd 		= socket_connect(_host, _port);
+
+	char *http_request = form_http_request_for_other_api("GET", api, _token);
+
+	write(fd, http_request, strlen(http_request));
+
+	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
+	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
+	while(read(fd, response_buffer, read_buffer_size) != 0) {
+		break;
+	}
+
+	shutdown(fd, SHUT_RDWR); 
+	close(fd); 
+
+	printf("DEBUG: %s\n", response_buffer);
 }
