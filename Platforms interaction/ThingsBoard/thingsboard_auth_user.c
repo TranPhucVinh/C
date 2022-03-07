@@ -25,6 +25,6 @@ int main(int argc, char *argv[]){
 	// printf("debug token: %s\n", token);
 	// printf("debug refreshToken: %s\n", refreshToken);
 
-	http_request_for_other_api(token, API, BUFFSIZE);
+	http_request_for_api_with_jwt(API, "GET", token, BUFFSIZE);
 	return 0;
 }

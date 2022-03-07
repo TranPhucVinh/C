@@ -74,7 +74,7 @@ char *form_jwt_http_request(){
 	return http_request;
 }
 
-char *form_http_request_for_other_api(char *_method, char *api, char *_token){
+char *form_http_request_for_api_with_jwt(char *api, char *_method, char *_token){
 	static char http_request[500];
 
 	bzero(http_request, sizeof(http_request));
@@ -155,13 +155,13 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 	} else printf("Fail to get refreshToken");
 }
 
-void http_request_for_other_api(char *_token, char *api, int read_buffer_size){
+void http_request_for_api_with_jwt(char *api, char *method, char *_token, int read_buffer_size){
 	int 	fd;
 	char    response_buffer[read_buffer_size];
 
 	fd 		= socket_connect(_host, _port);
 
-	char *http_request = form_http_request_for_other_api("GET", api, _token);
+	char *http_request = form_http_request_for_api_with_jwt(api, method, _token);
 
 	write(fd, http_request, strlen(http_request));
 
