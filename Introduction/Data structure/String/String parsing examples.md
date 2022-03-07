@@ -121,7 +121,7 @@ char *leftString;
 
 int main(int argc, char *argv[]){
     leftString = strstr(displayedString, "or");
-	if (leftString != NULL)	printf("%s\n", leftString);
+	if (leftString != NULL)	printf("%s\n", leftString);//orld !
 	else printf("NULL\n");
 }
 ```
