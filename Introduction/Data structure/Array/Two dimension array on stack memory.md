@@ -1,4 +1,4 @@
-## Create
+# Create
 
 ```c
 int a[3][4] = {  
@@ -35,7 +35,43 @@ printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 
 Get column size: ``sizeof(array[0])/sizeof(array[0][0])``
 
-### Read value from a string array
+### Set and read value for a string array on stack memory
+
+```c
+#include <stdio.h>
+
+#define MEMBER      3
+#define STRING_SIZE 20
+
+char ch_arr[MEMBER][STRING_SIZE];
+
+main() {
+   for (int i=0; i < MEMBER; i++){
+      strcpy(ch_arr[i], "Hello, World !");
+   }
+	for (int i=0; i < MEMBER; i++){
+		printf("char[%i]: %s \n", i, ch_arr[i]);
+	}
+}
+```
+
+**Notice**: ``STRING_SIZE`` must be big enough to store the read string from array, if its size is not enough, there will be overflow error.
+
+```c
+#define STRING_SIZE 10
+```
+
+The result will be: (overflow)
+
+```
+char[0]: Hello, WorHello, WorHello, World ! 
+char[1]: Hello, WorHello, World ! 
+char[2]: Hello, World ! 
+```
+
+# Read
+
+## Read value from a string array
 
 ```c
 #include <stdio.h>
@@ -69,7 +105,7 @@ Read from ``row`` and ``column`` with:
 * ``(*(array+row))[column]``
 * ``*(*(array+row))+column``
 
-## 2D array as a function parameter
+# 2D array on stack memory as a function parameter
 
 ### Using array[row][column]
 
@@ -166,4 +202,4 @@ intArray((int**)int_array);
 
 That happens as arrays decay into pointers once, it doesn't happen recursively. An array of arrays decays into a pointer to an array, not into a pointer to a pointer.
 
-So a 2 dimension array declared by pointer to pointer can be passed into functions, check [2D array as a function parameter in Two dimension array on heap memory]()
+So a 2 dimension array declared by pointer to pointer can be passed into functions, check [2D array as a function parameter in Two dimension array on heap memory](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Array/Two%20dimension%20array%20on%20heap%20memory.md#2d-array-as-a-function-parameter)

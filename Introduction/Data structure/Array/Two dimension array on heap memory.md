@@ -28,6 +28,58 @@ int main(){
 }
 ```
 
+**Create a char pointer with row stored on stack memory and column stored on heap memory**
+
+```c
+char *string_array[3] = {"string 1", "string 2", "string 3"};
+```
+
+This gives no error in GCC and gives warning in G++:
+
+```
+warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+```
+
+```c
+#include <stdio.h>
+
+char *string_array[3] = {"string 1", "string 2", "string 3"};
+
+int main() {
+	for (int i=0; i < 3; i++){
+		printf("string_array[%i]: %s \n", i, string_array[i]);
+	}
+
+	//Get value of index 2
+	printf("string_array[2]: %s\n", *(string_array + 2));
+
+	//Get a character inside the string: 
+	printf("string_array[2][2]: %c\n", (*(string_array + 2))[2]);
+}
+```
+
+Dynamically create:
+
+```c
+#include <stdio.h>
+
+#define STRING_SIZE	10
+#define ARRAY_SIZE	3
+
+char *string_array[ARRAY_SIZE];
+
+int main() {
+	for (int i=0; i < ARRAY_SIZE; i++){
+		string_array[i] = (int*) malloc(ARRAY_SIZE * sizeof(int));
+		strcpy(string_array[i], "Hello, World");
+	}
+
+	for (int i=0; i < ARRAY_SIZE; i++){
+		printf("%s\n", string_array[i]);
+	}
+}
+```
+
 ## 2D array as a function parameter
 
 A 2 dimension array declared by pointer to pointer can be passed into functions:
