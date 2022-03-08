@@ -70,7 +70,7 @@ char *string_array[ARRAY_SIZE];
 
 int main() {
 	for (int i=0; i < ARRAY_SIZE; i++){
-		string_array[i] = (int*) malloc(ARRAY_SIZE * sizeof(int));
+		string_array[i] = (int*) malloc(STRING_SIZE * sizeof(int));
 		strcpy(string_array[i], "Hello, World");
 	}
 
