@@ -65,13 +65,13 @@ File ``json.txt``:
 #define FIELD_NAME		"string"
 
 char *read_file(char *file_name);
-void parse_json(char *jsonString, char *fieldName);
+void parse_string_field(char *jsonString, char *fieldName);
 
 int main(){
-   parse_json(read_file(FILE_NAME), FIELD_NAME);
+   parse_string_field(read_file(FILE_NAME), FIELD_NAME);
 }
 
-void parse_json(char *jsonString, char *fieldName){
+void parse_string_field(char *jsonString, char *fieldName){
    const cJSON *field = NULL;
 
    cJSON *json = cJSON_Parse(jsonString);
