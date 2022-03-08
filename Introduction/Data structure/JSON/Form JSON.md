@@ -45,6 +45,8 @@ Array include JSON:
 }
 ```
 
+To get JSON value inside every member of a JSON array, use ``cJSON_ArrayForEach()``, check ``parse_array_field()`` function inside ``parse_json_by_fields.c`` example for its implementation.
+
 ## Form a JSON string with int array field
 
 ```c
