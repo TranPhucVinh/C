@@ -15,7 +15,7 @@ char *_host, *_login_path;
 int _port;
 char *_user, *_password;
 
-char *_server_side_api_param_init(char *host, int _port, char *login_path, char *user, char *password);
+char *server_side_api_param_init(char *host, int _port, char *login_path, char *user, char *password);
 char *form_jwt_http_request();
 char *form_http_request_for_api_with_jwt(char *api, char *_method, char *_token);
 char *form_login_json_string();

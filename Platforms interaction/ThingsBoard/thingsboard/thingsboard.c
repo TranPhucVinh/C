@@ -1,6 +1,6 @@
 #include "thingsboard.h"
 
-char *_server_side_api_param_init(char *host, int port, char *login_path, char *user, char *password){
+char *server_side_api_param_init(char *host, int port, char *login_path, char *user, char *password){
     _host = host;
     _port = port;
     _login_path = login_path;
