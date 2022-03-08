@@ -1,31 +1,3 @@
-### Define with 2-dimension array
-
-Read value from a string array
-
-```c
-#include <stdio.h>
-
-char string_array[3][10] = {"string 1", "string 2", "string 3"};
-
-int main() {
-	for (int i=0; i < 3; i++){
-		printf("string_array[%i]: %s \n", i, string_array[i]);
-	}
-}
-```
-
-Index of the string can be handled by this way:
-
-```c
-printf("string_array[%i]: %s \n", i, string_array + i);
-```
-
-To get a character inside the string: 
-
-```c
-printf("string_array[0][1]: %c \n", string_array[0][1]); //t
-```
-
 ### Define with char pointer
 
 ```c
