@@ -1,0 +1,87 @@
+{
+  "data": [
+    {
+      "id": {
+        "entityType": "DEVICE",
+        "id": "2a54efc0-9d40-11ec-978d-2f76f8db3781"
+      },
+      "createdTime": 1646565945532,
+      "additionalInfo": {
+        "gateway": false,
+        "overwriteActivityTime": false,
+        "description": "Node device 2"
+      },
+      "tenantId": {
+        "entityType": "TENANT",
+        "id": "4b7b9570-9b1d-11ec-978d-2f76f8db3781"
+      },
+      "customerId": {
+        "entityType": "CUSTOMER",
+        "id": "20f31a90-9c5c-11ec-978d-2f76f8db3781"
+      },
+      "name": "Node device 2",
+      "type": "default",
+      "label": "",
+      "deviceProfileId": {
+        "entityType": "DEVICE_PROFILE",
+        "id": "4b87ca70-9b1d-11ec-978d-2f76f8db3781"
+      },
+      "deviceData": {
+        "configuration": {
+          "type": "DEFAULT"
+        },
+        "transportConfiguration": {
+          "type": "DEFAULT"
+        }
+      },
+      "firmwareId": null,
+      "softwareId": null,
+      "customerTitle": "Tran Phuc Vinh",
+      "customerIsPublic": false,
+      "deviceProfileName": "default"
+    },
+    {
+      "id": {
+        "entityType": "DEVICE",
+        "id": "3da7e3a0-9c5c-11ec-978d-2f76f8db3781"
+      },
+      "createdTime": 1646468052698,
+      "additionalInfo": {
+        "gateway": false,
+        "overwriteActivityTime": false,
+        "description": "Node device 1"
+      },
+      "tenantId": {
+        "entityType": "TENANT",
+        "id": "4b7b9570-9b1d-11ec-978d-2f76f8db3781"
+      },
+      "customerId": {
+        "entityType": "CUSTOMER",
+        "id": "20f31a90-9c5c-11ec-978d-2f76f8db3781"
+      },
+      "name": "Node device 1",
+      "type": "default",
+      "label": "node_device",
+      "deviceProfileId": {
+        "entityType": "DEVICE_PROFILE",
+        "id": "4b87ca70-9b1d-11ec-978d-2f76f8db3781"
+      },
+      "deviceData": {
+        "configuration": {
+          "type": "DEFAULT"
+        },
+        "transportConfiguration": {
+          "type": "DEFAULT"
+        }
+      },
+      "firmwareId": null,
+      "softwareId": null,
+      "customerTitle": "Tran Phuc Vinh",
+      "customerIsPublic": false,
+      "deviceProfileName": "default"
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 2,
+  "hasNext": false
+}
