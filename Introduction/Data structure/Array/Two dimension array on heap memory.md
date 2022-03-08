@@ -80,6 +80,17 @@ int main() {
 }
 ```
 
+
+Or the value can be simply set:
+
+```c
+//Other operations are like above
+for (int i=0; i < ARRAY_SIZE; i++){
+	string_array[i] = "Hello, World";
+}
+//Other operations are like above
+```
+
 ## 2D array as a function parameter
 
 A 2 dimension array declared by pointer to pointer can be passed into functions:
@@ -114,5 +125,31 @@ int main()
 
 void intArray(int **array){
 	printf("array[1][2] %d\n", array[1][2]);
+}
+```
+
+Char pointer array with row stored on stack memory and column stored on heap memory as function argument:
+
+```c
+#include <stdio.h>
+
+#define STRING_SIZE	10
+#define ARRAY_SIZE	3
+
+char *string_array[ARRAY_SIZE];
+void set_value(char *array[ARRAY_SIZE]);
+
+int main() {
+	
+	set_value(string_array);
+	for (int i=0; i < ARRAY_SIZE; i++){
+		printf("%s\n", string_array[i]);
+	}
+}
+
+void set_value(char *array[ARRAY_SIZE]){
+	for (int i=0; i < ARRAY_SIZE; i++){
+		string_array[i] = "set_value";
+	}
 }
 ```
