@@ -14,15 +14,15 @@
 #define REFRESH_TOKEN_SIZE	500 
 
 #define CUSTOMER_ID_SIZE	40
-#define TOTAL_DEVICE_ID		4
+#define TOTAL_DEVICE_ID		10
 
 char token[TOKEN_SIZE], refreshToken[REFRESH_TOKEN_SIZE];
-
+char *device_id_array[TOTAL_DEVICE_ID];
 
 char *http_response = NULL;
 char *get_customer_id(char *http_response, int customer_id_size);
 char *get_all_customer_devices(char *customer_id);
-void parse_array_field(char *json_string, char *field_name);
+int  get_device_id(char *json_string, char *field_name);
 
 int main(int argc, char *argv[]){
 	server_side_api_param_init(HOST, PORT, LOGIN_PATH, USER, PASSWORD);
@@ -43,7 +43,11 @@ int main(int argc, char *argv[]){
 	customer_devices_json = strstr(customer_devices_info, "{\"data\":");
 
 	//Get all existed devices ID
-	parse_array_field(customer_devices_json, "data");
+	int total_device = get_device_id(customer_devices_json, "data");
+
+	for (int i=0; i < total_device; i++){
+		printf("%s\n", device_id_array[i]);
+	}
 
 	free(http_response);
 	free(customer_id);
@@ -137,7 +141,8 @@ char *get_all_customer_devices(char *customer_id){
 	return response_buffer;
 }
 
-void parse_array_field(char *json_string, char *field_name){
+//return total devices that a customer have
+int get_device_id(char *json_string, char *field_name){
 	const cJSON *array_field = NULL;
 	cJSON *json = cJSON_Parse(json_string);
 	cJSON *array_member = NULL;
@@ -160,8 +165,10 @@ void parse_array_field(char *json_string, char *field_name){
 
 			char *device_id_string = cJSON_Print(device_id);
 
-			printf("member %d: %s\n", index, device_id_string);
+			device_id_array[index] = device_id_string;
+			// printf("member %d: %s\n", index, device_id_string);
 			index += 1;
 		}
 	} else printf("Fail");
+	return index;
 }
