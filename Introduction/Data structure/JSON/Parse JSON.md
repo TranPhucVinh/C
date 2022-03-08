@@ -57,39 +57,21 @@ File ``json.txt``:
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <string.h>
 #include "cJSON.h"
 
-#define bufferSize 100
+#define ELEMENT_NUMBERS 1
+#define FILE_NAME		"json.txt"
+#define FIELD_NAME		"string"
 
-char fileName[] = "json.txt";
-char fieldName[] = "string";
-
-char *readBuffer;
-
-void readFile(char *filename, char *readBuffer);
-void parseJSON(char *jsonString, char *fieldName);
+char *read_file(char *file_name);
+void parse_json(char *jsonString, char *fieldName);
 
 int main(){
-   readBuffer = (char*) malloc (bufferSize * sizeof(char));
-   readFile(fileName, readBuffer);  
-   parseJSON(readBuffer, fieldName);
-   // printf("%s", readBuffer); 
+   parse_json(read_file(FILE_NAME), FIELD_NAME);
 }
 
-void readFile(char *filename, char *readBuffer){
-   int fileDescription = open(fileName, O_RDONLY);
-
-   if (readBuffer == NULL) {
-     fprintf(stderr, "Unable to allocate memory for readBuffer\n");
-     return -1;
-   }
-
-   if(fileDescription < 0) return 1;
-
-   read(fileDescription, readBuffer, bufferSize);
-}
-
-void parseJSON(char *jsonString, char *fieldName){
+void parse_json(char *jsonString, char *fieldName){
    const cJSON *field = NULL;
 
    cJSON *json = cJSON_Parse(jsonString);
@@ -107,5 +89,27 @@ void parseJSON(char *jsonString, char *fieldName){
    {
       printf("string: \"%s\"\n", field->valuestring);
    } else printf("Fail");
+}
+
+char *read_file(char *file_name){
+    FILE *fp;
+
+    fp = fopen(file_name, "r");
+    if (fp != NULL) {
+        fseek(fp, 0L, SEEK_END);
+        long file_size = ftell(fp);
+        fseek(fp, 0L, SEEK_SET);
+
+        char *buffer;
+        buffer = (char *) malloc(file_size);
+        bzero(buffer, file_size);//delete garbage value
+
+        fread(buffer, file_size, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*file_size from fp
+        fclose(fp);
+        return buffer;
+   } else {
+       printf("Unable to open file %s", file_name);
+       return "NULL";
+    }
 }
 ```
