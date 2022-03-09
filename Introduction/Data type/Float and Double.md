@@ -98,3 +98,19 @@ int main()
     printf("f4: %.2f\n", f1);//12.34
 }
 ```
+
+### Floating-point remainder
+
+``%`` operator is not used for float number
+
+``fmod``, ``fmodf``, ``fmodl``: floating-point remainder value function
+
+```c
+#include <math.h>
+
+double fmod(double x, double y);
+float fmodf(float x, float y);
+long double fmodl(long double x, long double y);
+```
+
+Compile for ``math.h``: ``gcc test.c -lm``
