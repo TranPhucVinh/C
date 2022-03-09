@@ -27,3 +27,30 @@ int main() {
     return(0);
 }
 ```
+
+Generate a float random number from range:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define LOWER 	35
+#define UPPER	40
+
+void generate_random_number(float lower, float upper)
+{
+	float number = (float)rand()/(float)(RAND_MAX) * (upper- lower) + lower;
+	printf("%f", number);
+}
+  
+// Driver code
+int main()
+{ 
+    srand(time(0));
+  
+    generate_random_number(LOWER, UPPER);
+  
+    return 0;
+}
+```
