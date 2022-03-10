@@ -132,6 +132,8 @@ Char pointer array with row stored on stack memory and column stored on heap mem
 
 ```c
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 #define STRING_SIZE	10
 #define ARRAY_SIZE	3
@@ -140,16 +142,21 @@ char *string_array[ARRAY_SIZE];
 void set_value(char *array[ARRAY_SIZE]);
 
 int main() {
-	
 	set_value(string_array);
 	for (int i=0; i < ARRAY_SIZE; i++){
 		printf("%s\n", string_array[i]);
+	}
+
+    //free memory
+    for (int i=0; i < ARRAY_SIZE; i++){
+		free(string_array[i]);
 	}
 }
 
 void set_value(char *array[ARRAY_SIZE]){
 	for (int i=0; i < ARRAY_SIZE; i++){
-		string_array[i] = "set_value";
+        string_array[i] = (char*) malloc(STRING_SIZE * sizeof(char));
+        strcpy(string_array[i], "set_value");
 	}
 }
 ```
