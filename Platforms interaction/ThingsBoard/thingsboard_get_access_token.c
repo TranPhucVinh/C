@@ -221,14 +221,15 @@ void get_access_token(char *device_id_array[TOTAL_DEVICE_ID], int total_devices)
 
 		int credentials_id_size = strlen(temp_json_parsed) + 1;//1 for "{"
 
-		char credentials_id[credentials_id_size];
+		char *credentials_id = (char*) malloc (credentials_id_size * sizeof(char));
 		bzero(credentials_id, credentials_id_size);
 
 		strcat(credentials_id, "{\"");
 		strcat(credentials_id, temp_json_parsed);
-		//Remove the last 0 character
-		credentials_id[credentials_id_size-1] = 0;
-		
+        
+        //Remove the last 0 character
+        credentials_id[credentials_id_size-1] = 0;
+
 		cJSON *json_object = cJSON_Parse(credentials_id);
 		if (json_object == NULL)
 		{
@@ -248,5 +249,9 @@ void get_access_token(char *device_id_array[TOTAL_DEVICE_ID], int total_devices)
 			strcpy(access_token, credentials_id_object->valuestring);
 			printf("Access token %s\n", access_token);
 		} else printf("Fail to get token");
+
+        free(access_token);
+        free(response_buffer);
+        free(credentials_id);
 	}
 }
