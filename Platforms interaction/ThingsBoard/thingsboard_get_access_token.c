@@ -226,7 +226,9 @@ void get_access_token(char *device_id_array[TOTAL_DEVICE_ID], int total_devices)
 
 		strcat(credentials_id, "{\"");
 		strcat(credentials_id, temp_json_parsed);
-	
+		//Remove the last 0 character
+		credentials_id[credentials_id_size-1] = 0;
+		
 		cJSON *json_object = cJSON_Parse(credentials_id);
 		if (json_object == NULL)
 		{
