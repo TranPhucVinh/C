@@ -15,4 +15,6 @@ Read response from ``/api/auth/user``: ``thingsboard_auth_user.c``
 
 Get customer device infos: ``thingsboard_get_device_infos.c``
 
+Get all access token from 10 devices: ``thingsboard_get_access_token.c``
+
 An example of a customer devices info json file: ``customer_device_infos.json``

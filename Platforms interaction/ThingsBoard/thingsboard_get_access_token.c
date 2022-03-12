@@ -16,7 +16,8 @@
 #define CUSTOMER_ID_SIZE	40
 #define TOTAL_DEVICE_ID		10
 
-#define ACCESS_TOKEN		20
+#define ACCESS_TOKEN_SIZE	20
+#define DEVICE_ID_SIZE		40	
 
 char token[TOKEN_SIZE], refreshToken[REFRESH_TOKEN_SIZE];
 char *device_id_array[TOTAL_DEVICE_ID];
@@ -43,6 +44,8 @@ int main(int argc, char *argv[]){
 	customer_id = get_customer_id(http_response, CUSTOMER_ID_SIZE);
 	customer_devices_info = get_all_customer_devices(customer_id);
 
+	printf("DEBUG customer_devices_json %s\n", customer_devices_info);
+
 	customer_devices_json = strstr(customer_devices_info, "{\"data\":");
 
 	//Get all existed devices ID
@@ -53,6 +56,10 @@ int main(int argc, char *argv[]){
 	free(http_response);
 	free(customer_id);
 	free(customer_devices_info);
+
+	for (int index=0; index < total_devices; index++){
+		free(device_id_array[index]);
+	}
 
 	return 0;
 }
@@ -102,13 +109,14 @@ char *get_customer_id(char *http_response, int customer_id_size){
 #define PAGE_SIZE			"10"
 #define PAGE				"0"
 #define GET_DEVICE_INFO		"/api/customer/"
+#define READ_SIZE_FOR_CUSTOMER_DEVICES 20000 //Giant buffer size for 10 devices
 
 char *get_all_customer_devices(char *customer_id){
 	char    *response_buffer;
 	int 	fd;
 
-	response_buffer = (char*) malloc(BUFFSIZE * sizeof(char));
-	bzero(response_buffer, BUFFSIZE);
+	response_buffer = (char*) malloc(READ_SIZE_FOR_CUSTOMER_DEVICES * sizeof(char));
+	bzero(response_buffer, READ_SIZE_FOR_CUSTOMER_DEVICES);
 
 	char http_request[1024];//Must be big to store token
 	bzero(http_request, sizeof(http_request));
@@ -130,11 +138,14 @@ char *get_all_customer_devices(char *customer_id){
 	fd 		= socket_connect();
 	write(fd, http_request, strlen(http_request));
 
-	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
-	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
-	while(read(fd, response_buffer, BUFFSIZE) != 0) {
-		break;
-	}
+	int index = 0;
+	int read_size = 0;
+
+	do {
+		read_size = read(fd, &response_buffer[index += read_size], 1024);
+	} while (read_size > 0);
+
+	response_buffer[index] = 0;
 
 	shutdown(fd, SHUT_RDWR); 
 	close(fd); 
@@ -170,8 +181,9 @@ int  get_device_id(char *json_string, char *field_name, char *device_id_array[TO
 			memmove(device_id_string, device_id_string+1, strlen(device_id_string));
 			device_id_string[strlen(device_id_string)-1] = 0;
 			
-			device_id_array[index] = device_id_string;
-			// printf("%s\n", device_id_string);
+			device_id_array[index] = (char*) malloc(DEVICE_ID_SIZE * sizeof(char));
+
+			strcpy(device_id_array[index], device_id_string);
 			index += 1;
 		}
 	} else printf("Fail");
@@ -240,7 +252,7 @@ void get_access_token(char *device_id_array[TOTAL_DEVICE_ID], int total_devices)
 			}
 		}
 
-		char *access_token = (char*) malloc(ACCESS_TOKEN * sizeof(char));
+		char *access_token = (char*) malloc(ACCESS_TOKEN_SIZE * sizeof(char));
 
 		cJSON *credentials_id_object = cJSON_GetObjectItemCaseSensitive(json_object, "credentialsId");
 
