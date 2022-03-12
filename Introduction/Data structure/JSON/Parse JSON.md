@@ -6,42 +6,52 @@
 
 const cJSON *id, *text;
 
-const char *jsonString = "{\"id\": 100, \"text\":\"hello, world\"}";
+char *json_string = "{\"id\": 100, \"text\":\"hello, world\"}";
+void parse_string_field(char *json_string, char *field_name);
+void parse_int_number_field(char *json_string, char *field_name);
 
 int main(){
-  cJSON *json = cJSON_Parse(jsonString);
+	parse_string_field(json_string, "text");
+	parse_int_number_field(json_string, "id");
+}
 
-  //For text field
-  text = cJSON_GetObjectItemCaseSensitive(json, "text");
-  if (json == NULL)
-  {
-    const char *error_ptr = cJSON_GetErrorPtr();
-    if (error_ptr != NULL)
-    {
-        fprintf(stderr, "Error before: %s\n", error_ptr);
-    }
-  }
+void parse_string_field(char *json_string, char *field_name){
+	const cJSON *string_field = NULL;
+	cJSON *json = cJSON_Parse(json_string);
+    if (json == NULL)
+	{
+		const char *error_ptr = cJSON_GetErrorPtr();
+		if (error_ptr != NULL)
+		{
+			fprintf(stderr, "Error before: %s\n", error_ptr);
+		}
+	}
 
-  if (cJSON_IsString(text) && (text->valuestring != NULL))
-  {
-    printf("string: \"%s\"\n", text->valuestring);
-  } else printf("Fail");
+	string_field = cJSON_GetObjectItemCaseSensitive(json, field_name);
+	
+	if (cJSON_IsString(string_field) && (string_field->valuestring != NULL))
+	{
+		printf("string: \"%s\"\n", string_field->valuestring);
+	} else printf("Fail");
+}
 
-  //For id field
-  id = cJSON_GetObjectItemCaseSensitive(json, "id");
-  if (json == NULL)
-  {
-    const char *error_ptr = cJSON_GetErrorPtr();
-    if (error_ptr != NULL)
-    {
-        fprintf(stderr, "Error before: %s\n", error_ptr);
-    }
-  }
+void parse_int_number_field(char *json_string, char *field_name){
+	const cJSON *number_field = NULL;
+	cJSON *json = cJSON_Parse(json_string);
+    if (json == NULL)
+	{
+		const char *error_ptr = cJSON_GetErrorPtr();
+		if (error_ptr != NULL)
+		{
+			fprintf(stderr, "Error before: %s\n", error_ptr);
+		}
+	}
 
-  if (cJSON_IsNumber(id))
-  {
-    printf("id: %d\n", id->valueint);
-  } else printf("Fail");
+	number_field = cJSON_GetObjectItemCaseSensitive(json, field_name);
+	if (cJSON_IsNumber(number_field) && (number_field->valueint != 0))
+	{
+		printf("int number: %d\n", number_field->valueint);
+	} else printf("Fail");
 }
 ```
 
