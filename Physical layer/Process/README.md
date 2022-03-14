@@ -29,6 +29,16 @@ A job is a process that the shell manages. Each job is assigned a sequential job
 2. **Background**: When you enter an ampersand (``&``) symbol at the end of a command line, the command runs without occupying the terminal window.
 3. **Stopped**: If you press Control + Z for a foreground job, or enter the stop command for a background job, the job stops. 
 
+## Inter-process communication
+
+* pipe
+* FIFO
+* Semaphore
+* Message queue
+* Shared memory
+* Socket
+* Signal
+
 # API
 
 [API.md](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/API.md)
