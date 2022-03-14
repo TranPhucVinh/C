@@ -31,13 +31,13 @@ A job is a process that the shell manages. Each job is assigned a sequential job
 
 ## Inter-process communication
 
-* pipe
-* FIFO
+* [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
+* [FIFO](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/FIFO.md)
 * Semaphore
 * Message queue
 * Shared memory
-* Socket
-* Signal
+* [Socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP/TCP)
+* [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
 
 # API
 
