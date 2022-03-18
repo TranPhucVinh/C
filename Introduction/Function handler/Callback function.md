@@ -18,6 +18,8 @@ int main()
 ```
 ### Call back function with parameters
 
+Using normal function
+
 ```c
 #include <stdio.h>
 
@@ -32,5 +34,27 @@ void run_callback(void function(), int a, int b){
 int main()
 {  
     run_callback(callback, 10, 11);
+}
+```
+
+Using function pointer to shorten the parameters passed into ``set_callback()``:
+
+```c
+#include <stdio.h>
+
+void (*display_pointer)(int a, int b);
+
+void callback(int a, int b){
+	printf("a: %d, b %d\n", a, b);
+}
+
+void set_callback(void function()){
+    display_pointer = function;
+}
+
+int main()
+{  
+    set_callback(callback);
+    display_pointer(12, 34);
 }
 ```
