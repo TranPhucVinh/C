@@ -21,17 +21,16 @@ int main()
 ```c
 #include <stdio.h>
 
-void callbackFunction(int intParam1, int intParam2){
-	printf("int parameter 1 is %d\n", intParam1);
-	printf("int parameter 2 is %d\n", intParam2);
+void callback(int a, int b){
+	printf("a: %d, b %d\n", a, b);
 }
 
-void testFunction(void function(), int param1, int param2){
-	function(param1, param2);
+void run_callback(void function(), int a, int b){
+	function(a, b);
 }
 
-main()
+int main()
 {  
-    testFunction(callbackFunction, 12, 13);
+    run_callback(callback, 10, 11);
 }
 ```
