@@ -3,7 +3,7 @@
 ```c
 #include <stdio.h>
 
-int add(int a, int b){
+int add_int_numbers(int a, int b){
 	return a+b;
 }
 
@@ -11,20 +11,29 @@ int subtract(int a, int b){
 	return a-b;
 }
 
-double addNumber(int a, double b){
+double add_numbers(int a, double b){
 	return a+b;
 }
 
-main()
+void display_number(int a, int b){
+	printf("a: %d, b: %d\n", a, b);
+}
+
+int main()
 {  
     int (*p)(int, int);
-    p = add;
+    p = add_int_numbers;
     printf("%d \n",p(5,6)); //11
     p = subtract;
     printf("%d \n",p(5,8)); //-3
+
     double (*pointer)(int, double);
-    pointer = addNumber;
-    printf("%f \n", pointer(8, 9.89)); //17.890000 
+    pointer = add_numbers;
+    printf("%.2f \n", pointer(8, 9.89)); //17.89
+
+	void (*display_pointer)(int a, int b);
+	display_pointer = display_number;
+	display_pointer(12, 13);
 }
 ```
 
