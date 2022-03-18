@@ -1,22 +1,22 @@
-**Example 1**: Create a very basic call back function
+### Run a simple callback function
 
 ```c
 #include <stdio.h>
 
-void callbackFunction(){
+void callback(){
 	printf("Call back function \n");
 }
 
-void testFunction(void function()){
+void run_callback(void function()){
 	function();
 }
 
-main()
+int main()
 {  
-    testFunction(callbackFunction);
+    run_callback(callback);
 }
 ```
-**Example 2**: Call back function with parameter
+### Call back function with parameters
 
 ```c
 #include <stdio.h>
