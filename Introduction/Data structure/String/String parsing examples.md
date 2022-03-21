@@ -168,6 +168,45 @@ int main(int argc, const char *argv[]) {
 
 **Result**: ``Heo, World!``
 
+Replace substring inside a string:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char displayed_string[] = "String 1 underscore String 2";
+
+char *replace_string_by_substring(char *orginal_string, char *substring, char *replace);
+
+int main(){
+    char *new_string = replace_string_by_substring(displayed_string, "underscore", "_");
+    printf("%s\n", new_string);//String 1 _ String 2
+    free(new_string);
+}
+
+char *replace_string_by_substring(char *orginal_string, char *substring, char *replace){
+    char *new_string = (char*) malloc(strlen(orginal_string) * sizeof(char));
+    char *second_part = (char*) malloc(strlen(orginal_string) * sizeof(char));
+
+    char *match;
+    int len = strlen(substring);
+
+    while ((match = strstr(orginal_string, substring))) {
+        *match = '\0';
+        strcat(second_part, match+len);
+    }
+
+    strcat(new_string, orginal_string);//orginal_string now has the value of the first part of char *orginal_string
+    strcat(new_string, replace);
+    strcat(new_string, second_part);
+
+    free(second_part);
+
+    return new_string;
+}
+```
+
 ## Example 3
 
 Parsing for IP address
