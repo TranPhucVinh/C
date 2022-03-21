@@ -14,7 +14,9 @@ void parse_int_number_field(char *json_string, char *field_name);
 void parse_array_field(char *json_string, char *field_name);
 
 int main(){
-   parse_array_field(read_file(FILE_NAME), FIELD_NAME);
+	parse_string_field(read_file(FILE_NAME), "text");
+	parse_int_number_field(read_file(FILE_NAME), "id");
+	parse_array_field(read_file(FILE_NAME), FIELD_NAME);
 }
 
 void parse_string_field(char *json_string, char *field_name){
