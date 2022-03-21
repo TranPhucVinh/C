@@ -135,21 +135,33 @@ Split a string by substring
 
 ```cpp
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
  
-void removeSubString (char *string, char *sub) {
+char *remove_substring(char *string, char *sub) {
+    char *new_string = (char*) malloc(strlen(string) * sizeof(char));
+    char *second_part = (char*) malloc( (strlen(string) - strlen(sub)) * sizeof(char));
+
     char *match;
     int len = strlen(sub);
+
     while ((match = strstr(string, sub))) {
         *match = '\0';
-        strcat(string, match+len);
+        strcat(second_part, match+len);
     }
+
+    strcat(new_string, string);
+    strcat(new_string, second_part);
+    free(second_part);
+
+    return new_string;
 }
  
 int main(int argc, const char *argv[]) {
     char test[] = "Hello, World!";
-    removeSubString(test, "ll");
-    puts(test);
+    char *new_string = remove_substring(test, "ll");
+    printf("%s\n", new_string);
+    free(new_string);
     return 0;
 }
 ```
