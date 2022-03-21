@@ -150,7 +150,7 @@ char *remove_substring(char *string, char *sub) {
         strcat(second_part, match+len);
     }
 
-    strcat(new_string, string);
+    strcat(new_string, string);//string now has the value of the first part of char *string
     strcat(new_string, second_part);
     free(second_part);
 
