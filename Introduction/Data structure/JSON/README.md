@@ -1,6 +1,6 @@
 # Library
 
-cJSON library from ``DaveGamble/cJSON``, [version 1.7.15, released this Aug 25, 2021](https://github.com/DaveGamble/cJSON/releases/tag/v1.7.15)
+cJSON library from ``DaveGamble/cJSON``, [version 1.7.15, released this Aug 25, 2021](https://github.com/DaveGamble/cJSON/releases/tag/v1.7.15). For software implementations, download the source code from this release link.
 
 cJSON accepts ``""`` for field name, and doesn't accept ``''``.
 

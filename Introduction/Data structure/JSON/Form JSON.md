@@ -1,25 +1,32 @@
-## Form a JSON string with 1 field
+## Form JSON
+
+Form a JSON string
 
 ```c
 #include <stdio.h>
-#include "cJSON.h"
+#include "cJSON-1.7.15/cJSON.h"
 
-char *formJSONString(){
-   cJSON *name = NULL;
+char *form_json_string(){
+   	cJSON *name = NULL, *id = NULL;
 
-   cJSON *json = cJSON_CreateObject();
+	cJSON *json = cJSON_CreateObject();
+	if (json == NULL) return "NULL";
 
-   if (json == NULL) return;
-   name = cJSON_CreateString("User name");
-   if (name == NULL) return;
+   	name = cJSON_CreateString("User name");
+   	if (name == NULL) return "NULL";
+	cJSON_AddItemToObject(json, "name", name);
 
-   cJSON_AddItemToObject(json, "name", name);
-   char *jsonString = cJSON_Print(json);//Form a JSON string with cJSON_Print()
-   return jsonString;
+	id = cJSON_CreateNumber(123);
+	if (id == NULL) return "NULL";
+	cJSON_AddItemToObject(json, "id", id);
+
+
+	char *json_string = cJSON_Print(json);//Form a JSON string with cJSON_Print()
+	return json_string;
 }
 
 int main(){
-   printf("%s", formJSONString());
+   printf("%s\n", form_json_string());
    return 0;
 }
 ```
