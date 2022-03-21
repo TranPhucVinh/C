@@ -113,16 +113,21 @@ See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/Stri
 
 **Return**: A pointer to the first occurrence in str1 of the entire sequence of characters specified in str2, or a null pointer if the sequence is not present in ``str1``.
 
-Find a substring inside a string with ``strstr()``
+Find a first part and second part of a string splitted by a substring with ``strstr()``
 
 ```c
-char displayedString[] = "Hello, World !";
-char *leftString;
+char displayed_string[] = "Hello, World !";
+char *second_part;
+char first_part[10];
 
 int main(int argc, char *argv[]){
-    leftString = strstr(displayedString, "or");
-	if (leftString != NULL)	printf("%s\n", leftString);//orld !
+    second_part = strstr(displayed_string, "or");
+	if (second_part != NULL)	printf("%s\n", second_part);//orld !
 	else printf("NULL\n");
+
+    //Copy (second_part - displayed_string) character from displayed_string to first_part
+    strncpy(first_part, displayed_string, second_part - displayed_string);
+    printf("%s\n", first_part);//Hello, W
 }
 ```
 
