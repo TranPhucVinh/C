@@ -20,3 +20,21 @@ cJSON *json = cJSON_Parse(json_string);
 ```
 
 **Example**: Parse char pointer JSON read from a file into string, int and array fields [parse_json_by_fields.c](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/JSON/parse_json_by_fields.c)
+
+**Example**: Parsing with ``cJSON_GetObjectItem()``
+
+```c
+const char *json_string = "{\"id\": 100, \"text\":\"hello, world\"}";
+
+int main(){
+    cJSON *id, *text;
+    cJSON *json = cJSON_Parse(json_string);
+
+    id = cJSON_GetObjectItem(json, "id");
+    printf("%d\n", id->valueint);
+
+    text = cJSON_GetObjectItem(json, "text");
+    printf("%s\n", text->valuestring);
+    return 0;
+}
+```
