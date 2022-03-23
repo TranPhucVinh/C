@@ -113,16 +113,21 @@ See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/Stri
 
 **Return**: A pointer to the first occurrence in str1 of the entire sequence of characters specified in str2, or a null pointer if the sequence is not present in ``str1``.
 
-Find a substring inside a string with ``strstr()``
+Find a first part and second part of a string splitted by a substring with ``strstr()``
 
 ```c
-char displayedString[] = "Hello, World !";
-char *leftString;
+char displayed_string[] = "Hello, World !";
+char *second_part;
+char first_part[10];
 
 int main(int argc, char *argv[]){
-    leftString = strstr(displayedString, "or");
-	if (leftString != NULL)	printf("%s\n", leftString);//orld !
+    second_part = strstr(displayed_string, "or");
+	if (second_part != NULL)	printf("%s\n", second_part);//orld !
 	else printf("NULL\n");
+
+    //Copy (second_part - displayed_string) character from displayed_string to first_part
+    strncpy(first_part, displayed_string, second_part - displayed_string);
+    printf("%s\n", first_part);//Hello, W
 }
 ```
 
@@ -130,26 +135,77 @@ Split a string by substring
 
 ```cpp
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
  
-void removeSubString (char *string, char *sub) {
+char *remove_substring(char *string, char *sub) {
+    char *new_string = (char*) malloc(strlen(string) * sizeof(char));
+    char *second_part = (char*) malloc( (strlen(string) - strlen(sub)) * sizeof(char));
+
     char *match;
     int len = strlen(sub);
+
     while ((match = strstr(string, sub))) {
         *match = '\0';
-        strcat(string, match+len);
+        strcat(second_part, match+len);
     }
+
+    strcat(new_string, string);//string now has the value of the first part of char *string
+    strcat(new_string, second_part);
+    free(second_part);
+
+    return new_string;
 }
  
 int main(int argc, const char *argv[]) {
     char test[] = "Hello, World!";
-    removeSubString(test, "ll");
-    puts(test);
+    char *new_string = remove_substring(test, "ll");
+    printf("%s\n", new_string);
+    free(new_string);
     return 0;
 }
 ```
 
 **Result**: ``Heo, World!``
+
+Replace substring inside a string:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char displayed_string[] = "String 1 underscore String 2";
+
+char *replace_string_by_substring(char *orginal_string, char *substring, char *replace);
+
+int main(){
+    char *new_string = replace_string_by_substring(displayed_string, "underscore", "_");
+    printf("%s\n", new_string);//String 1 _ String 2
+    free(new_string);
+}
+
+char *replace_string_by_substring(char *orginal_string, char *substring, char *replace){
+    char *new_string = (char*) malloc(strlen(orginal_string) * sizeof(char));
+    char *second_part = (char*) malloc(strlen(orginal_string) * sizeof(char));
+
+    char *match;
+    int len = strlen(substring);
+
+    while ((match = strstr(orginal_string, substring))) {
+        *match = '\0';
+        strcat(second_part, match+len);
+    }
+
+    strcat(new_string, orginal_string);//orginal_string now has the value of the first part of char *orginal_string
+    strcat(new_string, replace);
+    strcat(new_string, second_part);
+
+    free(second_part);
+
+    return new_string;
+}
+```
 
 ## Example 3
 

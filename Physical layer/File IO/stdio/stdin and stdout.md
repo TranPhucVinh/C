@@ -79,6 +79,30 @@ Using ``scanf()`` is not highly recommended as it doesn't have buffer overflow p
 
 A proper word entering can be solved with ``fgets()``: ``Stream stdio API.md``
 
+## %.*s
+
+```c
+void display_function(char *str, int str_len)
+{
+  printf("%.*s\n", str_len, str);
+}
+
+char *return_string(char *str, int str_len){
+    char *returned_string = (char*) malloc(str_len + 1);
+    sprintf(returned_string, "%.*s", str_len, str);
+    return returned_string;
+}
+
+int main(){
+    display_function("Hello, World !", 3);//Hel
+    char *returned_string = return_string("Displayed string", 5);
+    printf("%s\n", returned_string);
+    free(returned_string);
+}
+```
+
+## gets() and puts()
+
 ### gets()
 
 **gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler. Just use ``scanf()`` instead.
@@ -95,7 +119,7 @@ int puts(const char *str)
 puts("hello"); //hello
 ```
 
-### getchar(), putchar()
+## getchar(), putchar()
 
 ```c
 int putchar(int char);
