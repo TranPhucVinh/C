@@ -41,4 +41,9 @@ int main(){
 
 ## Update JSON
 
+Value of JSON fields can be updated with:
+
+* ``cJSON_SetValuestring()``
+* ``cJSON_SetIntValue()``
+
 Update value for a specific field: [change_by_field.c]()

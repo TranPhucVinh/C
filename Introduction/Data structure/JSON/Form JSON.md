@@ -37,6 +37,58 @@ int main(){
 }
 ```
 
+# Bool object
+
+cJSON-1.7.15 release only supports creating bool value for JSON field and not support changing those value. However, the current master branch of cJSON project, which hasn't been released, has supported changing bool value with ``cJSON_SetBoolValue()`` function.
+
+```c
+/* If the object is not a boolean type this does nothing and returns cJSON_Invalid else it returns the new type*/
+#define cJSON_SetBoolValue(object, boolValue) ( \
+    (object != NULL && ((object)->type & (cJSON_False|cJSON_True))) ? \
+    (object)->type=((object)->type &(~(cJSON_False|cJSON_True)))|((boolValue)?cJSON_True:cJSON_False) : \
+    cJSON_Invalid\
+)
+```
+
+To use cJSON-1.7.15 with ``cJSON_SetBoolValue()``, include that function in every program.
+
+Form then change bool value for fields of a JSON:
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include "cJSON-1.7.15/cJSON.h"
+
+/* If the object is not a boolean type this does nothing and returns cJSON_Invalid else it returns the new type*/
+#define cJSON_SetBoolValue(object, boolValue) ( \
+    (object != NULL && ((object)->type & (cJSON_False|cJSON_True))) ? \
+    (object)->type=((object)->type &(~(cJSON_False|cJSON_True)))|((boolValue)?cJSON_True:cJSON_False) : \
+    cJSON_Invalid\
+)
+
+int main(){
+    //Form a JSON string with bool object
+    cJSON *bool_value_1 = NULL, *bool_value_2 = NULL;
+
+	cJSON *json = cJSON_CreateObject();
+	if (json == NULL) return 0;
+
+   	bool_value_1 = cJSON_CreateBool(true);
+    bool_value_2 = cJSON_CreateBool(false);
+	cJSON_AddItemToObject(json, "bool_value_1", bool_value_1);
+    cJSON_AddItemToObject(json, "bool_value_2", bool_value_2);
+
+    printf("%s\n", cJSON_Print(json));
+
+    //Change value for 2 bool object
+    cJSON_SetBoolValue(bool_value_1, false);        
+    cJSON_SetBoolValue(bool_value_2, true);
+
+    printf("%s\n", cJSON_Print(json));
+    return 0;
+}
+```
+
 # Array as member
 
 * ``cJSON_CreateIntArray``: Create int array (e.g: ``int array[] = {1, 2, 3}``) as a field of the JSON
