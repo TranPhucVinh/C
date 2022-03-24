@@ -192,6 +192,16 @@ printf("Add 2 numbers: %d\n", databaseNode0.add_function_pointer(30, 60));
 printf("Subtract 2 numbers: %d\n", databaseNode0.subtract_function_pointer(12, 120));
 ```	
 
+For struct pointer object:
+
+```c
+struct databaseNode *databaseNode0;
+databaseNode0 = (struct databaseNode *)malloc(sizeof(struct databaseNode));
+
+databaseNode0->add_function_pointer = add_two_number;
+databaseNode0->subtract_function_pointer = subtract_two_number;
+```
+
 # Memory problem with struct
 
 Check ``Overflow memset()`` in ``Physical layer/Memory/memset.md``
