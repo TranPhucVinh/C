@@ -22,7 +22,7 @@ int add(int number){
 
 The operation above is called **pass by value**. What is sent to the function ``add(number)`` is the value of variable ``number`` ( = 6), not variable ``number``, the variable ``number`` in ``add()`` is just the clone of the genuine variale ``number``. So the value of number still remain unchanged.
 
-**Note**: The problem with change value happen not only with primitive data type like ``int``, ``float``,... but also happen which data structure as data type like ``struct``. Check ``struct as a function argument`` example with pass by value issue in [struct examples](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Examples/Examples.md).
+**Note**: The problem with change value happen not only with primitive data type like ``int``, ``float``,... but also happen which data structure as data type like ``struct``. Check [Pass by value and pass by reference with struct pointer](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/struct%20pointer.md#pass-by-value-and-pass-by-reference-with-struct-pointer).
 
 **Problem solved**: Using pass by reference
 
