@@ -37,6 +37,8 @@ int main()
 
 ### Set value for struct pointer
 
+**This is a wrong implementation with struct pointer and must not be avoided**
+
 ```c
 #include <stdio.h> 
 #include <stdlib.h>
@@ -64,8 +66,6 @@ node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode));
 node0->id = 1;
 node0->intValue = 100;
 ```
-
-Problem solved with struct pointer: ``Physical layer/Memory/Pointer/struct pointer.md``
 
 ## Pass by value and pass by reference with struct pointer
 
