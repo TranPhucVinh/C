@@ -180,6 +180,18 @@ int main(){
 }
 ```
 
+Functions can be set and called like this:
+
+```c
+struct databaseNode databaseNode0;
+
+databaseNode0.add_function_pointer = add_two_number;
+databaseNode0.subtract_function_pointer = subtract_two_number;
+
+printf("Add 2 numbers: %d\n", databaseNode0.add_function_pointer(30, 60));
+printf("Subtract 2 numbers: %d\n", databaseNode0.subtract_function_pointer(12, 120));
+```	
+
 # Memory problem with struct
 
 Check ``Overflow memset()`` in ``Physical layer/Memory/memset.md``
