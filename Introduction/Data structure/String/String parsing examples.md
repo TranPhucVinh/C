@@ -193,23 +193,21 @@ int main(){
 }
 
 char *replace_string_by_substring(char *orginal_string, char *substring, char *replace){
+	char *first_part;
+	char *second_part;
+	second_part = strstr(orginal_string, substring);
+	first_part = (char*) malloc((second_part - orginal_string) * sizeof(char));
+	strncpy(first_part, displayed_string, second_part - displayed_string);
+
+	second_part = second_part + strlen(substring);
+	
     char *new_string = (char*) malloc(strlen(orginal_string) * sizeof(char));
-    char *second_part = (char*) malloc(strlen(orginal_string) * sizeof(char));
 
-    char *match;
-    int len = strlen(substring);
-
-    while ((match = strstr(orginal_string, substring))) {
-        *match = '\0';
-        strcat(second_part, match+len);
-    }
-
-    strcat(new_string, orginal_string);//orginal_string now has the value of the first part of char *orginal_string
+    strcat(new_string, first_part);
     strcat(new_string, replace);
     strcat(new_string, second_part);
 
-    free(second_part);
-
+	free(first_part);
     return new_string;
 }
 ```
