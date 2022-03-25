@@ -197,7 +197,7 @@ char *replace_string_by_substring(char *orginal_string, char *substring, char *r
 	char *second_part;
 	second_part = strstr(orginal_string, substring);
 	first_part = (char*) malloc((second_part - orginal_string) * sizeof(char));
-	strncpy(first_part, displayed_string, second_part - displayed_string);
+	strncpy(first_part, orginal_string, second_part - orginal_string);
 
 	second_part = second_part + strlen(substring);
 	
