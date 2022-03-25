@@ -184,7 +184,7 @@ Replace substring inside a string:
 
 char displayed_string[] = "String 1 underscore String 2";
 
-char *replace_string_by_substring(char *orginal_string, char *substring, char *replace);
+char *replace_string_by_substring(char *original_string, char *substring, char *replace);
 
 int main(){
     char *new_string = replace_string_by_substring(displayed_string, "underscore", "_");
@@ -192,16 +192,16 @@ int main(){
     free(new_string);
 }
 
-char *replace_string_by_substring(char *orginal_string, char *substring, char *replace){
+char *replace_string_by_substring(char *original_string, char *substring, char *replace){
 	char *first_part;
 	char *second_part;
-	second_part = strstr(orginal_string, substring);
-	first_part = (char*) malloc((second_part - orginal_string) * sizeof(char));
-	strncpy(first_part, orginal_string, second_part - orginal_string);
+	second_part = strstr(original_string, substring);
+	first_part = (char*) malloc((second_part - original_string) * sizeof(char));
+	strncpy(first_part, original_string, second_part - original_string);
 
 	second_part = second_part + strlen(substring);
 	
-    char *new_string = (char*) malloc(strlen(orginal_string) * sizeof(char));
+    char *new_string = (char*) malloc(strlen(original_string) * sizeof(char));
 
     strcat(new_string, first_part);
     strcat(new_string, replace);
