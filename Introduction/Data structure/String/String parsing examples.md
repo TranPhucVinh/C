@@ -116,18 +116,25 @@ See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/Stri
 Find a first part and second part of a string splitted by a substring with ``strstr()``
 
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 char displayed_string[] = "Hello, World !";
-char *second_part;
-char first_part[10];
+char *second_part = NULL;
+char *first_part;
 
 int main(int argc, char *argv[]){
     second_part = strstr(displayed_string, "or");
 	if (second_part != NULL)	printf("%s\n", second_part);//orld !
 	else printf("NULL\n");
 
+	first_part = (char*) malloc((second_part - displayed_string) * sizeof(char));
+	
     //Copy (second_part - displayed_string) character from displayed_string to first_part
     strncpy(first_part, displayed_string, second_part - displayed_string);
     printf("%s\n", first_part);//Hello, W
+	free(first_part);
 }
 ```
 
