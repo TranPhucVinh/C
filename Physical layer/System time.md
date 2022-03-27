@@ -182,7 +182,7 @@ int main(){
 } 
 ```
 
-An inefficient way to delay 1 second as its delay time varies in vavrious processing core:
+An inefficient way to delay 1 second as its delay time varies in various processing core:
 
 ```c
 void delayOneSecond();  
