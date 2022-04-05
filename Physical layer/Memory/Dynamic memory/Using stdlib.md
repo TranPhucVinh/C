@@ -164,6 +164,8 @@ str = (char *) calloc(15, sizeof(char));
 printf("String: %s \n", str); //String: 
 ```
 
+Using ``calloc()`` will takes more time than using ``malloc()`` as it needs time to set NULL value to all member of the block. However it is safer to use ``calloc()`` as it will avoid the issue related to garbage value when using ``malloc()``
+
 ### realloc()
 
 ``realloc()`` is used to dynamically change the memory allocation of a previously allocated memory.
