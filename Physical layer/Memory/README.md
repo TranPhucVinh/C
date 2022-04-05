@@ -43,11 +43,11 @@ There are 2 types of memory allocation: Static memory allocation and dynamic mem
 
 ### Static memory allocation
 
-When creating a variable, the compiler will assign an address to store that variable. We can access that variable by its name or its address. This is known as **static memory allocation**. When performing static memory allocation, the variables with that type will exist till the end of that program.
+When creating a variable, the compiler will assign an address to store that variable. We can access that variable by its name or its address. This is known as **static memory allocation**. When performing static memory allocation, the variables with that type will exist till the end of that program. Static memory Allocation is done before program execution so it is faster than dynamic memory allocation
 
 ### Dynamic memory allocation
 
-**Dynamic memory allocation** can be defined as a procedure in which the size of a data structure (like array) is changed during the runtime. Variables inside heap memory block are not automatically freed up after execution but are required to be freed up by code (``free`` or ``delete``).
+**Dynamic memory allocation** can be defined as a procedure in which the size of a data structure (like array) is changed during the runtime. Variables inside heap memory block are not automatically freed up after execution but are required to be freed up by code (``free`` or ``delete``). Dynamic memory Allocation is done during program execution.
 
 ## Pointer
 
