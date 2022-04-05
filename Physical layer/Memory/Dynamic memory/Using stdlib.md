@@ -147,6 +147,23 @@ free(intPointer);
 printf("Int value after: %d \n", *intPointer); //0
 ```
 
+### calloc()
+
+Dynamic allocating a region of memory like ``malloc()`` then set ``NULL`` value to all member inside that memory block.
+
+```c
+void *calloc(size_t nitems, size_t size)
+```
+
+E.g: This will result in the empty/NULL ``str`` variable instead of garbage variable like allocating with ``malloc()``
+
+```c
+char *str;
+
+str = (char *) calloc(15, sizeof(char));
+printf("String: %s \n", str); //String: 
+```
+
 ### realloc()
 
 ``realloc()`` is used to dynamically change the memory allocation of a previously allocated memory.
