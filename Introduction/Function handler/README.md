@@ -63,10 +63,6 @@ int main () {
 }
 ```
 
-### Variable length argument
-
-[Variable length argument](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Variable%20length%20argument.md)
-
 ### Recursive function
 
 Use recursive to calculate the sum from ``1`` to ``n``:
@@ -138,6 +134,12 @@ Total argument: 2
 
 **Application**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
 
+### Other concepts
+
+* [Conditional statements](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Conditional%20statements.md)
+* [Callback function](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Callback%20function.md)
+* [Variable length argument](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Variable%20length%20argument.md)
+
 ## Variable
 
 ### Special character
@@ -164,3 +166,7 @@ int main(){
 	printf("var: %d\n", var);//var: 0
 }
 ```
+
+# API
+
+* [Random number generators](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Random%20number.md)
