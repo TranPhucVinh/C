@@ -15,7 +15,7 @@ If we want to only declare variables and not to define it i.e. we do not want to
 extern int a;
 ```
 
-With ``extern``, only the information about the variable is sent and no memory allocation is done. This tells the compiler that the variable a is declared now while memory for it will be defined later in the same file or in different file.
+With ``extern``, only the information about the variable is sent and no memory allocation is done. This tells the compiler that the variable a is declared now while memory for it will be defined later in the same file or in different file. For examples and specific implementations with extern, check [its document in Header folder](../Header/)
 
 Declaration of a function provides the compiler the name of the function, the number and type of arguments it takes and its return type. 
 
