@@ -136,6 +136,7 @@ Total argument: 2
 
 ### Other concepts
 
+* [Definition and Declaration](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Definition%20and%20Declaration.md)
 * [Conditional statements](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Conditional%20statements.md)
 * [Scope](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Scope.md)
 * [Callback function](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Callback%20function.md)
