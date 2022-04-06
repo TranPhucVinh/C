@@ -46,7 +46,7 @@ void helloworld();
 extern int value;
 ```
 
-``head.h`` has exported variable ``value`` for other ``.c`` file to use by ``extern``.
+``head.h`` has declared variable ``value`` by ``extern`` but not define it and allows other ``.c`` files to define it.
 
 ``head.c``
 
