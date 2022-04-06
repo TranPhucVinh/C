@@ -137,6 +137,7 @@ Total argument: 2
 ### Other concepts
 
 * [Conditional statements](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Conditional%20statements.md)
+* [Scope](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Scope.md)
 * [Callback function](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Callback%20function.md)
 * [Variable length argument](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Variable%20length%20argument.md)
 
@@ -166,6 +167,11 @@ int main(){
 	printf("var: %d\n", var);//var: 0
 }
 ```
+
+## Operators
+
+* [Bit operator](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Bit%20operator.md)
+* [Symbol operator](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Symbol%20operator.md)
 
 # API
 
