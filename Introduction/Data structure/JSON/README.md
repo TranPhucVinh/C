@@ -40,6 +40,10 @@ cc_binary(
 )
 ```
 
+To build: ``bazel build cJSON``
+
+To run: ``bazel run cJSON``
+
 ## Parse JSON
 
 Initial step to parse a char pointer JSON:
