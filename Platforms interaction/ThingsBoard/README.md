@@ -9,12 +9,24 @@ Send data to ThingsBoard Live Demo HTTP server (not HTTPS):
 
 Get JWT and parsed into ``token`` and ``refreshToken``: ``raw_api_get_jwt.c``
 
-Get JWT and parsed into ``token`` and ``refreshToken`` with ``thingsboard`` library: ``thingsboard_get_jwt.c``
+### For [thingsboard](thingsboard) library
 
-Read response from ``/api/auth/user``: ``thingsboard_auth_user.c``
+Source code are built with Bazel with attached [BUILD](BUILD) file and file architecture like below:
 
-Get customer device infos: ``thingsboard_get_device_infos.c``
+```
+|--cJSON-1.7.15 //cJSON-1.7.15 folder to store cJSON source code
+|--thingsboard //thingsboard folder to store thingsboard source code
+|--main.c
+|--WORKSPACE
+|--BUILD
+```
 
-Get all access token from 10 devices: ``thingsboard_get_access_token.c``
+Get JWT and parsed into ``token`` and ``refreshToken``: [thingsboard_get_jwt.c](thingsboard_get_jwt.c)
 
-An example of a customer devices info json file: ``customer_device_infos.json``
+Read response from ``/api/auth/user``: [thingsboard_auth_user.c](thingsboard_auth_user.c)
+
+Get customer device infos: [thingsboard_get_device_infos.c](thingsboard_get_device_infos.c)
+
+Get all access token from 10 devices: [thingsboard_get_access_token.c](thingsboard_get_access_token.c)
+
+An example of a customer devices info json file: [customer_device_infos.json](customer_device_infos.json)
