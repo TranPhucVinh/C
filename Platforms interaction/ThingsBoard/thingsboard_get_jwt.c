@@ -14,7 +14,7 @@
 char token[TOKEN_SIZE], refreshToken[REFRESH_TOKEN_SIZE];
 
 int main(int argc, char *argv[]){
-	_server_side_api_param_init(HOST, PORT, LOGIN_PATH, USER, PASSWORD);
+	server_side_api_param_init(HOST, PORT, LOGIN_PATH, USER, PASSWORD);
 
 	bzero(token, TOKEN_SIZE);
 	bzero(refreshToken, REFRESH_TOKEN_SIZE);
