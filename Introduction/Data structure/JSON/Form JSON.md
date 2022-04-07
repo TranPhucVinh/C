@@ -4,7 +4,7 @@ Form a JSON string
 
 ```c
 #include <stdio.h>
-#include "cJSON-1.7.15/cJSON.h"
+#include "cJSON.h"
 
 char *form_json_string(){
    	cJSON *name = NULL, *id = NULL;
@@ -57,7 +57,7 @@ Form then change bool value for fields of a JSON:
 ```c
 #include <stdio.h>
 #include <stdbool.h>
-#include "cJSON-1.7.15/cJSON.h"
+#include "cJSON.h"
 
 /* If the object is not a boolean type this does nothing and returns cJSON_Invalid else it returns the new type*/
 #define cJSON_SetBoolValue(object, boolValue) ( \
