@@ -10,6 +10,36 @@ cJSON accepts ``""`` for field name, and doesn't accept ``''``.
 * Parse JSON
 * Update JSON
 
+**Build process**
+
+Build with Bazel with the following file architecture
+
+```
+|--cJSON-1.7.15 //cJSON-1.7.15 folder to store cJSON source code
+|--main.c
+|--WORKSPACE
+|--BUILD
+```
+
+``BUILD`` file:
+
+```
+cc_library(
+    name = "cJSON-1.7.15",
+    srcs = ["cJSON-1.7.15/cJSON.c"],
+    hdrs = ["cJSON-1.7.15/cJSON.h"],
+    includes = ["cJSON-1.7.15"], #cJSON-1.7.15 folder
+)
+
+cc_binary(
+    name = "cJSON",
+    srcs = ["main.c"],
+    deps = [
+        ":cJSON-1.7.15",        
+    ],
+)
+```
+
 ## Parse JSON
 
 Initial step to parse a char pointer JSON:
