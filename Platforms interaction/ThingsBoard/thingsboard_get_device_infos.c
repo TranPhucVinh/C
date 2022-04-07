@@ -21,7 +21,7 @@ char *get_customer_id(char *http_response, int customer_id_size);
 char *get_all_customer_devices(char *customer_id);
 
 int main(int argc, char *argv[]){
-	_server_side_api_param_init(HOST, PORT, LOGIN_PATH, USER, PASSWORD);
+	server_side_api_param_init(HOST, PORT, LOGIN_PATH, USER, PASSWORD);
 
 	bzero(token, TOKEN_SIZE);
 	bzero(refreshToken, REFRESH_TOKEN_SIZE);
