@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "cJSON-1.7.15/cJSON.h"
+#include "cJSON.h"
 
 char json_string[] = "{\"id\": 100, \"text\":\"hello, world\"}";
 
