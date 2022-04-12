@@ -12,7 +12,7 @@ printf("The value of the second enum: %d, %d, %d, %d, %d, %d, %d", value7 , valu
 The value of the first enum: 10, 11, 12, 13, 10, 16, 17
 The value of the second enum: 0, 1, 2, 3, 1, 12, 13
 ```
-**Notice**: After declaring, the ``enum`` all variable inisde ``enum`` (``value0``, ``value1``, ...) are all constant and unique.
+**Notice**: After declaring the ``enum``, all variable inside ``enum`` (``value0``, ``value1``, ...) are all constant and unique.
 
 Add name to ``enum`` and declare object
 
