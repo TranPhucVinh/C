@@ -153,6 +153,34 @@ void structFunction(struct databaseNode node){
 
 Define function as member of a struct of struct using function pointer
 
+**Function without arguments**
+
+```c
+#include <stdio.h>
+
+void display_string(){
+	printf("Hello, World !\n");
+}
+
+struct struct_data_type {
+	int id;
+	char string_value[50];
+	void (*init)();
+};
+
+int main(){
+    struct struct_data_type value_0 = {
+		.id = 123,
+		.string_value = "String value",
+		.init = display_string
+	};
+	printf("%d %s\n", value_0.id, value_0.string_value);
+	value_0.init();
+}
+```
+
+**Function with arguments**
+
 ```c
 #include <stdio.h>
 
