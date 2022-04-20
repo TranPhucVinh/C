@@ -175,7 +175,7 @@ int main(int argc, const char *argv[]) {
 
 **Result**: ``Heo, World!``
 
-Replace substring inside a string:
+### Replace substring inside a string
 
 ```c
 #include <stdio.h>
@@ -192,23 +192,20 @@ int main(){
     free(new_string);
 }
 
-char *replace_string_by_substring(char *original_string, char *substring, char *replace){
-	char *first_part;
-	char *second_part;
-	second_part = strstr(original_string, substring);
-	first_part = (char*) malloc((second_part - original_string) * sizeof(char));
-	strncpy(first_part, original_string, second_part - original_string);
-
-	second_part = second_part + strlen(substring);
-	
-    char *new_string = (char*) malloc(strlen(original_string) * sizeof(char));
-
-    strcat(new_string, first_part);
-    strcat(new_string, replace);
-    strcat(new_string, second_part);
-
-	free(first_part);
-    return new_string;
+char *replace_string_by_substring(char *orginal_string, char *substring, char *replace){
+    char* match = strstr(orginal_string, substring);
+    if(match)
+    {
+        int new_size = strlen(orginal_string) - strlen(substring) + strlen(replace) + 1;
+        char* new_string = (char*) malloc(new_size);
+        bzero(new_string, new_size);
+        *match = '\0';
+        strcat(new_string, orginal_string);
+        strcat(new_string, replace);
+        strcat(new_string, match + strlen(substring));
+        return new_string;
+    }
+    else return NULL;
 }
 ```
 
