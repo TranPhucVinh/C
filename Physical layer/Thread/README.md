@@ -61,3 +61,9 @@ range_2.upper_range = N/3 + N/3;
 range_3.lower_range = N/3 + N/3 + 1;
 range_3.upper_range = N;
 ```
+
+# Other concepts
+
+### Spin lock
+
+If a resource is locked, a thread that wants to access that resource may repetitively check whether the resource is available. During that time, the thread may loop and check the resource without doing any useful work. Suck a lock is termed as spin lock.
