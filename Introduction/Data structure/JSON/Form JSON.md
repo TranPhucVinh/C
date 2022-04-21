@@ -22,6 +22,7 @@ char *form_json_string(){
 
 
 	char *json_string = cJSON_Print(json);//Form a JSON string with cJSON_Print()
+	cJSON_Delete(json);
 	return json_string;
 }
 
@@ -85,6 +86,7 @@ int main(){
     cJSON_SetBoolValue(bool_value_2, true);
 
     printf("%s\n", cJSON_Print(json));
+	cJSON_Delete(json);
     return 0;
 }
 ```
@@ -104,7 +106,7 @@ Array include JSON:
 }
 ```
 
-To get JSON value inside every member of a JSON array, use ``cJSON_ArrayForEach()``, check ``parse_array_field()`` function inside ``parse_json_by_fields.c`` example for its implementation.
+To get JSON value inside every member of a JSON array, use ``cJSON_ArrayForEach()``, check ``parse_array_field()`` function inside [parse_json_by_fields.c](parse_json_by_fields.c) example for its implementation.
 
 ## Form a JSON string with int array field
 
@@ -131,6 +133,7 @@ char *formJSONString(){
 	cJSON_AddItemToObject(json, "int_array", int_array);
 
 	char *jsonString = cJSON_Print(json);//Form a JSON string with cJSON_Print()
+	cJSON_Delete(json);
 	return jsonString;
 }
 
@@ -180,6 +183,7 @@ char *formJSONString(){
 	}
 
 	char *jsonString = cJSON_Print(json);//Form a JSON string with cJSON_Print()
+	cJSON_Delete(json);
 	return jsonString;
 }
 
