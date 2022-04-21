@@ -37,6 +37,7 @@ void parse_string_field(char *json_string, char *field_name){
 	{
 		printf("string: \"%s\"\n", string_field->valuestring);
 	} else printf("Fail");
+	cJSON_Delete(json);
 }
 
 void parse_int_number_field(char *json_string, char *field_name){
@@ -56,6 +57,7 @@ void parse_int_number_field(char *json_string, char *field_name){
 	{
 		printf("int number: %d\n", number_field->valueint);
 	} else printf("Fail");
+	cJSON_Delete(json);
 }
 
 void parse_array_field(char *json_string, char *field_name){
@@ -80,6 +82,7 @@ void parse_array_field(char *json_string, char *field_name){
 			index += 1;
 		}
 	} else printf("Fail");
+	cJSON_Delete(json);
 }
 
 char *read_file(char *file_name){
