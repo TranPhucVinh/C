@@ -4,6 +4,16 @@ cJSON library from ``DaveGamble/cJSON``, [version 1.7.15, released this Aug 25, 
 
 cJSON accepts ``""`` for field name, and doesn't accept ``''``.
 
+### API
+
+``cJSON_Delete()``: 
+
+```c
+CJSON_PUBLIC(void) cJSON_Delete(cJSON *item)
+```
+
+As define in ``cJSON.c``, ``cJSON_Delete()`` will delete a cJSON structure aka deallocate is memory block. Not using ``cJSON_Delete()`` will cause memory leak.
+
 # Implementations
 
 * [Form JSON](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/JSON/Form%20JSON.md)
