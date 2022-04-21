@@ -79,6 +79,7 @@ int main(){
 
     text = cJSON_GetObjectItem(json, "text");
     printf("%s\n", text->valuestring);
+    cJSON_Delete(json);
     return 0;
 }
 ```
