@@ -9,18 +9,16 @@
 #define PORT 80
 #define PATH "/"
 
-#define BUFFER_SIZE 2048 //Size must be big enough to get all HTTP response properly
-
 char *form_http_request();
 
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
 	struct sockaddr_in addr;
-	int on = 1, sock;     
+	int sock;     
 
 	if((hp = gethostbyname(host)) == NULL){
-		herror("gethostbyname");
-		exit(1);
+        printf("Fail to get host %s\n", HOST);
+		return -1;
 	}
 	bcopy(hp->h_addr, &addr.sin_addr, hp->h_length);
 	addr.sin_port = htons(port);
@@ -35,26 +33,43 @@ int socket_connect(char *host, in_port_t port){
 	if(connect(sock, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1){
 		perror("connect");
 		exit(1);
-
 	}
+
 	return sock;
 }
 
 int main(int argc, char *argv[]){
 	int fd;
-	char buffer[BUFFER_SIZE];
 
     while (1){
-
         fd = socket_connect(HOST, PORT); 
         char *http_request = form_http_request();
+        printf("%s\n", http_request);
 
-        write(fd, http_request, strlen(http_request)); // write(fd, char[]*, len);  
-        bzero(buffer, BUFFER_SIZE);
-        
-        while(read(fd, buffer, BUFFER_SIZE) != 0){
-            fprintf(stderr, "%s", buffer);
-            bzero(buffer, BUFFER_SIZE);
+        if (write(fd, http_request, strlen(http_request)) < 0){
+            close(fd);
+            return 0;
+        }
+
+        /* Read HTTP response */
+        char* recv_buf = NULL;
+        int index = 0;
+        int read_size_chunk = 0;
+        recv_buf = (char*)malloc(1024);
+        while(1)
+        {
+            read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], 1024);
+            if(read_size_chunk > 0)
+            {
+                recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
+                printf("%s\n", recv_buf);
+            }
+            else
+            {
+                recv_buf = realloc(recv_buf, index + 1);
+                recv_buf[index] = 0;
+                break;
+            }
         }
 
         shutdown(fd, SHUT_RDWR); 
@@ -71,7 +86,7 @@ char *form_http_request(){
 	bzero(http_request, sizeof(http_request));
 	strcat(http_request, "GET ");
 	strcat(http_request, PATH);
-	strcat(http_request, " HTTP/1.0\r\nHost:");
+	strcat(http_request, " HTTP/1.0\r\nHost: ");
 	strcat(http_request, HOST);
 	strcat(http_request, "\r\nConnection: close\r\n\r\n");
 
