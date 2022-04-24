@@ -3,6 +3,7 @@
 ```c
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 
 void *func_thread_1(void *ptr);
 
@@ -11,12 +12,29 @@ int main()
 	pthread_t thread_1;
 
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
-	pthread_join(thread_1, NULL);
 	printf("thread_1 finish executing\n");
 }
 
 void *func_thread_1(void *ptr){
 	printf("Hello, World !\n");
+}
+```
+**Result**
+
+```
+thread_1 finish executing
+```
+
+We expectect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use ``pthread_join()``.
+
+```c
+int main()
+{  
+	pthread_t thread_1;
+
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_join(thread_1, NULL);
+	printf("thread_1 finish executing\n");
 }
 ```
 
@@ -27,16 +45,20 @@ Hello, World !
 thread_1 finish executing
 ```
 
-Using function ``delaySeconds()`` in ``System time``, delay the displayed string in the thread every 2 seconds:
+Or using function ``sleep()`` in ``unistd``:
 
 ```c
-void *func_thread_1(void *ptr){
-	
-	while(1){
-		printf("Hello, World !\n");
-		delaySeconds(2);
-	}
-}
+pthread_create(&thread_1, NULL, func_thread_1, NULL);
+sleep(4);
+printf("thread_1 finish executing\n");
+```
+
+**Result**
+
+```
+Hello, World !
+(Delay 4 seconds)
+thread_1 finish executing
 ```
 
 Get the parameter of the thread by passing a variable
