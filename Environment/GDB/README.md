@@ -17,4 +17,4 @@ Then type ``next`` to monitor. ``step`` to jump inside the function to monitor i
 
 # GUI
 
-To use GDB in Visual Studio Code, check [Visual%20Studio%20Code%20document](Visual Studio Code.md).
+To use GDB in Visual Studio Code, check [Visual Studio Code document](Visual%20Studio%20Code.md).
