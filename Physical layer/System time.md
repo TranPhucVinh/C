@@ -12,6 +12,10 @@ int main(){
 ## unistd.h
 
 ```c
+unsigned int sleep(unsigned int seconds);//Sleep for a number of seconds
+``` 
+
+```c
 typedef unsigned long useconds_t;
 ```
 

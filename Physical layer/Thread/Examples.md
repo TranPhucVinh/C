@@ -3,6 +3,7 @@
 ```c
 #include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
 
 void *func_thread_1(void *ptr);
 
@@ -11,12 +12,29 @@ int main()
 	pthread_t thread_1;
 
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
-	pthread_join(thread_1, NULL);
 	printf("thread_1 finish executing\n");
 }
 
 void *func_thread_1(void *ptr){
 	printf("Hello, World !\n");
+}
+```
+**Result**
+
+```
+thread_1 finish executing
+```
+
+We expectect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use ``pthread_join()``.
+
+```c
+int main()
+{  
+	pthread_t thread_1;
+
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_join(thread_1, NULL);
+	printf("thread_1 finish executing\n");
 }
 ```
 
@@ -27,26 +45,84 @@ Hello, World !
 thread_1 finish executing
 ```
 
-Using function ``delaySeconds()`` in ``System time``, delay the displayed string in the thread every 2 seconds:
+Or using function ``sleep()`` in ``unistd``:
 
 ```c
-void *func_thread_1(void *ptr){
-	
-	while(1){
-		printf("Hello, World !\n");
-		delaySeconds(2);
-	}
-}
+pthread_create(&thread_1, NULL, func_thread_1, NULL);
+sleep(4);
+printf("thread_1 finish executing\n");
 ```
 
-Get the parameter of the thread by passing a variable
+**Result**
+
+```
+Hello, World !
+(Delay 4 seconds)
+thread_1 finish executing
+```
+
+### Get the parameter of the thread by passing a variable
+
+**Wrong operation that gives right result**
 
 ```c
-int number = 56;
-thread_1_create = pthread_create(&thread_1, NULL, func_thread_1, &number);
+void *func_thread_1(void *ptr);
+
+int main()
+{  
+    pthread_t thread_1;
+	int number = 56;
+    pthread_create(&thread_1, NULL, func_thread_1, &number);
+    pthread_join(thread_1, NULL);
+}
 
 void *func_thread_1(void *ptr){
 	printf("Parameter is %d\n", *((int*)ptr));//56
+}
+```
+
+**Result**
+
+```
+Parameter is 56
+```
+
+Parameter ``number`` must have garbage value as it is the local variable inside ``main()`` but this example actually return its correct value. That happens as ``number`` can still keep because both ``func_thread_1()`` and ``main()`` will end their execution at the same time.
+
+When using 2 tasks with local variable, the garbage value will be received
+
+```c
+void *func_thread_1(void *ptr);
+void *func_thread_2(void *ptr);
+pthread_t thread_1_create;
+pthread_t thread_2_create;
+int main()
+{
+	pthread_create(&thread_1_create, NULL, func_thread_1, NULL);
+	sleep(5);
+}
+
+void *func_thread_1(void *ptr){
+	int number = 56;
+	pthread_create(&thread_2_create, NULL, func_thread_2, &number);
+}
+
+void *func_thread_2(void *ptr){
+	sleep(1);
+	printf("Parameter is %d\n", *((int*)ptr));//56
+}
+```
+**Result**
+```
+Parameter is 32719 (garbage value)
+```
+
+**Problem solve**: Use ``static``
+
+```c
+void *func_thread_1(void *ptr){
+	int number = 56;
+	pthread_create(&thread_2_create, NULL, func_thread_2, &number);
 }
 ```
 
