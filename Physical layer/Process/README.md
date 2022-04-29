@@ -1,11 +1,3 @@
-## Jobs
-
-A job is a process that the shell manages. Each job is assigned a sequential job ID. Because a job is a process, each job has an associated PID. There are three types of job statuses:
-
-1. **Foreground**: When you enter a command in a terminal window, the command occupies that terminal window until it completes. This is a foreground job.
-2. **Background**: When you enter an ampersand (``&``) symbol at the end of a command line, the command runs without occupying the terminal window.
-3. **Stopped**: If you press Control + Z for a foreground job, or enter the stop command for a background job, the job stops. 
-
 ## Inter-process communication
 
 * [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
