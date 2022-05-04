@@ -1,6 +1,6 @@
 # Fundamental concepts
 
-A program can execute in **user mode** and **kernel mode**. If a progam is executed in user mode, it can't direct access to the memory, hardware and such resources. If a program is executed in kernel mode, that program has direct access to the memory, hardware,...
+A program can execute in **user mode** and **kernel mode**. If a progam is executed in user mode, it can't direct access to the memory, hardware and such resources. If a program is executed in kernel mode (kernel driver), that program has direct access to the memory, hardware,... A program on userspace takes longer time than the kernel driver to access the hardware peripheral as it needs time to make system call.
 
 If a program is executed in **user mode** and want to access to the memory or hardware, it makes a call to the operating system, which is known as **system call**.
 
