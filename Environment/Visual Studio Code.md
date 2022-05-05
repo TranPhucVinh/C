@@ -1,3 +1,5 @@
+# Build C source code
+
 ``Ctr+Shift+B`` will build a single file. Visual Studio Code will ask the user to choose which compiler to build the file.
 
 For a script to build the file, put the file inside a folder. Then press ``Ctr+Shift+B`` and choose the ``detected task`` icon, ``Configure task`` will appear, press that icon and ``task.json`` will appear.
@@ -12,3 +14,7 @@ Change ``"group": "build"`` in ``tasks.json`` to the following fields for automo
     "kind": "build"
 }
 ```
+
+# Debug with GDB
+
+Check [the related document in GDB](GDB/Visual%20Studio%20Code.md) for implementation of GDB on Visual Studio Code.
