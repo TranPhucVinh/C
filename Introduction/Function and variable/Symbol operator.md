@@ -48,11 +48,17 @@ int a;
 
 ## lvalue, rvalue
 
-``lvale``: left value, the value on the left is modificable, usually a variable.
+``lvalue``: left value, the value on the left is modificable, usually a variable.
 
 ``rvalue``: right value concept pulls or fetches the value of the expression or operand on the right side of the assignment operator. 
 
-can't use ``PB5 = PB5^1;`` as PB5 is a macro, not variable
+**E.g**
+```c
+int a = 6;
+```
+
+* ``a``: lvalue
+* ``6``: rvalue
 
 ## ++i and i++
 
