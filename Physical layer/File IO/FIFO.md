@@ -52,8 +52,6 @@ Communication between 2 process using FIFO. Process ``fifo_write`` writes data t
 #include <sys/stat.h>
 #include <sys/time.h>
 
-void delaySeconds(long seconds);
-
 #define FIFO_NAME 		"FIFO 1"
 #define FILE_PERMISSION	 0777
 
@@ -79,21 +77,10 @@ int main(int argc, char *argv[])  {
             printf("Write message with index %d\n", index);
         }
 		index += 1; 
-        delaySeconds(1);    
+        sleep(1);  
     }
 
 	close(fd);
-}
-
-void delaySeconds(long seconds){
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	long totalSecond = 0;
-	long previousTime = tv.tv_sec;
-	while (totalSecond - previousTime < seconds){
-		gettimeofday(&tv, NULL);
-		totalSecond = tv.tv_sec;
-	}
 }
 ```
 
@@ -124,20 +111,9 @@ int main(int argc, char *argv[])  {
     while(1){
         read(fd, readBuffer, sizeof(readBuffer));
         printf("Received: %s", readBuffer);
-        delaySeconds(1);    
+        sleep(1); 
     }
 
 	close(fd);
-}
-
-void delaySeconds(long seconds){
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	long totalSecond = 0;
-	long previousTime = tv.tv_sec;
-	while (totalSecond - previousTime < seconds){
-		gettimeofday(&tv, NULL);
-		totalSecond = tv.tv_sec;
-	}
 }
 ```
