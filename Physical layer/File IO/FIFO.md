@@ -117,3 +117,42 @@ int main(int argc, char *argv[])  {
 	close(fd);
 }
 ```
+**Note**: When sending/receiving int array with FIFO, the sending/receiving size in ``read()`` and ``write()`` must be:
+
+```c
+write(fd, array, sizeof(int) * ARRAY_SIZE);
+```
+
+```c
+read(fd, read_buffer, sizeof(int) * ARRAY_SIZE);
+``` 
+
+We must ``sizeof(int) * ARRAY_SIZE`` because size of int is always greater than 1 byte.
+
+E.g:
+
+``fifo_write.c``
+
+```c
+int array[2] = {1, 2};
+
+if (write(fd, array, sizeof(int) * 2) != -1) {
+    printf("Write message with index %d\n", index);
+}
+```	
+
+``fifo_read.c``
+
+```c
+while(1){
+	read(fd, read_buffer, sizeof(int) * 2);
+	printf("index 0: %d, index 1: %d\n", read_buffer[0], read_buffer[1]);
+	sleep(1); 
+}
+```
+
+If using wrong sending/receiving size, e.g ``write(fd, array, ARRAY_SIZE)``, then the received value will be garbage:
+
+```
+index 0: -324141055, index 1: 32767
+```
