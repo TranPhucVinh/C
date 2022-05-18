@@ -96,7 +96,7 @@ char *return_string(char *str, int str_len){
 int main(){
     display_function("Hello, World !", 3);//Hel
     char *returned_string = return_string("Displayed string", 5);
-    printf("%s\n", returned_string);
+    printf("%s\n", returned_string);//Displ
     free(returned_string);
 }
 ```
