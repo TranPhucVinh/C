@@ -9,7 +9,6 @@
 #define USER        "tranphucvinh96@gmail.com"
 #define PASSWORD    "iotdev_admin"
 
-#define BUFFSIZE        	4096 //Size must be big to get all JWT
 #define TOKEN_SIZE			600
 #define REFRESH_TOKEN_SIZE	500 
 
@@ -26,9 +25,9 @@ int main(int argc, char *argv[]){
 	bzero(token, TOKEN_SIZE);
 	bzero(refreshToken, REFRESH_TOKEN_SIZE);
 
-	get_jwt(token, refreshToken, BUFFSIZE);
+	get_jwt(token, refreshToken);
 
-	http_response = http_request_for_api_with_jwt(API, "GET", token, BUFFSIZE);
+	http_response = http_request_for_api_with_jwt(API, "GET", token);
 
 	char *customer_id;
 	char *customer_devices;
@@ -92,12 +91,7 @@ char *get_customer_id(char *http_response, int customer_id_size){
 #define GET_DEVICE_INFO		"/api/customer/"
 
 char *get_all_customer_devices(char *customer_id){
-	char    *response_buffer;
 	int 	fd;
-
-	response_buffer = (char*) malloc(BUFFSIZE * sizeof(char));
-	bzero(response_buffer, BUFFSIZE);
-
 	char http_request[1024];//Must be big to store token
 	bzero(http_request, sizeof(http_request));
 
@@ -118,14 +112,29 @@ char *get_all_customer_devices(char *customer_id){
 	fd 		= socket_connect();
 	write(fd, http_request, strlen(http_request));
 
-	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
-	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
-	while(read(fd, response_buffer, BUFFSIZE) != 0) {
-		break;
-	}
+	/* Read HTTP response */
+	char* recv_buf = NULL;
+	int index = 0;
+	int read_size_chunk = 0;
+	recv_buf = (char*)malloc(1024);
+
+	while(1)
+    {
+        read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], 1024);
+        if(read_size_chunk > 0)
+        {
+            recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
+        }
+        else
+        {
+            recv_buf = realloc(recv_buf, index + 1);
+            recv_buf[index] = 0;
+            break;
+        }
+    }
 
 	shutdown(fd, SHUT_RDWR); 
 	close(fd); 
 
-	return response_buffer;
+	return recv_buf;
 }
