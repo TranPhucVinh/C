@@ -9,7 +9,6 @@
 #define USER        "tranphucvinh96@gmail.com"
 #define PASSWORD    "iotdev_admin"
 
-#define BUFFSIZE        	4096 //Size must be big to get all JWT
 #define TOKEN_SIZE			600
 #define REFRESH_TOKEN_SIZE	500 
 
@@ -34,9 +33,9 @@ int main(int argc, char *argv[]){
 	bzero(token, TOKEN_SIZE);
 	bzero(refreshToken, REFRESH_TOKEN_SIZE);
 
-	get_jwt(token, refreshToken, BUFFSIZE);
+	get_jwt(token, refreshToken);
 
-	http_response = http_request_for_api_with_jwt(API, "GET", token, BUFFSIZE);
+	http_response = http_request_for_api_with_jwt(API, "GET", token);
 
 	char *customer_id;
 	char *customer_devices_info = NULL, *customer_devices_json = NULL;
@@ -109,14 +108,9 @@ char *get_customer_id(char *http_response, int customer_id_size){
 #define PAGE_SIZE			"10"
 #define PAGE				"0"
 #define GET_DEVICE_INFO		"/api/customer/"
-#define READ_SIZE_FOR_CUSTOMER_DEVICES 20000 //Giant buffer size for 10 devices
 
 char *get_all_customer_devices(char *customer_id){
-	char    *response_buffer;
 	int 	fd;
-
-	response_buffer = (char*) malloc(READ_SIZE_FOR_CUSTOMER_DEVICES * sizeof(char));
-	bzero(response_buffer, READ_SIZE_FOR_CUSTOMER_DEVICES);
 
 	char http_request[1024];//Must be big to store token
 	bzero(http_request, sizeof(http_request));
@@ -138,19 +132,34 @@ char *get_all_customer_devices(char *customer_id){
 	fd 		= socket_connect();
 	write(fd, http_request, strlen(http_request));
 
-	int index = 0;
-	int read_size = 0;
+	/* Read HTTP response */
+	char    *recv_buf = NULL;
+	int 	index = 0;
+	int 	read_size_chunk = 0;
+	recv_buf =  (char*)malloc(1024);
+	bzero(recv_buf, 1024);
 
-	do {
-		read_size = read(fd, &response_buffer[index += read_size], 1024);
-	} while (read_size > 0);
-
-	response_buffer[index] = 0;
+	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
+	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
+	while(1)
+    {
+        read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], 1024);
+        if(read_size_chunk > 0)
+        {
+            recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
+        }
+        else
+        {
+            recv_buf = realloc(recv_buf, index + 1);
+            recv_buf[index] = 0;
+            break;
+        }
+    }
 
 	shutdown(fd, SHUT_RDWR); 
 	close(fd); 
 
-	return response_buffer;
+	return recv_buf;
 }
 
 //return total devices that a customer have
@@ -194,11 +203,7 @@ int  get_device_id(char *json_string, char *field_name, char *device_id_array[TO
 
 void get_access_token(char *device_id_array[TOTAL_DEVICE_ID], int total_devices){
 	for (int index=0; index < total_devices; index++){
-		char    *response_buffer;
 		int 	fd;
-
-		response_buffer = (char*) malloc(BUFFSIZE * sizeof(char));
-		bzero(response_buffer, BUFFSIZE);
 
 		char http_request[1024];//Must be big to store token
 		bzero(http_request, sizeof(http_request));
@@ -217,17 +222,35 @@ void get_access_token(char *device_id_array[TOTAL_DEVICE_ID], int total_devices)
 		fd 		= socket_connect();
 		write(fd, http_request, strlen(http_request));
 
+		/* Read HTTP response */
+		char    *recv_buf = NULL;
+		int 	index = 0;
+		int 	read_size_chunk = 0;
+		recv_buf =  (char*)malloc(1024);
+		bzero(recv_buf, 1024);
+
 		//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
 		//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
-		while(read(fd, response_buffer, BUFFSIZE) != 0) {
-			break;
+		while(1)
+		{
+			read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], 1024);
+			if(read_size_chunk > 0)
+			{
+				recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
+			}
+			else
+			{
+				recv_buf = realloc(recv_buf, index + 1);
+				recv_buf[index] = 0;
+				break;
+			}
 		}
 
 		shutdown(fd, SHUT_RDWR); 
 		close(fd);
 
 		char* temp_json_parsed = NULL;
-		temp_json_parsed = strstr(response_buffer, "credentialsId");
+		temp_json_parsed = strstr(recv_buf, "credentialsId");
 
 		// printf("%s\n", temp_json_parsed);
 
@@ -263,7 +286,7 @@ void get_access_token(char *device_id_array[TOTAL_DEVICE_ID], int total_devices)
 		} else printf("Fail to get token");
 
         free(access_token);
-        free(response_buffer);
+        free(recv_buf);
         free(credentials_id);
 	}
 }
