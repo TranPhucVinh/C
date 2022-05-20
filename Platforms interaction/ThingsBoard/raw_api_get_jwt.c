@@ -23,7 +23,7 @@
 
 char *form_jwt_http_request();
 char *form_login_json_string(char *user, char *password);
-char *get_jwt(char *_token, char *_refreshToken);
+void get_jwt(char *_token, char *_refreshToken);
 int  socket_connect(char *host, in_port_t port);
 
 char token[TOKEN_SIZE], refreshToken[REFRESH_TOKEN_SIZE];
@@ -65,7 +65,7 @@ int socket_connect(char *host, in_port_t port){
 	return sock;
 }
 
-char *get_jwt(char *_token, char *_refreshToken){
+void get_jwt(char *_token, char *_refreshToken){
 	const 	cJSON *token, *refreshToken;
 	int 	fd;
    
