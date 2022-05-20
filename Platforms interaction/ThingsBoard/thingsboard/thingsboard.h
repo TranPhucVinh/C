@@ -19,6 +19,6 @@ char *server_side_api_param_init(char *host, int _port, char *login_path, char *
 char *form_jwt_http_request();
 char *form_http_request_for_api_with_jwt(char *api, char *_method, char *_token);
 char *form_login_json_string();
-void get_jwt(char *_token, char *_refreshToken, int read_buffer_size);
-char *http_request_for_api_with_jwt(char *api, char *method, char *_token, int read_buffer_size);
+void get_jwt(char *_token, char *_refreshToken);
+char *http_request_for_api_with_jwt(char *api, char *method, char *_token);
 int  socket_connect();

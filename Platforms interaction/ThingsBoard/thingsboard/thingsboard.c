@@ -91,28 +91,43 @@ char *form_http_request_for_api_with_jwt(char *api, char *_method, char *_token)
 	return http_request;
 }
 
-void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
+void get_jwt(char *_token, char *_refreshToken){
 	const 	cJSON *token, *refreshToken;
-	char    response_buffer[read_buffer_size];
 	int 	fd;
    
-	fd = socket_connect();
+	fd = socket_connect(_host, _port);
 	char *http_request = form_jwt_http_request();
-
+	// printf("DEBUG: %s\n", http_request);
 	write(fd, http_request, strlen(http_request));
 
-	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
-	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
-	while(read(fd, response_buffer, read_buffer_size) != 0) {
-		break;
-	}
+	/* Read HTTP response */
+	char* recv_buf = NULL;
+	int index = 0;
+	int read_size_chunk = 0;
+	recv_buf = (char*)malloc(1024);
 
+	while(1)
+    {
+        read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], 1024);
+        if(read_size_chunk > 0)
+        {
+            recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
+        }
+        else
+        {
+            recv_buf = realloc(recv_buf, index + 1);
+            recv_buf[index] = 0;
+            break;
+        }
+    }
+
+    // printf("DEBUG: %s\n", recv_buf);
 	shutdown(fd, SHUT_RDWR); 
 	close(fd); 
 
-	//response_buffer = HTTP response header + JWT as JSON type
+	// response_buffer = HTTP response header + JWT as JSON type
 	char* temp_json_parsed;
-	strtok(response_buffer, "{");
+	strtok(recv_buf, "{");
 	temp_json_parsed = strtok(NULL, "}");
 
 	int jwt_json_size = strlen(temp_json_parsed) + 2;//2 for "{"" and "}"
@@ -122,6 +137,8 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 	strcat(jwt_json, "{");
 	strcat(jwt_json, temp_json_parsed);
 	strcat(jwt_json, "}");
+
+	printf("DEBUG: %s\n", jwt_json);
 
 	cJSON *jwt = cJSON_Parse(jwt_json);
 	if (jwt == NULL)
@@ -154,27 +171,40 @@ void get_jwt(char *_token, char *_refreshToken, int read_buffer_size){
 	} else printf("Fail to get refreshToken");
 }
 
-char *http_request_for_api_with_jwt(char *api, char *method, char *_token, int read_buffer_size){
+char *http_request_for_api_with_jwt(char *api, char *method, char *_token){
 	int 	fd;
-	char    *response_buffer;
-
-	response_buffer = (char*) malloc(read_buffer_size * sizeof(char));
-	bzero(response_buffer, read_buffer_size);
-
 	fd 		= socket_connect();
 
 	char *http_request = form_http_request_for_api_with_jwt(api, method, _token);
 
 	write(fd, http_request, strlen(http_request));
 
+	/* Read HTTP response */
+	char    *recv_buf = NULL;
+	int 	index = 0;
+	int 	read_size_chunk = 0;
+	recv_buf =  (char*)malloc(1024);
+	bzero(recv_buf, 1024);
+
 	//After reading all HTTP response from JWT (not until reaching BUFFSIZE character), break the while loop
 	//Without break, the program will hang as read() will keep waiting for the coming bytes although there is no bytes left
-	while(read(fd, response_buffer, read_buffer_size) != 0) {
-		break;
-	}
+	while(1)
+    {
+        read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], 1024);
+        if(read_size_chunk > 0)
+        {
+            recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
+        }
+        else
+        {
+            recv_buf = realloc(recv_buf, index + 1);
+            recv_buf[index] = 0;
+            break;
+        }
+    }
 
 	shutdown(fd, SHUT_RDWR); 
 	close(fd); 
 
-	return response_buffer;
+	return recv_buf;
 }
