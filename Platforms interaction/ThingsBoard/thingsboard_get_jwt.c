@@ -7,7 +7,6 @@
 #define USER        "tranphucvinh96@gmail.com"
 #define PASSWORD    "iotdev_admin"
 
-#define BUFFSIZE        	4096 //Size must be big to get all JWT
 #define TOKEN_SIZE			600
 #define REFRESH_TOKEN_SIZE	500 
 
@@ -19,7 +18,7 @@ int main(int argc, char *argv[]){
 	bzero(token, TOKEN_SIZE);
 	bzero(refreshToken, REFRESH_TOKEN_SIZE);
 
-	get_jwt(token, refreshToken, BUFFSIZE);
+	get_jwt(token, refreshToken);
 	printf("token: %s\n", token);
 	printf("refreshToken: %s\n", refreshToken);
 	return 0;
