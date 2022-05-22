@@ -39,7 +39,7 @@ In present day CPU, the read/write operation depend on the size of ``word`` (32-
 
 ## Memory allocation
 
-There are 2 types of memory allocation: Static memory allocation and [dynamic memory allocation](Dynamic memory allocation).
+There are 2 types of memory allocation: Static memory allocation and [dynamic memory allocation](Dynamic%20memory%20allocation).
 
 ### Static memory allocation
 
