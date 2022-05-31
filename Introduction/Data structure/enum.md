@@ -10,7 +10,7 @@ printf("%d, %d, %d, %d, %d, %d, %d\n", value7 , value8, value9, value10, value11
 
 **Notice**: After declaring the ``enum``, all variable inside ``enum`` (``value0``, ``value1``, ...) are all constant and unique.
 
-Add name to ``enum`` and declare object
+### object of enum
 
 ```c
 enum enum_object {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
@@ -20,19 +20,6 @@ enum_object_1 = value0;
 printf("%d\n", enum_object_1);//10
 enum_object_1 = value1;
 printf("%d\n", enum_object_1);//11
-```
-
-### object of enum
-
-```c
-enum {
-    value0 = 10, 
-    value1
-} node0;
-
-printf("value of node0 before: %d \n", node0); //0
-node0 = value1;
-printf("value of node0 after: %d \n", node0); //1
 ```
 
 Garbage value of enum object
@@ -61,4 +48,25 @@ Garbage value of node1: 16
 Garbage value of node2: 0
 Garbage value of node3: 7611296
 Garbage value of node4: 0
+```
+
+### enum as function parameter
+
+Use ``typedef`` to set enum as function parameter:
+
+```c
+#include <stdio.h>
+
+enum enum_object {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
+
+typedef enum_object enum_object;
+
+void callback_function(enum_object enum_object_1){
+    printf("%d\n", enum_object_1);
+}
+
+int main(){
+    enum_object enum_object_1 = value1;
+    callback_function(enum_object_1);//11
+}
 ```
