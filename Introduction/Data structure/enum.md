@@ -1,24 +1,25 @@
-### enum
+### Define an enum
 
 ```c
 enum {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
 enum {value7, value8, value9, value10, value11=1, value12=12, value13};
 
-printf("The value of the first enum: %d, %d, %d, %d, %d, %d, %d\n", value0 , value1, value2, value3, value4, value5, value6);
-printf("The value of the second enum: %d, %d, %d, %d, %d, %d, %d", value7 , value8, value9, value10, value11, value12, value13);
+printf("%d, %d, %d, %d, %d, %d, %d\n", value0 , value1, value2, value3, value4, value5, value6);//10, 11, 12, 13, 10, 16, 17
+printf("%d, %d, %d, %d, %d, %d, %d\n", value7 , value8, value9, value10, value11, value12, value13);//0, 1, 2, 3, 1, 12, 13
 ```
 
-```
-The value of the first enum: 10, 11, 12, 13, 10, 16, 17
-The value of the second enum: 0, 1, 2, 3, 1, 12, 13
-```
 **Notice**: After declaring the ``enum``, all variable inside ``enum`` (``value0``, ``value1``, ...) are all constant and unique.
 
 Add name to ``enum`` and declare object
 
 ```c
-enum enumObject {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
-enum enumObject enumObject0;
+enum enum_object {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
+enum enum_object enum_object_1;
+
+enum_object_1 = value0;
+printf("%d\n", enum_object_1);//10
+enum_object_1 = value1;
+printf("%d\n", enum_object_1);//11
 ```
 
 ### object of enum
