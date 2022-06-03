@@ -39,6 +39,8 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 
 ``SIGKILL``: immediately terminate a process, ``SIGKILL`` cannot be caught, handled or ignored. It is impossible to block this signal.
 
+``SIGTERM``: politely ask a program to terminate. Unlike SIGKILL, this signal can be blocked, handled, and ignored.
+
 ## API
 
 ### signal()
