@@ -162,7 +162,7 @@ int main(int argc, char *argv[])  {
     }
 }
 ```
-### Stop and stop process with fork()
+### Stop and continue process with fork() by signal
 
 In parent process, if ``number`` is ``5``, stop for parent process for 5 seconds then continues
 
