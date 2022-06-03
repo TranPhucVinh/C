@@ -1,9 +1,3 @@
-### Fundamental concepts
-
-Virtual memory is a section of volatile memory created temporarily on the storage drive. It is created when a computer is running many processes at once and RAM is running low.
-
-Swapping is the process the OS uses to move data between RAM and virtual memory. The OS moves data from processes that are not immediately needed out of the RAM and stores them in virtual memory. It copies the data back into RAM when the process is needed again. Using virtual memory slows the computer down because copying to a hard disk takes much longer than reading and writing RAM.
-
 ### API
 
 ```c
