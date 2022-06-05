@@ -39,6 +39,16 @@ While the program is blocking, running another program that interact with ``FIFO
 
 Once you have created a FIFO special file in this way, any process can open it for reading or writing, in the same way as an ordinary file. However, it has to be open at both ends simultaneously before you can proceed to do any input or output operations on it.
 
+**Write int number to FIFO**
+
+```c
+int a = 98;
+//Other operations like above
+if (write(fd, &a, sizeof(int)) == -1) printf("Unable to write to FIFO");
+```
+
+``cat FIFO\ 1`` will then read out character ``b`` (ASCII value ``98``).
+
 ## Example 2
 
 Communication between 2 process using FIFO. Process ``fifo_write`` writes data to FIFO ``FIFO 1`` every 1 second. Process ``fifo_read`` reads data from FIFO ``FIFO 1`` every 1 second.
