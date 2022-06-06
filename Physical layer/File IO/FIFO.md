@@ -76,7 +76,6 @@ Communication between 2 process using FIFO. Process ``fifo_write`` writes data t
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
-#include <sys/time.h>
 
 #define FIFO_NAME 		"FIFO 1"
 #define FILE_PERMISSION	 0777
@@ -85,8 +84,18 @@ int main(int argc, char *argv[])  {
 	char writeString[50];
 
 	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
-		printf("Could not create FIFO file\n");
-		return 1;
+		printf("WARNING: A FIFO with the same name has already existed\n");
+
+        //Use unlink() to remove the existed FIFO with the same name if existed
+        if (!remove(FIFO_NAME)) {
+            printf("FIFO %s has been deleted\n", FIFO_NAME);
+
+            //Then create that FIFO again
+            mkfifo(FIFO_NAME, FILE_PERMISSION);
+        } else {
+            printf("Unable to remove FIFO %s", FIFO_NAME);
+            return 1;
+        }
 	}
 
 	int fd = open(FIFO_NAME, O_WRONLY);//Open for write
@@ -115,10 +124,6 @@ int main(int argc, char *argv[])  {
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-
-void delaySeconds(long seconds);
 
 #define FIFO_NAME 		"FIFO 1"
 #define FILE_PERMISSION	 0777
