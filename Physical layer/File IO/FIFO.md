@@ -48,13 +48,15 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-**Result**: File ``FIFO 1`` is created. The program then blocks after running ``open(FIFO_NAME, O_WRONLY)``.
+**Result**: File ``FIFO`` is created. The program then blocks after running ``open(FIFO_NAME, O_WRONLY)``.
 
 That happens as opening a FIFO created by ``mkfifo()`` for reading normally blocks until some other process opens the same FIFO for writing, and vice versa.
 
-While the program is blocking, running another program that interact with ``FIFO 1`` like ``cat FIFO\ 1``. It will then stop blocking.
+While the program is blocking, running another program that interact with ``FIFO`` like ``cat FIFO``. It will then stop blocking.
 
 Once you have created a FIFO special file in this way, any process can open it for reading or writing, in the same way as an ordinary file. However, it has to be open at both ends simultaneously before you can proceed to do any input or output operations on it.
+
+For FIFO name with space like ``FIFO 1``, use ``\``, e.g ``cat FIFO\ 1``.
 
 **Write int number to FIFO**
 
