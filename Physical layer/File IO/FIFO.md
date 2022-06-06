@@ -21,11 +21,12 @@ Create a FIFO
 #include <fcntl.h>
 #include <sys/stat.h>
 
-#define FIFO_NAME 		"FIFO 1"
+#define FIFO_NAME 		"FIFO"
 #define FILE_PERMISSION	 0777 //Octal value for file permission 777
 
 int main(int argc, char *argv[])  {
 	char writeString[] = "Hello, World !";
+
 	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
 		printf("WARNING: A FIFO with the same name has already existed\n");
 
@@ -34,12 +35,12 @@ int main(int argc, char *argv[])  {
             printf("FIFO %s has been deleted\n", FIFO_NAME);
 
             //Then create that FIFO again
-            mkfifo(FIFO_NAME, FILE_PERMISSION);
+            if (!mkfifo(FIFO_NAME, FILE_PERMISSION)) printf("FIFO %s has been recreated\n", FIFO_NAME);
         } else {
             printf("Unable to remove FIFO %s", FIFO_NAME);
             return 1;
         }
-	}
+	} else printf("FIFO %s has been created\n", FIFO_NAME);
 
 	int fd = open(FIFO_NAME, O_WRONLY);
 	if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
