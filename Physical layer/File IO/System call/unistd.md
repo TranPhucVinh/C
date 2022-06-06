@@ -39,6 +39,9 @@ Close a file descriptor, so that it no longer refers to any file and may be reus
 int close(int fd);
 ```
 ### unlink()
+
+Deletes a name (with ``pathname``) from the filesystem
+
 ```c
 int unlink(const char *pathname);
 ```
