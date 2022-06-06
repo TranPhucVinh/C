@@ -38,6 +38,21 @@ Close a file descriptor, so that it no longer refers to any file and may be reus
 ```c
 int close(int fd);
 ```
+### unlink()
+```c
+int unlink(const char *pathname);
+```
+
+* ``0``: success
+* ``-1``: error
+
+```c
+#define FILE_NAME 		"delete.txt"
+
+int main(int argc, char *argv[])  {
+	if (unlink(FILE_NAME) == -1) printf("Unable to remove file");
+}
+```
 
 ### lseek()
 
