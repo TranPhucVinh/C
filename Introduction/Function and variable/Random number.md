@@ -12,7 +12,14 @@ int main() {
 }
 ```
 
-Then the same random number will be generated every time we run the program.
+Then the same random number will be generated every time we run the program but different number will be generated if using ``while()`` loop:
+
+```c
+while (1){
+    printf("Random number %d\n", rand());
+	sleep(1);
+}
+```
 
 To generate a new number every time:
 
