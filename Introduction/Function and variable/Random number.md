@@ -51,7 +51,6 @@ void generate_random_number(float lower, float upper)
 	printf("%f", number);
 }
   
-// Driver code
 int main()
 { 
     srand(time(0));
