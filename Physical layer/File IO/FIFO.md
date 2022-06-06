@@ -58,6 +58,25 @@ Once you have created a FIFO special file in this way, any process can open it f
 
 For FIFO name with space like ``FIFO 1``, use ``\``, e.g ``cat FIFO\ 1``.
 
+For better understanding of the blocking process, take this example:
+
+```c
+//Other operations like Example 1
+int fd = open(FIFO_NAME, O_WRONLY);//Open for write
+if (fd == -1) {
+	printf("Unable to open %s", FIFO_NAME);
+	return 0;
+}	
+
+while(1){
+	//In while() loop, do nothing related to FIFO. Simply print out a string
+	printf("Hello, World !\n");
+	sleep(1);  
+}
+```
+
+**Result**: This program will print out notthing when entering the while loop. To make the string ``Hello, World !`` printed out, interact with the FIFO, e.g ``cat FIFO``.
+
 **Write int number to FIFO**
 
 ```c
