@@ -29,13 +29,16 @@ int main(int argc, char *argv[])  {
 	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
 		printf("WARNING: A FIFO with the same name has already existed\n");
 
-		//Use unlink() to remove the existed FIFO with the same name if existed
-		if (!unlink(FIFO_NAME)) {
-		    printf("FIFO %s has been deleted\n", FIFO_NAME);
-		} else {
-		    printf("Unable to remove FIFO %s", FIFO_NAME);
-		    return 1;
-		}
+        //Use unlink() to remove the existed FIFO with the same name if existed
+        if (!remove(FIFO_NAME)) {
+            printf("FIFO %s has been deleted\n", FIFO_NAME);
+
+            //Then create that FIFO again
+            mkfifo(FIFO_NAME, FILE_PERMISSION);
+        } else {
+            printf("Unable to remove FIFO %s", FIFO_NAME);
+            return 1;
+        }
 	}
 
 	int fd = open(FIFO_NAME, O_WRONLY);
