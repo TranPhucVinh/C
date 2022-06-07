@@ -4,7 +4,7 @@ To compile a program to run on Windows with ``wine``, use ``winegcc``: ``winegcc
 
 ``a.out.so`` file will be exported.
 
-Then run on wine command prompt: `wine cmd``
+Then run on wine command prompt: ``wine cmd``
 
 ```
 Z:\home\tranphucvinh\Documents\Gitlab\windows-batch>a.out.so
