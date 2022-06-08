@@ -105,6 +105,8 @@ varC: 0
 
 ### signed char
 
+In GCC and G++, the default ``char`` type is ``signed char``.
+
 ```c
 signed char varB = -19; //-19
 ```
