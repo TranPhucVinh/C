@@ -23,7 +23,7 @@ Library **stdint** include integer types.
 
 **Example 1**
 
-For examples with signed number and overflow number, check: ``Data type/Char for integer.md``
+For examples with signed number and overflow number, check [Char for integer document](Char%20for%20integer.md)
 
 **Example 2**
 
