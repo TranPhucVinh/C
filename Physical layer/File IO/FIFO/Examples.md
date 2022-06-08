@@ -1,15 +1,3 @@
-# Fundamental concepts
-
-A named pipe (also known as a **FIFO** for its behavior) is an extension to the traditional pipe concept on Unix and Unix-like systems, and is one of the methods of inter-process communication (IPC).
-
-```c
-#include <sys/types.h>
-#include <sys/stat.h>
-
-int mkfifo(const char *pathname, mode_t mode);
-```
-
-# Examples
 
 ## Example 1
 
@@ -211,4 +199,4 @@ index 0: -324141055, index 1: 32767
 ```
 ### Example 3
 
-Minimize float number to send as array member with 1 byte in the FIFO between 2 process: ``minimize_float_number_fifo_write.c`` and ``minimize_float_number_fifo_read.c``
+Minimize float number to send as array member with 1 byte in the FIFO between 2 process: [minimize_float_number_fifo_write.c](minimize_float_number_fifo_write.c) and [minimize_float_number_fifo_read.c](minimize_float_number_fifo_read.c).
