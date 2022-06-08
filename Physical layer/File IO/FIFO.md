@@ -209,3 +209,6 @@ If using wrong sending/receiving size, e.g ``write(fd, array, ARRAY_SIZE)``, the
 ```
 index 0: -324141055, index 1: 32767
 ```
+### Example 3
+
+Minimize float number to send as array member with 1 byte in the FIFO between 2 process: ``minimize_float_number_fifo_write.c`` and ``minimize_float_number_fifo_read.c``
