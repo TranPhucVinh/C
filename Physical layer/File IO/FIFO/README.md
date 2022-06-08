@@ -10,3 +10,5 @@ int mkfifo(const char *pathname, mode_t mode);
 ```
 
 # Examples
+
+Check [examples document](Examples.md)
