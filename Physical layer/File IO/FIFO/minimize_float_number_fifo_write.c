@@ -12,6 +12,7 @@
 #define UPPER	            0
 
 #define UPPER_RANGE_VALUE   99
+#define SCALING_FACTOR      65535
 
 char write_string[50];
 
@@ -45,7 +46,7 @@ int main(int argc, char *argv[])  {
 	while(1){
         uint8_t array[2];
         float float_value = generate_random_number(LOWER, UPPER);
-        int converted_int_value = float_value * (65535 / UPPER_RANGE_VALUE);
+        int converted_int_value = float_value * (SCALING_FACTOR / UPPER_RANGE_VALUE);
 
         array[0] = (uint8_t)converted_int_value; //LSB
         array[1] = converted_int_value >> 8; //MSB
