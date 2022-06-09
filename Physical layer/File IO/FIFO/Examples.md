@@ -246,3 +246,31 @@ Received: 19.95
 Received: 8.75
 Received: 79.43
 ```
+
+However, if using big scaling factor ``100000``, the overflow issue might happen which lead to wrong conversion value in receiver side.  
+
+``./fifo_write``
+
+```
+Tranmit value: 15.82
+Tranmit value: 59.96
+Tranmit value: 21.47
+Tranmit value: 19.95
+Tranmit value: 8.75
+Tranmit value: 79.44 (overflow value)
+Tranmit value: 65.81 (overflow value)
+Tranmit value: 22.95
+```
+
+``./fifo_read``
+
+```
+Received: 15.82
+Received: 59.95
+Received: 21.47
+Received: 19.95
+Received: 8.75
+Received: 14.55 (received wrong value)
+Received: 0.93 (received wrong value)
+Received: 22.94
+```
