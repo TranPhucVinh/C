@@ -200,3 +200,34 @@ index 0: -324141055, index 1: 32767
 ### Example 3
 
 Minimize float number to send as array member with 1 byte in the FIFO between 2 process: [minimize_float_number_fifo_write.c](minimize_float_number_fifo_write.c) and [minimize_float_number_fifo_read.c](minimize_float_number_fifo_read.c).
+
+**Result**
+
+``./fifo_write``
+
+```
+Tranmit value: 15.82
+
+Tranmit value: 59.96
+
+Tranmit value: 21.47
+
+Tranmit value: 19.95
+
+Tranmit value: 8.75
+```
+
+``./fifo_read``
+
+```
+Received: 15.80
+
+Received: 59.87
+
+Received: 21.44
+
+Received: 19.92
+
+Received: 8.73
+```
+The received value in FIFO read different a little from FIFO write.
