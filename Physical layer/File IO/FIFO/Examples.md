@@ -18,7 +18,7 @@ int main(int argc, char *argv[])  {
 	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
 		printf("WARNING: A FIFO with the same name has already existed\n");
 
-        //Use unlink() to remove the existed FIFO with the same name if existed
+        //Use unlink() or remove() to remove the existed FIFO with the same name if existed
         if (!remove(FIFO_NAME)) {
             printf("FIFO %s has been deleted\n", FIFO_NAME);
 
