@@ -207,13 +207,9 @@ Minimize float number to send as array member with 1 byte in the FIFO between 2 
 
 ```
 Tranmit value: 15.82
-
 Tranmit value: 59.96
-
 Tranmit value: 21.47
-
 Tranmit value: 19.95
-
 Tranmit value: 8.75
 ```
 
@@ -221,13 +217,32 @@ Tranmit value: 8.75
 
 ```
 Received: 15.80
-
 Received: 59.87
-
 Received: 21.44
-
 Received: 19.92
-
 Received: 8.73
 ```
 The received value in FIFO read different a little from FIFO write.
+
+With scaling factor ``70000``:
+
+``./fifo_write``
+```
+Tranmit value: 15.82
+Tranmit value: 59.96
+Tranmit value: 21.47
+Tranmit value: 19.95
+Tranmit value: 8.75
+Tranmit value: 79.44
+```
+
+``./fifo_read``
+
+```
+Received: 15.82
+Received: 59.95
+Received: 21.47
+Received: 19.95
+Received: 8.75
+Received: 79.43
+```
