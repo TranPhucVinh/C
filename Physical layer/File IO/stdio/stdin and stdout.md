@@ -77,7 +77,7 @@ If you type in value with whitespace, like ``Hello, World!``, this will just pri
 Using ``scanf()`` is not highly recommended as it doesn't have buffer overflow protection, unless you know for certain that the input will always be of a specific format (and perhaps not even then).
 
 
-A proper word entering can be solved with ``fgets()``: ``Stream stdio API.md``
+A proper word entering can be solved with [fgets()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/FIle%20pointer%20API.md#fgets).
 
 ## %.*s
 
