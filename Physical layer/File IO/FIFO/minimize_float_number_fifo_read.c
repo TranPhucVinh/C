@@ -7,6 +7,7 @@
 #define FILE_PERMISSION	 0777
 
 #define UPPER_RANGE_VALUE   99.0f
+#define SCALING_FACTOR      65535.0f
 
 int main(int argc, char *argv[])  {
 	uint8_t read_buffer[2];
@@ -24,7 +25,7 @@ int main(int argc, char *argv[])  {
         uint16_t received_int_number = (int) (read_buffer[1]<<8) | read_buffer[0];
         printf("̀%d %d %d\n", read_buffer[0], read_buffer[1], received_int_number);
 
-        float origin_float_number = received_int_number * UPPER_RANGE_VALUE  / 65535.0f;
+        float origin_float_number = received_int_number * UPPER_RANGE_VALUE / SCALING_FACTOR;
 
         printf("Received: %.2f\n", origin_float_number);
     }

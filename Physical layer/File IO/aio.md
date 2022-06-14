@@ -57,5 +57,5 @@ int main(){
 
 Compile: ``gcc test.c -lrt``
 
-``aio_read(&controlBlock)`` when called will created a thread outside the running process (``a.out``) to read the file, so that the program will not be blocked when reading.
+``aio_read(&controlBlock)`` when called will create a thread outside the running process (``a.out``) to read the file, so that the program will not be blocked when reading.
 
