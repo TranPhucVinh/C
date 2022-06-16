@@ -144,6 +144,11 @@ Total argument: 2
 
 ## Variable
 
+**Difference between variable declaration and definition**
+
+* Variable declaration : a variable is first declared or introduced before its first use.
+* Variable definition: the variable is assigned a memory location and a value.
+
 ### Special character
 
 ```c
