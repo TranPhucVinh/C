@@ -124,3 +124,8 @@ Optimizations flags: ``-O``, ``-O1``, ``-O2``, ``-O3``.
 ``gcc -c test.c test1.c -o test.o`` will be error
 
 ``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``
+
+# Compilers developed from GCC
+
+* With AVR, we have ``AVR-GCC ``is a part of GCC and support compiling C program for AVR microcontrollers.
+* ESP8266 core includes an ``xtensa gcc toolchain``.
