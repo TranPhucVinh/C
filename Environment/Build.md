@@ -1,3 +1,5 @@
+# Fundamental concepts
+
 Bare metal application
 
 ![](../Environment/Images/bare_mental_application.PNG)
@@ -5,6 +7,10 @@ Bare metal application
 OS-based application
 
 ![](../Environment/Images/os_based_application.PNG)
+
+``Object files`` -- executable or not -- are typically stored in a container format, such as ``Executable and Linkable Format`` (``ELF``) or ``Portable Executable`` (``PE``) which is Operating System-specific
+
+``Executable and Linkable Format`` (``ELF``, formerly named Extensible Linking Format) is a common standard file format for ``executable files``, ``object code``, ``shared libraries``, and ``core dumps``.
 
 # GCC compilation process
 
