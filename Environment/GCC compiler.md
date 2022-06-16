@@ -1,4 +1,4 @@
-GCC is a compiler system that supporting various programming languages.
+The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain.
 
 # Build source file
 
