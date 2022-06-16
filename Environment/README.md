@@ -1,3 +1,13 @@
+# Software development environment in this repository
+
+Main OS: Ubuntu 16.04
+
+Other OS:
+* Windows (specifically noted on any software that are built on Windows)
+* WSL Unbuntu 18.04
+
+## Fundamental concepts
+
 Bare metal application
 
 ![](../Environment/Images/bare_mental_application.PNG)
@@ -6,7 +16,9 @@ OS-based application
 
 ![](../Environment/Images/os_based_application.PNG)
 
-### Linux Programmer's Manual
+## Linux environment
+
+**Linux Programmer's Manual**
 
 Manual document for functions prototype can be accessed by ``man function_prototype``.
 
