@@ -1,6 +1,29 @@
+# API
+
+### sem_init()
+
+```c
+#include <semaphore.h>
+
+int sem_init(sem_t *sem, int pshared, unsigned int value);
+```
+
+``sem_init()`` initializes the unnamed semaphore at the address pointed to by ``sem``. The ``value`` argument specifies the initial value for the semaphore.
+
+The ``pshared`` argument indicates whether this semaphore is to be shared between the threads of a process, or between processes.
+
+If ``pshared`` has the value ``0``, then the semaphore is shared between the threads of a process, and should be located at some address that is visible to all threads (e.g., a global variable, or a variable allocated dynamically on the heap).
+
+If ``pshared`` is nonzero, then the semaphore is shared between processes, and should be located in a region of shared memory.
+
+### sem_wait() and sem_post()
+
+* ``sem_wait()``: lock a semaphore
+* ``sem_post()``: unlock a semphore
+
 ## Data race issue
 
-Solve the [data race issue stated in fundamental concepts]():
+Solve the [data race issue stated in fundamental concepts](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Thread#data-race):
 
 ```c
 #include <stdio.h>
