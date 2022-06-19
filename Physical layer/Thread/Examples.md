@@ -121,7 +121,7 @@ Parameter is 32719 (garbage value)
 
 ```c
 void *func_thread_1(void *ptr){
-	int number = 56;
+	static int number = 56;
 	pthread_create(&thread_2_create, NULL, func_thread_2, &number);
 }
 ```
