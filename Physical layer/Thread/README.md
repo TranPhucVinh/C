@@ -32,6 +32,10 @@ The flow of that example:
 
 If the thread is an infinite loop, the program operation behind ``pthread_join()`` can't be reached.
 
+## Inter-task communication
+
+* [Using global variable to share values between 2 threads]()
+
 # API
 
 ChecK [API](API.md) document.

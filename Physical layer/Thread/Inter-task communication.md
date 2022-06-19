@@ -1,41 +1,3 @@
-### Using global variable to share values between 2 threads
-
-```c
-#include <stdio.h>
-#include <pthread.h>
-
-void *start_routine_thread_1(void *ptr);
-void *start_routine_thread_2(void *ptr);
-
-int a;
-int main(void){
-	int start_routine_thread_return_1, start_routine_thread_return_2;
-	pthread_t start_routine_thread_id_1, start_routine_thread_id_2;//pointer thread for HTTP client
-
-	start_routine_thread_return_1 = pthread_create(&start_routine_thread_id_1, NULL, start_routine_thread_1, NULL);
-    start_routine_thread_return_2 = pthread_create(&start_routine_thread_id_2, NULL, start_routine_thread_2, NULL);
-
-	pthread_join(start_routine_thread_id_1, NULL);
-    pthread_join(start_routine_thread_id_2, NULL);
-
-	return 0;
-}
-
-void *start_routine_thread_1(void *ptr){
-    a = 10;
-	printf("Value a in thread 1 is: %d\n", a);
-}
-
-void *start_routine_thread_2(void *ptr){
-	printf("Value a in thread 2 is: %d\n", a);
-}
-```
-**Result**
-```
-Value a in thread 2 is: 10
-Value a in thread 1 is: 10
-```
-
 # Control resources
 
 ### Problem when resource is not controlled
@@ -94,4 +56,157 @@ void *func_thread_2(void *ptr){
 Thread 1
 Thread 2
 Hello, World !
+```
+
+### Problem when using semaphore
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <semaphore.h>
+
+#define PSHARED 0
+#define SEM_VAL	1
+
+char displayed_string[30];
+sem_t mutex;
+
+void *func_thread_1(void *ptr);
+void *func_thread_2(void *ptr);
+
+pthread_t thread_1;
+pthread_t thread_2;
+
+int main()
+{
+	sem_init(&mutex, PSHARED, SEM_VAL);
+
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_create(&thread_2, NULL, func_thread_2, NULL);
+	pthread_join(thread_1, NULL);
+	pthread_join(thread_2, NULL);
+
+    sem_destroy(&mutex);
+}
+
+void *func_thread_1(void *ptr){
+	printf("Thread 1\n");
+
+	if (!sem_wait(&mutex)){
+        sprintf(displayed_string, "%s", "Hello, World !");	
+        sem_post(&mutex);
+    } else printf("Thread 1 fails to lock\n");
+
+    pthread_exit(0);
+}
+
+void *func_thread_2(void *ptr){
+    if (!sem_wait(&mutex)){
+        printf("%s\n", displayed_string);
+        sem_post(&mutex);
+    } else printf("Thread 2 fails to lock\n");
+	printf("Thread 2\n");
+
+    pthread_exit(0);
+}
+```
+
+**Result**
+
+Run 1st time
+
+```
+
+Thread 2
+Thread 1
+```
+
+Run 2nd time
+
+```
+Thread 1
+Hello, World !
+Thread 2
+```
+
+Run 3rd time:
+
+```
+Thread 1
+
+Thread 2
+```
+
+That problem happens as in some case thread 2 runs faster than thread 1
+
+If using ``sleep(1)`` inside infinite threads, the issue still happens:
+
+```c
+void *func_thread_1(void *ptr){
+	printf("Thread 1\n");
+    int number = 0;
+
+    while (1){
+        if (!sem_wait(&mutex)){
+            sprintf(displayed_string, "%s %d", "Hello, World !; index: ", number);	
+            sem_post(&mutex);
+        } else printf("Thread 1 fails to lock\n");
+        number += 1;
+
+        sleep(1);
+    }
+
+    pthread_exit(0);
+}
+
+void *func_thread_2(void *ptr){
+
+    while (1){
+        if (!sem_wait(&mutex)){
+            printf("%s\n", displayed_string);
+            sem_post(&mutex);
+        } else printf("Thread 2 fails to lock\n");
+
+        sleep(1);
+    }
+
+    printf("Thread 2\n");
+    pthread_exit(0);
+}
+```
+
+Run 1st time:
+
+```
+Thread 1
+
+Hello, World !; index:  0
+Hello, World !; index:  1
+Hello, World !; index:  2
+...
+```
+
+Run 2nd time:
+
+```
+Thread 1
+
+Hello, World !; index:  1
+Hello, World !; index:  2
+Hello, World !; index:  3
+...
+```
+
+Run 3rd time:
+
+```
+Thread 1
+
+Hello, World !; index:  1
+Hello, World !; index:  2
+Hello, World !; index:  2
+Hello, World !; index:  3
+Hello, World !; index:  5
+Hello, World !; index:  5
+...
 ```

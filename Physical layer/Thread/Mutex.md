@@ -119,6 +119,7 @@ Didn't get lock in Thread 2, 245
 Didn't get lock in Thread 1, 117
 share_value after executing 2 threads: 29753
 ```
+
 ## Examples
 
 ### Example 1
