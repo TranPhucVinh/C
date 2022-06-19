@@ -119,6 +119,9 @@ int main(){
 
 ### Print out all files inside a folder with library dirent.h
 
+* ``opendir()``: Open directory
+* ``readdir()``: Read directory
+
 ```c
 #include <stdio.h>
 #include <dirent.h>
