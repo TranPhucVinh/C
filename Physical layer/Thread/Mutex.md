@@ -1,36 +1,4 @@
-## Data race
-
-When 2 threads trying to access a resource, data race might be happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times):
-
-```c
-#include <stdio.h>
-#include <pthread.h>
-
-#define RANGE 10000
-
-int share_value;
-
-void *thread_function(void *ptr);
-
-int main()
-{  
-	pthread_t thread_1, thread_2;
-	int thread_1_return, thread_2_return;
-
-	thread_1_return = pthread_create(&thread_1, NULL, thread_function, NULL);
-   thread_2_return = pthread_create(&thread_2, NULL, thread_function, NULL);
-	pthread_join(thread_1, NULL);
-   pthread_join(thread_2, NULL);
-   printf("share_value after executing 2 threads: %d\n", share_value);
-}
-
-void *thread_function(void *ptr){
-	for (int i = 0; i < RANGE; i++) share_value++;
-}
-```
-**Result**: ``share_value after executing 2 threads: 14736`` (Expected ``20000``)
-
-With ``RANGE`` is less than ``10000``, that data race issue doesn't happen, as the time 2 tasks race to take the resouce ``share_value`` is short.
+## Data race issue
 
 Solve the data race issue above with mutex, even with multiple threads, not just 2 tasks
 
