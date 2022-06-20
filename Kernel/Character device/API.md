@@ -91,8 +91,10 @@ struct file_operations {
 
 ## linux/cdev.h
 
-* ``copy_from_user()``: Copy a block of data from user space, with less checking.
+* ``copy_from_user()``: Copy a block of data from user space to kernel space
 
+* ``copy_to_user()``: Copy a block of data from kernel space to user space
+* 
 ```c
 unsigned long __copy_to_user (	void __user * to, const void * from, unsigned long n);
 ```
