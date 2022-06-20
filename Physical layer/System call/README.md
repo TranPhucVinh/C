@@ -64,4 +64,4 @@ Logically attach informs the physcially attached device is ready to use
 
 ## Tools for system call
 
-``strace``: trace system calls and signals
+[strace](strace.md): trace system calls and signals
