@@ -61,3 +61,7 @@ Logically attach informs the physcially attached device is ready to use
 * send, receive messages
 * transfer status information
 * attach or detach remote devices
+
+## Tools for system call
+
+``strace``: trace system calls and signals
