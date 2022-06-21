@@ -67,3 +67,13 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	return sizeof(responsed_string);
 }
 ```
+
+## Operation with character device by ioctl
+
+[character_device_ioctl.c](character_device_ioctl.c) supports 3 features:
+
+* Send data to the character device
+* Read response data from character device
+* Get ``cmd`` and ``arg`` values sent from user space process then print that value out
+
+User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
