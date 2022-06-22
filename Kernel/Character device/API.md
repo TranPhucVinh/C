@@ -60,6 +60,8 @@ The driver creates the device nodes using those APIs:
 struct device *device_create(struct class *cls, struct device *parent, dev_t devt, void * drvdata, const char **fmt...);
 ```
 
+``device_create`` will create a device and register it with ``sysfs``
+
 * ``struct class *class``: pointer to the struct class that this device should be registered to
 * ``struct device *parent``: pointer to the parent ``struct device`` of this new device, if any
 * ``dev_t devt``: the ``dev_t`` for the char device to be added

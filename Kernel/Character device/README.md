@@ -1,5 +1,7 @@
 # API
 
+[API document](API.md)
+
 # Examples
 
 ## Create character device
