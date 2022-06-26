@@ -4,6 +4,10 @@
 
 Program: [register_character_device.c](register_character_device.c)
 
+After inserting the LKM created from this program, ``fops_character_device``, the newly registered device with major number ``90`` and minor number ``0`` will have an entry in ``/proc/devices``, and we can either make that newly register device to be the device file by ``mknod`` command.
+
+``sudo mknod /dev/char_dev c 90 0``: Make device file ``char_dev`` from character device with major number ``90`` and minor number ``0``.
+
 ## Create character device
 
 ``create_character_device.c``: Create a new character device named ``Character device``.
