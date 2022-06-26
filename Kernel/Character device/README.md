@@ -1,8 +1,8 @@
-# API
+# Fundamental concepts
 
-[API document](API.md)
+## Register a character device then makes it a device file
 
-# Examples
+Program: [register_character_device.c](register_character_device.c)
 
 ## Create character device
 
@@ -79,3 +79,7 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 * Get ``cmd`` and ``arg`` values sent from user space process then print that value out
 
 User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
+
+# API
+
+[API document](API.md)
