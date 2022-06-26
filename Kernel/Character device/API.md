@@ -1,3 +1,13 @@
+### register_chrdev()
+
+``register_chrdev()``: Register a character device to kernel
+
+```c
+int register_chrdev(unsigned int major, const char *name, struct file_operations *fops);
+```
+
+After calling ``register_chrdev()``, the newly registered device will have an entry in ``/proc/devices``, and we can either make that newly register device to be the device file by ``mknod`` command.
+
 ### dev_t
 
 ```c
@@ -73,6 +83,8 @@ void device_destroy (struct class * class, dev_t devt);
 ```
 
 ### struct file_operations
+
+The ``file_operations`` structure is defined in ``linux/fs.h``
 
 ```c
 struct file_operations {
