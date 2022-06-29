@@ -84,6 +84,10 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 
 User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
 
+[character_device_ioctl_macro.c](character_device_ioctl_macro.c) handles ``ioctl()`` system call from userspace with all ``ioctl`` macro ``_IO()``, ``_IOR()``, ``_IOW()``, ``_IOWR()`` and ``_IOW()`` with struct as argument
+
+User space program that communicate with ``character_device_ioctl_macro.c``: [user_space_ioctl_macro.c](user_space_ioctl_macro.c)
+
 # API
 
 [API document](API.md)
