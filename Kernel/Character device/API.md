@@ -118,3 +118,19 @@ unsigned long __copy_to_user (	void __user * to, const void * from, unsigned lon
 * ``unsigned long n``: Number of bytes to copy.
 
 Returns number of bytes that could not be copied. On success, this will be zero.
+
+## ioctl macro
+
+* ``_IO(int type, int number)``: used for a simple ioctl that sends nothing but the ``type`` and ``number``, and receives back nothing but an (integer) ``retval``
+
+* ``_IOR(int type, int number, data_type)``: used for an ioctl that reads data from the device driver. The driver will be allowed to return ``sizeof(data_type)`` bytes to the user
+
+* ``_IOW(int type, int number, data_type)``: similar to ``_IOR``, but used to write data to the driver
+
+* ``_IOWR(int type, int number, data_type)``: a combination of ``_IOW`` and ``_IOR``. That is, data is both written to the driver and then read back from the driver by user
+
+**Parameters**:
+
+* ``type``, an 8-bit integer selected to be specific to the device driver. ``type`` should be chosen so as not to conflict with other drivers that might be listening to the same file descriptor.
+* ``number``, an 8-bit integer command number. Within a driver, distinct numbers should be chosen for each different kind of ioctl command that the driver services
+* ``data_type``, the name of a type used to compute how many bytes are exchanged between the client and the driver. This argument is, for example, the name of a structure.
