@@ -38,6 +38,8 @@ scanf("%f", &c);    //float
 scanf("%d%d", &a, &b); //More than 1 value can be passed to scanf
 ```
 
+For float number, it must be ``scanf("%f", &c)``, not ``scanf("%.2f", &c)`` if you want to set a specific float number.
+
 **Example**: Enter and print out ``char`` variable as ``integer`` number
 
 ```c
