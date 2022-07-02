@@ -22,4 +22,4 @@ Program: [sum_from_1_to_n.c](https://github.com/TranPhucVinh/C/blob/master/Intro
 
 Sorting an array from maximum value to minimum value:
 
-* [Using select sort algorithm](select_sort.c)
+* [Using selection sort algorithm](selection_sort.c)
