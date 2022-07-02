@@ -30,3 +30,7 @@ The selection sort algorithm sorts an array by repeatedly finding the minimum el
 In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray. 
 
 **Implementation**: [selection_sort.c](selection_sort.c)
+
+## Bubble Sort 
+
+**Implementation**: [bubble_sort.c](bubble_sort.c)

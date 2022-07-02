@@ -2,7 +2,7 @@
 
 #define SIZE 6
 
-int array[6] = {34, 12, 135, 45, 1, 9};
+int array[SIZE] = {34, 12, 135, 45, 1, 9};
 
 int main(){
     printf("Array before: ");
