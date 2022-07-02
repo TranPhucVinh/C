@@ -1,24 +1,22 @@
 #include <stdio.h>
 
-main(){
-	int i, j, n, array[100], max, pos, temp;
-	printf("Enter the number of members: ");
-	scanf("%d", &n);
-	printf("Enter the value of each member: ");
-	for (i = 0; i < n; i++)
-	{
-		scanf("%d", &array[i]);
-	}
-	for (i=0; i < n; i++)
+#define SIZE 6
+
+int array[6] = {34, 12, 135, 45, 1, 9};
+
+int main(){
+    printf("Array before: ");
+    for (int i=0; i < SIZE; i++)
 	{
 		printf("%d ", array[i]);
 	}
-	printf("\n");
-	for (i=0; i<n-1; i++)
+    printf("\n");
+
+	for (int i=0; i < SIZE; i++)
 	{
-		max = array[i];
-		pos = i;
-		for (j=i+1; j<n; j++)
+		int max = array[i];
+		int pos = i;
+		for (int j=i+1; j < SIZE; j++)
 		{
 			if (max < array[j]){
 				max = array[j];
@@ -26,13 +24,16 @@ main(){
 			}
 		}	
 			if (pos != i){
-				temp = array[i];
+				int temp = array[i];
 				array[i] = max;
 				array[pos] = temp;
 			}
 	}
-	for (i=0; i < n; i++)
+
+    printf("Array after: ");
+	for (int i=0; i < SIZE; i++)
 	{
 		printf("%d ", array[i]);
 	}
+    printf("\n");
 }

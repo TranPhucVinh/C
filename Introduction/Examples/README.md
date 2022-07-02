@@ -20,4 +20,6 @@ Program: [sum_from_1_to_n.c](https://github.com/TranPhucVinh/C/blob/master/Intro
 
 ## Algorithm
 
-[Select sort](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/select_sort.c)
+Sorting an array from maximum value to minimum value:
+
+* [Using select sort algorithm](select_sort.c)
