@@ -1,73 +1,3 @@
-## __DATE__ and __TIME__
-
-```c
-#include <stdio.h> 
-
-int main(){ 
-	printf("Date: %s\n", __DATE__);
-	printf("Time: %s\n", __TIME__);
-}
-```
-
-## unistd.h
-
-```c
-unsigned int sleep(unsigned int seconds);//Sleep for a number of seconds
-``` 
-
-```c
-typedef unsigned long useconds_t;
-```
-
-```c
-int usleep(useconds_t usec);
-```
-
-``usleep``: suspend execution for microsecond intervals
-
-```c
-#include <stdio.h>
-#include <unistd.h>
-
-#define DELAY_TIME 1000000
-
-int main(int argc, char *argv[])  {
-	while(1){
-        printf("Hello\n");// \n must have for proper print out
-        usleep(DELAY_TIME);
-    }
-}
-```
-## sys/time
-
-Library ``sys/time.h`` defines:
-
-```c
-struct timeval
-{
-  __time_t tv_sec;		/* Seconds.  */
-  __suseconds_t tv_usec;	/* Microseconds.  */
-};
-```
-
-```c
-gettimeofday(&tv, NULL);
-```
-
-**Note**: The value of ``tv_usec`` is always less than one million.
-
-Library ``time.h`` defines
-
-* ``time()``
-* ``localtime()``
-* ``asctime()``
-* ``strftime()``
-* ``clock()``: returns the number of clock ticks elapsed since the start of the program
-
-```c
-#define CLOCKS_PER_SEC  ((clock_t) 1000000)
-```
-
 ### Example 1
 
 Get current time with ``time()``
@@ -204,4 +134,34 @@ void delayOneSecond(){
     for (d = 1; d <= 32767; d++){};
   }
 }
+```
+
+### Example 4
+
+Read RTC time of ``/dev/rtc`` (notice that hour in RTC time is different from local time)
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h> //for open()
+#include <sys/ioctl.h>
+
+#include <linux/rtc.h> // For Linux RTC
+
+#define RTC_DEV    "/dev/rtc"
+
+int rtc;
+struct rtc_time rtc_read_time;
+
+int main(int argc, char *argv[]) {
+	rtc = open(RTC_DEV, O_RDWR);
+	if (rtc){
+		if (ioctl(rtc, RTC_RD_TIME, &rtc_read_time) == -1) {
+            printf("Fail to open %s\n", RTC_DEV);
+        } else {
+            printf("Current date is %d:%d:%d\n", rtc_read_time.tm_mday, rtc_read_time.tm_mon, rtc_read_time.tm_year);
+            printf("Current time is %d:%d:%d\n", rtc_read_time.tm_hour, rtc_read_time.tm_min, rtc_read_time.tm_sec);
+        }
+	}
+}	
 ```
