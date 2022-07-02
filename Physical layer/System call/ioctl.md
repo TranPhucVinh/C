@@ -33,7 +33,7 @@ int main(void) {
 }
 ```
 
-Get size of the terminal running the current C program when changing its size by mouse, check ``Example 2: Working with SIGWINCH signal`` in ``Signal/Examples.md``.
+Using ``ioctl()`` to get size of the terminal running the current C program when changing its size by mouse, check ``Example 3: Working with SIGWINCH signal`` in ``Signal/Examples.md``.
 
 It is also possible to change the terminal driver’s notion of the window size by passing an initialized winsize structure in an ``ioctl()`` ``TIOCSWINSZ`` operation:
 
