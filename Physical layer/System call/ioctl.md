@@ -51,3 +51,7 @@ notion of the terminal window size, two things happen:
 * A ``SIGWINCH`` signal is sent to the foreground process group of the terminal.
 
 Note, however, that these events on their own are insufficient to change the actual dimensions of the displayed window, which are controlled by software outside the kernel (such as a window manager or a terminal emulator program).
+
+**Example 2**: [Communication between userpsace process and character device by ioctl](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device#operation-with-character-device-by-ioctl)
+
+**Example 3**: [Communication between userpsace process and I2C bus device by ioctl in Raspbian with various I2C modules and sensors](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Sensors%20and%20Modules#i2c)
