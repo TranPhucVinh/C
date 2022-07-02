@@ -18,8 +18,15 @@ For the max accepted number of ``2147483647``, the result must be ``unsigned lon
 
 Program: [sum_from_1_to_n.c](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/sum_from_1_to_n.c)
 
-## Algorithm
+# Sorting Algorithms
 
-Sorting an array from maximum value to minimum value:
+## Selection Sort 
 
-* [Using selection sort algorithm](selection_sort.c)
+The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array:
+
+* The subarray which is already sorted. 
+* Remaining subarray which is unsorted.
+
+In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray. 
+
+**Implementation**: [selection_sort.c](selection_sort.c)

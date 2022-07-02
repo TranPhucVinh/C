@@ -14,18 +14,18 @@ int main(){
 
 	for (int i=0; i < SIZE; i++)
 	{
-		int max = array[i];
+		int min = array[i];
 		int pos = i;
 		for (int j=i+1; j < SIZE; j++)
 		{
-			if (max < array[j]){
-				max = array[j];
+			if (min > array[j]){
+				min = array[j];
 				pos = j;
 			}
 		}	
 			if (pos != i){
 				int temp = array[i];
-				array[i] = max;
+				array[i] = min;
 				array[pos] = temp;
 			}
 	}
