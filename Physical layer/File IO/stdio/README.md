@@ -1,6 +1,6 @@
 # API
 
-* [stdin and stdout API](stdin%20and%20stdout.md)
+* [stdin and stdout API](stdin%20and%20stdout%20API.md)
 * [File pointer API](File%20pointer%20API.md)
 
 ## Other API
