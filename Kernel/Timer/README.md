@@ -1,0 +1,67 @@
+## Fundamental concepts
+
+The frequency between 2 timers interrupt in kernel is called tick rate. Tick rate has a frequency of HZ hertz. Value HZ differs for each supported architecture. For example, by default the x86 architecture defines HZ to be 100.
+
+High HZ results in finer kernel timer resolution but leads to more time that processor spends executing the timer interrupt.
+
+``jiffies`` is the global variable which holds the number of ticks that have occurred since the system booted.
+
+On boot, ``jiffies`` is set to ``0`` and it is incremented by one during each timer interrupt.
+
+There are ``HZ`` timer interrupts in a second and there are ``HZ`` jiffies in a second so the system uptime is therefore ``jiffies/HZ`` seconds.
+
+## API
+
+``jiffies`` is defined in ``<linux/jiffies.h>``:
+
+```c
+extern unsigned long volatile jiffies;
+```
+
+Convert from seconds to a unit of ``jiffies``: ``seconds * HZ``
+
+Kernel timers are not cyclic. They are destroyed after they expires. Kernel timers are represented by ``struct timer_list`` which are defined in ``<linux/timer.h>``.
+
+```c
+struct timer_list {
+        /*
+         * All fields that change during normal runtime grouped to the
+         * same cacheline
+         */
+        struct hlist_node       entry;
+        unsigned long           expires;
+        void                    (*function)(struct timer_list *);
+        u32                     flags;
+
+#ifdef CONFIG_LOCKDEP
+        struct lockdep_map      lockdep_map;
+#endif
+};
+```
+
+```c
+static inline void timer_setup(struct timer_list *timer,
+                void (*callback)(struct timer_list *),
+                unsigned int flags)
+```
+
+``mod_timer(timer, expires)``: Modify timer's timeout
+
+``mod_timer(timer, expires)`` is equivalent to:
+
+```c
+del_timer(timer);
+timer->expires = expires;
+add_timer(timer);
+```
+
+``add_timer()`` will start a timer
+```c
+void add_timer(struct timer_list *timer);
+```
+
+``del_timer()``: Delete timer. If not call ``del_timer()`` in cleanup module, the OS will then be frozen.
+
+## Examples
+
+* [kernel_timer_display_string.c](kernel_timer_display_string.c): Display a string in Kernel space every 1 second
