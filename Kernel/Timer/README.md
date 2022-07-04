@@ -55,12 +55,20 @@ timer->expires = expires;
 add_timer(timer);
 ```
 
-``add_timer()`` will start a timer
+``add_timer()`` will start a timer:
+
 ```c
 void add_timer(struct timer_list *timer);
 ```
 
 ``del_timer()``: Delete timer. If not call ``del_timer()`` in cleanup module, the OS will then be frozen.
+
+Get argument value of kernel timer by ``from_timer()``:
+
+```c
+#define from_timer(var, callback_timer, timer_fieldname) \
+    container_of(callback_timer, typeof(*var), timer_fieldname) 
+```
 
 ## Examples
 
