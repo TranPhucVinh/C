@@ -1,8 +1,3 @@
-Main components of a Linux embedded system: 
+## Dynamic allocation
 
-* **Bootloader**
-* **Kernel**
-* **System call interface**
-* **C-Runtime library**
-* **System shared libraries** 
-* **Root filesystem**.
+[Dynamic allocation example with kmalloc()](dynamic_allocation.c)
