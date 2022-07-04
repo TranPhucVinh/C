@@ -18,7 +18,9 @@ There are ``HZ`` timer interrupts in a second and there are ``HZ`` jiffies in a 
 extern unsigned long volatile jiffies;
 ```
 
-Convert from seconds to a unit of ``jiffies``: ``seconds * HZ``
+Convert from seconds to a unit of ``jiffies``: ``seconds * HZ``. So expires time in timer will be ``jiffies + seconds * HZ``
+
+Convert from miliseconds to a unit of ``jiffies``: ``msecs_to_jiffies(miliseconds) * HZ``. So expires time in timer will be ``jiffies + msecs_to_jiffies(miliseconds)``
 
 Kernel timers are not cyclic. They are destroyed after they expires. Kernel timers are represented by ``struct timer_list`` which are defined in ``<linux/timer.h>``.
 
@@ -74,3 +76,29 @@ Get argument value of kernel timer by ``from_timer()``:
 
 * [kernel_timer_display_string.c](kernel_timer_display_string.c): Display a string in Kernel space every 1 second by timer
 * [kernel_timer_arg.c](kernel_timer_arg.c): Get argument value of kernel timer
+
+To setup timer in miliseconds:
+
+```c
+#define DELAY 		500 //ms
+
+void timer_callback(struct timer_list* tl){
+        /*
+                Other operations like in kernel_timer_display_string.c
+        */
+	mod_timer(&kernel_timer, jiffies + msecs_to_jiffies(DELAY));
+}
+
+int init_module(void)
+{
+	/*
+                Other operations like in kernel_timer_display_string.c
+        */
+
+	kernel_timer.expires = jiffies + msecs_to_jiffies(DELAY); //Delay at DELAY seconds for the 1st time
+
+        /*
+                Other operations like in kernel_timer_display_string.c
+        */
+}
+```
