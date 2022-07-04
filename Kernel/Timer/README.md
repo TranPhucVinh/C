@@ -64,4 +64,5 @@ void add_timer(struct timer_list *timer);
 
 ## Examples
 
-* [kernel_timer_display_string.c](kernel_timer_display_string.c): Display a string in Kernel space every 1 second
+* [kernel_timer_display_string.c](kernel_timer_display_string.c): Display a string in Kernel space every 1 second by timer
+* [kernel_timer_arg.c](kernel_timer_arg.c): Get argument value of kernel timer
