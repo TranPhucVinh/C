@@ -4,6 +4,13 @@
 module_param(variable_name, variable_type , permissions);
 ```
 
+``permissions``:
+
+* ``S_IRUSR``: Read permission bit for the owner of the file
+* ``S_IWUSR: Write permission bit for the owner of the file
+* ``S_IRGRP``: Read permission bit for the group owner of the file
+* ``S_IWGRP``: Write permission bit for the group owner of the file
+
 Function ``module_param()`` must be outside ``init_module()``.
 
 Before inserting module parameter, ``/sys/module/ubuntu_kernel_module$`` will have:
