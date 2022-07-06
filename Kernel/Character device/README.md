@@ -74,6 +74,10 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 }
 ```
 
+### Userspace program for 2-way communication with character device
+
+Program [user_space_2_way_communications.c](user_space_2_way_communications.c) supports 2-way communications R/W between userspace and character device.
+
 ## Operation with character device by ioctl
 
 [character_device_ioctl.c](character_device_ioctl.c) supports 3 features:
