@@ -20,3 +20,7 @@ int gpio_get_value(unsigned int gpio);
 ```
 
 **Example**: Unable to implemented on Ubuntu, check the corresponding example in Raspbian for [blink LED](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/blink_led.c) and [control LED with button](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/control_led_with_button.c).
+
+# Kernel thread
+
+Check [kernel thread document](Kernel%20thread.md)
