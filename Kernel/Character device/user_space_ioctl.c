@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h> //for open()
 #include <sys/ioctl.h>
@@ -16,6 +17,7 @@ int main(int argc, char *argv[]) {
             printf("Fail\n");
         } else {
             printf("cmd %d, argument %d\n", cmd, argument);
+			printf("PID %d\n", getpid());
         }
 	}
 }	

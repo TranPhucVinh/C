@@ -80,11 +80,10 @@ Program [user_space_2_way_communications.c](user_space_2_way_communications.c) s
 
 ## Operation with character device by ioctl
 
-[character_device_ioctl.c](character_device_ioctl.c) supports 3 features:
+[character_device_ioctl.c](character_device_ioctl.c) supports 2 features:
 
-* Send data to the character device
-* Read response data from character device
 * Get ``cmd`` and ``arg`` values sent from user space process then print that value out
+* Print out the PID of the userspace process that performs the ``ioctl()`` system call
 
 User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
 

@@ -84,7 +84,7 @@ void device_destroy (struct class * class, dev_t devt);
 
 ### struct file_operations
 
-The ``file_operations`` structure is defined in ``linux/fs.h``
+The ``file_operations`` structure is defined in ``linux/fs.h``, although some Linux Kernel headers don't require including ``linux/fs.h``.
 
 ```c
 struct file_operations {
