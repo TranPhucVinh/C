@@ -1,13 +1,17 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
+#include <linux/fs.h>
 #include <linux/init.h>
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
+#include <linux/kthread.h>
 
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
 
 MODULE_LICENSE("GPL");
+
+struct task_struct *userspace_process; //Use this to communicate with the userspace process
 
 dev_t dev_id;
 
@@ -47,21 +51,25 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	return 0;
 }
 
-char data[100];
 ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
 {
-	memset(data, 0, sizeof(data));
-	copy_from_user(data, buf, len);
-	printk("write data: %s\n", data);
-	return sizeof(data);
+	printk("write\n");
+	return 0;
 }
 
 long dev_ioctl(struct file *filep, unsigned int cmd, unsigned long arg){
-	int user_space_argument;
-	copy_from_user(&user_space_argument, (int*)arg, sizeof(user_space_argument));
-	printk("cmd %d, arg %d, user_space_argument %d\n", cmd, arg, user_space_argument);
+	int userspace_argument;
+	copy_from_user(&userspace_argument, (int*)arg, sizeof(userspace_argument));
+	printk("cmd %d, arg %d, userspace_argument %d\n", cmd, arg, userspace_argument);
 
-	return 0;
+    userspace_process = get_current();
+
+    /*
+        This will get the PID of the userspace process that sends ioctl() system
+        call to it.
+    */
+    printk("PID %d\n", userspace_process->pid);
+    return 0;
 }
 
 int device_init(void)
