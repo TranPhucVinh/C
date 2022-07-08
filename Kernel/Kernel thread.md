@@ -40,6 +40,8 @@ To stop a thread use ``kthread_stop()`` function.
 
 Function ``kthread_should_stop()`` returns non-zero value if there is a stop request submitted by the ``kthread_stop()`` function. ``kthread_stop()`` must be called inside ``cleanup_module()`` to avoid memory crashing in kernel space when ``rmmod`` the kernel module that has the infinite loop formed by ``kthread_should_stop()``.
 
+``get_current()``: Get pointer to current task structure. This will return a pointer of type ``struct task_struct *``.
+
 ## Examples
 
 Create a single kernel thread and send an int number as argument to it
