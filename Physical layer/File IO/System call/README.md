@@ -32,9 +32,9 @@ Normally, a process inherits three open file descriptors when it is started by t
 
 # API
 
-* [fcntl.h header files API](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/fcntl.md)
-* [unistd.h header files API](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/unistd.md)
+* [fcntl.h header files API](fcntl.md)
+* [unistd.h header files API](unistd.md)
 
 # Examples
 
-[Examples](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/Examples.md)
+[Examples](Examples.md)
