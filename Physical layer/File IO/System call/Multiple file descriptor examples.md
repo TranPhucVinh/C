@@ -1,6 +1,6 @@
 ## Example 1
 
-Working with 1 file descriptor using ``select()``
+Working with 1 file descriptor using ``select()``: Read entered data from the current running terminal
 
 ```c
 #include <stdio.h>

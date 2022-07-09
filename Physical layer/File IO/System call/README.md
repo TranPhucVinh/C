@@ -51,6 +51,7 @@ void FD_SET(int fd, fd_set *set);
 void FD_ZERO(fd_set *set);
 ```
 
+* ``nfds``: **This is not the total number of file descriptor that need to be monitor**. ``nfds`` must have the value of the highest opened ``fd`` value + 1. E.g, if ``12`` is the highest value of the opened ``fd``, then ``nfds`` is ``13``. So, if you want to monitor file descriptors ``24``-``31``, you'd set nfds to ``32``
 The ``timeout`` argument specifies the interval that ``select()`` should block waiting for a file descriptor to become ready. The call will block until either:
 *  a file descriptor becomes ready;
 *  the call is interrupted by a signal handler
