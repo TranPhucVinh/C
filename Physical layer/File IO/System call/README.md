@@ -35,6 +35,31 @@ Normally, a process inherits three open file descriptors when it is started by t
 * [fcntl.h header files API](fcntl.md)
 * [unistd.h header files API](unistd.md)
 
+## Other API
+
+``select()`` allows a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become "ready" for some class of I/O operation (e.g., input possible).
+
+```c
+#include <sys/time.h>
+#include <unistd.h>
+
+int select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
+
+void FD_CLR(int fd, fd_set *set);
+int  FD_ISSET(int fd, fd_set *set);
+void FD_SET(int fd, fd_set *set);
+void FD_ZERO(fd_set *set);
+```
+
+The ``timeout`` argument specifies the interval that ``select()`` should block waiting for a file descriptor to become ready. The call will block until either:
+*  a file descriptor becomes ready;
+*  the call is interrupted by a signal handler
+*  the timeout expires
+
+Four macros are provided to manipulate the sets. ``FD_ZERO()`` clears a set. ``FD_SET()`` and ``FD_CLR()`` respectively add and remove a given file descriptor from a set. ``FD_ISSET()`` tests to see if a file descriptor is part of the set; this is useful after ``select()`` returns.
+
 # Examples
 
-[Examples](Examples.md)
+[Single file descriptor examples](Single%20file%20descriptor%20examples.md)
+
+[Multiple file descriptors examples](Multiple%20file%20descriptors%20examples.md)
