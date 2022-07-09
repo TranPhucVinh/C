@@ -22,7 +22,7 @@ struct timeval timeout;
 int main(){
     while (1){
         timeout.tv_sec = TIMEOUT;//Must set time out every time in the while loop
-        FD_SET(STDIN_FILENO, &readfs);
+        FD_SET(STDIN_FILENO, &readfs);//Must be inside while() loop to handle in every loop
 
         int sret = select(TOTAL_FD, &readfs, WRITEFDS, EXCEPTFDS, &timeout);
 
