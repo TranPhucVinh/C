@@ -61,6 +61,6 @@ Four macros are provided to manipulate the sets. ``FD_ZERO()`` clears a set. ``F
 
 # Examples
 
-[Single file descriptor examples](Single%20file%20descriptor%20examples.md)
+[File descriptor examples](File%20descriptor%20examples.md)
 
-[Multiple file descriptors examples](Multiple%20file%20descriptors%20examples.md)
+[I/O multiplexing examples](IO%20multiplexing%20examples.md)
