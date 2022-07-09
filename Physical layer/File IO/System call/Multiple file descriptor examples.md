@@ -42,6 +42,9 @@ int main(){
 
 Read entered data from the 2 current running terminals:
 
+* Current running program (``a.out``) on terminal ``/dev/pts/2``
+* 2nd terminal is ``/dev/pts/18``
+
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -74,25 +77,27 @@ int main(){
         return 1;
     };
 
+    int nfds = ter_2 + 1;
+
     while (1){
         timeout.tv_sec = TIMEOUT;//Must set time out every time in the while loop
 
-        FD_ZERO(&readfs);
+        FD_ZERO(&readfs);//Might not need this one
         FD_SET(ter_1, &readfs);
         FD_SET(ter_2, &readfs);
         
-        int sret = select(ter_2 + 1, &readfs, WRITEFDS, EXCEPTFDS, &timeout);
+        int sret = select(nfds, &readfs, WRITEFDS, EXCEPTFDS, &timeout);
 
         if (sret == 0){
             printf("Timeout after %d seconds\n", TIMEOUT);
         } else {
-            for (int fd = 0; fd <= (ter_2 + 1); fd++) {
+            for (int fd = 0; fd <= nfds; fd++) {
                 if (FD_ISSET(fd, &readfs)) {
                     if ((fd == ter_1) || (fd == ter_2)) {
                         char buffer[10];
                         bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
                         read(fd, buffer, sizeof(buffer));
-						printf("%s\n", buffer);
+						printf("%s", buffer);
                     }
                 }
             }
@@ -101,3 +106,11 @@ int main(){
     return 0;
 }
 ```
+
+To enter string in the 2nd terminal, simply enter them on the texting area, i.e:
+
+```sh
+username$hostname: Enter the string here for /dev/pts/18
+```
+
+Send the string by ``echo`` (``echo Hello > /dev/pts/18``) will not work.
