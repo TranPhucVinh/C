@@ -114,3 +114,44 @@ username$hostname: Enter the string here for /dev/pts/18
 ```
 
 Send the string by ``echo`` (``echo Hello > /dev/pts/18``) will not work.
+
+## Example 2
+
+Working with 1 file descriptor using ``poll()``: Read entered data from the current running terminal
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <poll.h>
+
+#define TIMEOUT     5000 //miliseconds
+
+#define WRITEFDS    NULL
+#define EXCEPTFDS   NULL
+
+struct pollfd fds;
+
+int main(){
+    int nfds = STDIN_FILENO + 1;
+
+    while (1){
+        fds.fd = STDIN_FILENO;
+        fds.events = 0;
+        fds.events |= POLLIN;
+
+        int pret = poll(&fds, nfds, TIMEOUT);
+       
+        if (pret == 0){
+            printf("Timeout after %d miliseconds\n", TIMEOUT);
+        } else if (pret == POLLIN){
+            char buffer[10];
+            bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+            read(STDIN_FILENO, buffer, sizeof(buffer));
+            printf("%s", buffer);
+        }
+    }
+    return 0;
+}
+```
