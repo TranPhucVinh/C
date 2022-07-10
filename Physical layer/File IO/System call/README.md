@@ -37,6 +37,8 @@ Normally, a process inherits three open file descriptors when it is started by t
 
 ## Other API
 
+### select()
+
 ``select()`` allows a program to monitor multiple file descriptors, waiting until one or more of the file descriptors become "ready" for some class of I/O operation (e.g., input possible).
 
 ```c
@@ -58,6 +60,38 @@ The ``timeout`` argument specifies the interval that ``select()`` should block w
 *  the timeout expires
 
 Four macros are provided to manipulate the sets. ``FD_ZERO()`` clears a set. ``FD_SET()`` and ``FD_CLR()`` respectively add and remove a given file descriptor from a set. ``FD_ISSET()`` tests to see if a file descriptor is part of the set; this is useful after ``select()`` returns.
+
+### poll()
+
+``poll()`` performs a similar task to select``()``, it waits for one of a set of file descriptors to become ready to perform I/O
+
+```c
+#include <poll.h>
+
+int poll(struct pollfd *fds, nfds_t nfds, int timeout);
+```
+
+```c
+struct pollfd {
+    int   fd;         /* file descriptor */
+    short events;     /* requested events */
+    short revents;    /* returned events */
+};
+```
+**Parameters**
+
+* ``events``: A bit mask specifying the events the application is interested in for the file descriptor ``fd``. It is an input parametr (i.e setup in program)
+
+    * ``POLLIN``: There is data to read.
+    * ``POLLOUT``: Writing is now possible
+
+* ``revents``:  The bits returned in ``revents`` can include any of those specified in ``events``, or one of the values ``POLLERR``, ``POLLHUP``, or ``POLLNVAL``. It is an output parameter, i.e return in function ``poll()``
+
+**Return**:  
+
+* On success, a positive number is returned; this is the number of structures which have nonzero ``revents`` fields
+* ``0``: Call timed out and no file descriptors were ready.
+* ``-1``: Error
 
 # Examples
 
