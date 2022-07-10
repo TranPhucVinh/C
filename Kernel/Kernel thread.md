@@ -58,6 +58,14 @@ int kernel_data = 123;
 
 int thread_function(void *kernel_data) {
     printk("Kernel data %d\n", *(int*)kernel_data);
+
+	/*
+		Must have kthread_should_stop() for safe memory when running rmmod
+		and msleep() for infinite sleep.
+	*/
+	while(!kthread_should_stop()){
+		msleep(DELAY);
+	}
 	return 0;
 }
 
@@ -81,6 +89,8 @@ void cleanup_module(void)
     kthread_stop(kthread_1);
 }
 ```
+
+**Note**: If the infinite loop is ``while(!kthread_should_stop());`` then the OS will be hung immediately right after running ``insmod``.
 
 Print out a string every 1 seconds in a kernel thread
 
