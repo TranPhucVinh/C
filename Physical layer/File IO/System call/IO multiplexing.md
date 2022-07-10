@@ -128,9 +128,6 @@ Working with 1 file descriptor using ``poll()``: Read entered data from the curr
 
 #define TIMEOUT     5000 //miliseconds
 
-#define WRITEFDS    NULL
-#define EXCEPTFDS   NULL
-
 struct pollfd fds;
 
 int main(){
@@ -149,6 +146,62 @@ int main(){
             char buffer[10];
             bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
             read(STDIN_FILENO, buffer, sizeof(buffer));
+            printf("%s", buffer);
+        }
+    }
+    return 0;
+}
+```
+
+Read entered data from the 2 current running terminals (All operations are idetically to the corresponded example in ``select()``):
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <poll.h>
+
+#define TIMEOUT     5000 //miliseconds
+
+#define TERMINAL_1  "/dev/pts/18"
+#define TERMINAL_2  "/dev/pts/4"
+
+struct pollfd fds[2];
+
+int main(){
+    int ter_1 = open(TERMINAL_1, O_RDWR);
+    if (ter_1 < 0) {
+        printf("Unable to open terminal 1\n");
+        return 1;
+    };
+
+    int ter_2 = open(TERMINAL_2, O_RDWR);
+    if (ter_2 < 0) {
+        printf("Unable to open terminal 2\n");
+        return 1;
+    };
+
+    int nfds = ter_2 + 1;
+
+    while (1){
+        fds[0].fd = ter_1;
+        fds[0].events = 0;
+        fds[0].events |= POLLIN;
+
+        fds[1].fd = ter_2;
+        fds[1].events = 0;
+        fds[1].events |= POLLIN;
+
+        int pret = poll(fds, nfds, TIMEOUT);
+
+        if (pret == 0){
+            printf("Timeout after %d miliseconds\n", TIMEOUT);
+        } else if (pret == POLLIN){
+            char buffer[10];
+            bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+            if (fds[0].revents == POLLIN) read(fds[0].fd, buffer, sizeof(buffer));
+            if (fds[1].revents == POLLIN) read(fds[1].fd, buffer, sizeof(buffer));
             printf("%s", buffer);
         }
     }
