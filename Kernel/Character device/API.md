@@ -84,6 +84,8 @@ void device_destroy (struct class * class, dev_t devt);
 
 ### struct file_operations
 
+``struct file``, defined in ``<linux/fs.h>``, is the second most important data structure used in device drivers. Note that a ``file`` has nothing to do with the ``FILEs`` of user-space programs. A ``FILE`` is defined in the C library and never appears in kernel code. A ``struct file``, on the other hand, is a kernel structure that never appears in user programs.
+
 The ``file_operations`` structure is defined in ``linux/fs.h``, although some Linux Kernel headers don't require including ``linux/fs.h``.
 
 ```c
