@@ -35,7 +35,7 @@ Normally, a process inherits three open file descriptors when it is started by t
 * [fcntl.h header files API](fcntl.md)
 * [unistd.h header files API](unistd.md)
 
-## Other API
+## I/O multiplexing API
 
 ### select()
 
