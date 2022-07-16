@@ -11,3 +11,5 @@ If ``addr`` is NULL, then the kernel chooses the (page-aligned) address at which
 The contents of a file mapping, are initialized using length bytes starting at ``offset``.
 
 On success, ``mmap()`` returns a pointer to the mapped area.
+
+**Example**: [Control GPIO of Raspberry Pi by direct memory access using mmap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/GPIO/direct_register_access_control_gpio.c), notice that ``addr`` param in ``mmap()`` is ``NULL`` in this case.
