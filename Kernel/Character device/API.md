@@ -13,8 +13,6 @@ After calling ``register_chrdev()``, the newly registered device will have an en
 ```c
 #include <sys/sysmacros.h>
 
-dev_t makedev(unsigned int maj, unsigned int min);
-
 unsigned int major(dev_t dev);
 unsigned int minor(dev_t dev);
 ```
