@@ -1,12 +1,25 @@
 ### register_chrdev()
 
-``register_chrdev()``: Register a character device to kernel
+Register a character device to kernel
 
 ```c
 int register_chrdev(unsigned int major, const char *name, struct file_operations *fops);
 ```
 
 After calling ``register_chrdev()``, the newly registered device will have an entry in ``/proc/devices``, and we can either make that newly register device to be the device file by ``mknod`` command.
+
+### unregister_chrdev()
+
+Unregister and destroy a character device
+
+```c
+void __unregister_chrdev(unsigned int major, unsigned int baseminor, unsigned int count, const char * name);
+
+static inline void unregister_chrdev(unsigned int major, const char *name)
+{
+	__unregister_chrdev(major, 0, 256, name);
+}
+```
 
 ### dev_t
 
