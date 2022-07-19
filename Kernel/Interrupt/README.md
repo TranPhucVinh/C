@@ -13,7 +13,7 @@ int request_irq(unsigned int irq,
 * ``irqreturn_t (*handler)(int, void *, struct pt_regs *)``: pointer to the handling function being installed
 * ``unsigned long flags``: flag which will trigger the interrupt
 * ``const char *dev_name``: The string used in ``/proc/interrupts`` to show the owner of the interrupt
-* ``void *dev_id``: Pointer used for shared interrupt lines. It is a unique identifier that is used when the interrupt line is freed and that may also be used by the driver to point to its own private data area (to identify which device is interrupting). If the interrupt is not shared, dev_id can be set to ``NULL``
+* ``void *dev_id``: Pointer used for shared interrupt lines. It is a unique identifier that is used when the interrupt line is freed and that may also be used by the driver to point to its own private data area (to identify which device is interrupting). If the interrupt is not shared, dev_id can be set to ``NULL``. Most of the time, ``dev_id`` will be pointer to the device driver's private data.
 
 
 ``flags`` value:
