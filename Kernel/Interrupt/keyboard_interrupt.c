@@ -3,9 +3,6 @@
 #include <linux/gpio.h>
 #include <linux/interrupt.h>
 
-#define LED			3
-#define BUTTON		2
-
 #define DEV_NAME    "DEV_NAME IRQ_1"
 #define DEV_ID      NULL
 
@@ -24,10 +21,6 @@ irq_handler_t irq_1_handler(unsigned int irq, void* dev_id, struct pt_regs *regs
 int init_module(void)
 {
 	printk(KERN_INFO "Hello, World !\n");
-
-    if(gpio_direction_input(BUTTON)){
-        printk("Unable to set GPIO %d to input\n", BUTTON);
-    }
 
     if (request_irq(IRQ_1, (irq_handler_t) irq_1_handler, IRQF_SHARED, DEV_NAME, (void*)irq_1_handler) != 0){// Must have (void*)irq_1_handler as the last argument to register interrupt
 

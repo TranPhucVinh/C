@@ -15,7 +15,6 @@ int request_irq(unsigned int irq,
 * ``const char *dev_name``: The string used in ``/proc/interrupts`` to show the owner of the interrupt
 * ``void *dev_id``: Pointer used for shared interrupt lines. It is a unique identifier that is used when the interrupt line is freed and that may also be used by the driver to point to its own private data area (to identify which device is interrupting). If the interrupt is not shared, dev_id can be set to ``NULL``
 
-
 ``flags`` value:
 
 * ``IRQF_SHARED`` announces the kernel that the interrupt can be shared with other devices. If this flag is not set, then if there is already a handler associated with the requested interrupt, the request for interrupt will fail.
@@ -27,6 +26,14 @@ int request_irq(unsigned int irq,
 **Feature**: Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
 
 **Program**: [keyboard_interrupt.c](keyboard_interrupt.c)
+
+**Result**: After inserting this kernel module, the ``DEV_NAME`` registered in ``request_irq()`` appeared in IRQ 1 (``/proc/interrupts``)
+
+```
+        CPU0       CPU1       CPU2       CPU3       
+0:         13          0          0          0  IR-IO-APIC    2-edge      timer
+1:          0          0          0        157  IR-IO-APIC    1-edge      i8042, DEV_NAME IRQ_1
+```
 
 **Note**:
 
