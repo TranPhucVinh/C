@@ -91,6 +91,32 @@ User space program that communicate with ``character_device_ioctl.c``: [user_spa
 
 User space program that communicate with ``character_device_ioctl_macro.c``: [user_space_ioctl_macro.c](user_space_ioctl_macro.c)
 
+## Handle interrupt for character device
+
+### API
+
+Except for the extra argument, ``devm_request_threaded_irq()`` takes the same arguments and performs the same function as ``request_irq()``.
+
+```c
+int devm_request_threaded_irq	(	
+	struct device * 	dev,
+	unsigned int 	irq,
+	irq_handler_t 	handler,
+	irq_handler_t 	thread_fn,
+	unsigned long 	irqflags,
+	const char * 	devname,
+	void * 	dev_id 
+)	
+```
+
+* ``thread_fn``: function to be called in a threaded interrupt context, ``NULL`` for devices which handle everythin
+
+### Examples
+
+Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
+
+Program: [interrupt_for_character_device.c](interrupt_for_character_device.c)
+
 # API
 
 [API document](API.md)
