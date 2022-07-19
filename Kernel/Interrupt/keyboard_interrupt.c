@@ -1,6 +1,5 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
-#include <linux/gpio.h>
 #include <linux/interrupt.h>
 
 #define DEV_NAME    "DEV_NAME IRQ_1"
