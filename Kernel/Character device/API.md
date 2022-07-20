@@ -21,7 +21,21 @@ static inline void unregister_chrdev(unsigned int major, const char *name)
 }
 ```
 
+### register_chrdev_region()
+
+``register_chrdev_region()`` will assign the identifiers. After assigning the identifiers, the character device will have to be initialized using the ``cdev_init()`` function and registered to the kernel using the ``cdev_add()`` function.
+
+```c
+int register_chrdev_region(dev_t dev_id, unsigned int count, char *name); // the kernel fills up the variable dev_t with the combination of the major number and the first minor number that we requested for.
+void unregister_chrdev_region(dev_t dev_id, unsigned int count);
+```
+
+* ``count``: the number of minor numbers required
+* ``name``: the name of the associated device or driver
+
 ### dev_t
+
+The ``dev_t`` type is used to keep the identifiers of a device (both major and minor) and can be obtained using the ``MKDEV()`` macro
 
 ```c
 #include <sys/sysmacros.h>
@@ -31,6 +45,16 @@ unsigned int minor(dev_t dev);
 ```
 
 A device ID consists of two parts: a major ID, identifying the class of the device, and a minor ID, identifying a specific instance of a device in that class. A device ID is represented using the type ``dev_t``.
+
+```c
+#include <linux/fs.h>
+
+#define MAJOR(dev)	((unsigned int) ((dev) >> MINORBITS)) //Extract the major number
+#define MINOR(dev)	((unsigned int) ((dev) & MINORMASK))  //Extract the minor number
+#define MKDEV(ma,mi)	(((ma) << MINORBITS) | (mi))
+```
+
+With ``major`` and ``minor`` number, we can create a ``dev_t``.
 
 ### alloc_chrdev_region
 
