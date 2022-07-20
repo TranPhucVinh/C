@@ -57,7 +57,7 @@ After inserting that kernel module, the interrupt type with the specified device
 
 Kernel interrupt can't be disable and enable directly from userspace process. Only kernel module can disable a specific interrupt by ``disable_irq()`` function and enable by ``enable_irq()``
 
-This program will disable interrupt 1 as the built-in keyboard and touchpad are disable (USB connected keyboard and mouse still work normally, we can use the key on USB connected keyboard to ``rmmod`` the kernel module). Running ``rmmod`` to the module will enable interrupt 1 again.
+Program ``disable_interrupt.c`` below will disable interrupt 1 as the built-in keyboard and touchpad are disable (USB connected keyboard and mouse still work normally, we can use the key on USB connected keyboard to ``rmmod`` the kernel module). Running ``rmmod`` to the module will enable interrupt 1 again.
 
 ```c
 #include <linux/module.h>
@@ -80,3 +80,5 @@ void cleanup_module(void)
 	printk(KERN_INFO "clean up module disable interrupt\n");
 }
 ```
+
+**Note**: If inserting kernel module ``disable_interrupt`` before inserting ``keyboard_interrupt``,  ``keyboard_interrupt`` is still able to register interrupt 1 successfully although interrupt 1 is disable by ``disable_interrupt``.
