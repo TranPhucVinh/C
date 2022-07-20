@@ -8,6 +8,8 @@ After inserting the LKM created from this program, ``fops_character_device``, th
 
 ``sudo mknod /dev/char_dev c 90 0``: Make device file ``char_dev`` from character device with major number ``90`` and minor number ``0``.
 
+``sudo rmnod /dev/char_dev``: Remove the character device
+
 ## Create character device
 
 ``create_character_device.c``: Create a new character device named ``Character device``.
