@@ -19,6 +19,13 @@ int request_irq(unsigned int irq,
 
 * ``IRQF_SHARED`` announces the kernel that the interrupt can be shared with other devices. If this flag is not set, then if there is already a handler associated with the requested interrupt, the request for interrupt will fail.
 
+```c
+void disable_irq (unsigned int irq);//Disable interrupt
+void enable_irq (unsigned int irq);//Enable interrupt
+```
+
+* ``unsigned int irq``: Interrupt to enable
+
 # Examples
 
 ## Interrupt 1 (keyboard interrupt)
