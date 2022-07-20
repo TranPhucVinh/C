@@ -52,3 +52,31 @@ void enable_irq (unsigned int irq);//Enable interrupt
 Check the corresponding example in Raspbian for [toggling LED by button using interrupt](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/toggle_led_by_gpio_interrupt.c).
 
 After inserting that kernel module, the interrupt type with the specified device name (by macro ``DEV_NAME``) and the IRQ number (``int irq_number``) can be listed out by ``cat /proc/interrupts``.
+
+## Disable and enable interrupt
+
+Kernel interrupt can't be disable and enable directly from userspace process. Only kernel module can disable a specific interrupt by ``disable_irq()`` function and enable by ``enable_irq()``
+
+This program will disable interrupt 1 as the built-in keyboard and touchpad are disable. Running ``rmmod`` to the module will enable interrupt 1 again.
+
+```c
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/interrupt.h>
+
+#define IRQ_NUM    1
+
+int init_module(void)
+{
+	printk(KERN_INFO "Module to disable interrupt\n");
+	disable_irq(IRQ_NUM);
+
+	return 0;
+}
+
+void cleanup_module(void)
+{
+	enable_irq(IRQ_NUM);
+	printk(KERN_INFO "clean up module disable interrupt\n");
+}
+```
