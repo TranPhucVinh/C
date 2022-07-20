@@ -7,6 +7,9 @@
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
 
+#define TOTAL_MINOR                1
+#define BASE_MINOR				   0
+
 MODULE_LICENSE("GPL");
 
 dev_t dev_id;
@@ -58,7 +61,7 @@ int device_init(void)
 {
 	int ret;
 
-	ret = alloc_chrdev_region(&dev_id, 0, 1, "fops_alloc_chrdev_region");
+	ret = alloc_chrdev_region(&dev_id, BASE_MINOR, TOTAL_MINOR, "fops_alloc_chrdev_region");
 	if(ret)
 	{
 		printk("can not register major no\n");
@@ -80,7 +83,7 @@ int device_init(void)
 void device_exit(void)
 {
 	printk("Device remove\n");
-	unregister_chrdev_region(dev_id, 0);
+	unregister_chrdev_region(dev_id, TOTAL_MINOR); 
 	cdev_del(character_device);
 	device_destroy(device_class, dev_id);
 	class_destroy(device_class);
