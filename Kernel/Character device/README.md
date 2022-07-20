@@ -127,7 +127,7 @@ Features
 
 Kernel module program [disable_enable_interrupt_for_character_device.c](disable_enable_interrupt_for_character_device.c)
 
-User space [program ioctl_disable_enable_interrupt.c](program ioctl_disable_enable_interrupt.c)
+User space program [ioctl_disable_enable_interrupt.c](program ioctl_disable_enable_interrupt.c)
 
 # API
 
