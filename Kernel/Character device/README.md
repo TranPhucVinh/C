@@ -8,7 +8,60 @@ After inserting the LKM created from this program, ``fops_character_device``, th
 
 ``sudo mknod /dev/char_dev c 90 0``: Make device file ``char_dev`` from character device with major number ``90`` and minor number ``0``.
 
-``sudo rmnod /dev/char_dev``: Remove the character device
+``sudo rm /dev/char_dev``: Remove the character device
+
+Register character device with ``register_chrdev_region()`` and unregister with ``unregister_chrdev_region()``:
+
+```c
+#include <linux/module.h>
+#include <linux/cdev.h>
+#include <linux/fs.h>
+
+#define MAJOR_NUM       100
+#define MINOR_NUM       0
+#define TOTAL_MINOR     1
+#define CHAR_NAME   	"Character device"
+
+static struct cdev my_dev;
+
+/*
+	Other operations are like register_character_device.c
+*/
+
+int device_init(void)
+{
+    int ret;
+    dev_t dev = MKDEV(MAJOR_NUM, MINOR_NUM);
+
+    ret = register_chrdev_region(dev, TOTAL_MINOR, CHAR_NAME);
+    if (ret < 0){
+        printk("Unable to allocate major number %d\n", MAJOR_NUM);
+        return ret;
+    }
+
+    cdev_init(&my_dev, &my_dev_fops);
+    ret= cdev_add(&my_dev, dev, TOTAL_MINOR);
+    if (ret < 0){
+        unregister_chrdev_region(dev, TOTAL_MINOR);
+        printk("Unable to add cdev\n");
+        return ret;
+    }
+
+    return 0;
+}
+
+void device_exit(void)
+{
+    cdev_del(&my_dev);
+    unregister_chrdev_region(MKDEV(MAJOR_NUM, MINOR_NUM), 1);
+}
+
+/*
+	Other operations are like register_character_device.c
+*/
+```
+
+After inserting this module, operations with ``mknod`` and ``rm`` are all like ``register_character_device.c``.
 
 ## Create character device
 
