@@ -113,9 +113,21 @@ int devm_request_threaded_irq	(
 
 ### Examples
 
+**Example 1**
+
 Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
 
 Program: [interrupt_for_character_device.c](interrupt_for_character_device.c)
+
+**Example 2**
+
+Features
+* Handle interrupt 1 like in example 1
+* Disable and enable interrupt 1 from userspace through ``ioctl()``
+
+Kernel module program [disable_enable_interrupt_for_character_device.c](disable_enable_interrupt_for_character_device.c)
+
+User space [program ioctl_disable_enable_interrupt.c](program ioctl_disable_enable_interrupt.c)
 
 # API
 
