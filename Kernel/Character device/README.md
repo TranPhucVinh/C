@@ -65,7 +65,7 @@ After inserting this module, operations with ``mknod`` and ``rm`` are all like `
 
 ## Create character device
 
-``create_character_device.c``: Create a new character device named ``Character device``.
+[create_character_device.c](create_character_device.c): Create a new character device named ``Character device``.
 
 After creating successfully, a new device is found on ``/dev``.
 
