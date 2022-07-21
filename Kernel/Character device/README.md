@@ -180,6 +180,36 @@ Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
 
 Program: [interrupt_for_character_device.c](interrupt_for_character_device.c)
 
+Register to interrupt 1 every time file operation open is called (by ``cat /dev/fops_character_device``):
+
+```c
+//Other operations are like interrupt_for_character_device.c
+int dev_open(struct inode *inodep, struct file *filep)
+{
+    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) THREAD_FN, IRQF_SHARED, INTERRUPT_NAME, (void*)irq_1_handler) != 0){
+        printk("Can't request interrupt number %d\n", IRQ_1);
+    } else printk("Request interrupt number %d successfully\n", IRQ_1);
+	return 0;
+}
+//Other operations are like interrupt_for_character_device.c
+```
+
+**Result**: Although interrupt 1 is registered every time calling open file operation by ``cat /dev/fops_character_device`` but variable ``pressed_times`` still increase its value every time interrupt 1 is triggered.
+
+```
+devm_request_threaded_irq; keyboard interrupt occured 1 times
+devm_request_threaded_irq; keyboard interrupt occured 2 times
+devm_request_threaded_irq; keyboard interrupt occured 3 times	
+devm_request_threaded_irq; keyboard interrupt occured 4 times	
+Request interrupt number 1 successfully
+devm_request_threaded_irq; keyboard interrupt occured 5 times
+devm_request_threaded_irq; keyboard interrupt occured 6 times
+devm_request_threaded_irq; keyboard interrupt occured 7 times	
+devm_request_threaded_irq; keyboard interrupt occured 8 times	
+Request interrupt number 1 successfully
+....
+```
+
 **Example 2**
 
 Features
