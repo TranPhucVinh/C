@@ -14,6 +14,9 @@
 #define THREAD_FN        NULL
 #define IRQ_1		1
 
+#define TOTAL_MINOR                1
+#define BASE_MINOR				   0
+
 MODULE_LICENSE("GPL");
 
 int pressed_times = 0;
@@ -73,7 +76,7 @@ int init_module(void)
 {
 	int ret;
 
-	ret = alloc_chrdev_region(&dev_id, 0, 1, "fops_alloc_chrdev_region");
+	ret = alloc_chrdev_region(&dev_id, BASE_MINOR, TOTAL_MINOR, "fops_alloc_chrdev_region");
 	if(ret)
 	{
 		printk("can not register major no\n");
@@ -99,9 +102,14 @@ int init_module(void)
 void cleanup_module(void)
 {
     /*
-        Must have free_irq() function in cleanup (for rmmod command)
-        If not having free_irq(), the interrupt still existed in /proc/interrupts after calling rmmod
+       	devm_free_irq() must go with devm_request_threaded_irq() function
+		to avoid memory issue with IRQ when performing insmod and rmmod
+		for the module several times.
     */
-	free_irq(IRQ_1, (void*)irq_1_handler);
+	devm_free_irq(device, IRQ_1, (void*)irq_1_handler);
+	unregister_chrdev_region(dev_id, TOTAL_MINOR); 
+	cdev_del(character_device);
+	device_destroy(device_class, dev_id);
+	class_destroy(device_class);
 	printk(KERN_INFO "clean up module\n");
 }
