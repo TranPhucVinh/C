@@ -73,7 +73,7 @@ int device_init(void)
 		return ret;
 	}
 	printk(KERN_INFO "register successfully major now is: %d\n", MAJOR(dev_id));
-	character_device = cdev_alloc();
+	character_device = cdev_alloc();//Allocate dynamic memory for struct pointer object character_device
 	character_device->owner = THIS_MODULE;
 	character_device->ops = &fops;
 	character_device->dev = dev_id;
