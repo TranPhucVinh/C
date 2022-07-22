@@ -82,6 +82,12 @@ int cdev_add(struct cdev *dev, dev_t num, unsigned int count);
 
 **Note**: If ``count = 0``, it means no device can associate with this character device. Then working with this character device like ``cat /dev/character_device_name`` or ``echo "Data" > /dev/character_device_name`` will gives error: ``No such device or address``.
 
+```c
+struct cdev * cdev_alloc(void);
+```
+
+Allocate dynamic memory for a character device as a struct pointer object
+
 ### struct class
 
 The driver creates/destroys the class using those APIs:
