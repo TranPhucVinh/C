@@ -103,6 +103,10 @@ struct class *class_create(struct module *owner, const char *name);
 void class_destroy (struct class *cls);
 ```
 
+The ``/sys/class/`` directory offers a view of the device drivers grouped by classes.
+
+For ``DEVICE_CLASS`` created by ``class_create()``, it will then have a folder in ``/sys/class/``.
+
 ### struct device
 
 The driver creates the device nodes using those APIs:
