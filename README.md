@@ -11,7 +11,7 @@ Main OS: Ubuntu 16.04
 
 Other OS:
 * Windows (specifically noted on any software that are built on Windows)
-* WSL Unbuntu 18.04
+* WSL Ubuntu 18.04
 
 # Text editor
 
