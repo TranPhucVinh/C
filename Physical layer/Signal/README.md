@@ -43,6 +43,13 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 
 ## API
 
+### kill()
+
+```c
+int kill(pid_t pid, int sig);
+```
+Send signal (``sig``) to a process specified by ``pid``.
+
 ### signal()
 
 ``signal()``: sets a function to handle signal
@@ -82,9 +89,63 @@ struct sigaction
 * ``sa_flags``: A set of flags which modify the behavior of the signal.
 * ``sigset_t``: represents a set of signals
 
-### kill()
+Signal handler function can be used with ``sa_sigaction`` to handle parameters:
+
+To use sa_sigaction and get the parameter successfully in ``sa_sigaction`` function handler, flag ``SA_SIGINFO`` must be used.
 
 ```c
-int kill(pid_t pid, int sig);
+
+/*
+    ucontext: This is a pointer to a ucontext_t structure, cast to
+              void *.  The structure pointed to by this field contains
+              signal context information that was saved on the user-
+              space stack by the kernel
+*/
+void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext){
+	//Operations go here
+}
+
+int main(){
+	struct sigaction sa;
+    sa.sa_sigaction = &signal_action_handler;
+    sa.sa_flags = SA_SIGINFO;
+
+    sigaction(SIGUSR1, &sa, NULL);
+}
 ```
-Send signal (``sig``) to a process specified by ``pid``.
+
+The ``siginfo_t`` data type is a structure with many members inside. ``union sigval si_value`` is included for ``sigqueue sigval``
+
+```c
+siginfo_t {
+	int      si_signo;     /* Signal number */
+	int      si_errno;     /* An errno value */
+
+	//Other mmembers are ommitted
+
+	pid_t    si_pid;       /* Sending process ID */
+	uid_t    si_uid;       /* Real user ID of sending process */
+	union sigval si_value; /* Signal value */
+	int      si_int;       /* POSIX.1b signal */
+	void    *si_ptr;       /* POSIX.1b signal */
+	
+	//Other mmembers are ommitted
+}
+```
+
+### sigqueue()
+
+Queue a signal and data to a process
+
+```c
+int sigqueue(pid_t pid, int sig, const union sigval value);
+```
+
+```c
+union sigval {
+	int   sival_int;
+	void *sival_ptr;
+};
+```
+
+``sigqueue()`` can be used to send parameter to other process that handles the signal.
