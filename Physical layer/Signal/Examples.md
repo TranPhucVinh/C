@@ -1,4 +1,4 @@
-### Example 1: Communicate by signals
+# IPC by signals
 
 Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
 
@@ -90,7 +90,60 @@ signal(SIGINT, signal_handler);
 ^CYou have entered signal number: 2
 ```
 
-### Example 2: SIGKILL signal
+### Sending signal and parameter from a process to other process
+
+Send signal ``SIGUSR1`` and parameter with int value ``12`` to process with macro ``PID`` by using ``sigqueue()``
+
+```c
+#include <stdio.h>
+#include <signal.h>   
+
+#define PID 16367
+
+union sigval value;
+
+int main(){  
+    value.sival_int = 12;
+    sigqueue(PID, SIGUSR1, value);
+}
+```
+
+Received signal ``SIGUSR1`` and the parameter sent from other process by using ``sa_sigaction`` from ``struct sigaction``:
+
+```c
+#include <stdio.h>
+#include <unistd.h> //for getpid()
+#include <signal.h>   
+
+/*
+    ucontext: This is a pointer to a ucontext_t structure, cast to
+              void *.  The structure pointed to by this field contains
+              signal context information that was saved on the user-
+              space stack by the kernel
+*/
+void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext){
+	printf("You have entered signal number: %d, with parameter %d\n", signal_number, (siginfo->si_value).sival_int);
+}
+
+int main(){ 
+    printf("PID %d\n", getpid());
+    struct sigaction sa;
+    sa.sa_sigaction = &signal_action_handler;
+
+    /*
+        To use sa_sigaction and get the parameter successfully in 
+        sa_sigaction function handler, flag SA_SIGINFO must be used
+    */
+    sa.sa_flags = SA_SIGINFO;
+
+    sigaction(SIGUSR1, &sa, NULL);
+	while(1);//Start an infinite loop and handle with signal
+}
+```
+
+# Working with specific signal
+
+### SIGKILL signal
 
 Self-terminated a process after printing from ``0`` to ``10``:
 
@@ -112,9 +165,9 @@ int main(){
 }
 ```
 
-### Example 3
+### Working with SIGWINCH signal
 
-Working with ``SIGWINCH`` signal: If changing the current terminal size by mouse, the size of the terminal is printed out.
+If changing the current terminal size by mouse, the size of the terminal is printed out.
 
 ```c
 #include <stdio.h> 
