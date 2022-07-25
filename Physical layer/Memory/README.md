@@ -2,6 +2,8 @@
 
 ## Memory layout of a C program running as a process
 
+![](../../Environment/Images/process-memory-layout.png)
+
 A process also has its environment which comes with environment variables. The startup routine takes the command line arguments, environment etc from the kernel and passes these on to the ``main()`` function.
 
 * The command line arguments and the environment variables are stored at the top of the process memory layout at the higher addresses.
