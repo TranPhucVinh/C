@@ -8,16 +8,62 @@ In computer science, a thread of execution is the smallest sequence of programme
 
 Compile: ``gcc test.c -lpthread``
 
-### Flow
+### Create a thread to print out a string
 
-[Example: Create a thread to print out a string](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#example-1)
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
 
-The flow of that example:
+void *func_thread_1(void *ptr);
+
+int main()
+{  
+	pthread_t thread_1;
+
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	pthread_join(thread_1, NULL);
+	printf("thread_1 finish executing\n");
+}
+
+void *func_thread_1(void *ptr){
+	printf("Hello, World !\n");
+}
+```
+
+**Result**
+
+```
+Hello, World !
+thread_1 finish executing
+```
+
+Program's flow::
 
 * **Step 1**: Execute thread 1 (``pthread_join()``)
 * **Step 2**: Perform program operation behind ``pthread_join()``
 
 If the thread is an infinite loop, the program operation behind ``pthread_join()`` can't be reached.
+
+When not using ``pthread_join()``:
+
+```c
+int main()
+{  
+	pthread_t thread_1;
+
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	printf("thread_1 finish executing\n");
+}
+```
+
+**Result**
+
+```
+thread_1 finish executing
+```
+
+We expectect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use ``pthread_join()``.
 
 ## Inter-task communication
 
