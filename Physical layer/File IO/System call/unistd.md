@@ -31,6 +31,13 @@ char displayedString[] = "Hello, World ! a new string";
 int fileDescriptor = open("/dev/tty", O_WRONLY);//Write only
 write(fileDescriptor, displayedString, sizeof(displayedString));
 ```
+
+To append to write with ``O_APPEND``:
+
+```c
+fd = open("test.md", O_WRONLY | O_APPEND);//Flag O_APPEND must OR with O_WRONLY. If using only O_APPEND, file can't be written
+```
+
 ### close()
 
 Close a file descriptor, so that it no longer refers to any file and may be reused. 
