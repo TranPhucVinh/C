@@ -69,8 +69,9 @@ printf("%d", fileDescription);//3
 fileDescription = open(filePath, O_RDONLY);//Open test.txt again
 printf("%d", fileDescription);//4
 ```
+### errno
 
-Check error with ``errno`` of library ``errno.h``
+Error can be checked with ``errno`` of library ``errno.h``
 
 ```c
 #include <errno.h>
@@ -81,3 +82,25 @@ printf("%d\n", errno);
 If the file is exist and no error happen, ``errno`` is ``0``.
 
 If the file is not exist, ``errno`` will be ``2`` (``ENOENT``).
+
+``errno`` command, which is a part of moreutils package, can be used to lookup the error number value and its name. ``errno`` is mapped to ``errno.h``.
+
+Install: ``sudo apt install moreutils``
+
+E.g:
+
+```sh
+username$hostname: errno 2
+```
+
+```
+ENOENT 2 No such file or directory
+```
+
+```sh
+username$hostname: errno EBUSY
+```
+
+```
+EBUSY 16 Device or resource busy
+```
