@@ -4,7 +4,8 @@ A program can execute in **user mode** and **kernel mode**. If a progam is execu
 
 If a program is executed in **user mode** and want to access to the memory or hardware, it makes a call to the operating system, which is known as **system call**.
 
-System call is a programmatic way/a call in which a computer program requests a service from the kernel of the operating system.
+System call is a programmatic way/a call in which a computer program requests a service from the kernel of the operating system. The system call interface is generally not invoked directly (even though it could be) but rather through wrapper functions in the C runtime library, i.e system call has to be performed by C function.
+
 
 ## Types of system calls
 
