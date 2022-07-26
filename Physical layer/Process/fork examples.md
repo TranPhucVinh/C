@@ -35,25 +35,6 @@ Origin process's ID: 20845 and child process's ID: 20846
 Child process has ID: 20846
 ```
 
-Address of a variable inside both parent and child process are the same:
-
-```c
-int main(void){
-    int *a;
-    pid_t pid = fork();
-
-    if( pid == 0 ) {
-        a = (int*) malloc(sizeof(int) * 1);
-        printf("%p\n", a);//0x564e0d4e22a0
-    }
-    else {
-        a = (int*) malloc(sizeof(int) * 1);
-        printf("%p\n", a);//0x564e0d4e22a0
-    }
-    return 0;
-}
-```
-
 Running child process inside infinite loop:
 
 ```c
@@ -225,4 +206,25 @@ if (!pid) {
             usleep(DELAY_TIME);
         }
     }
+```
+
+## Variable inside forked process
+
+Address of a variable inside both parent and child process are the same:
+
+```c
+int main(void){
+    int *a;
+    pid_t pid = fork();
+
+    if( pid == 0 ) {
+        a = (int*) malloc(sizeof(int) * 1);
+        printf("%p\n", a);//0x564e0d4e22a0
+    }
+    else {
+        a = (int*) malloc(sizeof(int) * 1);
+        printf("%p\n", a);//0x564e0d4e22a0
+    }
+    return 0;
+}
 ```
