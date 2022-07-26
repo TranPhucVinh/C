@@ -69,7 +69,8 @@ printf("%d", fileDescription);//3
 fileDescription = open(filePath, O_RDONLY);//Open test.txt again
 printf("%d", fileDescription);//4
 ```
-### errno
+
+## errno
 
 Error can be checked with ``errno`` of library ``errno.h``
 
@@ -104,3 +105,32 @@ username$hostname: errno EBUSY
 ```
 EBUSY 16 Device or resource busy
 ```
+
+### EBUSY
+
+Trying to open a file 2 times and EBUSY error doesn't happen
+
+```c
+#include <stdio.h>
+#include <unistd.h> //for read()
+#include <fcntl.h> //for open()
+#include <errno.h>
+
+#define FILE "evk_test.c"
+
+int fd;
+
+int main(){
+    char buffer[10];
+
+    fd = open(FILE, O_RDWR);
+    if (fd > 0) {
+        open(FILE, O_RDWR);
+        perror("DEBUG");
+        printf("Error number: %d\n", errno);
+        close(fd);
+    } else printf("Error\n");
+}
+```
+
+``EBUSY`` still doesn't happen if using the source code above with device file like ``/dev/tty``.
