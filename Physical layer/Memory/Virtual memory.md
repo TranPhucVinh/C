@@ -1,6 +1,8 @@
 ### API
 
 ```c
+#include <sys/mman.h>
+
 void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
 ```
 
@@ -18,5 +20,10 @@ On success, ``mmap()`` returns a pointer to the mapped area.
 * ``PROT_READ``: Pages may be read.
 * ``PROT_WRITE``: Pages may be written.
 * ``PROT_NONE``: Pages may not be accessed.
+
+``flags``:
+
+* ``MAP_SHARED``: Share memory
+* ``MAP_ANONYMOUS``: The mapping doesn't involve any file descriptor (i.e fd=-1)
 
 **Example**: [Control GPIO of Raspberry Pi by direct memory access using mmap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/GPIO/direct_register_access_control_gpio.c), notice that ``addr`` param in ``mmap()`` is ``NULL`` in this case.
