@@ -12,4 +12,11 @@ The contents of a file mapping, are initialized using length bytes starting at `
 
 On success, ``mmap()`` returns a pointer to the mapped area.
 
+``prot``: memory protection of the mapping (and must not conflict with the open mode of the file).
+
+*  ``PROT_EXEC``: Pages may be executed.
+* ``PROT_READ``: Pages may be read.
+* ``PROT_WRITE``: Pages may be written.
+* ``PROT_NONE``: Pages may not be accessed.
+
 **Example**: [Control GPIO of Raspberry Pi by direct memory access using mmap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/GPIO/direct_register_access_control_gpio.c), notice that ``addr`` param in ``mmap()`` is ``NULL`` in this case.
