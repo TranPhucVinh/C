@@ -121,8 +121,6 @@ Trying to open a file 2 times and EBUSY error doesn't happen
 int fd;
 
 int main(){
-    char buffer[10];
-
     fd = open(FILE, O_RDWR);
     if (fd > 0) {
         open(FILE, O_RDWR);
@@ -134,3 +132,5 @@ int main(){
 ```
 
 ``EBUSY`` still doesn't happen if using the source code above with device file like ``/dev/tty``.
+
+The device file can't handle those type of error by its self if the error handler are not implemented in its source code. To handle any specific errno like EBUSY on character device, that device must handle this error in its operation, [like the open operation](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/README.md#handle-specific-error-from-errno-from-userspace).
