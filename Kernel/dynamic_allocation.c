@@ -18,6 +18,8 @@ int init_module(void)
     number = (int *) kmalloc(1, GFP_KERNEL);
     *number = 123;
     printk(KERN_INFO "%d\n", *number);
+	kfree(number);
+	printk(KERN_INFO "DEBUG: number after kfree(): %d\n", *number);//-1222998076
 
     int_array = (int *) kmalloc(3, GFP_KERNEL);
     int_array[0] = 1;
@@ -25,6 +27,8 @@ int init_module(void)
     int_array[2] = 3;
 
     printk(KERN_INFO "%d %d %d\n", int_array[0], int_array[1], int_array[2]);
+	kfree(int_array);
+	printk(KERN_INFO "DEBUG %d %d %d\n", int_array[0], int_array[1], int_array[2]);//-1222998076 -1931286851 3
 	return 0;
 }
 
