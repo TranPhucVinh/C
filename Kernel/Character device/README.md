@@ -133,6 +133,31 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 
 Program [user_space_2_way_communications.c](user_space_2_way_communications.c) supports 2-way communications R/W between userspace and character device.
 
+### Handle specific error from errno from userspace
+
+To handle any specific errno like ``EBUSY`` on character device, that device must handle this error in its operation, like the open operation:
+
+```c
+int open_flag = 0;
+
+//This is file open operation for character device
+int dev_open(struct inode *inodep, struct file *filep)
+{
+	if (open_flag == 0)	{
+		open_flag = 1;
+		return 0;
+	}
+	if (open_flag == 1)	{
+		printk("Device is already open\n");
+		open_flag = 0;
+		return -EBUSY;
+	}
+	return 0;
+}
+```
+
+Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/fcntl.md#ebusy) for the userspace process to handle this EBUSY error.
+
 ## Operation with character device by ioctl
 
 [character_device_ioctl.c](character_device_ioctl.c) supports 2 features:
