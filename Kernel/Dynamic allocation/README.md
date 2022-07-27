@@ -30,4 +30,36 @@ void *kmem_cache_alloc(struct kmem_cache *s, gfp_t flags);
 
 # Examples
 
-[Example with kmalloc()](kmalloc_example.c)
+* [kmalloc() example](kmalloc_example.c)
+
+[kmem_cache example](kmem_cache.c): Dynamic allocation for string char, int and int array
+
+### Notes
+
+If the slab cache declared by ``struct kmem_cache *kmem_cache`` is reused/overwritten by other ``kmem_cache_create()`` without calling ``kmem_cache_destroy()`` like in this case, there will be error.
+
+```c
+char *str;
+int *number;
+
+kmem_cache = kmem_cache_create("kmem 1", 15, ALIGN_VALUE, SLAB_POISON, CONSTRUCTOR);
+str = (char *)kmem_cache_alloc(kmem_cache, GFP_KERNEL);
+
+strcpy(str, "Learn malloc");
+
+printk(KERN_INFO "%s\n", str);
+kmem_cache_free(kmem_cache, str);
+printk(KERN_INFO "DEBUG: str after kmem_cache_free(): %s\n", str);
+
+kmem_cache = kmem_cache_create("kmem 2", 1, ALIGN_VALUE, SLAB_POISON, CONSTRUCTOR);
+number = (int *) kmem_cache_alloc(kmem_cache, GFP_KERNEL);
+printk(KERN_INFO "%d\n", *number);
+kmem_cache_free(kmem_cache, str);
+printk(KERN_INFO "DEBUG: number after kfree(): %d\n", *number);
+```
+
+The error will be:
+
+```
+Wrong slab cache. kmem 2 but object us from kmem 1
+```
