@@ -80,7 +80,16 @@ int atomic_read(const atomic_t * v);
 
 Return the value of v
 
-**Example**: Set value to atomic_t and read its return
+```c
+#define atomic_set(v, i)        ((v)->counter = (i))
+```
+
+Set the value to v
+
+* ``v``: pointer of type atomic_t
+* ``i``: value
+
+**Example**: Get and set value to atomic_t with ``atomic_read()`` and ``atomic_set()``
 
 ```c
 #include<linux/module.h>
@@ -95,6 +104,8 @@ int init_module(void)
 	a.counter = 12;
 	int b = atomic_read(&a);
 	printk(KERN_INFO "b %d\n", b);
+	atomic_set(&a, 34);
+	printk(KERN_INFO "%d\n", atomic_read(&a));
 	return 0;
 }
 
