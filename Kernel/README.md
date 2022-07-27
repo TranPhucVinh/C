@@ -1,6 +1,6 @@
 # Dynamic allocation
 
-[Dynamic allocation example with kmalloc()](dynamic_allocation.c)
+Check [dynamic allocation document folder](Dynamic%20allocation)
 
 # GPIO
 
