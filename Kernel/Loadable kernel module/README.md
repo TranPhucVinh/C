@@ -48,7 +48,7 @@ Run ``dmesg|grep loadable_kernel_module`` to detect what is printed to the kerne
 
 ## API
 
-``module_init()`` vs ``init_module()`` and ``module_exit()`` vs ``cleanup_module()``
+### module_init() vs init_module() and module_exit() vs cleanup_module()
 
 Define in ``linux/init.h``
 
@@ -65,6 +65,45 @@ static inline exitcall_t __exittest(void)       \
 { return exitfn; }                  \
 void cleanup_module(void) __attribute__((alias(#exitfn)));
 ```
+
+### atomic_read()
+
+```c
+typedef struct {
+	int counter;
+} atomic_t;
+```
+
+```c
+int atomic_read(const atomic_t * v);
+```
+
+Return the value of v
+
+**Example**: Set value to atomic_t and read its return
+
+```c
+#include<linux/module.h>
+#include<linux/kernel.h>
+
+MODULE_LICENSE("GPL");
+
+atomic_t a;
+
+int init_module(void)
+{
+	a.counter = 12;
+	int b = atomic_read(&a);
+	printk(KERN_INFO "b %d\n", b);
+	return 0;
+}
+
+void cleanup_module(void)
+{
+	printk(KERN_INFO "clean up module\n");
+}
+```
+
 
 ### printk()
 
