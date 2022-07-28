@@ -59,17 +59,19 @@ ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t
 
 long dev_ioctl(struct file *filep, unsigned int cmd, unsigned long arg){
 	int userspace_argument;
-	copy_from_user(&userspace_argument, (int*)arg, sizeof(userspace_argument));
-	printk("cmd %d, arg %d, userspace_argument %d\n", cmd, arg, userspace_argument);
+	if (copy_from_user(&userspace_argument, (int*)arg, sizeof(userspace_argument))) return -EFAULT;
+    else {
+        printk("cmd %d, arg %d, userspace_argument %d\n", cmd, arg, userspace_argument);
 
-    userspace_process = get_current();
+        userspace_process = get_current();
 
-    /*
-        This will get the PID of the userspace process that sends ioctl() system
-        call to it.
-    */
-    printk("PID %d\n", userspace_process->pid);
-    return 0;
+        /*
+            This will get the PID of the userspace process that sends ioctl() system
+            call to it.
+        */
+        printk("PID %d\n", userspace_process->pid);
+        return 0;
+    }
 }
 
 int device_init(void)
