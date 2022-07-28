@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h> //for open()
+#include <fcntl.h>
 #include <sys/ioctl.h>
+#include <errno.h>
 
 #define CHAR_DEV    "/dev/fops_character_device"
 
@@ -12,9 +12,10 @@ int argument = 123;
 
 int main(int argc, char *argv[]) {
 	fd = open(CHAR_DEV, O_RDWR);
-	if (fd){
+	if (fd > 0){
 		if (ioctl(fd, cmd, &argument) == -1) {
-            printf("Fail\n");
+            perror("DEBUG");
+            printf("Error number: %d\n", errno);
         } else {
             printf("cmd %d, argument %d\n", cmd, argument);
 			printf("PID %d\n", getpid());
