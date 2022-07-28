@@ -134,3 +134,7 @@ int main(){
 ``EBUSY`` still doesn't happen if using the source code above with device file like ``/dev/tty``.
 
 The device file can't handle those type of error by its self if the error handler are not implemented in its source code. To handle any specific errno like EBUSY on character device, that device must handle this error in its operation, [like the open operation](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/README.md#handle-specific-error-from-errno-from-userspace).
+
+### EFAULT
+
+``EFAULT`` is bad address issue and must be return when ``copy_from_user()`` fail. Check [the example in character device to trigger this error](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/README.md#operation-with-character-device-by-ioctl).
