@@ -155,16 +155,16 @@ struct file_operations {
 * ``copy_from_user()``: Copy a block of data from user space to kernel space
 
 * ``copy_to_user()``: Copy a block of data from kernel space to user space
-* 
+
 ```c
-unsigned long __copy_to_user (	void __user * to, const void * from, unsigned long n);
+unsigned long copy_to_user (void __user * to, const void * from, unsigned long n);
 ```
 
 * ``void __user * to``: Destination address, in user space.
 * ``const void * from``: Source address, in kernel space.
 * ``unsigned long n``: Number of bytes to copy.
 
-Returns number of bytes that could not be copied. On success, this will be zero.
+Both ``copy_from_user()`` and ``copy_to_user()`` return the number of bytes that could not be copied, in that fail case, those 2 functions must return error ``EFAULT`` to userspace. On success, they will be zero.
 
 ## ioctl macro
 
