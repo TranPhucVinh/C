@@ -235,6 +235,36 @@ Request interrupt number 1 successfully
 ....
 ```
 
+Use IRQ thread parameter in ``devm_request_threaded_irq()``:
+
+```c
+//Other operations are like interrupt_for_character_device.c
+int pressed_times = 0;
+
+irq_handler_t irq_1_handler(unsigned int irq, void* dev_id, struct pt_regs *regs){
+    return (irq_handler_t) IRQ_WAKE_THREAD;
+}
+
+irq_handler_t thread_handler(unsigned int irq, void* dev_id, struct pt_regs *regs){
+	printk("thread_handler is called; keyboard interrupt occured %d times\n", pressed_times);
+	pressed_times += 1;
+    return (irq_handler_t) IRQ_HANDLED;
+}
+
+int init_module(void)
+{
+	//Other operations are like interrupt_for_character_device.c
+
+	//Must have irq_1_handler parameter value
+    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) thread_handler, IRQF_SHARED, INTERRUPT_NAME, (void*)irq_1_handler) != 0){
+        printk("Can't request interrupt number %d\n", IRQ_1);
+    } else printk("Request interrupt number %d successfully\n", IRQ_1);
+
+	return 0;
+}
+//Other operations are like interrupt_for_character_device.c
+```
+
 **Example 2**
 
 Features
