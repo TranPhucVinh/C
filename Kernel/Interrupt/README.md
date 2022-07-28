@@ -37,7 +37,12 @@ int request_irq(unsigned int irq,
 ### request_threaded_irq()
 
 ```c
-int request_threaded_irq(unsigned int irq, irq_handler_t handler, irq_handler_t thread_fn, unsigned long irqflags, const char *devname, void *dev_id);
+int request_threaded_irq(unsigned int irq, 
+	irq_handler_t handler,
+	irq_handler_t thread_fn,
+	unsigned long irqflags,
+	const char *devname,
+	void *dev_id);
 ```
 
 * ``handler``: If it returns ``IRQ_WAKE_THREAD``, then the kernel calls the ``thread_fn``
