@@ -1,3 +1,14 @@
+# Fundamental concepts
+
+When interrupt triggers, the interrupt handler should be executed very quickly and it should not run for more time (it should not perform time-consuming tasks). If we have the interrupt handler who is doing more tasks then we need to divide it into two halves:
+
+1. Top Half
+2. Bottom Half
+
+The top half is our interrupt handler. If not much work is required, then the top half is enough. But if we have more work when interrupt is triggered, then we need the bottom half.  
+
+Threaded IRQ is a technique used for bottom half which is implemented by ``request_threaded_irq()``.
+
 # API
 
 ### request_irq()
@@ -22,6 +33,15 @@ int request_irq(unsigned int irq,
 * ``IRQF_SHARED`` announces the kernel that the interrupt can be shared with other devices. If this flag is not set, then if there is already a handler associated with the requested interrupt, the request for interrupt will fail.
 
 ``irqreturn_t (*handler)(int, void *, struct pt_regs *)`` returns ``IRQ_HANDLED`` to indicates that the IRQ is handled successfully.
+
+### request_threaded_irq()
+
+```c
+int request_threaded_irq(unsigned int irq, irq_handler_t handler, irq_handler_t thread_fn, unsigned long irqflags, const char *devname, void *dev_id);
+```
+
+* ``handler``: If it returns ``IRQ_WAKE_THREAD``, then the kernel calls the ``thread_fn``
+* ``thread_fn``: A function called from the IRQ ``handler``. If ``NULL``, no IRQ thread is created. This represents the bottom half. When the handler function returns ``IRQ_WAKE_THREAD``, the ``kthread`` associated with this bottom half will be scheduled and ``thread_fn`` will be called. The ``thread_fn`` function must return ``IRQ_HANDLED`` when complete. After being executed, the ``kthread`` will not be rescheduled again until the IRQ is triggered again and the handler returns ``IRQ_WAKE_THREAD``.
 
 ### disable_irq() and enable_irq()
 
