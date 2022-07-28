@@ -1,5 +1,7 @@
 # API
 
+### request_irq()
+
 ```c
 #include <linux/interrupt.h>
 int request_irq(unsigned int irq,
@@ -18,6 +20,10 @@ int request_irq(unsigned int irq,
 ``flags`` value:
 
 * ``IRQF_SHARED`` announces the kernel that the interrupt can be shared with other devices. If this flag is not set, then if there is already a handler associated with the requested interrupt, the request for interrupt will fail.
+
+``irqreturn_t (*handler)(int, void *, struct pt_regs *)`` returns ``IRQ_HANDLED`` to indicates that the IRQ is handled successfully.
+
+### disable_irq() and enable_irq()
 
 ```c
 void disable_irq (unsigned int irq);//Disable interrupt
