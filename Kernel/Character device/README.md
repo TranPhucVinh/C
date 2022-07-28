@@ -167,6 +167,19 @@ Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Physical%
 
 User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
 
+**Note**: If sending ``argument`` (the 3rd parameters of ``ioctl()``) with no ampersand, the ``EFAULT`` error is responsed from ``character_device_ioctl.c`` kernel module (by function ``copy_from_user()``:
+
+```c
+//This sending is wrong and EFAULT is responsed from the kernel module
+if (ioctl(fd, cmd, argument) == -1) {}
+```
+**Result**
+
+```
+DEBUG: Bad address
+Error number: 14
+```
+
 [character_device_ioctl_macro.c](character_device_ioctl_macro.c) handles ``ioctl()`` system call from userspace with all ``ioctl`` macro ``_IO()``, ``_IOR()``, ``_IOW()``, ``_IOWR()`` and ``_IOW()`` with struct as argument
 
 User space program that communicate with ``character_device_ioctl_macro.c``: [user_space_ioctl_macro.c](user_space_ioctl_macro.c)
