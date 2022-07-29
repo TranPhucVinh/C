@@ -144,7 +144,7 @@ int main(){
 }
 ```
 
-Then both file operation open (``dev_open()``) and close (``dev_close()``) are called in the character device.
+Then both file operation open (``dev_open()``) and close (``dev_close()``) are called in the character device after that userspace process finishes running, as the OS will automatically close the device file which will trigger the close file operation.
 
 ### Handle specific error from errno from userspace
 
