@@ -133,6 +133,19 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 
 Program [user_space_2_way_communications.c](user_space_2_way_communications.c) supports 2-way communications R/W between userspace and character device.
 
+**Note**
+
+If calling only ``open()`` system call in a userspace process like this program (without ``close()`` system call):
+
+```c
+int main(){
+    int fd = open("/dev/fops_character_device", O_RDONLY);
+   	//There is no close() system call here
+}
+```
+
+Then both file operation open (``dev_open()``) and close (``dev_close()``) are called in the character device.
+
 ### Handle specific error from errno from userspace
 
 To handle any specific errno like ``EBUSY`` on character device, that device must handle this error in its operation, like the open operation:
