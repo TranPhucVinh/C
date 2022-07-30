@@ -133,6 +133,19 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 
 Program [user_space_2_way_communications.c](user_space_2_way_communications.c) supports 2-way communications R/W between userspace and character device.
 
+**Note**
+
+If calling only ``open()`` system call in a userspace process like this program (without ``close()`` system call):
+
+```c
+int main(){
+    int fd = open("/dev/fops_character_device", O_RDONLY);
+   	//There is no close() system call here
+}
+```
+
+Then both file operation open (``dev_open()``) and close (``dev_close()``) are called in the character device after that userspace process finishes running, as the OS will automatically close the device file which will trigger the close file operation.
+
 ### Handle specific error from errno from userspace
 
 To handle any specific errno like ``EBUSY`` on character device, that device must handle this error in its operation, like the open operation:
@@ -166,6 +179,19 @@ Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Physical%
 * Print out the PID of the userspace process that performs the ``ioctl()`` system call
 
 User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
+
+**Note**: If sending ``argument`` (the 3rd parameters of ``ioctl()``) with no ampersand, the ``EFAULT`` error is responsed from ``character_device_ioctl.c`` kernel module (by function ``copy_from_user()``:
+
+```c
+//This sending is wrong and EFAULT is responsed from the kernel module
+if (ioctl(fd, cmd, argument) == -1) {}
+```
+**Result**
+
+```
+DEBUG: Bad address
+Error number: 14
+```
 
 [character_device_ioctl_macro.c](character_device_ioctl_macro.c) handles ``ioctl()`` system call from userspace with all ``ioctl`` macro ``_IO()``, ``_IOR()``, ``_IOW()``, ``_IOWR()`` and ``_IOW()`` with struct as argument
 
