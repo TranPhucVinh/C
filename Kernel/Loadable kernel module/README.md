@@ -114,23 +114,3 @@ void cleanup_module(void)
 	printk(KERN_INFO "clean up module\n");
 }
 ```
-
-
-### printk()
-
-All ``printk()`` messages are printed to the kernel log buffer.
-
-Log level
-
-| Name| Alias function |
-| ------- |:------:|
-| KERN_EMERG    | ``pr_emerg()``    |
-| KERN_ALERT    | ``pr_alert()``   |
-| KERN_CRIT    | ``pr_crit()``|
-|KERN_ERR |``pr_err()``|
-|KERN_WARNING|``pr_warn()``|
-|KERN_NOTICE|``pr_notice()``|
-|KERN_INFO|``pr_info()``|
-|KERN_DEBUG|``pr_debug()`` and ``pr_devel()`` if DEBUG is defined|
-|KERN_DEFAULT||
-|KERN_CONT|``pr_cont()``|
