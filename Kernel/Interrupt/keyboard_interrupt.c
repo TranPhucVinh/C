@@ -3,7 +3,6 @@
 #include <linux/interrupt.h>
 
 #define DEV_NAME    "DEV_NAME IRQ_1"
-#define DEV_ID      NULL
 
 #define IRQ_1		1
 
@@ -21,7 +20,8 @@ int init_module(void)
 {
 	printk(KERN_INFO "Hello, World !\n");
 
-    if (request_irq(IRQ_1, (irq_handler_t) irq_1_handler, IRQF_SHARED, DEV_NAME, (void*)irq_1_handler) != 0){// Must have (void*)irq_1_handler as the last argument to register interrupt
+    // Must have (void*)irq_1_handler as the last argument to register interrupt
+    if (request_irq(IRQ_1, (irq_handler_t) irq_1_handler, IRQF_SHARED, DEV_NAME, (void*)irq_1_handler) != 0){
 
     /*
         Notes:
@@ -29,9 +29,8 @@ int init_module(void)
         2.
         Must have (void*)irq_1_handler as the last argument to register interrupt
         if (request_irq(IRQ_1, (irq_handler_t) irq_1_handler, IRQF_SHARED|IRQF_TRIGGER_RISING, DEV_NAME, (void*)irq_1_handler) != 0)
-
         3. Must have IRQF_SHARED to register interrupt 1 successfully. request_irq() will fail if only use IRQF_TRIGGER_RISING
-        if (request_irq(IRQ_1, (irq_handler_t) irq_1_handler, IRQF_TRIGGER_RISING, DEV_NAME, DEV_ID) != 0) => this will fail
+        if (request_irq(IRQ_1, (irq_handler_t) irq_1_handler, IRQF_TRIGGER_RISING, DEV_NAME, (void*)irq_1_handler) != 0) => this will fail
     */
         printk("Can't request interrupt number %d\n", IRQ_1);
     } else printk("Request interrupt number %d successfully\n", IRQ_1);
