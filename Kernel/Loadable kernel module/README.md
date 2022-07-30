@@ -66,7 +66,7 @@ static inline exitcall_t __exittest(void)       \
 void cleanup_module(void) __attribute__((alias(#exitfn)));
 ```
 
-### atomic_read()
+### atomic_read() and atomic_set()
 
 ```c
 typedef struct {
