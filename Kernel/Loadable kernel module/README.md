@@ -114,3 +114,38 @@ void cleanup_module(void)
 	printk(KERN_INFO "clean up module\n");
 }
 ```
+
+### container_of()
+
+``container_of()`` is a macro defined in <linux/kernel.h>, which is used to return the address of the container structure of the member.
+
+``container_of(ptr, type, member)``:
+
+* ptr – the pointer to the member.
+* type – the type of container struct this is embedded in.
+* member – the name of the member within the struct.
+
+**Example**
+
+```c
+struct struct_data_type {
+	int id;
+	char string_value[50];
+};
+    
+struct struct_data_type object;
+    
+
+int init_module(void)
+{    
+    printk("Address of id member %p\n", container_of(&object.id, struct struct_data_type, id));
+    printk("Address of string_value member %p\n", container_of(&object.string_value, struct struct_data_type, string_value));
+
+	return 0;
+}
+
+void cleanup_module(void)
+{   
+	printk(KERN_INFO "clean up module\n");
+}
+```
