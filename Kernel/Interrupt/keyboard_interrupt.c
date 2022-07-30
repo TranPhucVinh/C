@@ -25,7 +25,7 @@ int init_module(void)
 
     /*
         Notes:
-        1. Use OR flag IRQF_SHARED|IRQF_TRIGGER_RISING won't save the trigger 2 times in keyboard interrupt when pressing a button
+        1. Use OR flag IRQF_SHARED|IRQF_TRIGGER_RISING won't fix the issue triggering 2 times in keyboard interrupt when pressing a key
         2.
         Must have (void*)irq_1_handler as the last argument to register interrupt
         if (request_irq(IRQ_1, (irq_handler_t) irq_1_handler, IRQF_SHARED|IRQF_TRIGGER_RISING, DEV_NAME, (void*)irq_1_handler) != 0)
