@@ -39,8 +39,7 @@ int request_irq(unsigned int irq,
 Free an interrupt allocated with ``request_irq``
 
 ```c
-void free_irq (	unsigned int irq,
- 	void * dev_id);
+void free_irq (	unsigned int irq, void * dev_id);
 ```
 
 ### request_threaded_irq()
