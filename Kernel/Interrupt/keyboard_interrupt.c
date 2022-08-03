@@ -3,7 +3,7 @@
 #include <linux/interrupt.h>
 
 #define DEV_NAME    "DEV_NAME IRQ_1"
-#define DEV_ID    	"DEV_ID" //DEV_ID must not be NULL
+#define DEV_ID    	"DEV_ID" //DEV_ID must not be NULL, if using NULL for DEv_ID, request_irq() will fail
 
 #define IRQ_1		1
 
