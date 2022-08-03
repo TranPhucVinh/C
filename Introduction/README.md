@@ -20,6 +20,12 @@ C doesn't support default arguments.
 
 For default arguments in ``CPP``, check ``Function.md`` in ``Cplusplus\Introduction``.
 
+### Error handling
+
+For error handling with ``errno``, check [errno document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/fcntl.md#errno).
+
+C doesn't support exception handling, ``try catch`` and ``throw`` are not available in C with GCC.
+
 ### Get libc version
 
 ```c
