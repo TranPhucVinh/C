@@ -34,6 +34,14 @@ int request_irq(unsigned int irq,
 
 ``irqreturn_t (*handler)(int, void *, struct pt_regs *)`` returns ``IRQ_HANDLED`` to indicates that the IRQ is handled successfully.
 
+### free_irq()
+
+Free an interrupt allocated with ``request_irq``
+
+```c
+void free_irq (	unsigned int irq, void * dev_id);
+```
+
 ### request_threaded_irq()
 
 ```c
