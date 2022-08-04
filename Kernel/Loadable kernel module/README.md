@@ -149,3 +149,48 @@ void cleanup_module(void)
 	printk(KERN_INFO "clean up module\n");
 }
 ```
+
+### Debug with pr_debug()
+
+Debug log can be view with ``pr_debug()``. Kernel module then needs to be built with debug flag.
+
+Add ``debug`` target to makefile
+
+```Makefile
+obj-m += ubuntu_kernel_module.o
+MY_CFLAGS += -g -DDEBUG
+ccflags-y += ${MY_CFLAGS}
+CC += ${MY_CFLAGS}
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+debug:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules 
+	EXTRA_CFLAGS="$(MY_CFLAGS)"
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
+
+Then ``insmod ubuntu_kernel_module.ko`` file built from  ``make debug``.
+
+``pr_debug()`` can then be view:
+
+```c
+#include <linux/module.h>
+#include <linux/kernel.h>
+
+MODULE_LICENSE("GPL");
+
+int init_module(void)
+{
+    pr_debug("pr_debug Hello, World !\n");
+    return 0;
+}
+
+void cleanup_module(void)
+{
+    pr_debug("KERN_INFO clean up module\n");
+}
+```
