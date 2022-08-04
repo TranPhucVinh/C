@@ -1,3 +1,38 @@
+## Data type issue
+
+Type casting pointer from smaller type ``char`` to bigger type ``int``:
+
+```c
+char char_val = 1;
+char* char_ptr;
+
+int* u_ptr;
+
+char_ptr = &char_val;
+u_ptr = (int*)&char_val;
+
+printf("char_ptr: %p, u_ptr: %p\n", char_ptr, u_ptr);//char_ptr: 0x62FE0F, u_ptr: 0x62FE0F
+
+printf("*char_ptr %d, *u_ptr %d\n", *char_ptr, *u_ptr);//*char_ptr 1, *u_ptr: 1660817153
+```
+
+Although both ``char_ptr`` and ``u_ptr`` has the same address, but as type is different, so ``*u_ptr`` has garbage value.
+
+Type casting pointer from bigger type ``int`` to smaller type ``char``:
+
+```c
+int int_val = 0x1234;
+int *int_ptr;
+char* char_ptr;
+
+int_ptr = &int_val;
+char_ptr = (char*)&int_val;
+
+printf("char_ptr: %p, int_ptr: %p\n", char_ptr, int_ptr);//char_ptr: 0x62FE0C, u_ptr: 0x62FE0C
+
+printf("*char_ptr 0x%x, *int_ptr 0x%x\n", *char_ptr, *int_ptr);//*char_ptr 0x34, *int_ptr: 0x1234
+```
+
 ## Wild pointer
 
 A pointer that is not initialized to any valid address or NULL is considered as **wild pointer**. Wild pointer point to some arbitrary memory location and may cause a program to crash or behave badly.
