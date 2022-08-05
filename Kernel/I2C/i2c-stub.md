@@ -48,8 +48,8 @@ int i2c_smbus_write_i2c_block_data(int file, __u8 reg, __u8 length, __u8 *values
 
 # Examples
 
-* ``i2c_stub_write.c``: Write 5 bytes of data to register ``0x00`` in I2C slave which has address ``0x03``
-* ``i2c_stub_read``: Read 5 bytes of data to register ``0x00`` in I2C slave which has address ``0x03``
+* [i2c_stub_write.c](i2c_stub_write.c): Write 5 bytes of data to register ``0x00`` in I2C slave which has address ``0x03``
+* [i2c_stub_read.c](i2c_stub_read.c): Read 5 bytes of data to register ``0x00`` in I2C slave which has address ``0x03``
 
 For I2C stub bus created from i2c_stub program kernel module, ``i2c_smbus_write_i2c_block_data()`` must be use to write data. ``i2c_smbus_write_block_data()`` must not be used as it results in the wrong written operation although giving no compilation error:
 
