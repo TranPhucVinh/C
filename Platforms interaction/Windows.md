@@ -23,7 +23,7 @@ If you are on Linux or compile with c99/ansi standard, ``process.h`` will not be
 
 # TCP socket
 
-For TCP socket on Windows, use library  ``Winsock 2`` (``winsock2.h``) which is built-in in GCC compiler.
+TCP Unix functions are not supported on Windows. For TCP socket on Windows, use library  ``Winsock 2`` (``winsock2.h``) which is built-in in GCC compiler.
 
 ``winegcc`` doesn't support ``winsock2.h``
 
