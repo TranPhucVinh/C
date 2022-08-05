@@ -19,7 +19,7 @@ Most C compilers that target DOS, Windows 3.1x, Win32, OS/2, Novell NetWare or D
 
 Neither the header file nor most of the functions are defined by either the ANSI/ISO C standard or by POSIX.
 
-If you are on Linux or compile with c99/ansi standard, ``process.h`` will not be available.
+If you are on Linux or compile with c99/ansi standard, ``process.h`` will not be available. ``process.h`` supports the spawn functions which are similar to ``fork()`` in Unix. ``fork()`` are not available in ``process.h``
 
 # Windows signal
 
