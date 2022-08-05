@@ -1,0 +1,1 @@
+* [Create an I2C/SMBUS stub bus](i2c-stub.md)
