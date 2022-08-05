@@ -1,3 +1,0 @@
-For TCP socket on Windows, use library  ``Winsock 2`` (``winsock2.h``) which is built-in in GCC compiler.
-
-``winegcc`` doesn't support ``winsock2.h``
