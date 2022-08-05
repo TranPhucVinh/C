@@ -29,28 +29,4 @@ For TCP socket on Windows, use library  ``Winsock 2`` (``winsock2.h``) which is 
 
 # System time
 
-Print out a string after every one second with library ``time.h``.
-
-```c
-#include <stdio.h> 
-#include <time.h> 
-
-void delay(int number_of_seconds) 
-{ 
-    // Converting time into milli_seconds 
-    int milli_seconds = 1000 * number_of_seconds; 
-  
-    clock_t start_time = clock(); // Storing start time 
-  
-    // looping till required time is not achieved 
-    while (clock() < start_time + milli_seconds) 		; 
-} 
-  
-// Driver code to test above function 
-int main(){ 
-    while (1){
-		printf("Hello, World \n");
-		delay(1);
-	}
-} 
-```
+``time.h`` and ``sys/time.h`` are available with GCC on Windows, check the [corresponding example in Physical layer/Time](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Time/Examples.md) for implementation with functions from those library, e.g **Delay for a number of seconds with sys.time.h**.
