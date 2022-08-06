@@ -11,7 +11,7 @@ char write_string[] = "String writes to character device";
 int fd;
 
 int main(){
-    fd = open(DEV_NAME, O_RDWR); //READ ONLY
+    fd = open(DEV_NAME, O_RDWR);
     while(1){
         if(fd < 0) {
             printf("Fail to open %s\n",DEV_NAME);
