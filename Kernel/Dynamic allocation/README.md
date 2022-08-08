@@ -1,5 +1,7 @@
 # API
 
+``kzalloc()``: allocate memory like ``kmalloc()`` with the allocated memory set to zero.
+
 ```c
 struct kmem_cache * kmem_cache_create(const char * name, size_t size, size_t align, unsigned long flags, void (*ctor) (void *));
 ```
@@ -30,7 +32,7 @@ void *kmem_cache_alloc(struct kmem_cache *s, gfp_t flags);
 
 # Examples
 
-* [kmalloc() example](kmalloc_example.c)
+* [kmalloc() example](kmalloc_example.c), ``kzalloc()`` will work identically.
 
 [kmem_cache example](kmem_cache.c): Dynamic allocation for string char, int and int array
 
