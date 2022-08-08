@@ -166,7 +166,27 @@ printf("char_ptr1: %p, int_ptr1: %p\n", char_ptr1, int_ptr1);//char_ptr1: 0x7ffe
 printf("char_ptr2: %p, int_ptr2: %p\n", char_ptr2, int_ptr2);//char_ptr2: 0x7ffebc027654, int_ptr2: 0x7ffebc027657
 ```
 
-Related issue:
+### Related issue
 
-1. Set GPIO by macro in Raspberry C Direct Memory access
+1. [Set GPIO value in kernel space with ioread(), iowrite()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/blink_led_with_iowrite32.c)
+
+As all led_address led_on_address led_off_address are defined as unsigned int pointer, ``+`` arithmetic for them will be add with 4 bytes multiple in the register address, i.e ``7*4``, ``10*4`` for the register address increment for ``led_on_address`` and ``led_off_address`` correspondingly.
+
+```c
+unsigned int *led_address;
+unsigned int *led_on_address;
+unsigned int *led_off_address;
+
+led_address = gpio_base + LED/10; //Set virtual address for LED pin
+led_on_address = gpio_base + 7; //Set virtual address for ON address
+led_off_address = gpio_base + 10; //Set virtual address for OFF address
+```
+
+[Set GPIO by macro in Raspberry C Direct Memory access in userspace example also has the same implementation](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/GPIO/direct_register_access_control_gpio.c), as value define in macro are ``int`` type by default:
+
+```c
+#define GPIO_SET(addr,pin) *(addr+7)=1<<pin //Set GPIO in GPSET0
+#define GPIO_CLR(addr,pin) *(addr+10)=1<<pin //Clear GPIO in GPCLR0
+```
+
 2. Set GPIO value in Raspbian by busybox devmem
