@@ -51,6 +51,29 @@ void iowrite32(u32 value, void *addr);
 
 **Example**: Unable to implemented on Ubuntu, check the corresponding examples in Raspbian for [GPIO control with ioremap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/gpio_control_with_linux_io.c) and [GPIO control with ioremap(), iowrite() and ioread()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/gpio_control_io_rw.c).
 
+## GPIO interrupt
+
+Flow to register the GPIO for IRQ:
+
+1. Allocate GPIO, for input or output mode
+
+For input
+
+```C
+if(gpio_direction_input(GPIO)){
+  printk("Unable to set GPIO %d to input\n", GPIO);
+}
+```
+
+For output: ``gpio_direction_output(GPIO, 1)``
+
+If using ``gpio_request(GPIO, LABEL)`` only and doesn't call I/O mode setup, ``request_irq()`` in step 3 will fail.
+
+2. Convert GPIO to IRQ: ``irq_number = gpio_to_irq(GPIO)``
+3. Call ``request_irq()``
+
+**Examples**: Unable to implemented on Ubuntu, check the corresponding examples in Raspbian for [Interrupt with GPIO](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel#interrupt-with-gpio).
+
 # Kernel thread
 
 Check [kernel thread document](Kernel%20thread.md)

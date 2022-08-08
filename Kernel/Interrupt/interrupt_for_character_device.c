@@ -6,7 +6,8 @@
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
 
-#define INTERRUPT_NAME    "INTERRUPT_NAME IRQ_1"
+#define INTERRUPT_NAME      "INTERRUPT_NAME IRQ_1"
+#define INTERRUPT_ID        "INTERRUPT_ID"
 
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
@@ -22,7 +23,7 @@ MODULE_LICENSE("GPL");
 int pressed_times = 0;
 
 irq_handler_t irq_1_handler(unsigned int irq, void* dev_id, struct pt_regs *regs){
-	printk("devm_request_threaded_irq; keyboard interrupt occured %d times\n", pressed_times);
+	printk("Interrupt ID: %s; keyboard interrupt occured %d times\n",  (char*)dev_id, pressed_times);
 	pressed_times += 1;
     return (irq_handler_t) IRQ_HANDLED;
 }
@@ -92,7 +93,7 @@ int init_module(void)
 	device_class = class_create(THIS_MODULE, DEVICE_CLASS);
 	device = device_create(device_class, NULL, dev_id, NULL, DEVICE_NAME);
 
-    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) THREAD_FN, IRQF_SHARED, INTERRUPT_NAME, (void*)irq_1_handler) != 0){
+    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) THREAD_FN, IRQF_SHARED, INTERRUPT_NAME, INTERRUPT_ID) != 0){
         printk("Can't request interrupt number %d\n", IRQ_1);
     } else printk("Request interrupt number %d successfully\n", IRQ_1);
 
@@ -106,7 +107,7 @@ void cleanup_module(void)
 		to avoid memory issue with IRQ when performing insmod and rmmod
 		for the module several times.
     */
-	devm_free_irq(device, IRQ_1, (void*)irq_1_handler);
+	devm_free_irq(device, IRQ_1, INTERRUPT_ID);
 	unregister_chrdev_region(dev_id, TOTAL_MINOR); 
 	cdev_del(character_device);
 	device_destroy(device_class, dev_id);

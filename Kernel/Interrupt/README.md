@@ -164,7 +164,7 @@ Register to interrupt 1 every time file operation open is called (by ``cat /dev/
 //Other operations are like interrupt_for_character_device.c
 int dev_open(struct inode *inodep, struct file *filep)
 {
-    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) THREAD_FN, IRQF_SHARED, INTERRUPT_NAME, (void*)irq_1_handler) != 0){
+    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) THREAD_FN, IRQF_SHARED, INTERRUPT_NAME, INTERRUPT_ID) != 0){
         printk("Can't request interrupt number %d\n", IRQ_1);
     } else printk("Request interrupt number %d successfully\n", IRQ_1);
 	return 0;
@@ -209,7 +209,7 @@ int init_module(void)
 	//Other operations are like interrupt_for_character_device.c
 
 	//Must have irq_1_handler parameter value
-    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) thread_handler, IRQF_SHARED, INTERRUPT_NAME, (void*)irq_1_handler) != 0){
+    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) thread_handler, IRQF_SHARED, INTERRUPT_NAME, INTERRUPT_ID) != 0){
         printk("Can't request interrupt number %d\n", IRQ_1);
     } else printk("Request interrupt number %d successfully\n", IRQ_1);
 
