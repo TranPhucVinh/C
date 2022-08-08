@@ -58,6 +58,32 @@ int request_threaded_irq(unsigned int irq,
 
 **Example**: Haven't implemented example for this API, check [the corresponding example in character device with devm_request_threaded_irq()](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device#examples)
 
+### devm_request_threaded_irq()
+
+``devm_request_threaded_irq()`` is used to handle interrupt for character device.
+
+Except for the extra argument, ``devm_request_threaded_irq()`` takes the same arguments and performs the same function as ``request_irq()``.
+
+```c
+int devm_request_threaded_irq	(	
+	struct device * 	dev,
+	unsigned int 	irq,
+	irq_handler_t 	handler,
+	irq_handler_t 	thread_fn,
+	unsigned long 	irqflags,
+	const char * 	devname,
+	void * 	dev_id 
+)	
+```
+
+* ``thread_fn``: function to be called in a threaded interrupt context, ``NULL`` for devices which handle everything
+
+``devm_free_irq()`` works like ``free_irq()`` but it has to go with ``devm_request_threaded_irq()`` in the same program to avoid memory issue with currently used IRQ number when ``insmod`` and ``rmmod`` the module several times.
+
+```c
+void devm_free_irq(struct device *dev, unsigned int irq, void *dev_id);
+```
+
 ### disable_irq() and enable_irq()
 
 ```c
@@ -123,3 +149,81 @@ void cleanup_module(void)
 ```
 
 **Note**: If inserting kernel module ``disable_interrupt`` before inserting ``keyboard_interrupt``,  ``keyboard_interrupt`` is still able to register interrupt 1 successfully although interrupt 1 is disable by ``disable_interrupt``.
+
+## Interrupt for character device examples
+
+**Example 1**
+
+Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
+
+Program: [interrupt_for_character_device.c](interrupt_for_character_device.c)
+
+Register to interrupt 1 every time file operation open is called (by ``cat /dev/fops_character_device``):
+
+```c
+//Other operations are like interrupt_for_character_device.c
+int dev_open(struct inode *inodep, struct file *filep)
+{
+    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) THREAD_FN, IRQF_SHARED, INTERRUPT_NAME, (void*)irq_1_handler) != 0){
+        printk("Can't request interrupt number %d\n", IRQ_1);
+    } else printk("Request interrupt number %d successfully\n", IRQ_1);
+	return 0;
+}
+//Other operations are like interrupt_for_character_device.c
+```
+
+**Result**: Although interrupt 1 is registered every time calling open file operation by ``cat /dev/fops_character_device`` but variable ``pressed_times`` still increase its value every time interrupt 1 is triggered.
+
+```
+devm_request_threaded_irq; keyboard interrupt occured 1 times
+devm_request_threaded_irq; keyboard interrupt occured 2 times
+devm_request_threaded_irq; keyboard interrupt occured 3 times	
+devm_request_threaded_irq; keyboard interrupt occured 4 times	
+Request interrupt number 1 successfully
+devm_request_threaded_irq; keyboard interrupt occured 5 times
+devm_request_threaded_irq; keyboard interrupt occured 6 times
+devm_request_threaded_irq; keyboard interrupt occured 7 times	
+devm_request_threaded_irq; keyboard interrupt occured 8 times	
+Request interrupt number 1 successfully
+....
+```
+
+Use IRQ thread parameter in ``devm_request_threaded_irq()``:
+
+```c
+//Other operations are like interrupt_for_character_device.c
+int pressed_times = 0;
+
+irq_handler_t irq_1_handler(unsigned int irq, void* dev_id, struct pt_regs *regs){
+    return (irq_handler_t) IRQ_WAKE_THREAD;
+}
+
+irq_handler_t thread_handler(unsigned int irq, void* dev_id, struct pt_regs *regs){
+	printk("thread_handler is called; keyboard interrupt occured %d times\n", pressed_times);
+	pressed_times += 1;
+    return (irq_handler_t) IRQ_HANDLED;
+}
+
+int init_module(void)
+{
+	//Other operations are like interrupt_for_character_device.c
+
+	//Must have irq_1_handler parameter value
+    if (devm_request_threaded_irq(device, IRQ_1, (irq_handler_t) irq_1_handler, (irq_handler_t) thread_handler, IRQF_SHARED, INTERRUPT_NAME, (void*)irq_1_handler) != 0){
+        printk("Can't request interrupt number %d\n", IRQ_1);
+    } else printk("Request interrupt number %d successfully\n", IRQ_1);
+
+	return 0;
+}
+//Other operations are like interrupt_for_character_device.c
+```
+
+**Example 2**
+
+Features
+* Handle interrupt 1 like in example 1
+* Disable and enable interrupt 1 from userspace through ``ioctl()``
+
+Kernel module program [disable_enable_interrupt_for_character_device.c](disable_enable_interrupt_for_character_device.c)
+
+User space program [ioctl_disable_enable_interrupt.c](ioctl_disable_enable_interrupt.c)
