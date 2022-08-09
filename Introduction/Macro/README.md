@@ -110,6 +110,28 @@ Problem solve:
 printf("square(%d) = %d", 3, SQUARE(1+2));//9
 ```
 
+Unable to get the right value from macro in if else condition although correct value is returned:
+
+```c
+#include <stdio.h>
+
+#define VAL_SET(addr,pin) ((*(addr+13))>>pin)&1
+
+int main(){
+    //Form an array to set valid value for *(ptr+13) to 13
+    int number[14];
+    for (int i = 0; i < 14; i++){
+        number[i] = i;
+    }   
+	int *ptr = &number[0];
+    printf("%d %d\n", *ptr, *(ptr+13));
+    if (VAL_SET(ptr, 1) == 0) printf("VAL_SET(ptr, 1) = 0\n");
+    else printf("VAL_SET(ptr, 1) != 0, VAL_SET(ptr, 1) is %d\n", VAL_SET(ptr, 1));
+}
+```
+
+With ``int *ptr = &number[0]``, then ``*ptr`` is ``0``, ``*(ptr+13)`` is ``13``, ``*(addr+13))>>pin`` is then ``*(ptr+13))>>1`` returns ``0``, ``&1`` to the result will return ``0``. Although ``VAL_SET(ptr, 1)`` returns ``0``, the ``else`` condition is reached.
+
 ### Choosing between macro and function
 
 Macro create the inline code which will the shorten the execution time of the program, while the function takes longer time to execute.
