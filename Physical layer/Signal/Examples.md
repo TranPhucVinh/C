@@ -29,7 +29,11 @@ Using ``sigaction()``:
 
 ```c
 void signal_handler(int signal_number){
-	printf("You have entered signal number: %d\n", signal_number); 
+	char displayed_string[50];
+	bzero(displayed_string, 50);
+	
+	int sz = snprintf(displayed_string, sizeof(displayed_string), "Signal %d is caught\n", signal_number);
+	write(STDOUT_FILENO, displayed_string, sz); 
 }
 
 int main(){ 
