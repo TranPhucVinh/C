@@ -190,16 +190,20 @@ If changing the current terminal size by mouse, the size of the terminal is prin
 ```c
 #include <stdio.h> 
 #include <unistd.h>
+#include <string.h>
 #include <signal.h> 
 #include <sys/ioctl.h>
 
 void signal_handler(int signalNumber){
+    char displayed_string[50];
+	bzero(displayed_string, 50);
+
 	if (signalNumber == SIGWINCH){
 		struct winsize ws;
 		ioctl(STDIN_FILENO, TIOCGWINSZ, &ws);
 
-		printf("rows: %d\n", ws.ws_row);
-		printf("columns: %d\n", ws.ws_col);
+	        int sz = snprintf(  displayed_string, sizeof(displayed_string), "rows: %d\ncolumns: %d\n", ws.ws_row, ws.ws_col);
+        	write(STDOUT_FILENO, displayed_string, sz);
 	}
 }
 
