@@ -122,6 +122,7 @@ Received signal ``SIGUSR1`` and the parameter sent from other process by using `
 #include <stdio.h>
 #include <unistd.h> //for getpid()
 #include <signal.h>   
+#include <string.h>   
 
 /*
     ucontext: This is a pointer to a ucontext_t structure, cast to
@@ -130,7 +131,16 @@ Received signal ``SIGUSR1`` and the parameter sent from other process by using `
               space stack by the kernel
 */
 void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext){
-	printf("You have entered signal number: %d, with parameter %d\n", signal_number, (siginfo->si_value).sival_int);
+    char displayed_string[50];
+	bzero(displayed_string, 50);
+	
+	int sz = snprintf(  displayed_string,
+                        sizeof(displayed_string),
+                        "Signal number: %d, with parameter %d\n",
+                        signal_number,
+                        (siginfo->si_value).sival_int
+                    );
+	write(STDOUT_FILENO, displayed_string, sz); 
 }
 
 int main(){ 
