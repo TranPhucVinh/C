@@ -202,7 +202,7 @@ void signal_handler(int signalNumber){
 		struct winsize ws;
 		ioctl(STDIN_FILENO, TIOCGWINSZ, &ws);
 
-	        int sz = snprintf(  displayed_string, sizeof(displayed_string), "rows: %d\ncolumns: %d\n", ws.ws_row, ws.ws_col);
+	        int sz = snprintf(displayed_string, sizeof(displayed_string), "rows: %d\ncolumns: %d\n", ws.ws_row, ws.ws_col);
         	write(STDOUT_FILENO, displayed_string, sz);
 	}
 }
