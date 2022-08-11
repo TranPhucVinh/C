@@ -91,7 +91,7 @@ struct sigaction
 
 Signal handler function can be used with ``sa_sigaction`` to handle parameters:
 
-To use sa_sigaction and get the parameter successfully in ``sa_sigaction`` function handler, flag ``SA_SIGINFO`` must be used.
+To use ``sa_sigaction`` and get the parameter successfully in ``sa_sigaction`` function handler, flag ``SA_SIGINFO`` must be used.
 
 ```c
 
