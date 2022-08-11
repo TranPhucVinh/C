@@ -1,4 +1,4 @@
-# IPC by signals
+# Working with specific signal
 
 Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
 
@@ -98,6 +98,60 @@ signal(SIGINT, signal_handler);
 ^CYou have entered signal number: 2
 ```
 
+### SIGKILL signal
+
+Self-terminated a process after printing from ``0`` to ``10``:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <signal.h>   
+
+int pid;
+int number;
+
+int main(){  
+    pid = getpid();
+    while (1){
+        printf("%d\n", number);
+        if (number == 10) kill(pid, SIGKILL);
+        else number += 1;
+    }
+}
+```
+
+### Working with SIGWINCH signal
+
+If changing the current terminal size by mouse, the size of the terminal is printed out.
+
+```c
+#include <stdio.h> 
+#include <unistd.h>
+#include <string.h>
+#include <signal.h> 
+#include <sys/ioctl.h>
+
+void signal_handler(int signalNumber){
+    char displayed_string[50];
+	bzero(displayed_string, 50);
+
+	if (signalNumber == SIGWINCH){
+		struct winsize ws;
+		ioctl(STDIN_FILENO, TIOCGWINSZ, &ws);
+
+	        int sz = snprintf(displayed_string, sizeof(displayed_string), "rows: %d\ncolumns: %d\n", ws.ws_row, ws.ws_col);
+        	write(STDOUT_FILENO, displayed_string, sz);
+	}
+}
+
+int main(){ 
+	signal(SIGWINCH, signal_handler);
+	while(1);
+}
+```
+
+# IPC by signal
+
 ### Sending signal and parameter from a process to other process
 
 Send signal ``SIGUSR1`` and parameter with int value ``12`` to process with macro ``PID`` by using ``sigqueue()``
@@ -156,59 +210,5 @@ int main(){
 
     sigaction(SIGUSR1, &sa, NULL);
 	while(1);//Start an infinite loop and handle with signal
-}
-```
-
-# Working with specific signal
-
-### SIGKILL signal
-
-Self-terminated a process after printing from ``0`` to ``10``:
-
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <signal.h>   
-
-int pid;
-int number;
-
-int main(){  
-    pid = getpid();
-    while (1){
-        printf("%d\n", number);
-        if (number == 10) kill(pid, SIGKILL);
-        else number += 1;
-    }
-}
-```
-
-### Working with SIGWINCH signal
-
-If changing the current terminal size by mouse, the size of the terminal is printed out.
-
-```c
-#include <stdio.h> 
-#include <unistd.h>
-#include <string.h>
-#include <signal.h> 
-#include <sys/ioctl.h>
-
-void signal_handler(int signalNumber){
-    char displayed_string[50];
-	bzero(displayed_string, 50);
-
-	if (signalNumber == SIGWINCH){
-		struct winsize ws;
-		ioctl(STDIN_FILENO, TIOCGWINSZ, &ws);
-
-	        int sz = snprintf(displayed_string, sizeof(displayed_string), "rows: %d\ncolumns: %d\n", ws.ws_row, ws.ws_col);
-        	write(STDOUT_FILENO, displayed_string, sz);
-	}
-}
-
-int main(){ 
-	signal(SIGWINCH, signal_handler);
-	while(1);
 }
 ```
