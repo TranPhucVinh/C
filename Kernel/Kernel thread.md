@@ -92,7 +92,7 @@ void cleanup_module(void)
 
 **Note**: If the infinite loop is ``while(!kthread_should_stop());`` then the OS will be hung immediately right after running ``insmod``.
 
-Print out a string every 1 seconds in a kernel thread
+Print out a string every 1 second in a kernel thread
 
 ```c
 #include <linux/module.h>
