@@ -80,4 +80,4 @@ Check [kernel thread document](Kernel%20thread.md)
 
 # Device tree
 
-Device tree file ``/sys/firmware/devicetree/`` is not available on Ubuntu 16.04. For imkplementation with device tree, check the corresponding document in Raspbian.
+Device tree file ``/sys/firmware/devicetree/`` is not available on Ubuntu 16.04. For implementation with device tree, check the corresponding document in Raspbian.
