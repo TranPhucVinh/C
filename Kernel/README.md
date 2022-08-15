@@ -77,3 +77,7 @@ If using ``gpio_request(GPIO, LABEL)`` only and doesn't call I/O mode setup, ``r
 # Kernel thread
 
 Check [kernel thread document](Kernel%20thread.md)
+
+# Device tree
+
+Device tree file ``/sys/firmware/devicetree/`` is not available on Ubuntu 16.04. For imkplementation with device tree, check the corresponding document in Raspbian.
