@@ -3,6 +3,25 @@
 ``kzalloc()``: allocate memory like ``kmalloc()`` with the allocated memory set to zero.
 
 ```c
+char * kstrdup (const char * s,	gfp_t gfp);
+```
+
+Allocate space for and copy an existing string
+
+E.g:
+
+```c
+int init_module(void)
+{
+	char *str;
+    str = kstrdup("Hello, World !", GFP_KERNEL);
+	printk("%s\n", str);
+
+	return 0;
+}
+```
+
+```c
 struct kmem_cache * kmem_cache_create(const char * name, size_t size, size_t align, unsigned long flags, void (*ctor) (void *));
 ```
 
