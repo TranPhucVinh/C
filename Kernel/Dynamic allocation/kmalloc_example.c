@@ -12,8 +12,9 @@ int init_module(void)
 	/* Initial memory allocation */
 	str = (char *) kmalloc(15, GFP_KERNEL);
 	strcpy(str, "Learn malloc");
-
 	printk(KERN_INFO "%s\n", str);
+	kfree(str);
+	printk(KERN_INFO "DEBUG: str after kfree(): %s\n", str);//DEBUG: str after kfree(): Learn malloc (str is not freed)
 
     number = (int *) kmalloc(1, GFP_KERNEL);
     *number = 123;
