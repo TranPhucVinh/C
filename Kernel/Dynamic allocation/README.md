@@ -15,7 +15,7 @@ int init_module(void)
 {
 	char *str;
     str = kstrdup("Hello, World !", GFP_KERNEL);
-	printk("%s\n", str);
+	printk("%s\n", str);//Hello, World !
 
 	return 0;
 }
