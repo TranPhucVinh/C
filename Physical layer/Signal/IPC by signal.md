@@ -1,4 +1,4 @@
-### Sending signal and parameter from a process to other process
+### sigqueue(): Sending signal and an int number from a process to other process
 
 Send signal ``SIGUSR1`` and parameter with int value ``12`` to process with macro ``PID`` by using ``sigqueue()``
 
@@ -58,3 +58,35 @@ int main(){
 	while(1);//Start an infinite loop and handle with signal
 }
 ```
+### sigqueue(): Can't send void* sival_ptr from a process to other process
+
+Can't send a pointer from a process to other process by this method
+
+```c
+union sigval value;
+
+int array[3] = {1, 2, 3};
+//Or string: char str[] = "Hello, World !";
+
+int main(){  
+    value.sival_ptr = array;
+    sigqueue(PID, SIGUSR1, value);
+}
+```
+
+The receiver process in this case will just received the garbage value:
+
+```c
+void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext){
+    char displayed_string[50];
+	bzero(displayed_string, 50);
+	
+	int array[3];
+	memcpy(array, (siginfo->si_value).sival_ptr, 3);
+	int sz = snprintf(displayed_string, sizeof(displayed_string), "%d %d %d\n", array[0], array[1],array[2]);
+	write(STDOUT_FILENO, displayed_string, sz); //Garbage value
+}
+```
+That happen as the address which is sent from one process to the other via the value of ``sival_ptr`` is not valid in the receiving process, as the two processes do not share the same address space.
+
+``void* sival_ptr`` can only be used inside the same process.
