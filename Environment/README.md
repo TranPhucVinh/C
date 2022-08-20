@@ -1,5 +1,9 @@
 # Software development environment
 
+## Build process
+
+Check [Build document](Build.md)
+
 ## Linux environment
 
 **Linux Programmer's Manual**
