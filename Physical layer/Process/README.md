@@ -5,7 +5,7 @@
 # Inter-process communication
 
 * [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
-* [FIFO](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/FIFO.md)
+* [FIFO](../File%20IO/FIFO)
 * Semaphore
 * Message queue
 * Shared memory
