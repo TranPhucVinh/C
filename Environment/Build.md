@@ -26,6 +26,10 @@ Before compilation, preprocessor takes the source code and perform operation:
 
 **Assemble**: Compile assembly code to machine language (0 and 1). ``.o`` or ``.obj`` file will then output, those files (e.g ``main.o``) are all binary files.
 
+**Linker**: Linker will compile object files (e.g a1.o, a2.o, a3.o,...) and libraries (e.g C standard library) to produce a single executable file.
+
+![](../Environment/Images/linker.png)
+
 # Other definitions
 
 ### Cross compiler
