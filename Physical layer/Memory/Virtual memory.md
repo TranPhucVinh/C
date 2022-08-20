@@ -30,7 +30,9 @@ On success, ``mmap()`` returns a pointer to the mapped area.
 
 **Example 1**: [Control GPIO of Raspberry Pi by direct memory access using mmap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/GPIO/direct_register_access_control_gpio.c), notice that ``addr`` param in ``mmap()`` is ``NULL`` in this case.
 
-**Example 2**: Use ``mmap()`` to read content of a file
+**Example 2**: [Changing value inside parent or child process to effect the left one by using shared memory with mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Examples.md#changing-variable-value-in-parentchild-process-wont-effect-the-left-one)
+
+**Example 3**: Use ``mmap()`` to read content of a file
 
 ```c
 #include <stdio.h>
