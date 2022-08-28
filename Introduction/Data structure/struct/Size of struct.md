@@ -162,3 +162,7 @@ struct databaseNode
 
 sizeof(node);//11
 ```
+
+### Size of struct pointer
+
+Just like all other types of pointer, size of struct pointer is still ``8``.
