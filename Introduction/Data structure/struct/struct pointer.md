@@ -67,6 +67,8 @@ node0->id = 1;
 node0->intValue = 100;
 ```
 
+**Note**: Not use ``node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode*));``, as size of struct pointer is always ``8``, just like other data type.
+
 ## Pass by value and pass by reference with struct pointer
 
 As the issue of **pass by value**, passing a struct by value to a function to change its member value won't give effect:
