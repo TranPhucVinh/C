@@ -8,7 +8,7 @@
 #include <string.h>
 
 char buffer[1024];
-#define MAX_EVENTS 10
+#define MAX_EVENTS 5
 int epollfd, fd;
 bool isMultipleLine = false;
 void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext){
