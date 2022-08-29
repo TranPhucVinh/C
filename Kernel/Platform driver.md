@@ -15,3 +15,25 @@ The on board peripheral which connect to SPI, I2C, Ethernet,... have no capabili
 The process of associating a device with a device driver is called binding.
 
 PCI and USB devices have inbuilt intelligence to send its details to the OS. It means PCI and USB support dynamic discovery.
+
+# API
+
+Please note that the operations of platform driver and device tree are related to each other.
+
+Functions to read device tree node properties like ``device_property_present()`` are only available for platform devices, running those function inside character device will result in error.
+
+### platform_get_irq()
+
+```c
+int platform_get_irq(struct platform_device *dev, unsigned int irq_index)
+```
+
+* ``irq_index``: Index number of the IRQs inside ``interrupts`` property of the device tree node
+
+E.g
+
+```c
+int irq = platform_get_irq(pdev, 0); 
+```
+
+This function will return the ``irq`` number; this number is usable by ``devm_request_irq()`` (``irq`` is then visible in ``/proc/interrupts``). The second argument, ``0``, says that we need the first interrupt specified in the device node. If there is more than one interrupt, we can change this index according to the interrupt we need.
