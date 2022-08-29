@@ -78,6 +78,10 @@ If using ``gpio_request(GPIO, LABEL)`` only and doesn't call I/O mode setup, ``r
 
 Check [kernel thread document](Kernel%20thread.md)
 
+# Platform drivers
+
+Check [Platform driver document](Platform%20driver.md)
+
 # Device tree
 
 Device tree file ``/sys/firmware/devicetree/`` is not available on Ubuntu 16.04 as ``dtb`` files are built-in on the kernel image. For implementation with device tree, check the corresponding document in Raspbian.
