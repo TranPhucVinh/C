@@ -37,3 +37,7 @@ int irq = platform_get_irq(pdev, 0);
 ```
 
 This function will return the ``irq`` number; this number is usable by ``devm_request_irq()`` (``irq`` is then visible in ``/proc/interrupts``). The second argument, ``0``, says that we need the first interrupt specified in the device node. If there is more than one interrupt, we can change this index according to the interrupt we need.
+
+# Examples
+
+As hardware implemention like GPIO and device tree parsing are unable to perform in Ubuntu OS computer, check device tree document in Raspberry Pi C for implementations and examples of platform driver.
