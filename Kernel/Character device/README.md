@@ -83,19 +83,19 @@ To remove the character device: ``sudo rm /dev/character_device_name``
 
 **Program**: [create_character_device_by_seperated_operations.c](create_character_device_by_seperated_operations.c)
 
-## Operation with character device
+## Read and write system call to character device
 
-``character_device_operation.c`` supports 2 features:
+[character_device_operations.c](character_device_operations.c) supports 2 features:
 
 * Send data to the character device
 * Read response data from character device
 
 ### Send data to the character device
 
-* Change permission of the character device: ``sudo chmod 777 /dev/character_device_name``
-* Then ``echo "Hello, World !" > /dev/character_device_name``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``, use ``copy_from_user()`` to get that data/string from the user space.
+* Change permission of the character device: ``sudo chmod 777 /dev/fops_character_device``
+* Then ``echo "Hello, World !" > /dev/fops_character_device``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``, use ``copy_from_user()`` to get that data/string from the user space.
 
-**Note**: Function ``dev_write()`` now mapped to the write operation from user space to kernel space, e.g ``echo "Data" > /dev/character_device_name`` 
+**Note**: Function ``dev_write()`` now mapped to the write operation from user space to kernel space, e.g ``echo "Data" > /dev/fops_character_device`` 
 
 **Error**: If ``dev_write()`` function return 0, there will be error as using ``echo`` to send data will result in the infinite loop.
 
@@ -118,11 +118,11 @@ This happen as the write system call (``dev_write()``) returns to userspace with
 
 ### Read response data from character device
 
-In terminal (userspace): Use ``cat /dev/character_device_name`` to read the reponse string sent from kernel space.
+In terminal (userspace): Use ``cat /dev/fops_character_device`` to read the reponse string sent from kernel space.
 
 In ``character_device_operation``, use function ``copy_to_user()`` to get the string responsed from the kernel space to print out on user space
 
-**Error**: If the response string have no ``\n``, userspace can't receive the string properly (e.g: ``cat /dev/character_device_name`` won't print out any string)
+**Error**: If the response string have no ``\n``, userspace can't receive the string properly (e.g: ``cat /dev/fops_character_device`` won't print out any string)
 
 ```c
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
@@ -181,7 +181,7 @@ int dev_open(struct inode *inodep, struct file *filep)
 
 Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/fcntl.md#ebusy) for the userspace process to handle this EBUSY error.
 
-## Operation with character device by ioctl
+## ioctl system call to character device
 
 [character_device_ioctl.c](character_device_ioctl.c) supports 2 features:
 
