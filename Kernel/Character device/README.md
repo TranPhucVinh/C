@@ -65,13 +65,23 @@ After inserting this module, operations with ``mknod`` and ``rm`` are all like `
 
 ## Create character device
 
-[create_character_device.c](create_character_device.c): Create a new character device named ``Character device``.
+### Create character device by single operations
+
+**Features**: Create a new character device named ``Character device``. All character devices related functions are put inside ``module_init()``  and ``module_exit()`` functions.  This example is intended for comprehensive and easy to understand the character device created operation.
+
+**Program**: [create_character_device_by_single_operations.c](create_character_device_by_single_operations.c) 
 
 After creating successfully, a new device is found on ``/dev``.
 
 To create a new character device, change all names in ``alloc_chrdev_region()``, ``class_create`` and ``device_create()``. If they have the same name, a new character device belong to a kernel module can't be inserted.
 
 To remove the character device: ``sudo rm /dev/character_device_name``
+
+### Create character device by seperated operations
+
+**Features**: Seperated the character device created operation by function ``create_character_device()`` and the destroy operations by function ``destroy_character_device()``. This program is intended for functions inheritance for other kernel modules.
+
+**Program**: [create_character_device_by_seperated_operations.c](create_character_device_by_seperated_operations.c)
 
 ## Operation with character device
 
