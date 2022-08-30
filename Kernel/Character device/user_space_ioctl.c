@@ -14,11 +14,16 @@ int main(int argc, char *argv[]) {
 	fd = open(CHAR_DEV, O_RDWR);
 	if (fd > 0){
 		if (ioctl(fd, cmd, &argument) == -1) {
-            perror("DEBUG");
-            printf("Error number: %d\n", errno);
+           goto error_handler;
         } else {
             printf("cmd %d, argument %d\n", cmd, argument);
 			printf("PID %d\n", getpid());
+			//Add return here so that error_handler won't be called after finishing
+			return 0;
         }
-	}
+	} else goto error_handler;
+	
+    error_handler:
+        perror("DEBUG");
+        printf("Error number: %d\n", errno);
 }	
