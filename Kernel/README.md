@@ -8,11 +8,11 @@ Check [Character device document folder](Character%20device)
 
 # Miscellaneous character driver
 
-Check [Miscellaneous character driver document folder]()
+Check [Miscellaneous character driver document folder](Miscellaneous%20character%20driver)
 
 # Interrupt
 
-Check [Interrupt document folder]()
+Check [Interrupt document folder](Interrupt)
 
 # Dynamic allocation
 
