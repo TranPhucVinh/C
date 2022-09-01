@@ -1,38 +1,28 @@
 # Loadable kernel module
 
-Check [Loadable kernel module document folder](Loadable%20kernel%20module)
+To build a kernel module as a device driver, check [Loadable kernel module document folder](Loadable%20kernel%20module).
+
+For dynamic allocation implementation in a kernel module, check [dynamic allocation document folder](Dynamic%20allocation).
+
+For multithread handling in kernel module, check [kernel thread document](Kernel%20thread.md).
+
+For timer implementation in kernel module, check [Timer document folder](Timer).
 
 # Character device
 
-Check [Character device document folder](Character%20device)
+For communication between userspace and kernel space through a device file, we need to create a chracter device.
 
-# Miscellaneous character driver
+For character device creation and basic file operations, check [Character device document folder](Character%20device).
 
-Check [Miscellaneous character driver document folder](Miscellaneous%20character%20driver)
+For poll file operation with character device, check [poll document folder](Poll).
+
+For communication between userspace and userspace by signal, check [Signal document folder](Signal).
+
+For miscellaneous character driver creation and basic file operations, check [Miscellaneous character driver document folder](Miscellaneous%20character%20driver).
 
 # Interrupt
 
-Check [Interrupt document folder](Interrupt)
-
-# Dynamic allocation
-
-Check [dynamic allocation document folder](Dynamic%20allocation)
-
-# Kernel thread
-
-Check [kernel thread document](Kernel%20thread.md)
-
-# Poll
-
-Check [poll document folder](Poll)
-
-# Signal
-
-Check [Signal document folder](Signal)
-
-# Timer
-
-Check [Timer document folder](Timer)
+For interrupt implementation and handling in kernel space for both single kernel module and character device, check [Interrupt document folder](Interrupt)
 
 # GPIO
 
