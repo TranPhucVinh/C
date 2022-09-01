@@ -1,6 +1,38 @@
+# Loadable kernel module
+
+Check [Loadable kernel module document folder](Loadable%20kernel%20module)
+
+# Character device
+
+Check [Character device document folder](Character%20device)
+
+# Miscellaneous character driver
+
+Check [Miscellaneous character driver document folder]()
+
+# Interrupt
+
+Check [Interrupt document folder]()
+
 # Dynamic allocation
 
 Check [dynamic allocation document folder](Dynamic%20allocation)
+
+# Kernel thread
+
+Check [kernel thread document](Kernel%20thread.md)
+
+# Poll
+
+Check [poll document folder](Poll)
+
+# Signal
+
+Check [Signal document folder](Signal)
+
+# Timer
+
+Check [Timer document folder](Timer)
 
 # GPIO
 
@@ -73,10 +105,6 @@ If using ``gpio_request(GPIO, LABEL)`` only and doesn't call I/O mode setup, ``r
 3. Call ``request_irq()``
 
 **Examples**: Unable to implemented on Ubuntu, check the corresponding examples in Raspbian for [Interrupt with GPIO](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel#interrupt-with-gpio).
-
-# Kernel thread
-
-Check [kernel thread document](Kernel%20thread.md)
 
 # Platform drivers
 
