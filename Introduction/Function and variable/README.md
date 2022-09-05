@@ -149,6 +149,32 @@ Total argument: 2
 * Variable declaration : a variable is first declared or introduced before its first use.
 * Variable definition: the variable is assigned a memory location and a value.
 
+### Define variables
+
+Must not define by this way:
+
+```c
+#include <stdio.h>
+
+int number;
+
+number = 9;
+
+int main(){
+	printf("number: %d \n", number);
+}
+```
+
+This gives warning in GCC and gives error in G++.
+
+Error: 
+
+```
+error: 'number' does not name a type
+ number = 9;
+ ^
+```
+
 ### Special character
 
 ```c
