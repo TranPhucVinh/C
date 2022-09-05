@@ -1,4 +1,4 @@
-### Get the parameter of the thread by passing a variable
+# Get the parameter of the thread by passing a variable
 
 **Wrong operation that gives right result**
 
@@ -63,7 +63,9 @@ void *func_thread_1(void *ptr){
 }
 ```
 
-## Get return from a thread and store to a variable
+# Get return from threads and store to a variable
+
+## Single thread
 
 **Using pointer of pointer**
 
@@ -94,7 +96,7 @@ printf("value: %d\n", *thread_1_return);//123
 //Other operations like above
 ```
 
-To get return value from multiple threads:
+## Multiple threads
 
 Using pointer:
 
@@ -158,7 +160,7 @@ void *func_thread_1(void *ptr){
 }
 ```
 
-### Enter value for struct member using thread 
+# Enter value for struct member using thread 
 
 ```cpp
 #include <stdio.h>
@@ -194,7 +196,7 @@ void *start_routine_thread(void *ptr){
 }
 ```
 
-### Using global variable to share values between 2 threads
+# Using global variable to share values between 2 threads
 
 ```c
 #include <stdio.h>
