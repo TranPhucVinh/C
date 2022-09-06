@@ -75,6 +75,7 @@ int main()
     int **thread_1_return;
 	pthread_t thread_1;
 
+    thread_1_return = (int**) malloc(sizeof(int**));
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	pthread_join(thread_1, (void**)thread_1_return);
     printf("value: %d\n", **thread_1_return);//123
