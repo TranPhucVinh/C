@@ -25,8 +25,8 @@ int main(){
 All define for 2 dimension array with double pointer must have type like:
 
 ```c
-#define COLUMN_SIZE 4
-int **int_array = (int**) malloc(COLUMN_SIZE * sizeof(int*));
+#define ROW_SIZE 4
+int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*));
 ```
 
 Take this picture for an example with the register address
@@ -48,8 +48,8 @@ That's why ``int_array`` must be allocated to have enough size to store the addr
 For other data type like char, the define must be:
 
 ```c
-#define COLUMN_SIZE 4
-char **char_array = (char**) malloc(COLUMN_SIZE * sizeof(char*));
+#define ROW_SIZE 4
+char **char_array = (char**) malloc(ROW_SIZE * sizeof(char*));
 ```
 
 # Applications
