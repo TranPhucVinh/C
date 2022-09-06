@@ -106,7 +106,7 @@ void intArray(int **array);
 
 int main()
 {  
-	int **int_array = (int**) malloc(COLUMN_SIZE * sizeof(int*));
+	int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*));
 
 	for (int row = 0; row < ROW_SIZE; row++){
 		int_array[row] = (int*) malloc(COLUMN_SIZE * sizeof(int));
