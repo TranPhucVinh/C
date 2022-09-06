@@ -31,7 +31,7 @@ int **int_array = (int**) malloc(COLUMN_SIZE * sizeof(int*));
 
 Take this picture for an example with the register address
 
-![]()
+![](../../../Environment/Images/double_pointer_with_register_size.png)
 
 As double pointer stores the address of other pointers, so size of pointer (e.g ``sizeof(int*)``, ``sizeof(char*)``,...), which is a constant, is needed to get the register's size.
 
