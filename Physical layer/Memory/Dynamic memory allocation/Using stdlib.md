@@ -100,6 +100,8 @@ int main(){
 }
 ```
 
+For important notice when defining 2D array with double pointer (``(int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*))``), check [double pointer document: Define double pointer on heap memory](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Pointer%20to%20pointer.md#define-double-pointer-on-heap-memory).
+
 ### Trying to overflow buffer with malloc()
 
 ```c
