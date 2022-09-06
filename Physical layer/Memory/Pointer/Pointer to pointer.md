@@ -35,7 +35,7 @@ Take this picture for an example with the register address
 
 As double pointer stores the address of other pointers, so size of pointer (e.g ``sizeof(int*)``, ``sizeof(char*)``,...), which is a constant, is needed to get the register's size.
 
-As ``sizeof(int*)`` returns the size of the register (e.g any register in the picture like ``0x7E200000``, ``0x7E200004``,...), so ``COLUMN_SIZE * sizeof(int*)`` will tell how many register is needed. ``int_array`` now stores the information that how many registers is needed to stored the registers/address of other pointers.
+As ``sizeof(int*)`` returns the size of the register (e.g any register in the picture like ``0x7E200000``, ``0x7E200004``,...), so ``ROW_SIZE * sizeof(int*)`` will tell how many register is needed. ``int_array`` now stores the information that how many registers is needed to stored the registers/address of other pointers.
 
 If apply the double pointer allocating to the picture above, 4 registers ``0x7E200000``, ``0x7E200004``, ``0x7E200008``, ``0x7E20000C`` will be used to stored the address of other variables.
 
