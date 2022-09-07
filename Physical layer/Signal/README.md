@@ -151,3 +151,15 @@ union sigval {
 ```
 
 ``sigqueue()`` can be used to send parameter to other process that handles the signal.
+
+### sigprocmask()
+
+```c
+int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oldset);
+```
+
+``how``:
+
+* ``SIG_BLOCK``: Block ``sigset_t *restrict set`` signals
+* ``SIG_UNBLOCK``: Unblock ``sigset_t *restrict set`` signals
+* ``SIG_SETMASK``: Working like ``SIG_BLOCK`` if ``oldset`` is not used
