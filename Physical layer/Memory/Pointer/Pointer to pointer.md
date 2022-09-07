@@ -20,7 +20,7 @@ int main(){
 }
 ```
 
-## Define double pointer on heap memory
+## Define double pointer on heap memory for 2 dimension array
 
 All define for 2 dimension array with double pointer must have type like:
 
@@ -52,7 +52,8 @@ For other data type like char, the define must be:
 char **char_array = (char**) malloc(ROW_SIZE * sizeof(char*));
 ```
 
-# Applications
+**Application**: [Two dimension array on heap memory](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Array/Two%20dimension%20array%20on%20heap%20memory.md)
 
-* [Two dimension array on heap memory](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Array/Two%20dimension%20array%20on%20heap%20memory.md)
-* [Thread creation: Get return from a thread and store to a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#get-return-from-a-thread-and-store-to-a-variable)
+## Define double pointer for a variable
+
+Double pointer as a variable is used as the returned value from a POSIX thread, check [Thread creation: Get return from a thread and store to a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#get-return-from-a-thread-and-store-to-a-variable) for its implementation.
