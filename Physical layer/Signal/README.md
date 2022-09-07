@@ -77,17 +77,19 @@ int sigaction(int signum, const struct sigaction *restrict act, struct sigaction
 * ``oldact``: If oldact is non-NULL, the previous action is saved in ``oldact``.
 
 ```c
-struct sigaction 
-{
-	_sig_func_ptr sa_handler;
-	sigset_t sa_mask;
-	int sa_flags;
+struct sigaction {
+               void     (*sa_handler)(int);
+               void     (*sa_sigaction)(int, siginfo_t *, void *);
+               sigset_t   sa_mask;
+               int        sa_flags;
+               void     (*sa_restorer)(void);
 };
 ```
 
 * ``sa_mask``: A mask of signals which should be blocked
 * ``sa_flags``: A set of flags which modify the behavior of the signal.
-* ``sigset_t``: represents a set of signals
+
+Data type ``sigset_t`` represents a set of signals. Check [process signal mask document](Process%20signal%20mask.md) for implementation to form ``sigset_t`` object.
 
 Signal handler function can be used with ``sa_sigaction`` to handle parameters:
 
