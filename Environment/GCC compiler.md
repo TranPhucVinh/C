@@ -51,26 +51,33 @@ E.g: ``gcc httpClient.c -lcurl``
 
 ### Include directory of header files with ``-I``
 
-**Example 1**: Include 1 file
+**Example 1**: Include 1 file with the folder hierarchy like below
 
-In folder ``test``, there is ``test.h``
+```
+working_folder
+|--main
+	|--main.c
+|--head.h
+```
+
+``head.h``
 
 ```c
 int a = 9;
 ```
 
-In folder ``test/main``, there is ``test.c``
+``main.c``
 
 ```c
 #include <stdio.h>
-#include "test.h"
+#include "head.h"
 
 int main(){
 	printf("%d", a);
 }
 ```
 
-To compile ``test.c``: ``gcc -I.. test.c``
+Compile ``main.c`` inside ``main`` folder: ``gcc -I.. main.c``
 
 **Example 2**: To include many files
 
