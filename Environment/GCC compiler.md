@@ -49,9 +49,7 @@ To compile with an external library ``gcc main.c -l<external-library-name>``
 
 E.g: ``gcc httpClient.c -lcurl``
 
-### Include files
-
-``-I``: include files
+### Include directory of header files with ``-I``
 
 **Example 1**: Include 1 file
 
