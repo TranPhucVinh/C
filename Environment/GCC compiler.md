@@ -92,28 +92,36 @@ working_folder
 
 Inside ``main`` folder, compile ``main.c`` : ``gcc -I.. main.c``
 
-**Example 2**: To include many files
+**Example 3**: Include multiple folders
 
-In another folder ``test/test 1``, there is ``test1.h``
+```
+working_folder
+|--main
+   |--head.h
+|--inc
+   |--head_1.h
+|--main.c
+```
+
+``head_1.h``
 
 ```c
 int b = 10;
 ```
 
-In folder ``test/main``, there is ``test.c``
+``main.c``
 
 ```c
 #include <stdio.h>
-#include "test.h"
-#include "test1.h"
+#include "head.h"
+#include "head_1.h"
 
 int main(){
-	printf("%d", a);
-  printf("%d", b);
+	printf("%d %d\n", a, b);
 }
 ```
 
-To compile ``test.c``: `` gcc -I.. -I../test\ 1 test.c``
+Inside ``working_folder``, compile ``main.c``: ``gcc -Iinc -Imain main.c``
 
 ## Predefine
 
