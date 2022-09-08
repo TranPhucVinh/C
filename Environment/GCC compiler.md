@@ -77,7 +77,7 @@ int main(){
 }
 ```
 
-Compile ``main.c`` inside ``main`` folder: ``gcc -I.. main.c``
+Inside ``main`` folder, compile ``main.c`` : ``gcc -I.. main.c``
 
 **Example 2**: To include many files
 
