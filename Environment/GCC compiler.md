@@ -51,14 +51,7 @@ E.g: ``gcc httpClient.c -lcurl``
 
 ## Include directory of header files with ``-I``
 
-**Example 1**: Include 1 file with the folder hierarchy like below
-
-```
-working_folder
-|--main
-	|--main.c
-|--head.h
-```
+**General define**: Use this defines to all examples below
 
 ``head.h``
 
@@ -75,6 +68,26 @@ int a = 9;
 int main(){
 	printf("%d", a);
 }
+```
+
+**Example 1**: Include 1 file with the folder hierarchy like below
+
+```
+working_folder
+|--main
+    |--head.h
+|--main.c
+```
+
+Inside ``working_folder`` folder, compile ``main.c`` : ``gcc -Imain main.c``
+
+**Example 2**: Include 1 file in the upward folder with the folder hierarchy like below
+
+```
+working_folder
+|--main
+   |--main.c
+|--head.h
 ```
 
 Inside ``main`` folder, compile ``main.c`` : ``gcc -I.. main.c``
