@@ -21,7 +21,7 @@ void display_string();
 ```
 ``head.c``
 ```c
-#include "head.h"
+#include <stdio.h>//Dont' need to call head.h
 
 void display_string(){
     printf("Hello World !\n");
@@ -37,6 +37,9 @@ int main(){
 	display_string(); //Hello World
 }
 ```
+
+By using static library, ``head.c`` will define function ``display_string()`` and doesn't need to include ``head.h``.
+
 ### Compilation steps
 
 Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
