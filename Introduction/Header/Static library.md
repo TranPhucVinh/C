@@ -4,6 +4,14 @@
 
 ## Implementation
 
+### Source code
+
+```
+|--main.c
+|--head.h
+|--head.c
+```
+
 ``head.h``
 
 ```c
@@ -20,19 +28,20 @@ void display_string(){
 }
 ```
 
-Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
-
-Archive ``head.o`` to ``head.a`` as a static library: ``ar r head.a head.o``
-
 ``main.c``
 
 ```c
 #include "head.h"
 
 int main(){
-	displayString(); //Hello World
+	display_string(); //Hello World
 }
 ```
+### Compilation steps
+
+Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
+
+Archive ``head.o`` to ``head.a`` as a static library: ``ar r head.a head.o``
 
 Compile ``main.c`` to ``main.o``: ``gcc -c main.c``
 
