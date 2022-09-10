@@ -4,18 +4,20 @@
 
 ## Implementation
 
-```c
-#include "head.h"
-
-void displayString(){
-    printf("Hello World \n");
-}
-```
+``head.h``
 
 ```c
 #include <stdio.h>
 
-void displayString();
+void display_string();
+```
+``head.c``
+```c
+#include "head.h"
+
+void display_string(){
+    printf("Hello World !\n");
+}
 ```
 
 Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
@@ -37,7 +39,7 @@ Compile ``main.c`` to ``main.o``: ``gcc -c main.c``
 Link static library in the final build for ``a.out``:
 
 ```sh
-gcc test.c -L. -l:head.a
+gcc main.c -L. -l:head.a
 ```
 
 ``-L.``: State that static library is in current folder
