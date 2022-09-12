@@ -4,23 +4,29 @@
 
 ## Implementation
 
-```c
-#include "head.h"
+### Source code
 
-void displayString(){
-    printf("Hello World \n");
-}
 ```
+|--main.c
+|--head.h
+|--head.c
+```
+
+``head.h``
 
 ```c
 #include <stdio.h>
 
-void displayString();
+void display_string();
 ```
+``head.c``
+```c
+#include <stdio.h>//Dont' need to call head.h
 
-Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
-
-Archive ``head.o`` to ``head.a`` as a static library: ``ar r head.a head.o``
+void display_string(){
+    printf("Hello World !\n");
+}
+```
 
 ``main.c``
 
@@ -28,16 +34,24 @@ Archive ``head.o`` to ``head.a`` as a static library: ``ar r head.a head.o``
 #include "head.h"
 
 int main(){
-	displayString(); //Hello World
+	display_string(); //Hello World
 }
 ```
+
+By using static library, ``head.c`` will define function ``display_string()`` and doesn't need to include ``head.h``.
+
+### Compilation steps
+
+Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
+
+Archive ``head.o`` to ``head.a`` as a static library: ``ar r head.a head.o``
 
 Compile ``main.c`` to ``main.o``: ``gcc -c main.c``
 
 Link static library in the final build for ``a.out``:
 
 ```sh
-gcc test.c -L. -l:head.a
+gcc main.c -L. -l:head.a
 ```
 
 ``-L.``: State that static library is in current folder

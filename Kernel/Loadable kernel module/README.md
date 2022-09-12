@@ -1,4 +1,4 @@
-## Fundamental concetps
+## Fundamental concepts
 
 A loadable kernel module (LKM) is an object file that contains code to extend the running kernel, or so-called base kernel, of an operating system. LKMs are typically used to add support for new hardware (as device drivers) and/or filesystems, or for adding system calls.
 

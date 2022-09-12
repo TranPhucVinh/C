@@ -100,11 +100,11 @@ void change_value(struct databaseNode node){
 ```c
 void change_value(struct databaseNode *node);
 
-main(){
+int main(){
 	struct databaseNode node = {1, "String value"};
-   printf("before: id is %d and string value is %s \n", node.id, node.stringValue);
+   printf("%d %s \n", node.id, node.stringValue);//1 String value
 	change_value(&node);
-   printf("after: id is %d and string value is %s \n", node.id, node.stringValue);
+   printf("%d %s \n", node.id, node.stringValue);//100 Changed string
 }
 
 void change_value(struct databaseNode *node){

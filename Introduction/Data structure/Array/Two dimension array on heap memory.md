@@ -1,6 +1,6 @@
 ## Create
 
-For a 2 dimension array with ``row`` and ``column`` on heap memory: Check [Example 2: Create a 2 dimension int array with malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory/Using%20stdlib.md) in ``Dynamic memory allocation`` inside ``Physical layer/Memory``.
+For a 2 dimension array with ``row`` and ``column`` on heap memory: Check [Example 2: Create a 2 dimension int array with malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md) in ``Dynamic memory allocation`` inside ``Physical layer/Memory``.
 
 Create a 2 dimension array with ``row`` stored on stack memory and ``column`` stored on heap memory:
 
@@ -106,7 +106,7 @@ void intArray(int **array);
 
 int main()
 {  
-	int **int_array = (int**) malloc(COLUMN_SIZE * sizeof(int*));
+	int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*));
 
 	for (int row = 0; row < ROW_SIZE; row++){
 		int_array[row] = (int*) malloc(COLUMN_SIZE * sizeof(int));

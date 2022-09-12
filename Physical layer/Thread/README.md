@@ -13,7 +13,6 @@ Compile: ``gcc test.c -lpthread``
 ```c
 #include <stdio.h>
 #include <pthread.h>
-#include <unistd.h>
 
 void *func_thread_1(void *ptr);
 

@@ -49,53 +49,79 @@ To compile with an external library ``gcc main.c -l<external-library-name>``
 
 E.g: ``gcc httpClient.c -lcurl``
 
-### Include files
+## Include directory of header files with ``-I``
 
-``-I``: include files
+**General define**: Use this defines to all examples below
 
-**Example 1**: Include 1 file
-
-In folder ``test``, there is ``test.h``
+``head.h``
 
 ```c
 int a = 9;
 ```
 
-In folder ``test/main``, there is ``test.c``
+``main.c``
 
 ```c
 #include <stdio.h>
-#include "test.h"
+#include "head.h"
 
 int main(){
 	printf("%d", a);
 }
 ```
 
-To compile ``test.c``: ``gcc -I.. test.c``
+**Example 1**: Include 1 file with the folder hierarchy like below
 
-**Example 2**: To include many files
+```
+working_folder
+|--main
+    |--head.h
+|--main.c
+```
 
-In another folder ``test/test 1``, there is ``test1.h``
+Inside ``working_folder`` folder, compile ``main.c`` : ``gcc -Imain main.c``
+
+**Example 2**: Include 1 file in the upward folder with the folder hierarchy like below
+
+```
+working_folder
+|--main
+   |--main.c
+|--head.h
+```
+
+Inside ``main`` folder, compile ``main.c`` : ``gcc -I.. main.c``
+
+**Example 3**: Include multiple folders
+
+```
+working_folder
+|--main
+   |--head.h
+|--inc
+   |--head_1.h
+|--main.c
+```
+
+``head_1.h``
 
 ```c
 int b = 10;
 ```
 
-In folder ``test/main``, there is ``test.c``
+``main.c``
 
 ```c
 #include <stdio.h>
-#include "test.h"
-#include "test1.h"
+#include "head.h"
+#include "head_1.h"
 
 int main(){
-	printf("%d", a);
-  printf("%d", b);
+	printf("%d %d\n", a, b);
 }
 ```
 
-To compile ``test.c``: `` gcc -I.. -I../test\ 1 test.c``
+Inside ``working_folder``, compile ``main.c``: ``gcc -Iinc -Imain main.c``
 
 ## Predefine
 

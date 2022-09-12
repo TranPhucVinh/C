@@ -71,27 +71,27 @@ Array:
 #include <stdio.h>
 #include <stdlib.h>
 
-#define row_size 3
-#define column_size 4
+#define ROW_SIZE 3
+#define COLUMN_SIZE 4
 
 int main(){
-	int **int_array = (int**) malloc(row_size * sizeof(int*));
+	int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*));
 
-	for (int row = 0; row < row_size; row++){
-		int_array[row] = (int*) malloc(column_size * sizeof(int));
+	for (int row = 0; row < ROW_SIZE; row++){
+		int_array[row] = (int*) malloc(COLUMN_SIZE * sizeof(int));
 	}
 
 	int index = 0;
-	for (int row = 0; row < row_size; row++){
-		for (int column = 0; column < column_size; column++){
+	for (int row = 0; row < ROW_SIZE; row++){
+		for (int column = 0; column < COLUMN_SIZE; column++){
 			int_array[row][column] = index;
 			index += 1;
 		}	
 	}
     printf("%d\n", int_array[2][3]);
     
-        //Free all allocated memory location of the rows
-	for (int row = 0; row < row_size; row++){
+    //Free all allocated memory location of the rows
+	for (int row = 0; row < ROW_SIZE; row++){
 		free(int_array[row]);
 	}
 
@@ -99,6 +99,8 @@ int main(){
     free(int_array);
 }
 ```
+
+For important notice when defining 2D array with double pointer (``int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*)``), check [double pointer document: Define double pointer on heap memory](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Pointer%20to%20pointer.md#define-double-pointer-on-heap-memory).
 
 ### Trying to overflow buffer with malloc()
 
