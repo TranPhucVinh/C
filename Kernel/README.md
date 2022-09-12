@@ -4,7 +4,7 @@ To build a kernel module as a device driver, check [Loadable kernel module docum
 
 For dynamic allocation implementation in a kernel module, check [dynamic allocation document folder](Dynamic%20allocation).
 
-For multithread handling in kernel module, check [kernel thread document](Kernel%20thread.md).
+For multithread handling in kernel module, check [kernel thread document folder](Kernel%20thread).
 
 For timer implementation in kernel module, check [Timer document folder](Timer).
 
