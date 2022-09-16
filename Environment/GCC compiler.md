@@ -41,7 +41,7 @@ main.c:4:19: error: ‘display_string’ was not declared in this scope
      display_string();
 ```
 
-**Using build automation tools**: Compiling many files with GCC like above is not an efficient way, especially when having many source files and many directories. Build automation tools like Make, Bazel,... will solve that problem.
+**Using build automation tools**: Compiling many files with GCC like above is not an efficient way, especially when having many source files and many directories. Build automation tools like [Make](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/Make), [Bazel](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/Bazel), [CMake](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/CMake) will solve that problem.
 
 ## External libraries
 
