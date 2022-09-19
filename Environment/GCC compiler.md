@@ -1,6 +1,6 @@
 The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain.
 
-# Build source file
+# Build source file and build flags
 
 ``gcc main.c``: Build the whole source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
 
@@ -43,13 +43,18 @@ main.c:4:19: error: ‘display_string’ was not declared in this scope
 
 **Using build automation tools**: Compiling many files with GCC like above is not an efficient way, especially when having many source files and many directories. Build automation tools like [Make](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/Make), [Bazel](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/Bazel), [CMake](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/CMake) will solve that problem.
 
-## External libraries
+## Linker flags
 
-To compile with an external library ``gcc main.c -l<external-library-name>``
+Link a C program with a static/shared library using ``-l``/``-L``:
+
+* ``-l``: Indicates the name of the shared library
+* ``-L``: Location of the shared library
 
 E.g: ``gcc httpClient.c -lcurl``
 
-## Include directory of header files with ``-I``
+For other usages of ``-L`` and ``-l``, check [static library document](Static%20library.md)
+
+## Include directory of header files with -I
 
 **General define**: Use this defines to all examples below
 
