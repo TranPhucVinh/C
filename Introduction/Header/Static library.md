@@ -56,7 +56,19 @@ gcc main.c -L. -l:head.a
 
 If there is any later change in ``head.c``, ``head.o`` then has to be built again.
 
-If using ``g++``, it should be ``g++ -c head.c`` then ``g++ main.c -L. -l:head.a``, using the ``head.a`` built from ``gcc`` for ``g++`` will result in error:
+**Note**
+
+1. Take all source code and steps like above but just change file ``main.c`` to ``main.cpp`` (its source code kept unchanged) then start the build process again: ``gcc main.cpp -L. -l:head.a -lstdc++``
+
+There will be error:
+
+```
+/usr/bin/ld: /tmp/ccR3uFw9.o: in function `main':
+main.cpp:(.text+0x9): undefined reference to `display_string()'
+collect2: error: ld returned 1 exit status
+```
+
+2. If using ``g++``, it should be ``g++ -c head.c`` then ``g++ main.c -L. -l:head.a``, using the ``head.a`` built from ``gcc`` for ``g++`` will result in error:
 
 ```
 /usr/bin/ld: /tmp/cc2XwWip.o: in function `main':
