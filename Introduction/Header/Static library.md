@@ -46,8 +46,6 @@ Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c`
 
 Archive ``head.o`` to ``head.a`` as a static library: ``ar r head.a head.o``
 
-Compile ``main.c`` to ``main.o``: ``gcc -c main.c``
-
 Link static library in the final build for ``a.out``:
 
 ```sh
