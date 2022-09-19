@@ -109,41 +109,6 @@ With ``RANGE`` is less than ``10000``, that data race issue doesn't happen, as t
 
 # API
 
-### Define
-
-Definition in ``pthread.h`` (Windows)
-
-```c
-typedef uintptr_t pthread_t;
-typedef struct pthread_attr_t pthread_attr_t;
-struct pthread_attr_t
-{
-    unsigned p_state;
-    void *stack;
-    size_t s_size;
-    struct sched_param param;
-};
-```
-
-Definition in ``_mingw.h`` (Windows)
-
-```c
-#define __int64 long long
-```
-
-Definition in ``corecrt.h`` (Windows)
-
-```c
-#ifndef _PTRDIFF_T_DEFINED
-#define _PTRDIFF_T_DEFINED
-#ifndef _PTRDIFF_T_
-#define _PTRDIFF_T_
-#undef ptrdiff_t
-#ifdef _WIN64
-__MINGW_EXTENSION typedef __int64 ptrdiff_t;
-#else
-```
-
 ### pthread_create()
 
 ```c
