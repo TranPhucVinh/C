@@ -20,16 +20,6 @@ List symbols from object files
 nm a.out
 ```
 
-### Shell script to compile
-
-```shell
-{
-  "cmd" : ["gcc", "$file_name", "-o", "${file_base_name}", "-lm", "-Wall"],
-  "selector" : "source.c"
-  "shell":false,
-  "working_dir" : "$file_path"
-}
-```
 # Github project environment
 
 [Images used in that projects](Images)
