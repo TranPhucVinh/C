@@ -67,6 +67,12 @@ There will be error:
 main.cpp:(.text+0x9): undefined reference to `display_string()'
 collect2: error: ld returned 1 exit status
 ```
+Problem solved:
+```sh
+g++ -c head.c
+ar r head.a head.o
+gcc main.cpp -L. -l:head.a
+```
 
 2. If using ``g++``, it should be ``g++ -c head.c`` then ``g++ main.c -L. -l:head.a``, using the ``head.a`` built from ``gcc`` for ``g++`` will result in error:
 
