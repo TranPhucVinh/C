@@ -52,7 +52,7 @@ Link a C program with a static/shared library using ``-l``/``-L``:
 
 E.g: ``gcc httpClient.c -lcurl``
 
-For other usages of ``-L`` and ``-l``, check [static library document](Static%20library.md)
+For other usages of ``-L`` and ``-l``, check [static library document](Static%20library.md).
 
 ## Include directory of header files with -I
 

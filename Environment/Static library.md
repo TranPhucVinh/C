@@ -1,6 +1,6 @@
 ## Fundamental concepts
 
-![](../../Environment/Images/static_library.png)
+![](../Environment/Images/static_library.png)
 
 ## Implementation
 
