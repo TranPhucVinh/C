@@ -1,6 +1,6 @@
 ## Fundamental concepts
 
-![](../Images/shared_library.png)
+![](Images/shared_library.png)
 
 ## Implementation
 
