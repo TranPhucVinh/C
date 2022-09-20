@@ -1,4 +1,6 @@
-**Define function, variable in ``.h`` file.**
+## Header file
+
+**Define function, variable in .h file**
 
 ``head.h``
 
