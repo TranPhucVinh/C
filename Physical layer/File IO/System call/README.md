@@ -20,6 +20,8 @@ status = close(fd);//defined in unistd.h
 Normally, a process inherits three open file descriptors when it is started by the shell:
 
 ```c
+#include <stdio.h>
+
 #define	STDIN_FILENO	0	/* Standard input.  */
 #define	STDOUT_FILENO	1	/* Standard output.  */
 #define	STDERR_FILENO	2	/* Standard error output.  */
