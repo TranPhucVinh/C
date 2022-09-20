@@ -16,6 +16,7 @@ pthread_mutex_t lock;
 
 int main()
 {  
+	pthread_mutex_init(&lock, NULL);
 	pthread_t thread_1, thread_2, thread_3;
 	int thread_1_return, thread_2_return, thread_3_return;
 
@@ -26,6 +27,7 @@ int main()
     pthread_join(thread_2, NULL);
     pthread_join(thread_3, NULL);
     printf("share_value after executing 2 threads: %d\n", share_value);//30000
+	pthread_mutex_destroy(&lock);
 }
 
 void *thread_function(void *ptr){
@@ -35,20 +37,6 @@ void *thread_function(void *ptr){
 			pthread_mutex_unlock(&lock);
 		} else printf("%s fails to lock\n", (char*)ptr);
    }   
-}
-```
-
-It's better to ``init()`` and ``destroy()`` the mutex after executing:
-
-```cpp
-int main()
-{  
-    pthread_mutex_init(&lock, NULL);
-	pthread_t thread_1, thread_2, thread_3;
-	/*
-        Other threads definitions and executions like above
-    */
-    pthread_mutex_destroy(&lock);
 }
 ```
 
