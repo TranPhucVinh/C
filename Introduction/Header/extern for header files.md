@@ -1,0 +1,102 @@
+## Problem when compiling CPP files for C main source code
+
+```sh
+├── main.c
+├── head.cpp
+├── head.h
+```
+
+``main.c``
+
+```c
+#include "head.h"
+
+int main(){
+	display_string();
+}
+```
+
+``head.cpp``
+
+```c
+#include "head.h"
+
+void display_string(){
+    printf("Work with shared library instead of static library\n");
+}
+```
+
+If using that ``head.h`` define
+
+```c
+#include <stdio.h>
+
+void display_string();
+```
+
+(Compile as usual: ``gcc main.c head.cpp``)
+
+Then there will be error:
+
+```
+/usr/bin/ld: /tmp/ccly6e0Q.o: in function `main':
+main.c:(.text+0xe): undefined reference to `display_string'
+collect2: error: ld returned 1 exit status
+```
+
+Problem solved:
+
+``head.h``
+
+```c
+#include <stdio.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    void display_string();
+#ifdef __cplusplus
+}
+#endif  
+```
+
+## Problem when compiling C files for CPP main source code
+
+```sh
+├── main.cpp
+├── head.c
+├── head.h
+```
+
+``main.cpp`` define kept like ``main.c``
+
+``head.c`` define kept lile ``head.cpp``
+
+If still using that ``head.h`` define
+
+```c
+#include <stdio.h>
+
+void display_string();
+```
+
+(Compile as usual: ``gcc main.c head.cpp``)
+
+Then there will be error:
+
+```
+/usr/bin/ld: /tmp/ccAIrUEs.o: in function `main':
+main.cpp:(.text+0x9): undefined reference to `display_string()'
+collect2: error: ld returned 1 exit status
+```
+
+Problem solved: Solve like **Problem when compiling CPP files for C main source code**.
+
+## Mismatch issue when compiling CPP main source code from static or dynamic libraries built from C files
+
+That issue happens when:
+
+* Main source code is ``main.cpp`` while ``.a``/``.so`` is built from ``.c`` files
+* Using the ``head.h`` defined which caused 2 error above
+
+Problem solved: Solve like **Problem when compiling CPP files for C main source code**.
