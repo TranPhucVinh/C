@@ -1,4 +1,4 @@
-### One definition rule (ODR)
+## One definition rule (ODR)
 
 ``head.h``
 
@@ -28,31 +28,21 @@ int main(){
 /usr/bin/ld: /tmp/cc27NLmt.o:(.data+0x0): multiple definition of `a'; /tmp/ccZ06TNs.o:(.data+0x0): first defined here
 collect2: error: ld returned 1 exit status
 ```
-**Note**: This happens as mutiple sources like ``main.c``, ``head.c`` includes one ``head.h`` file. If the variable is define in ``head.h`` and only one source calls it like ``main.c``, the ODR error doesn't happen (check ``Header file.md`` for that implementation).
+**Note**: This happens as mutiple sources like ``main.c``, ``head.c`` includes one ``head.h`` file. If the variable is defined in ``head.h`` and only one source calls it like ``main.c``, the ODR error doesn't happen (check ``Header file.md`` for that implementation).
 
-### String display with extern to fit ODR
+### Problem solved
+
+Solve the ODR issue by ``extern`` keyword:
 
 ``head.h``
+
 ```c
 #include <stdio.h>
-
-extern char displayedString1[], displayedString2[];
+extern int a;
 ```
-
 ``head.c``
 ```c
 #include "head.h"
-
-char displayedString1[] = "Hello, World String 1";
-char displayedString2[] = "Hello, World String 2";
+int a = 10;
 ```
-
-``main.c``
-```c
-#include "head.h"
-
-int main(){
-	puts(displayedString1);
-	puts(displayedString2);
-}
-```
+``main.c`` kept as above
