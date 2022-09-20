@@ -40,6 +40,13 @@ int main(){
 
 A ``C`` source file can be compiled normally with other ``CPP`` header files: ``g++ main.c test.cpp``
 
+## Static library and shared library
+
+* [Static library](Static%20library.md) 
+* [Shared library](Shared%20library.md)
+
+GCC assumes that all libraries start with ``lib`` and end with ``.so`` or ``.a`` (``.so ``is for shared object or shared libraries, and ``.a`` is for archive, or statically linked libraries).
+
 ## Linux environment
 
 **Linux Programmer's Manual**
