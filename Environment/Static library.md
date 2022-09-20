@@ -2,6 +2,8 @@
 
 ![](../Environment/Images/static_library.png)
 
+Static library filenames usually have ``.a`` extension on Unix-like systems and ``.lib`` extension on Microsoft Windows.
+
 ## Implementation
 
 ### Source code
