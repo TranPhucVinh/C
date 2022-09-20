@@ -54,6 +54,13 @@ gcc main.c -L. -l:head.a
 
 ``-L.``: State that static library is in current folder
 
+With ``-l:`` flag, the static library can have any type like ``.xyz`` and will give normal result:
+
+```sh
+ar r static_lib.xyz head.o
+gcc test.c -L. -l:static_lib.xyz
+```
+
 It's better to name the static library to ``libhead.a`` so that flag ``-lhead`` can be used. ``-lhead`` will then find ``libhead.a`` in the folder specified by ``-L``.
 
 ```sh
