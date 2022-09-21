@@ -54,12 +54,24 @@ void *func_thread_2(void *ptr){
 Parameter is 32719 (garbage value)
 ```
 
-**Problem solve**: Use ``static``
+**Problem solve**: 
+
+Solution 1: Use ``static``
 
 ```c
 void *func_thread_1(void *ptr){
 	static int number = 56;
 	pthread_create(&thread_2_create, NULL, func_thread_2, &number);
+}
+```
+
+Solution 2: Use ``malloc()``
+
+```c
+void *func_thread_1(void *ptr){
+	int *number = (int*)malloc(sizeof(int));
+	*number = 123;
+	pthread_create(&thread_2_create, NULL, func_thread_2, number);
 }
 ```
 
