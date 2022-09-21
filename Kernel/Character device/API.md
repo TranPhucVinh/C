@@ -1,3 +1,5 @@
+# linux/fs.h functions
+
 ### register_chrdev()
 
 Register a character device to kernel
@@ -68,6 +70,8 @@ int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned count, const ch
 * ``unsigned baseminor``: first of the requested range of minor numbers
 * ``unsigned count``: the number of minor numbers required
 * ``const char *name``: the name of the associated device or driver, that name will appear in ``/proc/devices``
+
+# linux/fs.h structs
 
 ### struct cdev
 
@@ -150,7 +154,7 @@ struct file_operations {
 
 ``file_operations read()`` function pointer mapped to the read operation as kernel space response data to user space and userspace read that responsed data by ``cat /dev/character_device_name``
 
-## linux/cdev.h
+# linux/cdev.h
 
 * ``copy_from_user()``: Copy a block of data from user space to kernel space
 
@@ -166,7 +170,7 @@ unsigned long copy_to_user (void __user * to, const void * from, unsigned long n
 
 Both ``copy_from_user()`` and ``copy_to_user()`` return the number of bytes that could not be copied, in that fail case, those 2 functions must return error ``EFAULT`` to userspace. On success, they will be zero.
 
-## ioctl macro
+# ioctl macro
 
 * ``_IO(int type, int number)``: used for a simple ioctl that sends nothing but the ``type`` and ``number``, and receives back nothing but an (integer) ``retval``
 
