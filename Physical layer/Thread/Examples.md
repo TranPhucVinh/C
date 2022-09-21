@@ -46,7 +46,7 @@ void *func_thread_1(void *ptr){
 
 void *func_thread_2(void *ptr){
 	sleep(1);
-	printf("Parameter is %d\n", *((int*)ptr));//56
+	printf("Parameter is %d\n", *((int*)ptr));
 }
 ```
 **Result**
