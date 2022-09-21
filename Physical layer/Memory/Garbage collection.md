@@ -2,7 +2,7 @@ If there is no further notice, all source codes below are implemented on Unix:
 
 ## Non-support garbage collection causes unexpected scoping call result
 
-In this example, we get the address of local variable ``a`` inside ``declare_function()``. Outside this function, ``a`` is not available for sure and we expect its register doesn't store its value.
+In this example, we get the address of local variable ``a`` (stored in stack segment) inside ``declare_function()``. Outside this function, ``a`` is not available for sure and we expect its register doesn't store its value.
 
 ```c
 #include <stdio.h>
