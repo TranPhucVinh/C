@@ -185,3 +185,44 @@ Both ``copy_from_user()`` and ``copy_to_user()`` return the number of bytes that
 * ``type``, an 8-bit integer selected to be specific to the device driver. ``type`` should be chosen so as not to conflict with other drivers that might be listening to the same file descriptor.
 * ``number``, an 8-bit integer command number. Within a driver, distinct numbers should be chosen for each different kind of ioctl command that the driver services
 * ``data_type``, the name of a type used to compute how many bytes are exchanged between the client and the driver. This argument is, for example, the name of a structure.
+
+# Debug
+
+### dev_dbg()
+
+Specific debug function for character device
+
+```c
+#define dev_dbg(dev, format, ...)
+```
+
+Build kernel module included ``dev_dgb()`` normally (don't need other flag). ``dev_dgb()`` will print out like ``printk()`` followed by specific flags.
+
+**Example**: From [create_character_device_by_seperated_operations.c](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/create_character_device_by_seperated_operations.c), add ``dev_dbg()`` to ``device_init()`` and ``device_exit()``:
+
+```c
+int device_init(void)
+{
+	if (create_character_device(DEVICE_NAME, DEVICE_CLASS, TOTAL_MINOR, BASE_MINOR, &dev_info, &fops)){
+		printk("Unable to create character device %s\n", DEVICE_NAME);
+		return -1;
+	} else dev_dbg(dev_info.device, "Register character device %s successfully\n", DEVICE_NAME);
+	return 0;
+}
+
+void device_exit(void)
+{
+	printk("Device %s remove\n", DEVICE_NAME);
+    dev_dbg(dev_info.device, "Debug: %s removed successfully\n", DEVICE_NAME);
+	destroy_character_device(&dev_info, TOTAL_MINOR);
+}
+```
+
+**Result**
+
+```
+[1008276.383562] register successfully major now is: 510
+[1008276.383819] fops_device_class fops_character_device: Register character device fops_character_device successfully
+[1008388.789995] Device fops_character_device remove
+[1008388.790000] fops_device_class fops_character_device: Debug: fops_character_device removed successfully
+````
