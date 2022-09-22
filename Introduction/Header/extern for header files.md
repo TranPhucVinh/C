@@ -100,3 +100,5 @@ That issue happens when:
 * Using the ``head.h`` defined which caused 2 error above
 
 Problem solved: Solve like **Problem when compiling CPP files for C main source code**.
+
+This is useful when including the Debian package with ``.h`` and ``.a``/``.so`` file built from C compiler to the CPP source code, e.g [libi2c-dev package](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Install%20package.md#install-new-package) with ``i2c/smbus.h``. In that case, use the ``extern`` solution like above to ``i2c/smbus.h``. 
