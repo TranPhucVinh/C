@@ -136,11 +136,11 @@ Total argument: 2
 
 ### Other concepts
 
-* [Definition and Declaration](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Definition%20and%20Declaration.md)
-* [Conditional statements](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Conditional%20statements.md)
-* [Scope](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Scope.md)
-* [Callback function](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Callback%20function.md)
-* [Variable length argument](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Variable%20length%20argument.md)
+* [Definition and Declaration](Definition%20and%20Declaration.md)
+* [Conditional statements](Conditional%20statements.md)
+* [Scope](Scope.md)
+* [Callback function](Callback%20function.md)
+* [Variable length argument](Variable%20length%20argument.md)
 
 ## Variable
 
