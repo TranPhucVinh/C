@@ -19,4 +19,4 @@ A linked list support those features:
 
 ### Application
 
-* Using single link list to append the input text box during WiFi configuration: Library ``esp32_wifi_manager`` in ``ESP-IDF/Link layer/``.
+* [Using single link list to append the input text box during WiFi configuration](https://github.com/TranPhucVinh/ESP-IDF/tree/master/Link%20layer/WiFi%20Manager#old-program-version)
