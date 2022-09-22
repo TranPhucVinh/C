@@ -1,6 +1,4 @@
-## Example 1
-
-When 2 threads trying to access a resource, data race might be happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times):
+## One thread function handler to increase a share value
 
 ```c
 #include <stdio.h>
@@ -37,7 +35,53 @@ With ``RANGE`` is less than ``10000``, that data race issue doesn't happen, as t
 * [Using mutex](Mutex.md)
 * [Using semaphore](Semaphore.md)
 
-## Example 2
+## One thread function handler to increase and decrease a shared value
+
+In this case, we expect the shared value to be ``0``
+
+Source code: [increase_and_decrease_a_shared_value.c](increase_and_decrease_a_shared_value.c)
+
+Solved that race condition issue by mutex: [increase_and_decrease_a_shared_value_mutex.c](increase_and_decrease_a_shared_value_mutex.c)
+
+**Result**:
+
+Race condition still happen
+
+Run 1st time: ``share_value 10000``
+
+Run 2nd time: ``share_value 0``
+
+Run 3rd time: ``share_value -10000``
+
+If putting ``pthread_mutex_trylock()`` and ``pthread_mutex_unlock()`` inside each condition like this, there are still data race issue:
+
+```c
+void *func_thread(void *ptr){
+	int option;
+    option = *(int*)ptr;
+    int i;
+    for (i = 0; i < RANGE; i++)
+    {
+        if (option == 1)
+        {
+			if (!pthread_mutex_trylock(&lock)){
+				share_value++;
+				pthread_mutex_unlock(&lock);
+			}      
+        }
+        else
+        {
+			if (!pthread_mutex_trylock(&lock)){
+				share_value--;
+				pthread_mutex_unlock(&lock);
+			}     
+        }
+    }
+	return 0;
+}
+```
+
+## Accessing a share variable between 2 thread function handlers
 
 Thread issue:
 
@@ -130,51 +174,5 @@ void *func_thread_1(void *ptr){
 void *func_thread_2(void *ptr){
 	write(STDOUT_FILENO, displayed_string, sizeof(displayed_string));
 	write(STDOUT_FILENO, thread_2_str, sizeof(thread_1_str));
-}
-```
-
-## Example 3
-
-Increase the share value by 1 in the 1st thread and decrease it by 1 in the 2nd thread. Expect the share value to be 0
-
-Source code: [race_condition_example_3.c](race_condition_example_3.c)
-
-Solved that race condition issue by mutex: [race_condition_example_3_solved.c](race_condition_example_3_solved.c)
-
-**Result**:
-
-Race condition still happen
-
-Run 1st time: ``share_value 10000``
-
-Run 2nd time: ``share_value 0``
-
-Run 3rd time: ``share_value -10000``
-
-If putting ``pthread_mutex_trylock()`` and ``pthread_mutex_unlock()`` inside each condition like this, there are still data race issue:
-
-```c
-void *func_thread(void *ptr){
-	int option;
-    option = *(int*)ptr;
-    int i;
-    for (i = 0; i < RANGE; i++)
-    {
-        if (option == 1)
-        {
-			if (!pthread_mutex_trylock(&lock)){
-				share_value++;
-				pthread_mutex_unlock(&lock);
-			}      
-        }
-        else
-        {
-			if (!pthread_mutex_trylock(&lock)){
-				share_value--;
-				pthread_mutex_unlock(&lock);
-			}     
-        }
-    }
-	return 0;
 }
 ```
