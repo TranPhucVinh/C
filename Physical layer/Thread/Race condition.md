@@ -177,4 +177,4 @@ void *func_thread_2(void *ptr){
 }
 ```
 
-That issue can be solved by [using semaphore]().
+That issue can be solved by [using semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#accessing-a-shared-variable-between-2-thread-function-handlers-issue).
