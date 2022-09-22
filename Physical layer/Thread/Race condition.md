@@ -81,7 +81,7 @@ void *func_thread(void *ptr){
 }
 ```
 
-## Accessing a share variable between 2 thread function handlers
+## Accessing a shared variable between 2 thread function handlers
 
 Thread issue:
 
@@ -176,3 +176,5 @@ void *func_thread_2(void *ptr){
 	write(STDOUT_FILENO, thread_2_str, sizeof(thread_1_str));
 }
 ```
+
+That issue can be solved by [using semaphore]().

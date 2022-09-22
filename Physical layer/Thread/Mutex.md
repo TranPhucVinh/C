@@ -1,6 +1,6 @@
-## Data race issue
+## One thread function handler to increase a share value issue
 
-Solve the data race issue above with mutex, even with multiple threads, not just 2 tasks
+Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value) with mutex, even with multiple threads, not just 2 tasks:
 
 ```c
 #include <stdio.h>

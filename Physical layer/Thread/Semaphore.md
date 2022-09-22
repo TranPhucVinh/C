@@ -21,9 +21,9 @@ If ``pshared`` is nonzero, then the semaphore is shared between processes, and s
 * ``sem_wait()``: lock a semaphore
 * ``sem_post()``: unlock a semphore
 
-## Data race issue
+## Race condition issue
 
-Solve the [data race issue stated in fundamental concepts](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Thread#data-race):
+Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value):
 
 ```c
 #include <stdio.h>
@@ -67,7 +67,7 @@ void *thread_function(void *ptr){
 }
 ```
 
-## Race condition example 2
+## Accessing a shared variable between 2 thread function handlers issue
 
 ### Problem when using semaphore
 
@@ -147,4 +147,4 @@ Thread 1
 Thread 2
 ```
 
-That problem happens as in some case thread 2 runs faster than thread 1
+That problem happens as in some case thread 2 runs faster than thread 1.

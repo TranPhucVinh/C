@@ -71,7 +71,7 @@ Using global variable to share values between 2 threads: [Check source code](htt
 
 ### Race condition
 
-When 2 threads trying to access a resource, data race might be happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times). Check [race condition document](Race%20condition.md)
+When 2 threads trying to access a resource, data race might be happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times). Check [race condition document](Race%20condition.md).
 
 # API
 
