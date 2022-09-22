@@ -2,13 +2,13 @@
 
 In computer science, a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system.
 
-## POSIX threads
+Threads implemented in Unix are POSIX threads.
 
-``pthreads``: POSIX threads
+``pthreads`` is C POSIX threads library.
 
 Compile: ``gcc test.c -lpthread``
 
-### Create a thread to print out a string
+## Create a thread to print out a string
 
 ```c
 #include <stdio.h>
