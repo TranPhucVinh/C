@@ -44,4 +44,4 @@ Function ``kthread_should_stop()`` returns non-zero value if there is a stop req
 
 ## Examples
 
-Check [examples document](Examples.md)
+Check [kernel thread examples](Examples.md) and [race condition document](Race%20condition.md).
