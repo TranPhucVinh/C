@@ -1,6 +1,4 @@
-# Fundemental concepts
-
-## Memory layout of a C program running as a process
+# Memory layout of a C program running as a process
 
 ![](../../Environment/Images/process-memory-layout.png)
 
@@ -45,11 +43,11 @@ int function_name(){
 
 As seems from the figure above, the stack grows downwards while the heap grows upwards.
 
-## Memory type
+# Memory type
 
 Stack and heap memory are both stored on RAM of the PC.
 
-### Stack memory
+## Stack memory
 
 Stack memory is a temporary memory allocation scheme where the data members are accessible only if the method that contained them is currently is running. Stack memory block is allocated when the source code is compiled. Variables inside the stack memory block of a function are freed up after its execution.
 
@@ -66,11 +64,11 @@ int main()
 }
 ```
 
-### Heap memory
+## Heap memory
 
 Heap memory block is allocated during run-time. When the size of heap memory is not enough for the program, the OS has the mechanism to increase the heap memory size.
 
-## Data alignment 
+# Data alignment 
 
 ### How does CPU access a variable ?
 
@@ -94,6 +92,6 @@ When creating a variable, the compiler will assign an address to store that vari
 
 **Dynamic memory allocation** can be defined as a procedure in which the size of a data structure (like array) is changed during the runtime. Variables inside heap memory block are not automatically freed up after execution but are required to be freed up by code (``free`` or ``delete``). Dynamic memory Allocation is done during program execution.
 
-## Pointer
+# Pointer
 
-# API
+Check [pointer document](Pointer).
