@@ -62,6 +62,16 @@ void cleanup_module(void)
 
 **Result**: When ``rmmod``: ``share_value 18000000``
 
+# One thread function handler to increase and decrease a shared value
+
+In this case, we expect the shared value to be 0
+
+Source code: [increase_and_decrease_a_shared_value.c](increase_and_decrease_a_shared_value.c)
+
+**Result**: When ``rmmod``: ``share_value -20000``
+
+Solved that race condition issue by mutex: [increase_and_decrease_a_shared_value_mutex.c](increase_and_decrease_a_shared_value_mutex.c)
+
 # Accessing a shared variable between 2 thread function handlers
 
 No race condition happens when accessing a shared variable between 2 thread function handlers:
