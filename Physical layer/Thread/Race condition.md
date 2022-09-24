@@ -41,6 +41,21 @@ In this case, we expect the shared value to be ``0``
 
 Source code: [increase_and_decrease_a_shared_value.c](increase_and_decrease_a_shared_value.c)
 
+**Result**: (Run multiple times)
+
+```
+share_value 1428
+share_value -1106
+share_value -167
+share_value -178
+share_value 0
+share_value 0
+share_value 0
+share_value -1070
+share_value -1098
+share_value 5460
+```
+
 Solved that race condition issue by mutex: [increase_and_decrease_a_shared_value_mutex.c](increase_and_decrease_a_shared_value_mutex.c)
 
 **Result**:
@@ -53,7 +68,7 @@ Run 2nd time: ``share_value 0``
 
 Run 3rd time: ``share_value -10000``
 
-If putting ``pthread_mutex_trylock()`` and ``pthread_mutex_unlock()`` inside each condition like this, there are still data race issue:
+If putting ``pthread_mutex_trylock()`` and ``pthread_mutex_unlock()`` inside each condition like this, race condition issue can't be fixed:
 
 ```c
 void *func_thread(void *ptr){
@@ -79,6 +94,16 @@ void *func_thread(void *ptr){
     }
 	return 0;
 }
+```
+**Result**: (Run multiple times)
+```
+share_value -585
+share_value -170
+share_value -196
+share_value -7513
+share_value -704
+share_value -450
+share_value 91
 ```
 
 ## Accessing a shared variable between 2 thread function handlers

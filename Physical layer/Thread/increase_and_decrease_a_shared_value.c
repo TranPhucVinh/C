@@ -25,14 +25,8 @@ void *func_thread(void *ptr){
     int i;
     for (i = 0; i < RANGE; i++)
     {
-        if (option == 1)
-        {
-            share_value++;
-        }
-        else
-        {
-            share_value--;
-        }
+        if (option == 1) share_value++;
+        else share_value--;
     }
 	return 0;
 }
