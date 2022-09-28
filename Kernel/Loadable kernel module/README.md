@@ -32,9 +32,9 @@ To remove the module: ``rmmod loadable_kernel_module.ko``
 
 View module information: ``modinfo loadable_kernel_module.ko``
 
-### Examples
+### Source code
 
-* ``ubuntu_kernel_module.c``: The very first kernel module built on Ubuntu 16.04
+``ubuntu_kernel_module.c``: The very first kernel module built on Ubuntu 16.04
 
 **Result**
 
