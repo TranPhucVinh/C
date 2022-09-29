@@ -37,8 +37,6 @@ int function_name(){
 }
 ```
 
-``global`` and ``static_variable`` are then stored inside the ``DS``.
-
 * ``Text segment`` is the memory area that contains the machine instructions that CPU executes. Usually, this segment is shared across different instances of the same program being executed. Since there is no point of changing the CPU instructions so this segment has ``read-only privileges``.
 
 As seems from the figure above, the stack grows downwards while the heap grows upwards.
