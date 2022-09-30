@@ -70,3 +70,5 @@ Must have ``{}``, without ``{}`` there will be error
 error: extern declaration of ‘x’ follows declaration with no linkage
          extern int x;
 ```
+
+For extern implementation with header files, check [header document](https://github.com/TranPhucVinh/C/tree/master/Introduction/Header).

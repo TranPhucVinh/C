@@ -1,5 +1,7 @@
 # static variable
 
+### Used in functions
+
 **Static variables** is used to created variable that are visible to only one function, but unlike local variables that get created and destroyed everytime a function is called, static variables do not lose their value between function calls.
 
 ```c
@@ -22,7 +24,9 @@ int main(){
 
 ``1 2``
 
-**static variable** can be shared normally between headers files and source files.
+### static and ODR
+
+**static variable** can be used to solve the ODR issue as it can be shared normally between header files and source files.
 
 ``head.h``
 
@@ -30,14 +34,21 @@ int main(){
 #include <stdio.h>
 static int a = 10;
 ```
+``head.c``
+
+```c
+#include "head.h"
+```
 ``main.c``
 ```c
 #include "head.h"
 
 int main(){ 
-    printf("a: %d", a);
+  printf("a: %d", a);
 }
 ```
+
+Compile ``gcc main.c head.c`` normally and there will be no ODR issue.
 
 ## Internal linkage
 
