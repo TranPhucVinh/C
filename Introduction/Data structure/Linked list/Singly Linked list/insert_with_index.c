@@ -27,8 +27,8 @@ void display_link_list(struct database_node first_node){
 }
 
 /**
- * insert_node_at_middle - Insert a new node in the middle of the linked list based on the index (not at the end of 
- * the linked list)
+ * insert_node_at_middle - Insert a new node in the middle of the linked list based on the index from 0 to
+ * (linked list size - 1)
  * @first_node: first_node must be pass by reference for case the inserted node is the first node
  * @index:
  * @id:
