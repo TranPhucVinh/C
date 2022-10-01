@@ -27,8 +27,8 @@ void display_link_list(struct database_node first_node){
 }
 
 /**
- * insert_node_at_middle - Insert a new node in the middle of the linked list based on the index (not at index 0 
- * and at the end of the linked list
+ * insert_node_at_middle - Insert a new node in the middle of the linked list based on the index (not at the end of 
+ * the linked list)
  * @first_node: first_node must be pass by reference for case the inserted node is the first node
  * @index:
  * @id:
@@ -44,6 +44,16 @@ int insert_node_at_middle(struct database_node *first_node, int index, int id, i
 
     ins_node->id = id;
     ins_node->value = value;
+
+	if (tmp_index == index){
+		struct database_node *old_first_node = (struct database_node *)malloc(sizeof(struct database_node));
+		*old_first_node = *first_node;
+
+		first_node->id = id;
+		first_node->value = value;
+		first_node->next_node = old_first_node;
+		return 1;
+	}
 
     while(current_node != NULL)
 	{        
@@ -78,14 +88,17 @@ int main(int argc, char *argv[])
 	printf("Before updating:\n");
     display_link_list(*node_0);
 
-    insert_node_at_middle(node_0, 2, 123, 456);
-
+	insert_node_at_middle(node_0, 0, 56, 78);
     printf("After updating at index 2:\n");
-    display_link_list(*node_0);
+	display_link_list(*node_0);
 
-    insert_node_at_middle(node_0, 1, 789, 123);
+	insert_node_at_middle(node_0, 1, 789, 123);
     printf("After updating at index 1:\n");
     display_link_list(*node_0);
+
+	insert_node_at_middle(node_0, 0, 56, 78);
+    printf("After updating at index 2:\n");
+	display_link_list(*node_0);
 
     return 0; 
 } 
