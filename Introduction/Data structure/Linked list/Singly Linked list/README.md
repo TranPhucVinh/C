@@ -1,10 +1,39 @@
-## Operations
+# Fundamental concept
 
 ### Structure of a Singly Linked list data structure
 
 ```
 Node 1 -> Node 2 -> Node 3 -> ... -> NULL
 ```
+
+### Create
+
+Create/insert a node at index 0 (node 1):
+
+Old linked list
+
+```
+Node 1 (old node) -> Node 2 -> Node 3 -> ... -> NULL
+```
+
+New linked list
+
+```
+Node 1 (new node) -> Node 1 (old node) -> Node 2 -> Node 3 -> ... -> NULL
+```
+
+As traversing linked list started from node 1, the inserted node is actually node 1 old node (in the diagram above), while node 1 new node just has its value updated.
+
+So in this diagram:
+
+* Node 1 new node has the address of node 1 old node but has latest inserted value
+* Node 1 old node is a newly created node and has the value of node 1 old node
+
+So we have to create ``old_first_node``, a temporary node to stored the value of node 1 old node.
+
+Check implementation for this in [insert_with_index.c](insert_with_index.c) program.
+
+# Implementations
 
 ### Create
 
