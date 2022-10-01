@@ -27,14 +27,15 @@ void display_link_list(struct database_node first_node){
 }
 
 /**
- * insert_node_at_middle - Insert a new node in the middle of the linked list based on the index from 0 to
- * (linked list size - 1)
+ * insert_node_at_index - Insert a new node to linked list based on the index from 0 to
+ * (linked list size - 1), If index = linked list size, append linked list
  * @first_node: first_node must be pass by reference for case the inserted node is the first node
  * @index:
  * @id:
  * @value:
  */
-int insert_node_at_middle(struct database_node *first_node, int index, int id, int value){
+int insert_node_at_index(struct database_node *first_node, int index, int id, int value){
+	int size;//use static to store list size to append the linked list
     struct database_node *current_node = first_node, *ins_node, *prev_node;
 
 	ins_node = (struct database_node *)malloc(sizeof(struct database_node));
@@ -66,6 +67,17 @@ int insert_node_at_middle(struct database_node *first_node, int index, int id, i
 		current_node = current_node->next_node;
 		tmp_index++;
     }
+
+	size = tmp_index;
+	/*
+		After traverse the whole linked list and get to the last node
+		with index (linked list size - 1), append the linked list 
+		if index == size
+	*/
+	if (index == size){
+		prev_node->next_node = ins_node;
+		return 1;
+	} 
    
     return 0;
 }
@@ -85,20 +97,8 @@ int main(int argc, char *argv[])
     insert_new_node(node_1, node_2, 3, 300);
     node_2->next_node = NULL; //End link list
 
-	printf("Before updating:\n");
+	printf("Before inserting:\n");
     display_link_list(*node_0);
-
-	insert_node_at_middle(node_0, 0, 56, 78);
-    printf("After updating at index 2:\n");
-	display_link_list(*node_0);
-
-	insert_node_at_middle(node_0, 1, 789, 123);
-    printf("After updating at index 1:\n");
-    display_link_list(*node_0);
-
-	insert_node_at_middle(node_0, 0, 56, 78);
-    printf("After updating at index 2:\n");
-	display_link_list(*node_0);
 
     return 0; 
 } 

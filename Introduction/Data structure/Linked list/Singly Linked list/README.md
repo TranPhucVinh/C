@@ -10,7 +10,7 @@ Node 1 -> Node 2 -> Node 3 -> ... -> NULL
 
 Create and read all member of a linked list: [create_and_read_linked_list.c](create_and_read_linked_list.c)
 
-Insert a new node to an existed linked list by the specified index: [insert_with_index.c](insert_with_index.c). Function ``insert_node_at_middle()`` supports inserting a new node at index 0 (beginning of the linked listed) and at the middle index.
+Insert a new node to an existed linked list by the specified index: [insert_with_index.c](insert_with_index.c). Function ``insert_node_at_index()`` supports inserting a new node at index 0 (beginning of the linked listed) and at the middle index. If the insert node is at index = linked list size, the linked list will appended.
 
 ### Read
 
