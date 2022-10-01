@@ -27,7 +27,7 @@ Read a node at specific index
 
 ```c
 //Other operations like in create_and_read_linked_list.c
-void read_member(struct data_base_node *first_node, int index){
+void read_member(struct data_base_node first_node, int index){
     struct list_head *list_ptr = &(first_node.list);
 	struct data_base_node *node_ptr;
 	int node_count = 0;
@@ -47,7 +47,7 @@ void read_member(struct data_base_node *first_node, int index){
 int init_module(void)
 {
 	//Other operations like in create_and_read_linked_list.c
-	read_member(node_0, 2);
+	read_member(*node_0, 2);
 	return 0;
 }
 //Other operations like in create_and_read_linked_list.c
