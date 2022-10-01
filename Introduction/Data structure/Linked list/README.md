@@ -4,8 +4,8 @@ Unlike arrays, linked list elements are not stored at a contiguous location; the
 
 ### Type of basic linked list data structure
 
-* Singly linked list
-* Doubly linked list
+* [Singly linked list](Singly%20linked%20list)
+* [Doubly linked list](Doubly%20linked%20list)
 * Circular linked list
 
 ### Features

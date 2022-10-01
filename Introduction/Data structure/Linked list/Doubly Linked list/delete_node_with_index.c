@@ -17,32 +17,7 @@ void insertNodeValues(struct databaseNode *previousNode, struct databaseNode *cu
     currrentNode->nextNode = nextNode;
 }
 
-int deleteNodeAtIndex(int index){
-    struct databaseNode *currentPtr = node0, *previousPtr;
-    previousPtr = (struct databaseNode *)malloc(sizeof(struct databaseNode));
-    
-    int tempIndex = 0;
 
-    if (tempIndex == index) {      
-        node0 = node0->nextNode;
-        node0->previousNode = NULL;
-        return 1;
-    }
-
-    while(currentPtr != NULL)
-	{        
-        if (tempIndex == index) {
-            previousPtr->nextNode = currentPtr->nextNode;
-            currentPtr->nextNode->previousNode = previousPtr;
-            return 1;
-        }
-        previousPtr = currentPtr;  
-        currentPtr = currentPtr->nextNode;
-        tempIndex++;
-    }
-   
-    return 0;
-}
 
 void displayLinkList(){
     struct databaseNode *ptr = node0;
