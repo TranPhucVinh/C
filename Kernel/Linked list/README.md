@@ -74,3 +74,12 @@ list_entry(struct list_head *ptr, type_of_struct, field_name);
 ```
 
 ``list_entry`` will map a ``list_head`` structure pointer back into a pointer to the structure that contains it.
+
+### list_add()
+
+```c
+void list_add(struct list_head *new, struct list_head *head);
+```
+* ``struct list_head *new``: new entry to be added
+
+* ``struct list_head *head``: list head to add it after
