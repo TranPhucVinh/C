@@ -46,6 +46,13 @@ Run ``dmesg|grep loadable_kernel_module`` to detect what is printed to the kerne
 [12609.519833] ubuntu_kernel_module: module license 'unspecified' taints kernel.
 ```
 
+### Makefile
+
+``obj-m``: Specify built object's name
+
+With ``obj-m := <module_name>.o``, the ``kbuild`` system will build ``<module_name>.o`` from ``<module_name>.c``,
+and, after linking, will result in the kernel module ``<module_name>.ko``.
+
 ## API
 
 ### module_init() vs init_module() and module_exit() vs cleanup_module()
