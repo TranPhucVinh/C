@@ -11,7 +11,7 @@ It is better to create a folder for working with the loadable kernel module, the
 ``Makefile`` to build the kernel module:
 
 ```
-obj-m += test.o
+obj-m := test.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
