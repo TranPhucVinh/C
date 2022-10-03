@@ -7,14 +7,9 @@ NULL  <- Node 1  <- Node 2 <- Node 3 -> NULL
 
 ### Create
 
-Create and read all the value from doubly link list array, read previous data node from current node: ``create.c``
+Create and read all the value from doubly link list, read previous data node from current node: [create_and_read_linked_list.c](create_and_read_linked_list.c)
 
-Insert a new node to existed link list with index and value from command line: ``create_with_index.c``
-
-* Argument 1: Index to insert the new node
-* Argument 2: ID value of the inserted node
-* Argument 3: Integer value of the inserted node
-* Argument 4: Index of the node to read to check the linked list integrity
+Insert a new node to existed link list with index: [insert_at_index.c](insert_at_index.c)
 
 ### Read
 
