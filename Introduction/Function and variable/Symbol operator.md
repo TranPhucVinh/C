@@ -80,3 +80,23 @@ j = i++;
 ```
 
 ``j=0, i=1``
+
+## :=
+
+``:=`` is an assignment operator which is supported in just some programming language and tools.
+
+``:=`` **is not available in userspace and kernel GCC compiler**.
+
+This will give error on both userspace process and kernel module program:
+
+```c
+int a;
+a := 12;
+```
+
+```
+error: expected expression before ‘=’ token
+7 |     a := 12;
+```
+
+``:=`` is available on Makefile, as it is equal to ``=``
