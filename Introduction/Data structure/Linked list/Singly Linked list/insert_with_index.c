@@ -47,12 +47,11 @@ int insert_node_at_index(struct database_node *first_node, int index, int id, in
     ins_node->value = value;
 
 	if (tmp_index == index){
-		struct database_node *old_first_node = (struct database_node *)malloc(sizeof(struct database_node));
-		*old_first_node = *first_node;
+		*ins_node = *first_node;
 
 		first_node->id = id;
 		first_node->value = value;
-		first_node->next_node = old_first_node;
+		first_node->next_node = ins_node;
 		return 1;
 	}
 
