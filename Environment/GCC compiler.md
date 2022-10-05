@@ -128,6 +128,46 @@ int main(){
 
 Inside ``working_folder``, compile ``main.c``: ``gcc -Iinc -Imain main.c``
 
+**Example 4**: Header file and source file in different directories
+
+```
+working_folder
+|--src
+   |--head.c
+|--inc
+   |--head.h
+|--main.c
+```
+``head.h``
+
+```c
+#include <stdio.h>
+void add(int a, int b);
+```
+
+``head.c``
+```c
+#include "head.h"
+
+void add(int a, int b)
+{
+    printf("I call all files from userspace result: %d\n", a+b);
+}
+```
+``main.c``
+```c
+#include <stdio.h> 
+#include "head.h" 
+
+int main() 
+{ 
+	add(1,35);
+    return 0; 
+} 
+```
+
+Compile: ``gcc -Iinc -Isrc main.c src/head.c``
+
 ## Predefine
 
 ``-D``: Define flag
