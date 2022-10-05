@@ -50,7 +50,7 @@ Build kernel module with source codes and header files are in the same directory
 working_folder
 |--head.c
 |--head.h
-|--ubuntu_kernel.c
+|--ubuntu_kernel_module.c
 ```
 
 ```Makefile
@@ -72,3 +72,27 @@ head.h  main_module.ko  main_module.mod.c  main_module.o      modules.order  ubu
 ```
 
 Notice that ``main_module.ko`` is the built result.
+
+## Header file in different directory
+
+```
+working_folder
+|--src
+   |--head.h
+|--head.c
+|--ubuntu_kernel_module.c
+```
+
+(Don't need to change ``head.h`` path called in ``ubuntu_kernel_module.c`` and ``head.c``)
+
+```Makefile
+obj-m := main_module.o
+ccflags-y := -I$(src)/include
+main_module-y := head.o ubuntu_kernel_module.o
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
