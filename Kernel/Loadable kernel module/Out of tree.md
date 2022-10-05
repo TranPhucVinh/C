@@ -96,3 +96,26 @@ all:
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
+
+## Header files and source files in different directory
+
+```
+working_folder
+|--src
+   |--head.c
+|--inc
+   |--head.h
+|--ubuntu_kernel_module.c
+```
+
+```Makefile
+obj-m := main_module.o
+ccflags-y := -I$(src)/inc -I$(src)/src
+main_module-y := src/head.o ubuntu_kernel_module.o
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
