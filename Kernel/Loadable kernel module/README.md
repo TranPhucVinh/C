@@ -46,6 +46,10 @@ Run ``dmesg|grep loadable_kernel_module`` to detect what is printed to the kerne
 [12609.519833] ubuntu_kernel_module: module license 'unspecified' taints kernel.
 ```
 
+### Out of tree
+
+Check [out of tree document](Out%20of%20tree.md) to perform out of tree in kernel module.
+
 ### Makefile
 
 ``obj-m``: Specify built object's name
