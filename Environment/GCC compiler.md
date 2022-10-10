@@ -6,6 +6,8 @@ The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the G
 
 ``gcc -o main main.c``: Specify the executable output file as ``main``. To run: ``./main``
 
+To run ``a.out`` in absolute path: ``/home/username/Documents/a.out`` (must not have ``./``)
+
 To compile with multiple files (with or even without header file): ``gcc main.c file_1.c file_2.c``
 
 Compile with multiple files when there is no header file:
