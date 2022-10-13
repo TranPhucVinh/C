@@ -20,7 +20,7 @@ void poll_wait (struct file *, wait_queue_head_t *, poll_table *);
 
 # Examples
 
-Send ``POLLIN`` revent from kernel space to user space when open, read, write, close operations are performed:
+Send ``POLLIN`` event from kernel space to user space when open, read, write, close operations are performed:
 
 * [character_device_poll.c](character_device_poll.c)
 * [user_space_poll.c](user_space_poll.c)
