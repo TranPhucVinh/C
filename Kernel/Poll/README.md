@@ -1,6 +1,6 @@
 # API
 
-``poll`` is handled in ``struct file_operations``:
+For working with [poll in userspace as I/O multiplexing](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/IO%20multiplexing%20examples.md), ``poll`` is handled in ``struct file_operations``:
 
 ```c
 struct file_operations {
