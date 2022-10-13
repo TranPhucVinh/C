@@ -20,7 +20,7 @@ void poll_wait (struct file *, wait_queue_head_t *, poll_table *);
 
 # Examples
 
-Send ``POLLIN`` ``revent`` from kernel space to user space when open, read, write, close operations are performed:
+Send ``POLLIN`` ``revent`` from character device created by character_device_poll.c to userspace application (user_space_poll.c) when open, read, write, close operations are performed to this character device:
 
 * [character_device_poll.c](character_device_poll.c)
 * [user_space_poll.c](user_space_poll.c)
