@@ -20,12 +20,12 @@ void poll_wait (struct file *, wait_queue_head_t *, poll_table *);
 
 # Examples
 
-Send ``POLLIN`` event from kernel space to user space when open, read, write, close operations are performed:
+Send ``POLLIN`` ``revent`` from kernel space to user space when open, read, write, close operations are performed:
 
 * [character_device_poll.c](character_device_poll.c)
 * [user_space_poll.c](user_space_poll.c)
 
-**Note**: Only valid revent can be sent back from kernel space to user space. For example, if asking kernel space to send ``POLLPRI`` in open operation (as ``POLLPRI`` is not the real ``revent`` from the open operation), it still sends ``POLLIN`` back to user space. 
+**Note**: Only valid ``revent`` can be sent back from kernel space to user space. For example, if asking kernel space to send ``POLLPRI`` in open operation (as ``POLLPRI`` is not the real ``revent`` from the open operation), it still sends ``POLLIN`` back to user space. 
 
 E.g:
 
