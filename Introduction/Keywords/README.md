@@ -57,9 +57,9 @@ int main()
     int x = 10; // Local x
     {
         extern int x;
-        printf("Value of global x is %d\n", x);
+        printf("Value of global x is %d\n", x);//50
     }
-    printf("Value of local x is %d\n", x);
+    printf("Value of local x is %d\n", x);//10
     return 0;
 }
 ```
