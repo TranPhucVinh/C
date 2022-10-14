@@ -72,3 +72,4 @@ int main()
     return 0;
 }
 ```
+Compile those 2 files normally to access ``display_string()`` and ``int a`` in ``main.c``: ``gcc main.c header.c``
