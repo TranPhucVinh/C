@@ -46,7 +46,7 @@ get_reg outside declare_function(): 0x7ffc788f1994
 *get_reg outside: 0
 ```
 
-That happen as C doesn't support garbage collection. Although outside ``declare_function()``, local variable ``a`` can't be access, the register address that was allocated for it still keeps its value.
+That happen as C and CPP (compiled this program with both GCC/G++ with ``.c`` and ``cpp`` still gives the same result) doesn't support garbage collection. Although outside ``declare_function()``, local variable ``a`` can't be access, the register address that was allocated for it still keeps its value.
 
 ## Non-supported garbage collection effected by override pointer setup
 
