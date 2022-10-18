@@ -40,6 +40,8 @@ View module information: ``modinfo loadable_kernel_module.ko``
 
 Run ``dmesg|grep loadable_kernel_module`` to detect what is printed to the kernel log ``printk()``.
 
+Run ``dmesg|tail`` to view last lines of the kernel log.
+
 **Notice**: Without ``MODULE_LICENSE("GPL")`` there will be warning
 
 ```
