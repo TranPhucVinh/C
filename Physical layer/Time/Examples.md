@@ -102,42 +102,6 @@ void delaySeconds(long seconds){
 
 ### Example 3
 
-Print out a string after every one second with ``sleep()``.
-
-```c
-#include <stdio.h> 
-#include <unistd.h>
-
-int main(){ 
-    while (1){
-		printf("Hello, World \n");
-		sleep(1);
-	}
-} 
-```
-
-An inefficient way to delay 1 second as its delay time varies in various processing core:
-
-```c
-void delayOneSecond();  
-
-int main(){ 
-  while (1){
-    printf("Hello, World \n");
-    delayOneSecond();
-	}
-} 
-
-void delayOneSecond(){
-  int c, d;
-  for (c = 1; c <= 32767; c++){
-    for (d = 1; d <= 32767; d++){};
-  }
-}
-```
-
-### Example 4
-
 Read RTC time of ``/dev/rtc`` (notice that hour in RTC time is different from local time)
 
 ```c
