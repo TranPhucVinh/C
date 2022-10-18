@@ -1,4 +1,4 @@
-### Example 1
+## Example 1
 
 Get current time with ``time()``
 
@@ -69,7 +69,27 @@ currentTime = 1641196080;//total second since Epoch
 printf("%s", ctime(&currentTime));//Mon Jan  3 14:48:00 2022
 ```    
 
-### Example 2
+### Overflow Epoch times (Y2K38)
+
+```c
+time_t currentTime;
+currentTime = 0x7FFFFFFF + 1;//total second since Epoch
+printf("%s", ctime(&currentTime));
+```
+
+This will give warning:
+
+```
+main.c:7:30: warning: integer overflow in expression of type ‘int’ results in ‘-2147483648’ [-Woverflow]
+    7 |     currentTime = 0x7FFFFFFF + 1;//total second since Epoch
+```
+
+**Result**: 
+
+* ``(null)`` (in Ubuntu 20.04)
+* ``Fri Dec 13 20:45:52 1901`` (in 5.4.0-xilinx)
+
+## Example 2
 
 Delay for a number of seconds
 
@@ -100,7 +120,7 @@ void delaySeconds(long seconds){
 }
 ```
 
-### Example 3
+## Example 3
 
 Read RTC time of ``/dev/rtc`` (notice that hour in RTC time is different from local time)
 
