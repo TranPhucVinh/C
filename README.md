@@ -12,6 +12,7 @@ Main OS: Ubuntu 16.04
 Other OS:
 * Windows (specifically noted on any software that are built on Windows)
 * WSL Ubuntu 18.04
+* Xilinx with 5.4.0 Linux kernel
 
 # Text editor
 
