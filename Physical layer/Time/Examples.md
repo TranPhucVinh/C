@@ -8,7 +8,7 @@ Get current time with ``time()``
 
 int main() {
     time_t currentTime;
-    time(&currentTime); //Get current time and save to currentTime
+    time(&currentTime);//Get current time as epoch time and save this to currentTime
     printf("%s", ctime(&currentTime));//Wed Aug 18 01:00:26 2021
     return(0);
 }
