@@ -9,7 +9,7 @@ struct database_node {
 } *node_0; 
 
 //Insert value to next_node and link 2 nodes to each other
-static void insert_new_node(struct database_node *current_node, struct database_node *next_node, int id, int value)  {
+void insert_new_node(struct database_node *current_node, struct database_node *next_node, int id, int value)  {
     next_node->id = id;
     next_node->value = value;
     current_node->next_node = next_node;
@@ -35,7 +35,7 @@ void display_link_list(struct database_node first_node){
  * @value:
  */
 int insert_node_at_index(struct database_node *first_node, int index, int id, int value){
-	int size;//use static to store list size to append the linked list
+	int size;
     struct database_node *current_node = first_node, *ins_node, *prev_node;
 
 	ins_node = (struct database_node *)malloc(sizeof(struct database_node));
