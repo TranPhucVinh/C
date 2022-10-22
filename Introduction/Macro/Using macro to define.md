@@ -114,6 +114,10 @@ int main(){
 }
 ```
 
+Application:
+
+* Linked list: Insert a node at first index by using double pointer, as well as inserting at other index: [multiple_defines_for_insert_with_index.c](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Linked%20list/Singly%20Linked%20list/multiple_defines_for_insert_with_index.c)
+
 ### The difference between #if defined() and #ifdef()
 
 The difference between the two is that #ifdef can only use a single condition, while #if defined(NAME) can do compound conditionals.
