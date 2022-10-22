@@ -28,6 +28,68 @@ int main()
 }
 ```
 
+### ``#if defined``
+
+```c
+#include <stdio.h>
+#define CHANGE_VALUE
+
+#if defined(CHANGE_VALUE)
+int value = 1;
+#else
+int value = 2;
+#endif
+
+int main(){
+    printf("value %d\n", value);
+}
+```
+**Result**: ``value 1``:
+
+**Note** ``#define`` must be used before ``#if defined``. If using after ``#if defined``, it won't take effect:
+```c
+#if defined(CHANGE_VALUE)
+int value = 1;
+#else
+int value = 2;
+#endif
+
+int main(){
+    #define CHANGE_VALUE
+    printf("value %d\n", value);//2, while expect it to be 1
+}
+```
+
+Without ``#define CHANGE_VALUE``:
+
+```c
+#include <stdio.h>
+// #define CHANGE_VALUE
+
+#if defined(CHANGE_VALUE)
+int value = 1;
+#else
+int value = 2;
+#endif
+
+int main(){
+    printf("value %d\n", value);
+}
+```
+**Result**: ``value 2``
+
+Same result with ``#ifdef``. Note that ``#ifdef`` doesn't go with ``()`` and ``:``:
+
+```c
+#define CHANGE_VALUE
+
+#ifdef CHANGE_VALUE
+    int value = 1;
+#else
+    int value = 2;
+#endif
+```
+
 ### The difference between #if defined() and #ifdef()
 
 The difference between the two is that ``#ifdef`` can only use a single condition, while ``#if defined(NAME)`` can do compound conditionals.
