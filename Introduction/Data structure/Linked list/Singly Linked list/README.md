@@ -123,6 +123,8 @@ So the inserted node is a temporary node to stored the value of node 1 old node.
 
 Check implementation for this in [insert_with_index.c](insert_with_index.c) program.
 
+There is another way to insert a node at first index is to use double pointer, check [multiple_defines_for_insert_with_index.c](multiple_defines_for_insert_with_index.c) source code.
+
 # Implementations
 
 ### Create
