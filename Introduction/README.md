@@ -1,12 +1,11 @@
 # Fundamental concepts
 
-* [Environment](https://github.com/TranPhucVinh/C/tree/master/Introduction/Environment)
-* [Function handler](https://github.com/TranPhucVinh/C/tree/master/Introduction/Function%20handler)
 * [Header](https://github.com/TranPhucVinh/C/tree/master/Introduction/Header)
 * [Macro](https://github.com/TranPhucVinh/C/tree/master/Introduction/Macro)
 * [Data type](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20type)
 * [Keywords](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords)
 * [Data structure](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure)
+* [Linkage](Linkage.md)
 
 ### Function overloading
 

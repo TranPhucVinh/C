@@ -1,4 +1,4 @@
-### Example 1
+## Example 1
 
 Get current time with ``time()``
 
@@ -8,7 +8,7 @@ Get current time with ``time()``
 
 int main() {
     time_t currentTime;
-    time(&currentTime); //Get current time and save to currentTime
+    time(&currentTime);//Get current time as epoch time and save this to currentTime
     printf("%s", ctime(&currentTime));//Wed Aug 18 01:00:26 2021
     return(0);
 }
@@ -69,7 +69,27 @@ currentTime = 1641196080;//total second since Epoch
 printf("%s", ctime(&currentTime));//Mon Jan  3 14:48:00 2022
 ```    
 
-### Example 2
+### Overflow Epoch times (Y2K38)
+
+```c
+time_t currentTime;
+currentTime = 0x7FFFFFFF + 1;//total second since Epoch
+printf("%s", ctime(&currentTime));
+```
+
+This will give warning:
+
+```
+main.c:7:30: warning: integer overflow in expression of type ‘int’ results in ‘-2147483648’ [-Woverflow]
+    7 |     currentTime = 0x7FFFFFFF + 1;//total second since Epoch
+```
+
+**Result**: 
+
+* ``(null)`` (in Ubuntu 20.04)
+* ``Fri Dec 13 20:45:52 1901`` (in 5.4.0-xilinx)
+
+## Example 2
 
 Delay for a number of seconds
 
@@ -100,43 +120,7 @@ void delaySeconds(long seconds){
 }
 ```
 
-### Example 3
-
-Print out a string after every one second with ``sleep()``.
-
-```c
-#include <stdio.h> 
-#include <unistd.h>
-
-int main(){ 
-    while (1){
-		printf("Hello, World \n");
-		sleep(1);
-	}
-} 
-```
-
-An inefficient way to delay 1 second as its delay time varies in various processing core:
-
-```c
-void delayOneSecond();  
-
-int main(){ 
-  while (1){
-    printf("Hello, World \n");
-    delayOneSecond();
-	}
-} 
-
-void delayOneSecond(){
-  int c, d;
-  for (c = 1; c <= 32767; c++){
-    for (d = 1; d <= 32767; d++){};
-  }
-}
-```
-
-### Example 4
+## Example 3
 
 Read RTC time of ``/dev/rtc`` (notice that hour in RTC time is different from local time)
 

@@ -1,6 +1,6 @@
 # API
 
-``poll`` is handled in ``struct file_operations``:
+For working with [poll in userspace as I/O multiplexing](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/IO%20multiplexing%20examples.md), ``poll`` is handled in ``struct file_operations``:
 
 ```c
 struct file_operations {
@@ -20,12 +20,12 @@ void poll_wait (struct file *, wait_queue_head_t *, poll_table *);
 
 # Examples
 
-Send ``POLLIN`` revent from kernel space to user space when open, read, write, close operations are performed:
+Send ``POLLIN`` ``revent`` from character device created by character_device_poll.c to userspace application (user_space_poll.c) when open, read, write, close operations are performed to this character device:
 
 * [character_device_poll.c](character_device_poll.c)
 * [user_space_poll.c](user_space_poll.c)
 
-**Note**: Only valid revent can be sent back from kernel space to user space. For example, if asking kernel space to send ``POLLPRI`` in open operation (as ``POLLPRI`` is not the real ``revent`` from the open operation), it still sends ``POLLIN`` back to user space. 
+**Note**: Only valid ``revent`` can be sent back from kernel space to user space. For example, if asking kernel space to send ``POLLPRI`` in open operation (as ``POLLPRI`` is not the real ``revent`` from the open operation), it still sends ``POLLIN`` back to user space. 
 
 E.g:
 

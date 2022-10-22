@@ -83,3 +83,37 @@ void list_add(struct list_head *new, struct list_head *head);
 * ``struct list_head *new``: new entry to be added
 
 * ``struct list_head *head``: list head to add it after
+
+### list_for_each_entry()
+
+Iterate over list of given type
+
+```c
+list_for_each_entry (pos, head, member);
+```
+
+Arguments:
+* ``pos``: the type ``*`` to use as a loop cursor.
+* ``head`` the head for your list.
+* ``member`` the name of the list_head within the struct.
+
+From this function definiton, we can see that it can only display the node from index 1, not from index 0
+
+Display list with ``list_for_each_entry()``:
+
+```c
+void display_list(struct data_base_node* first_node)
+{
+	struct data_base_node *position;
+	int index = 1;
+
+	//Display node 0
+	printk("node_0 has value: %d\n", first_node->value);
+
+	//Then display node from index 1 to n-1
+	list_for_each_entry(position, &first_node->list, list) {
+		printk("node_%d has value: %d\n", index, position->value);
+		index++;
+	}
+}
+```
