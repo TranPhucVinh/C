@@ -92,16 +92,22 @@ Same result with ``#ifdef``. Note that ``#ifdef`` doesn't go with ``()`` and ``:
 
 ### The difference between #if defined() and #ifdef()
 
-The difference between the two is that ``#ifdef`` can only use a single condition, while ``#if defined(NAME)`` can do compound conditionals.
+The difference between the two is that #ifdef can only use a single condition, while #if defined(NAME) can do compound conditionals.
 
 ```c
-#if defined(WIN32) && !defined(UNIX)
-/* Do windows stuff */
-#elif defined(UNIX) && !defined(WIN32)
-/* Do linux stuff */
+#include <stdio.h>
+#define CHANGE_VAR_A
+#define CHANGE_VAR_B
+
+#if defined (CHANGE_VAR_A) && defined(CHANGE_VAR_B)
+    int value = 1;
 #else
-/* Error, both can't be defined or undefined same time */
+    int value = 2;
 #endif
+
+int main(){
+    printf("value %d\n", value);//1
+}
 ```
 
 ### Redefine macro value
