@@ -90,6 +90,30 @@ Same result with ``#ifdef``. Note that ``#ifdef`` doesn't go with ``()`` and ``:
 #endif
 ```
 
+Use ``#if defined`` to define multiple functions:
+
+```c
+#include <stdio.h>
+
+#define DEFINE_FUNCTION
+#if defined(DEFINE_FUNCTION)
+void add_function(int a, int b)
+#else
+void add_function(int a, int b, int c)
+#endif
+{
+    int general_var = 123;//Put general defines here, before #if and #else
+    #if defined(DEFINE_FUNCTION)
+    printf("#if defined(DEFINE_FUNCTION): %d", a+b+general_var);
+    #else
+    printf("#if defined(DEFINE_FUNCTION): %d", a+b+c+general_var);
+    #endif
+}
+int main(){
+    add_function(1, 2);
+}
+```
+
 ### The difference between #if defined() and #ifdef()
 
 The difference between the two is that #ifdef can only use a single condition, while #if defined(NAME) can do compound conditionals.
