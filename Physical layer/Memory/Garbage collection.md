@@ -48,6 +48,82 @@ get_reg outside declare_function(): 0x7ffc788f1994
 
 That happen as C and CPP (compiled this program with both GCC/G++ with ``.c`` and ``cpp`` still gives the same result) doesn't support garbage collection. Although outside ``declare_function()``, local variable ``a`` can't be access, the register address that was allocated for it still keeps its value.
 
+### Accessing address of local variables is a bad practice and must be implemented
+
+Accessing address of local variables will result in unexpected behavior so that it must be implemented. Take this example:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int *get_reg;
+void declare_function();
+void function();
+
+int main() 
+{ 
+	declare_function();
+  	printf("get_reg outside declare_function(): %p\n", get_reg);
+	printf("*get_reg outside: %d\n", *get_reg);
+
+	function();
+
+	printf("get_reg outside declare_function(): %p\n", get_reg);
+	printf("*get_reg outside: 0x%x\n", *get_reg);
+	
+	return 0; 
+} 
+
+void declare_function(){
+	int a = 12;
+	get_reg = &a;
+	printf("get_reg inside declare_function(): %p\n", get_reg);
+	printf("*get_reg inside: %d\n", *get_reg);
+}
+
+void function(){
+	int b_1 = 0x34;
+	// printf("&b_1: %p\n", &b_1);
+	int b_2 = 0x56;
+	// printf("&b_2: %p\n", &b_2);
+}
+```
+
+**Result**
+
+```
+get_reg inside declare_function(): 0x7fffa5c2b704
+*get_reg inside: 12
+get_reg outside declare_function(): 0x7fffa5c2b704
+*get_reg outside: 12
+get_reg outside declare_function(): 0x7fffa5c2b704
+*get_reg outside: 0xc
+```
+
+We can see that ``0xc`` is an unexpected variable. If enabling ``printf()`` in ``function()`` like this:
+
+```c
+void function(){
+	int b_1 = 0x34;
+	printf("&b_1: %p\n", &b_1);
+	int b_2 = 0x56;
+	printf("&b_2: %p\n", &b_2);
+}
+```
+
+**Result**
+
+```
+get_reg inside declare_function(): 0x7ffdc2ea6574
+*get_reg inside: 12
+get_reg outside declare_function(): 0x7ffdc2ea6574
+*get_reg outside: 12
+&b_1: 0x7ffdc2ea6570
+&b_2: 0x7ffdc2ea6574
+get_reg outside declare_function(): 0x7ffdc2ea6574
+*get_reg outside: 0x56
+```
+
 ## Non-supported garbage collection effected by override pointer setup
 
 When local variable getting out of scope, its register address will hold its value until some other variable declared in some sibling block variable overrides it.
