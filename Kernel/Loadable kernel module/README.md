@@ -106,11 +106,19 @@ Set the value to v
 * ``v``: pointer of type atomic_t
 * ``i``: value
 
-**Example**: Get and set value to atomic_t with ``atomic_read()`` and ``atomic_set()``
+```c
+int atomic_add_return(int i, atomic_t * v);
+```
+Atomically adds ``i`` to ``v`` and returns ``i + v``
+
+* ``i``: integer value to add
+* ``v``: pointer of type ``atomic_t``
+
+**Example**: Get and set value to atomic_t with ``atomic_read()``, ``atomic_set()`` and ``atomic_add_return()``
 
 ```c
-#include<linux/module.h>
-#include<linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kernel.h>
 
 MODULE_LICENSE("GPL");
 
@@ -123,6 +131,7 @@ int init_module(void)
 	printk(KERN_INFO "b %d\n", b);//b 12
 	atomic_set(&a, 34);
 	printk(KERN_INFO "%d\n", atomic_read(&a));//34
+	printk(KERN_INFO "%d\n", atomic_add_return(1, &a));//35
 	return 0;
 }
 
