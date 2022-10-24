@@ -211,7 +211,6 @@ int fseek( FILE * stream, long int offset, int origin);
 
 * ``offset``: Number of bytes to offset from origin.
 * ``origin``: Position used as reference for the offset. 
-
 	* ``SEEK_SET``:	Beginning of file
 	* ``SEEK_CUR``:	Current position of the file pointer
 	* ``SEEK_END``:	End of file
@@ -219,7 +218,7 @@ int fseek( FILE * stream, long int offset, int origin);
 ### ftell()
 
 ```c
-long int ftell ( FILE * stream );
+long int ftell(FILE *stream);
 ```
 Get current position in ``stream``. Returns the current value of the position indicator of the stream.
 

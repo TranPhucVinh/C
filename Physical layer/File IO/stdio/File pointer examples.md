@@ -14,10 +14,9 @@ int main(int argc, char *argv[]) {
 	FILE *fp;
 	fp = fopen(file_name, "r");
 	if (fp){
-		fseek(fp, 0L, SEEK_END);
-		file_size = ftell(fp);
-
-		fseek(fp, 0L, SEEK_SET);
+		fseek(fp, 0L, SEEK_END);//Set file position from index 0 to the end of file
+		file_size = ftell(fp);//Then get the file size
+		fseek(fp, 0L, SEEK_SET);//Return file position back to the beginning
 
 		char *buffer;
 		buffer = (char *) malloc(file_size);

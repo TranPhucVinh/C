@@ -41,9 +41,9 @@ char *read_file(char *filename){
 
     fp = fopen(filename, "r");
     if (fp != NULL) {
-        fseek(fp, 0L, SEEK_END);
-        long file_size = ftell(fp);
-        fseek(fp, 0L, SEEK_SET);
+        fseek(fp, 0L, SEEK_END);//Set file position from index 0 to the end of file
+        long file_size = ftell(fp);//Then get the file size
+        fseek(fp, 0L, SEEK_SET);//Return file position back to the beginning
 
         char *buffer;
         buffer = (char *) malloc(file_size);
