@@ -120,9 +120,9 @@ int init_module(void)
 {
 	a.counter = 12;
 	int b = atomic_read(&a);
-	printk(KERN_INFO "b %d\n", b);
+	printk(KERN_INFO "b %d\n", b);//b 12
 	atomic_set(&a, 34);
-	printk(KERN_INFO "%d\n", atomic_read(&a));
+	printk(KERN_INFO "%d\n", atomic_read(&a));//34
 	return 0;
 }
 
