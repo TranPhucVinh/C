@@ -207,6 +207,8 @@ fputs("Hello, World ! 1\n", stdout);
 int fseek( FILE * stream, long int offset, int origin);
 ```
 
+``fseek()`` sets the file position of the stream to the given offset.
+
 * ``offset``: Number of bytes to offset from origin.
 * ``origin``: Position used as reference for the offset. 
 
@@ -220,6 +222,8 @@ int fseek( FILE * stream, long int offset, int origin);
 long int ftell ( FILE * stream );
 ```
 Get current position in ``stream``. Returns the current value of the position indicator of the stream.
+
+**Application**: Use ``fseek()`` and ``ftell()`` to check size of a file then read that file [File pointer example 1](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/File%20pointer%20examples.md#example-1) and [read_file() function in basic_file_operations.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/basic_file_operations.c).
 
 ## Delimited string input
 
