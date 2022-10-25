@@ -31,7 +31,7 @@ int main(){
 ```
 **Run**: ``./a.out < test.c``
 
-To a file from specific index:
+To read a file from specific index:
 
 ```c
 int fd;
