@@ -48,9 +48,9 @@ get_reg outside declare_function(): 0x7ffc788f1994
 
 That happen as C and CPP (compiled this program with both GCC/G++ with ``.c`` and ``cpp`` still gives the same result) doesn't support garbage collection. Although outside ``declare_function()``, local variable ``a`` can't be access, the register address that was allocated for it still keeps its value.
 
-### Accessing address of local variables is a bad practice and must be implemented
+### Accessing address of local variables is a bad practice and must not be implemented
 
-Accessing address of local variables will result in unexpected behavior so that it must be implemented. Take this example:
+Accessing address of local variables will result in unexpected behavior so that it must not be implemented. Take this example:
 
 ```c
 #include <stdio.h>
@@ -178,6 +178,38 @@ reg_1 reg_2: 0x7ffccbea0554 0x7ffccbea0554
 In this example, as ``reg_2`` is not intended to effect ``reg_1`` but it is called in ``call_function_2()`` after ``call_function_1()`` so it will override ``reg_1`` value.
 
 As being overrided, after that call ``reg_1`` and ``reg_2`` will also have the same address.
+
+## Garbage collection is effected by malloc() usage
+
+```c
+int main() 
+{ 
+	declare_function();
+  	printf("get_reg outside declare_function(): %p\n", get_reg);
+	printf("*get_reg outside: %d\n", *get_reg);
+
+	int *b = malloc(1);
+	free(b);
+
+	printf("get_reg outside declare_function(): %p\n", get_reg);
+	printf("*get_reg outside: %d\n", *get_reg);
+	
+	return 0; 
+} 
+```
+
+**Result**
+
+```
+get_reg inside declare_function(): 0x7fff40033594
+*get_reg inside: 12
+get_reg outside declare_function(): 0x7fff40033594
+*get_reg outside: 12
+get_reg outside declare_function(): 0x7fff40033594
+*get_reg outside: 32767 (garbage value)
+```
+
+As noted in **Accessing address of local variables is a bad practice and must not be implemented**, this method to access local variable is a bad practice so the behavior of this program might not need explanation. This program behavior varies in multiple platform, like ESP-IDF as ESP-IDF supports garbage collection. Check the corresponding example in ESP-IDF for this program implementation.
 
 ## Issue doesn't happen on Windows
 
