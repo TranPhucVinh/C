@@ -31,15 +31,19 @@ int main(){
 ```
 **Run**: ``./a.out < test.c``
 
-To read a file from specific index:
+To read a file from a specific index, like index ``10``, with ``lseek()``:
 
 ```c
 int fd;
 char buffer[10];
 
 fd = open("README.md", O_RDONLY);
-lseek(fd, 10, SEEK_SET);
+int offset = lseek(fd, 10, SEEK_SET);
+printf("offset %d\n", offset);//10
+if (offset > 0){
 read(fd, buffer, 10);
+printf("%s\n", buffer);
+}
 ```
 
 ``lseek()`` is not available for stdin with ``/dev/tty``
