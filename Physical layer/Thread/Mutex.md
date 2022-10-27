@@ -80,16 +80,15 @@ share_value after executing 2 threads: 29753
 
 ### Example 1
 
-Using a simple boolean variable as a mutex key to implement with 2 tasks
+**Using a simple boolean variable as a mutex key to implement with 2 tasks**: Finish executing task 1 to print out ``Hello, World !`` 20 times with 1 second delay then execute task 2 to print out count up number from 1 to 20 with 1 second delay.
 
 ```c
 #include <stdio.h>
-#include <sys/time.h>
+#include <unistd.h>
 #include <pthread.h>
 
 void *func_thread_1(void *ptr);
 void *func_thread_2(void *ptr);
-void delaySeconds(long seconds);
 
 int mutex = 0;
 
@@ -111,7 +110,7 @@ void *func_thread_1(void *ptr){
     while(number < 20){
         printf("Hello, World !\n");
         number += 1;
-        delaySeconds(1);
+        sleep(1);
     }
     mutex = 1;
 }
@@ -122,7 +121,7 @@ void *func_thread_2(void *ptr){
     while(number < 20){
         printf("number: %d\n", number);
         number += 1;
-        delaySeconds(1);
+        sleep(1);
     }
     mutex = 0;
 }
