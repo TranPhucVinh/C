@@ -50,6 +50,8 @@ if (offset > 0){
 
 ``lseek(STDIN_FILENO, 10, SEEK_SET)`` will return ``-1`` for ``/dev/tty`` but will return a normal ``fd`` for  ``./a.out < test.c``.
 
+``lseek()`` with [default character device](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/create_character_device_by_seperated_operations.c) will return ``-1``.
+
 **Read the whole file by chunk and dynamically store to a char pointer**:
 
 ```c
