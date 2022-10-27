@@ -78,6 +78,8 @@ Reposition read/write file ``offset``
 |SEEK_CUR|The offset is set to its current location plus offset bytes|
 |SEEK_END|The offset is set to the size of the file plus offset bytes|
 
+**Return**: Upon successful completion, ``lseek()`` returns the resulting offset location as measured in bytes from the beginning of the file. On error, the value (``off_t``) -1 is returned and ``errno`` is set to indicate the error.
+
 ### pread() and pwrite()
 
 ``pread()``: Returns number of bytes read, 0 on EOF, or –1 on error
