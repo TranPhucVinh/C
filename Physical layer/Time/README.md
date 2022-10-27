@@ -17,6 +17,22 @@ int main(){
 unsigned int sleep(unsigned int seconds);//Sleep for a number of seconds
 ``` 
 
+Print out a string every 1 second with ``sleep()``:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+#define DELAY_TIME 1
+
+int main(int argc, char *argv[])  {
+	while(1){
+        printf("1 second delay\n");//Must have \n for proper print out
+        sleep(DELAY_TIME);
+    }
+}
+```
+
 ```c
 typedef unsigned long useconds_t;
 ```
@@ -27,6 +43,8 @@ int usleep(useconds_t usec);
 
 ``usleep``: suspend execution for microsecond intervals
 
+Print out a string every 1 second with ``usleep()``:
+
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -35,7 +53,7 @@ int usleep(useconds_t usec);
 
 int main(int argc, char *argv[])  {
 	while(1){
-        printf("Hello\n");// \n must have for proper print out
+        printf("Hello\n");//Must have \n for proper print out
         usleep(DELAY_TIME);
     }
 }
