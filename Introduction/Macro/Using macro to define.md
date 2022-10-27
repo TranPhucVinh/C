@@ -138,7 +138,7 @@ int main(){
 }
 ```
 
-### Redefine macro value
+### Redefine macro value with undef
 
 With ``#define``
 
