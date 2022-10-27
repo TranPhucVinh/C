@@ -41,8 +41,8 @@ fd = open("README.md", O_RDONLY);
 int offset = lseek(fd, 10, SEEK_SET);
 printf("offset %d\n", offset);//10
 if (offset > 0){
-read(fd, buffer, 10);
-printf("%s\n", buffer);
+	read(fd, buffer, 10);
+	printf("%s\n", buffer);
 }
 ```
 
