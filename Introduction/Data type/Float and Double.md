@@ -37,7 +37,7 @@ int b = 70;
 float c = ((float)a*16*16+ (float) b)/10;
 printf("%lf\n", c);//32.5999
 ```
-### Convert string to float
+## Convert string to float
 
 ```c
 strtof(const char* str, char **endptr);
@@ -62,7 +62,7 @@ int main()
 }
 ```
 
-### Floating-point remainder
+## Floating-point remainder
 
 ``%`` operator is not used for float number
 
