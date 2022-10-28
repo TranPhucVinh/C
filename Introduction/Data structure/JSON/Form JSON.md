@@ -1,4 +1,4 @@
-## Form JSON
+# Basic example
 
 Form a JSON string with string and number fields:
 
@@ -37,6 +37,57 @@ int main(){
         "name": "User name",
         "id":   123
 }
+```
+
+# Float number
+
+cJSON is unable to limit the decimal point:
+
+```c
+char *form_json_string(){
+   	cJSON *name = NULL, *id = NULL;
+
+	cJSON *json = cJSON_CreateObject();
+	if (json == NULL) return "NULL";
+
+	float number = (float) 2/3;
+	printf("%.2f\n", number);
+
+	cJSON_AddItemToObject(json, "id", cJSON_CreateNumber(number));
+
+	char *json_string = cJSON_Print(json);//Form a JSON string with cJSON_Print()
+	cJSON_Delete(json);
+	return json_string;
+}
+
+int main(){
+   printf("%s\n", form_json_string());
+   return 0;
+}
+```
+
+```c
+0.67
+
+{
+        "id":   0.66666668653488159
+}
+```
+
+Solve that issue by converting the float number to float string:
+
+```c
+cJSON *json = cJSON_CreateObject();
+if (json == NULL) return "NULL";
+
+char float_string[5];
+float number = (float) 2/3;
+printf("%.2f\n", number);
+sprintf(float_string, "%.2f", number);
+cJSON_AddItemToObject(json, "id", cJSON_CreateString(float_string));
+
+
+char *json_string = cJSON_Print(json);//Form a JSON string with cJSON_Print()
 ```
 
 # Bool object
