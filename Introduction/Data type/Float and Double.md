@@ -5,6 +5,25 @@ Limit float dgigit to 2 number
 printf("float number is: %.2f",y);
 ```
 
+## / arithemtic for float number
+
+```c
+float number = 2/3;
+printf("%.2f", number);//0.0
+```
+Problem solved:
+```c
+float number = 2.0f/3.0f;
+printf("%.2f", number);//0.67
+```
+
+Or
+
+```c
+float number = (float) 2/3;
+printf("%.2f", number);
+```
+
 ## Problem with typecast
 
 ### Unable to get the int value
