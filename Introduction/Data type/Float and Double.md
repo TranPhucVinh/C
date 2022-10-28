@@ -1,34 +1,9 @@
+# float
+
 Limit float dgigit to 2 number
 ```c
 printf("float number is: %.2f",y);
 ```
-### float and double
-
-**double** can also be declared as **long float**.
-
-```
-float -> %f
-
-double -> %lf
-```
-
-### Comparing float and double
-
-```c
-#include <stdio.h>
-void main() {
-	double x = 3.1;
-	float y = 3.1;
-	if (x == y){
-		printf("Yes\n");
-	}
-	else {
-		printf("No\n");
-	}
-}
-```
-
-**Result**: ``No``
 
 ## Problem with typecast
 
@@ -102,3 +77,31 @@ long double fmodl(long double x, long double y);
 ```
 
 Compile for ``math.h``: ``gcc test.c -lm``
+
+# float and double
+
+**double** can also be declared as **long float**.
+
+```
+float -> %f
+
+double -> %lf
+```
+
+### Comparing float and double
+
+```c
+#include <stdio.h>
+void main() {
+	double x = 3.1;
+	float y = 3.1;
+	if (x == y){
+		printf("Yes\n");
+	}
+	else {
+		printf("No\n");
+	}
+}
+```
+
+**Result**: ``No``
