@@ -1,15 +1,3 @@
-### Normally with negative number
-
-```c
-float y = -3.1;
-printf("float number is: %f",y);
-printf("size of negative float number is: %d", sizeof(y));
-```
-**Result**
-```
-float number is: -3.100000
-size of negative float number is: 4
-```
 Limit float dgigit to 2 number
 ```c
 printf("float number is: %.2f",y);
