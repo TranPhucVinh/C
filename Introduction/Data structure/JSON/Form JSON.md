@@ -1,6 +1,6 @@
 ## Form JSON
 
-Form a JSON string
+Form a JSON string with string and number fields:
 
 ```c
 #include <stdio.h>
@@ -34,7 +34,8 @@ int main(){
 
 ```json
 {
-	"name":	"User name"
+        "name": "User name",
+        "id":   123
 }
 ```
 
