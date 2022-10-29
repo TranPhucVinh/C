@@ -41,10 +41,13 @@ int init_module(void)
 
 	INIT_LIST_HEAD(&(node_0->list));
 
+	printk(KERN_INFO "Setup link list\n");
 	list_add(&(node_1->list), &(node_0->list));
 	list_add(&(node_2->list), &(node_1->list));
-	printk(KERN_INFO "Setup link list\n");
-
+	/*
+		list_add(&(node_2->list), &(node_1->list)) will add node_1->list as the last element of the linked list. 
+		Then the next list of node_1->list will link to node_0, the head node in that linked list to make the circular linked list.
+	*/
 	display_list(*node_0);
 	return 0;
 }
