@@ -81,8 +81,15 @@ list_entry(struct list_head *ptr, type_of_struct, field_name);
 void list_add(struct list_head *new, struct list_head *head);
 ```
 * ``struct list_head *new``: new entry to be added
-
 * ``struct list_head *head``: list head to add it after
+
+``list_add()`` will add a new entry at last index of a circular linked list during the forming/creating process.
+
+**Example**:
+
+``list_add(&(node_2->list), &(node_1->list))`` will add ``node_1->list`` is the last element of the linked list. Then the next list of ``node_1->list`` will link to the head node in that linked list to make the circular linked list. Check [create_and_read_linked_list.c](create_and_read_linked_list.c) with linked list creation process and the important comments for that.
+
+**Note**: Must not use ``list_add()`` to insert a node by index to an existed linked list as this will break the existed node by breaking the last index node.
 
 ### list_for_each_entry()
 
