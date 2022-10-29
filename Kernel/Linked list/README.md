@@ -59,6 +59,10 @@ Update node value at a specific index, view the node before and after updating t
 
 # API
 
+### INIT_LIST_HEAD()
+
+``INIT_LIST_HEAD()`` will init the list head of a circular linked list and must be used only 1 time in every circular linked list to create it.
+
 ### list_head()
 
 ```c
