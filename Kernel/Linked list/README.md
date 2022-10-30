@@ -95,9 +95,29 @@ void list_add(struct list_head *new, struct list_head *head);
 
 **Example**:
 
-``list_add(&(node_2->list), &(node_1->list))`` will add ``node_1->list`` as the last element of the linked list. Then the next list of ``node_1->list`` will link to the head node in that linked list to make the circular linked list. Check [create_and_read_linked_list.c](create_and_read_linked_list.c) with linked list creation process and the important comments for that.
+``list_add(&(node_2->list), &(node_1->list))`` will add ``node_1->list`` as the last element of the linked list. Then the next list of    ``node_1->list`` will link to the head node in that linked list to make the circular linked list. Check [create_and_read_linked_list.c](create_and_read_linked_list.c) with linked list creation process and the important comments for that.
 
 **Note**: Must not use ``list_add()`` to insert a node by index to an existed linked list as this will break the existed node by breaking the last index node.
+
+### __list_add()
+
+Insert a new entry between two known consecutive entries.
+
+```c
+void __list_add(struct list_head *new, struct list_head *prev, struct list_head *next);
+```
+
+**Create a linked list by __list_add()**
+
+```c
+//node_0, node_1 and node_2 are identically defined like in create_and_read_linked_list.c
+INIT_LIST_HEAD(&(node_0->list));
+
+__list_add(&(node_1->list), &(node_0->list), ((node_0->list).next));
+__list_add(&(node_2->list), &(node_1->list), ((node_1->list).next));
+```
+
+**Note**: ``__list_add`` can be used to insert a node by index to an existed linked list.
 
 ### list_for_each_entry()
 
