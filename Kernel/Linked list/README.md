@@ -4,9 +4,11 @@ The Linux kernel support API to create a circular, doubly-linked lists.
 
 ## Create
 
-Create and read all member of a linked list: [create_and_read_linked_list.c](create_and_read_linked_list.c)
+Create and read all member of a linked list by ``list_add()``: [create_and_read_linked_list.c](create_and_read_linked_list.c)
 
 With this source code, as the linked list is circular, next node of ``node_2`` will then be ``node_0``
+
+Create a linked list by ``__list_add()``: Check [__list_add() API document](#__list_add)
 
 Can't setup linked list like this:
 
