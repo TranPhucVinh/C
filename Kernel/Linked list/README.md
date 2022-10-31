@@ -211,23 +211,4 @@ Arguments:
 * ``head`` the head for your list.
 * ``member`` the name of the list_head within the struct.
 
-From this function definiton, we can see that it can only display the node from index 1, not from index 0
-
-Display list with ``list_for_each_entry()``:
-
-```c
-void display_list(struct data_base_node* first_node)
-{
-	struct data_base_node *position;
-	int index = 1;
-
-	//Display node 0
-	printk("node_0 has value: %d\n", first_node->value);
-
-	//Then display node from index 1 to n-1
-	list_for_each_entry(position, &(first_node->list), list) {
-		printk("node_%d has value: %d\n", index, position->value);
-		index++;
-	}
-}
-```
+From this function definiton, we can see that it can only display the node from index 1, not from index 0.
