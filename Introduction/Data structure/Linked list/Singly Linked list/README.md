@@ -130,12 +130,12 @@ Insert a new node to an existed linked list by the specified index: [insert_with
 
 **Read the whole linked list**: Check [create_and_read_linked_list.c](create_and_read_linked_list.c) source code, with function ``display_linked_list()`` to display the whole linked list. Note that ``first_node`` as parameter of ``display_linked_list()`` must be passed by reference as linked list performs traversing based on the address, which started from first node.
 
-**Read a node at specific index**
+**Read a node at specific index**: Function ``display_by_index()``
 
 ```c
 //Other operations like in create_and_read_linked_list.c
-int read_member(struct database_node first_node, int index){
-    struct database_node *ptr = &first_node;
+int display_by_index(struct database_node *first_node, int index){
+    struct database_node *ptr = first_node;
     int tmp_index = 0;
     while(ptr != NULL)
 	{
@@ -146,21 +146,29 @@ int read_member(struct database_node first_node, int index){
         tmp_index += 1;
         ptr = ptr->next_node;
     }
+	printf("There is no index %d in linked list\n", index);
     return 0;
 }
 
 int main() 
 { 
-    struct database_node node_0 = {1, 100};
-    struct database_node node_1, node_2;
-    insert_new_node(&node_0, &node_1, 2, 200);
-    insert_new_node(&node_1, &node_2, 3, 300);
-    node_2.next_node = NULL; //End link list
+	struct database_node *node_0, *node_1, *node_2;
+	node_0 = (struct database_node *)malloc(sizeof(struct database_node));
 
-    read_member(node_0, 2);
+    node_0->id = 1;
+    node_0->value = 100;
+
+    node_1 = (struct database_node *)malloc(sizeof(struct database_node));
+    node_2 = (struct database_node *)malloc(sizeof(struct database_node));
+    insert_new_node(node_0, node_1, 2, 200);
+    insert_new_node(node_1, node_2, 3, 300);
+    node_2->next_node = NULL; //End link list
+	display_linked_list(node_0);
+
+    display_by_index(node_0, 0);
 
     return 0; 
-} 
+}
 ```
 
 ### Update
