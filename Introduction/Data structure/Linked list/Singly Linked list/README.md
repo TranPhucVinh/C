@@ -30,9 +30,8 @@ static void insert_new_node(struct database_node *current_node, struct database_
     current_node->next_node = next_node;
 }
 
-static void display_link_list(struct database_node first_node){
-    struct database_node *ptr = &first_node;
-	// struct database_node *ptr = node_0;
+static void display_link_list(struct database_node *first_node){
+    struct database_node *ptr = first_node;
 
     while(ptr != NULL)
 	{        
@@ -80,18 +79,12 @@ int main()
     node_2.next_node = NULL; //End link list
 
 	printf("Before updating:\n");
-    display_link_list(node_0);
+    display_link_list(&node_0);
 
     insert_node_at_middle(&node_0, 1, 123, 456);
 
-	printf("Before updating:\n");
-	display_link_list(node_0);
-
-    insert_node_at_middle(&node_0, 1, 123, 456);
-
-    printf("Before updating:\n");
-	display_link_list(node_0);
-
+	printf("After updating:\n");
+	display_link_list(&node_0);
     return 0; 
 } 
 ```
