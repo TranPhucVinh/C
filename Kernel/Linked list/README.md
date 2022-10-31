@@ -157,7 +157,7 @@ void display_list(struct data_base_node* first_node)
 	printk("node_0 has value: %d\n", first_node->value);
 
 	//Then display node from index 1 to n-1
-	list_for_each_entry(position, &first_node->list, list) {
+	list_for_each_entry(position, &(first_node->list), list) {
 		printk("node_%d has value: %d\n", index, position->value);
 		index++;
 	}
