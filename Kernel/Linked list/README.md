@@ -59,42 +59,31 @@ This reading method has a drawback that the read_size argument must be updated e
 //Other operations like in create_and_read_linked_list.c
 void display_at_index(struct data_base_node *first_node, int index){
     struct list_head *list_ptr = &(first_node->list);
-	struct data_base_node *node_ptr;
-	int node_count = 0;
+	struct data_base_node *position;
 
-	while(node_count <= TOTAL_NODES)
+	int count_index = 1;
+	if (index == 0)
 	{
-		node_ptr = list_entry(list_ptr, struct data_base_node, list);
-		if (node_count == index) {
-			printk("node_%d has value %d\n", node_count, node_ptr->value);
-			break;
-		}
-		list_ptr = list_ptr->next;
-		node_count += 1;
+		printk("node_0 has value: %d\n", first_node->value);
+		return;
 	}
+	list_for_each_entry(position, &(first_node->list), list) {
+		if (count_index == index)
+		{
+			printk("node_%d has value: %d\n", index, position->value);
+			return;
+		}
+		count_index++;
+	}
+	return;
 }
 
 int init_module(void)
 {
-    node_0 = (data_base_node *) kmalloc(sizeof(data_base_node), GFP_KERNEL);
-    node_1 = (data_base_node *) kmalloc(sizeof(data_base_node), GFP_KERNEL);
-    node_2 = (data_base_node *) kmalloc(sizeof(data_base_node), GFP_KERNEL);
-
-	node_0->value = 1;
-	node_1->value = 2;
-	node_2->value = 3;
-
-	INIT_LIST_HEAD(&(node_0->list));
-
-	printk(KERN_INFO "Setup link list\n");
-	list_add(&(node_1->list), &(node_0->list));
-	list_add(&(node_2->list), &(node_1->list));
-	/*
-		list_add(&(node_2->list), &(node_1->list)) will add node_1->list as the last element of the linked list. 
-		Then the next list of node_1->list will link to node_0, the head node in that linked list to make the circular linked list.
-	*/
+    //Other operations like in create_and_read_linked_list.c
 	display_linked_list(node_0);
-	display_at_index(node_0, 1);
+	display_at_index(node_0, 0);
+	display_at_index(node_0, 2);
 	return 0;
 }
 //Other operations like in create_and_read_linked_list.c
