@@ -91,7 +91,45 @@ int init_module(void)
 
 ## Update
 
-Update node value at a specific index, view the node before and after updating to see changes: [update_linked_list.c](update_linked_list.c)
+Update node value at a specific index, view the node before and after updating to see changes: 
+
+```c
+//Other operations like in create_and_read_linked_list.c
+void update_node(struct data_base_node *first_node, int index, int value){
+    struct list_head *list_ptr = &(first_node->list);
+	struct data_base_node *position;
+
+	int count_index = 1;
+	if (index == 0)
+	{
+		first_node->value = value;
+		return;
+	}
+	list_for_each_entry(position, &(first_node->list), list) {
+		if (count_index == index)
+		{
+			position->value = value;
+			return;
+		}
+		count_index++;
+	}
+	return;
+}
+
+int init_module(void)
+{
+   //Other operations like in create_and_read_linked_list.c
+	display_linked_list(node_0);
+
+	update_node(node_0, 0, 12);
+	display_linked_list(node_0);
+
+	update_node(node_0, 1, 34);
+	display_linked_list(node_0);
+	return 0;
+}
+//Other operations like in create_and_read_linked_list.c
+```
 
 # API
 
