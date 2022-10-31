@@ -16,16 +16,16 @@ typedef struct data_base_node data_base_node;
 data_base_node *node_0, *node_1, *node_2;
 
 void display_linked_list(struct data_base_node *first_node){
-    struct list_head *list_ptr = &(first_node->list);
-	struct data_base_node *node_ptr;
-	int node_count = 0;
+    struct data_base_node *position;
+	int index = 1;
 
-	while(node_count < TOTAL_NODES)
-	{
-		node_ptr = list_entry(list_ptr, struct data_base_node, list);
-		printk("node_%d has value %d\n", node_count, node_ptr->value);
-		list_ptr = list_ptr->next;
-		node_count += 1;
+	//Display node 0
+	printk("node_0 has value: %d\n", first_node->value);
+
+	//Then display node from index 1 to n-1
+	list_for_each_entry(position, &(first_node->list), list) {
+		printk("node_%d has value: %d\n", index, position->value);
+		index++;
 	}
 }
 
