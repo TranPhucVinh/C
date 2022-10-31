@@ -25,9 +25,33 @@ This will cause the module to crash. Even when removing ``INIT_LIST_HEAD()`` set
 
 ## Read
 
-**Read all members in an existed linked list**: [create_and_read_linked_list.c](create_and_read_linked_list.c)
+**Read all member in an existed linked list with list_for_each_entry() (from node at index 1, not index 0)**: Check [list_for_each_entry() API](#list_for_each_entry) and [create_and_read_linked_list.c](create_and_read_linked_list.c).
 
-**Read all member in an existed linked list with list_for_each_entry() (from node at index 1, not index 0)**: Check [list_for_each_entry() API](#list_for_each_entry)
+**Read all members in an existed linked list by traversing in the while loop**:
+
+```c
+/**
+ * display_linked_list - Display all members in the linked list through while loop 
+ * and read_size
+ * @first_node:
+ * @read_size:
+ */
+void display_linked_list(struct data_base_node *first_node, int read_size){
+    struct list_head *list_ptr = &(first_node->list);
+	struct data_base_node *node_ptr;
+	int node_count = 0;
+
+	while(node_count < read_size)
+	{
+		node_ptr = list_entry(list_ptr, struct data_base_node, list);
+		printk("node_%d has value %d\n", node_count, node_ptr->value);
+		list_ptr = list_ptr->next;
+		node_count += 1;
+	}
+}
+```
+
+This reading method has a drawback that the read_size argument must be updated everytime the linked list is appended or has its size reduced. It's better to use [list_for_each_entry()](#list_for_each_entry) instead.
 
 **Read a node at specific index**
 
