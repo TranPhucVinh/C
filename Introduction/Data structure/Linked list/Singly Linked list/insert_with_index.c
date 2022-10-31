@@ -15,8 +15,8 @@ void insert_new_node(struct database_node *current_node, struct database_node *n
     current_node->next_node = next_node;
 }
 
-void display_link_list(struct database_node first_node){
-    struct database_node *ptr = &first_node;
+void display_linked_list(struct database_node *first_node){
+    struct database_node *ptr = first_node;
 
     while(ptr != NULL)
 	{        
@@ -97,7 +97,11 @@ int main(int argc, char *argv[])
     node_2->next_node = NULL; //End link list
 
 	printf("Before inserting:\n");
-    display_link_list(*node_0);
+    display_linked_list(node_0);
+
+	insert_node_at_index(node_0, 1, 123, 456);
+	printf("After inserting:\n");
+    display_linked_list(node_0);
 
     return 0; 
 } 
