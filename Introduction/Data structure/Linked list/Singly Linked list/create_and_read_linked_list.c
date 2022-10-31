@@ -8,14 +8,14 @@ struct database_node {
 }; 
 
 //Insert value to Next node and link 2 nodes to each other
-void insert_new_node(struct database_node *current_node, struct database_node *next_node, int id, int value)  {
+void insert_new_node(struct database_node *current_node, struct database_node *next_node, int id, int value){
     next_node->id = id;
     next_node->value = value;
     current_node->next_node = next_node;
 }
 
-void display_link_list(struct database_node first_node){
-    struct database_node *ptr = &first_node;
+void display_link_list(struct database_node *first_node){
+    struct database_node *ptr = first_node;
 
     while(ptr != NULL)
 	{        
@@ -39,7 +39,7 @@ int main()
     insert_new_node(node_1, node_2, 3, 300);
     node_2->next_node = NULL; //End link list
 
-    display_link_list(*node_0);
+    display_link_list(node_0);
 
     return 0; 
 } 
