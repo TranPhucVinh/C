@@ -132,10 +132,10 @@ __list_add(&(node_2->list), &(node_1->list), ((node_1->list).next));
 
 ### list_for_each_entry()
 
-Iterate over list of given type
+Iterate over list of given type (as a macro)
 
 ```c
-list_for_each_entry (pos, head, member);
+#define list_for_each_entry(pos, head, member)	
 ```
 
 Arguments:
