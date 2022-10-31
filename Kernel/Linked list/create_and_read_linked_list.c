@@ -15,8 +15,8 @@ struct data_base_node {
 typedef struct data_base_node data_base_node;
 data_base_node *node_0, *node_1, *node_2;
 
-void display_list(struct data_base_node first_node){
-    struct list_head *list_ptr = &(first_node.list);
+void display_linked_list(struct data_base_node *first_node){
+    struct list_head *list_ptr = &(first_node->list);
 	struct data_base_node *node_ptr;
 	int node_count = 0;
 
@@ -48,7 +48,7 @@ int init_module(void)
 		list_add(&(node_2->list), &(node_1->list)) will add node_1->list as the last element of the linked list. 
 		Then the next list of node_1->list will link to node_0, the head node in that linked list to make the circular linked list.
 	*/
-	display_list(*node_0);
+	display_linked_list(node_0);
 	return 0;
 }
 
