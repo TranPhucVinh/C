@@ -25,9 +25,9 @@ This will cause the module to crash. Even when removing ``INIT_LIST_HEAD()`` set
 
 ## Read
 
-**Read all member in an existed linked list with list_for_each_entry() (from node at index 1, not index 0)**: Check [list_for_each_entry() API](#list_for_each_entry) and [create_and_read_linked_list.c](create_and_read_linked_list.c).
+**Read all member in an existing linked list with list_for_each_entry() (from node at index 1, not index 0)**: Check [list_for_each_entry() API](#list_for_each_entry) and [create_and_read_linked_list.c](create_and_read_linked_list.c).
 
-**Read all members in an existed linked list by traversing in the while loop**:
+**Read all members in an existing linked list by traversing in the while loop**:
 
 ```c
 /**
