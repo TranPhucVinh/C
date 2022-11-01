@@ -160,8 +160,9 @@ list_entry(struct list_head *ptr, type_of_struct, field_name);
 ```c
 void list_add(struct list_head *new, struct list_head *head);
 ```
+Insert a new entry after the specified head. This is useful for implementing **stacks**.
 * ``struct list_head *new``: new entry to be added
-* ``struct list_head *head``: list head to add it after
+* ``struct list_head *head``: list head to add it **after** (be not to confuse with ``list_add_tail()``)
 
 ``list_add()`` will add a new entry at last index of a circular linked list during the forming/creating process.
 
@@ -199,6 +200,18 @@ __list_add(&(node_2->list), &(node_1->list), ((node_1->list).next));
 ```
 
 **Note**: ``__list_add`` can be used to insert a node by index to an existed linked list.
+
+### list_add_tail()
+
+```c
+void list_add_tail(struct list_head *new, struct list_head *head);
+```
+
+Insert a new entry before the specified head. This is useful for implementing **queues**.
+
+Arguments
+* ``struct list_head *new``: new entry to be added
+* ``struct list_head *head``: list head to add it **before** (be not to confuse with ``list_add()``)
 
 ### list_for_each_entry()
 
