@@ -56,4 +56,5 @@ char **char_array = (char**) malloc(ROW_SIZE * sizeof(char*));
 
 ## Define double pointer for a variable
 
-Double pointer as a variable is used as the returned value from a POSIX thread, check [Thread creation: Get return from a thread and store to a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#get-return-from-a-thread-and-store-to-a-variable) for its implementation.
+* Double pointer as a variable is used as the returned value from a POSIX thread, check [Thread creation: Get return from a thread and store to a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#get-return-from-a-thread-and-store-to-a-variable) for its implementation.
+* Function ``insert_node_at_index()`` for both [userspace](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Linked%20list/Singly%20linked%20list/multiple_defines_for_insert_with_index.c) and [kernel space linked list](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linked%20list/insert_with_index.c) use double pointer variable ``first_node`` to insert a new first node to replace it.
