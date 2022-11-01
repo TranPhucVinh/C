@@ -72,7 +72,7 @@ Get module name by ``THIS_MODULE->name``:
 printk(KERN_INFO "Module name %s\n", THIS_MODULE->name);
 ```
 
-**Get modules parameters and passing command line arguments to a module**: [Parameters for modules.md](Parameters for modules.md)
+**Get modules parameters and passing command line arguments to a module**: [Parameters for modules](Parameters%20for%20modules.md)
 
 ## API
 
