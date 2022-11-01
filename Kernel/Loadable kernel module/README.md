@@ -48,10 +48,6 @@ Run ``dmesg|tail`` to view last lines of the kernel log.
 [12609.519833] ubuntu_kernel_module: module license 'unspecified' taints kernel.
 ```
 
-### Out of tree
-
-Check [out of tree document](Out%20of%20tree.md) to perform out of tree in kernel module.
-
 ### Makefile
 
 ``obj-m``: Specify built object's name
@@ -63,6 +59,16 @@ and, after linking, will result in the kernel module ``<module_name>.ko``.
 
 When the module is built from multiple sources, an additional line is needed listing the files: ``module_name-y := src1.o src2.o``
 
+### Out of tree
+
+Check [out of tree document](Out%20of%20tree.md) to perform out of tree in kernel module.
+
+### Kernel module information
+
+Get module name by ``THIS_MODULE->name``:
+```c
+printk(KERN_INFO "Module name %s\n", THIS_MODULE->name);
+```
 ## API
 
 ### module_init() vs init_module() and module_exit() vs cleanup_module()
