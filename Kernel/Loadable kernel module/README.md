@@ -65,10 +65,15 @@ Check [out of tree document](Out%20of%20tree.md) to perform out of tree in kerne
 
 ### Kernel module information
 
+**Get module name**
+
 Get module name by ``THIS_MODULE->name``:
 ```c
 printk(KERN_INFO "Module name %s\n", THIS_MODULE->name);
 ```
+
+**Get modules parameters and passing command line arguments to a module**: [Parameters for modules.md](Parameters for modules.md)
+
 ## API
 
 ### module_init() vs init_module() and module_exit() vs cleanup_module()
