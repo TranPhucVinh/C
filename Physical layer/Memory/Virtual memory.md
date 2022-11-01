@@ -23,7 +23,7 @@ On success, ``mmap()`` returns a pointer to the mapped area.
 
 ``flags``:
 
-* ``MAP_SHARED``: Share memory
+* ``MAP_SHARED``: Share this mapping for usage in shared memory
 * ``MAP_ANONYMOUS``: The mapping doesn't involve any file descriptor (i.e fd=-1)
 
 ### Examples
