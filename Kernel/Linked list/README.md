@@ -23,6 +23,8 @@ node_2.list.next = node_0.list.prev;
 
 This will cause the module to crash. Even when removing ``INIT_LIST_HEAD()`` setup, the module crashing issue still happen.
 
+Insert a new node by index to an existing linked list: [insert_with_index.c](insert_with_index.c)
+
 ## Read
 
 **Read all member in an existing linked list with list_for_each_entry() (from node at index 1, not index 0)**: Check [list_for_each_entry() API](#list_for_each_entry) and [create_and_read_linked_list.c](create_and_read_linked_list.c).
