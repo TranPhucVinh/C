@@ -9,7 +9,7 @@
 * Semaphore
 * Message queue
 * Shared memory
-* [Socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP/TCP)
+* [Socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP)
 * [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
 
 # API
