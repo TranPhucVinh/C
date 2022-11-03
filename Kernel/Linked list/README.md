@@ -1,6 +1,9 @@
-The Linux kernel support API to create a circular, doubly-linked lists.
+The Linux kernel linked list support:
 
-# Implementations
+* Circular doubly linked list with list.h
+* Lock-less NULL terminated single linked list with [linux/llist.h](https://github.com/torvalds/linux/blob/master/include/linux/llist.h)
+
+# Circular doubly linked list implementations
 
 ## Create
 
@@ -24,6 +27,8 @@ node_2.list.next = node_0.list.prev;
 This will cause the module to crash. Even when removing ``INIT_LIST_HEAD()`` setup, the module crashing issue still happen.
 
 Insert a new node by index to an existing linked list: [insert_with_index.c](insert_with_index.c)
+
+Build a queue to store linked list with ``LIST_HEAD()`` and ``list_add_tail()``: [queue_linked_list.c](queue_linked_list.c)
 
 ## Read
 
