@@ -48,7 +48,7 @@ execvp("ping", command_array);
 ```
 ### return value
 
-All ``exec()`` only return value if it encounter error. Without error, the command inside all ``exec()`` system calls will execute the return value won't print out.
+All ``exec`` system call only return value if it encounter error. Without error, the command inside all ``exec()`` system calls will execute the return value won't print out.
 
 E.g:
 
