@@ -63,7 +63,7 @@ Four macros are provided to manipulate the sets. ``FD_ZERO()`` clears a set. ``F
 
 ### poll()
 
-``poll()`` performs a similar task to select``()``, it waits for one of a set of file descriptors to become ready to perform I/O
+``poll()`` performs a similar task to ``select()``, it waits for one of a set of file descriptors to become ready to perform I/O
 
 ```c
 #include <poll.h>
