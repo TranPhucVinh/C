@@ -6,6 +6,9 @@ Create a single kernel thread and send an int number as argument to it
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/kthread.h>
+#include <linux/delay.h> //For msleep()
+
+#define DELAY   1000
 
 MODULE_LICENSE("GPL");
 
