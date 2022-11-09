@@ -36,6 +36,21 @@ Alternatively, you can use ``kthread_run()`` to create and run a kernel thread:
 struct task_struct * kthread_run(int (*threadfn)(void *data), void *data, const char namefmt[], ...);
 ```
 
+```c
+int init_module(void)
+{
+    kthread_1 = kthread_run(thread_function, &kernel_data, "kthread_1");
+	if(kthread_1 != NULL){
+		printk("kthread_1 was created and is running now!\n");
+	}
+	else {
+		printk("kthread_1 could not be created!\n");
+		return -1;
+	}
+    return 0;
+}
+```
+
 To stop a thread use ``kthread_stop()`` function.
 
 Function ``kthread_should_stop()`` returns non-zero value if there is a stop request submitted by the ``kthread_stop()`` function. ``kthread_stop()`` must be called inside ``cleanup_module()`` to avoid memory crashing in kernel space when ``rmmod`` the kernel module that has the infinite loop formed by ``kthread_should_stop()``.
