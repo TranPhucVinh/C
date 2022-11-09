@@ -8,6 +8,8 @@ For multithread handling in kernel module, check [kernel thread document folder]
 
 For timer implementation in kernel module, check [Timer document folder](Timer).
 
+For linked list data structure implementation in kernel module, check [Linked list document folder](Linked%20list).
+
 # Character device
 
 For communication between userspace and kernel space through a device file, we need to create a chracter device.
