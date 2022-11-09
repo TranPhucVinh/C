@@ -12,6 +12,8 @@ For linked list data structure implementation in kernel module, check [Linked li
 
 To implement an entry to procfs as procfs entry, check [procfs entry document](procfs%20entry.md).
 
+To implement an entry to sysfs as sysfs entry, check [sysfs entry document](sysfs%20entry.md).
+
 # Character device
 
 For communication between userspace and kernel space through a device file, we need to create a chracter device.
