@@ -14,13 +14,11 @@ For linked list data structure implementation in kernel module, check [Linked li
 
 For communication between userspace and kernel space through a device file, we need to create a chracter device.
 
-For character device creation and basic file operations, check [Character device document folder](Character%20device).
+Character device folder include: 
 
-For poll file operation with character device, check [poll document folder](Poll).
-
-For communication between userspace and userspace by signal, check [Signal document folder](Signal).
-
-For miscellaneous character driver creation and basic file operations, check [Miscellaneous character driver document folder](Miscellaneous%20character%20driver).
+* [Create character device](): Character device creation and basic file operations open/read/write/close document
+* [Character device operations]()
+* [Miscellaneous character driver](): Miscellaneous character driver creation and basic file operations
 
 # Interrupt
 

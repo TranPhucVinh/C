@@ -181,32 +181,6 @@ int dev_open(struct inode *inodep, struct file *filep)
 
 Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/fcntl.md#ebusy) for the userspace process to handle this EBUSY error.
 
-## ioctl system call to character device
-
-[character_device_ioctl.c](character_device_ioctl.c) supports 2 features:
-
-* Get ``cmd`` and ``arg`` values sent from user space process then print that value out
-* Print out the PID of the userspace process that performs the ``ioctl()`` system call
-
-User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
-
-**Note**: If sending ``argument`` (the 3rd parameters of ``ioctl()``) with no ampersand, the ``EFAULT`` error is responsed from ``character_device_ioctl.c`` kernel module (by function ``copy_from_user()``:
-
-```c
-//This sending is wrong and EFAULT is responsed from the kernel module
-if (ioctl(fd, cmd, argument) == -1) {}
-```
-**Result**
-
-```
-DEBUG: Bad address
-Error number: 14
-```
-
-[character_device_ioctl_macro.c](character_device_ioctl_macro.c) handles ``ioctl()`` system call from userspace with all ``ioctl`` macro ``_IO()``, ``_IOR()``, ``_IOW()``, ``_IOWR()`` and ``_IOW()`` with struct as argument
-
-User space program that communicate with ``character_device_ioctl_macro.c``: [user_space_ioctl_macro.c](user_space_ioctl_macro.c)
-
 ## Handle interrupt for character device
 
 Check [document and examples in Interrupt folder](../Interrupt/).
