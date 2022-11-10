@@ -14,7 +14,7 @@ struct proc_dir_entry *proc_create(const char *name, umode_t mode, struct proc_d
 
 Create a procfs folder and a file inside it (``/proc/new_proc_dir/new_proc_file``) with those 2 features:
 
-* Send data to that procfs file
+* Write data to that procfs file
 * Read responsed data from that procfs file
 
 Send data to that procfs file: ``echo 7 > /proc/new_proc_dir/new_proc_file``
