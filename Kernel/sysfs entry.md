@@ -1,3 +1,7 @@
+# Fundamental concepts
+
+Inserting a kernel module for sysfs entry will create a directory/file inside ``sys/kernel``.
+
 # API
 
 ### kobject_create_and_add
