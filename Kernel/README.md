@@ -10,9 +10,11 @@ For timer implementation in kernel module, check [Timer document folder](Timer).
 
 For linked list data structure implementation in kernel module, check [Linked list document folder](Linked%20list).
 
-To implement an entry to procfs as procfs entry, check [procfs entry document](procfs%20entry.md).
+## Communication between userspace to kernel space
 
-To implement an entry to sysfs as sysfs entry, check [sysfs entry document](sysfs%20entry.md).
+* [Character device](#Character%20device)
+* [procfs entry](procfs%20entry.md).
+* [sysfs entry](sysfs%20entry.md).
 
 # Character device
 
