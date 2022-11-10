@@ -21,6 +21,14 @@ Create a ``struct kobject`` dynamically and register it with ``sysfs``
 	.store	= _store,						\
 }
 ```
+
+``_mode`` in ``__ATTR()`` must sastisfied all the following condition:
+
+* ``USER_READABLE`` >= ``GROUP_READABLE`` >= ``OTHER_READABLE``
+* <777 and >0
+* ``USER_WRITABLE`` >= ``GROUP_WRITABLE``
+* ``OTHER_WRITABLE = 0`` (as not allow other to write)
+
 # Example
 
 ## Feature
