@@ -15,6 +15,14 @@ Create a ``struct kobject`` dynamically and register it with ``sysfs``
 * ``name``: the name for the ``kobject``
 * ``parent``: the parent ``kobject`` of this kobject, if any. Preferred to be ``kernel_kobj``, a predefined kernel object
 
+### kobject_put()
+
+```c
+void kobject_put(struct kobject * kobj);
+```
+
+Remove the ``kobj``.
+
 ### __ATTR()
 
 ```c
