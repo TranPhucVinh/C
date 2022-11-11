@@ -49,6 +49,14 @@ GCC assumes that all libraries start with ``lib`` and end with ``.so`` or ``.a``
 
 ## Linux environment
 
+**Set up command from a C process**
+
+To make ``a.out`` file compiled from a C source code to be a system wide available command, put it inside ``/bin`` folder.
+
+**Step 1**: Copy ``a.out`` to ``/bin``: ``sudo cp a.out /bin``
+
+**Step 2**: Command ``a.out`` now is available, simply run ``a.out``.
+
 **Linux Programmer's Manual**
 
 Manual document for functions prototype can be accessed by ``man function_prototype``.
