@@ -55,7 +55,15 @@ To make ``a.out`` file compiled from a C source code to be a system wide availab
 
 **Step 1**: Copy ``a.out`` to ``/bin``: ``sudo cp a.out /bin``
 
-**Step 2**: Command ``a.out`` now is available, simply run ``a.out``. Command ``a.out`` will be available in the system permanently as long as it is still inside ``/bin``.
+**Step 2**: Command ``a.out`` now is available, simply run ``a.out``. Command ``a.out`` will be available in the system as long as it is still inside ``/bin``.
+
+For safety purpose when installing local software like this case, it is better to use ``/usr/local/bin`` instead of ``/bin`` as files in ``/bin`` will be overwritten when the system software is updated.
+
+Take all steps like above with ``/bin`` to set up the command:
+
+**Step 1**: sudo cp a.out /usr/local/bin
+
+**Step 2**: Command ``a.out`` now is available as long as it is still inside ``/usr/local/bin``.
 
 **Linux Programmer's Manual**
 
