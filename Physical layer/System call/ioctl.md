@@ -56,4 +56,4 @@ Note, however, that these events on their own are insufficient to change the act
 
 **Example 3**: [Communication between userpsace process and I2C bus device by ioctl in Raspbian with various I2C modules and sensors](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Sensors%20and%20Modules#i2c)
 
-**Example 4**: [Read RTC time of /dev/rtc by ioctl()]([https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/TIme/Examples.md#example-4](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Time/Examples.md#example-3)
+**Example 4**: [Read RTC time of /dev/rtc by ioctl()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Time/Examples.md#example-3)
