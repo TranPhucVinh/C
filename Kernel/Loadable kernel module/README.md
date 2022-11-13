@@ -32,6 +32,8 @@ To remove the module: ``rmmod loadable_kernel_module.ko``
 
 View module information: ``modinfo loadable_kernel_module.ko``
 
+Kernel module loaded manually by ``insmod`` will be removed when system is rebooted, setup this kernel module with [depmod](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Kernel.md#depmod) and [/etc/modules](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/File%20hierarchy.md#modules) to make it loaded automatically when system is booted.
+
 ### Source code
 
 ``ubuntu_kernel_module.c``: The very first kernel module built on Ubuntu 16.04
