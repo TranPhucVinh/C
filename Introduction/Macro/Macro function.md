@@ -117,7 +117,7 @@ Macro create the inline code which will the shorten the execution time of the pr
 
 If a macro is executed 20 times, then 20 lines of macro code will be added to the preprocessor which will expand the size of the compiled program (``.exe``, ``.dll``, ``.lib``,...). However, the time is saved as macro doesn't require stack call
 
-If a function is called 20 times, only 1 copy of that function will be used inside the program, the program theb require more time as it needs to call stack every time that function is needed. Using function which will make the program size smaller than using the macro correspondingly.
+If a function is called 20 times, only 1 copy of that function will be used inside the program, the program then require more time as it needs to call stack every time that function is needed. Using function which will make the program size smaller than using the macro correspondingly.
 
 It depends on execution times and program size requirement to choose between macro and function.
 
