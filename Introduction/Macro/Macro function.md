@@ -1,4 +1,4 @@
-## Macro functions with arguments
+### Macro functions with arguments
 
 ```c
 #define defineFunction(a) a+1
@@ -30,6 +30,22 @@ int main(){
 Line 1
 Line 2
 7
+```
+
+### Pass-by-reference issue doesn't happen in macro function
+
+```c
+#include <stdio.h>
+ 
+#define defineFunction(a) a=a+1
+
+int main()
+{
+    int b = 1;
+    defineFunction(b);
+    printf("%d \n", b); //2
+    return 0;
+}
 ```
 
 ### Using if else inside macro function
