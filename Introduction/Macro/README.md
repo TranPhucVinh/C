@@ -37,9 +37,45 @@ test.c:6:24: error: expected primary-expression before ‘return’
 
 Macros are never allocated a memory. Before the code is compiled, the compiler does a text search in the file and replace all Macros with their value.
 
+## Define variables by macro
+
+### Define normal variable with macro
+
+Define an int variable with a macro function
+
+```c
+#define DEFINE_INT_VARIABLE(id) int id
+
+int main()
+{  
+ DEFINE_INT_VARIABLE(a);
+ a = 29;
+ printf("%d\n", a);//29
+}
+```
+
+### Define pointer variable with macro
+
+```c
+#include <stdio.h>
+
+#define define_pointer(a) int *pointer = &a
+
+int main()
+{  
+	int a = 123;
+	define_pointer(a);
+	printf("%d\n", *pointer);//123
+}
+```
+
 ## Macro function
 
 For implementation of macro function, check [macro function document](Macro%20function.md).
+
+## Condition in macro
+
+For conditional check like ``#ifdef``, ``#undef``,... check [Condition in macro document](Condition%20in%20macro.md)
 
 ## Stringizing operator (#)
 
