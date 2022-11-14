@@ -44,7 +44,9 @@ main.c:(.text+0xe): undefined reference to `display_string'
 collect2: error: ld returned 1 exit status
 ```
 
-Problem solved:
+### Problem solved
+
+That happens as C does not support function overloading. When wrapping C API in an ``extern "C"`` construct in C header file, it will force the C++ compiler use C-style call convention for the functions contained the ``extern`` scope.
 
 ``head.h``
 
