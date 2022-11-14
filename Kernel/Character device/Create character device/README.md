@@ -1,6 +1,4 @@
-# Fundamental concepts
-
-## Register a character device then makes it a device file
+# Register a character device then makes it a device file
 
 Program: [register_character_device.c](register_character_device.c)
 
@@ -63,9 +61,9 @@ void device_exit(void)
 
 After inserting this module, operations with ``mknod`` and ``rm`` are all like ``register_character_device.c``.
 
-## Create character device
+# Create character device
 
-### Create character device by single operations
+## Create character device by single operations
 
 **Features**: Create a new character device named ``Character device``. All character devices related functions are put inside ``module_init()``  and ``module_exit()`` functions.  This example is intended for comprehensive and easy to understand the character device created operation.
 
@@ -77,20 +75,20 @@ To create a new character device, change all names in ``alloc_chrdev_region()``,
 
 To remove the character device: ``sudo rm /dev/character_device_name``
 
-### Create character device by seperated operations
+## Create character device by seperated operations
 
 **Features**: Seperated the character device created operation by function ``create_character_device()`` and the destroy operations by function ``destroy_character_device()``. This program is intended for functions inheritance for other kernel modules.
 
 **Program**: [create_character_device_by_seperated_operations.c](create_character_device_by_seperated_operations.c)
 
-## Read and write system call to character device
+# Read and write system call to character device
 
 [character_device_operations.c](character_device_operations.c) supports 2 features:
 
 * Send data to the character device
 * Read response data from character device
 
-### Send data to the character device
+## Send data to the character device
 
 * Change permission of the character device: ``sudo chmod 777 /dev/fops_character_device``
 * Then ``echo "Hello, World !" > /dev/fops_character_device``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``, use ``copy_from_user()`` to get that data/string from the user space.
@@ -116,7 +114,7 @@ ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t 
 
 This happen as the write system call (``dev_write()``) returns to userspace with ``0``. However, since your userspace code is using ``stdio``, then your userspace code tries the write again, assuming the system call simply didn't write out all the data. If you return the length of the input, then stdio will know all the data was written.
 
-### Read response data from character device
+## Read response data from character device
 
 In terminal (userspace): Use ``cat /dev/fops_character_device`` to read the reponse string sent from kernel space.
 
@@ -139,7 +137,7 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 }
 ```
 
-### Userspace program for 2-way communication with character device
+## Userspace program for 2-way communication with character device
 
 Program [user_space_2_way_communications.c](user_space_2_way_communications.c) supports 2-way communications R/W between userspace and character device.
 
@@ -156,7 +154,7 @@ int main(){
 
 Then both file operation open (``dev_open()``) and close (``dev_close()``) are called in the character device after that userspace process finishes running, as the OS will automatically close the device file which will trigger the close file operation.
 
-### Character device as a FIFO
+## Character device as a FIFO
 
 To make a character device working as a FIFO for 2 process to R/W:
 
@@ -182,7 +180,7 @@ ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t 
 
 After successfully creating, simply R/W to that character device as a FIFO by 2 process with normal ``read()``/``write()`` functions.
 
-### Handle specific error from errno from userspace
+## Handle specific error from errno from userspace
 
 To handle any specific errno like ``EBUSY`` on character device, that device must handle this error in its operation, like the open operation:
 
@@ -207,7 +205,7 @@ int dev_open(struct inode *inodep, struct file *filep)
 
 Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/fcntl.md#ebusy) for the userspace process to handle this EBUSY error.
 
-## Handle interrupt for character device
+# Handle interrupt for character device
 
 Check [document and examples in Interrupt folder](../Interrupt/).
 
