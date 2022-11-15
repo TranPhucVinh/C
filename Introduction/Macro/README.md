@@ -20,18 +20,6 @@ Using ``\`` to add a new line when define macro
 
 printf("%lf", PI);
 ```
-**Can't use return in macro function**:
-
-```c
-#define RETURN_INT() return 10 //This is wrong and must not be done
-```
-
-Error:
-
-```
-test.c:6:24: error: expected primary-expression before ‘return’
- #define RETURN_INT()   return 10;
-```
 
 **Can't get address of macros by &**
 
