@@ -57,6 +57,46 @@ int main()
 }
 ```
 
+## Macro defines a block of operation
+
+**Use a variable inside macro before it is defined**
+
+```c
+#include <stdio.h>
+
+#define CONDITION_CHECK {\
+    if (a == 4) printf("a == 4\n");\
+    else printf("a != 4\n");\
+}
+
+int main(){
+    int a;
+    a = 4;
+    CONDITION_CHECK;//a==4
+    a = 10;
+    CONDITION_CHECK;//a !=4
+}
+```
+
+**Use return inside macro block of operations**
+
+```c
+#include <stdio.h>
+
+#define RET_MARCO return 4
+
+int function(){
+    RET_MARCO;
+}
+
+int main(){
+    printf("%d\n", function());
+    printf("Then quit main() function by RET_MARCO\n");
+    RET_MARCO;//main() will quit here
+    printf("This line won't print out after calling macro RET_MARCO\n");
+}
+```
+
 ## Macro function
 
 For implementation of macro function, check [macro function document](Macro%20function.md).
