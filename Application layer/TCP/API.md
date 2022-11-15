@@ -169,7 +169,7 @@ struct sockaddr_in{
 
 * ``sin_family``, ``sa_family``: protocolFamily
 * ``sin_port``: port of socket
-* ``sin_addr``: connect address
+* ``sin_addr``: connect address. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces.
 * ``sin_zero``: not used, set value 0
 
 ## Other libraries
