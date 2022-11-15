@@ -154,7 +154,7 @@ struct sockaddr {
 }; 
 
 struct in_addr {
-    unsigned long s_addr;
+    unsigned long s_addr; /* address in network byte order */
 };
 
 struct sockaddr_in{
