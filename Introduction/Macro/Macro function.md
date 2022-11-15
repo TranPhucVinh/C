@@ -1,3 +1,16 @@
+**Can't use return in macro function**:
+
+```c
+#define RETURN_INT() return 10 //This is wrong and must not be done
+```
+
+Error:
+
+```
+test.c:6:24: error: expected primary-expression before ‘return’
+ #define RETURN_INT()   return 10;
+```
+
 ### Macro functions with arguments
 
 ```c
