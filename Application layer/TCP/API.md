@@ -54,6 +54,14 @@ printf("%s\n", buffer);
 
 ## netdb.h
 
+### gethostbyname()
+
+Look up an IP address from a domain name
+ 
+```c
+struct hostent *gethostbyname(const char *name);
+```
+
 ### socket()
 
 Create new socket
@@ -111,10 +119,6 @@ struct hostent *hp;
 
 ```c
 herror();
-```
-
-```c
-gethostbyname()
 ```
 
 ### htons
