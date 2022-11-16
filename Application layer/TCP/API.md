@@ -145,6 +145,15 @@ struct hostent {
 
 ## arpa/inet.h
 
+### inet_ntop()
+
+```c
+#include <arpa/inet.h>
+const char *inet_ntop(int af, const void *restrict src, char *restrict dst, socklen_t size);
+```
+
+``inet_ntop``: convert IPv4 and IPv6 addresses from binary to text form
+
 ### sockaddr, in_addr, sockaddr_in
 
 ```c
