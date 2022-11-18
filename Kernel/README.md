@@ -30,14 +30,6 @@ Character device folder include:
 
 For interrupt implementation and handling in kernel space for both single kernel module and character device, check [Interrupt document folder](Interrupt)
 
-# GPIO examples
-
-* **GPIO API examples**: Unable to implemented on Ubuntu, check the corresponding examples in Raspbian for [blink LED](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/blink_led.c) and [control LED with button](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/control_led_with_button.c).
-
-* **IO mapping examples**: Unable to implemented on Ubuntu, check the corresponding examples in Raspbian for [GPIO control with ioremap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/gpio_control_with_linux_io.c) and [GPIO control with ioremap(), iowrite() and ioread()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/gpio_control_io_rw.c).
-
-* **GPIO interrupt**: Unable to implemented on Ubuntu, check the corresponding examples in Raspbian for [Interrupt with GPIO](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel#interrupt-with-gpio).
-
 # Platform drivers and Device tree
 
 On embedded systems, devices are often not connected through a bus. Such devices, instead of being dynamically detected, must be statically described:
@@ -63,3 +55,10 @@ Functions to read device tree node properties like ``device_property_present()``
 Device tree file ``/sys/firmware/devicetree/`` is not available on Ubuntu 16.04 as ``dtb`` files are built-in on the kernel image. For implementation with device tree, check [the corresponding document in Raspbian](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel/Device%20tree).
 
 As hardware implemention like GPIO and device tree parsing are unable to perform in Ubuntu OS computer, check [device tree document in Raspberry Pi C](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel/Device%20tree) for implementations and examples of platform driver.
+
+# Linux drivers
+
+This is the list of Linux drivers that have been created so far:
+
+* [GPIO driver (implemented on Raspbian)](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel/GPIO)
+* [I2C driver: I2C driver for a specific I2C slave on an existed I2C bus (implemented on Raspbian)](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel#i2c-driver)
