@@ -40,4 +40,4 @@ This function will return the ``irq`` number; this number is usable by ``devm_re
 
 # Examples
 
-As hardware implemention like GPIO and device tree parsing are unable to perform in Ubuntu OS computer, check device tree document in Raspberry Pi C for implementations and examples of platform driver.
+As hardware implemention like GPIO and device tree parsing are unable to perform in Ubuntu OS computer, check [device tree document in Raspberry Pi C](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel/Device%20tree) for implementations and examples of platform driver.
