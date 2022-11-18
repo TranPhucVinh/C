@@ -38,10 +38,28 @@ For interrupt implementation and handling in kernel space for both single kernel
 
 * **GPIO interrupt**: Unable to implemented on Ubuntu, check the corresponding examples in Raspbian for [Interrupt with GPIO](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel#interrupt-with-gpio).
 
-# Platform drivers
+# Platform drivers and Device tree
 
-Check [Platform driver document](Platform%20driver.md)
+On embedded systems, devices are often not connected through a bus. Such devices, instead of being dynamically detected, must be statically described:
 
-# Device tree
+1. By **direct instantiation** of ``struct platform_device`` structures, as done on a few old ARM non-Device Tree based platforms. Definition is done in the board-specific or SoC specific code.
 
-Device tree file ``/sys/firmware/devicetree/`` is not available on Ubuntu 16.04 as ``dtb`` files are built-in on the kernel image. For implementation with device tree, check the corresponding document in Raspbian.
+2. In the **Device Tree**, a hardware description file used on some architectures. The device drivers match with the physical devices described in the ``.dts`` file. After this matching, the driver's ``probe()`` function is called. An ``.of_match_table`` has to be included in the driver's code to allow this matching.
+
+**Platform bus** has been created to handle non-discoverable devices like UART controllers, Ethernet controllers, SPI controllers, graphic or audio devices, etc. **Platform bus** support platform drivers for those devices.
+
+The on board peripheral which connect to SPI, I2C, Ethernet,... have no capability to announce their existence on the board to the operating system by themselves. Platform devices are inherently not discoverable.
+
+**Platform devices** should be registered very early during system boot.
+
+The process of associating a device with a device driver is called binding.
+
+PCI and USB devices have inbuilt intelligence to send its details to the OS. It means PCI and USB support dynamic discovery.
+
+Please note that the operations of platform driver and device tree are related to each other.
+
+Functions to read device tree node properties like ``device_property_present()`` are only available for platform devices, running those function inside character device will result in error.
+
+Device tree file ``/sys/firmware/devicetree/`` is not available on Ubuntu 16.04 as ``dtb`` files are built-in on the kernel image. For implementation with device tree, check [the corresponding document in Raspbian](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel/Device%20tree).
+
+As hardware implemention like GPIO and device tree parsing are unable to perform in Ubuntu OS computer, check [device tree document in Raspberry Pi C](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel/Device%20tree) for implementations and examples of platform driver.
