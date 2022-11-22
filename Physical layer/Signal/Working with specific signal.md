@@ -1,4 +1,4 @@
-# Handle any specific signal
+# SIGUSR1 and SIGUSR2
 
 Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
 
@@ -64,6 +64,8 @@ int main(){
 }
 ```
 
+# SIGTSTP and SIGINT
+
 Using ``Ctr+Z`` for ``SIGTSTP`` signal:
 
 ```c
@@ -98,7 +100,7 @@ signal(SIGINT, signal_handler);
 ^CYou have entered signal number: 2
 ```
 
-### SIGKILL signal
+# SIGKILL
 
 Self-terminated a process after printing from ``0`` to ``10``:
 
@@ -120,7 +122,7 @@ int main(){
 }
 ```
 
-### Working with SIGWINCH signal
+# SIGWINCH
 
 If changing the current terminal size by mouse, the size of the terminal is printed out.
 
