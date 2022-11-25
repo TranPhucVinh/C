@@ -82,11 +82,11 @@ Changing variable value from child process which will effect parent process
 #define NO_FD       -1  //No file descriptor used for shared memory
 #define BASE_ADDR   0   //No specific base address to set in shared memory
 
-uint32_t *a;
+int *a;
 
 int main(void){
 	//Must put this mmap() setup before fork()
-	a = (uint32_t *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
+	a = (int *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *a = 12;
 
     pid_t pid = fork();
@@ -109,11 +109,11 @@ Parent process, *a = 34
 ```
 Changing variable value inside the parent process will effect the child process:
 ```c
-uint32_t *a;
+int *a;
 
 int main(void){
 	//Must put this mmap() setup before fork()
-	a = (uint32_t *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
+	a = (int *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *a = 12;
 
     pid_t pid = fork();
