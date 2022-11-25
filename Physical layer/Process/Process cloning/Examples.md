@@ -82,14 +82,14 @@ int main(int argc, char *argv[])  {
         while (1){
             printf("child process number: %d\n", child_number);
             child_number += 1;
-            usleep(DELAY_TIME);
+            sleep(DELAY_TIME);
         }
     } 
 	else  {
         while (1){
             printf("parent process number: %d\n", parent_number);
             parent_number += 1;
-            usleep(DELAY_TIME);
+            sleep(DELAY_TIME);
         }
     }
 }
