@@ -136,66 +136,59 @@ int main(void){
 }
 ```
 
-### Changing variable value in parent/child process won't effect the left one
+## Without shared memory, changing variable value in parent/child process won't effect the left one
 
-Although global variable ``a`` has the same address value in both parent and child process, changing its value in the parent process won't affect the child process:
+Although global variable ``a`` has the same address value in both parent and child process, changing its value in the parent process won't affect the child process.
+
+Changing variable value in the child process won't effect the parent:
 
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/wait.h>
 
 int main(void){
     int *a;
+	a = (int*) malloc(sizeof(int) * 1);
+	*a = 12;
     pid_t pid = fork();
 
     if( pid == 0 ) {
-        a = (int*) malloc(sizeof(int) * 1);
-        *a = 12;
-        printf("%d\n", *a);//12
+		*a = 34;
+        printf("Child process, *a = %d\n", *a);//Child process, *a = 34
     }
     else {
-        printf("%d\n", *a);//Segmentation fault
+		wait(NULL);
+        printf("Parent process, *a = %d\n", *a);//Parent process, *a = 12
     }
     return 0;
 }
 ```
-
-Changing variable value in the child process won't effect the parent:
-
+Changing variable value inside the parent process won't effect the child process:
 ```c
 int main(void){
-    int a = 1;
+    int *a;
+	a = (int*) malloc(sizeof(int) * 1);
+	*a = 12;
     pid_t pid = fork();
 
     if( pid == 0 ) {
-        a = 2;
-        printf("Child process, a = %d\n", a);//Child process, a = 2
+        printf("Child process, *a = %d\n", *a);//Child process, *a = 12
     }
     else {
-        printf("Parent process, a = %d\n", a);//Parent process, a = 1; i.e: can't be changed by the child process
+		*a = 34;
+        printf("Parent process, *a = %d\n", *a);//Parent process, *a = 34
     }
     return 0;
-}
-```
-
-The same issue will happen if changing value inside the parent process as this won't effect the child process:
-
-```c
-int a = 1;
-if( pid == 0 ) {
-    
-    printf("Child process, a = %d\n", a);//Child process, a = 1; i.e: can't be changed by the parent process
-}
-else {
-    a = 2;
-    printf("Parent process, a = %d\n", a);//Parent process, a = 2
 }
 ```
 
 That happens as both parent and child process have different address space. To make change of variable inside a child process to effect the parent or in reverse, use **shared memory** with [mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Virtual%20memory.md#mmap).
 
-Change variable value from child process which will effect parent process:
+## With shared memory, changing variable value in parent/child process won't effect the left one
+
+Changing variable value from child process which will effect parent process
 
 ```c
 #include <stdio.h>
@@ -211,7 +204,7 @@ Change variable value from child process which will effect parent process:
 uint32_t *a;
 
 int main(void){
-	//Put this mmap() setup before fork()
+	//Must put this mmap() setup before fork()
 	a = (uint32_t *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *a = 12;
 
@@ -227,4 +220,34 @@ int main(void){
     }
     return 0;
 }
+```
+
+```
+Child process, *a = 34
+Parent process, *a = 34
+```
+Changing variable value inside the parent process will effect the child process:
+```c
+uint32_t *a;
+
+int main(void){
+	//Must put this mmap() setup before fork()
+	a = (uint32_t *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
+    *a = 12;
+
+    pid_t pid = fork();
+    
+    if( pid == 0 ) {
+        printf("Child process, *a = %d\n", *a);//Child process, *a = 34
+    }
+    else {
+		*a = 34;
+        printf("Parent process, *a = %d\n", *a);//Parent process, *a = 12
+    }
+    return 0;
+}
+```
+```
+Parent process, *a = 34
+Child process, *a = 34
 ```
