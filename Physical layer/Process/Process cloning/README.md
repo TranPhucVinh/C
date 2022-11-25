@@ -66,8 +66,9 @@ Hello, World !
 Child process has ID: 24196
 Hello, World !
 ```
+Note that in this case, the program after ``if (!pid)`` (``printf("Hello, World !\n");``) is executed 2 times as it is executed by both parent and child process.
 
-Running child process inside infinite loop:
+## Running child process inside infinite loop
 
 ```c
 #include <stdio.h>
