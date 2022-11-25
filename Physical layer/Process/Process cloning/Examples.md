@@ -41,17 +41,18 @@ Running child process inside infinite loop:
 #include <stdio.h>
 #include <unistd.h>
 
-#define DELAY_TIME 1000000
+#define DELAY_TIME 1
+
 int number;
 int main(int argc, char *argv[])  {
 	int pid = fork();
 	if (!pid) {
-        while (1){
-            printf("number: %d\n", number);
-            number += 1;
-            usleep(DELAY_TIME);
-        }
-    } 
+		while (1){
+			printf("number: %d\n", number);
+			number += 1;
+			sleep(DELAY_TIME);
+		}
+	} 
 	else printf("Parent process has finished execution\n");
 }
 ```
