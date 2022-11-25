@@ -1,5 +1,5 @@
 #include <stdio.h>      
-#include <sys/socket.h> /* for socket(), connect(), send(), and recv() */
+#include <sys/socket.h> /* for socket(), connect()*/
 #include <arpa/inet.h>  /* for sockaddr_in and inet_addr() */
 #include <stdlib.h>     /* for atoi() and exit() */
 #include <string.h>     /* for memset() */
@@ -49,10 +49,6 @@ int main(){
         fgets(buffer, BUFFSIZE, stdin);
 
         write(sockfd, buffer, BUFFSIZE);
-
-        // if (send(sockfd, buffer, strlen(buffer)-1, 0) < 0) 
-        //     error("ERROR writing to socket");
-        // else printf("finish writing: %s", buffer);    
     }
 
     close(sockfd); //Close socket
