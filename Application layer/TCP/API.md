@@ -17,41 +17,6 @@ int accept(int sockfd, struct sockaddr *restrict addr, socklen_t *restrict addrl
 ```
 Accept a connection on a socket. If no pending connections are present on the queue, and the socket is not marked as nonblocking, ``accept()`` blocks the caller until a connection is present.
 
-### send() and recv()
-
-```c
-int send(int sockfd, const void *msg, unsigned int len, int flag) 
-```
-```c
-int recv(int sockfd, void *buff, unsigned int len, int flag)
-```
-
-* ``sockfd``: created ``sockfd`` from function ``socket()``.
-* ``*msg``, ``*buff``: pointer to ``sent`` or ``receive`` data array.
-* ``len``: maximum length of data array (in byte) each time ``sent`` or ``receive``.
-* ``flag``: set ``sent`` or ``receive`` mode. If set to ``0``, ``recv()`` is generally equivalent to ``read()``.
-
-``send()`` and  ``recv()`` return the number of byte sent or received, return ``-1`` if there is an error.
-
-**Note**: If a zero-length datagram is pending, ``read()`` and ``recv()`` with a flags argument of zero provide different behavior.  In this circumstance, ``read()`` has no effect (the datagram remains pending), while ``recv()`` consumes the pending datagram.
-
-Sending and receiving process can be executed with
-
-``send()`` in [tcp-client.c](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP/TCP%20socket%20for%20HTTP%20client/tcp-client.c)
-
-```c
-if (send(sockfd, buffer, strlen(buffer)-1, 0) < 0) 
-    error("ERROR writing to socket");
-else printf("finish writing: %s", buffer);    
-```
-
-``read()`` in [tcp-server.c](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP/TCP%20socket%20for%20HTTP%20client/tcp-server.c)
-
-```c
-n = read(client_fd, buffer, 1024);
-printf("%s\n", buffer);
-```
-
 ## netdb.h
 
 ### gethostbyname()
