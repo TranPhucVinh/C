@@ -193,13 +193,16 @@ else {
 }
 ```
 
-That happens as both parent and child process have different address space. To make change of variable inside a child process to effect the parent or in reverse, use **shared memory** with ``mmap()``
+That happens as both parent and child process have different address space. To make change of variable inside a child process to effect the parent or in reverse, use **shared memory** with [mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Virtual%20memory.md#mmap).
+
+Change variable value from child process which will effect parent process:
 
 ```c
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>
 #include <sys/mman.h>
+#include <sys/wait.h>
 
 #define PAGE_SIZE   4048
 #define NO_FD       -1  //No file descriptor used for shared memory
@@ -208,15 +211,18 @@ That happens as both parent and child process have different address space. To m
 uint32_t *a;
 
 int main(void){
-    pid_t pid = fork();
-    a = (uint32_t *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
+	//Put this mmap() setup before fork()
+	a = (uint32_t *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *a = 12;
 
+    pid_t pid = fork();
+    
     if( pid == 0 ) {
         *a = 34;
         printf("Child process, *a = %d\n", *a);//Child process, *a = 34
     }
     else {
+		wait(NULL);//Wait for child process to finish
         printf("Parent process, *a = %d\n", *a);//Parent process, *a = 12
     }
     return 0;
