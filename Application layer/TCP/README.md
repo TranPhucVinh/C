@@ -14,6 +14,8 @@ Print message: ``Server hasn't been started or server doesn't support connection
 3. tcp_server starts then a tcp_client connects to it, tcp_server then prints out that tcp_client IP address. Then tcp_client sends data to tcp_server properly.
 4. Support multiple tcp_client to a tcp_server. Print out meesage: ``Message from TCP client ID %d: %s``
 5. Able to count how many tcp_client are connected.
+6. ``tcp_client`` is sending data to ``tcp_server`` properly, ``tcp_client`` then disconnected. ``tcp_server`` is able to detect that disconnected event, print out ``TCP client with ID %d is disconnected``.
+7. TCP client is identified by ID number increased by 1. If that TCP client is disconnected, that ID number won't be used again in tcp_server program when another TCP client is connected.
 
 ### Implementation
 
@@ -21,7 +23,3 @@ Use [fork()](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Proc
 
 * [tcp_client.c](tcp_client.c)
 * [tcp_server.c](tcp_server.c)
-
-### TBD
-
-1. ``tcp_client`` is sending data to ``tcp_server`` properly, tcp_client then disconnected. tcp_server is able to detect that disconnected event, print out ``TCP client with IP xx has disconnected``. That tcp_client and tcp_server are then able to recover connection and transmission if that tcp_client is started again.
