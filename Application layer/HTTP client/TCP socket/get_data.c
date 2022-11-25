@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <unistd.h> //for write(), read() and close()
-#include <sys/socket.h> //for listen(), send() and recv()
+#include <unistd.h>     /* for write(), read() and close() */
+#include <sys/socket.h> /* for socket(), connect()*/
 #include <netdb.h>
 
 #define HOST "example.com"
