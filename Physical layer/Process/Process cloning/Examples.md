@@ -164,6 +164,35 @@ int main(int argc, char *argv[])  {
     }
 }
 ```
+
+Kill only the child process by ``getpid()`` while parent process keeps running normally:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <signal.h>   
+
+#define DELAY_TIME 1
+
+int child_number, parent_number;
+
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	if (!pid) {
+		sleep(DELAY_TIME*5);
+		printf("Child process is terminated\n");
+		kill(getpid(), SIGKILL);
+    } 
+	else  {
+        while (1){
+            printf("parent process number: %d\n", parent_number);
+            parent_number += 1;
+            sleep(DELAY_TIME);
+        }
+    }
+}
+```
+
 ### Stop and continue process with fork() by signal
 
 In parent process, if ``number`` is ``5``, stop for parent process for 5 seconds then continues
