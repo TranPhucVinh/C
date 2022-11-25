@@ -226,5 +226,5 @@ So putting ``wait()`` inside child process execution gives no effect.
 # Application
 
 * [IPC with TCP socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP#examples): 1 server communicates with multiple clients. Process cloning with ``fork()`` is used to create a new process for a file descriptor for each tcp_client every time a new connection is established.
-
-For other example, check [Examples](Examples.md) file
+* [Signal for fork()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Signal%20for%20fork().md)
+* [Variable inside forked process](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Variable%20inside%20forked%20process.md)
