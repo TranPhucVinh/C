@@ -45,8 +45,26 @@ int main(int argc, char *argv[])  {
 ```
 ```
 Before forking
-Origin process's ID: 20845 and child process's ID: 20846
-Child process has ID: 20846
+Parent process's ID: 24170 and child process's ID: 24171
+Child process has ID: 24171
+```
+
+The child process created by ``fork()`` will have the structure of the whole ``main()`` program, so it will execute the part of the program after the ``if else`` pid condition (``if (!pid)``):
+
+```c
+printf("Before forking\n");
+int pid = fork();
+if (!pid) printf("Child process has ID: %d\n", getpid());
+else printf("Parent process's ID: %d and child process's ID: %d\n", getpid(), pid);
+
+printf("Hello, World !\n");
+```
+```
+Before forking
+Parent process's ID: 24195 and child process's ID: 24196
+Hello, World !
+Child process has ID: 24196
+Hello, World !
 ```
 
 Running child process inside infinite loop:
