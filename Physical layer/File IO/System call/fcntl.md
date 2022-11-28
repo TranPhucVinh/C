@@ -138,3 +138,22 @@ The device file can't handle those type of error by its self if the error handle
 ### EFAULT
 
 ``EFAULT`` is bad address issue and must be return when ``copy_from_user()`` fail. Check [the example in character device to trigger this error](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/README.md#operation-with-character-device-by-ioctl).
+
+### strerror()
+
+```c
+char *strerror(int errnum);
+```
+
+``strerror()`` returns a string that describes the error code passed in the argument ``errnum``.
+
+```c
+#include <errno.h>
+
+int main(){
+    int fileDescription = open("file_not_existed.md", O_RDONLY);
+    printf("Error %d: %s\n", errno, strerror(errno));
+    return 0;
+}
+```
+**Result**: ``Error 2: No such file or directory``
