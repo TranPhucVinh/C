@@ -1,6 +1,4 @@
-## Example 1: File operations
-
-**Open a file to read**
+## Open a file to read
 
 ```c
 #include <stdio.h>
@@ -52,7 +50,7 @@ if (offset > 0){
 
 ``lseek()`` with [default character device](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/create_character_device_by_seperated_operations.c) will return ``-1``.
 
-**Read the whole file by chunk and dynamically store to a char pointer**:
+## Read the whole file by chunk and dynamically store to a char pointer
 
 ```c
 #include <stdio.h>
@@ -131,7 +129,7 @@ while(read(fd, buffer_read, READ_CHUNK_SIZE)){
     printf("\n");
 ```
 
-**Open a file to write**
+## Open a file to write
 
 ```c
 #include <stdio.h>
@@ -147,94 +145,5 @@ int main(){
     fd = open("test.md", O_WRONLY);
     
     write(fd, buffer, strlen(buffer));
-}
-```
-
-## Example 2: Terminal and peripheral operations
-
-Inside the ``while()`` loop, read entered value from terminal and print out:
-
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-
-int main() {
-	while(1){
-		char buffer[10];
-        bzero(buffer, sizeof(buffer));//Empty the previously entered buffer
-		read(STDIN_FILENO, buffer, sizeof(buffer));
-		write(STDOUT_FILENO, buffer, sizeof(buffer));
-	}
-}
-```
-
-**Note**: Using ``read()`` with other ``stdout`` functions like ``puts()``, ``printf()``, ... results in garbage value printing and other ``stdout`` error.
-
-Read entered data from the current running terminal (``/dev/tty``)
-
-```c
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-
-const char filePath[] = "/dev/tty";
-char bufferRead[20];
-
-int fileDescription;
-void delaySeconds(long seconds);
-
-int main(){
-   fileDescription = open(filePath, O_RDONLY); //READ ONLY
-   while(1){
-	   bzero(bufferRead, sizeof(bufferRead));
-      if(fileDescription < 0) return 1;
-      else {
-         read(fileDescription, bufferRead, sizeof(bufferRead));
-         printf("%s", bufferRead);
-      }
-   }
-    return 0;
-}
-```
-Read data from USB port (``/dev/ttyUSB0``, ``/dev/ttyACM0``,...)
-
-```c
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/time.h>
-
-const char filePath[] = "/dev/ttyACM0";
-char bufferRead[20];
-
-int fileDescription;
-void delaySeconds(long seconds);
-
-int main(){
-   fileDescription = open(filePath, O_RDONLY); //READ ONLY
-   while(1){
-      if(fileDescription < 0) return 1;
-      else {
-         read(fileDescription, bufferRead, sizeof(bufferRead));
-         printf("%s", bufferRead);
-      }
-      memset(bufferRead, 0, sizeof(bufferRead));
-		delaySeconds(1);
-   }
-    return 0;
-}
-
-void delaySeconds(long seconds){
-	struct timeval tv;
-	gettimeofday(&tv, NULL);
-	long totalSecond = 0;
-	long previousTime = tv.tv_sec;
-	while (totalSecond - previousTime < seconds){
-		gettimeofday(&tv, NULL);
-		totalSecond = tv.tv_sec;
-	}
 }
 ```

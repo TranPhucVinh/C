@@ -35,6 +35,28 @@ Normally, a process inherits three open file descriptors when it is started by t
 * [fcntl.h header files API](fcntl.md)
 * [unistd.h header files API](unistd.md)
 
+## termios.h
+
+```c
+#include <termios.h>
+
+int tcgetattr(int fildes, struct termios *termios_p);
+```
+
+``tcsetattr``: set the parameters associated with the terminal
+
+```c
+#include <termios.h>
+
+int tcsetattr(int fildes, int optional_actions, const struct termios *termios_p);
+```
+
+The ``tcsetattr()`` function shall set the parameters associated with the terminal referred to by the open file descriptor ``fildes`` (an open file descriptor associated with a terminal) from the ``termios`` structure referenced by ``termios_p`` as follows:
+
+* If ``optional_actions`` is ``TCSANOW``, the change shall occur immediately.
+* If ``optional_actions`` is ``TCSADRAIN``, the change shall occur after all output written to ``fildes`` is transmitted. This function should be used when changing parameters that affect output.
+* If ``optional_actions`` is ``TCSAFLUSH``, the change shall occur after all output written to ``fildes`` is transmitted, and all input so far received but not read shall be discarded before the change is made.
+
 ## I/O multiplexing API
 
 ### select()
@@ -95,6 +117,6 @@ struct pollfd {
 
 # Examples
 
-[File descriptor examples](File%20descriptor%20examples.md)
-
-[I/O multiplexing examples](IO%20multiplexing%20examples.md)
+* [File operations](File%20operations.md)
+* [Device file operations](Device%20file%20operations.md)
+* [I/O multiplexing](IO%20multiplexing.md)
