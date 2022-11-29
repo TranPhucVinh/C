@@ -11,7 +11,7 @@
 
 #define BUFFSIZE 256
 int sockfd;
-struct sockaddr_in serv_addr;
+struct sockaddr_in receiver_addr;
 char buffer[BUFFSIZE];
 
 void error(const char *msg){
@@ -20,9 +20,9 @@ void error(const char *msg){
 }
  
 void socket_parameter_init(){
-    serv_addr.sin_family      = PF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr(HOST);          
-    serv_addr.sin_port        = htons(PORT);
+    receiver_addr.sin_family      = PF_INET;
+    receiver_addr.sin_addr.s_addr = inet_addr(HOST);          
+    receiver_addr.sin_port        = htons(PORT);
 
     // Create TCP socket
     if ((sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0){
@@ -31,7 +31,7 @@ void socket_parameter_init(){
     } else printf("Create socket successfully\n");
 
     // Connect to server
-    if (connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))<0){
+    if (connect(sockfd, (struct sockaddr *)&receiver_addr, sizeof(receiver_addr))<0){
         if (errno == ECONNREFUSED) {
             printf("Server hasn't been started or server doesn't support connection\n");
         } else printf("Can't connect to server with error %d", errno);
