@@ -153,7 +153,7 @@ int main(){
 }
 ```
 
-Read entered data from the 2 current running terminals (All operations are idetically to the corresponded example in ``select()``):
+Read entered data from the 2 current running terminals (All operations are identical to the corresponded example in ``select()``):
 
 ```c
 #include <stdio.h>
