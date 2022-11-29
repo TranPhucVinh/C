@@ -76,17 +76,17 @@ int main(int argc, char *argv[]){
                 while (1){
                     int bytes_received = read(sender_fd, buffer, BUFFSIZE);
                     if (bytes_received > 0) {
-                        printf("Message from TCP receiver ID %d: %s", socket_id, buffer);
+                        printf("Message from TCP sender ID %d: %s", socket_id, buffer);
                         bzero(buffer, BUFFSIZE);         //Delete buffer
                     } 
                     /*
                         Right after the TCP socket is disconnected, read() will return 0.
-                        If tcp_receiver.c sends empty string, read() won't return 0. 
+                        If tcp_multiple_senders.c sends empty string, read() won't return 0. 
                     */
                     else if (bytes_received == 0) {
-                        printf("TCP receiver with ID %d is disconnected\n", socket_id);
+                        printf("TCP sender with ID %d is disconnected\n", socket_id);
                         *total_connected_sender -= 1;
-                        printf("%d TCP receivers have connected now\n", *total_connected_sender);
+                        printf("%d TCP senders have connected now\n", *total_connected_sender);
                         kill(getpid(), SIGKILL);
                     }
                 }
