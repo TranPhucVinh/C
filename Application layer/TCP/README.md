@@ -13,8 +13,8 @@ TCP sockets program can be used to inter process communication.
 3. TCP receiver starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
 When receving message, TCP receiver will print out: ``Message from TCP sender ID %d: %s``
 5. Able to count how many tcp_client are connected.
-6. ``tcp_client`` is sending data to ``tcp_server`` properly, ``tcp_client`` then disconnected. ``tcp_server`` is able to detect that disconnected event, print out ``TCP client with ID %d is disconnected``.
-7. TCP client is identified by ID number increased by 1. If that TCP client is disconnected, that ID number won't be used again in tcp_server program when another TCP client is connected.
+6. TCP sender is sending data to TCP receiver properly, TCP sender is then disconnected. TCP receiver is able to detect that disconnected event, print out ``TCP sender  with ID %d is disconnected``.
+7. TCP sender is identified by ID number increased by 1. If that TCP sender is disconnected, that ID number won't be used again in tcp_single_receiver.c program when another TCP sender is connected.
 
 ### Implementation
 
