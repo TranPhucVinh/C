@@ -4,12 +4,11 @@ TCP sockets program can be used to inter process communication.
 
 [API.md](API.md)
 
-# Examples
+# Single TCP receiver for multiple TCP senders
 
 ### Feature
 
-1. Start tcp_client when tcp_server is not started: tcp_client print out tcp_server not connected
-Print message: ``Server hasn't been started or server doesn't support connection``
+1. Start a TCP sender (from tcp_multiple_senders.c) when the TCP receiver (from tcp_single_receiver.c) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
 2. tcp_server starts when there is no tcp_client connected/started, tcp_server print out ``Waiting for a TCP client to connect ...`` until a tcp_client is connected.
 3. tcp_server starts then a tcp_client connects to it, tcp_server then prints out that tcp_client IP address. Then tcp_client sends data to tcp_server properly.
 4. Support multiple tcp_client to a tcp_server. Print out meesage: ``Message from TCP client ID %d: %s``
@@ -21,5 +20,5 @@ Print message: ``Server hasn't been started or server doesn't support connection
 
 Use [fork()](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Process%20cloning) to create a new process for a file descriptor for each ``tcp_client`` every time a new connection is established:
 
-* [tcp_client.c](tcp_client.c)
-* [tcp_server.c](tcp_server.c)
+* [tcp_multiple_senders.c](tcp_multiple_senders.c)
+* [tcp_single_receiver.c](tcp_single_receiver.c)
