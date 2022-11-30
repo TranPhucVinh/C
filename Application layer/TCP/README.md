@@ -6,7 +6,7 @@ TCP sockets program can be used to inter process communication.
 
 # Single TCP receiver for multiple TCP senders
 
-### Feature
+### Features
 
 1. Start a TCP sender (from tcp_multiple_senders.c) when the TCP receiver (from tcp_single_receiver.c) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
 2. TCP receiver starts when there is no TCP sender connected/started, TCP receiver prints out ``Waiting for a TCP sender to connect ...`` until a TCP sender is connected.
@@ -25,10 +25,12 @@ Use [fork()](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Proc
 
 # Single TCP sender for multiple TCP receiver
 
+### Features
+
 1. Start a TCP receiver (from tcp_multiple_receivers.c) when the TCP sender (from tcp_single_sender.c) is not started: TCP receiver prints out ``TCP sender hasn't been started or TCP sender doesn't support connection``
 2. TCP sender starts when there is no TCP receiver connected/started, TCP sender prints out ``Waiting for a TCP receiver to connect ...`` until a TCP receiver is connected.
 3. TCP sender starts then a TCP receiver connects to it, TCP sender then prints out that TCP receiver IP address. Then TCP receiver send a string ``NRC`` as a flag to TCP sender to confirm that it's ready to receive message sent from TCP sender. If TCP sender received flag ``NRC`` successfully, it will send a responded string ``String responded to TCP receiver ID %d`` to TCP receiver.
-![]()
+![](https://github.com/TranPhucVinh/C/blob/master/Environment/Images/single_tcp_sender_for_multiple_tcp_receivers.png)
 4. TCP sender is able to count how many TCP receivers are connected.
 5. While step 3 is running properly as a responded string has been sent, TCP receiver is disconnected. TCP sender is able to detect that disconnected event, print out ``TCP receiver with ID %d is disconnected``.
 6. TCP receiver is identified by ID number increased by 1. If that TCP receiver is disconnected, that ID number won't be used again in ``tcp_single_sender.c`` program when another TCP receiver is connected.
