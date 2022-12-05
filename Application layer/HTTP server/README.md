@@ -1,6 +1,6 @@
 # HTTP server built from TCP server
 
-Feature:
+**Feature**:
 
 Handle GET request:
 * Return a text/plain string for route ``/``
@@ -17,3 +17,5 @@ To simplify the program, those features are not supported:
 Create TCP server socket successfully
 Fail to bind socket to local address
 ```
+
+**Program**: [simple_http_server.c](simple_http_server.c)
