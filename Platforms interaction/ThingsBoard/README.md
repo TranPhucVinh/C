@@ -1,9 +1,19 @@
 ## Telemetry
 
-Send data to ThingsBoard Live Demo HTTP server (not HTTPS):
+### Telemetry with TCP client has HTTP client
 
-* Using TCP socket as HTTP client: ``tcp_client_send_data.c``
-* Using libcurl as HTTP client: ``libcurl_send_data.c``
+Features:
+
+* WiFi not connected when program starts: Print ``gethostbyname: Host name lookup failure``
+* WiFi connected with Internet when program starts: Start the ThingsBoard telemetry process with HTTP request
+* While telemetry process is happening, network is disconnected: With ``DEBUG`` mode is on, program will get blocked. If WiFi with Internet is then recovered, program exits.
+
+Program: [tcp_client_for_telemetry.c](tcp_client_for_telemetry.c)
+
+### Telemetry with libcurl as HTTP client
+
+* Telemetry to ThingsBoard Live Demo HTTP server (not HTTPS) with libcurl as HTTP client
+* Program: [libcurl_send_data.c](libcurl_send_data.c)
 
 ## Server side API
 
