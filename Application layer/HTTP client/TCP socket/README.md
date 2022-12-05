@@ -1,6 +1,6 @@
-# Examples
-
 ## HTTP request
+
+### Get request
 
 * GET request ``example.com``: ``get_data.c``
 
@@ -34,7 +34,40 @@ int main(int argc, char *argv[]){
 }
 ```
 
-* Send data to a local HTTP server: ``send_data.c``
+### Send data
+
+Send data to a local HTTP server: ``send_data.c``
+
+### Detect Internet connection status
+
+TCP client for HTTP request can be used to detect Internet connection status, simply by using ``gethostbyname()`` function
+
+**Features**:
+
+* If Internet is connected, print ``Internet has connected``. Test with WiFi by enabling WiFi
+* If Internet isn't connected, print ``No Internet connection``. Test with WiFi by disabling WiFi
+
+**Program**:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <netdb.h>
+
+#define HOST          "thingsboard.sysats.tech"
+
+int main(int argc, char *argv[]){
+    while (1){
+        struct hostent *hostinfo;
+        hostinfo = gethostbyname(HOST);
+
+        if (hostinfo == NULL) printf("No Internet connection\n");
+        else printf("Internet has connected\n");
+        sleep(1);
+    }
+	return 0;
+}
+```
 
 ## HTTPS request
 
