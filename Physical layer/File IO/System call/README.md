@@ -100,8 +100,12 @@ struct pollfd {
     short revents;    /* returned events */
 };
 ```
+
+``nfds_t``: An unsigned integer type used for the number of file descriptors.
+
 **Parameters**
 
+* ``nfds``: Total number of file descriptors to monitor by ``poll()``
 * ``events``: A bit mask specifying the events the application is interested in for the file descriptor ``fd``. It is an input parametr (i.e setup in program)
 
     * ``POLLIN``: There is data to read.
