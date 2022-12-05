@@ -81,11 +81,16 @@ int shutdown(int sockfd, int how)
 ### Other functions
 
 ```c
-struct hostent *hp;
+#include <netdb.h>
+extern int h_errno;
 ```
 
+``h_errno`` refers to the host error.
+
+The ``herror()`` function prints the error message associated with the current value of h_errno on stderr.
+
 ```c
-herror();
+struct hostent *hp;
 ```
 
 ### htons
