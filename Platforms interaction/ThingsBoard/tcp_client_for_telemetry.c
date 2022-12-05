@@ -10,9 +10,10 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
-#define HOST          "demo.thingsboard.io"
+#define DEBUG
+#define HOST          "thingsboard.sysats.tech"
 #define PORT          80
-#define TOKEN         "ky9YeJlntAnb3MzqqEYz"
+#define TOKEN         "TTf3zmVacJI4dUQsYQwh"
 #define BUFFSIZE        256
 
 char    response_buffer[BUFFSIZE];
@@ -50,27 +51,41 @@ int socket_connect(char *host, in_port_t port){
 }
 
 int main(int argc, char *argv[]){
-	int fd;
-    char send_value[100];
-   
+	int client_fd;
+    char send_json[100];
+    
+    client_fd = socket_connect(HOST, PORT);
+
     while (1){
-        sprintf(send_value, "{'esp-idf-number':%d}", send_number);
-        fd = socket_connect(HOST, PORT);
-        char *http_request = form_http_request(send_value);
-        printf("%s\n", http_request);
-        write(fd, http_request, strlen(http_request));
+        sprintf(send_json, "{'esp-idf-number':%d}", send_number);
+        
+        char *http_request = form_http_request(send_json);
 
-        while(read(fd, response_buffer, BUFFSIZE - 1) != 0){
-            fprintf(stderr, "%s\n", response_buffer);
-            bzero(response_buffer, BUFFSIZE);
-            break;
-	    }
+        #ifdef DEBUG    
+            printf("%s\n", http_request);
+        #endif
 
-        shutdown(fd, SHUT_RDWR); 
-        close(fd); 
-        send_number += 1;
+        /*
+            For network error like WiFi not connected, write() 
+            still write the HTTP request sucessfully with
+            wsz = strlen(http_request)
+        */
+        int wsz = write(client_fd, http_request, strlen(http_request));//wsz: write size
+        
+        #ifdef DEBUG    
+            while(read(client_fd, response_buffer, BUFFSIZE - 1) != 0){
+                fprintf(stderr, "%s\n", response_buffer);
+                bzero(response_buffer, BUFFSIZE);
+                break;
+            }
+        #endif
+
+        if (wsz == strlen(http_request)) send_number += 1;
+        else printf("Failt to send HTTP request\n");
         sleep(3);
     }
+    shutdown(client_fd, SHUT_RDWR); 
+    close(client_fd); 
 	return 0;
 }
 
