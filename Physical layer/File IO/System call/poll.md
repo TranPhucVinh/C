@@ -1,4 +1,4 @@
-# Working with 1 file descriptor using poll()
+# Working with 1 file descriptor as the current running terminal
 
 Read entered data from the current running terminal
 
@@ -50,7 +50,7 @@ Entering ``1234567890123`` (More than 10 characters), print out:
 
 ``Entered string: 123``
 
-# Read entered data from the 2 current running terminals
+# Working with multiple file descriptors as 2 current running terminals
 
 Read entered data from the 2 current running terminals:
 
