@@ -1,4 +1,4 @@
-## select() example
+# select() example
 
 Working with 1 file descriptor using ``select()``: Read entered data from the current running terminal
 
@@ -115,7 +115,7 @@ username$hostname: Enter the string here for /dev/pts/18
 
 Send the string by ``echo`` (``echo Hello > /dev/pts/18``) will not work.
 
-## poll() example
+# poll() example
 
 Working with 1 file descriptor using ``poll()``: Read entered data from the current running terminal
 
