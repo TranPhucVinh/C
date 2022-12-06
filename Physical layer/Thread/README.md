@@ -101,7 +101,9 @@ If ``retval`` is not ``NULL``, then ``pthread_join()`` copies the exit status  o
 
 On success, ``pthread_join()`` returns ``0``; on error, it returns an error number.
 
-# Examples
+# Application
+
+## Use multiple threads for calculation
 
 [Use 2 threads to calculate the sum from 1 to 2147483646](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/sum_from_1_to_n.c). This example will take 3 seconds to perform while [the raw function call](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/sum_from_1_to_n.c) will take 5 seconds to execute.
 
