@@ -88,11 +88,11 @@ int main(){
     };
 
     while (1){
-        fds[0].fd = ter_1;
+        fds[0].fd = ter_1;//Add file descriptor ter_1 to monitor
         fds[0].events = 0;//Init fds[0].events
         fds[0].events |= POLLIN;
 
-        fds[1].fd = ter_2;
+        fds[1].fd = ter_2;//Add file descriptor ter_1 to monitor
         fds[1].events = 0;//Init fds[0].events
         fds[1].events |= POLLIN;
 
