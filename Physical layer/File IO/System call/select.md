@@ -1,6 +1,6 @@
-# select() example
+# Working with 1 file descriptor as the current running terminal
 
-Working with 1 file descriptor using ``select()``: Read entered data from the current running terminal
+Read entered data from the current running terminal
 
 ```c
 #include <stdio.h>
@@ -13,6 +13,8 @@ Working with 1 file descriptor using ``select()``: Read entered data from the cu
 
 #define WRITEFDS    NULL
 #define EXCEPTFDS   NULL
+
+#define BUFF_SIZE   10
 
 fd_set readfs;
 
@@ -30,17 +32,30 @@ int main(){
         if (sret == 0){
             printf("Timeout after %d seconds\n", TIMEOUT);
         } else {
-            char buffer[10];
+            char buffer[BUFF_SIZE];
             bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
             read(STDIN_FILENO, buffer, sizeof(buffer));
-            printf("%s", buffer);
+            printf("Entered string: %s", buffer);
         }
     }
     return 0;
 }
 ```
 
-Read entered data from the 2 current running terminals:
+**Result**
+
+* If not entering anything to the terminal for ``TIMEOUT`` s, print out ``Timeout after TIMEOUT seconds``
+* If entering a string inside ``TIMEOUT`` seconds, print out that entered string by the chunk of ``BUFF_SIZE``, i.e
+
+Entering ``1234567890`` (10 character), print out ``Entered string: 1234567890``
+
+Entering ``1234567890123`` (More than 10 characters), print out: 
+
+``Entered string: 1234567890``
+
+``Entered string: 123``
+
+# Read entered data from the 2 current running terminals:
 
 * Current running program (``a.out``) on terminal ``/dev/pts/2``
 * 2nd terminal is ``/dev/pts/18``
