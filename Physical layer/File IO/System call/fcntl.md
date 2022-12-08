@@ -6,8 +6,9 @@ Open file/stream
 int fd = int open(const char *path, int mode)
 ```
 
-* ``path``: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
-* mode:
+``path``: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
+
+``mode``:
 
 * ``O_RDONLY``: READ ONLY
 * ``O_WRONLY``: WRITE ONLY
