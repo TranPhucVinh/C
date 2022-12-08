@@ -10,6 +10,12 @@ void *malloc(size_t size)
 
 Size of the variable allocated by ``malloc()`` can't be gotten as there is no portable way to find out the size of a malloc'ed block.
 
+```c
+char *str;
+str = (char *) malloc(100);
+printf("%d \n", sizeof(str)); //8: 8 byte (64-bite) the length of the register
+```
+
 **String**
 
 ```c
