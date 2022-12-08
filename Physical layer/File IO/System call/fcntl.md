@@ -9,26 +9,11 @@ int fd = int open(const char *path, int mode)
 * ``path``: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
 * mode:
 
-| Mode | Description|NOTE
-| ------- |:------:|:--------:|
-|O_RDONLY | READ ONLY|int = 0|
-|O_WRONLY | WRITE ONLY|int = 1|
-|O_RDWR| READ and WRITE|int = 2|
-|O_APPEND|APPEND to WRITE|
-|O_EXEC|Open for execution|
-|O_SEARCH|Open for searching (for directory)|
-|O_CLOEXEC| Open FD_CLOEXEC for file descriptor|
-|O_CREAT | Create a file if not existed|
-|O_DIRECTORY| Return error if path is not a directory|
-|O_EXCL| Check for file existence|
-|O_NOCTTY||
-|O_NOFOLLOW| Return error if path is symbolic link|
-|O_NONBLOCK| (1)|
-|O_SYNC| Wait for hardware's synchronization every time read/write|
-|O_TRUNC| Delete all file data if file existed and opened successfully|
-|O_TTY_INIT| Used to open I/O device|
-
-(1): If path is a ``FIFO``, ``block file`` or ``character special file``, ``O_NONBLOCK`` will open and read/write file without blocking
+* ``O_RDONLY``: READ ONLY
+* ``O_WRONLY``: WRITE ONLY
+* ``O_RDWR``: READ and WRITE
+* ``O_APPEND``: APPEND to WRITE
+* ``O_NONBLOCK``: Prevents open() from blocking for a “long time” to open the file. This is only meaningful for some kinds of files like ``FIFO``, ``block file``, ``character device file``, and serial ports.
 
 **Return**: ``fd`` if file successfully opened or ``-1`` if error open, e.g: file not exist
 
