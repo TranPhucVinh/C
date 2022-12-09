@@ -44,7 +44,7 @@ In this case, while the program is blocking, running another program to **read**
 
 ``cat FIFO`` will result in ``Hello, World !`` (the string written before to that FIFO).
 
-Once you have created a FIFO special file in this way, any process can open it for reading or writing, in the same way as an ordinary file. However, it has to be open at both ends simultaneously before you can proceed to do any input or output operations on it.
+**Once you have created a FIFO special file in this way, any process can open it for reading or writing, in the same way as an ordinary file. However, it has to be open at both ends simultaneously before you can proceed to do any input or output operations on it.**
 
 For FIFO name with space like ``FIFO 1``, use ``\``, e.g ``cat FIFO\ 1``.
 
@@ -96,7 +96,7 @@ FIFO FIFO has been recreated
 Write to FIFO successfully
 ```
 
-As implementing above when opening FIFO with ``WRITE_ONLY`` mode, the FIFO will be blocked until another process open it to read (with ``O_RDONLY``) mode. So when opening with ``O_RDWR`` mode, the FIFO won't be blocked and will be closed right after ``Write to FIFO successfully``. Then another process opening that FIFO file won't be able to read the previous written data in that FIFO.
+As implementing above when opening FIFO with ``WRITE_ONLY`` mode, the FIFO will be blocked until another process open it to read (with ``O_RDONLY``) mode. So when opening with ``O_RDWR`` mode, the FIFO won't be blocked and will be closed right after ``Write to FIFO successfully``. Then another process opening that FIFO file won't be able to read the previous written data in that FIFO as **the FIFO now is not opened at both ends simultaneously**.
 
 # Example 2
 
