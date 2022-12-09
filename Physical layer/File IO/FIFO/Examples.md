@@ -1,6 +1,6 @@
-## Create a FIFO
+# Create a FIFO for R/W
 
-Create a FIFO and write data to it
+Create a FIFO and **write** data to it
 
 ```c
 #include <stdio.h>
@@ -38,9 +38,11 @@ int main(int argc, char *argv[])  {
 
 **Result**: File ``FIFO`` is created. The program then blocks after running ``open(FIFO_NAME, O_WRONLY)``.
 
-That happens as opening a FIFO created by ``mkfifo()`` for reading normally blocks until some other process opens the same FIFO for writing, and vice versa.
+That happens as opening a FIFO created by ``mkfifo()`` for writing normally blocks until some other process opens the same FIFO for reading, and vice versa.
 
-While the program is blocking, running another program that interact with ``FIFO`` like ``cat FIFO``. It will then stop blocking.
+In this case, while the program is blocking, running another program to **read** the ``FIFO`` like ``cat FIFO`` will read out the data written into that FIFO then the FIFO will then stop blocking.
+
+``cat FIFO`` will result in ``Hello, World !`` (the string written before to that FIFO).
 
 Once you have created a FIFO special file in this way, any process can open it for reading or writing, in the same way as an ordinary file. However, it has to be open at both ends simultaneously before you can proceed to do any input or output operations on it.
 
@@ -96,7 +98,7 @@ Write to FIFO successfully
 
 As implementing above when opening FIFO with ``WRITE_ONLY`` mode, the FIFO will be blocked until another process open it to read (with ``O_RDONLY``) mode. So when opening with ``O_RDWR`` mode, the FIFO won't be blocked and will be closed right after ``Write to FIFO successfully``. Then another process opening that FIFO file won't be able to read the previous written data in that FIFO.
 
-## Example 2
+# Example 2
 
 Communication between 2 process using FIFO. Process ``fifo_write`` writes data to FIFO ``FIFO 1`` every 1 second. Process ``fifo_read`` reads data from FIFO ``FIFO 1`` every 1 second.
 
@@ -218,7 +220,8 @@ If using wrong sending/receiving size, e.g ``write(fd, array, ARRAY_SIZE)``, the
 ```
 index 0: -324141055, index 1: 32767
 ```
-### Example 3
+
+# Example 3
 
 Minimize float number to send as array member with 1 byte in the FIFO between 2 process with scaling factor ``65535`` [minimize_float_number_fifo_write.c](minimize_float_number_fifo_write.c) and [minimize_float_number_fifo_read.c](minimize_float_number_fifo_read.c).
 
