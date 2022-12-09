@@ -26,6 +26,7 @@ After successfully creating, simply R/W to that FIFO by 2 process with normal ``
 ## IPC by FIFO
 
 * [Create a FIFO for R/W](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/FIFO/IPC%20by%20FIFO.md#create-a-fifo-for-rw): Create a FIFO to R/W between 2 seperated process 
+* [Process fifo_write writes data to FIFO every 1 second. Process fifo_read reads data from FIFO every 1 second](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/FIFO/IPC%20by%20FIFO.md)
 
 ## IPC by FIFO with scaling data method
 
