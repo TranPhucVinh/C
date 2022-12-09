@@ -1,5 +1,4 @@
-
-## Example 1
+## Create a FIFO
 
 Create a FIFO
 
@@ -30,8 +29,9 @@ int main(int argc, char *argv[])  {
         }
 	} else printf("FIFO %s has been created\n", FIFO_NAME);
 
-	int fd = open(FIFO_NAME, O_WRONLY);
+	int fd = open(FIFO_NAME, O_WRONLY);//Open FIFO with WRITE_ONLY mode
 	if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
+	else printf("Write to FIFO successfully\n");
 	close(fd);
 }
 ```
@@ -74,6 +74,25 @@ if (write(fd, &a, sizeof(int)) == -1) printf("Unable to write to FIFO");
 ```
 
 ``cat FIFO\ 1`` will then read out character ``b`` (ASCII value ``98``).
+
+**Change opening mode**: In the source code above, if we change the opening mode to READ and WRITE, the whole program will not block after the FIFO created successfully
+
+```c
+int fd = open(FIFO_NAME, O_RDWR);
+if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
+else printf("Write to FIFO successfully\n");
+close(fd);
+```
+
+**Result**
+
+```sh
+username@hostname:$ ./a.out
+WARNING: A FIFO with the same name has already existed
+FIFO FIFO has been deleted
+FIFO FIFO has been recreated
+Write to FIFO successfully
+```
 
 ## Example 2
 
