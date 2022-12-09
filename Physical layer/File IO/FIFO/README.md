@@ -23,7 +23,7 @@ After successfully creating, simply R/W to that FIFO by 2 process with normal ``
 
 # Implementations
 
-## ICP by FIFO
+## IPC by FIFO
 
 * [Create a FIFO for R/W](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/FIFO/IPC%20by%20FIFO.md#create-a-fifo-for-rw): Create a FIFO to R/W between 2 seperated process 
 
