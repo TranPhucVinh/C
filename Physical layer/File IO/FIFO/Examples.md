@@ -1,6 +1,6 @@
 ## Create a FIFO
 
-Create a FIFO
+Create a FIFO and write data to it
 
 ```c
 #include <stdio.h>
@@ -93,6 +93,8 @@ FIFO FIFO has been deleted
 FIFO FIFO has been recreated
 Write to FIFO successfully
 ```
+
+As implementing above when opening FIFO with ``WRITE_ONLY`` mode, the FIFO will be blocked until another process open it to read (with ``O_RDONLY``) mode. So when opening with ``O_RDWR`` mode, the FIFO won't be blocked and will be closed right after ``Write to FIFO successfully``. Then another process opening that FIFO file won't be able to read the previous written data in that FIFO.
 
 ## Example 2
 
