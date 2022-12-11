@@ -28,11 +28,13 @@ On success, ``mmap()`` returns a pointer to the mapped area.
 
 ### Examples
 
-**Example 1**: [Control GPIO of Raspberry Pi by direct memory access using mmap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/GPIO/direct_register_access_control_gpio.c), notice that ``addr`` param in ``mmap()`` is ``NULL`` in this case.
+**Example 1**: [Read the value stored in Raspberry Pi physical address 0x3f20000](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/Direct%20register%20access.md#mmap)
 
-**Example 2**: [Changing value inside parent or child process to effect the left one by using shared memory with mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Variable%20inside%20forked%20process.md#with-shared-memory-changing-variable-value-in-parentchild-process-wont-effect-the-left-one)
+**Example 2**: [Control GPIO of Raspberry Pi by direct memory access using mmap()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/GPIO/direct_register_access_control_gpio.c), notice that ``addr`` param in ``mmap()`` is ``NULL`` in this case.
 
-**Example 3**: Use ``mmap()`` to read content of a file
+**Example 3**: [Changing value inside parent or child process to effect the left one by using shared memory with mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Variable%20inside%20forked%20process.md#with-shared-memory-changing-variable-value-in-parentchild-process-wont-effect-the-left-one)
+
+**Example 4**: Use ``mmap()`` to read content of a file
 
 ```c
 #include <stdio.h>
