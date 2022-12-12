@@ -1,4 +1,4 @@
-## Terminal operations
+# Terminal operations
 
 Inside the ``while()`` loop, read entered value from terminal and print out:
 
@@ -47,7 +47,7 @@ int main(){
 }
 ```
 
-## USB ports operations
+# USB ports operations
 
 Read data from USB port (``/dev/ttyUSB0``, ``/dev/ttyACM0``,...) with baudrate 115200 as default USB port baudrate
 
@@ -132,4 +132,60 @@ For other baurdate value like 4800, use ``B4800``:
 ```C
 cfsetispeed(&tty, B4800);
 cfsetospeed(&tty, B4800);
+```
+
+# Read coordinate of a mouse cursor
+
+**Note**: This program only work with pluggable mouse and don't work with hardware built-in touchpad as touchpad is not treated as mouse.
+
+To view the mouse id, use command: ``ll /dev/input/by-path`` or ``ll /dev/input/by-id``
+
+Must run the program below with ``sudo`` to read the ``/dev/input/event*``:
+
+```c
+#include <stdio.h>
+#include <sys/time.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <fcntl.h>
+
+#define MOUSE_INPUT_EVENT   "/dev/input/event19"
+
+struct input_event {
+    struct timeval time;
+    unsigned short type;
+    unsigned short code;
+    unsigned int value;
+};
+
+void main(void)
+{
+    int fd, fsize;
+    char buff[128];
+    struct input_event *temp;
+    unsigned int x, y;
+    x = y = 0;
+    fd = open(MOUSE_INPUT_EVENT, O_RDONLY);//mouse
+    if (fd >0){
+        while (1)
+        {
+            fsize = (int)read(fd, buff, 1024);
+            if (fsize > 0)
+            {
+                temp = (struct input_event *)buff;
+                if (temp->code == 0)
+                x = temp->value;
+                else
+                y = temp->value;
+            }
+            printf("x=%u y=%u\n", x, y);
+        }
+    } else printf("%d\n", fd);
+}
+```
+**Result**: Result will be like this
+```
+x=42 y=16
+x=145 y=16
+x=691 y=16
 ```
