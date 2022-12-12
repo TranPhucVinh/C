@@ -1,4 +1,4 @@
-### open()
+## open()
 
 Open file/stream
 
@@ -18,7 +18,7 @@ int fd = int open(const char *path, int mode)
 
 **Return**: ``fd`` if file successfully opened or ``-1`` if error open, e.g: file not exist
 
-### creat()
+## creat()
 
 ```c
 int fileDescriptor = int creat(const char * pathname , mode_t mode);
