@@ -6,11 +6,26 @@
 #include <unistd.h>
 #include <signal.h>
 #include <string.h>
+#include <ctype.h>
+#include "kmess_cli_handler.h"
+
+#define MAX_EVENTS 1
+#define TOLOWER(str) for (char* p = str ; *p; ++p) *p = tolower(*p);
 
 char buffer[1024];
-#define MAX_EVENTS 5
 int epollfd, fd;
 bool isMultipleLine = false;
+cli_handler my_cli_hanlder;
+
+char kmess_help[]=
+"Usage: kmess [OPTION]\n"\
+" -h,            Get help for the command\n"\
+" -m             Some kernel message is multi-lines, use this to display full msg\n"\
+"                1 line displayed is default\n"\
+" -e             use pattern for matching, not currently supporting regexp\n"\
+" -v             use pattern for non-matching, not currently supporting regexp\n"\
+" -i             ignore case sensitive";
+
 void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext){
     close(fd);
     close(epollfd);
@@ -20,32 +35,26 @@ void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext
 int main(int argc, char** args)
 {
 
-    if (argc > 2)
+    int result = get_cli_params(argc, args, &my_cli_hanlder);
+    if (result < 0)
     {
-        printf("Too many arguments\n");
+        printf("kmess: fail to get cli params\n");
         exit(1);
     }
-    if (argc == 2)
+
+    if (my_cli_hanlder.help_option != 0)
     {
-        if (strcmp(args[1], "-m") == 0)
-        {
-            isMultipleLine = true;
-        }
-        else if(strcmp(args[1], "--help") == 0 || strcmp(args[1], "-h") == 0)
-        {
-            printf("Usage: kmess [OPTION]\n");
-            printf(" -h, --help     Get help for the command\n");
-            printf(" -m             Some kernel message is multi-lines, use this to display full msg\n");
-            printf("                1 line displayed is default\n");
-            exit(0);
-        }
-        else
-        {
-            printf("Invalid arguments\n");
-            exit(1);
-        }
+        printf("%s\n", kmess_help);
+        exit(0);
     }
 
+    if (my_cli_hanlder.m_option != 0)
+    {
+        isMultipleLine = true;
+    }
+
+    // Set up signal to override the ctrl + c action
+    // Just for the purpose of safe exit when pressing ctrl + c
     struct sigaction sa;
     sa.sa_sigaction = &signal_action_handler;
     sa.sa_flags = SA_SIGINFO;
@@ -76,6 +85,7 @@ int main(int argc, char** args)
         exit(EXIT_FAILURE);
     }
 
+    char* analize_content_msg = NULL;
     for (;;) {
         bzero(buffer, 1024);
         nfds = epoll_wait(epollfd, events, MAX_EVENTS, -1);
@@ -91,23 +101,71 @@ int main(int argc, char** args)
                 // 4,516,1452858886,-;<kernel message>
                 // string process
                 char* content_msg = strstr(buffer, ";") + 1;
-                char* num_str = strtok(buffer, ";");
+                free(analize_content_msg);
+                if (my_cli_hanlder.m_option != 0)
+                {
+                    content_msg[strlen(content_msg) - 1] = 0; // strip out last \n
+                }
+                else
+                {
+                    content_msg = strtok(content_msg, "\n");
+                }
 
+                analize_content_msg = malloc(strlen(content_msg) + 1);
+                strcpy(analize_content_msg, content_msg);
+                if (my_cli_hanlder.i_option != 0)
+                {
+                    TOLOWER(analize_content_msg);
+                }
+
+                if (my_cli_hanlder.e_option.index != 0)
+                {
+                    char* match_pattern = malloc(strlen(my_cli_hanlder.e_option.pattern) + 1);
+                    strcpy(match_pattern, my_cli_hanlder.e_option.pattern);
+                    if (my_cli_hanlder.i_option != 0)
+                    {
+                        TOLOWER(match_pattern);
+                    }
+                    bool isMatch = STRCT(analize_content_msg, match_pattern);
+                    free(match_pattern);
+                    if (isMatch == false)
+                    {
+                        continue;
+                    }
+                }
+                if (my_cli_hanlder.i_option != 0)
+                {
+                    TOLOWER(analize_content_msg);
+                }
+
+                if (my_cli_hanlder.v_option.index != 0)
+                {
+                    char* match_pattern = malloc(strlen(my_cli_hanlder.v_option.pattern) + 1);
+                    strcpy(match_pattern, my_cli_hanlder.v_option.pattern);
+                    if (my_cli_hanlder.i_option != 0)
+                    {
+                        TOLOWER(match_pattern);
+                    }
+                    bool isMatch = STRNCT(analize_content_msg, match_pattern);
+                    free(match_pattern);
+                    if (isMatch == false)
+                    {
+                        continue;
+                    }
+                }
+                char* num_str = strtok(buffer, ";");
                 char* time_str = strtok(num_str, ",");
                 time_str = strtok(NULL, ",");
                 time_str = strtok(NULL, ",");
+
+                // get the third string number after commas
+                // this number represents the number of micro second from starting kernel to present
                 long long ret = atoll(time_str);
                 double time_s = ret / 1000000.0;
 
                 // final printf
-                if (isMultipleLine)
-                {
-                    printf("[ %.6lf] %s", time_s, content_msg);
-                }
-                else
-                {
-                    printf("[ %.6lf] %s\n", time_s, strtok(content_msg, "\n"));
-                }
+                printf("[ %.6lf] %s\n", time_s, content_msg);
+
             } else {
                 // weird behavior
                 close(epollfd);
