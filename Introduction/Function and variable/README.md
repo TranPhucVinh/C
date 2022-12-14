@@ -1,6 +1,4 @@
-# Fundamental concepts
-
-## Functions
+# Functions
 
 ### Create function
 
