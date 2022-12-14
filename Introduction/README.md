@@ -1,5 +1,6 @@
 # Fundamental concepts
 
+* [Function and variable](Function%20and%20variable)
 * [Header](https://github.com/TranPhucVinh/C/tree/master/Introduction/Header)
 * [Macro](https://github.com/TranPhucVinh/C/tree/master/Introduction/Macro)
 * [Data type](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20type)
