@@ -16,9 +16,20 @@ int fd = int open(const char *path, int mode)
 * ``O_RDWR``: READ and WRITE
 * ``O_APPEND``: APPEND to WRITE
 * ``O_NONBLOCK``: Prevents open() from blocking for a “long time” to open the file. This is only meaningful for some kinds of files like ``FIFO``, ``block file``, ``character device file``, and serial ports.
+* ``O_EXCL``: ``O_EXCL`` must go with ``O_CREAT`` with ``|`` operator to detect the error when trying to create (with ``O_CREAT``flag ) an existed file.
 
 **Return**: ``fd`` if file successfully opened or ``-1`` if error open, e.g: file not exist when opening with mode ``O_RDONLY``
 
+``O_EXCL`` example: 
+
+```c
+int fileDescription = open(FILE_NAME, O_CREAT|O_EXCL);
+printf("%d\n", errno);
+```
+
+Run this program for the first time, ``errno`` is ``0`` as there is no errno and the file ``FILE_NAME`` is created.
+
+Run this program for the second time, ``errno`` is ``EEXIST 17 File exists`` as the file ``FILE_NAME`` has already been created.
 ## creat()
 
 ```c
