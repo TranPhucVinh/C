@@ -13,7 +13,7 @@ Size of the variable allocated by ``malloc()`` can't be gotten as there is no po
 ```c
 char *str;
 str = (char *) malloc(100);
-printf("%d \n", sizeof(str)); //8: 8 byte (64-bite) the length of the register
+printf("%d \n", sizeof(str)); //8: 8 byte (64-bit) is the length of the register as this is size of the pointer str
 ```
 
 **String**
