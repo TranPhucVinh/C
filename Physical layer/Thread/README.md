@@ -142,8 +142,6 @@ range_3.lower_range = N/3 + N/3 + 1;
 range_3.upper_range = N;
 ```
 
-Check [examples document](Examples.md) for other examples.
-
 # Other concepts
 
 ### Spin lock
