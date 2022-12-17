@@ -14,19 +14,21 @@ Compile: ``gcc test.c -lpthread``
 #include <stdio.h>
 #include <pthread.h>
 
-void *func_thread_1(void *ptr);
+void *thread_func(void *ptr);
 
 int main()
 {  
-	pthread_t thread_1;
+	pthread_t thread_id;
 
-	pthread_create(&thread_1, NULL, func_thread_1, NULL);
-	pthread_join(thread_1, NULL);
+	pthread_create(&thread_id, NULL, thread_func, NULL);
+	pthread_join(thread_id, NULL);
 	printf("thread_1 finish executing\n");
+    printf("Thread ID %lu\n", thread_id);
 }
 
-void *func_thread_1(void *ptr){
+void *thread_func(void *ptr){
 	printf("Hello, World !\n");
+    printf("Thread ID %lu\n", pthread_self());
 }
 ```
 
@@ -34,7 +36,9 @@ void *func_thread_1(void *ptr){
 
 ```
 Hello, World !
+Thread ID 140053257754368
 thread_1 finish executing
+Thread ID 140053257754368
 ```
 
 Program's flow::
@@ -94,7 +98,7 @@ The ``pthread_create()`` function starts a new thread in the calling process. Th
 
 The ``attr`` argument points to a ``pthread_attr_t`` structure whose contents are used at thread creation time to determine attributes for the new thread; this structure is initialized using ``pthread_attr_init()`` and related functions. If ``attr`` is ``NULL``, then the thread is created with default attributes.
 
-Before returning, a successful call to ``pthread_create()`` stores the ID of the new thread in the buffer pointed to by ``thread``; this identifier is used to refer to the thread in subsequent calls to other pthreads functions.
+Before returning, a successful call to ``pthread_create()`` stores the ID of the new thread in the buffer pointed to by ``thread``, known as **thread ID**; this identifier is used to refer to the thread in subsequent calls to other pthreads functions.
 
 On success, ``pthread_create()`` returns ``0``; on error, it returns an ``error number``, and the contents of ``*thread`` are ``undefined``.
 
@@ -109,6 +113,16 @@ The ``pthread_join()`` function waits for the thread specified by ``thread`` to 
 If ``retval`` is not ``NULL``, then ``pthread_join()`` copies the exit status  of the target thread (i.e., the value that the target thread supplied to ``pthread_exit()``) into the location pointed to by ``retval``.  If the target thread was canceled, then ``PTHREAD_CANCELED`` is placed in the location pointed to by ``retval``.
 
 On success, ``pthread_join()`` returns ``0``; on error, it returns an error number.
+
+### pthread_self()
+
+```c
+pthread_t pthread_self(void);
+```
+
+The ``pthread_self()`` function returns the ID of the calling thread. This is the same value that is returned in *thread in the ``pthread_create()`` call that created this thread.
+
+**Note**: This function must always be called inside the thread function handler so that it can get the proper thread ID of the calling thread.
 
 # Application
 
