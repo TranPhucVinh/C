@@ -62,6 +62,8 @@ key        msqid      owner      perms      used-bytes   messages
 0x00000002 32769      tranphucvi 666        200          2  
 ```
 
+To delete that message queue (with ID ``32769``): ``ipcrm -q 32769``
+
 ## Receive message from message queue
 
 Get the ``msqid`` from an existed message queue then read that message out
