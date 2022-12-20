@@ -1,6 +1,8 @@
 # Create a FIFO for R/W
 
-Create a FIFO and **write** data to it
+## Singly open FIFO with O_WRONLY and O_RDONLY mode
+
+Create a FIFO then open it with ``O_WRONLY`` to **write** data to it
 
 ```c
 #include <stdio.h>
@@ -58,7 +60,7 @@ if (write(fd, &a, sizeof(int)) == -1) printf("Unable to write to FIFO");
 
 ``cat FIFO\ 1`` will then read out character ``b`` (ASCII value ``98``).
 
-**Change opening mode**: In the source code above, if we change the opening mode to READ and WRITE, the whole program will not block after the FIFO created successfully
+## Open FIFO with O_RDWR mode
 
 ```c
 int fd = open(FIFO_NAME, O_RDWR);
@@ -77,7 +79,7 @@ FIFO FIFO has been recreated
 Write to FIFO successfully
 ```
 
-As implementing above when opening FIFO with ``WRITE_ONLY`` mode, the FIFO will be blocked until another process open it to read (with ``O_RDONLY``) mode. So when opening with ``O_RDWR`` mode, the FIFO won't be blocked and will be closed right after ``Write to FIFO successfully``. Then another process opening that FIFO file won't be able to read the previous written data in that FIFO as **the FIFO now is not opened at both ends simultaneously**.
+As implementing above when opening FIFO with ``WRITE_ONLY`` mode, the FIFO will be blocked until another process open it to read (with ``O_RDONLY``) mode. So when opening with ``O_RDWR`` mode, the FIFO won't be blocked by ``open()`` and will execute until ``close(fd)``. Then another process opening that FIFO file won't be able to read the previous written data in that FIFO as **the FIFO now is not opened at both ends simultaneously**.
 
 # IPC by FIFO
 
