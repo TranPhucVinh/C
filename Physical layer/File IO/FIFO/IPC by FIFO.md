@@ -60,6 +60,68 @@ if (write(fd, &a, sizeof(int)) == -1) printf("Unable to write to FIFO");
 
 ``cat FIFO\ 1`` will then read out character ``b`` (ASCII value ``98``).
 
+### Simple IPC programs with a FIFO
+
+``fifo_read.c`` will read the string sent from ``fifo_write.c``.
+
+``fifo_read.c``
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
+#define FIFO_NAME 		"FIFO"
+#define FILE_PERMISSION	 0777 //Octal value for file permission 777
+#define BUFF_SIZE   10
+int main(int argc, char *argv[])  {
+	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
+		printf("WARNING: A FIFO with the same name has already existed\n");
+
+        //Use unlink() or remove() to remove the existed FIFO with the same name if existed
+        if (!remove(FIFO_NAME)) {
+            printf("FIFO %s has been deleted\n", FIFO_NAME);
+
+            //Then create that FIFO again
+            if (!mkfifo(FIFO_NAME, FILE_PERMISSION)) printf("FIFO %s has been recreated\n", FIFO_NAME);
+        } else {
+            printf("Unable to remove FIFO %s\n", FIFO_NAME);
+            return 1;
+        }
+	} else printf("FIFO %s has been created\n", FIFO_NAME);
+
+	int fd = open(FIFO_NAME, O_RDONLY);
+    char buffer[BUFF_SIZE];
+    bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+    read(fd, buffer, sizeof(buffer));
+    printf("Entered string: %s\n", buffer);
+	close(fd);
+}
+```
+
+``fifo_write.c``
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
+#define FIFO_NAME 		"FIFO"
+
+int main(int argc, char *argv[])  {
+	char writeString[] = "Hello, World !";
+
+	int fd = open(FIFO_NAME, O_WRONLY);
+	if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
+	else printf("Write to FIFO successfully\n");
+	close(fd);
+}
+```
+
+**Note**: As FIFO works fundamentally like a file so it must be opened with the right mode for proper operation, i.e to read (with ``read()``), open with ``O_RDONLY``, to write, open with ``O_WRONLY``.
+
 ## Open FIFO with O_RDWR mode
 
 ```c
