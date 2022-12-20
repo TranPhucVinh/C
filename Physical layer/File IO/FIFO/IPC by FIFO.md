@@ -81,6 +81,55 @@ Write to FIFO successfully
 
 As implementing above when opening FIFO with ``WRITE_ONLY`` mode, the FIFO will be blocked until another process open it to read (with ``O_RDONLY``) mode. So when opening with ``O_RDWR`` mode, the FIFO won't be blocked by ``open()`` and will execute until ``close(fd)``. Then another process opening that FIFO file won't be able to read the previous written data in that FIFO as **the FIFO now is not opened at both ends simultaneously**.
 
+**Open a FIFO with O_RDWR mode to R/W**
+
+This example is intended to demonstrate the behavior of a FIFO opened inside a process for its internal communication.
+
+Write a string in ``stdin`` to store in ``stdin_buf`` buffer. Then write that ``stdin_buf`` buffer to a FIFO opened with O_RDWR. Finally read that string out from the FIFO into ``fifo_buf``.
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+
+#define FIFO_NAME 		 "FIFO"
+#define FILE_PERMISSION	 0777 //Octal value for file permission 777
+#define BUFF_SIZE        30
+
+int fd;
+char stdin_buf[BUFF_SIZE], fifo_buf[BUFF_SIZE];
+
+int main()
+{
+    if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
+		printf("WARNING: A FIFO with the same name has already existed\n");
+
+        if (!remove(FIFO_NAME)) {
+            printf("FIFO %s has been deleted\n", FIFO_NAME);
+            if (!mkfifo(FIFO_NAME, FILE_PERMISSION)) printf("FIFO %s has been recreated\n", FIFO_NAME);
+        } else {
+            printf("Unable to remove FIFO %s\n", FIFO_NAME);
+            return 1;
+        }
+	} else printf("FIFO %s has been created\n", FIFO_NAME);
+
+    while (1)
+    {
+        int fd = open(FIFO_NAME, O_RDWR);
+        printf("Enter string to write to FIFO:");
+        fgets(stdin_buf, BUFF_SIZE, stdin);
+        printf("String written from stdin: %s", stdin_buf);
+        write(fd, stdin_buf, BUFF_SIZE);
+        read(fd, fifo_buf, BUFF_SIZE);
+        printf("String read from FIFO: %s", fifo_buf);
+        close(fd);
+    }
+    return 0;
+}
+```
+
 # IPC by FIFO
 
 Process ``fifo_write`` writes data to FIFO ``FIFO 1`` every 1 second. Process ``fifo_read`` reads data from FIFO ``FIFO 1`` every 1 second.
