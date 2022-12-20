@@ -65,6 +65,14 @@ The argument ``msgtyp`` specifies the type of message requested as follows:
 * If ``msgtyp`` is greater than 0, then the first message in the queue of type msgtyp is read, unless MSG_EXCEPT was specified in ``msgflg``, in which case the first message in the queue of type not equal to msgtyp will be read.
 * If ``msgtyp`` is less than 0, then the first message in the queue with the lowest type less than or equal to the absolute value of msgtyp will be read.
 
+## msgctl()
+
+```c
+int msgctl(int msqid, int cmd, struct msqid_ds *buf);
+```
+
+Perform the control operation specified by ``cmd`` on the System V message queue with identifier ``msqid``.
+
 # Implementations
 
 * [Sending and receiving a single message in a message queue]()
