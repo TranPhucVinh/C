@@ -29,14 +29,14 @@ int main(int argc, char *argv[])  {
         }
 	} else printf("FIFO %s has been created\n", FIFO_NAME);
 
-	int fd = open(FIFO_NAME, O_WRONLY);//Open FIFO with WRITE_ONLY mode
+	int fd = open(FIFO_NAME, O_WRONLY);//The program will blocks right after running open(FIFO_NAME, O_WRONLY)
 	if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
 	else printf("Write to FIFO successfully\n");
 	close(fd);
 }
 ```
 
-**Result**: File ``FIFO`` is created. The program then blocks after running ``open(FIFO_NAME, O_WRONLY)``.
+**Result**: File ``FIFO`` is created. The program then blocks right after running ``open(FIFO_NAME, O_WRONLY)``.
 
 That happens as opening a FIFO created by ``mkfifo()`` for writing normally blocks until some other process opens the same FIFO for reading, and vice versa.
 
