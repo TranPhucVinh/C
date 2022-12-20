@@ -62,8 +62,6 @@ key        msqid      owner      perms      used-bytes   messages
 0x00000002 32769      tranphucvi 666        200          2  
 ```
 
-To delete that message queue (with ID ``32769``): ``ipcrm -q 32769``
-
 ## Receive message from message queue
 
 Get the ``msqid`` from an existed message queue then read that message out
@@ -103,3 +101,26 @@ int main(){
 ```
 
 As this is the operation on the queue, every timne receiving the message from the message queue, its total message will be decreased by ``1``.
+
+# Remove a message queue
+
+To remove the message queue created above (with ID ``32769``): ``ipcrm -q 32769``
+
+To remove by ``msgctl()``:
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <sys/msg.h>
+
+#define KEY                 2//Set the key value number to any int number when creating
+
+int main(){
+    int msqid = msgget(KEY, IPC_CREAT|0666);
+    if (msqid >= 0){
+        msgctl(msqid, IPC_RMID, NULL);
+    } else {
+        printf("Unable to get msqid\n");        
+    }
+}
+```
