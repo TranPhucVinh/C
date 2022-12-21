@@ -49,7 +49,7 @@ GCC assumes that all libraries start with ``lib`` and end with ``.so`` or ``.a``
 
 ## Linux environment
 
-**Set up command from a C process**
+### Set up command from a C process
 
 To make ``a.out`` file compiled from a C source code to be a system wide available command, put it inside ``/bin`` folder.
 
