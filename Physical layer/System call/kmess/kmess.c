@@ -13,6 +13,8 @@
 #define TOLOWER(str) for (char* p = str ; *p; ++p) *p = tolower(*p);
 
 char buffer[1024];
+char temp_buffer[1024];
+const char newline_hex[4] = {'\\', 'x', '0', 'a'};
 int epollfd, fd;
 bool isMultipleLine = false;
 cli_handler my_cli_hanlder;
@@ -164,7 +166,44 @@ int main(int argc, char** args)
                 double time_s = ret / 1000000.0;
 
                 // final printf
-                printf("[ %.6lf] %s\n", time_s, content_msg);
+                // check multipline option to handle hex output "\x0a"
+		
+		// IDEAS
+		// brief explaination, when using \n in printk, the buffer read from /dev/kmesg replay the '\n'
+		// character with four other characters '\' 'x' '0' 'a'
+		// In the -m option, we will handle this four character with new line when print out the message
+
+		// ISSUE
+		// A testing kernel module with 1 simple printk("line1\nline2") is used for testing
+		// The buffer read to the content_msg variable is fully expand to "line1\x0aline2" (debugged)
+		// Already have the design to handle this, but the "strstr" function doesn't behave as expected
+		// Here strstr(content_msg, newline_hex) return NULL break the design flow which should oviously
+		// return not NULL ???????
+
+                if (my_cli_hanlder.m_option != 0 && strstr(content_msg, newline_hex) != NULL)
+                {
+                    int temp_size = strlen(content_msg);
+                    char* s_ptr = content_msg;
+                    char* p_ptr = s_ptr;
+                    bzero(temp_buffer, 1024);
+                    while((s_ptr = strstr(s_ptr, newline_hex)) != NULL)
+                    {
+                        printf("here: %d\n", temp_size);
+                        *s_ptr = 0;
+                        strcat(temp_buffer, p_ptr);
+                        strcat(temp_buffer, "\n");
+                        s_ptr+=4;
+                        p_ptr = s_ptr;
+                    }
+                     if(p_ptr != (content_msg + temp_size)){
+                        strcat(temp_buffer, p_ptr);
+                    }
+                    printf("[ %.6lf] %s\n", time_s, temp_buffer);
+                }
+                else
+                {
+                     printf("[ %.6lf] %s\n", time_s, content_msg);
+                }
 
             } else {
                 // weird behavior
