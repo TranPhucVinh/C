@@ -58,3 +58,91 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 * [Working with multiple file descriptors as 2 current running terminals]()
 
 ## Working with FIFO
+
+Everytime ``send.c`` sends a string to ``FIFO``, ``receive.c`` which monitor event ``EPOLLHUP`` (with flag ``EPOLLET`` to make sure the event happen only 1 time exactly as edge trigger) will print out the receive string.
+
+``send.c``
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
+#define FIFO_NAME 		"FIFO"
+
+int main(int argc, char *argv[])  {
+	char writeString[] = "Hello, World !";
+
+	int fd = open(FIFO_NAME, O_WRONLY);
+	if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
+	else printf("Write to FIFO successfully\n");
+	close(fd);
+}
+```
+
+``receive.c``
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>//for bzero()
+#include <sys/epoll.h>
+
+#define TIMEOUT     5000    //miliseconds
+#define BUFF_SIZE   10
+#define MAXEVENTS   1       //1 event for EPOLLIN
+
+#define FIFO        "FIFO"
+
+struct epoll_event monitored_event[1], happened_event[1];
+
+int main(){
+    int epfd = epoll_create1(EPOLL_CLOEXEC);
+    if (epfd < 0) {
+        printf("Unable to create an epoll fd\n");
+        return 0;
+    } else {
+        int fd = open(FIFO, O_RDONLY|O_NONBLOCK);//Open for write
+        if (fd > 0){
+            printf("Open FIFO successfully %d\n", fd);
+            monitored_event[0].events = EPOLLET;
+
+            monitored_event[0].data.fd = fd;
+
+            if (epoll_ctl(epfd, EPOLL_CTL_ADD, fd, monitored_event) < 0){
+                printf("Unable to add current opening terminal STDIN_FILENO to be monitored by epoll\n");
+                return 0;
+            } else {
+                while (1){
+                    int epollret = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
+                    if (epollret == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+                    else if (epollret > 0){
+                        char buffer[BUFF_SIZE];
+                        bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+                        read(fd, buffer, sizeof(buffer));
+
+                        /*
+                            If checking event with EPOLLET like this: if (happened_event[0].events == EPOLLET)
+                            this condition will never happen
+                        */
+                        if (happened_event[0].events == EPOLLHUP) printf("Entered string: %s\n", buffer);
+                    }
+                    else {
+                        printf("epoll_wait error %d\n", epollret);        
+                        close(epfd);
+                        return -1;
+                    }
+                }
+            }
+        } else printf("Unable to open %s with fd %d\n", FIFO, fd);
+    }
+    return 1;
+}
+```
+### Note
+
+``EPOLLHUP`` is returned continuously on ``FIFO`` right after ``FIFO`` received a string sent from ``send.c``. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+
+Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with send.c as the sender to FIFO)
