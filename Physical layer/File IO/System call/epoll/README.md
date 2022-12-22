@@ -1,5 +1,7 @@
 The epoll API performs a similar task to ``poll()`` as monitoring multiple file descriptors to see if I/O is possible on any of them. 
 
+# API
+
 The central concept of the ``epoll`` API is the epoll instance, an in-kernel data structure which, from a user-space perspective, can be considered as a container for two lists:
 
 * The **interest** list (sometimes also called the **epoll set**): the set of file descriptors that the process has registered an interest in monitoring.
@@ -47,3 +49,12 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 
 * ``EPOLLIN``: The associated file is available for ``read()`` operations
 * ``EPOLLOUT``: The associated file is available for ``write()`` operations
+
+# Implementations
+
+## Working with terminal
+
+* [Working with 1 file descriptor as the current running terminal]()
+* [Working with multiple file descriptors as 2 current running terminals]()
+
+## Working with FIFO
