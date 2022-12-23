@@ -49,13 +49,14 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 
 * ``EPOLLIN``: The associated file is available for ``read()`` operations
 * ``EPOLLOUT``: The associated file is available for ``write()`` operations
-
+* ``EPOLLHUP``: Hang up (i.e: close) happened on the associated file descriptor. Check [epoll implementation with FIFO for EPOLLHUP example](#working-with-fifo)
+	      
 # Implementations
 
 ## Working with terminal
 
-* [Working with 1 file descriptor as the current running terminal]()
-* [Working with multiple file descriptors as 2 current running terminals]()
+* [Working with 1 file descriptor as the current running terminal](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/epoll/Implementations.md#working-with-1-file-descriptor-as-the-current-running-terminal)
+* [Working with multiple file descriptors as 2 current running terminals](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/epoll/Implementations.md#working-with-multiple-file-descriptors-as-2-current-running-terminals)
 
 ## Working with FIFO
 
@@ -143,6 +144,17 @@ int main(){
 ```
 ### Note
 
-``EPOLLHUP`` will be returned continuously on ``FIFO`` right after ``FIFO`` received a string sent from [send.c](#sendc). Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+``EPOLLHUP`` will be returned continuously on ``receive.c`` side right after [send.c](#sendc) successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+
+Also note that with ``send.c`` program above, if the string sending process is blocking inside the while loop like this, ``EPOLLHUP`` event won't be caught in ``receive.c`` until ``send.c`` is stopped so that its ``FIFO`` file descriptor is closed:
+
+```c
+//Sending string to FIFO inisde while loop like this in send.c will stop EPOLLHUP event to be caught by receive.c
+while (1){
+        if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
+    	else printf("Write to FIFO successfully\n");
+        sleep(1);
+}
+```    
 
 Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO). In ``endlessly_epollhup_event.c``, it only monitors ``EPOLLHUP`` event and has nothing to deal with ``EPOLLET``. Right after the FIFO receives the sent data from ``send.c``, ``EPOLLHUP`` event keeps appearing endlessly. Program ``endlessly_epollhup_event.c`` uses ``count``, a variable to count how many time ``EPOLLHUP`` happens and ``count`` value will increase expressly.
