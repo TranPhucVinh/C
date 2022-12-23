@@ -61,7 +61,7 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 
 Everytime ``send.c`` sends a string to ``FIFO``, ``receive.c`` which monitor event ``EPOLLHUP`` (with flag ``EPOLLET`` to make sure the event happen only 1 time exactly as edge trigger) will print out the receive string.
 
-``send.c``
+### send.c
 
 ```c
 #include <stdio.h>
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-``receive.c``
+### receive.c
 
 ```c
 #include <stdio.h>
@@ -143,6 +143,6 @@ int main(){
 ```
 ### Note
 
-``EPOLLHUP`` will be returned continuously on ``FIFO`` right after ``FIFO`` received a string sent from ``send.c``. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+``EPOLLHUP`` will be returned continuously on ``FIFO`` right after ``FIFO`` received a string sent from [send.c](). Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
 
-Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO).
+Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO). In ``endlessly_epollhup_event.c``, it only monitors ``EPOLLHUP`` event and has nothing to deal with ``EPOLLET``. Right after the FIFO receives the sent data from ``send.c``, ``EPOLLHUP`` event keeps appearing endlessly. Program ``endlessly_epollhup_event.c`` uses ``count``, a variable to count how many time ``EPOLLHUP`` happens and ``count`` value will increase expressly.
