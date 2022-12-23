@@ -143,6 +143,6 @@ int main(){
 ```
 ### Note
 
-``EPOLLHUP`` is returned continuously on ``FIFO`` right after ``FIFO`` received a string sent from ``send.c``. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+``EPOLLHUP`` will be returned continuously on ``FIFO`` right after ``FIFO`` received a string sent from ``send.c``. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
 
-Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with send.c as the sender to FIFO)
+Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO).
