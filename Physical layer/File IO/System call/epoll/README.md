@@ -49,7 +49,7 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 
 * ``EPOLLIN``: The associated file is available for ``read()`` operations
 * ``EPOLLOUT``: The associated file is available for ``write()`` operations
-* ``EPOLLHUP``: Hang up (i.e: close) happened on the associated file descriptor. Check [epoll implementation with FIFO for EPOLLHUP example and level-triggered mode](#working-with-fifo)
+* ``EPOLLHUP``: Hang up (i.e: close) happened on the associated file descriptor. ``epoll_wait()`` will always wait for this event; it is not necessary to set it in events when calling ``epoll_ctl()``. Check [epoll implementation with FIFO for EPOLLHUP example and level-triggered mode](#working-with-fifo)
 * ``EPOLLET``: Edge-triggered event.  Check [epoll implementation with FIFO for edge-triggered event handler along with EPOLLHUP event](#working-with-fifo)
 	      
 # Implementations
