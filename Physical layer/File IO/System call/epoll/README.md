@@ -114,7 +114,7 @@ int main(){
             monitored_event[0].data.fd = fd;
 
             if (epoll_ctl(epfd, EPOLL_CTL_ADD, fd, monitored_event) < 0){
-                printf("Unable to add current opening terminal STDIN_FILENO to be monitored by epoll\n");
+                printf("Unable to add FIFO to be monitored by epoll\n");
                 return 0;
             } else {
                 while (1){
