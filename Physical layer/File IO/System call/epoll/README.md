@@ -114,7 +114,7 @@ int main(){
             monitored_event[0].data.fd = fd;
 
             if (epoll_ctl(epfd, EPOLL_CTL_ADD, fd, monitored_event) < 0){
-                printf("Unable to add FIFO to be monitored by epoll\n");
+                printf("Unable to add current opening terminal STDIN_FILENO to be monitored by epoll\n");
                 return 0;
             } else {
                 while (1){
@@ -128,8 +128,12 @@ int main(){
                         /*
                             If checking event with EPOLLET like this: if (happened_event[0].events == EPOLLET)
                             this condition will never happen
-                        */
-                        if (happened_event[0].events == EPOLLHUP) printf("Entered string: %s\n", buffer);
+
+                            As epoll_wait() will always wait for EPOLLHUP, it is not necessary to set EPOLLHUP in events
+                            when calling epoll_ctl() as well as don't need to monitor by if else like this:
+                            if (happened_event[0].events == EPOLLHUP) printf("Entered string: %s\n", buffer);
+                        */                         
+                        printf("Entered string: %s\n", buffer);
                     }
                     else {
                         printf("epoll_wait error %d\n", epollret);        
