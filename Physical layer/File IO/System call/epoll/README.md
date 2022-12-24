@@ -49,7 +49,8 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 
 * ``EPOLLIN``: The associated file is available for ``read()`` operations
 * ``EPOLLOUT``: The associated file is available for ``write()`` operations
-* ``EPOLLHUP``: Hang up (i.e: close) happened on the associated file descriptor. Check [epoll implementation with FIFO for EPOLLHUP example](#working-with-fifo)
+* ``EPOLLHUP``: Hang up (i.e: close) happened on the associated file descriptor. Check [epoll implementation with FIFO for EPOLLHUP example and level-triggered mode](#working-with-fifo)
+* ``EPOLLET``: Edge-triggered event.  Check [epoll implementation with FIFO for edge-triggered event handler along with EPOLLHUP event](#working-with-fifo)
 	      
 # Implementations
 
@@ -144,7 +145,7 @@ int main(){
 ```
 ### Note
 
-``EPOLLHUP`` will be returned continuously on ``receive.c`` side right after [send.c](#sendc) successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+``EPOLLHUP`` will be returned continuously on ``receive.c`` side right after [send.c](#sendc) successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly, this is known as **level-trigger mode**. 
 
 Also note that with ``send.c`` program above, if the string sending process is blocking inside the while loop like this, ``EPOLLHUP`` event won't be caught in ``receive.c`` until ``send.c`` is stopped so that its ``FIFO`` file descriptor is closed:
 
