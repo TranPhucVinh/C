@@ -80,7 +80,7 @@ We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is 
 
 ### Sharing variables between threads
 
-* Using global variable to share values between 2 threads: [Check source code](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#using-global-variable-to-share-values-between-2-threads)
+* [Using global variable to share values between 2 threads](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Inter-task%20communication.md#using-global-variable-to-share-values-between-2-threads)
 
 ### Race condition
 
