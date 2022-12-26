@@ -11,7 +11,7 @@ System call is a programmatic way/a call in which a computer program requests a 
 There are 5 types of system calls
 
 * Process control
-* [File manipulation](#file%20manipulation)
+* [File manipulation](#file-manipulation)
 * Device management
 * Information maintenance
 * Communications
