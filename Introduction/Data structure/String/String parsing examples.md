@@ -1,4 +1,4 @@
-## Example 1
+## Change value of a string by function using pointer
 
 Change value of a string by function using pointer
 
@@ -107,109 +107,7 @@ int main(){
 
 See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for the examples in Arduino framework.
 
-## Example 2
-
-``strstr()``: Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null pointer if ``str2`` is not part of ``str1``.
-
-**Return**: A pointer to the first occurrence in str1 of the entire sequence of characters specified in str2, or a null pointer if the sequence is not present in ``str1``.
-
-Find a first part and second part of a string splitted by a substring with ``strstr()``
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-char displayed_string[] = "Hello, World !";
-char *second_part = NULL;
-char *first_part;
-
-int main(int argc, char *argv[]){
-    second_part = strstr(displayed_string, "or");
-	if (second_part != NULL)	printf("%s\n", second_part);//orld !
-	else printf("NULL\n");
-
-	first_part = (char*) malloc((second_part - displayed_string) * sizeof(char));
-	
-    //Copy (second_part - displayed_string) character from displayed_string to first_part
-    strncpy(first_part, displayed_string, second_part - displayed_string);
-    printf("%s\n", first_part);//Hello, W
-	free(first_part);
-}
-```
-
-Split a string by substring
-
-```cpp
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
- 
-char *remove_substring(char *string, char *sub) {
-    char *new_string = (char*) malloc(strlen(string) * sizeof(char));
-    char *second_part = (char*) malloc( (strlen(string) - strlen(sub)) * sizeof(char));
-
-    char *match;
-    int len = strlen(sub);
-
-    while ((match = strstr(string, sub))) {
-        *match = '\0';
-        strcat(second_part, match+len);
-    }
-
-    strcat(new_string, string);//string now has the value of the first part of char *string
-    strcat(new_string, second_part);
-    free(second_part);
-
-    return new_string;
-}
- 
-int main(int argc, const char *argv[]) {
-    char test[] = "Hello, World!";
-    char *new_string = remove_substring(test, "ll");
-    printf("%s\n", new_string);
-    free(new_string);
-    return 0;
-}
-```
-
-**Result**: ``Heo, World!``
-
-### Replace substring inside a string
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-char displayed_string[] = "String 1 underscore String 2";
-
-char *replace_string_by_substring(char *original_string, char *substring, char *replace);
-
-int main(){
-    char *new_string = replace_string_by_substring(displayed_string, "underscore", "_");
-    printf("%s\n", new_string);//String 1 _ String 2
-    free(new_string);
-}
-
-char *replace_string_by_substring(char *orginal_string, char *substring, char *replace){
-    char* match = strstr(orginal_string, substring);
-    if(match)
-    {
-        int new_size = strlen(orginal_string) - strlen(substring) + strlen(replace) + 1;
-        char* new_string = (char*) malloc(new_size);
-        bzero(new_string, new_size);
-        *match = '\0';
-        strcat(new_string, orginal_string);
-        strcat(new_string, replace);
-        strcat(new_string, match + strlen(substring));
-        return new_string;
-    }
-    else return NULL;
-}
-```
-
-## Example 3
+## Parsing for IP address
 
 Parsing for IP address
 
@@ -246,9 +144,7 @@ void parseBytes(const char* stringParameter, char sep, unsigned long* stringResu
     }
 }
 ```
-## Example 4
-
-Reverse a string
+## Reverse a string
 
 ```c
 #include <stdio.h>
