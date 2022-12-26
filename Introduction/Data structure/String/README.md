@@ -8,6 +8,10 @@
 ## [String copy functions](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20copy%20functions.md)
 
 * [sprintf()](String%20copy%20functions.md#sprintf)
-* snprintf()
+* [snprintf()](String%20copy%20functions.md#snprintf)
+* [strcpy()](String%20copy%20functions.md#strcpy)
+* [strncpy()](String%20copy%20functions.md#strncpy)
+* [strdup()](String%20copy%20functions.md#strdup)
+* [bcopy()](String%20copy%20functions.md#bcopy)
 
 ## [String append functions](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20append%20functions.md)
