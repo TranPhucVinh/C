@@ -1,6 +1,4 @@
-### Example 1
-
-**Remove garbage value of a string**
+## Remove garbage value of a string
 
 Using ``memset()``
 
@@ -19,7 +17,7 @@ bzero(displayedString, sizeof(displayedString));
 printf("%s\n", displayedString); //Print NULl string
 ```
 
-**Remove a specific character from a string**
+## Remove a specific character from a string
 
 ```cpp
 #include <stdio.h>
@@ -51,9 +49,8 @@ main() {
 Before parse: Hello, World 
 After parse: Heo, Word 
 ```
-### Example 2
 
-Remove the first character from a string
+### Remove the first character from a string
 
 ```c
 #include <stdio.h>
@@ -74,11 +71,9 @@ void firstCharRemove(char stringChar[500]){
 }
 ```
 
-### Example 3
+## Remove a specific index character from a string
 
-Remove a specific index character from a string
-
-**Example 2.1**: Remove a specific index character from a string
+### Remove a specific index character from a string
 
 ```c
 #include <stdio.h>
@@ -129,7 +124,6 @@ Calling ``splitStringByIndex(1, "Hello, World !")`` results in ``Segmentation fa
 
 See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for passing a pure string to function ``splitStringByIndex()`` in Arduino framework.
 
-
 **Notice 2**
 
 If declare:
@@ -144,7 +138,7 @@ This will result in ``Segmentation fault (core dumped)``.
 
 See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for declaring with a string pointer in Arduino framework.
 
-**Remove a specific index character from executed argument**
+### Remove a specific index character from executed argument
 
 * argv[1]: Index to remove character
 * argv[2]: String to process
