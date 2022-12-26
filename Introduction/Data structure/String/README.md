@@ -15,3 +15,5 @@
 * [bcopy()](String%20copy%20functions.md#bcopy)
 
 ## [String append functions](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20append%20functions.md)
+
+## [String remove examples](String%20remove%20examples.md)
