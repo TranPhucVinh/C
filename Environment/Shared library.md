@@ -21,3 +21,7 @@ To run that ``a.out`` file, embedded it inside the ``LD_LIBRARY_PATH`` by runnin
 ```sh
 username$hostname:~$ LD_LIBRARY_PATH=. ./a.out
 ```
+
+To run ``a.out`` without embedding inside ``LD_LIBRARY_PATH``, shared library ``libhead.so`` must be inside ``/lib`` and ``/usr/lib``.
+
+Copy ``libhead.so`` to ``/lib``: ``sudo cp libhead.so /lib``. Then run ``a.out`` normally. Same implementation with ``/usr/lib``.
