@@ -117,6 +117,11 @@ int main(){
 printf("%s\n", gnu_get_libc_version());
 ```
 
+# Sorting algorithms
+
+* [Selection sort](Sorting%20algorithms#selection-sort)
+* [Bubble sort](Sorting%20algorithms#bubble-sort)
+
 # Examples
 
 [Examples](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples)
