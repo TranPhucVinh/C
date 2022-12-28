@@ -1,5 +1,3 @@
-# Examples
-
 ## Draw square with dots
 
 ```
