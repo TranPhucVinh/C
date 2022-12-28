@@ -1,4 +1,4 @@
-# Selection Sort 
+# Selection sort 
 
 The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array:
 
@@ -9,7 +9,7 @@ In every iteration of selection sort, the minimum element (considering ascending
 
 **Implementation**: [selection_sort.c](selection_sort.c)
 
-# Bubble Sort 
+# Bubble sort 
 
 Bubble Sort works by repeatedly swapping the adjacent elements if they are in the wrong order.
 
