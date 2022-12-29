@@ -52,14 +52,14 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 * ``EPOLLHUP``: Hang up (i.e: close) happened on the associated file descriptor. ``epoll_wait()`` will always wait for this event; it is not necessary to set it in events when calling ``epoll_ctl()``. Check [epoll implementation with FIFO for EPOLLHUP example](#working-with-fifo)
 * ``EPOLLET``: Edge-triggered event.  Check [epoll implementation with FIFO for edge-triggered event handler along with EPOLLHUP event](#working-with-fifo)
 	      
-# Implementations
-
-## Working with terminal
+# Working with terminal
 
 * [Working with 1 file descriptor as the current running terminal](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/epoll/Implementations.md#working-with-1-file-descriptor-as-the-current-running-terminal)
 * [Working with multiple file descriptors as 2 current running terminals](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/epoll/Implementations.md#working-with-multiple-file-descriptors-as-2-current-running-terminals)
 
-## Working with FIFO
+# Working with FIFO
+
+## EPOLLHUP and EPOLLET in FIFO
 
 Everytime ``send.c`` sends a string to ``FIFO``, ``receive.c`` which monitor event ``EPOLLHUP`` (with flag ``EPOLLET`` to make sure the event happen only 1 time exactly as edge trigger) will print out the receive string.
 
