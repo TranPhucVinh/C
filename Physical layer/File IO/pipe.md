@@ -1,4 +1,4 @@
-## API
+# API
 
 ```c
 int pipe(int fd[2]);
@@ -15,9 +15,9 @@ int pipe(int fd[2]);
 
 If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, but if ``fd[0]`` is empty, the process that perform the writing operation will be executed first. If ``fd[0]`` already has data, reading ``fd[0]`` can executed before writing to ``fd[1]`` normally.
 
-## Examples
+# Examples
 
-### Example 1: Communicate inside 1 process
+## Communicate inside 1 process
 
 Write value to ``fd[1]`` and read from ``fd[0]``
 
@@ -64,6 +64,6 @@ int main(int argc, char *argv[])  {
 	printf("Data from fd[0]: %s\n", receivedString);
 }
 ```
-### Example 2: Communicate between parent and child process
+## Communicate between parent and child process
 
 [Check fork example with pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/pipe%20examples.md)
