@@ -88,3 +88,48 @@ int main(int argc, char *argv[])  {
 ``EPOLLHUP`` will be returned continuously on ``fifo_epollet.c`` side right after ``send.c`` successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
 
 Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO). In ``endlessly_epollhup_event.c``, it only monitors ``EPOLLHUP`` event and has nothing to deal with ``EPOLLET``. Right after the FIFO receives the sent data from ``send.c``, ``EPOLLHUP`` event keeps appearing endlessly. Program ``endlessly_epollhup_event.c`` uses ``count``, a variable to count how many time ``EPOLLHUP`` happens and ``count`` value will increase expressly.
+
+## epoll level-triggered in FIFO
+
+``send.c`` will send a string to FIFO every 1 second:
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+
+#define FIFO_NAME 		"FIFO"
+
+int main(int argc, char *argv[])  {
+	char writeString[] = "Hello, World !";
+
+	int fd = open(FIFO_NAME, O_WRONLY);
+    while (1){
+        if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
+        else printf("Write to FIFO successfully\n");
+        sleep(1);
+    }
+	close(fd);
+}
+```
+
+[fifo_receiver_level_triggered.c](fifo_receiver_level_triggered.c) will read the string sent from ``send.c`` to FIFO then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``send.c`` to FIFO.
+
+## Unable to perform epoll edge-triggered in FIFO
+
+With send.c program like in [epoll level-triggered in FIFO](), adding ``EPOLLET`` to handle edge-trigger in [fifo_receiver_level_triggered.c](fifo_receiver_level_triggered.c):
+
+```c
+//All other part kept like in fifo_receiver_level_triggered.c
+#define MAXEVENTS   2       //1 event for EPOLLIN
+
+monitored_event[0].events = EPOLLIN|EPOLLET;
+
+if (happened_event[0].events == EPOLLIN) {
+    printf("Entered string: %s, %d\n", buffer, count);
+    count += 1;
+}
+```
+
+With this ``fifo_receiver_level_triggered.c`` program, we expect ``Entered string: ...`` to print out only 1 time when the FIFO receives the first message as it changes its state from **empty** to **having data** which is edge-triggered mode. However, this ``fifo_receiver_level_triggered.c`` program works exactly like in [epoll level-triggered in FIFO](). That happens as in edge-triggered mode (with EPOLLET) in FIFO, an event is generated each time new data is fed or drained on the other side, even if the previous data hasn’t been cleared. In this sense, it isn’t really edge-triggered and this behavior happen due to the specific Unix architecture design for FIFO.

@@ -6,7 +6,7 @@
 
 #define TIMEOUT     5000    //miliseconds
 #define BUFF_SIZE   10
-#define MAXEVENTS   1       //1 event for EPOLLHUP
+#define MAXEVENTS   1       //1 event for EPOLLIN
 
 #define FIFO        "FIFO"
 
@@ -21,7 +21,7 @@ int main(){
         int fd = open(FIFO, O_RDONLY|O_NONBLOCK);//Open for write
         if (fd > 0){
             printf("Open FIFO successfully %d\n", fd);
-            monitored_event[0].events = EPOLLHUP;
+            monitored_event[0].events = EPOLLIN;
             monitored_event[0].data.fd = fd;
 
             if (epoll_ctl(epfd, EPOLL_CTL_ADD, fd, monitored_event) < 0){
@@ -29,7 +29,7 @@ int main(){
                 return 0;
             } else {
                 /*
-                    Variable count will count how many times the event EPOLLHUP is triggered
+                    Variable count will count how many times the event EPOLLIN is triggered
                     count value will be increased expressly right after the FIFO receives data
                 */
                 int count = 0;
@@ -41,7 +41,7 @@ int main(){
                         bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
                         read(fd, buffer, sizeof(buffer));
 
-                        if (happened_event[0].events == EPOLLHUP) {
+                        if (happened_event[0].events == EPOLLIN) {
                             printf("Entered string: %s, %d\n", buffer, count);
                             count += 1;
                         }
