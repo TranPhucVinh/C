@@ -1,3 +1,5 @@
+# API
+
 The ``readv()`` and ``writev()`` system calls perform scatter-gather I/O.
 
 The ``preadv()`` and ``pwritev()`` perform ``readv()`` and ``writev()`` with offset.
@@ -16,9 +18,9 @@ ssize_t preadv(int fd, const struct iovec * iov, int iovcnt, off_t offset);
 ssize_t pwritev(int fd, const struct iovec * iov, int iovcnt, off_t offset);
 ```
 
-### Example 1
+# Examples
 
-Read content from a file to stored in multiples string array
+## Read content from a file to stored in multiples string array
 
 ```c
 #include <stdio.h>
@@ -80,9 +82,8 @@ int main(){
     return 0;
 }
 ```
-### Example 2
 
-Write multiples string stored in ``struct iovec`` to a file:
+## Write multiples string stored in ``struct iovec`` to a file
 
 ```c
 #include <stdio.h>
