@@ -1,6 +1,6 @@
 ### Example 1
 
-Write value to ``fd[1]`` and read from ``fd[0]`` from the parent and child process.
+Write int value to ``fd[1]`` in parent process and read from ``fd[0]`` in child process.
 
 ```c
 #include <stdio.h>
