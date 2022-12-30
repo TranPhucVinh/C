@@ -52,8 +52,3 @@ int main(){
 **Result** ``number: 0 ``
 
 This example program runs on both Windows and Linux.
-
-# Examples
-
-* Using pipe to communicate between parent and child process: [pipe examples](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/pipe%20examples.md)
-* Using FIFO to communicate between 2 process: [FIFO example in File IO](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/FIFO.md#example-2)
