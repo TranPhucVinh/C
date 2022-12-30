@@ -6,7 +6,7 @@ int pipe(int fd[2]);
 
 ``pipe()`` create a one-way communication channel (pipe). If successful, 2 file descriptors are stored in ``fd``. ``fd[1]`` is used for writting, ``fd[0]`` is used for reading.
 
-``pipe()`` is a system call that can only be used for communication inside a process or between the parent and child process. ``pipe()`` can't be used for communication between 2 seperated process like ``a1.out`` and ``a2.out``.
+``pipe()`` is a system call that can only be used for [communication inside a process](#communicate-inside-1-process) or [between the parent and child process](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Communication%20between%20parent%20and%20child%20processes%20using%20pipe.md). ``pipe()`` can't be used for communication between 2 seperated process like ``a1.out`` and ``a2.out``.
 
 **Return**
 
@@ -15,7 +15,7 @@ int pipe(int fd[2]);
 
 If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, but if ``fd[0]`` is empty, the process that perform the writing operation will be executed first. If ``fd[0]`` already has data, reading ``fd[0]`` can executed before writing to ``fd[1]`` normally.
 
-# Examples
+# Implementations
 
 ## Communicate inside 1 process
 
@@ -66,4 +66,4 @@ int main(int argc, char *argv[])  {
 ```
 ## Communicate between parent and child process
 
-[Check fork example with pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/pipe%20examples.md)
+[Check fork example with pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Communication%20between%20parent%20and%20child%20processes%20using%20pipe.md)
