@@ -35,7 +35,38 @@ printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
 
 Get column size: ``sizeof(array[0])/sizeof(array[0][0])``
 
-### Set and read value for a string array on stack memory
+## Create a 2D array and read all of its members
+
+```c
+#include <stdio.h>
+
+int row, column;
+
+void set_value_for_row(int _array[row][column], int row, int column){
+	for (int i=0; i<column; i++){
+		printf("array[%d][%d]:", row, i);
+		scanf("%d", &_array[row][i]);
+	}
+}
+
+void main() {
+	printf("enter row number:");
+	scanf("%d", &row);
+	printf("enter column number:");
+	scanf("%d", &column);
+
+	int array[row][column];
+	for (int _row = 0; _row < row; _row++){
+		set_value_for_row(array, _row, column);
+	}
+	
+	for (int _row = 0; _row < row; _row++){
+		for (int _column = 0; _column < column; _column++) printf("array[%d][%d]: %d\n", _row, _column, array[_row][_column]);
+	}
+}
+```
+
+## Set and read value for a string array on stack memory
 
 ```c
 #include <stdio.h>
