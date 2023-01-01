@@ -31,6 +31,10 @@ Find [saddle point](https://github.com/TranPhucVinh/C/tree/master/Introduction/D
 
 Program [saddle_point.c](saddle_point.c)
 
+# Medium level
+
+* [Find if a given number is the sum of consecutive numbers]()
+
 # Sorting algorithms
 
 * [Selection sort](Sorting%20algorithms#selection-sort)
