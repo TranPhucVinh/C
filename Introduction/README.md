@@ -116,18 +116,3 @@ int main(){
 #include <gnu/libc-version.h>
 printf("%s\n", gnu_get_libc_version());
 ```
-
-# Sorting algorithms
-
-* [Selection sort](Sorting%20algorithms#selection-sort)
-* [Bubble sort](Sorting%20algorithms#bubble-sort)
-
-# Beginner examples
-
-[Beginner examples includes](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples):
-
-* [Draw square with dots](Examples/README.md#draw-square-with-dots)
-* [Find prime number](Examples/README.md#find-prime-number)
-* [Sum from 1 to n](Examples/README.md#sum-from-1-to-n)
-* [Reverse number](Examples/README.md#reverse-number)
-* [Expert system](Examples/Expert%20system)
