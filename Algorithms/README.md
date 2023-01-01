@@ -27,7 +27,7 @@ Program: [sum_from_1_to_n.c](sum_from_1_to_n.c)
 
 ## Saddle point
 
-Find [saddle point]() in a 2D array. Also check [saddle point document]() for the method to find saddle point inside a 2D array.
+Find [saddle point](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) in a 2D array. Also check [saddle point document](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) for the method to find saddle point inside a 2D array.
 
 Program [saddle_point.c](saddle_point.c)
 

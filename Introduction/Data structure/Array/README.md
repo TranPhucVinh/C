@@ -49,10 +49,10 @@ In a 2D array with n * n size, a saddle point is an element of the matrix such t
 
 **The algorithm to find the saddle point**
 
-Traverse all rows one by one and do the following for every row i:  
+Traverse all rows one by one and do the following for every row ``i``:  
 
 1. Find the minimum element of the current row and store the column index of the minimum element.
 2. Check if the row minimum element is also maximum in its column. We use the stored column index here.
 3. If yes, then saddle point else continues till the end of the matrix.
 
-Program [saddle_point.c](saddle_point.c)
+Program [saddle_point.c](https://github.com/TranPhucVinh/C/blob/master/Algorithms/saddle_point.c)
