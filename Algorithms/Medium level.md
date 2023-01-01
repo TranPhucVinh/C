@@ -3,9 +3,9 @@
 Given number ``A``, we need to find if $A=\Sigma$ a<sub>i</sub> where a<sub>i</sub> are consecutive unsigned integer numbers.
 
 * Example 1: ``3 = 1+2``
-* Example 2: ``15 = 7+8``
+* Example 2: ``15 = 7+8 = 4+5+6=1+2+3+4+5``
 * Example 3: ``22 = 4+5+6+7``
-
+* Example 4: ``8`` is not the sum of any consecutive numbers
 ## Algorithm
 
 From  a<sub>i</sub> to  a<sub>i+n</sub>, there are totally a<sub>i+n</sub>-a<sub>i</sub>+1 numbers, so there will be (a<sub>i+n</sub>-a<sub>i</sub>+1)/2 total numbers of pairs. 
@@ -62,3 +62,5 @@ $$
 ## Program
 
 [find_the_sum_of_consecutive_numbers.c](find_the_sum_of_consecutive_numbers.c)
+
+Compile: ``gcc find_the_sum_of_consecutive_numbers.c -lm``
