@@ -36,4 +36,16 @@ a = ${A\over {n+1} } - {n\over 2 }$
 
 As $a > 0$, so
 
-${A\over {n+1} } - {n\over 2 } \gt 0$ ⇔
+${A\over {n+1} } - {n\over 2 } \gt 0$ ⇔ ${{2A - n^2 -n}\over {2(n+1)} } \gt 0$
+
+As $n+1 > 0$, so $-n^2 -n + 2A > 0$
+
+We need to find $n$ so that $f(n) = -n^2 -n + 2A \gt 0$. We use the discriminant.
+
+$Δ=1-4(-1)(2A)=1+8A > 0$
+
+As $Δ>0$, for $f(n) > 0$, root $n$ need to be inside the range between $[n1, n2]$ as n1 and n2 are the roots of $f(n)$ equation.
+
+As n>0, so take the postive root of $f(n)$ as $1-\sqrt{1+8A} \over -2$
+
+Finally, the unsigned integer number $a$ need to be found needs to sastified:
