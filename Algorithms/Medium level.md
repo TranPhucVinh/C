@@ -22,20 +22,18 @@ So $\Sigma$ a<sub>i</sub> = (2a<sub>i</sub> + n) * (n+1)/2
 
 Shorten a<sub>i</sub> as $a$, $\Sigma$ a<sub>i</sub> will be
 
-$\Sigma$ a<sub>i</sub> = $ { (2a + n)(n+1) } \over 2 $
+$\Sigma$ a<sub>i</sub> = ${ (2a + n)(n+1) } \over 2$
 
 As given $\Sigma$ a<sub>i</sub> = A
 
 So 
 
-A = $ { (2a + n)(n+1) } \over 2 $
+A = ${ (2a + n)(n+1) } \over 2$
 
 So that
 
-a = $ {A\over {n+1} } - {n\over 2 }$
+a = ${A\over {n+1} } - {n\over 2 }$
 
-As $ a > 0 $, so
+As $a > 0$, so
 
-$ {A\over {n+1} } - {n\over 2 } \gt 0 $
-
-$ {A\over {n+1} } - {n\over 2 } \gt 0 $ ⇔
+${A\over {n+1} } - {n\over 2 } \gt 0$ ⇔
