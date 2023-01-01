@@ -138,7 +138,7 @@ Read from ``row`` and ``column`` with:
 
 # 2D array on stack memory as a function parameter
 
-### Using array[row][column]
+## Using array[row][column]
 
 ```c
 #include <stdio.h>
@@ -163,7 +163,7 @@ void twoDimensionArray(int array[ROW_SIZE][COLUMN_SIZE]){
 	printf("%d\n", array[1][2]);//6
 }
 ```
-### Using array[][column]
+## Using array[][column]
 
 ```c
 #include <stdio.h>
@@ -190,7 +190,7 @@ void twoDimensionArray(int array[][COLUMN_SIZE], int rowSize){
 	}
 }
 ```
-### Using pointer
+## Using pointer
 
 ```c
 #include <stdio.h>
@@ -217,7 +217,7 @@ void twoDimensionArray(int *array, int row, int column){
 	}
 }
 ```
-### Can't use pointer of pointer
+## Can't use pointer of pointer
 
 Accessing 2D array member with index from a pointer of pointer array like this gives ``Segment fault``
 

@@ -7,6 +7,7 @@
 * [Find prime number](Beginner%20level.md#find-prime-number)
 * [Sum from 1 to n](#sum-from-1-to-n)
 * [Reverse number](Beginner%20level.md#reverse-number)
+* [Saddle point](saddle%point)
 * [Expert system](Expert%20system)
 
 ## Sum from 1 to n
@@ -23,6 +24,12 @@ Handle error:
 For the max accepted number of ``2147483647``, the result must be ``unsigned long int``, not ``int``.
 
 Program: [sum_from_1_to_n.c](sum_from_1_to_n.c)
+
+## Saddle point
+
+Find [saddle point]() in a 2D array. Also check [saddle point document]() for the method to find saddle point inside a 2D array.
+
+Program [saddle_point.c](saddle_point.c)
 
 # Sorting algorithms
 

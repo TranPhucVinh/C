@@ -7,13 +7,11 @@ An array support those features:
 * Update
 * Delete
 
-# Implementation
-
-## One dimension array
+# One dimension array
 
 Check [one dimension array document](One%20dimension%20array.md).
 
-## Multidimension array
+# Multidimension array
 
 GCC treats multidimension array as one dimension array.
 
@@ -44,3 +42,17 @@ Define ``array[3][]`` is wrong and gives compilation error, as this array can't 
 Two dimension array implementations:
 * [Two dimension array on stack memory](Two%20dimension%20array%20on%20stack%20memory.md)
 * [Two dimension array on heap memory](Two%20dimension%20array%20on%20heap%20memory.md)
+
+## Saddle point
+
+In a 2D array with n * n size, a saddle point is an element of the matrix such that it is the minimum element in its row and the maximum in its column. 
+
+**The algorithm to find the saddle point**
+
+Traverse all rows one by one and do the following for every row i:  
+
+1. Find the minimum element of the current row and store the column index of the minimum element.
+2. Check if the row minimum element is also maximum in its column. We use the stored column index here.
+3. If yes, then saddle point else continues till the end of the matrix.
+
+Program [saddle_point.c](saddle_point.c)
