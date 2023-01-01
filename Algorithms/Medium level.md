@@ -46,7 +46,7 @@ $Δ=1-4(-1)(2A)=1+8A > 0$
 
 As $Δ>0$, for $f(n) > 0$, root $n$ need to be inside the range between $[n1, n2]$ as n1 and n2 are the roots of $f(n)$ equation.
 
-As n>0, so take the postive root of $f(n)$ as $1-\sqrt{1+8A} \over -2$
+As n>0, so take the postive root of $f(n)$ as $1-\sqrt{1+8A} \over -2$. This will then be treated as the stop condition for $n$ inside the loop checking.
 
 Finally, the unsigned integer number $a$ need to be found needs to sastified:
 
@@ -58,3 +58,7 @@ $$
     \end{array}
 \right.
 $$
+
+## Program
+
+[find_the_sum_of_consecutive_numbers.c](find_the_sum_of_consecutive_numbers.c)
