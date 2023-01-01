@@ -32,7 +32,7 @@ A = ${ (2a + n)(n+1) } \over 2$
 
 So that
 
-a = ${A\over {n+1} } - {n\over 2 }$
+$a={A\over {n+1} } - {n\over 2 }$
 
 As $a > 0$, so
 
@@ -49,3 +49,12 @@ As $Δ>0$, for $f(n) > 0$, root $n$ need to be inside the range between $[n1, n2
 As n>0, so take the postive root of $f(n)$ as $1-\sqrt{1+8A} \over -2$
 
 Finally, the unsigned integer number $a$ need to be found needs to sastified:
+
+$$
+\left\{
+    \begin{array}{ll}
+        \ a={A\over {n+1} } - {n\over 2 }\\
+        \ {0 < n < {1-\sqrt{1+8A} \over -2}}
+    \end{array}
+\right.
+$$
