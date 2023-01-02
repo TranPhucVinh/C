@@ -118,7 +118,7 @@ int main(int argc, char *argv[])  {
 
 ## Unable to perform epoll edge-triggered in FIFO
 
-With send.c program like in [epoll level-triggered in FIFO](), adding ``EPOLLET`` to handle edge-trigger in [fifo_receiver_level_triggered.c](fifo_receiver_level_triggered.c):
+With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [fifo_receiver_level_triggered.c](fifo_receiver_level_triggered.c):
 
 ```c
 //All other part kept like in fifo_receiver_level_triggered.c
@@ -132,4 +132,4 @@ if (happened_event[0].events == EPOLLIN) {
 }
 ```
 
-With this ``fifo_receiver_level_triggered.c`` program, we expect ``Entered string: ...`` to print out only 1 time when the FIFO receives the first message as it changes its state from **empty** to **having data** which is edge-triggered mode. However, this ``fifo_receiver_level_triggered.c`` program works exactly like in [epoll level-triggered in FIFO](). That happens as in edge-triggered mode (with EPOLLET) in FIFO, an event is generated each time new data is fed or drained on the other side, even if the previous data hasn’t been cleared. In this sense, it isn’t really edge-triggered and this behavior happen due to the specific Unix architecture design for FIFO.
+With this ``fifo_receiver_level_triggered.c`` program, we expect ``Entered string: ...`` to print out only 1 time when the FIFO receives the first message as it changes its state from **empty** to **having data** which is edge-triggered mode. However, this ``fifo_receiver_level_triggered.c`` program works exactly like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo). That happens as in edge-triggered mode (with EPOLLET) in FIFO, an event is generated each time new data is fed or drained on the other side, even if the previous data hasn’t been cleared. In this sense, it isn’t really edge-triggered and this behavior happen due to the specific Unix architecture design for FIFO.
