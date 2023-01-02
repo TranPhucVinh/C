@@ -47,6 +47,45 @@ else {
 
 **Note**: User must create the ``pipe()`` before forking the process. If the pipe is created after forking, the program will be hanged.
 
+# R/W between parent and child process with while loop
+
+Parent process send a string to pipe ``fd[1]`` inside a loop every 1 second, child process then reads that string out from ``fd[0]``.
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])  {
+	int fd[2];
+	if(pipe(fd) == -1){
+		printf("An error occured when opening the pipe\n");
+		return 1;
+	}
+	int pid = fork();
+	if (!pid) {
+        char snd_str[30];//send string
+        int index = 0;
+        while (1){
+            sprintf(snd_str, "Hello, World !; index %d", index);
+            write(fd[1], snd_str, sizeof(snd_str));
+            index += 1;
+            sleep(1);
+        }
+        close(fd[1]);
+    }	
+    else {
+        char rcv_str[50];
+        while(1){
+            read(fd[0], rcv_str, sizeof(rcv_str));
+            printf("Data from fd[0]: %s\n", rcv_str);
+            memset(rcv_str, 0, sizeof(rcv_str));
+        }
+    }	
+    close(fd[0]);
+}
+```
+
 # R/W between parent and child process: Modified string
 
 Parent process send a string to child process, child process receives that string and modifies it then sends back to the parent process.
