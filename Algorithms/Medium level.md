@@ -73,7 +73,7 @@ In the infinite integer sequence 123456789101112131415...
 * For integer number 10: 10th is 1, 11th is 0
 * For integer number 11: 12th is 1, 13th is 1
 
-# Analyse the examples
+## Analyse the examples
 
 From 1 to 9, there are 1 digit
 
@@ -83,7 +83,7 @@ From 100 to 999 (900 numbers with 3 digits in each number), there are 3*900 = 27
 
 And so on
 
-## 10th
+### 10th
 
 10 = 9 + 1
 
@@ -91,7 +91,7 @@ This indicates that at 10th, it has reached the first 9 numbers (1 to 9), then m
 
 So 10th will be the first digit of integer number ``10``, which is ``1``
 
-## 11st
+### 11st
 
 11 = 9 + 2 = 9 + 2*1
 
@@ -101,7 +101,7 @@ This indicates that at 11st, it has finished reaching the first integer number (
 
 As finish reaching integer number ``10``, 11th will lie in the 2nd digit of ``10``, which is ``0``.
 
-## 12nd
+### 12nd
 
 12 = 9 + 2*1 + 1
 
@@ -110,13 +110,13 @@ As finish reaching integer number ``10``, 11th will lie in the 2nd digit of ``10
 * First integer number (with 2 digits) after integer number ``9`` is ``10``
 * Move to the next number (integer number ``11``) as its first digit: ``1``
 
-## 13rd
+### 13rd
 
 13 = 9 + 2*2
 
 14th has reached 2 integer number after integer number ``9`` as integer number ``11``. So 13th will lie in the 2nd digit of ``11``, which is ``1``.
 
-## 1000th
+### 1000th
 
 1000 = 9 + 180 + 3.270 + 1
 
@@ -124,7 +124,7 @@ This indicates that at 1000th, it has reached the 270th integer number after 99 
 
 So 1000th will lie in the 1st digit of ``370``, which is ``3``.
 
-# Algorithm
+## Algorithm
 
 Based on the 1000th example:
 
@@ -138,7 +138,7 @@ So the program to find the nth digit of an infinite integer sequence will need v
 
 **The calculation loop** will perform calculation to seperate the number range, digit numbers and the left over. For example with the ``1000th`` example, the calculation loop will result in ``1000 = 9 + 180 + 3.270 + 1``
 
-# Program
+## Program
 
 ```c
 #include <stdio.h>

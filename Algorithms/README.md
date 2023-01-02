@@ -34,6 +34,7 @@ Program [saddle_point.c](saddle_point.c)
 # Medium level
 
 * [Find if a given number is the sum of consecutive numbers](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-if-a-given-number-is-the-sum-of-consecutive-numbers)
+* [Find the nth digit of an infinite integer sequence](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-the-nth-digit-of-an-infinite-integer-sequence)
 
 # Sorting algorithms
 
