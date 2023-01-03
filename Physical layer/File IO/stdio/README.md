@@ -1,7 +1,12 @@
-# API
+# stdio and file pointer API
 
 * [stdin and stdout API](stdin%20and%20stdout%20API.md)
 * [File pointer API](File%20pointer%20API.md)
+
+**Examples**
+
+* [stdio examples](stdio%20examples.md)
+* [File pointer examples](File%20pointer%20examples.md)
 
 # Other API
 
@@ -115,8 +120,3 @@ int main() {
 	}
 }
 ```
-
-### Examples
-
-* [stdio examples](stdio%20examples.md)
-* [File pointer examples](File%20pointer%20examples.md)
