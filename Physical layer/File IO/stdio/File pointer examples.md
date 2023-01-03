@@ -1,6 +1,4 @@
-## Example 1
-
-Check size of a file then read that file:
+# Check size of a file then read that file
 
 ```c
 #include <stdio.h>
@@ -53,7 +51,7 @@ int main(int argc, char *argv[]) {
 }	
 ```
 
-Read big file in chunk with read size of each element = 1.
+# Read big file in chunk with read size of each element = 1
 
 ```c
 #include <stdio.h>
@@ -85,7 +83,7 @@ int main(void)
 
 This method helps reading big file by chunk and perform small operation every small chunk. Check ``http_server_returns_beautiful_html_files.c`` in ``ESP8266-RTOS-SDK`` as file like image can only by read by chunk and is returned as small HTTP chunk by the HTTP server to HTTP client. Reading the whole image file at one time and returns it to the HTTP client will result in the failure image or the error image.
 
-### Read a specific line of a line
+# Read a specific line of a line
 
 ```c
 #include <stdio.h>
@@ -113,9 +111,7 @@ int main()
 }
 ```
 
-## Other examples
-
-``basic_file_operations.c``: Basic operation with file
+# Basic file operations
 
 * Read content of a file
 * Create a new file
@@ -123,4 +119,8 @@ int main()
 * Delete an existed file
 * List all file in the directory
 
-``read_all_files.c``: Read all files of a directory then store inside a dynamic string array
+Program [basic_file_operations.c](basic_file_operations.c)
+
+# Read all files of a directory then store inside a dynamic string array
+ 
+Program [read_all_files.c](read_all_files.c)
