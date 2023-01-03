@@ -10,7 +10,7 @@
 
 # Other API
 
-## aio
+## aio.h
 
 ``aio``: POSIX asynchronous I/O.
 
@@ -73,9 +73,7 @@ Compile: ``gcc test.c -lrt``
 
 ``aio_read(&controlBlock)`` when called will create a thread outside the running process (``a.out``) to read the file, so that the program will not be blocked when reading.
 
-## Other API
-
-### rename()
+## rename()
 
 Rename a file
 
@@ -85,7 +83,7 @@ int rename(const char *old_filename, const char *new_filename)
 
 **Return**: ``0`` if rename successfully, ``1`` if unable to rename file
 
-### remove()
+## remove()
 
 Remove a file
 
@@ -93,7 +91,7 @@ Remove a file
 int remove(const char *filename);
 ```
 
-### perror()
+## perror()
 
 Print out message describe error in ``stderr``.
 
