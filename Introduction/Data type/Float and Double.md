@@ -5,6 +5,30 @@ Limit float dgigit to 2 number
 printf("float number is: %.2f",y);
 ```
 
+## Check if a float variable is an int variable
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int checkInteger(float floatNum){
+    int intNum = floatNum;
+
+    float remainder = floatNum - intNum;
+
+    if (remainder > 0) {
+		printf("Number is not integer\n");
+        return 0;//If not int number, return 0
+    }
+    return intNum;
+}
+
+int main(int argc, char *argv[])  {
+	printf("%d\n", checkInteger(1.4));
+	printf("%d\n", checkInteger(12.0));
+}
+```
+
 ## / arithemtic for float number
 
 ```c
@@ -97,7 +121,7 @@ long double fmodl(long double x, long double y);
 
 Compile for ``math.h``: ``gcc test.c -lm``
 
-# float and double
+# double
 
 **double** can also be declared as **long float**.
 
