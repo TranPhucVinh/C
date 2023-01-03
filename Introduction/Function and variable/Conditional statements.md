@@ -1,3 +1,5 @@
+# Condition changed during execution
+
 Condition of a loop can be changed normally. Example:
 
 ```c
@@ -10,6 +12,11 @@ while (i < a){
 	printf("i %d, a %d\n", i, a);
 }
 ```
+
+Take [Find the nth digit of an infinite integer sequence](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-the-nth-digit-of-an-infinite-integer-sequence) as an example when the condition is changed during execution.
+
+# A special false condition
+
 Condition when setting variable can be false (``0``) when the variable is set to ``0``:
 
 ```c
