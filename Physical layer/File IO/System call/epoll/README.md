@@ -99,7 +99,7 @@ int main(int argc, char *argv[])  {
 
 Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO). In ``endlessly_epollhup_event.c``, it only monitors ``EPOLLHUP`` event and has nothing to deal with ``EPOLLET``. Right after the FIFO receives the sent data from ``send.c``, ``EPOLLHUP`` event keeps appearing endlessly. Program ``endlessly_epollhup_event.c`` uses ``count``, a variable to count how many time ``EPOLLHUP`` happens and ``count`` value will increase expressly.
 
-## epoll level-triggered in FIFO
+## EPOLLIN FIFO
 
 ``send.c`` will send a string to FIFO every 1 second:
 
@@ -124,7 +124,9 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-[fifo_receiver_level_triggered.c](fifo_receiver_level_triggered.c) will read the string sent from ``send.c`` to FIFO then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``send.c`` to FIFO.
+[epollin_fifo.c](epollin_fifo.c) will read the string sent from ``send.c`` to FIFO then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``send.c`` to FIFO. As the string is sent every 1 second for EPOLLIN event will keeps happening.
+
+## epoll level-triggered in FIFO
 
 ## Unable to perform epoll edge-triggered in FIFO
 
