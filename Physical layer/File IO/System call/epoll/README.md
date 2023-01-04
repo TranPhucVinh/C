@@ -133,3 +133,48 @@ if (happened_event[0].events == EPOLLIN) {
 ```
 
 With this ``fifo_receiver_level_triggered.c`` program, we expect ``Entered string: ...`` to print out only 1 time when the FIFO receives the first message as it changes its state from **empty** to **having data** which is edge-triggered mode. However, this ``fifo_receiver_level_triggered.c`` program works exactly like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo). That happens as in edge-triggered mode (with EPOLLET) in FIFO, an event is generated each time new data is fed or drained on the other side, even if the previous data hasn’t been cleared. In this sense, it isn’t really edge-triggered and this behavior happen due to the specific Unix architecture design for FIFO.
+
+# Working with pipe
+
+## IPC with pipe without EPOLLET
+
+Parent process sends a string to pipe only one time. Child process will read one 1 byte from the pipe. Only EPOLLIN event is monitor.
+
+**Program**: [epoll_pipe_without_epollet.c](epoll_pipe_without_epollet.c)
+
+**Result**: 1 byte is read until the whole string inside the pipe is read out
+
+```c
+H
+e
+l
+l
+o
+,
+ 
+W
+o
+r
+l
+d
+ 
+!
+
+Timeout after 5000 miliseconds
+Timeout after 5000 miliseconds
+...
+```
+
+## IPC with pipe with EPOLLET
+
+Features lilke [IPC with pipe without EPOLLET](), but monitor EPOLLIN and EPOLLET
+
+**Program**: [epoll_epollet_pipe.c](epoll_epollet_pipe.c)
+
+**Result**: Only 1 byte is read as the status in pipe is change from 0 to having data which is edge trigger. After reading 1 byte, there is still data left inside the pipe so edge trigger event doesn't happen.
+
+```
+H
+Timeout after 5000 miliseconds
+Timeout after 5000 miliseconds
+```
