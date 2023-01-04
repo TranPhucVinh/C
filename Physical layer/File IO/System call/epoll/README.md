@@ -128,23 +128,87 @@ int main(int argc, char *argv[])  {
 
 ## epoll level-triggered in FIFO
 
-## Unable to perform epoll edge-triggered in FIFO
-
-With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [fifo_receiver_level_triggered.c](fifo_receiver_level_triggered.c):
+``send.c`` will send a string to FIFO then enters infinite while loop (in order to keep FIFO opened):
 
 ```c
-//All other part kept like in fifo_receiver_level_triggered.c
-#define MAXEVENTS   2       //1 event for EPOLLIN
+char writeString[] = "Hello, World !";
+
+int fd = open(FIFO_NAME, O_WRONLY);
+if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
+else printf("Write to FIFO successfully\n");
+while(1);
+close(fd);
+```
+
+``receiver.c`` will have most features like [epollin_fifo.c](epollin_fifo.c), except it only read 1 byte from the FIFO:
+
+```c
+//Other parts are like epollin_fifo.c
+else if (epollret > 0){
+    char buffer[BUFF_SIZE];
+    bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+    read(fd, buffer, 1);
+
+    if (happened_event[0].events == EPOLLIN) {
+        printf("Entered string: %s\n", buffer);
+    }
+}
+```
+**Result**:  1 byte is read until the whole string inside the pipe is read out.
+
+```
+Open FIFO successfully 4
+Entered string: H
+Entered string: e
+Entered string: l
+Entered string: l
+Entered string: o
+Entered string: ,
+Entered string:  
+Entered string: W
+Entered string: o
+Entered string: r
+Entered string: l
+Entered string: d
+Entered string:  
+Entered string: !
+Entered string: 
+Timeout after 5000 miliseconds
+Timeout after 5000 miliseconds
+...
+```
+
+## EPOLLET in FIFO
+
+With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c.c](epollin_fifo.c.c):
+
+```c
+//All other part kept like in epollin_fifo.c.c
+#define MAXEVENTS   2       //2 event for EPOLLIN and EPOLLET
 
 monitored_event[0].events = EPOLLIN|EPOLLET;
 
-if (happened_event[0].events == EPOLLIN) {
-    printf("Entered string: %s, %d\n", buffer, count);
-    count += 1;
+//Other parts are like epollin_fifo.c
+else if (epollret > 0){
+    char buffer[BUFF_SIZE];
+    bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+    read(fd, buffer, 1);
+
+    if (happened_event[0].events == EPOLLIN) {
+        printf("Entered string: %s\n", buffer);
+    }
 }
 ```
 
-With this ``fifo_receiver_level_triggered.c`` program, we expect ``Entered string: ...`` to print out only 1 time when the FIFO receives the first message as it changes its state from **empty** to **having data** which is edge-triggered mode. However, this ``fifo_receiver_level_triggered.c`` program works exactly like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo). That happens as in edge-triggered mode (with EPOLLET) in FIFO, an event is generated each time new data is fed or drained on the other side, even if the previous data hasn’t been cleared. In this sense, it isn’t really edge-triggered and this behavior happen due to the specific Unix architecture design for FIFO.
+**Result**: Only 1 byte is read as the status in pipe is change from 0 to having data which is edge trigger. After reading 1 byte, there is still data left inside the pipe so edge trigger event doesn't happen.
+
+```
+Open FIFO successfully 4
+Entered string: H
+Timeout after 5000 miliseconds
+Timeout after 5000 miliseconds
+...
+```
 
 # Working with pipe
 
