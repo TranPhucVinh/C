@@ -26,17 +26,7 @@ char *p0; //pointer to character
 double *p1; // pointer to double
 ```
 
-C program doesn't support reference as function argument:
-
-```c
-//THAT IS NOT SUPPORTED FOR A C PROGRAM
-int a = 8;
-
-void foo(uintptr_t &object_ptr)
-{
-	object_ptr = (uintptr_t)&a;
-}
-```
+C program doesn't support reference (``uintptr_t``) as function argument like this ``void foo(uintptr_t &object_ptr)``.
 
 **Address of function**
 
