@@ -180,7 +180,7 @@ Timeout after 5000 miliseconds
 
 ## EPOLLET in FIFO
 
-With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c.c](epollin_fifo.c.c):
+With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c](epollin_fifo.c):
 
 ```c
 //All other part kept like in epollin_fifo.c.c
