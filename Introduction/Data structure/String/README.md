@@ -72,3 +72,5 @@ char *itoa ( int value, char * str, int base );
 To reverse a string with raw string API: [Reverse string example](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20parsing%20examples.md#example-4)
 
 ## [String remove examples](String%20remove%20examples.md)
+
+* [Remove garbage value of a string](String%20remove%20examples.md#remove-garbage-value-of-a-string)
