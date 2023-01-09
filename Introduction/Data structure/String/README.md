@@ -20,11 +20,11 @@
 * strol()
 * strtoul()
 * strstr()
-* atoi()
+* [atoi()](#atoi)
 * itoa()
 * strrev()
 
-## atoi()
+### atoi()
 
 Include in library **stdlib.h**.
 
@@ -55,7 +55,7 @@ int a = atoi(str);
 printf("%d \n", a); //123
 ```
 
-## itoa()
+### itoa()
 
 ``itoa()`` converts an integer value to a null-terminated string using the specified ``base``.
 
@@ -65,7 +65,7 @@ char *itoa ( int value, char * str, int base );
 
 ``itoa()`` is not defined in ANSI-C and is not part of C++, but is supported by some compilers. Use ``sprintf()`` instead.
 
-## strrev()
+### strrev()
 
 ``strrev()`` is used to reverse a string and works only with older versions of Microsoft C.
 
