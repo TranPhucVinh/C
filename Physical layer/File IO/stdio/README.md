@@ -3,10 +3,15 @@
 * [stdin and stdout API](stdin%20and%20stdout%20API.md)
 * [File pointer API](File%20pointer%20API.md)
 
-**Examples**
 
-* [stdio examples](stdio%20examples.md)
-* [File pointer examples](File%20pointer%20examples.md)
+## [stdio examples](stdio%20examples.md)
+
+* [Using formated output in printf()](stdio%20examples.md#using-formated-output-in-printf)
+* [Print out an entered string and an entered character](stdio%20examples.md#print-out-an-entered-string-and-an-entered-character)
+* [Compare the entered string](stdio%20examples.md#compare-the-entered-string)
+* [Print out all files inside a folder with dirent.h](stdio%20examples.md#print-out-all-files-inside-a-folder-with-direnth)
+
+## [File pointer examples](File%20pointer%20examples.md)
 
 # Other API
 
