@@ -1,17 +1,31 @@
-## Operations for array
+# Operations for array
 
-### Create
+## Create
 
-On stack memory:
+### On stack memory
 
-* Create array and manually enter the value for each array member: ``create_array.c``
-* Create new member from index: ``create_new_member.c``
+* Create array and manually enter the value for each array member: [create_array.c](create_array.c)
+* Create new member from index: [create_new_member.c](create_new_member.c)
 
-On heap memory: 
+An array can be created like this:
 
-* Create an array: Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``.
+```c
+int array[6] = {
+//Don't need to follow the count up ordered, i.e 1 2 3 4 ...
+    [0] = 0,
+    [2] = 2,
+    [4] = 4,
+    [1] = 1,
+    [3] = 3,
+    [5] = 5
+};
+```
 
-**Fail in dynamically assigned the size of array**
+### On heap memory
+
+Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``.
+
+## Fail in dynamically assigned the size of array
 
 Enter the size of array
 
@@ -74,22 +88,22 @@ static int array[a];
 ```
 Error: ``A variable length array cannot have static storage duration``
 
-### Read
+## Read
 
 Read from ``index`` with:
 
 * ``array[index]``
 * ``*(array + index)``
 
-### Update
+## Update
 
 * Update value for array member from index: ``array[index] = new_value``
 
-### Delete
+## Delete
 
 * Delete member in array from index: ``delete.c`` 
 
-### size of an array
+## size of an array
 
 ```c
 int array[] = {1, 2, 3};
@@ -203,7 +217,7 @@ void intArray(int *array, int size){
 	}
 }
 ```
-## Function returns an array
+# Function returns an array
 
 Using stack memory with ``static``:
 
