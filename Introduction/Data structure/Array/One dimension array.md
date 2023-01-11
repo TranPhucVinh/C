@@ -23,7 +23,70 @@ int array[6] = {
 
 ### On heap memory
 
-Check ``Dynamic memory allocation.md`` in ``Physical layer/Memory``.
+Check [Dynamic memory allocation](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Memory/Dynamic%20memory%20allocation) with [stdlib](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md) and [G++](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20G%2B%2B.md).
+
+## Read
+
+Read from ``index`` with:
+
+* ``array[index]``
+* ``*(array + index)``
+
+## Update
+
+* Update value for array member from index: ``array[index] = new_value``
+
+## Delete
+
+* Delete member in array from index: ``delete.c`` 
+
+# Size of an array
+
+```c
+int array[] = {1, 2, 3};
+int data[3];
+sizeof(array);//12
+sizeof(data);
+size_t arraySize = sizeof(array)/sizeof(array[0]);//3
+size_t dataSize = sizeof(array)/sizeof(array[0]);//3
+```
+Or
+```c
+size_t arraySize = sizeof(array)/sizeof(int);
+```
+
+Using this method is only right when you are dealing with **arrays not received as function parameters**. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
+
+Get size of array by function:
+
+```c
+int array[] = {1, 2, 3};
+
+int get_array_size(int *array)
+{
+    int size = 0;
+    while (array[size] != 0) ++size;
+    return size;
+}
+
+
+printf("Array size: %d\n", get_array_size(array));//Array size: 3
+```
+
+For string as char array or char pointer:
+
+```c
+char *displayed_string = "Hello, World !";
+
+int get_string_size(char *string)
+{
+    int size = 0;
+    while (string[size] != 0) ++size;
+    return size;
+}
+
+printf("String size %d\n", get_string_size(displayed_string));//String size: 14
+```
 
 ## Fail in dynamically assigned the size of array
 
@@ -80,7 +143,7 @@ array[0] = 1;
 array[1] = 2;
 ```
 
-**Fail in static array with size as variable**
+## Fail in static array with size as variable
 
 ```c
 int a = 9;
@@ -88,70 +151,7 @@ static int array[a];
 ```
 Error: ``A variable length array cannot have static storage duration``
 
-## Read
-
-Read from ``index`` with:
-
-* ``array[index]``
-* ``*(array + index)``
-
-## Update
-
-* Update value for array member from index: ``array[index] = new_value``
-
-## Delete
-
-* Delete member in array from index: ``delete.c`` 
-
-## size of an array
-
-```c
-int array[] = {1, 2, 3};
-int data[3];
-sizeof(array);//12
-sizeof(data);
-size_t arraySize = sizeof(array)/sizeof(array[0]);//3
-size_t dataSize = sizeof(array)/sizeof(array[0]);//3
-```
-Or
-```c
-size_t arraySize = sizeof(array)/sizeof(int);
-```
-
-Using this method is only right when you are dealing with **arrays not received as function parameters**. An array sent as a parameter to a function is treated as a pointer, so sizeof will return the pointer's size, instead of the array's. The only way to get the size of the array in this case is to passing its size as an argument to the function.
-
-Get size of array by function:
-
-```c
-int array[] = {1, 2, 3};
-
-int get_array_size(int *array)
-{
-    int size = 0;
-    while (array[size] != 0) ++size;
-    return size;
-}
-
-
-printf("Array size: %d\n", get_array_size(array));//Array size: 3
-```
-
-For string as char array or char pointer:
-
-```c
-char *displayed_string = "Hello, World !";
-
-int get_string_size(char *string)
-{
-    int size = 0;
-    while (string[size] != 0) ++size;
-    return size;
-}
-
-printf("String size %d\n", get_string_size(displayed_string));//String size: 14
-```
-
-## Array as an argument of a function
+# Array as an argument of a function
 
 Using array with size
 
