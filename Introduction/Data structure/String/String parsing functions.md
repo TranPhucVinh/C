@@ -1,4 +1,4 @@
-## strtok()
+# strtok()
 
 ```cpp
 char * strtok ( char * str, const char * delimiters );
@@ -65,7 +65,7 @@ data_3 = strtok (NULL, ",");
 printf("data 1 %s, data 2: %s, data 3: %s\n", data_1, data_2, data_3);
 ```
 
-## strol()
+# strol()
 
 ```c
 #include <stdlib.h>
@@ -140,7 +140,7 @@ String part is:
 ptr null
 ```
 
-## strtoul()
+# strtoul()
 
 Convert a string to unsigned long
 
@@ -160,13 +160,15 @@ char number = strtoul("128", NULL, 10);   //-128
 
 **Explain**: This happens as char is defined as signed char by default. 
 
-## strstr()
+# strstr()
 
-``strstr()``: Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null pointer if ``str2`` is not part of ``str1``.
+```c
+char *strstr (const char *s1, const char *s2);
+```
 
-**Return**: A pointer to the first occurrence in str1 of the entire sequence of characters specified in str2, or a null pointer if the sequence is not present in ``str1``.
+Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null pointer if ``str2`` is not part of ``str1``.
 
-Find a first part and second part of a string splitted by a substring with ``strstr()``
+## Find a first part and second part of a string splitted by a substring with strstr()
 
 ```c
 #include <stdio.h>
@@ -191,7 +193,7 @@ int main(int argc, char *argv[]){
 }
 ```
 
-Split a string by substring
+## Split a string by substring
 
 ```cpp
 #include <stdio.h>
@@ -228,7 +230,7 @@ int main(int argc, const char *argv[]) {
 
 **Result**: ``Heo, World!``
 
-### Replace substring inside a string
+## Replace substring inside a string
 
 ```c
 #include <stdio.h>
