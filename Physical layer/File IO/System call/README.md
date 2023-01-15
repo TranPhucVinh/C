@@ -125,6 +125,12 @@ Check [epoll document folder](epoll)
 
 # Examples
 
-* [File operations](File%20operations.md)
-* [Device file operations](Device%20file%20operations.md)
-* [I/O multiplexing](IO%20multiplexing.md)
+## [File operations](File%20operations.md)
+
+## [Device file operations](Device%20file%20operations.md)
+
+* Terminal operations: Read entered value from terminal and print out
+* USB ports operations: Read data from USB port with default baudrate 9600 and other customized baudrate like 115200
+* Read coordinate of a mouse cursor
+
+## [I/O multiplexing](IO%20multiplexing.md)
