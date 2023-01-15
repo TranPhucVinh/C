@@ -9,12 +9,12 @@
 #include <ctype.h>
 #include "kmess_cli_handler.h"
 
-#define MAX_EVENTS 1
-#define TOLOWER(str) for (char* p = str ; *p; ++p) *p = tolower(*p);
-
 char buffer[1024];
 char temp_buffer[1024];
-const char newline_hex[4] = {'\\', 'x', '0', 'a'};
+// const char newline_hex[4] = {'\\', 'x', '0', 'a'};
+// const char newline_hex[] = "\\x0a";
+// const char newline_hex[] = "\x0a";
+char newline_hex[] = "\x0a";
 int epollfd, fd;
 bool isMultipleLine = false;
 cli_handler my_cli_hanlder;
@@ -87,7 +87,7 @@ int main(int argc, char** args)
         exit(EXIT_FAILURE);
     }
 
-    char* analize_content_msg = NULL;
+    char* analyze_content_msg = NULL;
     for (;;) {
         bzero(buffer, 1024);
         nfds = epoll_wait(epollfd, events, MAX_EVENTS, -1);
@@ -103,23 +103,17 @@ int main(int argc, char** args)
                 // 4,516,1452858886,-;<kernel message>
                 // string process
                 char* content_msg = strstr(buffer, ";") + 1;
-                free(analize_content_msg);
-                if (my_cli_hanlder.m_option != 0)
-                {
-                    content_msg[strlen(content_msg) - 1] = 0; // strip out last \n
-                }
-                else
-                {
-                    content_msg = strtok(content_msg, "\n");
-                }
+                free(analyze_content_msg);
+                if (my_cli_hanlder.m_option != 0) content_msg[strlen(content_msg) - 1] = 0; // strip out last \n
+                else content_msg = strtok(content_msg, "\n");
 
-                analize_content_msg = malloc(strlen(content_msg) + 1);
-                strcpy(analize_content_msg, content_msg);
-                if (my_cli_hanlder.i_option != 0)
-                {
-                    TOLOWER(analize_content_msg);
-                }
+                analyze_content_msg = malloc(strlen(content_msg) + 1);
+                strcpy(analyze_content_msg, content_msg);
 
+                //-i option handler
+                if (my_cli_hanlder.i_option != 0) TOLOWER(analyze_content_msg);
+
+                //-e option handler
                 if (my_cli_hanlder.e_option.index != 0)
                 {
                     char* match_pattern = malloc(strlen(my_cli_hanlder.e_option.pattern) + 1);
@@ -128,32 +122,23 @@ int main(int argc, char** args)
                     {
                         TOLOWER(match_pattern);
                     }
-                    bool isMatch = STRCT(analize_content_msg, match_pattern);
+                    bool isMatch = STRCT(analyze_content_msg, match_pattern);
                     free(match_pattern);
                     if (isMatch == false)
                     {
                         continue;
                     }
                 }
-                if (my_cli_hanlder.i_option != 0)
-                {
-                    TOLOWER(analize_content_msg);
-                }
 
+                //-v option handler
                 if (my_cli_hanlder.v_option.index != 0)
                 {
                     char* match_pattern = malloc(strlen(my_cli_hanlder.v_option.pattern) + 1);
                     strcpy(match_pattern, my_cli_hanlder.v_option.pattern);
-                    if (my_cli_hanlder.i_option != 0)
-                    {
-                        TOLOWER(match_pattern);
-                    }
-                    bool isMatch = STRNCT(analize_content_msg, match_pattern);
+                    if (my_cli_hanlder.i_option != 0) TOLOWER(match_pattern);
+                    bool isMatch = STRNCT(analyze_content_msg, match_pattern);
                     free(match_pattern);
-                    if (isMatch == false)
-                    {
-                        continue;
-                    }
+                    if (isMatch == false) continue;
                 }
                 char* num_str = strtok(buffer, ";");
                 char* time_str = strtok(num_str, ",");
@@ -168,17 +153,17 @@ int main(int argc, char** args)
                 // final printf
                 // check multipline option to handle hex output "\x0a"
 		
-		// IDEAS
-		// brief explaination, when using \n in printk, the buffer read from /dev/kmesg replay the '\n'
-		// character with four other characters '\' 'x' '0' 'a'
-		// In the -m option, we will handle this four character with new line when print out the message
+                // IDEAS
+                // brief explaination, when using \n in printk, the buffer read from /dev/kmesg replace the '\n'
+                // character with four other characters '\' 'x' '0' 'a'
+                // In the -m option, we will handle this four character with new line when print out the message
 
-		// ISSUE
-		// A testing kernel module with 1 simple printk("line1\nline2") is used for testing
-		// The buffer read to the content_msg variable is fully expand to "line1\x0aline2" (debugged)
-		// Already have the design to handle this, but the "strstr" function doesn't behave as expected
-		// Here strstr(content_msg, newline_hex) return NULL break the design flow which should oviously
-		// return not NULL ???????
+                // ISSUE
+                // A testing kernel module with 1 simple printk("line1\nline2") is used for testing
+                // The buffer read to the content_msg variable is fully expanded to "line1\x0aline2" (debugged)
+                // Already have the design to handle this, but the "strstr" function doesn't behave as expected
+                // Here strstr(content_msg, newline_hex) return NULL break the design flow which should oviously
+                // return not NULL ???????
 
                 if (my_cli_hanlder.m_option != 0 && strstr(content_msg, newline_hex) != NULL)
                 {
@@ -200,10 +185,11 @@ int main(int argc, char** args)
                     }
                     printf("[ %.6lf] %s\n", time_s, temp_buffer);
                 }
-                else
-                {
-                     printf("[ %.6lf] %s\n", time_s, content_msg);
+                else if (my_cli_hanlder.m_option != 0 && strstr(content_msg, newline_hex) == NULL) {
+                    printf("DEBUG strstr() is NULL [ %.6lf] %s\n", time_s, content_msg);
+                    // for (int i = 0; i < strlen(content_msg); i++) printf("%c %d\n", content_msg[i], content_msg[i]);
                 }
+                else printf("[ %.6lf] %s\n", time_s, content_msg);
 
             } else {
                 // weird behavior

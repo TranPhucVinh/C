@@ -13,6 +13,9 @@
 #define STRCT(str1, str2) (strstr(str1, str2) != NULL)
 #define STRNCT(str1, str2) (strstr(str1, str2) == NULL)
 
+#define TOLOWER(str) for (char* p = str ; *p; ++p) *p = tolower(*p);
+#define MAX_EVENTS 1
+
 typedef struct
 {
     uint8_t index;
