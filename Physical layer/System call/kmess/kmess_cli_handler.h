@@ -16,6 +16,8 @@
 #define TOLOWER(str) for (char* p = str ; *p; ++p) *p = tolower(*p);
 #define MAX_EVENTS 1
 
+#define NEW_LINE "\\x0a"//Hex value of new line string
+
 typedef struct
 {
     uint8_t index;

@@ -11,10 +11,7 @@
 
 char buffer[1024];
 char temp_buffer[1024];
-// const char newline_hex[4] = {'\\', 'x', '0', 'a'};
-// const char newline_hex[] = "\\x0a";
-// const char newline_hex[] = "\x0a";
-char newline_hex[] = "\x0a";
+
 int epollfd, fd;
 bool isMultipleLine = false;
 cli_handler my_cli_hanlder;
@@ -22,8 +19,7 @@ cli_handler my_cli_hanlder;
 char kmess_help[]=
 "Usage: kmess [OPTION]\n"\
 " -h,            Get help for the command\n"\
-" -m             Some kernel message is multi-lines, use this to display full msg\n"\
-"                1 line displayed is default\n"\
+" -m             Display multi-lines kernel message\n"\
 " -e             use pattern for matching, not currently supporting regexp\n"\
 " -v             use pattern for non-matching, not currently supporting regexp\n"\
 " -i             ignore case sensitive";
@@ -150,30 +146,18 @@ int main(int argc, char** args)
                 long long ret = atoll(time_str);
                 double time_s = ret / 1000000.0;
 
-                // final printf
-                // check multipline option to handle hex output "\x0a"
-		
-                // IDEAS
-                // brief explaination, when using \n in printk, the buffer read from /dev/kmesg replace the '\n'
+                // check multi lines option to handle hex output "\x0a"
+                // @brief explanation:
+                // When using \n in printk, the buffer read from /dev/kmesg replace the '\n'
                 // character with four other characters '\' 'x' '0' 'a'
-                // In the -m option, we will handle this four character with new line when print out the message
-
-                // ISSUE
-                // A testing kernel module with 1 simple printk("line1\nline2") is used for testing
-                // The buffer read to the content_msg variable is fully expanded to "line1\x0aline2" (debugged)
-                // Already have the design to handle this, but the "strstr" function doesn't behave as expected
-                // Here strstr(content_msg, newline_hex) return NULL break the design flow which should oviously
-                // return not NULL ???????
-
-                if (my_cli_hanlder.m_option != 0 && strstr(content_msg, newline_hex) != NULL)
+                if (my_cli_hanlder.m_option != 0 && strstr(content_msg, NEW_LINE) != NULL)
                 {
                     int temp_size = strlen(content_msg);
                     char* s_ptr = content_msg;
                     char* p_ptr = s_ptr;
                     bzero(temp_buffer, 1024);
-                    while((s_ptr = strstr(s_ptr, newline_hex)) != NULL)
+                    while((s_ptr = strstr(s_ptr, NEW_LINE)) != NULL)
                     {
-                        printf("here: %d\n", temp_size);
                         *s_ptr = 0;
                         strcat(temp_buffer, p_ptr);
                         strcat(temp_buffer, "\n");
@@ -185,20 +169,14 @@ int main(int argc, char** args)
                     }
                     printf("[ %.6lf] %s\n", time_s, temp_buffer);
                 }
-                else if (my_cli_hanlder.m_option != 0 && strstr(content_msg, newline_hex) == NULL) {
-                    printf("DEBUG strstr() is NULL [ %.6lf] %s\n", time_s, content_msg);
-                    // for (int i = 0; i < strlen(content_msg); i++) printf("%c %d\n", content_msg[i], content_msg[i]);
-                }
                 else printf("[ %.6lf] %s\n", time_s, content_msg);
 
             } else {
-                // weird behavior
                 close(epollfd);
                 exit(1);
             }
         }
     }
-
     // program cannot get here
     return 0;
 }
