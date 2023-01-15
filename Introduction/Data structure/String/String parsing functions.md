@@ -175,24 +175,31 @@ Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null poi
 #include <stdlib.h>
 #include <string.h>
 
+#define SPLIT_STR	"or"
+
 char displayed_string[] = "Hello, World !";
 char *second_part = NULL;
-char *first_part;
+char *first_part = NULL;
 
 int main(int argc, char *argv[]){
-    second_part = strstr(displayed_string, "or");
-	if (second_part != NULL)	printf("%s\n", second_part);//orld !
-	else printf("NULL\n");
-
+    second_part = strstr(displayed_string, SPLIT_STR);
 	first_part = (char*) malloc((second_part - displayed_string) * sizeof(char));
-	
+
     //Copy (second_part - displayed_string) character from displayed_string to first_part
     strncpy(first_part, displayed_string, second_part - displayed_string);
-    printf("%s\n", first_part);//Hello, W
+
+	printf("First part: %s\n", first_part);
+	if (second_part != NULL) printf("Second part: %s\n", second_part);//orld !
+	else printf("Second part: NULL\n");
 	free(first_part);
+	//As second_part is returned from strstr(), must not run it with free(second_part)
 }
 ```
-
+**Result**
+```
+First part: Hello, W
+Second part: orld !
+```
 ## Split a string by substring
 
 ```cpp
