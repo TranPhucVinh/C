@@ -6,18 +6,17 @@ If a program is executed in **user mode** and want to access to the memory or ha
 
 System call is a programmatic way/a call in which a computer program requests a service from the kernel of the operating system. The system call interface is generally not invoked directly (even though it could be) but rather through wrapper functions in the C runtime library, i.e system call has to be performed by C function.
 
-
-## Types of system calls
+# Types of system calls
 
 There are 5 types of system calls
 
 * Process control
-* [File manipulation](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/README.md#system-call)
+* [File manipulation](#file-manipulation)
 * Device management
 * Information maintenance
 * Communications
 
-### Process control
+## Process control
 
 Process control system calls include:
 
@@ -29,7 +28,7 @@ Process control system calls include:
 * wait event, signal event
 * allocate and free memory
 
-### File manipulation
+## File manipulation
 
 File manipulation system calls include:
 
@@ -38,7 +37,9 @@ File manipulation system calls include:
 * read, write, reposition
 * get file attributes, set file attributes
 
-### Device manipulation
+Check [File IO system call implemenation](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/README.md#system-call).
+
+## Device manipulation
 
 Device manipulation system calls include
 
@@ -49,20 +50,20 @@ Device manipulation system calls include
 
 Logically attach informs the physcially attached device is ready to use
 
-### Information maintenance
+## Information maintenance
 
 * get time or date, set time or date
 * get system data, set system data
 * get process, file or device attributes
 * set process, file or device attributes
 
-### Communications
+## Communications
 
 * create, delete communication connection
 * send, receive messages
 * transfer status information
 * attach or detach remote devices
 
-## Tools for system call
+# Tools for system call
 
 [strace](strace.md): trace system calls and signals
