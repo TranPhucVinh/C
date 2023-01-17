@@ -17,14 +17,12 @@ Program: [tcp_client_for_telemetry.c](tcp_client_for_telemetry.c)
 
 # Server side API
 
-Version 0.1.0: 
+Get JWT and parsed into ``token`` and ``refreshToken``: [raw_api_get_jwt.c](raw_api_get_jwt.c)
+ 
+## [thingsboard](thingsboard) library version 0.1.0
 
 * Build from GCC
 * Release: 17th Jan 2023
-
-Get JWT and parsed into ``token`` and ``refreshToken``: [raw_api_get_jwt.c](raw_api_get_jwt.c)
-
-## For [thingsboard](thingsboard) library
 
 Source code are built with Bazel with attached [BUILD](BUILD) file and file architecture like below:
 
