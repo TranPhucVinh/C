@@ -1,6 +1,6 @@
-## Telemetry
+# Telemetry
 
-### Telemetry with TCP client has HTTP client
+## Telemetry with TCP client has HTTP client
 
 Features:
 
@@ -15,11 +15,16 @@ Program: [tcp_client_for_telemetry.c](tcp_client_for_telemetry.c)
 * Telemetry to ThingsBoard Live Demo HTTP server (not HTTPS) with libcurl as HTTP client
 * Program: [libcurl_send_data.c](libcurl_send_data.c)
 
-## Server side API
+# Server side API
 
-Get JWT and parsed into ``token`` and ``refreshToken``: ``raw_api_get_jwt.c``
+Version 0.1.0: 
 
-### For [thingsboard](thingsboard) library
+* Build from GCC
+* Release: 17th Jan 2023
+
+Get JWT and parsed into ``token`` and ``refreshToken``: [raw_api_get_jwt.c](raw_api_get_jwt.c)
+
+## For [thingsboard](thingsboard) library
 
 Source code are built with Bazel with attached [BUILD](BUILD) file and file architecture like below:
 
