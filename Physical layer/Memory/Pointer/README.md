@@ -117,6 +117,7 @@ Types of pointer:
 * Wild pointer
 * [pointer to const](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#pointer-to-const) vs [const pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#const-pointer)
 * [NULL pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#null-pointer)
+* [Void pointer](Void%20pointer.md)
 
 **Note**: [Type casting pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#type-casting-pointer) from the smaller one to the bigger one and in reverse are different.
 
