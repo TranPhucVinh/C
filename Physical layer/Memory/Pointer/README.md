@@ -9,7 +9,7 @@ A pointer is a variable that stores address of other variable. All the pointer s
 * ``&``: get the address of the variable
 * ``%p``: is used to print out the address as it can print out the hex value.
 
-## Declare pointer
+# Declare pointer
 
 ```c
 int *intPointer; //pointer to integer
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 }	
 ```
 
-### Size of the pointer variable.
+## Size of the pointer variable.
 
 To get size of the pointer variable, use ``sizeof()``. Size of the pointer variable doesn't depend on its type as it stores the address of other variable and address of a variable has ``int`` type. So size of a pointer variable is ``int``.
 
@@ -57,7 +57,7 @@ char *test = "1";
 printf("%d", sizeof(test)); //8
 ```
 
-### Get value of pointer
+## Get value of pointer
 
 ```c
 int *p;
@@ -75,7 +75,7 @@ printf("Value *pointer is %d \n", *pointer); //9
 
 **Note**: ``*&a`` is ``a``.
 
-### Set value with pointer
+## Set value with pointer
 
 Set value for a variable by pointer:
 
@@ -111,11 +111,11 @@ int dummy_variable;
 printf("%d", &pdummy_variable);//print out the address of dummy_variable first to find the allowable address
 ```
 
-## Types of pointer
+# Types of pointer
 
 Check [types of pointer document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
 
-## + arithmetic issue
+# + arithmetic issue
 
 ```c
 char char_arr[5];
@@ -156,7 +156,7 @@ printf("char_ptr1: %p, int_ptr1: %p\n", char_ptr1, int_ptr1);//char_ptr1: 0x7ffe
 printf("char_ptr2: %p, int_ptr2: %p\n", char_ptr2, int_ptr2);//char_ptr2: 0x7ffebc027654, int_ptr2: 0x7ffebc027657
 ```
 
-### Related issue
+## Related issue
 
 1. [Set GPIO value in kernel space with ioread(), iowrite()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/blink_led_with_iowrite32.c)
 
@@ -179,4 +179,4 @@ led_off_address = gpio_base + 10; //Set virtual address for OFF address
 #define GPIO_CLR(addr,pin) *(addr+10)=1<<pin //Clear GPIO in GPCLR0
 ```
 
-2. Set GPIO value in Raspbian by busybox devmem
+2. [Set GPIO value in Raspbian by busybox devmem]()
