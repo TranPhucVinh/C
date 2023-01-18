@@ -179,4 +179,4 @@ led_off_address = gpio_base + 10; //Set virtual address for OFF address
 #define GPIO_CLR(addr,pin) *(addr+10)=1<<pin //Clear GPIO in GPCLR0
 ```
 
-2. [Set GPIO value in Raspbian by busybox devmem]()
+2. [Set GPIO value in Raspbian by busybox devmem](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/Direct%20register%20access.md)
