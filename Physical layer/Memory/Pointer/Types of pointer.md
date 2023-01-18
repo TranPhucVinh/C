@@ -1,4 +1,4 @@
-# Data type issue
+# Type casting pointer
 
 Type casting pointer from smaller type ``char`` to bigger type ``int``:
 
