@@ -1,4 +1,4 @@
-## Data type issue
+# Data type issue
 
 Type casting pointer from smaller type ``char`` to bigger type ``int``:
 
@@ -33,7 +33,7 @@ printf("char_ptr: %p, int_ptr: %p\n", char_ptr, int_ptr);//char_ptr: 0x62FE0C, u
 printf("*char_ptr 0x%x, *int_ptr 0x%x\n", *char_ptr, *int_ptr);//*char_ptr 0x34, *int_ptr: 0x1234
 ```
 
-## Wild pointer
+# Wild pointer
 
 A pointer that is not initialized to any valid address or NULL is considered as **wild pointer**. Wild pointer point to some arbitrary memory location and may cause a program to crash or behave badly.
 
@@ -90,9 +90,9 @@ error: scalar object ‘int_array’ requires one element in initializer
 
 To work with ``int *number`` and ``int **int_array``, check ``Dynamic memory allocation.md`` in ``Physical layer/Memory/``.
 
-## Pointer and const
+# Pointer and const
 
-### pointer to const
+## pointer to const
 
 String declaration with pointer is highly recommended to use ``const char*``:
 
@@ -117,7 +117,7 @@ pointer = &b;
 printf("pointer: %d\n", *pointer);//20
 ```
 
-### const pointer
+## const pointer
 
 A const pointer doesn't allow the pointer to change the address at later state of the program.
 
@@ -137,13 +137,13 @@ printf("%d\n", *pointer);//2
 //Setting pointer to other address now give compilation error in GCC and G++
 //pointer = &b;
 ```
-### Const pointer to a const integer
+## Const pointer to a const integer
 
 ```c
 int const * a const;
 ```
 
-## NULL pointer
+# NULL pointer
 
 Null pointer actually means a pointer that does not point to any valid location. We define a pointer to be null when we want to make sure that the pointer does not point to any valid location and not to use that pointer to change anything. If we don't use null pointer, then we can't verify whether this pointer points to any valid location or not.
 
