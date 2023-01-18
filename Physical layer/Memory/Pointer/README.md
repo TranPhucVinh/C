@@ -111,9 +111,14 @@ int dummy_variable;
 printf("%d", &pdummy_variable);//print out the address of dummy_variable first to find the allowable address
 ```
 
-# Types of pointer
+# [Types of pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
 
-Check [types of pointer document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
+Types of pointer:
+* Wild pointer
+* [pointer to const](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#pointer-to-const) vs [const pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#const-pointer)
+* [NULL pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#null-pointer)
+
+**Note**: [Type casting pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#type-casting-pointer) from the smaller one to the bigger one and in reverse are different.
 
 # + arithmetic issue
 
