@@ -1,8 +1,6 @@
 Pointer to pointer is also known as double pointer.
 
-# Create
-
-## Simple define
+# Define a double pointer and use it to change the variable's value
 
 ```c
 #include <stdio.h>
@@ -17,10 +15,15 @@ int main(){
 	printf("Address of pointer: %p \n", &pointer);//0x601040
 	printf("double_pointer: %p \n", double_pointer);//0x601040
 	printf("**double_pointer: %d \n", **double_pointer);//9
+	
+    //Now use double pointer to change variable value
+    **double_pointer = 10;
+    printf("**double_pointer: %d \n", **double_pointer);//10
+    printf("number: %d \n", number);//10
 }
 ```
 
-## Define double pointer on heap memory for 2 dimension array
+# Define double pointer on heap memory for 2 dimension array
 
 All define for 2 dimension array with double pointer must have type like:
 
@@ -54,7 +57,7 @@ char **char_array = (char**) malloc(ROW_SIZE * sizeof(char*));
 
 **Application**: [Two dimension array on heap memory](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Array/Two%20dimension%20array%20on%20heap%20memory.md)
 
-## Define double pointer for a variable
+# Define double pointer for a variable
 
 * Double pointer as a variable is used as the returned value from a POSIX thread, check [Thread creation: Get return from a thread and store to a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#get-return-from-a-thread-and-store-to-a-variable) for its implementation.
 * Function ``insert_node_at_index()`` for both [userspace](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Linked%20list/Singly%20linked%20list/multiple_defines_for_insert_with_index.c) and [kernel space linked list](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linked%20list/insert_with_index.c) use double pointer variable ``first_node`` to insert a new first node to replace it.
