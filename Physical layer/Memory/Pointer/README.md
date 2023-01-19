@@ -9,6 +9,13 @@ A pointer is a variable that stores address of other variable. All the pointer s
 * ``&``: get the address of the variable
 * ``%p``: is used to print out the address as it can print out the hex value.
 
+Fundamental concepts of pointer includes:
+
+* [Declare pointer](#declare-pointer)
+* [Pointer and array](Pointer%20and%20Array.md)
+* [Pointer to pointer]() or double pointer
+* [Function pointer](Function%20pointer.md)
+
 # Declare pointer
 
 ```c
