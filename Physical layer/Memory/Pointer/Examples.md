@@ -1,6 +1,4 @@
-## Example 1
-
-Change value of variable by pointer in a function
+# Change value of variable by pointer in a function
 
 ```c
 #include <stdio.h>
@@ -43,7 +41,7 @@ int add(int *number){
 }
 ```
 
-### Example 1.1: Pointer assign to variable
+# Assign pointer to variable
 
 ```c
 #include <stdio.h>
@@ -64,9 +62,7 @@ int add(int *number){
 }
 ```
 
-### An example of passing by value
-
-Get address of a variable then store into a pointer.
+# Get address of a variable then store into a pointer.
 
 ```c
 #include <stdio.h>
@@ -174,13 +170,11 @@ int main()
 }
 ```
 
-### Example 1.2
-
-Change value of a string by function using pointer.
+# Change value of a string by function using pointer.
 
 Check: ``Example 2 Change value of a string by function using pointer`` in ``Introduction/Data structure/String/Examples part 1.md``.
 
-### Example 1.3: Change value of a variable with pointer
+# Change value of a variable with pointer
 
 Change both local or global variable by using pointer
 ```cpp
@@ -223,9 +217,7 @@ int *ptr = (int*)&value;
 *ptr = 0;
 ```
 
-## Example 2
-
-Swapping value
+# Swapping value
 
 ```c
 #include <stdio.h>
@@ -254,7 +246,7 @@ Values of a and b are 4 6
 Values of a and b now are 6 4 
 ```
 
-### Get value of pointer
+# Get value of pointer
 
 Can't change the pointing address of pointer when pointer is a function argument
 
