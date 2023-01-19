@@ -8,7 +8,7 @@
 * [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
 * [FIFO](../File%20IO/FIFO)
 * Semaphore
-* Message queue
+* [Message queue](Message%20queue)
 * Shared memory
 * [Socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP)
 * [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
