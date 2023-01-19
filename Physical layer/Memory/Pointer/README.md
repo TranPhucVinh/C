@@ -169,7 +169,7 @@ printf("char_ptr1: %p, int_ptr1: %p\n", char_ptr1, int_ptr1);//char_ptr1: 0x7ffe
 printf("char_ptr2: %p, int_ptr2: %p\n", char_ptr2, int_ptr2);//char_ptr2: 0x7ffebc027654, int_ptr2: 0x7ffebc027657
 ```
 
-## Related issue
+## Related issues
 
 1. [Set GPIO value in kernel space with ioread(), iowrite()](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/blink_led_with_iowrite32.c)
 
