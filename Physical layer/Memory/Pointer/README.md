@@ -118,6 +118,10 @@ int dummy_variable;
 printf("%d", &pdummy_variable);//print out the address of dummy_variable first to find the allowable address
 ```
 
+# Implementation
+
+* Pass by reference vs Pass by value: [Change value of variable by pointer in a function](Implementations.md#change-value-of-variable-by-pointer-in-a-function)
+
 # [Types of pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
 
 Types of pointer:
