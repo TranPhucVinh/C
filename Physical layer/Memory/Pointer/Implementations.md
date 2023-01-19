@@ -64,6 +64,82 @@ int add(int *number){
 }
 ```
 
+# Change value of a variable with pointer
+
+Change both local or global variable by using pointer
+```cpp
+int value = 10;
+printf("before %d \n", value); //10
+int *ptr = &value;
+*ptr = 90;
+printf("after %d \n", value); //90
+```
+
+Changing the value of local or global ``const`` variable.
+
+```cpp
+int main(){
+	const int value = 32;
+	int *ptr = &value;
+	*ptr = 0;
+}
+```
+This program gives warning on ``GCC`` (but ``value`` can still be changed from ``32`` to ``0``)
+
+```
+warning: initialization discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+     int *ptr = &value;
+```
+This program gives error on ``G++``:
+
+```
+error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
+   int *ptr = &value;
+```
+
+Then do optimization in the above program: ``gcc -O test.c`` (same for ``-O1``, ``-O2``, ``-O3``), the warning and result still be like compiling with ``gcc test.c``. Notice that those compilation process are executed on Ubuntu 16.04.
+
+**Problem solved**: Use ``(int*)`` and ``volatile``
+
+```c
+volatile const int value = 32;
+int *ptr = (int*)&value;
+*ptr = 0;
+```
+
+# Change value of a string by function using pointer.
+
+Check: ``Example 2 Change value of a string by function using pointer`` in ``Introduction/Data structure/String/Examples part 1.md``.
+
+# Swapping value in a function
+
+```c
+#include <stdio.h>
+int a, b;
+void swap(int *change1, int *change2);
+main() {
+	printf("Enter the 2 numbers: ");
+	scanf ("%d", &a);
+	scanf("%d", &b);
+	printf("Values of a and b are %d %d \n", a, b);
+	swap(&a, &b);
+	printf("Values of a and b now are %d %d \n", a, b);
+}
+
+void swap(int *change1, int *change2){
+	int temp;
+	temp = *change1;
+	*change1= *change2;
+	*change2 = temp;
+}
+```
+```
+Enter the 2 numbers: 4
+6
+Values of a and b are 4 6 
+Values of a and b now are 6 4 
+```
+
 # Get address of a variable then store into a pointer.
 
 ```c
@@ -170,82 +246,6 @@ int main()
 	printf("*ptr: %d\n", expect_a);//8
 	return 0;
 }
-```
-
-# Change value of a string by function using pointer.
-
-Check: ``Example 2 Change value of a string by function using pointer`` in ``Introduction/Data structure/String/Examples part 1.md``.
-
-# Change value of a variable with pointer
-
-Change both local or global variable by using pointer
-```cpp
-int value = 10;
-printf("before %d \n", value); //10
-int *ptr = &value;
-*ptr = 90;
-printf("after %d \n", value); //90
-```
-
-Changing the value of local or global ``const`` variable.
-
-```cpp
-int main(){
-	const int value = 32;
-	int *ptr = &value;
-	*ptr = 0;
-}
-```
-This program gives warning on ``GCC`` (but ``value`` can still be changed from ``32`` to ``0``)
-
-```
-warning: initialization discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
-     int *ptr = &value;
-```
-This program gives error on ``G++``:
-
-```
-error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
-   int *ptr = &value;
-```
-
-Then do optimization in the above program: ``gcc -O test.c`` (same for ``-O1``, ``-O2``, ``-O3``), the warning and result still be like compiling with ``gcc test.c``. Notice that those compilation process are executed on Ubuntu 16.04.
-
-**Problem solved**: Use ``(int*)`` and ``volatile``
-
-```c
-volatile const int value = 32;
-int *ptr = (int*)&value;
-*ptr = 0;
-```
-
-# Swapping value
-
-```c
-#include <stdio.h>
-int a, b;
-void swap(int *change1, int *change2);
-main() {
-	printf("Enter the 2 numbers: ");
-	scanf ("%d", &a);
-	scanf("%d", &b);
-	printf("Values of a and b are %d %d \n", a, b);
-	swap(&a, &b);
-	printf("Values of a and b now are %d %d \n", a, b);
-}
-
-void swap(int *change1, int *change2){
-	int temp;
-	temp = *change1;
-	*change1= *change2;
-	*change2 = temp;
-}
-```
-```
-Enter the 2 numbers: 4
-6
-Values of a and b are 4 6 
-Values of a and b now are 6 4 
 ```
 
 # Get value of pointer
