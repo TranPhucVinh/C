@@ -75,4 +75,6 @@ Perform the control operation specified by ``cmd`` on the System V message queue
 
 # Implementations
 
-* [Sending and receiving a single message in a message queue]()
+* [Sending and receiving a single message in a message queue](Implementations.md#sending-and-receiving-a-single-message-in-a-message-queue)
+* [Sending and receiving messages with multiple types in a message queue](Implementations.md#sending-and-receiving-messages-with-multiple-types-in-a-message-queue)
+* [Remove a message queue](Implementations.md#remove-a-message-queue)
