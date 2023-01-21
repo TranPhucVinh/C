@@ -75,6 +75,18 @@ key        msqid      owner      perms      used-bytes   messages
 0x00000002 32768      tranphucvi 777        100          1     
 ```
 
+**Note**: Permission flag like ``0666``, ``0777`` must be used for implementation with the created message queue. If no permission flag is specified, the permission value is ``0`` and no operation can be implemented on that newly created message queue.
+
+```c
+int msqid = msgget(KEY, IPC_CREAT);
+```
+
+```
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages    
+0x00000002 131072     tranphucvi 0          0            0     
+```
+
 ## Receive message from message queue
 
 Get the ``msqid`` from an existed message queue then read that message out
