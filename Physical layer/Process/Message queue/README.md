@@ -1,7 +1,5 @@
 Message queue allows the process to exchange the data in the form of messages.
 
-Command [ipcs](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Process/System%20V%20IPC.md#ipcs) is useful for checking the message queue information.
-
 # API
 
 ## msgget()

@@ -5,6 +5,7 @@
 
 ## Inter-process communication
 
+Inter-process communication methods are:
 * [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
 * [FIFO](../File%20IO/FIFO)
 * Semaphore
@@ -12,6 +13,8 @@
 * Shared memory
 * [Socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP)
 * [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
+
+Command [ipcs](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Process/System%20V%20IPC.md#ipcs) is useful for checking the message queue, shared memory and semaphore information.
 
 # API
 
