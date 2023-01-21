@@ -2,8 +2,7 @@
 
 ## Send message to a message queue
 
-Create a queue if not existed or get the ``msqid`` key if that message queue has already existed with flag ``0666``.
-Then send message to that queue.
+Create a queue if not existed or get the ``msqid`` key if that message queue has already existed with flag ``0666``. Then send message to that queue.
 
 ```c
 #include <stdio.h>
@@ -60,6 +59,20 @@ Run that program for the 2nd time:
 ------ Message Queues --------
 key        msqid      owner      perms      used-bytes   messages    
 0x00000002 32769      tranphucvi 666        200          2  
+```
+
+If running with ``IPC_CREAT|IPC_EXCL|0777``:
+
+```c
+int msqid = msgget(KEY, IPC_CREAT|IPC_EXCL|0777);
+```
+
+The result will be:
+
+```
+------ Message Queues --------
+key        msqid      owner      perms      used-bytes   messages    
+0x00000002 32768      tranphucvi 777        100          1     
 ```
 
 ## Receive message from message queue
