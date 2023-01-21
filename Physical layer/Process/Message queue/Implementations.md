@@ -2,7 +2,7 @@
 
 ## Send message to a message queue
 
-Create a queue if not existed or get the ``msqid`` key if that message queue has already existed with flag ``0666``. Then send message to that queue.
+Create a queue if not existed or get the ``msqid`` key if that message queue has already existed with flag ``0666`` as permission. Then send message to that queue.
 
 ```c
 #include <stdio.h>
@@ -51,7 +51,7 @@ key        msqid      owner      perms      used-bytes   messages
 0x00000002 32769      tranphucvi 666        100          1      
 ```
 
-A new message queue with key ID ``2`` is created with 1 message inside it. ``used-bytes`` is ``100`` as ``char data[MSG_SIZE]``.
+A new message queue with key ID ``2`` is created with 1 message inside it. ``used-bytes`` is ``100`` as ``char data[MSG_SIZE]``, permission is ``666``.
 
 Run that program for the 2nd time:
 
