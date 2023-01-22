@@ -201,3 +201,27 @@ int main(){
 # Remove a shared memory region
 
 ``ipcrm -m shmid``: Remove share memory with ``shmid``. E.g: ``ipcrm -m 6651916``
+
+To remove by ``shmctl()``:
+
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/shm.h>
+
+#define SHM_KEY 1
+#define SIZE    50// Size of the shared memory segment
+
+int id;
+int main(){
+    id = shmget(SHM_KEY, SIZE, 0777);
+    if (id > -1) printf("Shared memory segment with ID %d is get successfully\n", id);
+    else {
+        printf("No shared memory segment with share memory key %d existed\n", SHM_KEY);
+        return 0;
+    }
+
+    if (!shmctl(id, IPC_RMID, NULL)) printf("Remove shared memory segment with ID %d successfully\n", id);
+    else printf("Unable to remove shared memory segment with ID %d\n", id);
+}
+```
