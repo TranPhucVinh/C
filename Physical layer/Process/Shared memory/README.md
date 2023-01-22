@@ -39,4 +39,5 @@ void *shmat(int shmid, const void *shmaddr, int shmflg);
 # Implementations
 
 * [Write and read an int value in a shared memory region]()
+* [Write and read int and string value in 2 shared memory regions]()
 * [Remove a shared memory region]()
