@@ -35,3 +35,7 @@ void *shmat(int shmid, const void *shmaddr, int shmflg);
 * ``SHM_RDONLY``: Attach the segment for read-only access. The process must have read permission for the segment.
 
 **Return**: On success, the address of the attached shared memory segment is returned; on error, ``(void *) -1`` is returned, and ``errno`` is set to indicate the cause of the error.
+
+# Implementations
+
+* [Write and read an int value in a shared memory region]()
