@@ -1,4 +1,4 @@
-## Using formated output in printf()
+# Using formated output in printf()
 
 ```c
 const char* string_output_format = "Displayed string: %s\n";
@@ -6,7 +6,7 @@ char displayedString[] = "Hello, World !";
 printf(string_output_format, displayedString);       
 ```
 
-## Print out an entered string and an entered character
+# Print out an entered string and an entered character
 
 ```c
 #include <stdio.h> 
@@ -60,7 +60,7 @@ printf("%s\n", displayedString1);
 printf("%s", displayedString2); 
 ```
 
-### The problem doesn't happen with fgets()
+## The problem doesn't happen with fgets()
 
 If putting ``fgets()`` before ``scanf()``, ``getchar()``,... nothing will happen.
 
@@ -85,7 +85,7 @@ display string
 1 
 ```
 
-## Compare the entered string
+# Compare the entered string
 
 Compare the entered string:
 * If enter ``1``, print ``Enter 1``
@@ -117,7 +117,7 @@ int main(){
 }
 ```
 
-## Print out all files inside a folder with dirent.h
+# Print out all files (included folders) inside a folder with dirent.h
 
 * ``opendir()``: Open directory
 * ``readdir()``: Read directory
