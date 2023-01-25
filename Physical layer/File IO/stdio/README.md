@@ -9,7 +9,7 @@
 * [Using formated output in printf()](stdio%20examples.md#using-formated-output-in-printf)
 * [Print out an entered string and an entered character](stdio%20examples.md#print-out-an-entered-string-and-an-entered-character)
 * [Compare the entered string](stdio%20examples.md#compare-the-entered-string)
-* [Print out all files (included folders) inside a folder with dirent.h](stdio%20examples.md#print-out-all-files-inside-a-folder-with-direnth)
+* [Print out all files (included folders) along with their types inside a folder with dirent.h](stdio%20examples.md#print-out-all-files-inside-a-folder-with-direnth)
 
 ## [File pointer examples](File%20pointer%20examples.md)
 

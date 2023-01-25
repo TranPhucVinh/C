@@ -117,7 +117,7 @@ int main(){
 }
 ```
 
-# Print out all files (included folders) inside a folder with dirent.h
+# Print out all files (included folders) along with their types inside a folder with dirent.h
 
 * ``opendir()``: Open directory
 * ``readdir()``: Read directory
@@ -135,7 +135,7 @@ int main(void)
     {
         while ((dir = readdir(d)) != NULL)
         {
-            printf("%s\n", dir->d_name);
+            printf("%s has type %d\n", dir->d_name, dir->d_type);
         }
         closedir(d);
     }
