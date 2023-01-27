@@ -1,4 +1,4 @@
-### fopen()
+# fopen()
 
 Open file to read, write, append,...
 
@@ -33,7 +33,7 @@ fptr = fopen(filePath, "r");
 printf("fileno: %ld\n", fileno(fptr));
 ```
 
-### fprintf()
+# fprintf()
 
 Sends formatted output to a stream.
 
@@ -60,7 +60,7 @@ fprintf(stdout, "Hello, World! \n");
 fprintf(stderr, "Hello, World! \n");
 ```
 
-### fread()
+# fread()
 
 ```c
 size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -118,7 +118,7 @@ Check 2 examples for that implementations
 * Example ``Read big file in chunk with read size of each element = 1.``
 * ``http_server_returns_beautiful_html_files.c`` in ``ESP8266-RTOS-SDK``
 
-### fwrite()
+# fwrite()
 
 ```c
 size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
@@ -141,7 +141,7 @@ while (1){
 }
 ```
 
-### fgets()
+# fgets()
 
 Read the content in a file or stream until encounter the new line character (``\n``) or until finished reading ``n-1`` character; then store in ``s``.
 
@@ -187,7 +187,7 @@ char buf[1];
 fgets(buf, 2, stdin); 
 ```
 
-### fputs()
+# fputs()
 
 ```c
 FILE *fptr;
@@ -201,7 +201,7 @@ Print out a string to ``stdout``
 fputs("Hello, World ! 1\n", stdout);
 ```
 
-### fseek()
+# fseek()
 
 ```c
 int fseek( FILE * stream, long int offset, int origin);
@@ -215,7 +215,7 @@ int fseek( FILE * stream, long int offset, int origin);
 	* ``SEEK_CUR``:	Current position of the file pointer
 	* ``SEEK_END``:	End of file
 
-### ftell()
+# ftell()
 
 ```c
 long int ftell(FILE *stream);
@@ -224,7 +224,7 @@ Get current position in ``stream``. Returns the current value of the position in
 
 **Application**: Use ``fseek()`` and ``ftell()`` to check size of a file then read that file [File pointer example 1](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/File%20pointer%20examples.md#example-1) and [read_file() function in basic_file_operations.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/basic_file_operations.c).
 
-## Delimited string input
+# Delimited string input
 
 ```c
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
