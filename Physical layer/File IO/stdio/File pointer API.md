@@ -21,7 +21,6 @@ file = fopen("text.md", "r"); //Open text.md to read
 * r+: open a file to write and read, file must existed
 * w+: open an empty file to write and read
 * a+: open a file to read and append
-* t
 * ``b`` and ``rb``: open non-text files like image
 
 Get the file descriptor value from file pointer with ``fileno()``:
@@ -31,33 +30,6 @@ char filePath[] = "test.c";
 FILE *fptr; //file pointer
 fptr = fopen(filePath, "r");
 printf("fileno: %ld\n", fileno(fptr));
-```
-
-# fprintf()
-
-Sends formatted output to a stream.
-
-```c
-int fprintf(FILE *stream, const char *format, ...) 
-```
-
-**stream**: ``stdin``, ``stdout``, ``stderr``
-
-**Example**: Write content to empty file
-
-```c
-FILE *fileptr;
-fileptr = fopen("text.md", "w+");
-fprintf(fileptr, "Erin");
-```
-
-**Example**: Print out string in terminal with ``stdout`` and ``stderr``
-
-```c
-fprintf(stdout, "Hello, World! \n");
-```
-```c
-fprintf(stderr, "Hello, World! \n");
 ```
 
 # fread()
@@ -115,31 +87,8 @@ Both function read 1024 from ``fptr``, however with ``n = fread(read_buffer, 1, 
 
 Check 2 examples for that implementations
 
-* Example ``Read big file in chunk with read size of each element = 1.``
-* ``http_server_returns_beautiful_html_files.c`` in ``ESP8266-RTOS-SDK``
-
-# fwrite()
-
-```c
-size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
-```
-
-Print out a string to ``stdout``
-```c
-#define WRITE_SIZE 1
-
-char displayedString[] = "Hello, World !";
-fwrite(displayedString , WRITE_SIZE , sizeof(displayedString) , stdout);
-```
-**Note**: For ``displayedString`` to be displayed inside a ``while()`` loop, it must have a ``\n`` character.
-
-```c
-while (1){
-	char displayedString[] = "Hello, World !111";
-	fwrite(displayedString , WRITE_SIZE , sizeof(displayedString) , stdout);
-	delaySeconds(1);
-}
-```
+* [Read big file in chunk with read size of each element = 1](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/File%20pointer%20examples.md#read-big-file-in-chunk-with-read-size-of-each-element--1)
+* [http_server_returns_beautiful_html_files.c in ESP8266-RTOS-SDK](https://github.com/TranPhucVinh/ESP8266-RTOS-SDK/blob/main/Applicaton%20layer/HTTP/http_server_returns_beautiful_html_files.c)
 
 # fgets()
 
@@ -185,6 +134,56 @@ printf("string is: %c\n", buf[0]);
 ```c
 char buf[1];
 fgets(buf, 2, stdin); 
+```
+
+# fprintf()
+
+Sends formatted output to a stream.
+
+```c
+int fprintf(FILE *stream, const char *format, ...) 
+```
+
+**stream**: ``stdin``, ``stdout``, ``stderr``
+
+**Example**: Write content to empty file
+
+```c
+FILE *fileptr;
+fileptr = fopen("text.md", "w+");
+fprintf(fileptr, "Erin");
+```
+
+**Example**: Print out string in terminal with ``stdout`` and ``stderr``
+
+```c
+fprintf(stdout, "Hello, World! \n");
+```
+```c
+fprintf(stderr, "Hello, World! \n");
+```
+
+# fwrite()
+
+```c
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream)
+```
+
+Print out a string to ``stdout``
+```c
+#define WRITE_SIZE 1
+
+char displayedString[] = "Hello, World !";
+fwrite(displayedString , WRITE_SIZE , sizeof(displayedString) , stdout);
+```
+**Note**: For ``displayedString`` to be displayed inside a ``while()`` loop, it must have a ``\n`` character.
+
+```c
+while (1){
+	char displayedString[] = "Hello, World !111";
+	fwrite(displayedString , WRITE_SIZE , sizeof(displayedString) , stdout);
+	delaySeconds(1);
+}
 ```
 
 # fputs()
