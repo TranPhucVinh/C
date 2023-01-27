@@ -136,6 +136,8 @@ char buf[1];
 fgets(buf, 2, stdin); 
 ```
 
+**Note**: As ``fgets()`` is stopped when encountering a newline, it must not be use to read a file including newline. Use [fread()](#fread) instead.
+
 # fprintf()
 
 Sends formatted output to a stream.
