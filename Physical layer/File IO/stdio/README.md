@@ -1,17 +1,30 @@
-# stdio and file pointer API
+# stdio API
 
-* [stdin and stdout API](stdin%20and%20stdout%20API.md)
-* [File pointer API](File%20pointer%20API.md)
+## [API](stdin%20and%20stdout%20API.md)
 
-
-## [stdio examples](stdio%20examples.md)
+## [Examples](stdio%20examples.md)
 
 * [Using formated output in printf()](stdio%20examples.md#using-formated-output-in-printf)
 * [Print out an entered string and an entered character](stdio%20examples.md#print-out-an-entered-string-and-an-entered-character)
 * [Compare the entered string](stdio%20examples.md#compare-the-entered-string)
 * [Print out all files (included folders) along with their types inside a folder with dirent.h](stdio%20examples.md#print-out-all-files-inside-a-folder-with-direnth)
 
-## [File pointer examples](File%20pointer%20examples.md)
+# File pointer API
+
+## [API](File%20pointer%20API.md)
+
+* fopen()
+* fread()
+* fgets()
+* fprintf()
+* fwrite()
+* fputs()
+* fseek()
+* ftell()
+* getline()
+* [popen()]() and [pclose()]()
+
+## [Examples](File%20pointer%20examples.md)
 
 # Other API
 
