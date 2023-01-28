@@ -1,6 +1,4 @@
-## Example 1
-
-Get current time with ``time()``
+# Get current time with time()
 
 ```c
 #include <stdio.h>
@@ -19,7 +17,7 @@ int main() {
 time_t currentTime = time(NULL);
 ```
 
-Get day, month and year with ``localtime()``
+# Get day, month and year with localtime()
 
 ```c
 time_t currentTime;
@@ -27,14 +25,14 @@ time(&currentTime); //Get current time and save to currentTime
 struct tm *time_value = localtime(&currentTime);
 printf("Day: %d, month: %d, year: %d", time_value->tm_mday, time_value->tm_mon, time_value->tm_year);
 ```
-Get total second with ``clock()``:
+# Get total second with clock()
 ```c
 delaySeconds(5); //Function delaySeconds() defines in Example 3
 int ticks = clock();
 printf("total second: %f", (float) ticks/CLOCKS_PER_SEC);//total second: 4.766941
 ```
 
-Get current time of day in Unix-alike system
+# Get current time of day in Unix-alike system
 
 ```c
 #include <stdio.h>
@@ -61,7 +59,7 @@ int main() {
 }
 ```
 
-Convert epoch time to human readable time:
+**Convert epoch time to human readable time**
 
 ```c
 time_t currentTime;
@@ -69,7 +67,7 @@ currentTime = 1641196080;//total second since Epoch
 printf("%s", ctime(&currentTime));//Mon Jan  3 14:48:00 2022
 ```    
 
-### Overflow Epoch times (Y2K38)
+# Overflow Epoch times (Y2K38)
 
 ```c
 time_t currentTime;
@@ -89,9 +87,7 @@ main.c:7:30: warning: integer overflow in expression of type ‘int’ results i
 * ``(null)`` (in Ubuntu 20.04)
 * ``Fri Dec 13 20:45:52 1901`` (in 5.4.0-xilinx)
 
-## Example 2
-
-Delay for a number of seconds
+# Delay for a number of seconds
 
 ```c
 #include <stdio.h>
@@ -120,7 +116,7 @@ void delaySeconds(long seconds){
 }
 ```
 
-## Example 3
+# Read RTC time of /dev/rtc
 
 Read RTC time of ``/dev/rtc`` (notice that hour in RTC time is different from local time)
 
