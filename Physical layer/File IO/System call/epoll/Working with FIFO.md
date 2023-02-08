@@ -57,13 +57,6 @@ int main(int argc, char *argv[])  {
 
 # Level-triggered epoll in FIFO
 
-Level-triggered with epoll will have 2 state:
-
-* **State 0**: No data inside the data structure (FIFO, pipe,...)
-* **State 1**: Existed data inside the data structure
-
-So if a process (specified by a file descriptor) reads out data from that data structure and not reading all (i.e there is still data left), **state 1** still happens. When all data is read out and no data is left inside that data structure, **state 0** will be triggered.
-
 ``send.c`` will send a string to FIFO then enters infinite while loop (in order to keep FIFO opened):
 
 ```c
@@ -113,7 +106,7 @@ Timeout after 5000 miliseconds
 Timeout after 5000 miliseconds
 ...
 ```
-## Edge-triggered epoll with EPOLLET in FIFO
+# Edge-triggered epoll with EPOLLET in FIFO
 
 With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c](epollin_fifo.c):
 
