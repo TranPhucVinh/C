@@ -74,12 +74,12 @@ So if a process (specified by a file descriptor) reads out data from that data s
 * [Working with 1 file descriptor as the current running terminal](Working%20with%20terminal.md#working-with-1-file-descriptor-as-the-current-running-terminal)
 * [Working with multiple file descriptors as 2 current running terminals](Working%20with%20terminal.md#working-with-multiple-file-descriptors-as-2-current-running-terminals)
 
-# Working with FIFO
+# [Working with FIFO](Working%20with%20FIFO.md)
 
-* [EPOLLHUP and EPOLLET in FIFO]()
-* [EPOLLIN in FIFO]()
-* [Level-triggered epoll in FIFO]()
-* [Edge-triggered epoll with EPOLLET in FIFO]()
+* [EPOLLHUP and EPOLLET in FIFO](Working%20with%20FIFO.md#epollhup-and-epollet-in-fifo)
+* [EPOLLIN in FIFO](Working%20with%20FIFO.md#epollin-in-fifo)
+* [Level-triggered epoll in FIFO](Working%20with%20FIFO.md#level-triggered-epoll-in-fifo)
+* [Edge-triggered epoll with EPOLLET in FIFO](Working%20with%20FIFO.md#edge-triggered-epoll-with-epollet-in-fifo)
 
 # Working with pipe
 
