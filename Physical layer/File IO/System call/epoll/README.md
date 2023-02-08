@@ -61,7 +61,14 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 * ``EPOLLOUT``: The associated file is available for ``write()`` operations
 * ``EPOLLHUP``: Hang up (i.e: close) happened on the associated file descriptor. ``epoll_wait()`` will alway wait for this event; it is not necessary to set it in events when calling ``epoll_ctl()``. Check [epoll implementation with FIFO for EPOLLHUP example](#working-with-fifo)
 * ``EPOLLET``: Edge-triggered event. ``EPOLLET`` won't be returned in ``struct epoll_event *event`` of ``epoll_wait()``. Check epoll implementation [in FIFO](#working-with-fifo) and [pipe](#working-with-pipe) for EPOLLET.
-	      
+
+In constrast to edge-triggered, we have level-triggered. Level-triggered with epoll will have 2 state:
+
+* **State 0**: No data inside the data structure (FIFO, pipe,...)
+* **State 1**: Existed data inside the data structure
+
+So if a process (specified by a file descriptor) reads out data from that data structure and not reading all (i.e there is still data left), **state 1** still happens. When all data is read out and no data is left inside that data structure, **state 0** will be triggered. Check [level-triggered epoll in FIFO](Working%20with%20FIFO.md#level-triggered-epoll-in-fifo) for this implementation.
+
 # [Working with terminal](Working%20with%20terminal.md)
 
 * [Working with 1 file descriptor as the current running terminal](Working%20with%20terminal.md#working-with-1-file-descriptor-as-the-current-running-terminal)
