@@ -124,7 +124,7 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-[epollin_fifo.c](epollin_fifo.c) will read the string sent from ``send.c`` to FIFO then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``send.c`` to FIFO. As the string is sent every 1 second for EPOLLIN event will keeps happening.
+[epollin_fifo.c](epollin_fifo.c) will read the string sent from ``send.c`` to FIFO then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``send.c`` to FIFO. The string is sent every 1 second for EPOLLIN event will keeps happening.
 
 ## epoll level-triggered in FIFO
 
