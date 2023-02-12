@@ -10,7 +10,7 @@ Inter-process communication methods are:
 * [FIFO](../File%20IO/FIFO)
 * Semaphore
 * [Message queue](Message%20queue)
-* Shared memory
+* [Shared memory](Shared%20memory)
 * [Socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP)
 * [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
 
