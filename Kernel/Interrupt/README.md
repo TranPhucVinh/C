@@ -56,7 +56,7 @@ int request_threaded_irq(unsigned int irq,
 * ``handler``: If it returns ``IRQ_WAKE_THREAD``, then the kernel calls the ``thread_fn``
 * ``thread_fn``: A function called from the IRQ ``handler``. If ``NULL``, no IRQ thread is created. This represents the bottom half. When the handler function returns ``IRQ_WAKE_THREAD``, the ``kthread`` associated with this bottom half will be scheduled and ``thread_fn`` will be called. The ``thread_fn`` function must return ``IRQ_HANDLED`` when complete. After being executed, the ``kthread`` will not be rescheduled again until the IRQ is triggered again and the handler returns ``IRQ_WAKE_THREAD``.
 
-**Example**: Haven't implemented example for this API, check [the corresponding example in character device with devm_request_threaded_irq()](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device#examples)
+**Example**: Haven't implemented example for this API, check [the corresponding example in character device with devm_request_threaded_irq()](interrupt_for_character_device.c)
 
 ### devm_request_threaded_irq()
 
