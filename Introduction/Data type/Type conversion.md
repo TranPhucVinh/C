@@ -32,6 +32,25 @@ printf("y = %c\n", y);//a
 printf("z = %f\n", z);//108.0000
 ```
 
+## Implicit casting for float to int
+
+```c
+int b = 3.1;
+printf("%d \n", b); //3
+printf("%f \n", b); //0.0
+```
+Implicit casting in ``printf()`` for float to int:
+```c
+float c = 3.1;
+printf("%d \n", c); //-1073741824
+```
+
+## Implicit casting during calculation
+
+```c
+int a = (998/1024)*100; // a = 0
+```
+
 # Explicit type conversion
 
 Explicit Type Conversion, which is user-defined, allows user to typecast the result to make it of a particular data type.
@@ -68,24 +87,3 @@ float a = (float) 3;
 printf("%d \n", a);	//0
 printf("%f \n", a); //3.000
 ```    
-
-
-## Calculation
-
-```c
-int a = (998/1024)*100; // a = 0
-```
-
-## Wrong implementation of type casting for float to int
-
-```c
-//This casting doesn't follow the type casting syntax
-int b = 3.1;
-printf("%d \n", b); //3
-printf("%f \n", b); //0.0
-```
-
-```c
-float c = 3.1;
-printf("%d \n", c); //-1073741824
-```
