@@ -78,6 +78,8 @@ int devm_request_threaded_irq	(
 
 * ``thread_fn``: function to be called in a threaded interrupt context, ``NULL`` for devices which handle everything
 
+### devm_free_irq()
+
 ``devm_free_irq()`` works like ``free_irq()`` but it has to go with ``devm_request_threaded_irq()`` in the same program to avoid memory issue with currently used IRQ number when ``insmod`` and ``rmmod`` the module several times.
 
 ```c
