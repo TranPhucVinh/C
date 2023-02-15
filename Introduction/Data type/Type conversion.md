@@ -34,9 +34,52 @@ printf("z = %f\n", z);//108.0000
 
 # Explicit type conversion
 
-### Float to Int
+Explicit Type Conversion, which is user-defined, allows user to typecast the result to make it of a particular data type.
+
+**Syntax**
+
+```
+(type) expression
+```
+
+## double to int
 
 ```c
+double x = 1.2;
+
+// Explicit conversion from double to int
+int sum = (int)x + 1;
+
+printf("sum = %d\n", sum);//2
+```
+
+## float to Int
+
+```c
+int a = (int) 12.9;
+printf("%d \n", a);	//12
+printf("%f \n", a); //0
+```
+
+## int to float
+
+```c
+float a = (float) 3;
+printf("%d \n", a);	//0
+printf("%f \n", a); //3.000
+```    
+
+
+## Calculation
+
+```c
+int a = (998/1024)*100; // a = 0
+```
+
+## Wrong implementation of type casting for float to int
+
+```c
+//This casting doesn't follow the type casting syntax
 int b = 3.1;
 printf("%d \n", b); //3
 printf("%f \n", b); //0.0
@@ -45,28 +88,4 @@ printf("%f \n", b); //0.0
 ```c
 float c = 3.1;
 printf("%d \n", c); //-1073741824
-```
-
-### Type cast
-
-**Int to Float**
-
-```c
-float a = (float) 3;
-printf("%d \n", a);	//0
-printf("%f \n", a); //3.000
-```    
-
-**Float to Int**
-
-```c
-int a = (int) 12.9;
-printf("%d \n", a);	//12
-printf("%f \n", a); //0
-```
-
-### Calculation
-
-```c
-int a = (998/1024)*100; // a = 0
 ```
