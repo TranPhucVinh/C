@@ -1,3 +1,11 @@
+# Fundamental concepts
+
+There are two types of type conversion:
+* **Implicit Type Conversion**, also known as automatic type conversion.
+* **Explicit Type Conversion**: This process is also called **type casting** and it is user-defined. The user can typecast the result to make it of a particular data type.
+
+# Implicit type conversion
+
 ### Float to Int
 
 ```c
