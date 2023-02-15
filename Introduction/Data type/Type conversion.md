@@ -6,6 +6,18 @@ There are two types of type conversion:
 
 # Implicit type conversion
 
+* Implicit Type Conversion is done by the compiler on its own, without any external trigger from the user.
+* Generally takes place when in an expression more than one data type is present. In such condition, type conversion (also called **type promotion**) takes place to avoid lose of data.
+* It is possible for implicit conversions to lose information, signs can be lost (when signed is implicitly converted to unsigned), and overflow can occur (when long long is implicitly converted to float).
+
+For integer number, the implicit type conversion path will be:
+
+```
+bool -> char -> short int -> int
+```
+
+# Explicit type conversion
+
 ### Float to Int
 
 ```c
