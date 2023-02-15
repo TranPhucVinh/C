@@ -203,7 +203,7 @@ int dev_open(struct inode *inodep, struct file *filep)
 }
 ```
 
-Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/fcntl.md#ebusy) for the userspace process to handle this EBUSY error.
+Check [this source code](https://github.com/TranPhucVinh/C/blob/master/Introduction/README.md#ebusy) for the userspace process to handle this EBUSY error.
 
 # Handle interrupt for character device
 
