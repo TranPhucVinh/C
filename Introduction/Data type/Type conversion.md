@@ -16,6 +16,22 @@ For integer number, the implicit type conversion path will be:
 bool -> char -> short int -> int
 ```
 
+```c
+int x = 10; // integer x
+char y = 'a'; // character c
+
+// y implicitly converted to int. ASCII
+// value of 'a' is 97
+x = x + y;
+
+// x is implicitly converted to float
+float z = x + 1.0;
+
+printf("x = %d\n", x);//107
+printf("y = %c\n", y);//a
+printf("z = %f\n", z);//108.0000
+```
+
 # Explicit type conversion
 
 ### Float to Int
