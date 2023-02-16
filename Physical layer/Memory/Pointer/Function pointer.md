@@ -49,7 +49,7 @@ void abs(){
 void helloWorld (void (*function)()){
 	function();
 }
-main()
+int main()
 { 	
     void (*p)() = abs;
     helloWorld(p);
@@ -58,4 +58,11 @@ main()
 
 **Result:** ``Hello world``
 
-This can be replaced as ``helloWorld(abs);``
+This can be replaced as ``helloWorld(abs);``:
+
+```c
+int main()
+{
+   helloWorld(abs);
+}
+```
