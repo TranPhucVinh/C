@@ -44,6 +44,27 @@ Using function pointer to shorten the parameters passed into ``set_callback()``:
 ```c
 #include <stdio.h>
 
+void callback(int a, int b){
+	printf("a: %d, b %d\n", a, b);
+}
+
+void set_callback(void function()){
+   void (*display_pointer)(int a, int b);
+   display_pointer = function;
+   display_pointer(56, 78);
+}
+
+int main()
+{  
+   set_callback(callback);
+}
+```
+
+Everything can also be called outside ``set_callback()``:
+
+```c
+#include <stdio.h>
+
 void (*display_pointer)(int a, int b);
 
 void callback(int a, int b){
