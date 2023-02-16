@@ -1,6 +1,4 @@
-# Functions
-
-## Create function
+# Create function
 
 Create the very first function:
 
@@ -57,7 +55,7 @@ void displayString(){
 }
 ```
 
-## Function arguments as void
+# Function arguments as void
 
 A function with no parameter can accept a ``void``.
 
@@ -73,7 +71,7 @@ int main () {
 }
 ```
 
-## Recursive function
+# Recursive function
 
 Use recursive to calculate the sum from ``1`` to ``n``:
 
@@ -96,7 +94,7 @@ int sum_of_numbers(int number){
 
 Application: [Hanoi tower](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/Hanoi_tower.c)
 
-## Command line arguments with main()
+# Command line arguments with main()
 
 ```c
 int main( int argc, char *argv[] ){}
@@ -144,7 +142,7 @@ Total argument: 2
 
 **Application**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
 
-## Other concepts
+# Other concepts
 
 * [Definition and Declaration](Definition%20and%20Declaration.md)
 * [Conditional statements](Conditional%20statements.md)
@@ -152,66 +150,3 @@ Total argument: 2
 * [Callback function](Callback%20function.md)
 * [Variable length argument](Variable%20length%20argument.md)
 * [Random number generators](Random%20number.md)
-
-# Variable
-
-**Difference between variable declaration and definition**
-
-* Variable declaration : a variable is first declared or introduced before its first use.
-* Variable definition: the variable is assigned a memory location and a value.
-
-## Define variables
-
-Must not define by this way:
-
-```c
-#include <stdio.h>
-
-int number;
-
-number = 9;
-
-int main(){
-	printf("number: %d \n", number);
-}
-```
-
-This gives warning in GCC and gives error in G++.
-
-Error: 
-
-```
-error: 'number' does not name a type
- number = 9;
- ^
-```
-
-## Special character
-
-```c
-int _ = 9;
-printf("_: %d\n", _);//9
-```
-```c
-#include <stdio.h> 
-
-int main(){ 
-	int var = var;
-	printf("var: %d\n", var);//var: 0
-}
-```
-So this gives the same result:
-
-```c
-#include <stdio.h> 
-int var = 9;
-int main(){ 
-	int var = var;
-	printf("var: %d\n", var);//var: 0
-}
-```
-
-## Operators
-
-* [Bit operator](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Bit%20operator.md)
-* [Symbol operator](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function%20handler/Symbol%20operator.md)
