@@ -1,6 +1,6 @@
 # Create function
 
-Create the very first function:
+## Create the very first function
 
 ```c
 #include <stdio.h>
@@ -14,7 +14,7 @@ int main(){
 }
 ```
 
-Function with arguments
+## Function with arguments
 
 ```c
 #include <stdio.h>
@@ -33,7 +33,33 @@ int main () {
 }
 ```
 
-Short term function data type
+## Inner function
+
+Inner function (also known as nested function) allows defining a function inside a function.
+
+C and CPP only support declaring a function inside a function, not defining it.
+
+This available with both GCC and G++:
+
+```c
+#include <stdio.h>
+
+void display_string(){
+   void inner_function();
+   printf("Hello, World !\n");//Hello, World !
+   inner_function();
+}
+
+int main(){
+   display_string();
+}
+
+void inner_function(){
+   printf("Don't call any inner");
+}
+```
+
+## Short term function data type
 
 ```c
 #include <stdio.h>
@@ -49,7 +75,7 @@ int add(int a, int b){
 }
 ```
 
-Get function name with ``__FUNCTION__``, ``__func__`` and ``__PRETTY_FUNCTION__``:
+## Get function name with ``__FUNCTION__``, ``__func__`` and ``__PRETTY_FUNCTION__``:
 
 ```c
 void displayString(){
