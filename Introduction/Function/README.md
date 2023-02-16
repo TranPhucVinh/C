@@ -5,8 +5,12 @@ Create the very first function:
 ```c
 #include <stdio.h>
 
+void display_string(){
+   printf("Hello, World !\n");//Hello, World !
+}
+
 int main(){
-    printf("Hello, World !\n");//Hello, World !
+   display_string();
 }
 ```
 
