@@ -58,6 +58,7 @@ void inner_function(){
    printf("Don't call any inner");
 }
 ```
+Inner function method is applied in [callback by function pointer](Callback%20function.md#handle-callback-by-function-pointer) where the function pointer is declared inside the callback function.
 
 ## Short term function data type
 
