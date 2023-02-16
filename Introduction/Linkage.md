@@ -1,17 +1,17 @@
-### Fundamental concepts
+# Fundamental concepts
 
 Identifiers like variables and functions have another property named linkage. An identifier’s linkage determines whether other declarations of that name refer to the same object or not.
 
 There are 3 types of linkage:
 * No linkage
-* Internal linkage
-* External linkage
+* [Internal linkage](#internal-linkage)
+* [External linkage](#external-linkage)
 
 Local variables have **no linkage**, which means that each declaration refers to a unique object. 
 
 Global variable and functions identifiers can have either **internal linkage** or **external linkage**. 
 
-### Internal linkage
+# Internal linkage
 
 An identifier with internal linkage can be seen and used within a single file, but it is not accessible from other files (that is, it is not exposed to the linker). This means that if two files have identically named identifiers with internal linkage, those identifiers will be treated as independent.
 
@@ -44,7 +44,7 @@ int main()
     return 0;
 }
 ```
-### External linkage
+# External linkage
 
 An identifier with external linkage can be seen and used both from the file in which it is defined, and from other code files
 
