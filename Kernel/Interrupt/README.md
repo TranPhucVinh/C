@@ -31,7 +31,7 @@ int request_irq(unsigned int irq,
 
 * ``IRQF_SHARED`` announces the kernel that the interrupt can be shared with other devices. If this flag is not set, then if there is already a handler associated with the requested interrupt, the request for interrupt will fail.
 
-``irqreturn_t (*handler)(int, void *, struct pt_regs *)`` returns ``IRQ_HANDLED`` to indicates that the IRQ is handled successfully.  The return value of kernel IRQ handler function, generally, is used by the kernel to detect and suppress spurious interrupts and this return value has not thing to deal with the userspace.
+``irq_handler_t (*handler)(int, void *, struct pt_regs *)`` returns ``IRQ_HANDLED`` to indicates that the IRQ is handled successfully.  The return value of kernel IRQ handler function, generally, is used by the kernel to detect and suppress spurious interrupts and this return value has not thing to deal with the userspace.
 
 ### free_irq()
 
