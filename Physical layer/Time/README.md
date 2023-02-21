@@ -101,3 +101,6 @@ struct rtc_time {
 ```c
 #define CLOCKS_PER_SEC  ((clock_t) 1000000)
 ```
+# Examples
+
+* [Get current time with time()](Examples.md#get-current-time-with-time)
