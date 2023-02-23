@@ -12,7 +12,7 @@ For linked list data structure implementation in kernel module, check [Linked li
 
 ## Communication between userspace to kernel space
 
-* [Character device](#character%20device)
+* [Character device](Character%20device)
 * [procfs entry](procfs%20entry.md)
 * [sysfs entry](sysfs%20entry.md)
 
