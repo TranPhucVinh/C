@@ -85,7 +85,7 @@ int main(){
 	display_string(); //Hello World
 }
 ```
-``head.c`` kept as above.
+``head.c`` kept as above. Take all steps like above to build ``libhead.a`` then link the static lib.
 
 **Note**
 
