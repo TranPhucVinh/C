@@ -91,12 +91,10 @@ int main(){
 
 1. For Mismatch issue when compiling CPP main source code from static or dynamic libraries built from C files, check [extern for header files document to solve that issue](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/extern%20for%20header%20files.md).
 
-2. If using ``g++``, it should be ``g++ -c head.c`` then ``g++ main.c -L. -l:head.a``, using the ``head.a`` built from ``gcc`` for ``g++`` will result in error:
+2. If using ``g++``, it should be ``g++ -c head.c`` then ``g++ main.c -L. -l:head.a``. Using the ``head.a`` built from ``gcc`` for ``g++`` will result in error:
 
 ```
 /usr/bin/ld: /tmp/cc2XwWip.o: in function `main':
 test.c:(.text+0x9): undefined reference to `display_string()'
 collect2: error: ld returned 1 exit status
 ```
-
-Error with invalid format as compiling with different compiler (``gcc``) doesn't happen in this case.
