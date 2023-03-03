@@ -1,12 +1,12 @@
-## Fundamental concepts
+# Fundamental concepts
 
 ![](../Environment/Images/static_library.png)
 
 Static library filenames usually have ``.a`` extension on Unix-like systems and ``.lib`` extension on Microsoft Windows.
 
-## Implementation
+# Implementation
 
-### Source code
+## Source code
 
 ```
 |--main.c
@@ -42,7 +42,7 @@ int main(){
 
 By using static library, ``head.c`` will define function ``display_string()`` and doesn't need to include ``head.h``.
 
-### Compilation steps
+## Compilation steps
 
 Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
 
@@ -71,6 +71,21 @@ gcc test.c -L. -lhead
 ```
 
 If there is any later change in ``head.c``, ``head.o`` then has to be built again.
+
+Single ``head.c`` file can be used by ``main.c`` for function ``display_string()`` in the example above:
+
+``main.c``
+
+```c
+#include <stdio.h>
+
+void display_string();
+
+int main(){
+	display_string(); //Hello World
+}
+```
+``head.c`` kept as above.
 
 **Note**
 
