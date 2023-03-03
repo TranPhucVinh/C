@@ -44,6 +44,15 @@ int main()
     return 0;
 }
 ```
+Compile: ``gcc main.c``
+
+If compile ``gcc main.c head.c``, there will be error:
+
+```
+multiple definition of `display_string'
+ld returned 1 exit status
+```
+
 # External linkage
 
 An identifier with external linkage can be seen and used both from the file in which it is defined, and from other code files
