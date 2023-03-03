@@ -1,6 +1,10 @@
 # static variable
 
-### Used in functions
+## Global static variable
+
+A global static variable limits its scope inside the source file it's declared.
+
+## Local static variable (variable inside function)
 
 **Static variables** is used to created variable that are visible to only one function, but unlike local variables that get created and destroyed everytime a function is called, static variables do not lose their value between function calls.
 
@@ -24,7 +28,7 @@ int main(){
 
 ``1 2``
 
-### static and ODR
+## static and ODR
 
 **static variable** can be used to solve the ODR issue as it can be shared normally between header files and source files.
 
@@ -49,6 +53,8 @@ int main(){
 ```
 
 Compile ``gcc main.c head.c`` normally and there will be no ODR issue.
+
+For global static variable ``a`` in this case, it is included in two separate ``.c`` files, which result in two discrete copies of it so that there is no compilation error.
 
 # static function
 
