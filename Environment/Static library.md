@@ -99,7 +99,13 @@ test.c:(.text+0x9): undefined reference to `display_string()'
 collect2: error: ld returned 1 exit status
 ```
 
+## Build multiple source files into a static library
+
+Check [Makefile to build multiple source files into a static library](#multiple-source-files).
+
 # Makefile
+
+## Single source file
 
 A Makefile to build a static library and run the main source file including it.
 
@@ -115,5 +121,50 @@ build_src_file: head.c
 	@(gcc -c head.c)
 	
 clean: #clean target to clean up files
+	@(rm *.exe *.o *.out *.a)
+```
+## Multiple source files
+
+Build a static library from multiple source files
+
+``head1.c``
+```c
+#include <stdio.h>
+
+void head1(){
+    printf("head1\n");
+}
+```
+``head2.c``
+```c
+#include <stdio.h>
+
+void head2(){
+    printf("head2\n");
+}
+```
+``main.c``
+```c
+#include <stdio.h>
+
+void head1();
+void head2();
+
+int main(){
+	head1();
+	head2();
+}
+```
+```Makefile
+main: build_src_file main.c
+	@(ar r libhead.a head1.o head2.o)
+	@(gcc main.c -L. -lhead)
+	@(./a.out)
+
+build_src_file: head1.c head2.c
+	@(gcc -c head1.c)
+	@(gcc -c head2.c)
+
+clean:
 	@(rm *.exe *.o *.out *.a)
 ```
