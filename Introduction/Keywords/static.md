@@ -62,6 +62,8 @@ head2 a 456
 
 This method will allow reusing of the same function names and variables in other files.
 
+CPP also supports [unnamed namespace](https://github.com/TranPhucVinh/Cplusplus/blob/master/Introduction/Function/Namespace.md#unnamed-namespace), an equivalent method to global static variable and static function.
+
 # Global static and [ODR](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr)
 
 ``head.h``
