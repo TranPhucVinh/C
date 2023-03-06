@@ -36,7 +36,7 @@ void head2(){
 	printf("head2 a %d\n", a);
 }
 ```
-
+``main.c``
 ```c
 #include <stdio.h>
 
