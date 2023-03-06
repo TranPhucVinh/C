@@ -58,6 +58,30 @@ Display string in head2.c
 head2 a 456
 ```
 
+# Global static and ODR
+
+``head.h``
+
+```c
+#include <stdio.h>
+static int a = 10;
+```
+``head.c``
+```c
+#include "head.h"
+```
+``main.c``
+```c
+#include "head.h"
+
+int main(){ 
+  printf("a: %d", a);
+}
+```
+Compile ``gcc main.c head.c`` normally and there will be no ODR issue.
+
+For global static variable ``a`` in this case, it is included in two separate ``.c`` files, which result in two discrete copies of it so that there is no compilation error.
+
 # Local static variable (variable inside function)
 
 **Static variables** is used to created variable that are visible to only one function, but unlike local variables that get created and destroyed everytime a function is called, static variables do not lose their value between function calls.
