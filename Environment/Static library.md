@@ -103,7 +103,7 @@ collect2: error: ld returned 1 exit status
 
 A Makefile to build a static library and run the main source file including it.
 
-[main.c](#main.c) and ``head.c`` are like above.
+[main.c](#mainc) and ``head.c`` are like above.
 
 ```Makefile
 main: build_src_file main.c
