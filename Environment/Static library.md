@@ -98,3 +98,19 @@ int main(){
 test.c:(.text+0x9): undefined reference to `display_string()'
 collect2: error: ld returned 1 exit status
 ```
+
+# Makefile
+
+A Makefile to build a static library and run the main source file including it.
+
+``main.c`` and ``head.c`` are like above.
+
+```Makefile
+main: build_src_file main.c
+	@(ar r libhead.a head.o)
+	@(gcc main.c -L. -lhead)
+	@(./a.out)
+
+build_src_file: head.c
+	@(gcc -c head.c)
+```
