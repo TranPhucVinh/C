@@ -58,7 +58,7 @@ Display string in head2.c
 head2 a 456
 ```
 
-# Global static and ODR
+# Global static and [ODR](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr)
 
 ``head.h``
 
@@ -78,7 +78,7 @@ int main(){
   printf("a: %d", a);
 }
 ```
-Compile ``gcc main.c head.c`` normally and there will be no ODR issue.
+Compile ``gcc main.c head.c`` normally and there will be no [ODR issue](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr).
 
 For global static variable ``a`` in this case, it is included in two separate ``.c`` files, which result in two discrete copies of it so that there is no compilation error.
 
