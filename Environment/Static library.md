@@ -113,4 +113,7 @@ main: build_src_file main.c
 
 build_src_file: head.c
 	@(gcc -c head.c)
+	
+clean: #clean target to clean up files
+	@(rm *.exe *.o *.out *.a)
 ```
