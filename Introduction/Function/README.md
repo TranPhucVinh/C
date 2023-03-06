@@ -33,6 +33,24 @@ int main () {
 }
 ```
 
+## Function prototype
+
+A **function prototype** or **function interface** is a declaration of a function that specifies the function’s name and type signature (data types of parameters, and return type), but omits the function body. 
+
+```c
+#include <stdio.h>
+
+int addTwoNumbers(int a, int b);//This is function prototype
+
+int main () {
+    printf("Add 2 number: %d \n", addTwoNumbers(3, 4));
+}
+
+int addTwoNumbers(int a, int b){
+    return a+b;
+}
+```
+
 ## Inner function
 
 Inner function (also known as nested function) allows defining a function inside a function.
