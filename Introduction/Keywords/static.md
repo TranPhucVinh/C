@@ -1,3 +1,5 @@
+A static variable genrally has [internal linkage](https://github.com/TranPhucVinh/C/blob/master/Introduction/Linkage.md#internal-linkage).
+
 # Global static variable and static function
 
 A global static variable and static function limit their scopes inside the source file it's declared.
@@ -57,6 +59,8 @@ head1 a 123
 Display string in head2.c
 head2 a 456
 ```
+
+This method will allow reusing of the same function names and variables in other files.
 
 # Global static and [ODR](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr)
 
