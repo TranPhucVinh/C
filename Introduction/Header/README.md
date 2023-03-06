@@ -92,7 +92,7 @@ collect2: error: ld returned 1 exit status
 To solve ODR issue, use:
 
 * [extern](README.md#use-extern-to-solve-odr-issue)
-* static
+* [static](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/static.md#global-static-and-odr)
 
 ## Use extern to solve ODR issue
 
