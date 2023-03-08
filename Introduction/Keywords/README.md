@@ -1,4 +1,4 @@
-Available keywords:
+# Available keywords
 
 * [const](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#const)
 * [auto](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#auto)
@@ -30,6 +30,30 @@ int main(int argc, char *argv[]) {
     printf("%d\n", const_test(1));//1
     printf("%d\n", const_test(2));//2
     printf("%d\n", const_test(3));//3
+}
+```
+
+## const as function definition
+
+```c
+const int func(){
+	return 1;
+}
+
+int main () {
+    printf("%d\n", func());//1
+}
+```
+
+Using ``const`` in function doesn't effect its definition. In this case, ``func`` return ``a+b`` (as a variable) while it is defined as ``const``.
+
+```c
+const int func(int a, int b){
+	return a+b;
+}
+
+int main () {
+    printf("%d\n", func(4, 5));//9
 }
 ```
 
