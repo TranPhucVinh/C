@@ -5,7 +5,7 @@ void *memset(void *str, int c, size_t n)
 
 ``memset()`` copies the character ``c`` (unsigned char) to the first ``n`` characters of the string pointed to ``str``.
 
-### memset() with string
+# memset() with string
 
 ```c
 char str[] = "C programming with GNU-GCC";
@@ -21,7 +21,7 @@ memset(str, 48, 7); //0000000amming with GNU-GCC
 
 Number 48 correspond to character **0** in ASCII code.
 
-### memset() with address ``&``
+# memset() with address ``&``
 
 This program set the value in memory of variable ``a`` with new value 'a' from ``0`` character.
 
@@ -40,7 +40,7 @@ Explain:
 
 ``24929 = 0110 0001 0110 0001``
 
-### Change const variable with memeset()
+# Change const variable with memeset()
 
 Change ``const`` variable with ``memset()``
 
@@ -70,7 +70,7 @@ volatile const int a = 10;
 memset((void*)&a, 'a', 1);
 ```
 
-### Overflow memset()
+# Overflow memset()
 
 ```c
 memset(&a, 'a', 4);
@@ -142,7 +142,7 @@ value erin.id: 1889
 
 ``erin.id`` now is effected due to the overflow value of ``memset(&a, 'a', 5)``.
 
-### memset() problem with 4 byte number
+# memset() problem with 4 byte number
 
 ```c
 int a = 1977;
