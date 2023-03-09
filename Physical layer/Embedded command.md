@@ -17,9 +17,17 @@ On Windows, the ``a.exe`` of this file will run normally in Git Bash and will re
 
 The ``popen()`` function opens a process by creating a pipe, forking, and invoking the shell.
 
-The command argument is a pointer to a null-terminated string containing a shell command line.  This command is passed to ``/bin/sh``, then interpretation, and finally is performed by the shell.
+```c
+FILE *popen(const char *command, const char *type);
+```
+
+The ``command`` argument is a pointer to a null-terminated string containing a shell command line.  This command is passed to ``/bin/sh``, then interpretation, and finally is performed by the shell.
 
 ``pclose()`` will close the pipe opened by ``popen()``.
+
+```c
+int pclose(FILE *stream);
+``` 
 
 ``ls`` command
 
