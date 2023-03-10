@@ -1,4 +1,4 @@
-## printf()
+# printf()
 
 Sends formatted output to ``stdout``
 
@@ -16,7 +16,7 @@ int returnPrintf = printf("Hello, World!\n");
 printf("%d \n", returnPrintf); //14
 ```
 
-## scanf()
+# scanf()
 
 Read formatted input from ``stdin``
 
@@ -29,7 +29,7 @@ int scanf ( const char * format, ... );
 
 ``scanf("%d", &a)``: Get the entered value from ``stdin`` and stored in the address of variable ``a``.
 
-**Example**: Enter ``int``, ``long`` (double), ``float`` variable
+## Enter ``int``, ``long`` (double), ``float`` variable
 
 ```c
 scanf("%d", &a);    //int
@@ -40,7 +40,7 @@ scanf("%d%d", &a, &b); //More than 1 value can be passed to scanf
 
 For float number, it must be ``scanf("%f", &c)``, not ``scanf("%.2f", &c)`` if you want to set a specific float number.
 
-**Example**: Enter and print out ``char`` variable as ``integer`` number
+## Enter and print out ``char`` variable as ``integer`` number
 
 ```c
 char a;
@@ -54,7 +54,7 @@ printf("value: %c", a);
     Enter character a  -> output character a
     Enter abc -> output a
 
-### Whitespace problem
+## Whitespace problem
 
 ```c
 int a;
@@ -64,7 +64,7 @@ printf("%d", a);
 
 You have to type value a; then type one more to finish command although the value of ``a`` is still printed out correctly. To print out the value of ``a`` just after typing it, delete the space after ``%d``.
 
-### Print out a string as char variable
+## Print out a string as char variable
 
 Because the array with ``char a[10]`` is a pointer so it doesn't need the pointer get value ``&`` in scanf.
 
@@ -81,7 +81,7 @@ Using ``scanf()`` is not highly recommended as it doesn't have buffer overflow p
 
 A proper word entering can be solved with [fgets()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/FIle%20pointer%20API.md#fgets).
 
-## %.*s
+# %.*s
 
 ```c
 void display_function(char *str, int str_len)
@@ -103,13 +103,13 @@ int main(){
 }
 ```
 
-## gets() and puts()
+# gets() and puts()
 
-### gets()
+## gets()
 
 **gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler. Just use ``scanf()`` instead.
 
-### puts()
+## puts()
 
 Writes a string to ``stdout`` followed with a new line
 
@@ -121,7 +121,7 @@ int puts(const char *str)
 puts("hello"); //hello
 ```
 
-## getchar(), putchar()
+# getchar(), putchar()
 
 ```c
 int putchar(int char);
@@ -131,13 +131,13 @@ int getchar(void);
 * ``getchar()``: gets a character (an unsigned char) from ``stdin``
 * ``putchar()``: writes character (an unsigned char) ``char`` to ``stdout``
 
-### getchar() examples
+## getchar() examples
 
 For ``getchar()``, use n+1 buffer to properly store n member.
 
 Simulate the string entered problem with Keypad on MCU with getchar() in C.
 
-**Example 1**: Enter 4 number to set up the filled volume of a machine. Press ``#`` to finish entering
+### Enter 4 number to set up the filled volume of a machine. Press ``#`` to finish entering
 
 E.g: If entering ``1234``, the software will display
 
