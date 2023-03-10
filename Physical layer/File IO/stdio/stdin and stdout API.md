@@ -135,8 +135,6 @@ int getchar(void);
 
 For ``getchar()``, use n+1 buffer to properly store n member.
 
-Simulate the string entered problem with Keypad on MCU with getchar() in C.
-
 ### Enter 4 number to set up the filled volume of a machine. Press ``#`` to finish entering
 
 E.g: If entering ``1234``, the software will display
