@@ -75,6 +75,9 @@ Get pointer to current task structure. This will return a pointer of type ``stru
 
 ## mutex_lock()
 
+```c
+void mutex_lock(mutex);
+```
 
 # Examples
 
