@@ -131,11 +131,13 @@ int getchar(void);
 * ``getchar()``: gets a character (an unsigned char) from ``stdin``
 * ``putchar()``: writes character (an unsigned char) ``char`` to ``stdout``
 
-## getchar() examples
-
 For ``getchar()``, use n+1 buffer to properly store n member.
 
-### Enter 4 number to set up the filled volume of a machine. Press ``#`` to finish entering
+## Simulate the string entered process with [keypad](https://github.com/TranPhucVinh/AVR-Arduino-framework/tree/master/Sensors%20and%20Modules/GPIO%20modules/Keypad) on MCU with getchar() in C
+
+This example with simulate the entering character process with Keypad connected to MCU, i.e entering every character by pressing the button on that keypad, by using ``getchar()`` function.
+
+**Features**: Enter 4 number to set up the filled volume of a machine. Press ``#`` to finish entering
 
 E.g: If entering ``1234``, the software will display
 
