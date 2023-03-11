@@ -141,7 +141,9 @@ int sum_of_numbers(int number){
 }
 ```
 
-Application: [Hanoi tower](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/Hanoi_tower.c)
+Application: 
+* [Hanoi tower](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/Hanoi_tower.c)
+* [Raspbian device tree: Find all nodes with compatible string](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/Device%20tree/find_all_nodes_with_comp_str.c)
 
 # Command line arguments with main()
 
