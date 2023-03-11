@@ -1,4 +1,4 @@
-### malloc()
+# malloc()
 
 In library ``stdlib.h``
 
@@ -16,24 +16,17 @@ str = (char *) malloc(100);
 printf("%d \n", sizeof(str)); //8: 8 byte (64-bit) is the length of the register as this is size of the pointer str
 ```
 
-**String**
+## malloc() for string
 
 ```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+char *str;
 
-int main () {
-   char *str;
-
-   /* Initial memory allocation */
-   str = (char *) malloc(15);
-   strcpy(str, "Learn malloc");
-   printf("String: %s \n", str); //Learn malloc
-}   
+str = (char *) malloc(15);
+strcpy(str, "Learn malloc");
+printf("String: %s \n", str); //Learn malloc
 ```
 
-**Int**
+## malloc() for int
 
 ```c
 int *intPointer;
@@ -43,8 +36,9 @@ intPointer = (int *) malloc(1);
     
 printf("Int value: %d", *intPointer); //12
 ```
+# Examples
 
-**Example 1**: Create a one dimension int array with ``malloc()``
+## Create a one dimension int array with malloc()
 
 ```c
 #define arraySize 3
@@ -61,7 +55,7 @@ int main(){
 }
 ```
 
-**Example 2**: Create a 2 dimension int array with ``malloc()``
+## Create a 2 dimension int array with malloc()
 
 Array:
 
@@ -108,7 +102,7 @@ int main(){
 
 For important notice when defining 2D array with double pointer (``int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*)``), check [double pointer document: Define double pointer on heap memory](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Pointer%20to%20pointer.md#define-double-pointer-on-heap-memory).
 
-### Trying to overflow buffer with malloc()
+# Trying to overflow buffer with malloc()
 
 ```c
 char *str;
@@ -142,7 +136,7 @@ strcpy(str, "Learn malloc");
 printf("size %d \n", strlen(str)); //12
 ```
 
-### free()
+# free()
 
 ```c
 int *intPointer;
@@ -155,7 +149,7 @@ free(intPointer);
 printf("Int value after: %d \n", *intPointer); //0
 ```
 
-### calloc()
+# calloc()
 
 Dynamic allocating a region of memory like ``malloc()`` then set ``NULL`` value to all member inside that memory block.
 
@@ -174,7 +168,7 @@ printf("String: %s \n", str); //String:
 
 Using ``calloc()`` will takes more time than using ``malloc()`` as it needs time to set NULL value to all member of the block. However it is safer to use ``calloc()`` as it will avoid the issue related to garbage value when using ``malloc()``
 
-### realloc()
+# realloc()
 
 ``realloc()`` is used to dynamically change the memory allocation of a previously allocated memory.
 
