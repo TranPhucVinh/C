@@ -52,7 +52,7 @@ printf("Member databaseNode0 has id %d with string value %s \n", databaseNode0.i
 Member databaseNode0 has id 2 with string value Name 
 ```
 
-### Address of a struct
+## Address of a struct
 
 ```c
 struct student{
@@ -73,7 +73,7 @@ int main() {
 
 Address of ``student_object`` and ``student_object.id`` are the same.
 
-## struct as data type of function
+# struct as data type of function
 
 ```c
 #include <stdio.h>
@@ -153,7 +153,7 @@ void structFunction(struct databaseNode node){
 
 Define function as member of a struct of struct using function pointer
 
-**Function without arguments**
+## Function without arguments
 
 ```c
 #include <stdio.h>
@@ -179,7 +179,7 @@ int main(){
 }
 ```
 
-**Function with arguments**
+## Function with arguments
 
 ```c
 #include <stdio.h>
