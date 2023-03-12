@@ -1,31 +1,4 @@
-### Example 1
-
-Using ``module_init()`` and ``module_exit()``.
-
-```c
-#include <linux/module.h>
-
-MODULE_LICENSE("GPL");
-
-int module_initialize(void)
-{
-        printk("Module initialize\n");
-        return 0;
-}
-
-void module_remove(void)
-{
-        printk("Module remove\n");
-}
-
-module_init(module_initialize);
-module_exit(module_remove);
-```
-**Notice**: When using ``module_init()`` and ``module_exit()``, library ``linux/kernel.h`` is not required.
-
-### Example 2
-
-Sharing variables between multiple kernel modules
+# Sharing variables between multiple kernel modules
 
 ``kernel_module_1.c`` will export variable ``a``
 
@@ -40,13 +13,13 @@ EXPORT_SYMBOL(a);
 
 int init_module(void)
 {
-        printk("This is Kernel module 1\n");
-        return 0;
+	printk("This is Kernel module 1\n");
+	return 0;
 }
 
 void cleanup_module(void)
 {
-        printk(KERN_INFO "clean up module\n");
+	printk(KERN_INFO "clean up module\n");
 }
 ```
 
@@ -96,9 +69,7 @@ insmod: ERROR: could not insert module kernel_module_2.ko: Unknown symbol in mod
 
 That happen as variable ``a`` is not defined.
 
-### Example 3
-
-Using delay with ``msleep()`` in ``linux/delay.h``
+# Using delay with msleep() in linux/delay.h
 
 ```c
 #include <linux/module.h>
@@ -109,10 +80,10 @@ MODULE_LICENSE("GPL");
 
 int module_initialize(void)
 {
-        printk("Hello, World !\n");
-        msleep(5000);
-        printk("After 1000ms\n");
-        return 0;
+	printk("Hello, World !\n");
+	msleep(5000);
+	printk("After 1000ms\n");
+	return 0;
 }
 ```
 

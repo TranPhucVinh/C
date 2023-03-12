@@ -86,3 +86,8 @@ Get modules parameters and passing command line arguments to a module
 * [atomic_read() and atomic_set()](), example: [Get and set value to atomic_t with atomic_read(), atomic_set() and atomic_add_return()]()
 * [container_of()]() and [example]()
 * [Debug with pr_debug()]()
+
+# [Examples](Examples.md)
+
+* [Sharing variables between multiple kernel modules]()
+* [Using delay with msleep() in linux/delay.h]()
