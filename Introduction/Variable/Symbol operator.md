@@ -105,4 +105,4 @@ error: expected expression before ‘=’ token
 7 |     a := 12;
 ```
 
-``:=`` is available on Makefile, as it is equal to ``=``
+``:=`` is available on [Makefile](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Build%20automation%20tools/Make/Fundamental%20concepts.md#operator), as it is equal to ``=``
