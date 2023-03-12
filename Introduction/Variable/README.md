@@ -104,3 +104,5 @@ int main(){
 * [Complement operator (~)]()
 
 ## [Symbol operator](Symbol%20operator.md)
+
+* [:=]()
