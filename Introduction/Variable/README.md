@@ -94,6 +94,13 @@ int main(){
 
 ## [Bit operator](Bit%20operator.md)
 
-* Bitwise operator
+* [Bitwise operator]()
+* [Mask or bitmask]()
+* [NOT operator !]()
+* [OR bit with | and +]()
+* [AND operator &]()
+* [XOR operator (^)]()
+* [Bit shifting]()
+* [Complement operator (~)]()
 
 ## [Symbol operator](Symbol%20operator.md)
