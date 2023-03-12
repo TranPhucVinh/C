@@ -60,7 +60,7 @@ int a = 6;
 * ``a``: lvalue
 * ``6``: rvalue
 
-# ++i and i++
+# ++i (prefix) and i++ (postfix)
 
 ``++i`` will increment the value of i, and then return the incremented value to ``j``
 
@@ -80,6 +80,12 @@ j = i++;
 ```
 
 ``j=0, i=1``
+
+```c
+int x=5, y=7;
+int z = x++ + ++y -8;
+printf("x %d, y %d, z %d", x, y, z);//6 8 5
+```
 
 # :=
 

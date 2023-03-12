@@ -51,14 +51,16 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 
 All signals are defined in library ``signal.h`` in C Standard Library.
 
-### kill()
+## kill()
 
 ```c
 int kill(pid_t pid, int sig);
 ```
 Send signal (``sig``) to a process specified by ``pid``.
 
-### signal()
+**Return**: On success (at least one signal was sent), ``0`` is returned.  On error, ``-1`` is returned, and ``errno`` is set to indicate the error.
+
+## signal()
 
 ``signal()``: sets a function to handle signal
 
@@ -75,7 +77,7 @@ void signal_handler(int signal_number);
 
 ``signal_handler()`` runs asynchronously, it can interrupt the program at any point. Some functions are listed a async-signal-safe, which includes ``write()``, not ``printf()``. So using ``printf()`` is not recommended and may cause the program with signal to crash in some case.
 
-### sigaction()
+## sigaction()
 
 ```c
 int sigaction(int signum, const struct sigaction *restrict act, struct sigaction *restrict oldact);
@@ -143,7 +145,7 @@ siginfo_t {
 }
 ```
 
-### sigqueue()
+## sigqueue()
 
 Queue a signal and data to a process
 
@@ -160,7 +162,7 @@ union sigval {
 
 ``sigqueue()`` can be used to send parameter to other process that handles the signal.
 
-### sigprocmask()
+## sigprocmask()
 
 ```c
 int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oldset);

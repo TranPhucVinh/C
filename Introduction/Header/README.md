@@ -1,6 +1,6 @@
-## Header file
+# Header file
 
-**Define function, variable in .h file**
+## Define function, variable in ``.h`` file
 
 ``head.h``
 
@@ -25,7 +25,7 @@ int main(){
 }
 ```
 
-**Define function in ``.c`` file.**
+## Define function in ``.c`` file
 
 ``head.h``
 
@@ -57,7 +57,7 @@ int main(){
 
 For variables defined in header file, check the related ``extern`` document.
 
-## One definition rule (ODR)
+# One definition rule (ODR)
 
 ``head.h``
 
@@ -91,10 +91,10 @@ collect2: error: ld returned 1 exit status
 
 To solve ODR issue, use:
 
-* extern
-* static
+* [extern](README.md#use-extern-to-solve-odr-issue)
+* [static](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/static.md#global-static-and-odr)
 
-### Use extern to solve ODR issue
+## Use extern to solve ODR issue
 
 ``head.h``
 

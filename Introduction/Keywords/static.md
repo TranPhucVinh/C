@@ -1,6 +1,94 @@
-# static variable
+A static variable genrally has [internal linkage](https://github.com/TranPhucVinh/C/blob/master/Introduction/Linkage.md#internal-linkage).
 
-### Used in functions
+# Global static variable and static function
+
+A global static variable and static function limit their scopes inside the source file it's declared.
+
+In this example, local variable ``a`` and function ``display_string()`` limit its scope inside their source file ``head1.c`` and ``head2.c``. So when there will no error when those 2 files have the same variable name ``a`` and function ``display_string()``.
+
+``head1.c``
+
+```c
+#include <stdio.h>
+
+static int a = 123;
+static void display_string(){
+    printf("head1() called\n");
+}
+
+void head1(){
+    display_string();
+    printf("head1 a %d\n", a);
+}
+```
+
+``head2.c``
+```c
+#include <stdio.h>
+
+static int a = 456;
+static void display_string(){
+	printf("Display string in head2.c\n");
+}
+
+void head2(){
+	display_string();
+	printf("head2 a %d\n", a);
+}
+```
+``main.c``
+```c
+#include <stdio.h>
+
+void head1();
+void head2();
+
+int main(){
+	head1();
+	head2();
+}
+```
+
+Compile ``g++ main.c head1.c head2.c``
+
+**Result**
+
+```
+head1() called
+head1 a 123
+Display string in head2.c
+head2 a 456
+```
+
+This method will allow reusing of the same function names and variables in other files.
+
+CPP also supports [unnamed namespace](https://github.com/TranPhucVinh/Cplusplus/blob/master/Introduction/Function/Namespace.md#unnamed-namespace), an equivalent method to global static variable and static function.
+
+# Global static and [ODR](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr)
+
+``head.h``
+
+```c
+#include <stdio.h>
+static int a = 10;
+```
+``head.c``
+```c
+#include "head.h"
+```
+``main.c``
+```c
+#include "head.h"
+
+int main(){ 
+  printf("a: %d", a);
+}
+```
+Compile ``gcc main.c head.c`` normally and there will be no [ODR issue](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr).
+
+For global static variable ``a`` in this case, it is included in two separate ``.c`` files, which result in two discrete copies of it so that there is no compilation error.
+
+# Local static variable (variable inside function)
 
 **Static variables** is used to created variable that are visible to only one function, but unlike local variables that get created and destroyed everytime a function is called, static variables do not lose their value between function calls.
 
@@ -23,69 +111,3 @@ int main(){
 **Result**
 
 ``1 2``
-
-### static and ODR
-
-**static variable** can be used to solve the ODR issue as it can be shared normally between header files and source files.
-
-``head.h``
-
-```c
-#include <stdio.h>
-static int a = 10;
-```
-``head.c``
-
-```c
-#include "head.h"
-```
-``main.c``
-```c
-#include "head.h"
-
-int main(){ 
-  printf("a: %d", a);
-}
-```
-
-Compile ``gcc main.c head.c`` normally and there will be no ODR issue.
-
-# static function
-
-**Static functions** are not visible outside of the object file they are defined in.
-
-**Example**
-
-``head.h``
-
-```c
-#include <stdio.h>
-
-static void displayString();
-```
-
-``head.c``
-
-```c
-#include "head.h"
-
-static void displayString(){
-	printf("Hello, World !\n");
-}
-```
-
-``main.c``
-
-```c
-#include "head.h"
-
-int main(){ 
-    displayString();
-}
-```
-
-When compiling, there will be error: 
-
-```
-main.c:(.text+0x5): undefined reference to `displayString()'
-```

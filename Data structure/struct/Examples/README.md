@@ -1,6 +1,4 @@
-## Example 1
-
-Enter value for struct member using ``scanf()``
+# Enter value for struct member using scanf()
 
 ```cpp
 #include <stdio.h>
@@ -23,9 +21,7 @@ main(){
 }	
 ```
 
-## Example 2
-
-Nested struct
+# Nested struct
 
 ```c
 struct linkedDatabaseNode{
@@ -55,9 +51,7 @@ Member databaseNode0 has id 1
 ID of databaseNode0 from linkedDatabaseNode is 2, and the displayed string: Displayed string
 ```
 
-## Example 3
-
-Form an ``uint16_t`` number from 2 ``uint8_t`` numbers with ``struct``.
+# Form an ``uint16_t`` number from 2 ``uint8_t`` numbers with ``struct``.
 
 ```c
 #include <stdio.h>
@@ -83,6 +77,6 @@ int main()
 }
 ```
 
-## Use struct for string parsing
+# Use struct for string parsing
 
 Check [Use struct for string parsing document](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Examples/Use%20struct%20for%20string%20parsing.md)
