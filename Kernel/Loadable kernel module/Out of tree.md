@@ -73,6 +73,8 @@ Notice that ``main_module.ko`` is the built result.
 
 # Header file in different directory
 
+When header or source files are in different directory, use ``ccflags-y``
+
 ```
 working_folder
 |--src
