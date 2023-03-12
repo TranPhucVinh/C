@@ -4,7 +4,7 @@ A loadable kernel module (LKM) is an object file that contains code to extend th
 
 # Implementations
 
-All kernel modules are stored in ``/lib/modules``
+All OS built-in kernel modules are stored in ``/lib/modules``
 
 It is better to create a folder for working with the loadable kernel module, the folder must not include space, like ``Ubuntu_Kernel_Module``. If having spaces like ``Ubuntu Kernel Module``, the kernel module is unable to be built.
 
@@ -49,6 +49,23 @@ Run ``dmesg|tail`` to view last lines of the kernel log.
 ```
 [12609.519833] ubuntu_kernel_module: module license 'unspecified' taints kernel.
 ```
+
+Function in kernel module source code without parameter must be declared with ``void`` as parameter, like this:
+
+```c
+void display_string(void){
+    printk(KERN_INFO "Hello, World !\n"); 
+    return 0;
+}
+
+int init_module(void)
+{
+    display_string();
+    return 0;
+}
+```
+
+If declaring ``void display_string()``, there will be error: ``error: function declaration isn’t a prototype [-Werror=strict-prototypes]``
 
 ## Makefile
 
