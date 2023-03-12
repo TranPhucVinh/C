@@ -92,5 +92,8 @@ int main(){
 
 # Operators
 
-* [Bit operator](Bit%20operator.md)
-* [Symbol operator](Symbol%20operator.md)
+## [Bit operator](Bit%20operator.md)
+
+* Bitwise operator
+
+## [Symbol operator](Symbol%20operator.md)
