@@ -1,6 +1,4 @@
-Out of tree technique will support building a kernel module with multiple library source files.
-
-## General define
+# General define
 
 ``ubuntu_kernel_module.c``
 
@@ -13,14 +11,14 @@ MODULE_LICENSE("GPL");
 
 int init_module(void)
 {
-        printk(KERN_INFO "Hello, World !\n");
-        add(3,4);
-        return 0;
+	printk(KERN_INFO "Hello, World !\n");
+	add(3,4);
+	return 0;
 }
 
 void cleanup_module(void)
 {
-        printk(KERN_INFO "clean up module\n");
+	printk(KERN_INFO "clean up module\n");
 }
 ```
 
@@ -42,7 +40,7 @@ void add(int a, int b)
     printk("result: %d\n", a+b);
 }
 ```
-## Source files in the same directory
+# Source files in the same directory
 
 Build kernel module with source codes and header files are in the same directory ubuntu_kernel_module.c test.h test.c
 
@@ -73,7 +71,7 @@ head.h  main_module.ko  main_module.mod.c  main_module.o      modules.order  ubu
 
 Notice that ``main_module.ko`` is the built result.
 
-## Header file in different directory
+# Header file in different directory
 
 ```
 working_folder
@@ -97,7 +95,7 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 
-## Header files and source files in different directory
+# Header files and source files in different directory
 
 ```
 working_folder
