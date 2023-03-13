@@ -97,6 +97,8 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 
+``ccflags-y`` is available only in Linux Kernel Makefile. ``ccflags-y := -I$(src)/include`` with ``$(src)`` provides the absolute path by pointing to the directory where the currently executing file is located. $(src) is also available only with ``ccflags-y`` in Linux Kernel Makefile.
+
 # Header files and source files in different directory
 
 ```
