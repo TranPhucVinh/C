@@ -77,7 +77,7 @@ When header or source files are in different directory, use ``ccflags-y``
 
 ```
 working_folder
-|--src
+|--include
    |--head.h
 |--head.c
 |--ubuntu_kernel_module.c
