@@ -23,7 +23,7 @@ void cleanup_module(void)
 
 # Get all kernel modules from THIS_MODULE
 
-All kernel modules information are stored as a [linked list](../../Linked%20list) which can be accessed from any module.
+All kernel modules information are stored as a [linked list](../Linked%20list) which can be accessed from any module.
 
 In this implementation, we will get all kernel modules' names by traversing from ``THIS_MODULE``:
 
