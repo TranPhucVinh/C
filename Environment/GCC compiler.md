@@ -10,7 +10,7 @@ To run ``a.out`` in absolute path: ``/home/username/Documents/a.out`` (must not 
 
 To compile with multiple files (with or even without header file): ``gcc main.c file_1.c file_2.c``
 
-### Compile with multiple files when there is no header file
+## Compile with multiple files when there is no header file
 
 ``head.c``
 
@@ -57,7 +57,7 @@ This implementation is useful when we need to perform [external linkage](https:/
 
 **Using build automation tools**: Compiling many files with GCC like above is not an efficient way, especially when having many source files and many directories. Build automation tools like [Make](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/Make), [Bazel](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/Bazel), [CMake](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Build%20automation%20tools/CMake) will solve that problem.
 
-## Linker flags
+# Linker flags
 
 Link a C program with a static/shared library using ``-l``/``-L``:
 
@@ -68,7 +68,7 @@ E.g: ``gcc httpClient.c -lcurl``
 
 For other usages of ``-L`` and ``-l``, check [static library document](Static%20library.md).
 
-## Include directory of header files with -I
+# Include directory of header files with -I
 
 **General define**: Use this defines to all examples below
 
@@ -89,7 +89,7 @@ int main(){
 }
 ```
 
-**Example 1**: Include 1 file with the folder hierarchy like below
+## Include 1 file with the folder hierarchy like below
 
 ```
 working_folder
@@ -100,7 +100,7 @@ working_folder
 
 Inside ``working_folder`` folder, compile ``main.c`` : ``gcc -Imain main.c``
 
-**Example 2**: Include 1 file in the upward folder with the folder hierarchy like below
+## Include 1 file in the upward folder with the folder hierarchy like below
 
 ```
 working_folder
@@ -111,7 +111,7 @@ working_folder
 
 Inside ``main`` folder, compile ``main.c`` : ``gcc -I.. main.c``
 
-**Example 3**: Include multiple folders
+## Include multiple folders
 
 ```
 working_folder
@@ -142,7 +142,7 @@ int main(){
 
 Inside ``working_folder``, compile ``main.c``: ``gcc -Iinc -Imain main.c``
 
-**Example 4**: Header file and source file in different directories
+## Header file and source file in different directories
 
 ```
 working_folder
@@ -182,13 +182,13 @@ int main()
 
 Compile: ``gcc -Iinc -Isrc main.c src/head.c``
 
-## Predefine
+# Predefine
 
 ``-D``: Define flag
 
 Predefine during compilation with -D flag: Check [Macro document: Using macro to define](https://github.com/TranPhucVinh/C/blob/master/Introduction/Macro/Using%20macro%20to%20define.md).
 
-## Optimizations
+# Optimizations
 
 Optimizations flags: ``-O``, ``-O1``, ``-O2``, ``-O3``.
 
@@ -196,7 +196,7 @@ Optimizations flags: ``-O``, ``-O1``, ``-O2``, ``-O3``.
 
 ``gcc -S main.c``: Compile source file into assembly code, the output file will be ``main.s``
 
-### Compile and assemble
+## Compile and assemble
 
 ``gcc -c main.c``: Compile and assemble ``main.c`` into an object file ``main.o``.
 
