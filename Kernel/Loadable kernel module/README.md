@@ -108,6 +108,10 @@ Get modules parameters and passing command line arguments to a module
 
 THIS_MODULE is a struct object of [struct module](API.md#struct-module) which is used to indicate to the current module to access its information.
 
+## [Kernel modules communication](kernel%20modules%20communication.md)
+
+* [Sharing variables and functions between multiple kernel modules]()
+
 # [API](API.md)
 
 * [module_init() vs init_module() and module_exit() vs cleanup_module()]()
@@ -115,8 +119,4 @@ THIS_MODULE is a struct object of [struct module](API.md#struct-module) which is
 * [atomic_read() and atomic_set()](), example: [Get and set value to atomic_t with atomic_read(), atomic_set() and atomic_add_return()]()
 * [container_of()]() and [example]()
 * [Debug with pr_debug()]()
-
-# [Examples](Examples.md)
-
-* [Sharing variables between multiple kernel modules]()
 * [Using delay with msleep() in linux/delay.h]()
