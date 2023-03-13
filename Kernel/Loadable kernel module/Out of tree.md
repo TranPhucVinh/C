@@ -42,7 +42,7 @@ void add(int a, int b)
 ```
 # Source files in the same directory
 
-Build kernel module with source codes and header files are in the same directory ubuntu_kernel_module.c test.h test.c
+Build kernel module ``main_module.ko`` with source codes and header files are in the same directory ``ubuntu_kernel_module.c``, ``head.c`` and ``head.h``.
 
 ```
 working_folder
