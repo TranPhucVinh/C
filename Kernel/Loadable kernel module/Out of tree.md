@@ -69,7 +69,7 @@ head.c  head.o          main_module.mod    main_module.mod.o  Makefile       Mod
 head.h  main_module.ko  main_module.mod.c  main_module.o      modules.order  ubuntu_kernel_module.c
 ```
 
-Notice that ``main_module.ko`` is the built result.
+As ``main_module.ko`` is the built result, it is built from the kernel object ``main_module.o``. ``main_module-y`` is used/required for ``main_module.o`` which requires 2 kernel object ``head.o ubuntu_kernel_module.o``
 
 # Header file in different directory
 
