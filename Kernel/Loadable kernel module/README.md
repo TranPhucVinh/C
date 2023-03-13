@@ -91,6 +91,12 @@ For the kernel module built from multiple sources: ``module_name-y := src1.o src
 
 Out of tree technique will support building a kernel module with multiple library source files.
 
+Out of tree implementations include:
+* [Source files in the same directory]()
+* [Header file in different directory]()
+* [Header files and source files in different directory]()
+* [Sharing variables and functions between multiple kernel modules](Sharing%20variables%20and%20functions%20between%20multiple%20kernel%20modules.md)
+
 ## Kernel module information
 
 ### Get module name
@@ -107,10 +113,6 @@ Get modules parameters and passing command line arguments to a module
 ### [THIS_MODULE](THIS_MODULE.md)
 
 THIS_MODULE is a struct object of [struct module](API.md#struct-module) which is used to indicate to the current module to access its information.
-
-## [Kernel modules communication](kernel%20modules%20communication.md)
-
-* [Sharing variables and functions between multiple kernel modules]()
 
 # [API](API.md)
 

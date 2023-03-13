@@ -1,4 +1,4 @@
-# Sharing variables and functions between multiple kernel modules
+# 
 
 ```
 working_folder
