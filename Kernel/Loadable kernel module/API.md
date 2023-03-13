@@ -39,6 +39,21 @@ module_exit(module_remove);
 ```
 **Notice**: When using ``module_init()`` and ``module_exit()``, library ``linux/kernel.h`` is not required.
 
+# struct module
+
+```c
+struct module {
+    ...
+    struct list_head list;
+    ...
+    char name[MODULE_NAME_LEN];
+    const char *version;
+    ...
+    unsigned int taints;
+    ...
+};
+```
+
 # atomic_read() and atomic_set()
 
 ```c
