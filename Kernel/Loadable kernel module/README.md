@@ -87,11 +87,9 @@ main_module-y := ubuntu_kernel_module.o
 
 For the kernel module built from multiple sources: ``module_name-y := src1.o src2.o``
 
-## Out of tree
+## [Out of tree](Out%20of%20tree.md)
 
 Out of tree technique will support building a kernel module with multiple library source files.
-
-Check [out of tree document](Out%20of%20tree.md) for this implementation.
 
 ## Kernel module information
 
