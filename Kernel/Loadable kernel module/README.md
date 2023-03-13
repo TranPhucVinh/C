@@ -69,14 +69,23 @@ If declaring ``void display_string()``, there will be error: ``error: function d
 
 ## Makefile
 
-``obj-m``: Specify built object's name
+### obj-m
+
+``obj-m`` will specify built object's name
 
 With ``obj-m := <module_name>.o``, the ``kbuild`` system will build ``<module_name>.o`` from ``<module_name>.c``,
 and, after linking, will result in the kernel module ``<module_name>.ko``.
 
-``module_name-y``:
+### module_name-y
 
-When the module is built from multiple sources, an additional line is needed listing the files: ``module_name-y := src1.o src2.o``
+To build kernel module ``main_module.ko`` from source code ``ubuntu_kernel_module.c``, we use the ``module_name-y`` method:
+
+```Makefile
+obj-m := main_module.o
+main_module-y := ubuntu_kernel_module.o
+```
+
+For the kernel module built from multiple sources: ``module_name-y := src1.o src2.o``
 
 ## Out of tree
 
