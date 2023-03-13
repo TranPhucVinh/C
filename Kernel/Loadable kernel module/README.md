@@ -97,6 +97,10 @@ printk(KERN_INFO "Module name %s\n", THIS_MODULE->name);
 
 Get modules parameters and passing command line arguments to a module
 
+### [THIS_MODULE](THIS_MODULE.md)
+
+THIS_MODULE is a struct object of ``struct module`` which is used to indicate to the current module to access its information.
+
 # [API](API.md)
 
 * [module_init() vs init_module() and module_exit() vs cleanup_module()]()
