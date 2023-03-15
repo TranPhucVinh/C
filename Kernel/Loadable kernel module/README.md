@@ -116,7 +116,7 @@ THIS_MODULE is a struct object of [struct module](API.md#struct-module) which is
 
 # [API](API.md)
 
-* [module_init() vs init_module() and module_exit() vs cleanup_module()]()
+* [module_init() vs init_module() and module_exit() vs cleanup_module()](API.md#module_init-vs-init_module-and-module_exit-vs-cleanup_module)
 * [struct module](API.md#struct-module)
 * [atomic_read() and atomic_set()](), example: [Get and set value to atomic_t with atomic_read(), atomic_set() and atomic_add_return()]()
 * [container_of()]() and [example]()
