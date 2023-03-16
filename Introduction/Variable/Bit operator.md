@@ -108,7 +108,7 @@ can be written as
 shift <<= 1;
 ```
 
-Any number left shift by 1 (``<< 1``) will be multiple by 2. E.g ``50 << 1 = 25``
+Any number left shift by 1 (``<< 1``) will be multiple by 2. E.g ``25 << 1 = 50``
 
 # Complement operator (~)
 
