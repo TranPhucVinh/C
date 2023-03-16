@@ -81,7 +81,7 @@ int main(void)
 }
 ```
 
-This method helps reading big file by chunk and perform small operation every small chunk. Check ``http_server_returns_beautiful_html_files.c`` in ``ESP8266-RTOS-SDK`` as file like image can only by read by chunk and is returned as small HTTP chunk by the HTTP server to HTTP client. Reading the whole image file at one time and returns it to the HTTP client will result in the failure image or the error image.
+This method helps reading big file by chunk and perform small operation every small chunk. Check [http_server_returns_beautiful_html_files.c in ESP8266-RTOS-SDK](https://github.com/TranPhucVinh/ESP8266-RTOS-SDK/blob/main/Applicaton%20layer/HTTP/http_server_returns_beautiful_html_files.c) as file like image can only by read by chunk and is returned as small HTTP chunk by the HTTP server to HTTP client. Reading the whole image file at one time and returns it to the HTTP client will result in the failure image or the error image.
 
 # Read a specific line of a line
 
