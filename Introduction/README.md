@@ -13,7 +13,7 @@
 
 C doesn't support function overloading as it is not an OOP language
 
-For function overloading in ``CPP``, check ``Function.md`` in ``Cplusplus\Introduction``.
+For function overloading in [CPP](https://github.com/TranPhucVinh/Cplusplus), check [CPP function overloading document](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#function-overloading).
 
 ## Default arguments
 
