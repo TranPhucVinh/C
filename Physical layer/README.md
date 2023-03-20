@@ -5,9 +5,9 @@
 * system()
 * popen() and pclose()
 
-## Environment API
+# Environment API
 
-### printenv()
+## printenv()
 
 Get environment variable with ``printenv()``. ``environ`` is defined as a global variable in the ``Glibc`` source file ``posix/environ.c`` so this program just runs on Unix.
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
    return 0;
 }
 ```
-### Get variable environment
+## Get variable environment
 
 ``char *getenv(const char *name)`` searches for the environment string pointed to by name and returns the associated value to the string.
 
