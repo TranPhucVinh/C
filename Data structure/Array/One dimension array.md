@@ -97,12 +97,9 @@ int i, n, array[n];
 printf("Enter the number of members: ");
 scanf("%d", &n);
 
+//Segment fault in those lines
 for (i = 0; i < n; i++){    
    array[i] = i;
-}
-
-for (i=0; i < n; i++){
-   printf("Value of member %d is %d \n", i, array[i]);
 }
 ```
 
@@ -112,7 +109,7 @@ Result
 Segmentation fault (core dumped)
 ```
 
-Array size might not be declared by a variable:
+Array size must not be declared by a variable **in GCC**
 
 ```c
 int b = 2;
@@ -149,8 +146,15 @@ array[1] = 2;
 int a = 9;
 static int array[a];
 ```
-Error: ``A variable length array cannot have static storage duration``
+Error on both GCC and G++: ``A variable length array cannot have static storage duration``
 
+Problem solved for G++: Use ``const``
+
+```cpp
+const int a = 9;
+static int array[a];
+```
+(Using ``const`` for this program still results in the same error)
 # Array as an argument of a function
 
 Using array with size
