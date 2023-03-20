@@ -121,6 +121,19 @@ If adding ``memset()`` and ``bzero()``, the same error still happens: ``memset(d
 
 ``strcat()`` and ``strncat()`` require ``hw`` to be the string char array to store the value while ``char *hw`` has fix address and memory size.
 
+# String as argument in function
+
+```c
+void printStringPointer(char *hw){
+	printf("%s ", hw);
+}
+
+int main(){
+	char str1[] = "Hello, World \n";
+	printStringPointer(str1); //Hello, World
+}
+```
+
 # Function returns a string
 
 ```c
