@@ -49,19 +49,6 @@ Get address of pointer char
 printf("returnChar: %p \n", returnChar); //Address of returnChar is : 0x62FE30
 ```
 
-# String as argument in function
-
-```c
-void printString(char hw[]){
-	printf("%s ", hw);
-}
-
-int main(){
-	char str1[] = "Hello, World \n";
-	printString(str1); //Hello, World
-}
-```
-
 # Get size of string char
 
 Use ``sizeof()`` function:
@@ -72,6 +59,23 @@ char string1[20];
 printf("%d\n", sizeof(string1)); //20
 char string2[] = "Hello, World !";//14 characters
 printf("%d\n", sizeof(string2)); //15
+```
+
+# String as argument in function
+
+For char array as function argument, its size must be gotten by ``strlen()``, not ``sizeof()``
+
+```c
+void printString(char hw[]){
+	printf("%s\n", hw);
+    printf("String size: %d\n", strlen(hw));//14
+	printf("Can't get char array argument by sizeof(), %d\n", sizeof(hw));//8
+}
+
+int main(){
+	char str1[] = "Hello, World !";
+	printString(str1); //Hello, World
+}
 ```
 
 # Overflow string char buffer
