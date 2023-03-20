@@ -16,7 +16,7 @@ And so on
 
 So the permutation of n member (1->n integer numbers) is n!
 
-With n! = n.(n-1)! this infers us to use [recursive]() for the permutation implementation.
+With ``n! = n.(n-1)!`` this infers us to use [recursive](https://github.com/TranPhucVinh/C/blob/master/Introduction/Function/README.md#recursive-function) for the permutation implementation.
 
 # Find all permutation 
 
