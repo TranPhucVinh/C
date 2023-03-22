@@ -15,4 +15,4 @@
 * [Enter value for struct member using scanf()]()
 * [Nested struct]()
 * [Form an uint16_t number from 2 uint8_t numbers with struct]()
-* [Use struct for string parsing](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Examples/Use%20struct%20for%20string%20parsing.md)
+* [Use struct for string parsing](Examples/Use%20struct%20for%20string%20parsing.md)
