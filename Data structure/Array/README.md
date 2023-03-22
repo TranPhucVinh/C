@@ -1,15 +1,11 @@
 An array is collection of items stored at **continuous memory** locations.
 
-An array support those features:
+# [One dimension array](One%20dimension%20array.md)
 
-* Create
-* Read
-* Update
-* Delete
-
-# One dimension array
-
-Check [one dimension array document](One%20dimension%20array.md).
+* [Create](One%20dimension%20array.md#create): [On stack memory]() and [on heap memory](); [create a new array](create_array.c) and [create/insert new member at specific index](create_new_member.c)
+* [Read](One%20dimension%20array.md#read)
+* [Update](One%20dimension%20array.md#update)
+* [Delete](One%20dimension%20array.md#delete): [Delete member in array from index](delete.c)
 
 # Multidimension array
 
