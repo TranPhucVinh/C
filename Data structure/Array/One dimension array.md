@@ -4,8 +4,7 @@
 
 ### On stack memory
 
-* Create array and manually enter the value for each array member: [create_array.c](create_array.c)
-* Create new member from index: [create_new_member.c](create_new_member.c)
+Create array and manually enter the value for each array member: [create_array.c](create_array.c)
 
 An array can be created like this:
 
@@ -21,6 +20,30 @@ int array[6] = {
 };
 ```
 
+**Insert a new member from index**
+
+**Precondition**: Size of the array to be inserted must bigger its total member
+
+E.g 
+
+```c
+//Declare array with 100 member to first store 5 member
+int array[100] = {1,3,5,7,8};
+```
+
+If the array size is fixed with its first total members, there will error later when inserting the new member because the array will then be extended to the unallocated memory location.
+
+E.g
+
+```c
+//Declare array with 100 member to first store 5 member
+int array[] = {1,3,5,7,8};
+
+array[5] = 10;//Insert a new member at index 5, the unallocated location, result in memory segment fault
+```
+
+Program: [create_new_member.c](create_new_member.c)
+ 
 ### On heap memory
 
 Check [Dynamic memory allocation](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Memory/Dynamic%20memory%20allocation) with [stdlib](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md) and [G++](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20G%2B%2B.md).
