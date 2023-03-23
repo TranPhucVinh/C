@@ -103,7 +103,7 @@ Calling ``rmmod`` for this kernel module results in: rmmod: ERROR: Module ``ubun
 
 In this character device, call ``try_module_get()`` in init_module and allow removing it with ``module_put()`` when the character device open operation is triggered.
 
-The program below is expanded/deprived from [create_character_device_by_seperated_operations.c](../Character device/Create character device/create_character_device_by_seperated_operations.c)
+The program below is expanded/deprived from [create_character_device_by_seperated_operations.c](../Character%20device/Create%20character%20device/create_character_device_by_seperated_operations.c)
 
 ```c
 int dev_open(struct inode *inodep, struct file *filep)
