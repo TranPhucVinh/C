@@ -1,6 +1,6 @@
 # linux/fs.h functions
 
-### register_chrdev()
+## register_chrdev()
 
 Register a character device to kernel
 
@@ -10,7 +10,7 @@ int register_chrdev(unsigned int major, const char *name, struct file_operations
 
 After calling ``register_chrdev()``, the newly registered device will have an entry in ``/proc/devices``, and we can either make that newly register device to be the device file by ``mknod`` command.
 
-### unregister_chrdev()
+## unregister_chrdev()
 
 Unregister and destroy a character device
 
@@ -23,7 +23,7 @@ static inline void unregister_chrdev(unsigned int major, const char *name)
 }
 ```
 
-### register_chrdev_region()
+## register_chrdev_region()
 
 ``register_chrdev_region()`` will assign the identifiers. After assigning the identifiers, the character device will have to be initialized using the ``cdev_init()`` function and registered to the kernel using the ``cdev_add()`` function.
 
@@ -35,7 +35,7 @@ void unregister_chrdev_region(dev_t dev_id, unsigned int count);
 * ``count``: the number of minor numbers required
 * ``name``: the name of the associated device or driver
 
-### dev_t
+## dev_t
 
 The ``dev_t`` type is used to keep the identifiers of a device (both major and minor) and can be obtained using the ``MKDEV()`` macro
 
@@ -58,7 +58,7 @@ A device ID consists of two parts: a major ID, identifying the class of the devi
 
 With ``major`` and ``minor`` number, we can create a ``dev_t``.
 
-### alloc_chrdev_region
+## alloc_chrdev_region()
 
 Allocate/Register a range of char device numbers
 
@@ -73,9 +73,22 @@ int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned count, const ch
 
 # linux/fs.h structs
 
-### struct cdev
+## struct cdev
 
 ``struct cdev``: character device struct
+
+```c
+struct cdev {
+	struct kobject kobj;
+	struct module *owner;
+	const struct file_operations *ops;
+	struct list_head list;
+	dev_t dev;
+	unsigned int count;
+} __randomize_layout;
+```
+
+### cdev_add()
 
 ```c
 int cdev_add(struct cdev *dev, dev_t num, unsigned int count);
@@ -86,13 +99,15 @@ int cdev_add(struct cdev *dev, dev_t num, unsigned int count);
 
 **Note**: If ``count = 0``, it means no device can associate with this character device. Then working with this character device like ``cat /dev/character_device_name`` or ``echo "Data" > /dev/character_device_name`` will gives error: ``No such device or address``.
 
+### cdev_alloc()
+
 ```c
 struct cdev * cdev_alloc(void);
 ```
 
 Allocate dynamic memory for a character device as a struct pointer object
 
-### struct class
+## struct class
 
 The driver creates/destroys the class using those APIs:
 
@@ -111,7 +126,7 @@ The ``/sys/class/`` directory offers a view of the device drivers grouped by cla
 
 For ``DEVICE_CLASS`` created by ``class_create()``, it will then have a folder in ``/sys/class/``.
 
-### struct device
+## struct device
 
 The driver creates the device nodes using those APIs:
 
@@ -131,7 +146,7 @@ struct device *device_create(struct class *cls, struct device *parent, dev_t dev
 void device_destroy (struct class * class, dev_t devt);
 ```
 
-### struct file_operations
+## struct file_operations
 
 ``struct file``, defined in ``<linux/fs.h>``, is the second most important data structure used in device drivers. Note that a ``file`` has nothing to do with the ``FILEs`` of user-space programs. A ``FILE`` is defined in the C library and never appears in kernel code. A ``struct file``, on the other hand, is a kernel structure that never appears in user programs.
 
@@ -172,7 +187,7 @@ Both ``copy_from_user()`` and ``copy_to_user()`` return the number of bytes that
 
 # Debug
 
-### dev_dbg()
+## dev_dbg()
 
 Specific debug function for character device
 
