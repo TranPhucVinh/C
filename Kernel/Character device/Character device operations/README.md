@@ -1,7 +1,23 @@
-For ioctl system call to character device, check [ioctl document](ioctl).
+# [Basic operations](Basic%20operations)
 
-For poll file operation with character device, check [poll document folder](Poll).
+Character device basic operations includes:
 
-For communication between userspace and character device by signal, check [Signal document folder](Signal).
+* [Read and write system call to character device]()
+* [Userspace program for 2-way communication with character device]()
+* [Character device as a FIFO]()
 
-For communication between userspace and character device by waitqueue, check [waitqueue document folder](waitqueue).
+# [ioctl](ioctl)
+
+ioctl system call to character device includes:
+
+# [poll](Poll)
+
+poll file operation with character device includes:
+
+# [Signal](Signal)
+
+Communication between userspace and character device by signal includes:
+
+# [waitqueue](waitqueue)
+
+Communication between userspace and character device by waitqueue includes:
