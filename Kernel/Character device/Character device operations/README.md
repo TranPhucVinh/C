@@ -10,6 +10,9 @@ Character device basic operations includes:
 
 ioctl system call to character device includes:
 
+* [Basic implementation with cmd and arg](ioctl#implementation)
+* [ioctl macro](ioctl#ioctl-macro)
+
 # [poll](Poll)
 
 poll file operation with character device includes:
