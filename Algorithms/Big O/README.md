@@ -14,6 +14,4 @@ Intuitively, this means that ``f(x)`` does not grow faster than ``g(x)``
 
 f(x) = ${3n^2 + 5}$
 
-With C=4 and N=2, f(x) is ${O(n^2)}$ as with all n > 2
-
-${3n^2 + 5 \le 4n^2}$
+With C=4 and N=2, f(x) is ${O(n^2)}$ as with all ${n \gt 2}$: ${3n^2 + 5 \le 4n^2}$
