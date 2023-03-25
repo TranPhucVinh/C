@@ -17,6 +17,9 @@ ioctl system call to character device includes:
 
 poll file operation with character device includes:
 
+* [Character device poll file operation handling from the corresponded userspace system call](Poll#api)
+* [Send POLLIN revent from character device to userspace application when open, read, write, close operations are performed to this character device]()
+
 # [Signal](Signal)
 
 Communication between userspace and character device by signal includes:
