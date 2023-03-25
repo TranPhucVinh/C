@@ -48,6 +48,8 @@ struct kref {
 
 ## Implementation
 
+### In character device
+
 In a character device, function ``module_refcount()`` will return the current ``refcount`` value. As stated before, when a character device/kernel module is created, it will have ``refcount = 1``.
 
 ```c
@@ -93,3 +95,7 @@ int dev_open(struct inode *inodep, struct file *filep)
 ```
 
 Every time running a process built from ``user_space.c``, the ``refcount`` of ``/dev/fops_character_device`` will be increased by ``1``.
+
+### In sysfs
+
+[sysfs entry](../../sysfs%20entry.md) requires kboject when creating it.

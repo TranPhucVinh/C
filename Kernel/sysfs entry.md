@@ -4,18 +4,18 @@ Inserting a kernel module for sysfs entry will create a directory/file inside ``
 
 # API
 
-### kobject_create_and_add
+## kobject_create_and_add
 
 ```c
 struct kobject *kobject_create_and_add(const char *name, struct kobject *parent);
 ```
 
-Create a ``struct kobject`` dynamically and register it with ``sysfs``
+Create a [struct kobject](Character%20device/Character%20device%20operations#kobject-and-refcount) dynamically and register it with ``sysfs``:
 
 * ``name``: the name for the ``kobject``
 * ``parent``: the parent ``kobject`` of this kobject, if any. Preferred to be ``kernel_kobj``, a predefined kernel object
 
-### kobject_put()
+## kobject_put()
 
 ```c
 void kobject_put(struct kobject * kobj);
@@ -23,7 +23,7 @@ void kobject_put(struct kobject * kobj);
 
 Remove the ``kobj``.
 
-### __ATTR()
+## __ATTR()
 
 ```c
 #define __ATTR(_name, _mode, _show, _store) {				\
