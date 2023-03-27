@@ -151,7 +151,7 @@ printf("Int value after: %d \n", *intPointer); //0
 
 # calloc()
 
-Dynamic allocating a region of memory like ``malloc()`` then set ``NULL`` value to all member inside that memory block.
+Dynamic allocating a region of memory like ``malloc()`` then set ``NULL`` value to all member inside that memory block. calloc() is corresponded to [kzalloc() in Kernel space](https://github.com/TranPhucVinh/C/tree/master/Kernel/Dynamic%20allocation#kzalloc).
 
 ```c
 void *calloc(size_t nitems, size_t size)
