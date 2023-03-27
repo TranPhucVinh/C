@@ -67,44 +67,27 @@ Array:
 };
 ```
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
+### By single operations
 
-#define ROW_SIZE 3
-#define COLUMN_SIZE 4
+**Feature**: This example is intended for comprehensive and easy to understand the 2D array creation on heap memory.
 
-int main(){
-	int **array = (int**) malloc(ROW_SIZE * sizeof(int*));
-
-	for (int row = 0; row < ROW_SIZE; row++){
-		array[row] = (int*) malloc(COLUMN_SIZE * sizeof(int));
-	}
-
-	int index = 0;
-	for (int row = 0; row < ROW_SIZE; row++){
-		for (int column = 0; column < COLUMN_SIZE; column++){
-			array[row][column] = index;
-			index += 1;
-		}	
-	}
-
-	for (int row = 0; row < ROW_SIZE; row++){
-		for (int column = 0; column < COLUMN_SIZE; column++) 
-			printf("array[%d][%d]: %d\n", row, column, array[row][column]);
-	}
-    
-    //Free all allocated memory location of the rows
-	for (int row = 0; row < ROW_SIZE; row++){
-		free(array[row]);
-	}
-
-    //Finally free the memory location of the array
-    free(array);
-}
-```
+**Program**: [create_2d_array_by_single_operations.c](create_2d_array_by_single_operations.c)
 
 For important notice when defining 2D array with double pointer (``int **int_array = (int**) malloc(ROW_SIZE * sizeof(int*)``), check [double pointer document: Define double pointer on heap memory](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Pointer%20to%20pointer.md#define-double-pointer-on-heap-memory).
+
+### By separated operations
+
+**Features**: Seperate the 2D array implementations by functions:
+
+* ``init_array()``
+* ``add_value()``
+* ``update_value()``
+* ``print_array()``
+* ``delete_array()``
+
+This program is intended for functions inheritance for 2D array related applications.
+
+**Program**: [create_2d_array_by_separated_operations.c](create_2d_array_by_separated_operations.c)
 
 ## Trying to overflow buffer with malloc()
 
