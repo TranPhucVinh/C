@@ -1,8 +1,8 @@
-## Create
+# Create
 
-For a 2 dimension array with ``row`` and ``column`` on heap memory: Check [Example 2: Create a 2 dimension int array with malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md) in ``Dynamic memory allocation`` inside ``Physical layer/Memory``.
+For a 2 dimension array with ``row`` and ``column`` on heap memory: Check [Create a 2 dimension int array with malloc() document](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md).
 
-Create a 2 dimension array with ``row`` stored on stack memory and ``column`` stored on heap memory:
+## Create a 2 dimension array with row stored on stack memory and column stored on heap memory
 
 ```c
 #include <stdio.h>
@@ -28,7 +28,7 @@ int main(){
 }
 ```
 
-**Create a char pointer with row stored on stack memory and column stored on heap memory**
+## Create a char pointer with row stored on stack memory and column stored on heap memory
 
 ```c
 char *string_array[3] = {"string 1", "string 2", "string 3"};
@@ -91,7 +91,7 @@ for (int i=0; i < ARRAY_SIZE; i++){
 //Other operations are like above
 ```
 
-## 2D array as a function parameter
+# 2D array as a function parameter
 
 A 2 dimension array declared by pointer to pointer can be passed into functions:
 
