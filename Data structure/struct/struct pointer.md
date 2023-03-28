@@ -1,9 +1,9 @@
-## Syntax
+# Syntax
 
 * ``.``: access the instance inside a **struct object**
 * ``->``: used by **pointer struct object** to access the value
 
-## Create a struct pointer
+# Create a struct pointer
 
 Create a struct pointer: Use a struct pointer object to set value for a struct object
 
@@ -35,9 +35,9 @@ int main()
 }
 ```
 
-### Set value for struct pointer
+# Set value for struct pointer
 
-**This is a wrong implementation with struct pointer and must not be avoided**
+**This is a wrong implementation with struct pointer and must be avoided**
 
 ```c
 #include <stdio.h> 
@@ -69,7 +69,7 @@ node0->intValue = 100;
 
 **Note**: Not use ``node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode*));``, as size of struct pointer is always ``8``, just like other data type.
 
-## Pass by value and pass by reference with struct pointer
+# Pass by value and pass by reference with struct pointer
 
 As the issue of **pass by value**, passing a struct by value to a function to change its member value won't give effect:
 
