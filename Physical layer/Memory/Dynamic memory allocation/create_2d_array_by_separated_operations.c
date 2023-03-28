@@ -33,10 +33,10 @@ int main(){
 	Return: A memory allocated 2D array
 */
 int **init_array(int row_size, int column_size){
-	int **array = (int**) malloc(ROW_SIZE * sizeof(int*));
+	int **array = (int**) malloc(row_size * sizeof(int*));
 
-	for (int row = 0; row < ROW_SIZE; row++){
-		array[row] = (int*) malloc(COLUMN_SIZE * sizeof(int));
+	for (int row = 0; row < row_size; row++){
+		array[row] = (int*) malloc(column_size * sizeof(int));
 	}
 	return array;
 }
