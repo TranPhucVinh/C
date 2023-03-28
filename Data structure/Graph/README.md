@@ -34,11 +34,11 @@ digraph {
 
 ``dot test.dot -Tpdf > graph.pdf``: Draw the graph from ``test.dot``, output to ``graph.pdf``.
 
-# Present a graph
+# Represent a graph
 
-A graph can present by a square matrix (2D array), which is called adjacency matrix. If node ``i`` is connected to node ``j``, A[i,j] = 1
+A graph can be represented by a square matrix (2D array), which is called adjacency matrix. If node ``i`` is connected to node ``j``, A[i,j] = 1
 
-For directed graph, there can be a case like node ``i`` connects to node ``j``, which results in ``A[i,j] = 1``, while node ``j`` doesn't connected to node ``i``, which results in ``A[j,i] = 0``.
+For directed graph, there can be a case like node ``i`` connects to node ``j``, which results in ``A[i,j] = 1``, while node ``j`` doesn't connect to node ``i``, which results in ``A[j,i] = 0``.
 
 Build an adjacency matrix to present a directed graph:
 
