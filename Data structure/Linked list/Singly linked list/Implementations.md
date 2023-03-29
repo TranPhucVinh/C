@@ -77,6 +77,13 @@ int main()
     return 0; 
 }
 ```
+## Size of a linked list
+
+Size of the linked list can only be gotten by traversing the whole list.
+
+## Get the middle member of the linked list by 1 time traversing
+
+To get the middle member of the linked list, beside the traditional way is to [get the list size](#size of a linked list) first for later calculate the index of the middle member, the middle member can be access by 1 time traversing. The algorithm is to use 2 pointer, ``p1`` and ``p2``.
 
 # Update
 
