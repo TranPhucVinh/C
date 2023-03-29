@@ -2,9 +2,10 @@
 
 Character device basic operations includes:
 
-* [Read and write system call to character device]()
-* [Userspace program for 2-way communication with character device]()
-* [Character device as a FIFO]()
+* [Read and write system call to character device](Basic%20operations/README.md#read-and-write-system-call-to-character-device)
+* [Userspace program for 2-way communication with character device](Basic%20operations/README.md#userspace-program-for-2-way-communication-with-character-device)
+* [Character device as a FIFO](Basic%20operations/README.md#character-device-as-a-fifo)
+* [struct file *private_data](Basic%20operations/README.md#struct-file-private_data)
 
 # [ioctl](ioctl)
 
