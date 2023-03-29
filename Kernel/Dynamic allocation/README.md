@@ -7,6 +7,7 @@
 ```c
 void * kzalloc(size_t size, gfp_t flags);
 ```
+**Get size**: Just like [malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md#malloc),  there is no portable way to find out the size of a kmalloc'ed block.
 
 ## kstrdup()
 
@@ -69,9 +70,14 @@ Destroy slab cache object ``cp``
 
 # Examples
 
-* [kmalloc() example](kmalloc_example.c), ``kzalloc()`` will work identically.
+## [kmalloc() example](kmalloc_example.c)
 
-[kmem_cache example](kmem_cache.c): Dynamic allocation for string char, int and int array
+* Implement ``kmalloc()`` for ``int``, ``int array`` and string as ``char pointer``.
+* ``kzalloc()`` will work identically.
+
+## [kmem_cache example](kmem_cache.c)
+
+Dynamic allocation for string char, int and int array
 
 ### Notes
 
