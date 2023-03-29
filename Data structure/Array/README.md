@@ -39,6 +39,16 @@ Two dimension array implementations:
 * [Two dimension array on stack memory](Two%20dimension%20array%20on%20stack%20memory.md)
 * [Two dimension array on heap memory](Two%20dimension%20array%20on%20heap%20memory.md)
 
+## An equivalent pointer expression for referring the same element a[i][j][k][l]
+
+We know that ``a[i]`` can be written as ``*(a+i)``. Same way, the array elements can be written like pointer expression as follows:
+
+```c
+a[i][j] = *(*(a+i)+j);
+a[i][j][k] = *(*(*(a+i)+j)+k);
+a[i][j][k][l] = *(*(*(*(a+i)+j)+k)+l);
+```
+
 ## Saddle point
 
 In a 2D array with n * n size, a saddle point is an element of the matrix such that it is the minimum element in its row and the maximum in its column. 
