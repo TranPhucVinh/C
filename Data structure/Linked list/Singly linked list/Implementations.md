@@ -83,7 +83,30 @@ Size of the linked list can only be gotten by traversing the whole list.
 
 ## Get the middle member of the linked list by 1 time traversing
 
-To get the middle member of the linked list, beside the traditional way is to [get the list size](#size of a linked list) first for later calculate the index of the middle member, the middle member can be access by 1 time traversing. The algorithm is to use 2 pointer, ``p1`` and ``p2``.
+To get the middle member of the linked list, beside the traditional way is to [get the list size](#size-of-a-linked-list) first for later calculate the index of the middle member, the middle member can be access by 1 time traversing. The algorithm is to use 2 pointer, ``p1`` and ``p2``.
+
+In every execution of the loop, ``p1`` will access to the next 2 nodes, while ``p2`` only access to its next node. So when ``p1`` has reached the end of the linked list, ``p2`` has reached to the middle node.
+
+```c
+//Other part are like create_and_read_linked_list.c
+void get_middle(struct database_node *first_node){
+    struct database_node *p1, *p2;
+    p1 = first_node;
+    p2 = first_node;
+
+    while ((p1->next_node) && (p1->next_node->next_node)){
+        p2 = p2->next_node;
+        p1 = p1->next_node->next_node;
+    }
+    printf("Middle node (%d,%d) ", p2->id, p2->value);
+}
+
+int main() 
+{
+    //Other part are like create_and_read_linked_list.c
+    get_middle(node_0); 
+}
+```
 
 # Update
 
