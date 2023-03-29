@@ -28,6 +28,10 @@ int init_module(void)
 	return 0;
 }
 ```
+## kfree()
+```c
+void kfree(const void * objp);
+```
 ## kmem_cache_create()
 ```c
 struct kmem_cache *kmem_cache_create(const char * name, size_t size, size_t align, unsigned long flags, void (*ctor) (void *));
@@ -40,6 +44,12 @@ Create a cache.
 * ``align``: The required alignment for the objects
 * ``flags``: SLAB flags
 * ``ctor``: A constructor for the objects
+
+## kmem_cache_alloc()
+
+```c
+void *kmem_cache_alloc(struct kmem_cache *s, gfp_t flags);
+```
 
 ## kmem_cache_free()
 
@@ -56,12 +66,6 @@ void kmem_cache_destroy(kmem_cache_t *cp);
 ```
 
 Destroy slab cache object ``cp``
-
-## kmem_cache_alloc()
-
-```c
-void *kmem_cache_alloc(struct kmem_cache *s, gfp_t flags);
-```
 
 # Examples
 
