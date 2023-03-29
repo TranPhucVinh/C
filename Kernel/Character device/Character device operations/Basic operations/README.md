@@ -96,3 +96,38 @@ ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t 
 ```
 
 After successfully creating, simply R/W to that character device as a FIFO by 2 process with normal ``read()``/``write()`` functions.
+
+# struct file *private_data
+
+Every struct file object of the ``struct file_operations`` functions like open(), read(), write() and release() functions of a character device share ``private_data``, a void pointer. ``void *private_data`` of ``struct file`` can be used to share between those functions and returned to the userspace.
+
+Program to share ``private_data`` between ``struct file_operations`` functions like open() and read() functions (also return data to the userspace)
+
+```c
+//Other part of the program are like character_device_operations.c
+/*
+	User char array for string to later get its size by sizeof()
+	Like malloc(), there is no way to get the size of the kmalloc() block
+*/
+char private_data[] = "Character device private data 2023 29/3";
+int dev_open(struct inode *inodep, struct file *filep)
+{
+	printk("open\n");
+	filep->private_data = (char*) kstrdup(private_data, GFP_KERNEL);
+	printk("%s, sizeof() %d\n", filep->private_data, sizeof(private_data));
+	return 0;
+}
+int dev_close(struct inode *inodep, struct file *filep)
+{
+	printk("close\n");
+	kfree(filep->private_data);
+	return 0;
+}
+ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
+{
+	int bytes_response = copy_to_user(buf, filep->private_data, sizeof(private_data));
+	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
+	else printk("%d bytes could not be send\n", bytes_response);
+	return sizeof(private_data);
+}
+```
