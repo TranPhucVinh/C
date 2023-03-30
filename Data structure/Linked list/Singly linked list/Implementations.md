@@ -41,7 +41,7 @@ Function ``display_by_index()``
 
 ```c
 //Other operations like in create_and_read_linked_list.c
-int display_by_index(struct database_node *first_node, int index){
+int read_at_index(struct database_node *first_node, int index){
     struct database_node *ptr = first_node;
     int tmp_index = 0;
     while(ptr != NULL)
@@ -72,7 +72,7 @@ int main()
     node_2->next_node = NULL; //End link list
 	display_linked_list(node_0);
 
-    display_by_index(node_0, 0);
+    read_at_index(node_0, 0);
 
     return 0; 
 }
