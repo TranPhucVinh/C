@@ -1,4 +1,4 @@
-### read()
+# read()
 
 ```c
 ssize_t read(int fd, void *buf, size_t count);
@@ -6,7 +6,7 @@ ssize_t read(int fd, void *buf, size_t count);
 
 Read up to ``count`` bytes from file descriptor ``fd`` into the buffer``buf``. ``read()`` returns the number of bytes actually read. If no further bytes could be read (i.e., end-of-file was encountered), ``read()`` returns 0.
 
-### write()
+# write()
 
 Writes up to ``count`` bytes from the buffer starting at ``buf`` to the file referred to by the file descriptor ``fd``.
 
@@ -38,14 +38,14 @@ To append to write with ``O_APPEND``:
 fd = open("test.md", O_WRONLY | O_APPEND);//Flag O_APPEND must OR with O_WRONLY. If using only O_APPEND, file can't be written
 ```
 
-### close()
+# close()
 
 Close a file descriptor, so that it no longer refers to any file and may be reused. 
 
 ```c
 int close(int fd);
 ```
-### unlink()
+# unlink()
 
 Deletes a name (with ``pathname``) from the filesystem
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-### lseek()
+# lseek()
 
 ```c
 off_t lseek(int fildes, off_t offset, int whence);
@@ -80,7 +80,12 @@ Reposition read/write file ``offset``
 
 **Return**: Upon successful completion, ``lseek()`` returns the resulting offset location as measured in bytes from the beginning of the file. On error, the value (``off_t``) -1 is returned and ``errno`` is set to indicate the error.
 
-### pread() and pwrite()
+Implementations of ``whence``:
+* ``SEEK_SET``: [Read a file from a specific index](File%20operations.md#open-a-file-to-read)
+* ``SEEK_END``: [Read the whole file into a char pointer without knowing its type (char *read_file(char *filename))](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/basic_file_operations.c)
+
+
+# pread() and pwrite()
 
 ``pread()``: Returns number of bytes read, 0 on EOF, or –1 on error
 
@@ -95,7 +100,7 @@ ssize_t pwrite(int fd , const void * buf , size_t count , off_t offset );
 
 As ``pread()`` and ``pwrite()`` work with ``lseek()``, they doesn't operate with ``/dev/tty``.
 
-### truncate() and ftruncate()
+# truncate() and ftruncate()
 
 The ``truncate()`` and ``ftruncate()`` system calls set the size of a file to the value specified by length.
 
@@ -106,7 +111,7 @@ int ftruncate(int fd , off_t length );
 
 If the file is longer than ``length``, the excess data is lost. If the file is currently shorter than length, it is extended by padding with a sequence of null bytes or a hole.
 
-### dup() and dup2()
+# dup() and dup2()
 
 The ``dup()`` system call creates a copy of a file descriptor.
 
