@@ -73,11 +73,16 @@ int main()
 
     fd = open("/dev/fops_character_device", O_RDONLY);
     int offset = lseek(fd, 3, SEEK_SET);
-    printf("offset %d\n", offset);//10
+    printf("offset %d\n", offset);//3
     if (offset > 0){
         read(fd, buffer, 100);
         printf("%s\n", buffer);
     }
     return 0; 
 }
+```
+For ``index=3`` like above, the result will be:
+
+```
+4567890111213Hello, World !
 ```
