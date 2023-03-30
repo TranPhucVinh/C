@@ -77,6 +77,26 @@ int main()
     return 0; 
 }
 ```
+Implement ``read_at_index()`` by recursive:
+
+```c
+int read_at_index(struct database_node *first_node, int index){
+    struct database_node *ptr = first_node;
+    static int _index = 0;
+
+    if (first_node == NULL) {
+        printf("There is no index %d in linked list\n", index);
+        return 0;
+    }
+    if (_index == index) {
+        printf("index: %d, (%d,%d)", index, ptr->id, ptr->value);
+        return 1;
+    }
+    _index += 1;    
+    return read_at_index(ptr->next_node, index);
+}
+```
+
 ## Size of a linked list
 
 Size of the linked list can only be gotten by traversing the whole list.
