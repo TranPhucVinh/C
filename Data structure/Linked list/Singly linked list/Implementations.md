@@ -37,7 +37,7 @@ Check [create_and_read_linked_list.c](create_and_read_linked_list.c) source code
 
 ## Read a node at specific index
 
-Function ``display_by_index()``
+Function ``read_at_index()``
 
 ```c
 //Other operations like in create_and_read_linked_list.c
