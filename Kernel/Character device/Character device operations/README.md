@@ -14,6 +14,10 @@ ioctl system call to character device includes:
 * [Basic implementation with cmd and arg](ioctl#implementation)
 * [ioctl macro](ioctl#ioctl-macro)
 
+# [llseek](llseek.md)
+
+``llseek()`` of ``struct file_operations`` will handle the ``lseek()`` system call from the userspace application to the kernel device.
+
 # [poll](Poll)
 
 poll file operation with character device includes:

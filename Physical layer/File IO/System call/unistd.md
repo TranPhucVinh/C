@@ -84,7 +84,6 @@ Implementations of ``whence``:
 * ``SEEK_SET``: [Read a file from a specific index](File%20operations.md#open-a-file-to-read)
 * ``SEEK_END``: [Read the whole file into a char pointer without knowing its type (char *read_file(char *filename))](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/basic_file_operations.c)
 
-
 # pread() and pwrite()
 
 ``pread()``: Returns number of bytes read, 0 on EOF, or –1 on error
