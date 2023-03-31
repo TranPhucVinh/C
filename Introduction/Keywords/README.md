@@ -35,25 +35,23 @@ int main(int argc, char *argv[]) {
 
 ## const as function definition
 
-```c
-const int func(){
-	return 1;
-}
-
-int main () {
-    printf("%d\n", func());//1
-}
-```
-
-Using ``const`` in function doesn't effect its definition. In this case, ``func`` return ``a+b`` (as a variable) while it is defined as ``const``.
+Using ``const`` in function doesn't effect its definition:
 
 ```c
-const int func(int a, int b){
-	return a+b;
+#include <stdio.h> 
+
+const int function(int a){
+    a += 1;
+    return a;
 }
 
-int main () {
-    printf("%d\n", func(4, 5));//9
+int main() 
+{ 
+    int b = function(123);
+    printf("%d\n", b);
+    b += 19;
+    printf("%d\n", b);
+    return 0; 
 }
 ```
 
