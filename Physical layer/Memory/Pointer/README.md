@@ -16,6 +16,8 @@ Fundamental concepts of pointer includes:
 * [Pointer to pointer]() or double pointer
 * [Function pointer](Function%20pointer.md)
 
+Comparing the different between pointer and reference is only available in [CPP](https://github.com/TranPhucVinh/Cplusplus) as CPP support [lvalue](https://github.com/TranPhucVinh/Cplusplus/blob/master/Physical%20layer/Memory/lvalue.md) and [rvalue reference](https://github.com/TranPhucVinh/Cplusplus/blob/master/Physical%20layer/Memory/rvalue.md).
+
 # Declare pointer
 
 ```c
