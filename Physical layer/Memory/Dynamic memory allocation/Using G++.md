@@ -1,6 +1,6 @@
 ``new`` and ``delete`` keywords are only available in ``G++`` and is not available in ``GCC``.
 
-### new
+# new
 
 ```c
 #include <stdio.h>
@@ -24,7 +24,7 @@ int_number = new int;
 *int_number = 23;
 ```
 
-### delete
+# delete
 
 ```c
 int *int_number = new int;
