@@ -9,114 +9,19 @@ A pointer is a variable that stores address of other variable. All the pointer s
 * ``&``: get the address of the variable
 * ``%p``: is used to print out the address as it can print out the hex value.
 
+# [Fundamental concepts](Fundamental%20concepts.md)
+
 Fundamental concepts of pointer includes:
 
-* [Declare pointer](#declare-pointer)
+* [Declare pointer](Fundamental%20concepts.md#declare-pointer):
+* [Size of the pointer variable](Fundamental%20concepts.md#)
+* [Get value of pointer](Fundamental%20concepts.md#)
+* [Set value for pointer](Fundamental%20concepts.md#)
 * [Pointer and array](Pointer%20and%20Array.md)
 * [Pointer to pointer]() or double pointer
 * [Function pointer](Function%20pointer.md)
 
 Comparing the different between pointer and reference is only available in [CPP](https://github.com/TranPhucVinh/Cplusplus) as CPP support [lvalue](https://github.com/TranPhucVinh/Cplusplus/blob/master/Physical%20layer/Memory/lvalue.md) and [rvalue reference](https://github.com/TranPhucVinh/Cplusplus/blob/master/Physical%20layer/Memory/rvalue.md).
-
-# Declare pointer
-
-```c
-int *intPointer; //pointer to integer
-``` 
-
-Or it can be
-
-```c
-int* intPointer;
-```
-
-```c
-char *p0; //pointer to character
-double *p1; // pointer to double
-```
-
-**Address of function**
-
-```c
-void displayString(){
-	printf("Hello, World !\n");
-}
-
-int main(int argc, char *argv[]) {
-	printf("%d\n", displayString);//Has same value with  &displayString
-	printf("%d\n", &displayString);//Has same value with displayString
-}	
-```
-
-## Size of the pointer variable.
-
-To get size of the pointer variable, use ``sizeof()``. Size of the pointer variable doesn't depend on its type as it stores the address of other variable and address of a variable has ``int`` type. So size of a pointer variable is ``int``.
-
-In 64-bit computer
-
-```c
-int a;
-sizeof(&a); //8
-```
-
-```c
-char *test = "1";
-printf("%d", sizeof(test)); //8
-```
-
-## Get value of pointer
-
-```c
-int *p;
-int a = 9;
-p = &a; //variable p now stores the address of variable a
-int *pointer = &a; //variable pointer now stores the address of variable a
-printf("pointer value %p \n", p); //0x601030
-printf("address value of variable a %p \n", &a); //0x601030
-printf("address of pointer variable %p \n", &p); //0x601048
-printf("Value of variable pointer %p \n", pointer); //0x601030
-printf("variable value %d \n", *p); //9
-printf("*& value is %d \n", *&a); //9
-printf("Value *pointer is %d \n", *pointer); //9
-```
-
-**Note**: ``*&a`` is ``a``.
-
-## Set value with pointer
-
-Set value for a variable by pointer:
-
-```c
-int number;
-int *pointer = &number;
-*pointer = 190;
-printf("number: %d\n", number);//190
-```
-
-Set value at specific register address:
-
-E.g: Set value at register address ``6295624``
-
-```c
-#include <stdio.h>
-
-int *ptr;
-
-int main() 
-{
-	ptr = (int *)6295624; 
-	*ptr = 12;
-	printf("*ptr: %d", *ptr);//12
-	return 0;
-}
-```
-
-**Note**: The compiler for that program to work properly is a pure ANSI compiler. For GCC, register address can't be set abritrarily. To work with the program above with the address like ``6295624``, the address ``6295624`` must be the GCC allowable address. User must find the allowable address first with ``&`` for a dummy variable. E.g:
-
-```c
-int dummy_variable;
-printf("%d", &pdummy_variable);//print out the address of dummy_variable first to find the allowable address
-```
 
 # Implementation
 
