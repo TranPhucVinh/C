@@ -16,7 +16,7 @@ Fundamental concepts of pointer includes:
 * [Declare pointer](Fundamental%20concepts.md#declare-pointer):
 * [Size of the pointer variable](Fundamental%20concepts.md#)
 * [Get value of pointer](Fundamental%20concepts.md#)
-* [Set value for pointer](Fundamental%20concepts.md#)
+* [Set value for pointer](Fundamental%20concepts.md#): [Must not directly set value for a pointer deferencing (i.e *pointer)]() and [must not arbitrarily set value at specific register address]()
 * [Pointer and array](Pointer%20and%20Array.md)
 * [Pointer to pointer]() or double pointer
 * [Function pointer](Function%20pointer.md)

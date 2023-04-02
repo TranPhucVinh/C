@@ -73,7 +73,16 @@ int *pointer = &number;
 printf("number: %d\n", number);//190
 ```
 
-# Must not arbitrarily set value at specific register address
+## Must not directly set value for a pointer deferencing (i.e *pointer)
+
+Based on pointer concept, a pointer store value of another variable so directly setting the value for its deferencing is a useless act and result in **Segmentation fault**
+ 
+```c
+//Must not do this as it result in segmentation fault
+int *p = 9;//Segmentation fault
+```
+
+## Must not arbitrarily set value at specific register address
 
 E.g: Set value at register address ``6295624``
 
