@@ -30,7 +30,7 @@ Comparing the different between pointer and reference is only available in [CPP]
 # [Types of pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md)
 
 Types of pointer:
-* Wild pointer
+* [Wild pointer](Types%20of%20pointer.md#wild-pointer), [dangling pointer](Dangling%20pointer.md)
 * [pointer to const](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#pointer-to-const) vs [const pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#const-pointer)
 * [NULL pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Types%20of%20pointer.md#null-pointer)
 * [Void pointer](Void%20pointer.md)
