@@ -118,7 +118,7 @@ void delaySeconds(long seconds){
 
 # Read RTC time of /dev/rtc
 
-Read RTC time of ``/dev/rtc`` (notice that hour in RTC time is different from local time)
+Read RTC time of ``/dev/rtc`` in GMT+7 time zone. For GMT+7, ``tm_hour`` of ``struct rtc_time`` need to add ``+7``.
 
 ```c
 #include <stdio.h>
@@ -130,6 +130,8 @@ Read RTC time of ``/dev/rtc`` (notice that hour in RTC time is different from lo
 
 #define RTC_DEV    "/dev/rtc"
 
+#define GMT07   7 //GMT+7
+
 int rtc;
 struct rtc_time rtc_read_time;
 
@@ -139,9 +141,21 @@ int main(int argc, char *argv[]) {
 		if (ioctl(rtc, RTC_RD_TIME, &rtc_read_time) == -1) {
             printf("Fail to open %s\n", RTC_DEV);
         } else {
-            printf("Current date is %d:%d:%d\n", rtc_read_time.tm_mday, rtc_read_time.tm_mon, rtc_read_time.tm_year);
-            printf("Current time is %d:%d:%d\n", rtc_read_time.tm_hour, rtc_read_time.tm_min, rtc_read_time.tm_sec);
+            printf("Raw read date is %d:%d:%d\n", rtc_read_time.tm_mday, rtc_read_time.tm_mon, rtc_read_time.tm_year);
+            printf("Raw read time is %d:%d:%d\n", rtc_read_time.tm_hour, rtc_read_time.tm_min, rtc_read_time.tm_sec);
+
+            printf("Current date is %d:%d:%d\n", rtc_read_time.tm_mday, rtc_read_time.tm_mon+1, rtc_read_time.tm_year + 1900);
+            printf("Current time is %d:%d:%d\n", rtc_read_time.tm_hour + GMT07, rtc_read_time.tm_min, rtc_read_time.tm_sec);
         }
 	}
-}	
+}		
+```
+**Result**
+
+```
+Raw read date is 8:3:123
+Raw read time is 6:5:36
+
+Current date is 8:4:2023 //April 8th 2023
+Current time is 13:5:36 // 01:05:36 PM
 ```
