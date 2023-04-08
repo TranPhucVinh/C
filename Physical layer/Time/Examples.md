@@ -139,4 +139,4 @@ Set date and time to April 23 2022, 00:01:01 AM
 
 **Program**: [write_rtc_time.c](write_rtc_time.c)
 
-**Result**: If setting successfully, check the time and date by [hwclock command](). Restart PC for the RTC time to get back to their realtime date
+**Result**: If setting successfully, check the time and date by [hwclock command](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Time.md#hwclock). Restart PC for the RTC time to get back to their realtime date.

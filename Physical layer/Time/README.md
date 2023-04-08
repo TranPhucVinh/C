@@ -104,3 +104,9 @@ struct rtc_time {
 # Examples
 
 * [Get current time with time()](Examples.md#get-current-time-with-time)
+* [Get day, month and year with localtime()]()
+* [Get total second with clock()]()
+* [Get current time of day in Unix-alike system]()
+* [Overflow Epoch times (Y2K38)]()
+* [Delay for a number of seconds]()
+* [Read and write RTC time of /dev/rtc](): [Read RTC time]() and [write RTC time]()
