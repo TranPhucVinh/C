@@ -99,7 +99,7 @@ error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
 
 Then do optimization in the above program: ``gcc -O test.c`` (same for ``-O1``, ``-O2``, ``-O3``), the warning and result still be like compiling with ``gcc test.c``. Notice that those compilation process are executed on Ubuntu 16.04.
 
-**Problem solved**: Use ``(int*)`` and ``volatile``
+**Problem solved**: Use ``(int*)`` and [volatile](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/volatile.md)
 
 ```c
 volatile const int value = 32;
