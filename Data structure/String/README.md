@@ -145,4 +145,4 @@ int tolower(int argument);
 
 * [Remove garbage value of a string](String%20remove%20examples.md#remove-garbage-value-of-a-string)
 * [Remove a specific character from a string](String%20remove%20examples.md#remove-a-specific-character-from-a-string), [remove the first character from a string](String%20remove%20examples.md#remove-the-first-character-from-a-string)
-
+* [Remove a character from a string with specified index](String%20remove%20examples.md#remove-a-character-from-a-string-with-specified-index)
