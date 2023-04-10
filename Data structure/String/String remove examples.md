@@ -1,4 +1,4 @@
-## Remove garbage value of a string
+# Remove garbage value of a string
 
 Using ``memset()``
 
@@ -17,7 +17,7 @@ bzero(displayedString, sizeof(displayedString));
 printf("%s\n", displayedString); //Print NULl string
 ```
 
-## Remove a specific character from a string
+# Remove a specific character from a string
 
 ```cpp
 #include <stdio.h>
@@ -50,7 +50,7 @@ Before parse: Hello, World
 After parse: Heo, Word 
 ```
 
-### Remove the first character from a string
+## Remove the first character from a string
 
 ```c
 #include <stdio.h>
@@ -71,9 +71,7 @@ void firstCharRemove(char stringChar[500]){
 }
 ```
 
-## Remove a specific index character from a string
-
-### Remove a specific index character from a string
+# Remove a character from a string with specified index 
 
 ```c
 #include <stdio.h>
@@ -138,7 +136,7 @@ This will result in ``Segmentation fault (core dumped)``.
 
 See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for declaring with a string pointer in Arduino framework.
 
-### Remove a specific index character from executed argument
+## Index specified by executed argument
 
 * argv[1]: Index to remove character
 * argv[2]: String to process
