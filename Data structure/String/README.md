@@ -8,7 +8,7 @@
 
 # API
 
-## [String copy functions](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20copy%20functions.md)
+## [String copy functions](String%20copy%20functions.md)
 
 * [sprintf()](String%20copy%20functions.md#sprintf)
 * [snprintf()](String%20copy%20functions.md#snprintf)
@@ -17,15 +17,14 @@
 * [strdup()](String%20copy%20functions.md#strdup)
 * [bcopy()](String%20copy%20functions.md#bcopy)
 
-## [String append functions](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20append%20functions.md)
+## [String append functions](String%20append%20functions.md)
 
-* [strtok()]()
-* strol()
-* strtoul()
-* strstr()
 * [atoi()](#atoi)
-* itoa()
-* strrev()
+* [itoa()](#itoa)
+* [strrev()](#strrev)
+* [strcat()](#String%20append%20functions.md#strcat), [strncat()](String%20append%20functions.md#strncat)
+* [Dynamically append a char pointer as string](String%20append%20functions.md#dynamically-append-a-char-pointer-as-string) by [malloc()](../../Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#malloc)
+
 
 ### atoi()
 
@@ -73,7 +72,6 @@ char *itoa ( int value, char * str, int base );
 ``strrev()`` is used to reverse a string and works only with older versions of Microsoft C.
 
 To reverse a string with raw string API: [Reverse string example](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/String/String%20parsing%20examples.md#example-4)
-
 
 ## String parsing functions
 
@@ -128,7 +126,7 @@ char number = strtoul("128", NULL, 10);   //-128
 char *strstr (const char *s1, const char *s2);
 ```
 
-Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null pointer if ``str2`` is not part of ``str1``.
+Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null pointer if ``str2`` is not part of ``str1``. Check [strstr() example](strstr()%20examples.md) for its implementation.
 
 ### tolower()
 
