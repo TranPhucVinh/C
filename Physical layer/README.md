@@ -2,8 +2,8 @@
 
 # [Embedded command](Embedded%20command.md)
 
-* system()
-* popen() and pclose()
+* [system()](Embedded%20command.md#system)
+* [popen() and pclose()](Embedded%20command.md#popen-and-pclose)
 
 # Environment API
 
