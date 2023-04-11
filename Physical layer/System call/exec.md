@@ -1,5 +1,5 @@
-These ``exec`` system call are basically used to run a system command in a separate process
-
+The ``exec`` system call are basically used to run a system command in a separate process
+# execl()
 ```c
 int execl(const char *path, const char *arg, ..., NULL);
 ```
@@ -14,7 +14,7 @@ int main()  {
 	execl("/bin/ping", "/bin/ping", "google.com", NULL);
 }
 ```
-
+# execlp()
 ```c
 int execlp(const char *file, const char *arg, ..., NULL );
 ```
@@ -24,7 +24,7 @@ E.g:
 ```c
 execlp("ping", "ping", "google.com", NULL);
 ```
-
+# execv()
 ```c
 int execv(const char *path, char *const argv[]);
 ```
@@ -35,7 +35,7 @@ int execv(const char *path, char *const argv[]);
 char *command_array[] = {"/bin/ping", "google.com", NULL};
 execv("/bin/ping", command_array);
 ```
-
+# execvp()
 ```c
 int execvp(const char *file, char *const argv[]);
 ```
