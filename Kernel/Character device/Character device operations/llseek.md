@@ -33,7 +33,7 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	int bytes_response = copy_to_user(buf, responsed_string + *offset, sizeof(responsed_string) - *offset);
 	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
 	else printk("%d bytes could not be send\n", bytes_response);
-	return sizeof(responsed_string);
+	return sizeof(responsed_string) - *offset;
 }
 
 loff_t dev_llseek(struct file *filep, loff_t offset, int whence){
