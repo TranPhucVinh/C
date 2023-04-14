@@ -4,7 +4,7 @@ The ``loff_t *offset`` arguments of all ``dev_read()``, ``dev_write()``, and ``d
 
 With ``lseek()`` system call from userspace, we can modify the value of the ``loff_t *offset`` argument of ``dev_llseek()`` so that this argument will take effect in the ``dev_write()`` and ``dev_read()``.
 
-# Examples
+# Implement llseek()
 
 ## Features
 
@@ -85,4 +85,36 @@ For ``index=3`` like above, the result will be:
 
 ```
 4567890111213Hello, World !
+```
+# nonseekable_open()
+
+To inform the kernel that the character device file is not allow seekable (i.e lseek() system call is not allowed), add ``nonseekable_open()`` to ``struct file_operations open``.
+
+```c
+int dev_open(struct inode *inodep, struct file *filep)
+{
+  printk("open\n");
+	return nonseekable_open(inodep, filep);
+}
+```
+From user space process with ``lseek()`` system call like this ``int offset = lseek(fd, 3, SEEK_SET)``, ``offset`` will be ``-1``.
+
+After adding ``nonseekable_open(inodep, filep)``, it's better to add built-in function ``no_llseek`` to ``struct file_operations .llseek``
+
+```c
+struct file_operations fops = {
+	.open = dev_open,
+	.release = dev_close,
+	.read = dev_read,
+	.write = dev_write,
+	.llseek = no_llseek, //Don't add definition for no_llseek in character_device program as it's a built-in function defined in linux/fs.h
+};
+```
+Definition in ``linux/fs.h``:
+
+```c
+loff_t no_llseek(struct file *file, loff_t offset, int whence)
+{
+	return -ESPIPE;
+}
 ```
