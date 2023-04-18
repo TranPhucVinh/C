@@ -120,7 +120,7 @@ int main () {
 }
 ```
 
-# (Recursive function)[Recursive%20function.md]
+# [Recursive function](Recursive%20function.md)
 * [Use recursive to calculate the sum from 1 to n]()
 * [Logarit can only be calculated by recursive]()
 * [Hanoi tower]()
