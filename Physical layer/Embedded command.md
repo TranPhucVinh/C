@@ -4,10 +4,14 @@ Run embedded Unix or Windows commands in ``C`` source code
 
 ```c
 #include <stdlib.h>
-
-main() {
-	system("ls"); //Run ls command
-}
+int system(const char *command);
+```
+**Return**
+* ``-1``: Error
+* Status number of command when sucess
+**Example**:
+```c
+system("ls"); //Run ls command
 ```
 
 On Windows, the ``a.exe`` of this file will run normally in Git Bash and will result in error ``command not found`` in Command Prompt.
