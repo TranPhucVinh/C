@@ -1,23 +1,4 @@
-# system()
-
-Run embedded Unix or Windows commands in ``C`` source code
-
-```c
-#include <stdlib.h>
-int system(const char *command);
-```
-**Return**
-* ``-1``: Error
-* Status number of command when sucess
-**Example**:
-```c
-system("ls"); //Run ls command
-```
-
-On Windows, the ``a.exe`` of this file will run normally in Git Bash and will result in error ``command not found`` in Command Prompt.
-
-``system("dir");`` will run properly in Command prompt.
-## Use system() to start a process which includes a while(1) loop in the background
+# Use system() to start a process which includes a while(1) loop in the background
 Process ``child_process`` include a ``while(1)`` loop which we want to start it inside ``parent_process`` but still want ``parent_process`` to keep running without stucking inside the ``while(1)`` loop of ``child_process``. The solution for that is to use ``&``  command to run a process in the background.
 
 ``child_process``
@@ -64,7 +45,7 @@ Child process
 ...
 ```
 After killing/stopping ``a.out``, ``child_process`` still runs in the background.
-## Kill the infinite background process by signal
+# Kill the infinite background process by signal
 To kill child process when killing ``a.out``, use [signal](Signal) with ``SIGINT`` to catch ``Ctr+C`` in ``child_process``, ``SIGKILL`` to kill ``child_process``
 ``parent_process``
 ```c
@@ -115,7 +96,7 @@ int main(){
     }
 }
 ```
-## Kill the infinite background process by functions inside in the parent process
+# Kill the infinite background process by functions inside in the parent process
 Run child process which has while(1) loop in the background and kill it in parent process function:
 ```cpp
 #include <iostream>
@@ -154,45 +135,4 @@ void killProcess(int pid){
 	if (!kill(pid, SIGKILL)) printf("Kill process with PID %d successfully\n", pid);
 	else printf("Fail to kill process with PID %d\n", pid);
 }
-```
-# popen() and pclose()
-
-The ``popen()`` function opens a process by creating a pipe, forking, and invoking the shell.
-
-```c
-FILE *popen(const char *command, const char *type);
-```
-
-The ``command`` argument is a pointer to a null-terminated string containing a shell command line.  This command is passed to ``/bin/sh``, then interpretation, and finally is performed by the shell.
-
-``pclose()`` will close the pipe opened by ``popen()``.
-
-```c
-int pclose(FILE *stream);
-``` 
-
-``ls`` command
-
-```c
-#include <stdio.h>
-
-#define ELEMENT_NUMBERS 1
-#define BUFFER_SIZE 100
-
-char buffer[BUFFER_SIZE];
-
-
-int main(){
-    FILE* pipe = popen("ls", "r");
-    fread(buffer, BUFFER_SIZE, ELEMENT_NUMBERS, pipe);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
-    printf("%s\n", buffer);
-    pclose(pipe);
-}
-```
-
-``rm`` command:
-
-```c
-FILE* pipe = popen("rm a.out", "r");
-pclose(pipe);
 ```
