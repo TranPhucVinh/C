@@ -1,4 +1,4 @@
-## One thread function handler to increase a share value
+# One thread function handler to increase a share value
 
 ```c
 #include <stdio.h>
@@ -35,7 +35,7 @@ With ``RANGE`` is less than ``10000``, that data race issue doesn't happen, as t
 * [Using mutex](Mutex.md)
 * [Using semaphore](Semaphore.md)
 
-## One thread function handler to increase and decrease a shared value
+# One thread function handler to increase and decrease a shared value
 
 In this case, we expect the shared value to be ``0``
 
@@ -106,7 +106,7 @@ share_value -450
 share_value 91
 ```
 
-## Accessing a shared variable between 2 thread function handlers
+# Accessing a shared variable between 2 thread function handlers
 
 Thread issue:
 
@@ -202,4 +202,4 @@ void *func_thread_2(void *ptr){
 }
 ```
 
-That issue can be solved by [using semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#accessing-a-shared-variable-between-2-thread-function-handlers-issue).
+That issue can be solved by [using semaphore](Semaphore.md#accessing-a-shared-variable-between-2-thread-function-handlers-issue).
