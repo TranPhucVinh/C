@@ -64,7 +64,7 @@ Child process
 ...
 ```
 After killing/stopping ``a.out``, ``child_process`` still runs in the background.
-
+## Kill the infinite background process by signal
 To kill child process when killing ``a.out``, use [signal](Signal) with ``SIGINT`` to catch ``Ctr+C`` in ``child_process``, ``SIGKILL`` to kill ``child_process``
 ``parent_process``
 ```c
@@ -113,6 +113,46 @@ int main(){
     while(1){
         sleep(1);
     }
+}
+```
+## Kill the infinite background process by functions inside in the parent process
+Run child process which has while(1) loop in the background and kill it in parent process function:
+```cpp
+#include <iostream>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <csignal>
+
+#define PROCESS_NAME    "head"
+
+int startProcess(const char* process_name);
+void killProcess(int pid);
+
+int main(){
+	int pid = startProcess(PROCESS_NAME);
+	printf("%d\n", pid);
+	sleep(5);
+	killProcess(pid);
+}
+
+int startProcess(const char* process_name){
+    std::string start_process;
+	int pid;
+	start_process = "./" + std::string(process_name) + "& echo $! > txt.pid";
+    if (system(start_process.c_str()) == -1) printf("Fail to start process in the background\n");
+    else {
+        char buffer[10];
+        int fd = open("txt.pid", O_RDONLY);
+        read(fd, buffer, 10);
+        pid = strtol(buffer, NULL, 10);
+    }
+	return pid;
+}
+
+void killProcess(int pid){
+	if (!kill(pid, SIGKILL)) printf("Kill process with PID %d successfully\n", pid);
+	else printf("Fail to kill process with PID %d\n", pid);
 }
 ```
 # popen() and pclose()
