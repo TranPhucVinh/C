@@ -95,6 +95,8 @@ A sequence of calls to this function split ``str`` into tokens, which are sequen
 
 ### strtol()
 
+strtol() will [split number and character from a string](String%20parsing%20functions.md#strtol-split-number-and-character-from-a-string)
+
 ```c
 #include <stdlib.h>
 long int strtol(const char *str, char **endptr, int base)
