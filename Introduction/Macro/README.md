@@ -1,4 +1,4 @@
-## Introduction 
+# Introduction 
 
 ````c
 #define a 		6
@@ -20,14 +20,27 @@ Using ``\`` to add a new line when define macro
 
 printf("%lf", PI);
 ```
+## Macro to get OS type
+```
+#include <stdio.h>
+
+int main()
+{
+    #ifdef __linux__ 
+        printf("Linux\n");
+    #elif _WIN64
+        printf("Windows 64\n");
+    #endif
+}
+```
 
 **Can't get address of macros by &**
 
 Macros are never allocated a memory. Before the code is compiled, the compiler does a text search in the file and replace all Macros with their value.
 
-## Define variables by macro
+# Define variables by macro
 
-### Define normal variable with macro
+## Define normal variable with macro
 
 Define an int variable with a macro function
 
@@ -42,7 +55,7 @@ int main()
 }
 ```
 
-### Define pointer variable with macro
+## Define pointer variable with macro
 
 ```c
 #include <stdio.h>
@@ -57,7 +70,7 @@ int main()
 }
 ```
 
-## Macro defines a block of operation
+# Macro defines a block of operation
 
 **Use a variable inside macro before it is defined**
 
@@ -97,15 +110,15 @@ int main(){
 }
 ```
 
-## Macro function
+# Macro function
 
 For implementation of macro function, check [macro function document](Macro%20function.md).
 
-## Condition in macro
+# Condition in macro
 
 For conditional check like ``#ifdef``, ``#undef``,... check [Condition in macro document](Condition%20in%20macro.md)
 
-## Stringizing operator (#)
+# Stringizing operator (#)
 
 The # operator turns the argument it precedes into a quoted string. 
 
