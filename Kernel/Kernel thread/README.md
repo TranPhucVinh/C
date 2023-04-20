@@ -8,6 +8,10 @@ Kernel threads have emerged from the need to run kernel code in process context.
 * [One thread function handler to increase and decrease a shared value](Race%20condition.md#one-thread-function-handler-to-increase-and-decrease-a-shared-value)
 * [Accessing a shared variable between 2 thread function handlers](Race%20condition.md#accessing-a-shared-variable-between-2-thread-function-handlers)
 
+# [Mutex](Mutex.md)
+* [Mutex for character device](Mutex.md#mutex-for-character-device)
+* [Mutex for kernel thread race condition](Mutex.md#mutex-for-kernel-thread-race-condition)
+
 # API
 
 ## kthread_create()
