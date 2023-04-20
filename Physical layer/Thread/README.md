@@ -75,25 +75,20 @@ We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is 
 * [Get the parameter of the thread by passing a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#get-the-parameter-of-the-thread-by-passing-a-variable)
 * [Get return from threads and store to a variable in single thread and multiple threads](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#get-return-from-threads-and-store-to-a-variable)
 * [Enter value for struct member using thread](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#enter-value-for-struct-member-using-thread)
+* Using global variable to share values between 2 threads: [share_global_variables_between_2_threads.c](share_global_variables_between_2_threads.c)
 
-## Inter-task communication
-
-### Sharing variables between threads
-
-* [Using global variable to share values between 2 threads](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Inter-task%20communication.md#using-global-variable-to-share-values-between-2-threads)
-
-### Race condition
+# [Race condition](Race%20condition)
 
 A race condition is a situation where the result produced by two processes (or threads) operating on shared resources depends in an unexpected way on the relative order in which the processes gain access to the CPU(s).
 
 When 2 threads trying to access a resource, data race might be happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times).
 
-[Race condition document](Race%20condition.md) includes:
-* [One thread function handler to increase a share value](Race%20condition.md#one-thread-function-handler-to-increase-a-share-value)
-* [One thread function handler to increase and decrease a shared value](Race%20condition.md#one-thread-function-handler-to-increase-and-decrease-a-shared-value)
-* [Accessing a shared variable between 2 thread function handlers](Race%20condition.md#accessing-a-shared-variable-between-2-thread-function-handlers)
-* [Semaphore](Semaphore.md)
-* [Mutex](Mutex.md)
+[Race condition document](Race%20condition) includes:
+* [One thread function handler to increase a share value](Race%20condition/README.md#one-thread-function-handler-to-increase-a-share-value)
+* [One thread function handler to increase and decrease a shared value](Race%20condition/README.md#one-thread-function-handler-to-increase-and-decrease-a-shared-value)
+* [Accessing a shared variable between 2 thread function handlers](Race%20condition/README.md#accessing-a-shared-variable-between-2-thread-function-handlers)
+* [Semaphore](Race%20condition/Semaphore.md)
+* [Mutex](Race%20condition/Mutex.md)
 
 # [API](API.md)
 * [pthread_create()](API.md#pthread_create)

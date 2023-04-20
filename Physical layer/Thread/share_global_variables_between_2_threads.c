@@ -1,6 +1,3 @@
-# Using global variable to share values between 2 threads
-
-```c
 #include <stdio.h>
 #include <pthread.h>
 
@@ -29,9 +26,3 @@ void *start_routine_thread_1(void *ptr){
 void *start_routine_thread_2(void *ptr){
 	printf("Value a in thread 2 is: %d\n", a);
 }
-```
-**Result**
-```
-Value a in thread 2 is: 10
-Value a in thread 1 is: 10
-```
