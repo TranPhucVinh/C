@@ -1,12 +1,11 @@
-## One thread function handler to increase a share value issue
-
+# One thread function handler to increase a share value issue
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value) with mutex, even with multiple threads, not just 2 tasks:
-
+## Use pthread_mutex_lock()
 ```c
 #include <stdio.h>
 #include <pthread.h>
 
-#define RANGE 10000
+#define RANGE 3000000
 
 int share_value;
 
@@ -26,7 +25,7 @@ int main()
 	pthread_join(thread_1, NULL);
     pthread_join(thread_2, NULL);
     pthread_join(thread_3, NULL);
-    printf("share_value after executing 2 threads: %d\n", share_value);//30000
+    printf("share_value after executing 2 threads: %d\n", share_value);//9000000
 	pthread_mutex_destroy(&lock);
 }
 
@@ -39,8 +38,8 @@ void *thread_function(void *ptr){
    }   
 }
 ```
-
-### Using pthread_mutex_trylock
+**Result**: ``share_value after executing 2 threads: 9000000``
+## Using pthread_mutex_trylock()
 
 With ``pthread_mutex_trylock()``, if fails to lock the mutex, the thread will handle other task
 
@@ -76,11 +75,9 @@ Didn't get lock in Thread 1, 117
 share_value after executing 2 threads: 29753
 ```
 
-## Examples
+# Using a simple boolean variable as a mutex key to implement with 2 tasks
 
-### Example 1
-
-**Using a simple boolean variable as a mutex key to implement with 2 tasks**: Finish executing task 1 to print out ``Hello, World !`` 20 times with 1 second delay then execute task 2 to print out count up number from 1 to 20 with 1 second delay.
+Finish executing task 1 to print out ``Hello, World !`` 20 times with 1 second delay then execute task 2 to print out count up number from 1 to 20 with 1 second delay.
 
 ```c
 #include <stdio.h>
@@ -126,11 +123,7 @@ void *func_thread_2(void *ptr){
     mutex = 0;
 }
 ```
-
-### Example 2
-
-Using mutex to lock the variable
-
+# Using mutex to lock the variable
 ```c
 #include <stdio.h>
 #include <sys/time.h>
