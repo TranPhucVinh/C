@@ -41,3 +41,12 @@ The ``pthread_self()`` function **returns the ID of the calling thread**. This i
 # pthread_mutex_trylock()
 
 ``pthread_mutex_trylock()`` will check if the mutex is available for locking and return immediately without waiting. Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#using-pthread_mutex_trylock).
+# pthread_cond_init()
+```c
+int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);
+```
+The function ``pthread_cond_init()`` initialises the condition variable referenced by ``cond`` with attributes referenced by ``attr``. If ``attr`` is ``NULL``, the default condition variable attributes are used.
+# pthread_cond_destroy()
+```c
+int pthread_cond_destroy(pthread_cond_t *cond);
+```

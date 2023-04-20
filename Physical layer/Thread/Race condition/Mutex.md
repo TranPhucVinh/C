@@ -84,3 +84,71 @@ Program: [simple_boolean_variable_as_mutex.c](simple_boolean_variable_as_mutex.c
 # Using mutex to lock the variable
 
 Instead of using a boolean variable [like above](#using-a-simple-boolean-variable-as-a-mutex-key-to-implement-with-2-tasks), mutex can be used as the lock between 2 threads: [mutex_to_lock_the_variables.c](mutex_to_lock_the_variables.c)
+
+# Condition variable
+
+pthread condition variable is used in multithread which have already involved mutex
+
+In this example, after increasing the ``share_value`` to its ``RANGE``, thread 1 will set ``thread_2_run`` to allow thread 2 to run. Thread 2 will wait for ``thread_2_run`` then increases the ``share_value`` to ``RANGE``. This example is quite similar to [One thread function handler to increase a share value issue
+](), except it has the flag ``thread_2_run`` to block thread 2 from running.
+
+```cpp
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
+
+#define RANGE 3000000
+
+int share_value;
+
+void *thread_func_1(void *ptr);
+void *thread_func_2(void *ptr);
+int thread_2_run = 0;
+
+pthread_mutex_t lock;
+
+int main()
+{  
+	pthread_mutex_init(&lock, NULL);
+	pthread_t thread_1, thread_2;
+	int thread_1_return, thread_2_return;
+
+	thread_1_return = pthread_create(&thread_1, NULL, thread_func_1, "Thread 1");
+    thread_2_return = pthread_create(&thread_2, NULL, thread_func_2, "Thread 2");
+	pthread_join(thread_1, NULL);
+    pthread_join(thread_2, NULL);
+    printf("share_value after executing 2 threads: %d\n", share_value);
+	pthread_mutex_destroy(&lock);
+}
+
+void *thread_func_1(void *ptr){
+	for (int i = 0; i < RANGE; i++) {
+		if(!pthread_mutex_lock(&lock)){
+			share_value++;
+			pthread_mutex_unlock(&lock);
+		} else printf("%s fails to lock\n", (char*)ptr);
+    }   
+    thread_2_run = 1;
+}
+
+void *thread_func_2(void *ptr){
+    for (int i = 0; i < RANGE; i++) {
+        if(!pthread_mutex_lock(&lock)){
+        while(!thread_2_run){
+            printf("Not ready to run\n");
+            sleep(1);
+        }
+        share_value++;
+        pthread_mutex_unlock(&lock);
+        } else printf("%s fails to lock\n", (char*)ptr);
+    }
+}
+```
+```
+Not ready to run
+Not ready to run
+...//Loop forever
+```
+**Note**: One way to solve that issue is to use a [simple boolean variable as mutex](simple_boolean_variable_as_mutex.c).
+
+**Problem solved by pthread conditional variable**: [pthread_conditional_variable.c](pthread_condition_variable.c)
