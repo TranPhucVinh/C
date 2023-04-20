@@ -56,8 +56,6 @@ share_value -1098
 share_value 5460
 ```
 
-Solved that race condition issue by mutex: [increase_and_decrease_a_shared_value_mutex.c](increase_and_decrease_a_shared_value_mutex.c)
-
 **Result**:
 
 Race condition still happen
@@ -67,6 +65,8 @@ Run 1st time: ``share_value 10000``
 Run 2nd time: ``share_value 0``
 
 Run 3rd time: ``share_value -10000``
+
+Solved that race condition issue by mutex: [increase_and_decrease_a_shared_value_mutex.c](increase_and_decrease_a_shared_value_mutex.c)
 
 If putting ``pthread_mutex_trylock()`` and ``pthread_mutex_unlock()`` inside each condition like this, race condition issue can't be fixed:
 
