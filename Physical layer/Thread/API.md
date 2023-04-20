@@ -30,6 +30,14 @@ On success, ``pthread_join()`` returns ``0``; on error, it returns an error numb
 pthread_t pthread_self(void);
 ```
 
-The ``pthread_self()`` function returns the ID of the calling thread. This is the same value that is returned in *thread in the ``pthread_create()`` call that created this thread.
+The ``pthread_self()`` function **returns the ID of the calling thread**. This is the same value that is returned in *thread in the ``pthread_create()`` call that created this thread.
 
-**Note**: This function must always be called inside the thread function handler so that it can get the proper thread ID of the calling thread.
+**Note**: This function must always be called inside the thread function handler so that it can get the proper thread ID of the calling thread. Check [pthread implementation to create a thread to print out a string](README.md#create-a-thread-to-print-out-a-string)
+
+# pthread_mutex_lock()
+
+``pthread_mutex_lock()`` will wait until the mutex is successfully locked so that it will block the program at this waiting time. Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#use-pthread_mutex_lock).
+
+# pthread_mutex_trylock()
+
+``pthread_mutex_trylock()`` will check if the mutex is available for locking and return immediately without waiting. Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#using-pthread_mutex_trylock).
