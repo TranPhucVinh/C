@@ -16,7 +16,7 @@ E.g: ``const int a = 19``
 
 To change ``const`` variable: Use pointer, check [example Change value of a variable with pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Implementations.md#change-value-of-a-variable-with-pointer)
 
-Local ``const`` variable inside a function is fine and gives no issue:
+``const`` can be used to define local variable and gives no issue:
 
 ```c
 #include <stdio.h>
