@@ -1,10 +1,8 @@
-Variable length argument is a feature that allows a function to receive any number of arguments. 
+**Variable length argument** is a feature that allows a function to receive any number of arguments. Function that supports variable length argument is called **variadic function**. Examples of **variadic functions** are ``printf()``, ``sprintf()``,...
 
-**Applications**: ``sprintf()``,...
+For **variable length argument** to be used, an ``int`` variable is required to represent the total number variable arguments passed.
 
-For **Variable length argument** to be used, an ``int`` variable is required to represent the total number variable arguments passed.
-
-### va_arg()
+## va_arg()
 
 ```c
 type va_arg(va_list ap, type)
@@ -13,9 +11,7 @@ type va_arg(va_list ap, type)
 * ``ap``:  object of type ``va_list``
 * ``type``: type name
 
-## Examples
-
-### Example 1
+# Define a variadic function
 
 ```c
 #include <stdio.h>
@@ -33,9 +29,9 @@ int main() {
 String 1
 String 2
 ```
-### Example 2
+# Accessing all variable length arguments
 
-Accessing the argument with ``stdarg.h``
+## Accessing the argument with stdarg.h
 
 ```c
 #include <stdio.h>
@@ -118,7 +114,7 @@ test.c:48:2: warning: second parameter of ‘va_start’ not last named argument
   ^
 ```
 
-Change value of a string as a variable length argument
+## Change value of a string as a variable length argument
 
 ```c
 #include <stdio.h>

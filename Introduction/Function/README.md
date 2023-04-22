@@ -183,5 +183,5 @@ Total argument: 2
 * [Conditional statements](Conditional%20statements.md)
 * [Scope](Scope.md)
 * [Callback function](Callback%20function.md)
-* [Variable length argument](Variable%20length%20argument.md)
+* [Variadic function and variable length argument](Variadic%20function.md)
 * [Random number generators](Random%20number.md)
