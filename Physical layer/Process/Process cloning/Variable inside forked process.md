@@ -1,4 +1,4 @@
-Address of a variable inside both parent and child process are the same:
+# Address of a variable inside both parent and child process are the same
 
 ```c
 int main(void){
@@ -17,18 +17,34 @@ int main(void){
 }
 ```
 
-## Without shared memory, changing variable value in parent/child process won't effect the left one
+# Without shared memory, changing variable value in parent/child process won't effect the left one
 
 Although global variable ``a`` has the same address value in both parent and child process, changing its value in the parent process won't affect the child process.
-
 Changing variable value in the child process won't effect the parent:
-
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
 
+int main(void){
+    int a = 12;
+    pid_t pid = fork();
+
+    if( pid == 0 ) {
+		a = 34;
+        printf("Child process, *a = %d\n", a);//Child process, *a = 34
+    }
+    else {
+		wait(NULL);
+        printf("Parent process, *a = %d\n", a);//Parent process, *a = 12
+    }
+    return 0;
+}
+```
+Using pointer
+
+```c
 int main(void){
     int *a;
 	a = (int*) malloc(sizeof(int) * 1);
@@ -67,7 +83,7 @@ int main(void){
 
 That happens as both parent and child process have different address space. To make change of variable inside a child process to effect the parent or in reverse, use **shared memory** with [mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Virtual%20memory.md#mmap).
 
-## With shared memory, changing variable value in parent/child process won't effect the left one
+# With shared memory, changing variable value in parent/child process will effect the left one
 
 Changing variable value from child process which will effect parent process
 
