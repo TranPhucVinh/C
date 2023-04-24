@@ -1,5 +1,3 @@
-# Fundamental concepts
-
 * [Function](Function)
 * [Variable](Variable)
 * [Header](https://github.com/TranPhucVinh/C/tree/master/Introduction/Header)
@@ -9,19 +7,19 @@
 * [Data structure](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure)
 * [Linkage](Linkage.md)
 
-## Function overloading
+# Function overloading
 
 C doesn't support function overloading as it is not an OOP language
 
 For function overloading in [CPP](https://github.com/TranPhucVinh/Cplusplus), check [CPP function overloading document](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#function-overloading).
 
-## Default arguments
+# Default arguments
 
 C doesn't support default arguments.
 
 For default arguments in ``CPP``, check ``Function.md`` in ``Cplusplus\Introduction``.
 
-## Error handling
+# Error handling
 
 C doesn't support exception handling, ``try catch`` and ``throw`` are not available in C with GCC.
 
@@ -59,7 +57,7 @@ username$hostname: errno EBUSY
 EBUSY 16 Device or resource busy
 ```
 
-### EBUSY
+## EBUSY
 
 Trying to open a file 2 times and EBUSY error doesn't happen
 
@@ -88,11 +86,11 @@ int main(){
 
 The device file can't handle those type of error by its self if the error handler are not implemented in its source code. To handle any specific errno like EBUSY on character device, that device must handle this error in its operation, [like the open operation](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/Create%20character%20device/README.md#handle-specific-error-from-errno-from-userspace).
 
-### EFAULT
+## EFAULT
 
 ``EFAULT`` is bad address issue and must be return when ``copy_from_user()`` fail. Check [the example in character device to trigger this error](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/README.md#operation-with-character-device-by-ioctl).
 
-### strerror()
+## strerror()
 
 ```c
 char *strerror(int errnum);
@@ -111,7 +109,7 @@ int main(){
 ```
 **Result**: ``Error 2: No such file or directory``
 
-## Get libc version
+# Get libc version
 
 ```c
 #include <gnu/libc-version.h>
