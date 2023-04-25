@@ -20,10 +20,42 @@ int pthread_join(pthread_t thread, void **retval);
 
 The ``pthread_join()`` function waits for the thread specified by ``thread`` to terminate. If that thread has already terminated, then ``pthread_join()`` returns immediately. The thread specified by ``thread`` must be joinable.
 
-If ``retval`` is not ``NULL``, then ``pthread_join()`` copies the exit status  of the target thread (i.e., the value that the target thread supplied to ``pthread_exit()``) into the location pointed to by ``retval``.  If the target thread was canceled, then ``PTHREAD_CANCELED`` is placed in the location pointed to by ``retval``.
+If ``retval`` is not ``NULL``, then ``pthread_join()`` copies the exit status  of the target thread (i.e., the value that the target thread supplied to [pthread_exit()](API.md#pthread_exit)) into the location pointed to by ``retval``.  If the target thread was canceled, then ``PTHREAD_CANCELED`` is placed in the location pointed to by ``retval``.
 
 On success, ``pthread_join()`` returns ``0``; on error, it returns an error number.
+# pthread_exit()
+```c
+void pthread_exit(void *retval);
+```
+Exit the current calling thread and return its ``void *retval`` to ``void **retval`` of ``pthread_join()``.
 
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
+void *func_thread(void *ptr);
+int main()
+{  
+    int **thread_1_return;
+	pthread_t thread_1;
+
+    thread_1_return = (int**) malloc(sizeof(int**));
+	pthread_create(&thread_1, NULL, func_thread, NULL);
+	pthread_join(thread_1, (void**)thread_1_return);
+    printf("value: %d\n", **thread_1_return);//567
+}
+
+void *func_thread(void *ptr){
+    int *number = (int*) malloc (sizeof(int));
+    *number = 567;
+    printf("Thread is exited/terminated\n");
+    pthread_exit(number);
+    printf("This line won't be called\n");// This line won't be called as thread is exited
+    *number = 123;
+	return number;//This return value setup won't be reached as pthread_exit() is called above
+}
+```
 # pthread_self()
 
 ```c
