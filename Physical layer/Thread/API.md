@@ -46,6 +46,20 @@ The ``pthread_self()`` function **returns the ID of the calling thread**. This i
 int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);
 ```
 The function ``pthread_cond_init()`` initialises the condition variable referenced by ``cond`` with attributes referenced by ``attr``. If ``attr`` is ``NULL``, the default condition variable attributes are used.
+# pthread_cond_signal() and pthread_cond_broadcast()
+```c
+int pthread_cond_signal(pthread_cond_t *cond);
+```
+```c
+int pthread_cond_broadcast(pthread_cond_t *cond);
+```
+
+These two functions are used to unblock threads blocked on a condition variable.
+
+The ``pthread_cond_signal()`` call unblocks at least one of the threads that are blocked on the specified condition variable ``cond`` (if any threads are blocked on ``cond``).
+
+The ``pthread_cond_broadcast()`` call unblocks all threads currently blocked on the specified condition variable ``cond``.
+
 # pthread_cond_destroy()
 ```c
 int pthread_cond_destroy(pthread_cond_t *cond);
