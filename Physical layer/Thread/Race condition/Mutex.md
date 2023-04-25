@@ -1,6 +1,9 @@
 # One thread function handler to increase a share value issue
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value) with mutex, even with multiple threads, not just 2 tasks:
 ## Use pthread_mutex_lock()
+
+**Program**: [pthread_mutex_lock.c](pthread_mutex_lock.c)
+
 **Result**: ``share_value after executing 2 threads: 9000000``
 ## Using pthread_mutex_trylock()
 
