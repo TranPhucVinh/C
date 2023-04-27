@@ -4,9 +4,9 @@
 
 Features:
 
-* WiFi not connected when program starts: Print ``gethostbyname: Host name lookup failure``
-* WiFi connected with Internet when program starts: Start the ThingsBoard telemetry process with HTTP request
-* While telemetry process is happening, network is disconnected: With ``DEBUG`` mode is on, program will get blocked. If WiFi with Internet is then recovered, program exits.
+* Internet isn't connected when program starts: Print ``gethostbyname: Host name lookup failure``
+* Internet is connected when program starts: Start the ThingsBoard telemetry process with HTTP request
+* While telemetry process is happening, Internet is disconnected: With ``DEBUG`` mode is on, program will get blocked. If Internet is then recovered, program exits.
 
 Program: [tcp_client_for_telemetry.c](tcp_client_for_telemetry.c)
 
