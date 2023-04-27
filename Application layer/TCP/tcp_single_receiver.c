@@ -80,13 +80,16 @@ int main(int argc, char *argv[]){
                         bzero(buffer, BUFFSIZE);         //Delete buffer
                     } 
                     /*
-                        Right after the TCP socket is disconnected, read() will return 0.
-                        If tcp_multiple_senders.c sends empty string, read() won't return 0. 
+                        else condition:
+                        1. Right after the TCP socket is disconnected, read() will return 0.
+                            If tcp_multiple_senders.c sends empty string, read() won't return 0. 
+                        2. socket error, read() returns -1
                     */
-                    else if (bytes_received == 0) {
+                    else {
                         printf("TCP sender with ID %d is disconnected\n", socket_id);
                         *total_connected_sender -= 1;
                         printf("%d TCP senders have connected now\n", *total_connected_sender);
+                        close(sender_fd); 
                         kill(getpid(), SIGKILL);
                     }
                 }
@@ -94,3 +97,4 @@ int main(int argc, char *argv[]){
         }
     }   
 }
+
