@@ -11,11 +11,13 @@ int main(){
 }
 ```
 
-## unistd.h
+## sleep()
 
 ```c
-unsigned int sleep(unsigned int seconds);//Sleep for a number of seconds
+#include <unistd.h> 
+unsigned int sleep(unsigned int seconds);
 ``` 
+``sleep()`` will put the current calling [thread](../Thread) into sleep states for ``seconds``.
 
 Print out a string every 1 second with ``sleep()``:
 
@@ -36,7 +38,7 @@ int main(int argc, char *argv[])  {
 ```c
 typedef unsigned long useconds_t;
 ```
-
+## usleep()
 ```c
 int usleep(useconds_t usec);
 ```
