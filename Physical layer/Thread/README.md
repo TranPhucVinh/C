@@ -75,7 +75,12 @@ We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is 
 * [Get the parameter of the thread by passing a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#get-the-parameter-of-the-thread-by-passing-a-variable)
 * [Get return from threads and store to a variable in single thread and multiple threads](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#get-return-from-threads-and-store-to-a-variable)
 * [Enter value for struct member using thread](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#enter-value-for-struct-member-using-thread)
-* Inter-task communication: [Using global variable to share values between 2 threads](share_global_variables_between_2_threads.c), [suspend and resume between 2 threads](suspend_and_resume_tasks.c)
+
+## Inter-task communication
+
+[Using global variable to share values between 2 threads](share_global_variables_between_2_threads.c)
+
+pthread doesn't have functions to suspend and resume thread. Suspend and resume features must be implemented by [mutex](Race%20condition/Mutex.md) and [conditional variable](Race%20condition/Mutex.md#condition-variable). Check [suspend and resume between 2 threads example](suspend_and_resume_threads.c)
 
 # [Race condition](Race%20condition)
 

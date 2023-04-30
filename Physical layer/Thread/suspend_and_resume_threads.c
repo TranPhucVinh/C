@@ -6,7 +6,7 @@
 void *suspend_thread_func(void *ptr);
 void *resume_thread_func(void *ptr);
 
-int number;
+int number = 0;
 int suspendFlag = 0;
 int suspend_thread_return, resume_thread_return;
 
@@ -17,7 +17,7 @@ pthread_cond_t resumeCond;
 void suspendThread()
 {
     if(!pthread_mutex_lock(&suspendMutex)){
-        pthread_cond_wait(&resumeCond, &suspendMutex);
+        suspendFlag = 1;
         pthread_mutex_unlock(&suspendMutex);
     }
 }
@@ -25,7 +25,17 @@ void suspendThread()
 void resumeThread()
 { 
     if(!pthread_mutex_lock(&suspendMutex)){
+        suspendFlag = 0;
         pthread_cond_broadcast(&resumeCond);
+        pthread_mutex_unlock(&suspendMutex);
+    }
+}
+
+// if suspended, suspend until resumed
+void checkSuspend()
+{ 
+    if (!pthread_mutex_lock(&suspendMutex)){
+        while (suspendFlag != 0) pthread_cond_wait(&resumeCond, &suspendMutex);
         pthread_mutex_unlock(&suspendMutex);
     }
 }
@@ -47,30 +57,28 @@ int main(void){
 }
 
 void *suspend_thread_func(void *ptr){
-    char str[50];
-    char suspend[] = "Task is suspended\n", resume[] = "Task is resumed\n";
     while (1){
-        memset(str, 0, sizeof(str));
 		number += 1;
-        sprintf(str, "number %d\n", number);
-        write(STDOUT_FILENO, str, sizeof(str));
+        printf("number %d\n", number);
 		if (number==3) {
-            write(STDOUT_FILENO, suspend, sizeof(suspend));
+            printf("Task is suspended\n");
             suspendThread();
-            write(STDOUT_FILENO, resume, sizeof(resume));
+            checkSuspend();
+            printf("Task is resumed\n");
     	}
 		sleep(1);
 	}
 }
 
 void *resume_thread_func(void *ptr){
-    char str[] = "Has delay for 3 seconds in resume_thread\n";
     while (1){
 		if (number == 3){
             sleep(3);
             resumeThread();
-            write(STDOUT_FILENO, str, sizeof(str));
+            printf("Has delay for 3 seconds in resume_thread\n");
         }
-        sleep(1);
+        // Wait for 2 seconds which is bigger than 1 second wait in suspend_thread
+        // so that number is increased properly
+        sleep(2);
     }	
 }
