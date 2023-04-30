@@ -1,4 +1,4 @@
-### Declare function pointer
+# Declare function pointer
 
 ```c
 #include <stdio.h>
@@ -37,7 +37,7 @@ int main()
 }
 ```
 
-### Function pointer as argument
+# Function pointer as argument
 
 ```c
 #include <stdio.h>
@@ -65,4 +65,35 @@ int main()
 {
    helloWorld(abs);
 }
+```
+# Function pointer for polymorphism by callback function
+Function pointer is used to define a function multiple times, i.e polymorphism, by callback function
+```c
+#include <stdio.h>
+
+void (*polymorphism)();
+
+void function_define(void function()){
+    polymorphism = function;
+}
+
+void display_str_1(){
+    printf("Display string 1\n");
+}
+
+void display_str_2(){
+    printf("Display string 2\n");
+}
+
+int main()
+{ 	
+    function_define(display_str_1);
+    polymorphism();
+    function_define(display_str_2);
+    polymorphism();
+}
+```
+```
+Display string 1
+Display string 2
 ```
