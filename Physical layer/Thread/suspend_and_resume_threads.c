@@ -7,35 +7,24 @@ void *suspend_thread_func(void *ptr);
 void *resume_thread_func(void *ptr);
 
 int number = 0;
-int suspendFlag = 0;
 int suspend_thread_return, resume_thread_return;
 
 pthread_t suspend_thread, resume_thread;
 pthread_mutex_t suspendMutex;
 pthread_cond_t resumeCond;
 
-void suspendThread()
-{
-    if(!pthread_mutex_lock(&suspendMutex)){
-        suspendFlag = 1;
-        pthread_mutex_unlock(&suspendMutex);
-    }
-}
-
 void resumeThread()
 { 
     if(!pthread_mutex_lock(&suspendMutex)){
-        suspendFlag = 0;
         pthread_cond_broadcast(&resumeCond);
         pthread_mutex_unlock(&suspendMutex);
     }
 }
 
-// if suspended, suspend until resumed
-void checkSuspend()
+void suspendThread()
 { 
     if (!pthread_mutex_lock(&suspendMutex)){
-        while (suspendFlag != 0) pthread_cond_wait(&resumeCond, &suspendMutex);
+        pthread_cond_wait(&resumeCond, &suspendMutex);
         pthread_mutex_unlock(&suspendMutex);
     }
 }
@@ -63,7 +52,6 @@ void *suspend_thread_func(void *ptr){
 		if (number==3) {
             printf("Task is suspended\n");
             suspendThread();
-            checkSuspend();
             printf("Task is resumed\n");
     	}
 		sleep(1);
@@ -75,7 +63,7 @@ void *resume_thread_func(void *ptr){
 		if (number == 3){
             sleep(3);
             resumeThread();
-            printf("Has delay for 3 seconds in resume_thread\n");
+            printf("Hello, world ! Has delay for 3 seconds in resume_thread\n");
         }
         // Wait for 2 seconds which is bigger than 1 second wait in suspend_thread
         // so that number is increased properly
