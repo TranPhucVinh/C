@@ -31,3 +31,30 @@ int display(int n){
 ```
 
 ``display()`` function will have the Big-O = O(n) + O(1) + O(1) + O(1) = O(n)
+
+# O(${n^2})
+
+```c
+int display(int n){
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < n; j++){
+            printf("%d %d\n", i, j);
+        }
+    }
+    return 0;
+}
+```
+
+# O(${n^3})
+```c
+int display(int n){
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < n; j++){
+            for (int k = 0; k < n; k++){
+                printf("%d %d %d\n", i, j, k);
+            }
+        }
+    }
+    return 0;
+}
+```
