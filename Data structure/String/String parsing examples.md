@@ -167,4 +167,4 @@ int main() {
     write(STDOUT_FD, "\n", 2);
 }
 ```
-[struct](../struct) can also be used to [implement this](../struct/struct/Examples/Use%20struct%20for%20string%20parsing.md#parsing-a-hex-char-array)
+[struct](../struct) can also be used to [implement this](../struct/Examples/Use%20struct%20for%20string%20parsing.md#parsing-a-hex-char-array)
