@@ -1,6 +1,6 @@
-## Example 1
+# Split a string into specific sequences
 
-Split a string with the following sequence ``host`` and ``port``
+Split a string into the following sequence: ``host`` and ``port``
 
 ```c
 #include <stdio.h>
@@ -83,13 +83,13 @@ Result:
 
 So parsing a raw string containing number into string number will cause errror.
 
-**Problem solved**: Convert string to hex value, check **Example 2**
+**Problem solved**: Convert string to hex value, check [Parsing a hex char array](#parsing-a-hex-char-array).
 
-## Example 2
-
-Parsing a char array into the following fields
+# Parsing a hex char array
 
 Char array: ``0x24 0x00 0x01 0x1A 0x05 0x1F 0x20 0x2F 0x1C 0x17 0x20 0x61``
+
+Parsing this char array into the following fields:
 
 * DCD header: ``$`` (``0x24``)
 * ID: ``0001`` (``0x00`` ``0x01``)
@@ -99,4 +99,4 @@ Char array: ``0x24 0x00 0x01 0x1A 0x05 0x1F 0x20 0x2F 0x1C 0x17 0x20 0x61``
 * Soil temperature: ``23.32`` (``0x17`` ``0x20``)
 * Checksum: 0x61 (OR 11 bytes give 0x0261, 0x61 is the lower byte)
 
-**Program**: ``struct_data_parsing.c``
+**Program**: [struct_data_parsing.c](struct_data_parsing.c)
