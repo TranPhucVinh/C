@@ -133,3 +133,38 @@ int main(){
 	printf("New string: %s\n", new_string);
 }
 ```
+# Split a string into specific sequences
+Split a string into the following sequence: ``host`` and ``port``
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define STDOUT_FD 1
+
+char displayed[] = "demo.thingsboard.io443";
+char host[19], port[3];
+
+int main() {
+    char *ptr;
+    ptr = (char*) malloc(19 * sizeof(char));
+
+    // ptr = reinterpret_cast<char*>(displayed);
+    ptr = displayed;
+
+    strcpy(host, ptr);
+
+    write(STDOUT_FD, host, 19);
+    write(STDOUT_FD, "\n", 2);
+
+    // Must not use printf() here to display the string as it will print out
+    // wrong string, like demo.thingsboard.io443
+
+    ptr += 19;
+    strcpy(port, ptr);
+    write(STDOUT_FD, port, 3);
+    write(STDOUT_FD, "\n", 2);
+}
+```
+[struct](../struct) can also be used to [implement this](../struct/struct/Examples/Use%20struct%20for%20string%20parsing.md#parsing-a-hex-char-array)
