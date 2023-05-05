@@ -37,33 +37,39 @@ int main()
 }
 ```
 
-# Function pointer as argument
+# Function pointer for callback
 
 ```c
 #include <stdio.h>
 
-void abs(){
-	printf("Hello world");
+void str(){
+	printf("Hello, World !");
 }
 
-void helloWorld (void (*function)()){
+void helloWorld (void function()){
 	function();
 }
 int main()
 { 	
-    void (*p)() = abs;
+    void (*p)() = str;
     helloWorld(p);
 }
 ```
 
 **Result:** ``Hello world``
 
-This can be replaced as ``helloWorld(abs);``:
+This can be replaced as ``helloWorld(abs)``:
 
 ```c
 int main()
 {
    helloWorld(abs);
+}
+```
+``helloWorld()`` can also be defined like:
+```c
+void helloWorld (void (*function)()){
+	function();
 }
 ```
 # Function pointer for polymorphism by callback function
