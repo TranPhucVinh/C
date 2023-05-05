@@ -68,6 +68,21 @@ thread_1 finish executing
 
 We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use [pthread_join()](API.md#pthread_join).
 
+## Thread is blocked by while(1)
+
+Based on the program flow defined above as thread function handler needs to finish executing to start the later steps, thread function handler which includes ``while(1)`` like this is expected to be blocked permanently and the operations after its [pthread_join()](API.md#pthread_join) call won't be executed. However, this program will execute 2 threads normally: [2_threads_include_while_1.c](2_threads_include_while_1.c)
+**Result**: Test on WSL Ubuntu 20.04
+```
+Hello, World !
+56
+Hello, World !
+56
+Hello, World !
+56
+Hello, World !
+```
+However, [the same program implemented with G++ pthread]() result in str_thread blocking.
+
 ## Fundamental concepts examples
 
 [Fundamental concepts examples](Fundamental%20concepts%20examples.md) includes:
