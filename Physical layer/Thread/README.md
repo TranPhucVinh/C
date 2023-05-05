@@ -41,14 +41,14 @@ thread_1 finish executing
 Thread ID 140053257754368
 ```
 
-Program's flow::
+## Program's flow
 
-* **Step 1**: Execute thread 1 (``pthread_join()``)
-* **Step 2**: Perform program operation behind ``pthread_join()``
+* **Step 1**: Execute thread 1 ([pthread_join()](API.md#pthread_join))
+* **Step 2**: Perform program operation behind [pthread_join()](API.md#pthread_join)
 
-If the thread is an infinite loop, the program operation behind ``pthread_join()`` can't be reached.
+If the thread is an infinite loop, the program operation behind [pthread_join()](API.md#pthread_join) can't be reached.
 
-When not using ``pthread_join()``:
+When not using [pthread_join()](API.md#pthread_join):
 
 ```c
 int main()
@@ -66,7 +66,7 @@ int main()
 thread_1 finish executing
 ```
 
-We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use ``pthread_join()``.
+We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use [pthread_join()](API.md#pthread_join).
 
 ## Fundamental concepts examples
 
