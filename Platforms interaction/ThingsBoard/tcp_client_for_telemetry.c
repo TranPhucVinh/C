@@ -11,15 +11,14 @@
 #include <netdb.h>
 
 #define DEBUG
-#define HOST          "thingsboard.sysats.tech"
-#define PORT          80
-#define TOKEN         "TTf3zmVacJI4dUQsYQwh"
+#define HOST          	"ec2-18-142-177-27.ap-southeast-1.compute.amazonaws.com"
+#define PORT          	9090
+#define TOKEN         	"47DF5DqQgOvw2J9jSlKK"
 #define BUFFSIZE        256
 
 char    response_buffer[BUFFSIZE];
 
 char *form_http_request();
-char *form_json_string();
 
 int  send_number = 0;
 
@@ -57,7 +56,7 @@ int main(int argc, char *argv[]){
     client_fd = socket_connect(HOST, PORT);
 
     while (1){
-        sprintf(send_json, "{'esp-idf-number':%d}", send_number);
+        sprintf(send_json, "{'unix_tcp_client':%d}", send_number);
         
         char *http_request = form_http_request(send_json);
 
