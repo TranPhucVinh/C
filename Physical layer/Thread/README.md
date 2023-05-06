@@ -41,14 +41,14 @@ thread_1 finish executing
 Thread ID 140053257754368
 ```
 
-Program's flow::
+## Program's flow
 
-* **Step 1**: Execute thread 1 (``pthread_join()``)
-* **Step 2**: Perform program operation behind ``pthread_join()``
+* **Step 1**: Execute thread 1 ([pthread_join()](API.md#pthread_join))
+* **Step 2**: Perform program operation behind [pthread_join()](API.md#pthread_join)
 
-If the thread is an infinite loop, the program operation behind ``pthread_join()`` can't be reached.
+If the thread is an infinite loop, the program operation behind [pthread_join()](API.md#pthread_join) can't be reached.
 
-When not using ``pthread_join()``:
+When not using [pthread_join()](API.md#pthread_join):
 
 ```c
 int main()
@@ -66,7 +66,22 @@ int main()
 thread_1 finish executing
 ```
 
-We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use ``pthread_join()``.
+We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use [pthread_join()](API.md#pthread_join).
+
+## Thread is blocked by while(1)
+
+Based on the program flow defined above as thread function handler needs to finish executing to start the later steps, thread function handler which includes ``while(1)`` like this is expected to be blocked permanently and the operations after its [pthread_join()](API.md#pthread_join) call won't be executed. However, this program will execute 2 threads normally: [2_threads_include_while_1.c](2_threads_include_while_1.c)
+**Result**: Test on WSL Ubuntu 20.04
+```
+Hello, World !
+56
+Hello, World !
+56
+Hello, World !
+56
+Hello, World !
+```
+However, [the same program implemented with G++ pthread]() result in str_thread blocking.
 
 ## Fundamental concepts examples
 

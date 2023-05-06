@@ -1,4 +1,4 @@
-## Change value of a string by function using pointer
+# Change value of a string by function using pointer
 
 Change value of a string by function using pointer
 
@@ -107,44 +107,11 @@ int main(){
 
 See also: ``Examples.md`` in ``AVR-Arduino-framework/Introduction/Data type/String/`` for the examples in Arduino framework.
 
-## Parsing for IP address
+# Parse an IP address string
 
-Parsing for IP address
+Parsing an IP address string: [parsing_ip_address_string.cpp](parsing_ip_address_string.cpp)
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-void parseBytes(const char* stringParameter, char sep, unsigned long* stringResult, int maxBytes, int base);
-
-int main(){
-	char ipString[] = "192.168.255.255";
-    /*
-		ip array must be unsigned long for being converted by strtoul. If set as char ip[4], the result will be signed number as char by default is signed number
-	*/	
-	unsigned long ip[4];
-
-	parseBytes(ipString, '.', ip, 4, 10);
-
-	printf("ip[1]: %d\n", ip[0]);
-	printf("ip[2]: %d\n", ip[1]);
-	printf("ip[3]: %d\n", ip[2]);
-	printf("ip[4]: %d\n", ip[3]);
-}
-
-void parseBytes(const char* stringParameter, char sep, unsigned long* stringResult, int maxBytes, int base) {
-    for (int i = 0; i < maxBytes; i++) {
-        stringResult[i] = strtoul(stringParameter, NULL, base);  // Convert byte: strtoul: string to unsigned long
-        stringParameter = strchr(stringParameter, sep);               // Find next separator
-        if (stringParameter == NULL || *stringParameter == '\0') {
-            break;                            // No more separators, exit
-        }
-        stringParameter++;                                // Point to next character after separator
-    }
-}
-```
-## Reverse a string
+# Reverse a string
 
 ```c
 #include <stdio.h>
@@ -166,3 +133,38 @@ int main(){
 	printf("New string: %s\n", new_string);
 }
 ```
+# Split a string into specific sequences
+Split a string into the following sequence: ``host`` and ``port``
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define STDOUT_FD 1
+
+char displayed[] = "demo.thingsboard.io443";
+char host[19], port[3];
+
+int main() {
+    char *ptr;
+    ptr = (char*) malloc(19 * sizeof(char));
+
+    // ptr = reinterpret_cast<char*>(displayed);
+    ptr = displayed;
+
+    strcpy(host, ptr);
+
+    write(STDOUT_FD, host, 19);
+    write(STDOUT_FD, "\n", 2);
+
+    // Must not use printf() here to display the string as it will print out
+    // wrong string, like demo.thingsboard.io443
+
+    ptr += 19;
+    strcpy(port, ptr);
+    write(STDOUT_FD, port, 3);
+    write(STDOUT_FD, "\n", 2);
+}
+```
+[struct](../struct) can also be used to [implement this](../struct/Examples/Use%20struct%20for%20string%20parsing.md#split-a-string-into-specific-sequences)
