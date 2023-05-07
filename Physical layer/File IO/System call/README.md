@@ -3,16 +3,13 @@
 Four key system calls for performing file manipulations:
 
 ```c
-fd = open(pathname, flags, mode);//defined in fcntl.h
-```
-```c
-numread = read(fd, buffer, count);//defined in unistd.h
-```
-```c
-numwritten = write(fd, buffer, count);//defined in unistd.h
-```
-```c
-status = close(fd);//defined in unistd.h
+int fd = open(pathname, flags, mode);//defined in fcntl.h
+
+ssize_t numread = read(fd, buffer, count);//defined in unistd.h
+
+ssize_t numwritten = write(fd, buffer, count);//defined in unistd.h
+
+int status = close(fd);//defined in unistd.h
 ```
 
 **File descriptor**: The I/O system calls refer to open files using a file descriptor, a (usually small) non-negative integer. A file descriptor is typically obtained by a call to ``open()``, which takes a pathname argument specifying a file upon which I/O is to be performed.
