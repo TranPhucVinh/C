@@ -127,6 +127,10 @@ Check [epoll document folder](epoll)
 
 ## [File operations](File%20operations.md)
 
+* [Open a file to read]()
+* [Read the whole file by chunk and dynamically store to a char pointer]()
+* [Open a file to write]()
+
 ## [Device file operations](Device%20file%20operations.md)
 
 * Terminal operations: Read entered value from terminal and print out

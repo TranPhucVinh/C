@@ -1,4 +1,4 @@
-## Open a file to read
+# Open a file to read
 
 ```c
 #include <stdio.h>
@@ -50,7 +50,7 @@ if (offset > 0){
 
 To implement ``lseek()`` to character device, the character device needs to have the ``llseek()`` function (of ``struct file_operations``). Check [character device llseek document](../../../Kernel/Character%20device/Character%20device%20operations/llseek.md) for this implementation.
 
-## Read the whole file by chunk and dynamically store to a char pointer
+# Read the whole file by chunk and dynamically store to a char pointer
 
 ```c
 #include <stdio.h>
@@ -129,7 +129,7 @@ while(read(fd, buffer_read, READ_CHUNK_SIZE)){
     printf("\n");
 ```
 
-## Open a file to write
+# Open a file to write
 
 ```c
 #include <stdio.h>
