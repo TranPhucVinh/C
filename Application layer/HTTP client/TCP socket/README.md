@@ -1,10 +1,10 @@
-## HTTP request
+# HTTP request
 
-### Get request
+## Get request
 
-* GET request ``example.com``: ``get_data.c``
+GET request ``example.com``: [get_data.c](get_data.c)
 
-``get_data.c`` can be performed with dynamic allocation:
+[get_data.c](get_data.c) can be performed with dynamic allocation:
 
 ```c
 int main(int argc, char *argv[]){
@@ -34,11 +34,11 @@ int main(int argc, char *argv[]){
 }
 ```
 
-### Send data
+## Send data
 
-Send data to a local HTTP server: ``send_data.c``
+Send data to a local HTTP server: [send_data.c](send_data.c)
 
-### Detect Internet connection status
+## Detect Internet connection status
 
 TCP client for HTTP request can be used to detect Internet connection status, simply by using ``gethostbyname()`` function
 
