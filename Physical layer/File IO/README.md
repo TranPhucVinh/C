@@ -1,11 +1,9 @@
-# Fundamental concepts
-
-* [stdio](stdio)
-* [File I/O system call](System%20call)
-* [pipe](pipe.md)
-* [FIFO](FIFO)
-* [stat](stat.md)
-* [uio](uio)
+# [stdio](stdio)
+# [File I/O system call](System%20call)
+# [pipe](pipe.md)
+# [FIFO](FIFO)
+# [stat](stat.md)
+# [uio](uio)
 
 # Read entered value from stream in
 
