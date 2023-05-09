@@ -90,35 +90,19 @@ main_module-y := ubuntu_kernel_module.o
 
 For the kernel module built from multiple sources: ``module_name-y := src1.o src2.o``
 
-# Build multiple kernel modules in a single Makefile
+# Build multiple kernel modules by a single Makefile
 
-```
-working_folder
-|--km_1.c
-|--km_2.c
-|--Makefile
-```
-Where ``km_1.c`` and ``km_2.c`` are both kernel modules source codes for ``km_1.ko`` and ``km_2.ko``.
+* [Kernel module source files in the same location with Makefile]()
+* [Build kernel modules into source files folder by using cd in Makefile]()
 
-``Makefile``:
-```Makefile
-obj-m := $(km_name).o #km_name: Kernel module name
-
-$(km_name):
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
-
-clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
-```
-Build ``km_1``: ``make km_name=km_1``
 # [Out of tree](Out%20of%20tree.md)
 
 Out of tree technique will support building a kernel module with multiple library source files.
 
 Out of tree implementations include:
-* [Source files in the same directory]()
-* [Header file in different directory]()
-* [Header files and source files in different directory]()
+* [Source files in the same directory](Out%20of%20tree.md#source-files-in-the-same-directory)
+* [Header file in different directory](Out%20of%20tree.md#header-file-in-different-directory)
+* [Header files and source files in different directory](#header-files-and-source-files-in-different-directory)
 * [Sharing variables and functions between multiple kernel modules](Sharing%20variables%20and%20functions%20between%20multiple%20kernel%20modules.md)
 
 ## Kernel module information
