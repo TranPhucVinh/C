@@ -108,7 +108,7 @@ $(km_name):
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
 clean:
-	rm -rf O modules.* *.o *.o.d */*.o *.mod *.symvers *.mod.*  *.ko  .*.cmd .*.o.cmd */.*.o.cmd .tmp_versions .cache.mk
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 Build ``km_1``: ``make km_name=km_1``
 # [Out of tree](Out%20of%20tree.md)
