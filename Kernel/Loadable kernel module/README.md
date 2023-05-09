@@ -23,6 +23,7 @@ Parameters:
 * ``loadable_kernel_module.o``: object file built from ``loadable_kernel_module.c``
 * ``-C``: Location on the compiler used to build the kernel module
 * ``M=$PWD``: Informs kbuild that an external module is being built. The value given to ``M`` is the absolute path of the directory where the external module (kbuild file) is located.
+* ``make clean`` will clean all build file in the current folder
 
 With the ``Makefile`` above, simply run the Makefile with ``make``.
 
