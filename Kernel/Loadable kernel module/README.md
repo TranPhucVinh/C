@@ -19,8 +19,9 @@ all:
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
-
-``loadable_kernel_module.o`` is the object file built from ``loadable_kernel_module.c``.
+Parameters:
+* ``loadable_kernel_module.o``: object file built from ``loadable_kernel_module.c``
+* ``-C``: Location on the compiler used to build the kernel module
 
 Then simply run the Makefile with ``make``
 
