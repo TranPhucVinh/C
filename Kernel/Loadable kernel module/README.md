@@ -2,9 +2,9 @@
 
 A loadable kernel module (LKM) is an object file that contains code to extend the running kernel, or so-called base kernel, of an operating system. LKMs are typically used to add support for new hardware (as device drivers) and/or filesystems, or for adding system calls.
 
-# Implementations
+# Build the very first kernel module
 
-All OS built-in kernel modules are stored in ``/lib/modules``
+All OS built-in kernel modules are stored in ``/lib/modules``.
 
 It is better to create a folder for working with the loadable kernel module, the folder must not include space, like ``Ubuntu_Kernel_Module``. If having spaces like ``Ubuntu Kernel Module``, the kernel module is unable to be built.
 
@@ -89,7 +89,28 @@ main_module-y := ubuntu_kernel_module.o
 
 For the kernel module built from multiple sources: ``module_name-y := src1.o src2.o``
 
-## [Out of tree](Out%20of%20tree.md)
+# Build multiple kernel modules in a single Makefile
+
+```
+working_folder
+|--km_1.c
+|--km_2.c
+|--Makefile
+```
+Where ``km_1.c`` and ``km_2.c`` are both kernel modules source codes for ``km_1.ko`` and ``km_2.ko``.
+
+``Makefile``:
+```Makefile
+obj-m := $(km_name).o #km_name: Kernel module name
+
+$(km_name):
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+	rm -rf O modules.* *.o *.o.d */*.o *.mod *.symvers *.mod.*  *.ko  .*.cmd .*.o.cmd */.*.o.cmd .tmp_versions .cache.mk
+```
+Build ``km_1``: ``make km_name=km_1``
+# [Out of tree](Out%20of%20tree.md)
 
 Out of tree technique will support building a kernel module with multiple library source files.
 
