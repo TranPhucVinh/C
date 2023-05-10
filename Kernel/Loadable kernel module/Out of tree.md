@@ -147,3 +147,27 @@ all:
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
+# Header files, source files, Makefile and kernel source in different directory
+```
+working_folder
+|--source
+|   |--head.c
+|--include
+|   |--head.h
+|--src_folder
+|   |--Makefile
+|--kernel_src
+	|--ubuntu_kernel_module.c
+```
+``Makefile`` now is built inside ``src_folder``:
+```Makefile
+obj-m := main_module.o
+ccflags-y := -I$(src)/../include -I$(src)/../source
+main_module-y := ../source/head.o ../kernel_src/ubuntu_kernel_module.o
+
+all:
+	cd ../kernel_src && make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
