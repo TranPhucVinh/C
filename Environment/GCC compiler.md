@@ -188,10 +188,6 @@ Compile: ``gcc -Iinc -Isrc main.c src/head.c``
 
 Predefine during compilation with -D flag: Check [Macro document: Using macro to define](https://github.com/TranPhucVinh/C/blob/master/Introduction/Macro/Using%20macro%20to%20define.md).
 
-# Optimizations
-
-Optimizations flags: ``-O``, ``-O1``, ``-O2``, ``-O3``.
-
 # Specific steps inside build process
 
 ``gcc -S main.c``: Compile source file into assembly code, the output file will be ``main.s``
