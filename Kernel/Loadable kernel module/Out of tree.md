@@ -49,6 +49,7 @@ working_folder
 |--head.c
 |--head.h
 |--ubuntu_kernel_module.c
+|--Makefile
 ```
 
 ```Makefile
@@ -78,9 +79,10 @@ When header or source files are in different directory, use ``ccflags-y``
 ```
 working_folder
 |--include
-   |--head.h
+|   |--head.h
 |--head.c
 |--ubuntu_kernel_module.c
+|--Makefile
 ```
 
 (Don't need to change ``head.h`` path called in ``ubuntu_kernel_module.c`` and ``head.c``)
@@ -97,23 +99,24 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 
-``ccflags-y`` is available only in Linux Kernel Makefile. ``ccflags-y := -I$(src)/include`` with ``$(src)`` provides the absolute path by pointing to the directory where the currently executing file is located. ``$(src)`` is also available only with ``ccflags-y`` in Linux Kernel Makefile.
+``ccflags-y`` is available only in Linux Kernel Makefile. ``ccflags-y := -I$(src)/include`` with ``$(src)`` provides the absolute path by pointing to the directory where the currently executing file is located. ``$(src)`` is only available with ``ccflags-y`` in Linux Kernel Makefile.
 
 # Header files and source files in different directory
 
 ```
 working_folder
-|--src
-   |--head.c
-|--inc
-   |--head.h
+|--source
+|   |--head.c
+|--include
+|   |--head.h
 |--ubuntu_kernel_module.c
+|--Makefile
 ```
 
 ```Makefile
 obj-m := main_module.o
-ccflags-y := -I$(src)/inc -I$(src)/src
-main_module-y := src/head.o ubuntu_kernel_module.o
+ccflags-y := -I$(src)/include -I$(src)/source
+main_module-y := source/head.o ubuntu_kernel_module.o
 
 all:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
