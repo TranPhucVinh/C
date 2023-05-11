@@ -1,6 +1,3 @@
-Build stack with array. This example is intended for comprehensive and easy to understand the stack created operation.
-
-```c
 #include <stdio.h>
 
 #define STACK_SIZE 8
@@ -65,4 +62,3 @@ void push(int data) {
         printf("Could not insert data, Stack is full.\n");
     }
 }
-```
