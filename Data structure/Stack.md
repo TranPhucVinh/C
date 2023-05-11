@@ -1,4 +1,4 @@
-Build stack with array
+Build stack with array. This example is intended for comprehensive and easy to understand the stack created operation.
 
 ```c
 #include <stdio.h>
