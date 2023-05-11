@@ -151,7 +151,7 @@ void structFunction(struct databaseNode node){
 
 # Function as member of a struct
 
-Define function as member of a struct of struct using function pointer
+Functions as struct members must be defined by using function pointer.
 
 ## Function without arguments
 
