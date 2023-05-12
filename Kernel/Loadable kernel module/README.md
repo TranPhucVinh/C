@@ -89,7 +89,35 @@ main_module-y := ubuntu_kernel_module.o
 ```
 
 For the kernel module built from multiple sources: ``module_name-y := src1.o src2.o``
+### ccflags-y
+``ccflags-y`` is available only in Linux Kernel Makefile. ``ccflag-y`` supports using "GCC flag type" like ``-I``, ``-D``,... in KBuild.
 
+E.g: Enable macro ``DEFINE_NUM`` in kenel source file:
+
+```c
+#ifdef DEFINE_NUM
+	int number = 12;
+#else
+	int number = 34;
+#endif
+
+int init_module(void)
+{
+    printk("number: %d\n", number);
+    return 0;
+}
+```
+``Makefile``
+```Makefile
+obj-m 		:= ubuntu_kernel_module.o
+ccflags-y 	:= -DDEFINE_NUM
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+```
 # Build multiple kernel modules by a single Makefile
 
 * [Kernel module source files in the same location with Makefile]()

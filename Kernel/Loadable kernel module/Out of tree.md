@@ -74,7 +74,7 @@ As ``main_module.ko`` is the built result, it is built from the kernel object ``
 
 # Header file in different directory
 
-When header or source files are in different directory, use ``ccflags-y``
+When header or source files are in different directory, use [ccflags-y](README.md#ccflags-y)
 
 ```
 working_folder
@@ -99,7 +99,7 @@ clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ```
 
-``ccflags-y`` is available only in Linux Kernel Makefile. ``ccflags-y := -I$(src)/include`` with ``$(src)`` provides the absolute path by pointing to the directory where the currently executing file is located. ``$(src)`` is only available with ``ccflags-y`` in Linux Kernel Makefile.
+``ccflags-y := -I$(src)/include`` with ``$(src)`` provides the absolute path by pointing to the directory where the currently executing file is located. ``$(src)`` is only available with ``ccflags-y`` in Linux Kernel Makefile.
 
 # Header files and source files in different directory
 
