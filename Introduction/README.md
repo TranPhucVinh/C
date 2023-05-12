@@ -116,3 +116,9 @@ int main(){
 printf("%s\n", gnu_get_libc_version());
 ```
 # [Unity unit test framework](Unit%20test.md)
+# Comparison to OOP
+
+There are several cases where OOP with CPP must be implemented when comparing to their corresponding ones in C:
+
+* [Stack building](../Data%20structure/Stack/README.md#build%20stack%20with%20array%20using%20struct)
+* [Suspend and resume thread](../Physical%20layer/Thread/README.md#inter-task-communication)

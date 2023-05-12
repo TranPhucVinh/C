@@ -1,8 +1,12 @@
-Build stack with array: [stack_with_array.c](stack_with_array.c)
+# Build stack with array
+
+Program: [stack_with_array.c](stack_with_array.c)
 
 This example is intended for comprehensive and easy to understand the stack created operation.
 
-Build stack with array, using struct: [stack_with_array_and_struct.c](stack_with_array_and_struct.c). This example is intended for OOP.
+# Build stack with array, using [struct](../struct/)
+
+Program:[stack_with_array_and_struct.c](stack_with_array_and_struct.c). This example is intended for OOP.
 
 As function as struct member must be defined by function pointer, [implementing a stack in C by struct](stack_with_array_and_struct.c) will never be efficient when comparing to CPP OOP technique.
 
