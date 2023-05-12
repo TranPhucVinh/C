@@ -107,7 +107,7 @@ int main(){
     printf("value %d\n", value);//1
 }
 ```
-# Redefine macro value with undef
+# Redefine macro value with #undef
 
 With ``#define``
 
