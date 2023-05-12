@@ -1,4 +1,4 @@
-## Terminate both child and parent process with SIGKILL signal
+# Terminate both child and parent process with SIGKILL signal
 
 ``SIGKILL`` signal inside parent process: Run child process for 5 seconds then kill parent process by ``SIGKILL``  which will stop the whole program includes both parent and child process.
 
@@ -67,10 +67,9 @@ int main(int argc, char *argv[])  {
     }
 }
 ```
+# Stop and continue process with fork() by signal
 
-## Stop and continue process with fork() by signal
-
-In parent process, if ``number`` is ``5``, stop for parent process for 5 seconds then continues
+In parent process, if ``number`` is ``5``, stop parent process for 5 seconds then continues
 
 ```c
 #include <stdio.h>
@@ -82,17 +81,17 @@ int number;
 int main(int argc, char *argv[])  {
 	int pid = fork();
 	if (pid) {
-        while (1){
-            printf("number: %d\n", number);
-            if (number == 5){
-                kill(pid, SIGSTOP);
-                usleep(DELAY_TIME*5);
-                kill(pid, SIGCONT);
-            } 
-            number += 1;
-            usleep(DELAY_TIME);
-        }
-    }
+		while (1){
+		    printf("number: %d\n", number);
+		    if (number == 5){
+			kill(pid, SIGSTOP);
+			usleep(DELAY_TIME*5);
+			kill(pid, SIGCONT);
+		    } 
+		    number += 1;
+		    usleep(DELAY_TIME);
+		}
+    	}
 }
 ```
 If using that flow inside the child process, the program will be blocked when ``number`` reaches ``5``:
