@@ -186,7 +186,7 @@ Compile: ``gcc -Iinc -Isrc main.c src/head.c``
 
 ``-D``: Define flag
 
-Predefine during compilation with -D flag: Check [Macro document: Using macro to define](https://github.com/TranPhucVinh/C/blob/master/Introduction/Macro/Using%20macro%20to%20define.md).
+Predefine during compilation with -D flag: Check [Macro document: Using macro to define](../Introduction/Macro/Condition%20in%20macro.md#predefine-during-compilation-using-flag--d).
 
 # Specific steps inside build process
 
