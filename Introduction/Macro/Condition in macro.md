@@ -152,6 +152,24 @@ main(){
 Predefine during compilation: ``gcc -D name=12 test.c``
 
 Result: ``name: 12``
+``-D`` flag for macro:
+```c
+#include <stdio.h>
+
+#ifdef DEFINE_NUM
+	int number = 12;
+#else
+	int number = 34;
+#endif
+
+int main(){
+	printf("number: %d \n", number);
+	return 0;
+}
+```
+``gcc main.c``: ``number: 34``
+
+``gcc main.c -DDEFINE_NUM``: ``number: 12``
 
 ## Predefine with #ifndef
 
