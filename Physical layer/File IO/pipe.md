@@ -15,11 +15,9 @@ int pipe(int fd[2]);
 
 If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, but if ``fd[0]`` is empty, the process that perform the writing operation will be executed first. If ``fd[0]`` already has data, reading ``fd[0]`` can executed before writing to ``fd[1]`` normally.
 
-# Implementations
+# Communicate inside 1 process
 
-## Communicate inside 1 process
-
-Write value to ``fd[1]`` and read from ``fd[0]``
+## Write an int variable to fd[1] and read from fd[0]
 
 ```c
 #include <stdio.h>
@@ -41,7 +39,7 @@ int main(int argc, char *argv[])  {
 	printf("Data from fd[0]: %d\n", y);
 }
 ```
-For string:
+## Write string to fd[1] and read from fd[0]
 
 ```c
 #include <stdio.h>
@@ -64,6 +62,58 @@ int main(int argc, char *argv[])  {
 	printf("Data from fd[0]: %s\n", receivedString);
 }
 ```
-## Communicate between parent and child process
+## Write array to fd[1] and read from fd[0]
+From the [write string implementation](#write-string-to-fd1-and-read-from-fd0), we can see that ``fd[1]`` and ``fd[0]`` have no fixed of storage, i.e they can reallocated their storage size to store the value written to them, which is a little similar to [vector in CPP](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/Vector.md).
+
+Apply the same implemetation with [write string](#write-string-to-fd1-and-read-from-fd0) to any array like an int array, we have:
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[])  {
+	int fd[2];
+    int wr_arr[10], rd_arr[10];
+    if(pipe(fd) == -1){
+		printf("An error occured when opening the pipe\n");
+		return 1;
+	}
+    for (int i = 0; i < 10; i++){
+        wr_arr[i] = i;
+        write(fd[1], &wr_arr[i], sizeof(int));
+    }
+    close(fd[1]);
+    
+    read(fd[0], rd_arr, sizeof(int)*10);
+    close(fd[0]);
+    for (int i = 0; i < 10; i++){
+        printf("rd_arr[%d]: %d\n", i, rd_arr[i]);
+    }
+}
+```
+Same for writing a single variable:
+
+```c
+int x = 123;
+write(fd[1], &x, sizeof(int));
+x = 456;
+write(fd[1], &x, sizeof(int));
+x = 789;
+write(fd[1], &x, sizeof(int));
+close(fd[1]);
+
+int y[3];
+read(fd[0], y, sizeof(int)*3);
+close(fd[0]);
+for (int i = 0; i < 3; i++){
+	printf("y[%d]: %d\n", i, y[i]);
+}
+```
+**Result**
+```
+y[0]: 123
+y[1]: 456
+y[2]: 789
+```
+# Communicate between parent and child process
 
 [Check fork example with pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Communication%20between%20parent%20and%20child%20processes%20using%20pipe.md)
