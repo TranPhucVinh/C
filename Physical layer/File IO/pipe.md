@@ -13,7 +13,7 @@ int pipe(int fd[2]);
 * ``0``: success
 * ``-1``: error
 
-If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, but if ``fd[0]`` is empty, the process that perform the writing operation will be executed first. If ``fd[0]`` already has data, reading ``fd[0]`` can executed before writing to ``fd[1]`` normally.
+If a process tries to read before something is written to the pipe, the process is suspended until something is written. It means no matter which process is operating, but if ``fd[0]`` is empty, the process that perform the writing operation will be executed first. If ``fd[0]`` already has data, reading ``fd[0]`` can be executed before writing to ``fd[1]`` normally.
 
 # Communicate inside 1 process
 
@@ -26,7 +26,7 @@ If a process tries to read before something is written to the pipe, the process 
 int main(int argc, char *argv[])  {
 	int fd[2];
 	if(pipe(fd) == -1){
-		printf("An error occured when opening the pipe\n");
+		printf("Fail to create a pipe\n");
 		return 1;
 	}
 	int x = 123;
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])  {
 int main(int argc, char *argv[])  {
 	int fd[2];
 	if(pipe(fd) == -1){
-		printf("An error occured when opening the pipe\n");
+		printf("Fail to create a pipe\n");
 		return 1;
 	}
 	char displayedString[] = "Hello, World !";
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])  {
 	int fd[2];
     int wr_arr[10], rd_arr[10];
     if(pipe(fd) == -1){
-		printf("An error occured when opening the pipe\n");
+		printf("Fail to create a pipe\n");
 		return 1;
 	}
     for (int i = 0; i < 10; i++){
