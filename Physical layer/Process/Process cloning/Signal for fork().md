@@ -1,3 +1,37 @@
+# Signal handler is called in both parent and child process
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <signal.h>   
+
+#define DELAY_TIME   1   
+char displayed_string[50];
+
+void signal_handler(int signal_number){
+	int sz = snprintf(displayed_string, sizeof(displayed_string), "%d; Signal %d is caught\n", getpid(), signal_number);
+	write(STDOUT_FILENO, displayed_string, sz); 
+    exit(1);
+}
+
+int main(int argc, char *argv[])  {
+    memset(displayed_string, 0, sizeof(displayed_string));
+    signal(SIGINT, signal_handler);
+	int pid = fork();
+	if (!pid) {
+        while (1) sleep(DELAY_TIME);
+    } 
+	else {
+        while (1) sleep(DELAY_TIME);
+    }
+}
+```
+**Result**
+```
+^C25045; Signal 2 is caught
+25046; Signal 2 is caught
+```
 # Terminate both child and parent process with SIGKILL signal
 
 ``SIGKILL`` signal inside parent process: Run child process for 5 seconds then kill parent process by ``SIGKILL``  which will stop the whole program includes both parent and child process.
