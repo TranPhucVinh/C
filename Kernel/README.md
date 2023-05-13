@@ -1,3 +1,5 @@
+**KBuild** is the build system used by the Linux kernel.
+ 
 # Loadable kernel module
 
 To build a kernel module as a device driver, check [Loadable kernel module document folder](Loadable%20kernel%20module).

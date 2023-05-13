@@ -19,6 +19,19 @@ Return
 #include <unistd.h>
 
 int main(int argc, char *argv[])  {
+	printf("Before forking\n");
+	int pid = fork();
+	printf("PID: %d\n", pid);
+}
+```
+```
+Before forking
+PID: 12753
+PID: 0
+```
+If define:
+```c
+int main(int argc, char *argv[])  {
 	printf("Before forking");
 	int pid = fork();
 	printf("PID: %d\n", pid);

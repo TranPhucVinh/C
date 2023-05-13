@@ -1,4 +1,4 @@
-### ``#if defined``
+# #if defined
 
 ```c
 #include <stdio.h>
@@ -86,9 +86,9 @@ int main(){
 
 Application:
 
-* Linked list: Insert a node at first index by using double pointer, as well as inserting at other index: [multiple_defines_for_insert_with_index.c](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/Linked%20list/Singly%20Linked%20list/multiple_defines_for_insert_with_index.c)
+* Linked list: Insert a node at first index by using double pointer, as well as inserting at other index: [multiple_defines_for_insert_with_index.c](../../Data%20structure/Linked%20list/Singly%20linked%20list/multiple_defines_for_insert_with_index.c)
 
-### The difference between #if defined() and #ifdef()
+# The difference between #if defined() and #ifdef()
 
 The difference between the two is that #ifdef can only use a single condition, while #if defined(NAME) can do compound conditionals.
 
@@ -107,8 +107,7 @@ int main(){
     printf("value %d\n", value);//1
 }
 ```
-
-### Redefine macro value with undef
+# Redefine macro value with #undef
 
 With ``#define``
 
@@ -137,9 +136,9 @@ printf("%d \n", integerValue); //190
 #undef integeValue
 printf("%d \n", integerValue); //190
 ```
-### Predefine 
+# Predefine 
 
-Predefine during compilation using flag ``-D``
+## Predefine during compilation using flag -D
 
 ```c
 #include <stdio.h>
@@ -153,8 +152,26 @@ main(){
 Predefine during compilation: ``gcc -D name=12 test.c``
 
 Result: ``name: 12``
+``-D`` flag for macro:
+```c
+#include <stdio.h>
 
-Predefine with ``#ifndef``
+#ifdef DEFINE_NUM
+	int number = 12;
+#else
+	int number = 34;
+#endif
+
+int main(){
+	printf("number: %d \n", number);
+	return 0;
+}
+```
+``gcc main.c``: ``number: 34``
+
+``gcc main.c -DDEFINE_NUM``: ``number: 12``
+
+## Predefine with #ifndef
 
 ```c
 #include <stdio.h>
