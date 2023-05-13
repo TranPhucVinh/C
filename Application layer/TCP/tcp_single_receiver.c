@@ -27,6 +27,11 @@ struct 		sockaddr_in sender_addr, receiver_addr;
 int         socket_id = 0;
 int         *total_connected_sender;
 
+void        sigint_handler(int signal_number);
+
+int         client_fd[2];
+int         client_pid[2];
+
 void socket_parameter_init(){
     total_connected_sender = (int *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *total_connected_sender = 0;
@@ -55,7 +60,18 @@ void socket_parameter_init(){
 }
 
 int main(int argc, char *argv[]){
+    signal(SIGINT, sigint_handler);
     socket_parameter_init();
+
+    if(pipe(client_pid) == -1){
+		printf("An error occured when creating pipe client_pid\n");
+		return 1;
+	}
+
+    if(pipe(client_fd) == -1){
+		printf("An error occured when creating pipe client_fd\n");
+		return 1;
+	}
 
     printf("Waiting for a TCP sender to connect ...\n");
     
@@ -64,15 +80,20 @@ int main(int argc, char *argv[]){
         // wait for sender to connect, return new socket for that sender
         if ((sender_fd = accept(receiver_fd, (struct sockaddr *) &sender_addr, &sender_length)) > 0){
             char ip_str[30];
-            // now get it back and print it
             inet_ntop(AF_INET, &(sender_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
             *total_connected_sender += 1;
             socket_id += 1;
-            printf("New TCP sender connected with IP %s, %d TCP senders have connected now\n", ip_str, *total_connected_sender);
+            printf("New TCP sender with fd %d connected with IP %s, %d TCP senders have connected now\n", sender_fd, ip_str, *total_connected_sender);
+            
+            write(client_fd[1], &sender_fd, sizeof(int));
 
             int pid = fork();
             if (!pid) { 
                 printf("TCP sender has ID %d\n", socket_id);
+
+                pid_t sender_pid = getpid();
+                write(client_pid[1], &sender_pid, sizeof(pid_t));
+
                 while (1){
                     int bytes_received = read(sender_fd, buffer, BUFFSIZE);
                     if (bytes_received > 0) {
@@ -98,3 +119,37 @@ int main(int argc, char *argv[]){
     }   
 }
 
+void sigint_handler(int signal_number){
+    close(client_pid[1]);
+    close(client_fd[1]);
+
+    pid_t *sender_pid = (pid_t*) malloc(*total_connected_sender * sizeof(pid_t));
+    int   *client_fd_arr = (int*) malloc(*total_connected_sender * sizeof(int));  
+
+    for (int i = 0; i < *total_connected_sender; i++){
+        printf("sender_pid[%d] %d\n", i, sender_pid[i]);
+    }
+
+    for (int i = 0; i < *total_connected_sender; i++){
+        printf("client_fd_arr[%d] %d\n", i, client_fd_arr[i]);
+    }
+
+    read(client_pid[0], sender_pid, *total_connected_sender * sizeof(pid_t));
+    close(client_pid[0]);
+
+    read(client_fd[0], client_fd_arr, *total_connected_sender * sizeof(int));
+    close(client_fd[0]);
+
+    for (int i = 0; i < *total_connected_sender; i++){
+        printf("sender_pid[%d] %d\n", i, sender_pid[i]);
+        kill(sender_pid[i], SIGKILL);
+    }
+
+    kill(getpid(), SIGKILL);
+
+    for (int i = 0; i < *total_connected_sender; i++){
+        printf("client_fd_arr[%d] %d\n", i, client_fd_arr[i]);
+        close(client_fd_arr[i]);
+    }
+    exit(0);
+}
