@@ -120,7 +120,7 @@ int main(){
             int epollret = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
             if (epollret == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
             else if (epollret > 0){
-                //As struct epoll_event monitored_event[2] and happened_event[1] are differnt
+                //As struct epoll_event monitored_event[2] and happened_event[1] are different
                 //so use for loop to check
                 for (int n = 0; n < 2; n++)
                 {
