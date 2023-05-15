@@ -57,6 +57,7 @@ All signals are defined in library ``signal.h`` in C Standard Library.
 int kill(pid_t pid, int sig);
 ```
 Send signal (``sig``) to a process specified by ``pid``.
+If ``pid=0``, ``sig`` is sent to every process in the process group of the calling process.
 
 **Return**: On success (at least one signal was sent), ``0`` is returned.  On error, ``-1`` is returned, and ``errno`` is set to indicate the error.
 
