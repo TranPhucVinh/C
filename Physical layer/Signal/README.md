@@ -30,6 +30,7 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 ```
 
 * [SIGUSR1 and SIGUSR2](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) are user defined signal
+* [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process. 
 * ``SIGQUIT``: **SIGQUIT** signal is similar to [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint)
 * [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
 * [SIGKILL](Working%20with%20specific%20signal.md#sigkill): immediately terminate a process, **SIGKILL** cannot be caught, handled or ignored. It is impossible to block this signal.

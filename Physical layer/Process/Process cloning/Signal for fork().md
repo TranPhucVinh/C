@@ -61,6 +61,29 @@ int main(int argc, char *argv[])  {
     }
 }
 ```
+# SIGCHLD
+With source code like [Kill child process while parent process keeps running normally](#kill-child-process-while-parent-process-keeps-running-normally), caught **SIGCHLD** signal when child process is terminated
+```c
+void sigchild(int signal_number){
+    char displayed_string[50];
+    memset(displayed_string, 0, sizeof(displayed_string));
+	int sz = snprintf(displayed_string, sizeof(displayed_string), "Signal SIGCHLD %d is caught\n", signal_number);
+	write(STDOUT_FILENO, displayed_string, sz); 
+    exit(1);
+}
+
+int main(int argc, char *argv[])  {
+	int pid = fork();
+	signal(SIGCHLD, sigchild);
+	if (!pid) {
+		sleep(DELAY_TIME*5);
+		printf("Child process is terminated\n");
+		kill(getpid(), SIGKILL);
+    } 
+    // Other operations are like: Kill child process while parent process keeps running normally
+}
+```
+
 # Stop and continue process with fork() by signal
 
 In parent process, if ``number`` is ``5``, stop parent process for 5 seconds then continues
