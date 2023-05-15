@@ -80,7 +80,38 @@ fork()                      |
 ```
 
 So putting ``wait()`` inside child process execution gives no effect.
+# Oprhan process
+A process whose parent process no more exists i.e. either finished or terminated without waiting for its child process to terminate is called an **orphan process**.
+```c
+#include <stdio.h>
+#include <unistd.h>
 
+#define DELAY	1
+
+int main()
+{
+	int pid = fork();
+
+	if (pid > 0) printf("parent process\n");
+	else if (pid == 0)
+	{
+		sleep(DELAY*5);
+		printf("Child process\n");
+	}
+	return 0;
+}
+```
+```
+username$hostname:$ ./a.out
+parent process
+username$hostname:$ ps
+  PID TTY          TIME CMD
+ 3584 pts/6    00:00:00 bash
+ 4085 pts/6    00:00:00 a.out
+ 4086 pts/6    00:00:00 ps
+username$hostname:$ # Wait for 5 seconds as child process, which is orphan now, is still running while parent process is killed
+username$hostname:$ Child process # Child process has finished running after 5 seconds
+```
 # Application
 
 * [IPC with TCP socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP#examples): 1 server communicates with multiple clients. Process cloning with ``fork()`` is used to create a new process for a file descriptor for each tcp_client every time a new connection is established.
