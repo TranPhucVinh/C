@@ -1,17 +1,3 @@
-# API
-
-```c
-pid_t fork(void);
-```
-
-Clone the calling process, creating an exact copy known as the child porcess. The child process and the parent process run in separate memory spaces.
-
-Return
-
-* ``-1`` for errors
-* ``pid`` of the child process 
-* ``0`` as the child process has been created successfully
-
 # fork() execution
 
 ```c

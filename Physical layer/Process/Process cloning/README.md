@@ -1,9 +1,20 @@
-# API
+# [fork()](fork().md)
+```c
+pid_t fork(void);
+```
 
-* [fork()](fork().md)
-* [wait()](#wait)
+Clone the calling process, creating an exact copy known as the child porcess. The child process and the parent process run in separate memory spaces.
 
-## wait()
+**Return**
+
+* ``-1`` for errors
+* ``pid`` of the child process is returned to the parent process.
+* ``0`` as the child process has been created successfully. ``0`` is returned to the child process.
+Implementation of [fork()](fork().md) includes:
+* [fork() execution](fork().md#)
+* [Running child process inside infinite loop](fork().md#)
+* [Running multiple fork()](fork().md#)
+# wait()
 
 ```c
 #include <sys/wait.h>
