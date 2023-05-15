@@ -29,7 +29,7 @@ Before forkingPID: 0
 ```
 ``Before forking`` is printed 2 times as it is not followed by a newline.
 
-Executing functions before ``fork()`` and get the ID of the origin and child process:
+Executing functions before ``fork()`` and get the ID of the parent and child process:
 
 ```c
 #include <stdio.h>
@@ -40,31 +40,19 @@ int main(int argc, char *argv[])  {
 	int pid = fork();
 	if (!pid) printf("Child process has ID: %d\n", getpid());
 	else printf("Parent process's ID: %d and child process's ID: %d\n", getpid(), pid);
+	printf("Hello, World !\n");
 }
 ```
 ```
 Before forking
-Parent process's ID: 24170 and child process's ID: 24171
-Child process has ID: 24171
+Parent process's ID: 3768 and child process's ID: 3769
+Hello, World !
+Child process has ID: 3769
+Hello, World !
 ```
 
 The child process created by ``fork()`` will have the structure of the whole ``main()`` program, so it will execute the part of the program after the ``if else`` pid condition (``if (!pid)``):
 
-```c
-printf("Before forking\n");
-int pid = fork();
-if (!pid) printf("Child process has ID: %d\n", getpid());
-else printf("Parent process's ID: %d and child process's ID: %d\n", getpid(), pid);
-
-printf("Hello, World !\n");
-```
-```
-Before forking
-Parent process's ID: 24195 and child process's ID: 24196
-Hello, World !
-Child process has ID: 24196
-Hello, World !
-```
 Note that in this case, the program after ``if (!pid)`` (``printf("Hello, World !\n");``) is executed 2 times as it is executed by both parent and child process.
 
 # Running child process inside infinite loop
