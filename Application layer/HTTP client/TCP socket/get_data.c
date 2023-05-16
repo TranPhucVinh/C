@@ -13,14 +13,14 @@ char *form_http_request();
 
 /*
     Create a TCP socket connection to host with port
-    @host
-    @port
+    @host:
+    @port:
     Return: socket_fd as the socket file descriptor
 */
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
 	struct sockaddr_in addr;
-	int sock_fd;     
+	int socket_fd;     
 
 	if((hp = gethostbyname(host)) == NULL){
         printf("Fail to get host %s\n", HOST);
@@ -29,19 +29,19 @@ int socket_connect(char *host, in_port_t port){
 	bcopy(hp->h_addr, &addr.sin_addr, hp->h_length);
 	addr.sin_port = htons(port);
 	addr.sin_family = AF_INET;
-	sock_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+	socket_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
-	if(sock_fd == -1){
-		perror("setsockopt");
+	if(socket_fd == -1){
+		perror("socket_fd");
 		exit(1);
 	}
 	
-	if(connect(sock_fd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1){
+	if(connect(socket_fd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1){
 		perror("connect");
 		exit(1);
 	}
 
-	return sock_fd;
+	return socket_fd;
 }
 
 int main(int argc, char *argv[]){
