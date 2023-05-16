@@ -64,7 +64,9 @@ int socket_init(){
 
     #ifdef REUSEADDR
         int enable_val = 1;
-        setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val));
+        if (!setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val))){
+            printf("Set socket to reuse address successfully\n");
+        } else printf("Unable to set socket to reuse address\n");
     #endif
     return receiver_fd;
 }
