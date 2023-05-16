@@ -38,6 +38,8 @@ int main(int argc, char *argv[]){
 
 Send data to a local HTTP server: [send_data.c](send_data.c)
 
+Local HTTP server used for testing: [Python HTTP server](https://github.com/TranPhucVinh/Python/blob/master/Application%20layer/HTTP/HTTP%20server/README.md#http-server)
+
 ## Detect Internet connection status
 
 TCP client for HTTP request can be used to detect Internet connection status, simply by using ``gethostbyname()`` function
