@@ -10,6 +10,7 @@
 #include <sys/mman.h>
 #include <sys/wait.h>
 
+#define REUSEADDR
 #define MAXPENDING 	5
 #define BUFFSIZE 	256
 #define PORT 		8000
@@ -19,7 +20,7 @@
 #define NO_FD       -1  //No file descriptor used for shared memory
 #define BASE_ADDR   0   //No specific base address to set in shared memory
 
-int 		sender_fd, receiver_fd;
+int 		sender_fd;
 socklen_t 	sender_length;
 char 		buffer[BUFFSIZE];
 struct 		sockaddr_in sender_addr, receiver_addr;
@@ -29,16 +30,19 @@ int         *total_connected_sender;
 
 void        sigint_handler(int signal_number);
 
-int         client_fd[2];
-int         client_pid[2];
+int         sender_fd_pipe[2];
 
-void socket_parameter_init(){
+/*
+    Init socket parameters
+*/
+int socket_init(){
     total_connected_sender = (int *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *total_connected_sender = 0;
 
     //Create TCP socket receiver
-    if ((receiver_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0){
-        perror("tcp_receiver\n");
+    int receiver_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (receiver_fd < 0){
+        perror("receiver_fd\n");
     } else printf("Create TCP receiver socket successfully\n");
  
     receiver_addr.sin_family = AF_INET;                
@@ -57,19 +61,22 @@ void socket_parameter_init(){
 
     sender_length = sizeof(sender_addr);//Get address size of sender
     bzero(buffer, BUFFSIZE);//Delete buffer
+
+    #ifdef REUSEADDR
+        int enable_val = 1;
+        setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val));
+    #endif
+    return receiver_fd;
 }
 
 int main(int argc, char *argv[]){
     signal(SIGINT, sigint_handler);
-    socket_parameter_init();
 
-    if(pipe(client_pid) == -1){
-		printf("An error occured when creating pipe client_pid\n");
-		return 1;
-	}
+    int receiver_fd = socket_init();
 
-    if(pipe(client_fd) == -1){
-		printf("An error occured when creating pipe client_fd\n");
+    // Create a pipe for sender socket fd
+    if(pipe(sender_fd_pipe) == -1){
+		printf("An error occured when creating a pipe for sender fd\n");
 		return 1;
 	}
 
@@ -85,14 +92,11 @@ int main(int argc, char *argv[]){
             socket_id += 1;
             printf("New TCP sender with fd %d connected with IP %s, %d TCP senders have connected now\n", sender_fd, ip_str, *total_connected_sender);
             
-            write(client_fd[1], &sender_fd, sizeof(int));
+            write(sender_fd_pipe[1], &sender_fd, sizeof(int));
 
             int pid = fork();
-            if (!pid) { 
+            if (!pid) {
                 printf("TCP sender has ID %d\n", socket_id);
-
-                pid_t sender_pid = getpid();
-                write(client_pid[1], &sender_pid, sizeof(pid_t));
 
                 while (1){
                     int bytes_received = read(sender_fd, buffer, BUFFSIZE);
@@ -101,7 +105,7 @@ int main(int argc, char *argv[]){
                         bzero(buffer, BUFFSIZE);         //Delete buffer
                     } 
                     /*
-                        else condition:
+                        else condition includes:
                         1. Right after the TCP socket is disconnected, read() will return 0.
                             If tcp_multiple_senders.c sends empty string, read() won't return 0. 
                         2. socket error, read() returns -1
@@ -119,37 +123,25 @@ int main(int argc, char *argv[]){
     }   
 }
 
+/*
+    SIGINT signal handler will clean up memory when pressing CTR+C (SIGINT) by:
+    * close all senders fd
+    * kill all processes (child and parent) in the process group
+*/
 void sigint_handler(int signal_number){
-    close(client_pid[1]);
-    close(client_fd[1]);
+    close(sender_fd_pipe[1]);
 
-    pid_t *sender_pid = (pid_t*) malloc(*total_connected_sender * sizeof(pid_t));
-    int   *client_fd_arr = (int*) malloc(*total_connected_sender * sizeof(int));  
+    int *sender_fd_arr = (int*) malloc(*total_connected_sender * sizeof(int));  
 
-    for (int i = 0; i < *total_connected_sender; i++){
-        printf("sender_pid[%d] %d\n", i, sender_pid[i]);
-    }
+    read(sender_fd_pipe[0], sender_fd_arr, *total_connected_sender * sizeof(int));
+    close(sender_fd_pipe[0]);
 
-    for (int i = 0; i < *total_connected_sender; i++){
-        printf("client_fd_arr[%d] %d\n", i, client_fd_arr[i]);
-    }
-
-    read(client_pid[0], sender_pid, *total_connected_sender * sizeof(pid_t));
-    close(client_pid[0]);
-
-    read(client_fd[0], client_fd_arr, *total_connected_sender * sizeof(int));
-    close(client_fd[0]);
+    // kill() pid=0 to kill all processes (child and parent) in the process group
+    kill(0, SIGKILL);
 
     for (int i = 0; i < *total_connected_sender; i++){
-        printf("sender_pid[%d] %d\n", i, sender_pid[i]);
-        kill(sender_pid[i], SIGKILL);
-    }
-
-    kill(getpid(), SIGKILL);
-
-    for (int i = 0; i < *total_connected_sender; i++){
-        printf("client_fd_arr[%d] %d\n", i, client_fd_arr[i]);
-        close(client_fd_arr[i]);
+        printf("sender_fd_arr[%d] %d\n", i, sender_fd_arr[i]);
+        close(sender_fd_arr[i]);
     }
     exit(0);
 }
