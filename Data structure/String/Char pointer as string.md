@@ -40,19 +40,24 @@ Compile error with ``G++`` and ``GCC``:
 error: conflicting types for ‘displayedString’
 error: initializer element is not computable at load time
 ```
+## Index handler
 
-**Get size**
+```c
+printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H 
+```
 
-``size_t strlen(const char *)``: Return length of a char pointer string
+# Get size
 
-This will result in core dumped error:
+``size_t strlen(const char *)``: Return length of a char pointer string, even for [char pointer as function argument](#char-pointer-as-argument-in-function)
+
+Core dumped when trying to get strlen() of unallocated char pointer
 
 ```c
 char *string3;
 printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
 ```
 
-## Define a string pointer on heap memory
+# Define a string pointer on heap memory
 
 Check [Dynamic memory allocation with malloc() for string](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md#malloc-for-string).
 
@@ -67,12 +72,6 @@ strcpy(displayedString,  "Hello, World !");
 The same problem will happen to similar functions like ``sprintf()``, ``strncpy()`` and ``memmove()``
 
 **Problem solved**: Using dynamic memory allocation
-
-## Index handler
-
-```c
-printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H 
-```
 
 # Change value
 
@@ -121,16 +120,16 @@ If adding ``memset()`` and ``bzero()``, the same error still happens: ``memset(d
 
 ``strcat()`` and ``strncat()`` require ``hw`` to be the string char array to store the value while ``char *hw`` has fix address and memory size.
 
-# String as argument in function
+# Char pointer as argument in function
 
 ```c
 void printStringPointer(char *hw){
-	printf("%s ", hw);
+	printf("%s %d\n", hw, strlen(hw));
 }
 
 int main(){
-	char str1[] = "Hello, World \n";
-	printStringPointer(str1); //Hello, World
+	char str1[] = "Hello, World !";
+	printStringPointer(str1); //Hello, World ! 14
 }
 ```
 
