@@ -46,8 +46,8 @@ Child process
 ```
 After killing/stopping ``a.out``, ``child_process`` still runs in the background.
 # Kill the infinite background process by signal
-To kill child process when killing ``a.out``, use [signal](Signal) with ``SIGINT`` to catch ``Ctr+C`` in ``child_process``, ``SIGKILL`` to kill ``child_process``
-``parent_process``
+To kill ``child_process`` when killing ``parent_process``, use [signal](Signal) with ``SIGINT`` to catch ``Ctr+C`` in ``child_process``, ``SIGKILL`` to kill ``child_process``
+``parent_process.c``
 ```c
 #include <iostream>
 #include <string>
@@ -65,13 +65,13 @@ void execPid(const char* cmd)
 
 int main(){
     cout << "start\n";
-    execPid("./header");
+    execPid("./child_process");
     cout << "end\n";
     while(1); //Keep parent process running so that both parent and child process can be stopped by Ctr+C
 }
 ```
 
-``child_process``
+``child_process.c``
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -96,8 +96,12 @@ int main(){
     }
 }
 ```
-# Kill the infinite background process by functions inside in the parent process
-Run child process which has while(1) loop in the background and kill it in parent process function:
+# Run the infinite background process, get its PID then kills it by functions inside in the parent process
+
+``startProcess()`` starts a process by its command and returns that process PID.
+
+Run ``child_process`` which has ``while(1)`` loop in the background and kill it in parent process function:
+
 ```cpp
 #include <iostream>
 #include <stdlib.h>
@@ -105,7 +109,7 @@ Run child process which has while(1) loop in the background and kill it in paren
 #include <fcntl.h>
 #include <csignal>
 
-#define PROCESS_NAME    "head"
+#define PROCESS_NAME    "child_process"
 
 int startProcess(const char* process_name);
 void killProcess(int pid);
@@ -134,5 +138,44 @@ int startProcess(const char* process_name){
 void killProcess(int pid){
 	if (!kill(pid, SIGKILL)) printf("Kill process with PID %d successfully\n", pid);
 	else printf("Fail to kill process with PID %d\n", pid);
+}
+```
+# Stop child_process by SIGSTOP and continue it by SIGCONT
+```c
+#include <iostream>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <csignal>
+
+#define PROCESS_NAME    "child_process"
+
+int startProcess(const char* process_name);
+
+int main(){
+   	int pid = startProcess(PROCESS_NAME);
+	printf("%d\n", pid);
+	sleep(5);// Sleep for 5 seconds to let child_process run for 5 seconds
+    kill(pid, SIGSTOP);// Then stop/suspend child_process
+    sleep(5);// Sleep for 5 seconds to let child_process stop/suspend for 5 seconds
+    kill(pid, SIGCONT);// Then continue child_process
+    sleep(5);// Sleep for 5 seconds to let child_process run for 5 seconds
+    // Finally, kill child_process
+    if (!kill(pid, SIGKILL)) printf("child_process with PID %d is killed\n", pid);
+    else printf("Fail to kill child_process with PID %d\n", pid);
+}
+
+int startProcess(const char* process_name){
+    std::string start_process;
+	int pid;
+	start_process = "./" + std::string(process_name) + "& echo $! > txt.pid";
+    if (system(start_process.c_str()) == -1) printf("Fail to start process in the background\n");
+    else {
+        char buffer[10];
+        int fd = open("txt.pid", O_RDONLY);
+        read(fd, buffer, 10);
+        pid = strtol(buffer, NULL, 10);
+    }
+	return pid;
 }
 ```

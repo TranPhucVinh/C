@@ -80,6 +80,8 @@ fork()                      |
 ```
 
 So putting ``wait()`` inside child process execution gives no effect.
+# [waitpid()](waitpid().md)
+``waitpid()`` system call suspends execution of the calling process until a child specified by pid argument has changed state. It is used in parent process to monitor the state change of its child process.
 # Oprhan process
 A process whose parent process no more exists i.e. either finished or terminated without waiting for its child process to terminate is called an **orphan process**.
 ```c
@@ -112,9 +114,11 @@ username$hostname:$ ps
 username$hostname:$ # Wait for 5 seconds as child process, which is orphan now, is still running while parent process is killed
 username$hostname:$ Child process # Child process has finished running after 5 seconds
 ```
-# Application
-
-* [IPC with TCP socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP#examples): 1 server communicates with multiple clients. Process cloning with ``fork()`` is used to create a new process for a file descriptor for each tcp_client every time a new connection is established.
+# Implementation
 * [Communication between parent and child processes using pipe](Communication%20between%20parent%20and%20child%20processes%20using%20pipe.md)
 * [Signal for fork()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Signal%20for%20fork().md)
 * [Variable inside forked process](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Variable%20inside%20forked%20process.md)
+# Application
+
+* [IPC with TCP socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP#examples): 1 server communicates with multiple clients. Process cloning with ``fork()`` is used to create a new process for a file descriptor for each tcp_client every time a new connection is established.
+
