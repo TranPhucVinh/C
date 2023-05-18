@@ -100,7 +100,8 @@ int main(){
 
 ``startProcess()`` starts a process by its command and returns that process PID.
 
-Run child process which has ``while(1)`` loop in the background and kill it in parent process function:
+Run ``child_process`` which has ``while(1)`` loop in the background and kill it in parent process function:
+
 ```cpp
 #include <iostream>
 #include <stdlib.h>
@@ -137,5 +138,44 @@ int startProcess(const char* process_name){
 void killProcess(int pid){
 	if (!kill(pid, SIGKILL)) printf("Kill process with PID %d successfully\n", pid);
 	else printf("Fail to kill process with PID %d\n", pid);
+}
+```
+# Stop child_process by SIGSTOP and continue it by SIGCONT
+```c
+#include <iostream>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <csignal>
+
+#define PROCESS_NAME    "child_process"
+
+int startProcess(const char* process_name);
+
+int main(){
+   	int pid = startProcess(PROCESS_NAME);
+	printf("%d\n", pid);
+	sleep(5);// Sleep for 5 seconds to let child_process run for 5 seconds
+    kill(pid, SIGSTOP);// Then stop/suspend child_process
+    sleep(5);// Sleep for 5 seconds to let child_process stop/suspend for 5 seconds
+    kill(pid, SIGCONT);// Then continue child_process
+    sleep(5);// Sleep for 5 seconds to let child_process run for 5 seconds
+    // Finally, kill child_process
+    if (!kill(pid, SIGKILL)) printf("child_process with PID %d is killed\n", pid);
+    else printf("Fail to kill child_process with PID %d\n", pid);
+}
+
+int startProcess(const char* process_name){
+    std::string start_process;
+	int pid;
+	start_process = "./" + std::string(process_name) + "& echo $! > txt.pid";
+    if (system(start_process.c_str()) == -1) printf("Fail to start process in the background\n");
+    else {
+        char buffer[10];
+        int fd = open("txt.pid", O_RDONLY);
+        read(fd, buffer, 10);
+        pid = strtol(buffer, NULL, 10);
+    }
+	return pid;
 }
 ```

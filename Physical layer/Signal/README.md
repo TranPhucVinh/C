@@ -34,6 +34,7 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * ``SIGQUIT``: **SIGQUIT** signal is similar to [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint)
 * [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
 * [SIGKILL](Working%20with%20specific%20signal.md#sigkill): immediately terminate a process, **SIGKILL** cannot be caught, handled or ignored. It is impossible to block this signal.
+* [SIGSTOP and SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [One process stop then continue another process based on its PID](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT)
 * [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
 
 ## Implementation
