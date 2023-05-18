@@ -20,7 +20,7 @@ system("ls"); //Run ls command
 
 On Windows, the ``a.exe`` of this file will run normally in Git Bash and will result in error ``command not found`` in Command Prompt.
 
-``system("dir");`` will run properly in [Windows Command prompt](https://github.com/TranPhucVinh/Windows-Batch).
+``system("dir")`` will run properly in [Windows Command prompt](https://github.com/TranPhucVinh/Windows-Batch).
 
 [Use system() to start and kill an infinite process in the background](system()%20for%20an%20infinite%20process%20in%20the%20background.md)
 * [Use system() to start a process which includes a while(1) loop in the background](system()%20for%20an%20infinite%20process%20in%20the%20background.md#use-system-to-start-a-process-which-includes-a-while1-loop-in-the-background)
