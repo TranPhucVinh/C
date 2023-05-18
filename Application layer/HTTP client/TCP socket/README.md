@@ -71,13 +71,13 @@ int main(int argc, char *argv[]){
 }
 ```
 
-## HTTPS request
+# HTTPS request
 
 For HTTPS request, install library ``openssl``: ``sudo apt-get install libssl-dev``
 
 Compile: ``gcc -o http-client http-client.c -lssl``
 
-Read return message from HTTPS server: ``https-request.c``
+Read return message from HTTPS server: [https-request.c](https-request.c)
 
 Read return message from ``howsmyssl.com/a/check``: ``howmyssl_https_request.c``
 
