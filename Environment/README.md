@@ -57,7 +57,7 @@ To make ``a.out`` file compiled from a C source code to be a system wide availab
 
 **Step 2**: Command ``a.out`` now is available, simply run ``a.out``. Command ``a.out`` will be available in the system as long as it is still inside ``/bin``.
 
-For safety purpose when installing local software like this case, it is better to use ``/usr/local/bin`` instead of ``/bin`` as files in ``/bin`` will be overwritten when the system software is updated.
+For safety purpose when installing local software like this case, it is better to use [/usr/local/bin](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/File%20hierarchy.md#usr) or [/usr/sbin](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/File%20hierarchy.md#usr) instead of ``/bin`` as files in ``/bin`` will be overwritten when the system software is updated.
 
 Take all steps like above with ``/bin`` to set up the command:
 
