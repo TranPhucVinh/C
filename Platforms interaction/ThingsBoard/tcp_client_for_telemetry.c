@@ -14,18 +14,15 @@
 #define HOST          	"ec2-18-142-177-27.ap-southeast-1.compute.amazonaws.com"
 #define PORT          	9090
 #define TOKEN         	"47DF5DqQgOvw2J9jSlKK"
-#define BUFFSIZE        256
 
-char    response_buffer[BUFFSIZE];
-
-char *form_http_request();
+char    *form_http_request();
 
 int  send_number = 0;
 
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
 	struct sockaddr_in addr;
-	int sock;     
+	int client_fd;     
 
 	if((hp = gethostbyname(host)) == NULL){
 		herror("gethostbyname");
@@ -34,19 +31,19 @@ int socket_connect(char *host, in_port_t port){
 	bcopy(hp->h_addr, &addr.sin_addr, hp->h_length);
 	addr.sin_port = htons(port);
 	addr.sin_family = AF_INET;
-	sock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+	client_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
-	if(sock == -1){
-		perror("setsockopt");
+	if(client_fd == -1){
+		perror("client_fd");
 		exit(1);
 	}
 	
-	if(connect(sock, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1){
+	if(connect(client_fd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1){
 		perror("connect");
 		exit(1);
 
 	}
-	return sock;
+	return client_fd;
 }
 
 int main(int argc, char *argv[]){
@@ -65,23 +62,39 @@ int main(int argc, char *argv[]){
         #endif
 
         /*
-            For network error like WiFi not connected, write() 
-            still write the HTTP request sucessfully with
-            wsz = strlen(http_request)
+            For network issue like WiFi not connected, write() 
+            still write the HTTP request sucessfully
         */
-        int wsz = write(client_fd, http_request, strlen(http_request));//wsz: write size
-        
-        #ifdef DEBUG    
-            while(read(client_fd, response_buffer, BUFFSIZE - 1) != 0){
-                fprintf(stderr, "%s\n", response_buffer);
-                bzero(response_buffer, BUFFSIZE);
-                break;
-            }
-        #endif
-
-        if (wsz == strlen(http_request)) send_number += 1;
-        else printf("Failt to send HTTP request\n");
-        sleep(3);
+        if (write(client_fd, http_request, strlen(http_request)) < 0){
+            printf("Fail to send HTTP request\n");
+            close(client_fd);
+            return 0;
+        } else {
+            #ifdef DEBUG    
+                /* Read HTTP response */
+                char* recv_buf = NULL;
+                int index = 0;
+                int read_size_chunk = 0;
+                recv_buf = (char*)malloc(1024 * sizeof(char));
+                while(1)
+                {
+                    read_size_chunk = read(client_fd, &recv_buf[index += read_size_chunk], 100);
+                    if(read_size_chunk > 0)
+                    {
+                        recv_buf = realloc(recv_buf, index + read_size_chunk + 100);
+                        printf("%s\n", recv_buf);
+                    }
+                    else
+                    {
+                        recv_buf = realloc(recv_buf, index + 1);
+                        recv_buf[index] = 0;
+                        break;
+                    }
+                }
+            #endif
+            send_number += 1;
+            sleep(3);
+        }
     }
     shutdown(client_fd, SHUT_RDWR); 
     close(client_fd); 
