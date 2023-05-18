@@ -22,10 +22,10 @@ On Windows, the ``a.exe`` of this file will run normally in Git Bash and will re
 
 ``system("dir")`` will run properly in [Windows Command prompt](https://github.com/TranPhucVinh/Windows-Batch).
 
-[Use system() to start and kill an infinite process in the background](system()%20for%20an%20infinite%20process%20in%20the%20background.md)
-* [Use system() to start a process which includes a while(1) loop in the background](system()%20for%20an%20infinite%20process%20in%20the%20background.md#use-system-to-start-a-process-which-includes-a-while1-loop-in-the-background)
-* [Kill the infinite background process by signal](system()%20for%20an%20infinite%20process%20in%20the%20background.md#kill-the-infinite-background-process-by-signal)
-* [Kill the infinite background process by functions inside in the parent process](system()%20for%20an%20infinite%20process%20in%20the%20background.md#kill-the-infinite-background-process-by-functions-inside-in-the-parent-process)
+[Use system() to start and kill a process, which includes while(1) loop, in the background](Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md)
+* [Use system() to start a process which includes a while(1) loop in the background](Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#use-system-to-start-a-process-which-includes-a-while1-loop-in-the-background)
+* [Kill the infinite background process by signal](Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#kill-the-infinite-background-process-by-signal)
+* [Run the infinite background process, get its PID then kills it by functions inside in the parent process](Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#run%20the%20infinite%20background%20process%20get%20its%20PID%20then%20kills%20it%20by%20functions%20inside%20in%20the%20parent%20process)
 
 ## popen() and pclose()
 The ``popen()`` function opens a process by creating a pipe, forking, and invoking the shell.
