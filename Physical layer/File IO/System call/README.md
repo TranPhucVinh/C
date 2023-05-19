@@ -124,9 +124,9 @@ Check [epoll document folder](epoll)
 
 ## [File operations](File%20operations.md)
 
-* [Open a file to read]()
-* [Read the whole file by chunk and dynamically store to a char pointer]()
-* [Open a file to write]()
+* [Open a file to read](File%20operations.md#open-a-file-to-read)
+* [Read the whole file by chunk and dynamically store to a char pointer](File%20operations.md#read-the-whole-file-by-chunk-and-dynamically-store-to-a-char-pointer)
+* [Open a file to write](File%20operations.md#open-a-file-to-write)
 
 ## [Device file operations](Device%20file%20operations.md)
 
