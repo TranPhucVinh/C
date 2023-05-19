@@ -68,7 +68,6 @@ int main(int argc, char *argv[]){
             if(read_size_chunk > 0)
             {
                 recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
-                printf("%s\n", recv_buf);
             }
             else
             {
@@ -77,11 +76,11 @@ int main(int argc, char *argv[]){
                 break;
             }
         }
-
+        printf("%s\n", recv_buf);
         shutdown(fd, SHUT_RDWR); 
         close(fd); 
         
-        sleep(1);
+        sleep(5);
     }
 	return 0;
 }
