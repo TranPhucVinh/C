@@ -2,6 +2,7 @@
 
 * Display the kernel log by realtime as printing out every new kernel log in the system. 
 * As realtime displaying, running it for the first time will print out not thing. Then, inserting or removing a kernel module will result in that module's kernel log printed out by this program.
+* The general idea to achieve those features is to accessing to [/dev/kmsg](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Device%20files/dev.md#devkmsg), a character device node provides userspace access to the kernel's ``printk`` buffer.
 
 Run ``./build.sh`` to overwrite the ``kmess`` command.
 

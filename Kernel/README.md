@@ -1,5 +1,9 @@
+The **Linux kernel** is the lowest level of software running on a Linux system. It is charged with managing the hardware, running user programs, and maintaining the overall security and integrity of the whole system.
+
 **KBuild** is the build system used by the Linux kernel.
- 
+
+For bootloader and the Linux booting process, check [Linux bootloader document](Linux%20bootloader.md)
+
 # Loadable kernel module
 
 To build a kernel module as a device driver, check [Loadable kernel module document folder](Loadable%20kernel%20module).
