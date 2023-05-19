@@ -35,7 +35,9 @@ To remove the module: ``rmmod loadable_kernel_module.ko``
 
 View module information: ``modinfo loadable_kernel_module.ko``
 
-Kernel module loaded manually by ``insmod`` will be removed when system is rebooted, setup this kernel module with [depmod](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Kernel.md#depmod) and [/etc/modules](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/File%20hierarchy.md#modules) to make it loaded automatically when system is booted.
+Kernel module loaded manually by ``insmod`` will be removed when system is rebooted, setup this kernel module with [depmod](depmod%20and%20modprobe.md#depmod) and [/etc/modules](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/File%20hierarchy.md#modules) to make it loaded automatically when system is booted.
+
+To show which loadable kernel modules are currently loaded: ``lsmod``
 
 ## Source code
 

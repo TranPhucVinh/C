@@ -15,8 +15,8 @@ Run ``./build.sh`` to overwrite the ``kmess`` command.
 Kernel module for testing with the following options:
 
 ```c
-#include<linux/module.h>
-#include<linux/kernel.h>
+#include <linux/module.h>
+#include <linux/kernel.h>
 
 MODULE_LICENSE("GPL");
 
