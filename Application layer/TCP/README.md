@@ -1,8 +1,4 @@
-TCP sockets program can be used to inter process communication.
-
-# API
-
-[API.md](API.md)
+# [API=](API.md)
 
 # Single TCP receiver for multiple TCP senders
 
