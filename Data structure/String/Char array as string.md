@@ -24,7 +24,7 @@ char REQUEST[] = "GET " PATH " HTTP/1.0\r\n"
 printf("string: %s", REQUEST);
 ```
 
-This define can identically implemented with [char pointer](https://github.com/TranPhucVinh/C/edit/master/Introduction/Data%20structure/String/Char%20pointer%20as%20string.md)
+This define can be implemented identically  with [char pointer](Char%20pointer%20as%20string.md)
 
 Index handler
 
@@ -61,7 +61,7 @@ char string2[] = "Hello, World !";//14 characters
 printf("%d\n", sizeof(string2)); //15
 ```
 
-# String as argument in function
+# Char array as argument in function
 
 For char array as function argument, its size must be gotten by ``strlen()``, not ``sizeof()``
 
@@ -78,7 +78,7 @@ int main(){
 }
 ```
 
-# Overflow string char buffer
+# Overflow a char buffer as string
 
 Error **Stack smashing detected** happens due to buffer overflow
 
