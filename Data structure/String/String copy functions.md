@@ -1,4 +1,4 @@
-## sprintf()
+# sprintf()
 
 ```c
 int sprintf ( char * str, const char * format, ... );
@@ -6,7 +6,7 @@ int sprintf ( char * str, const char * format, ... );
 
 Composes a string with the same text that would be printed if format was used on ``printf()``, but instead of being printed, the content is stored as a C string in the ``buffer`` pointed by ``str``. This function can be used to convert an int to a string. The real size of the format string is returned, not size of the string buffer used to store.
 
-### Example
+## Example
 
 ```cpp
 int string_size;
@@ -33,7 +33,7 @@ sprintf(clockValue, "%d", int32Number); //convert uint_32 to string char[]
 printf("%s\n", clockValue);
 ```
 
-## snprintf()
+# snprintf()
 
 ```c
 char displayed_string[] = "String: %s ";
@@ -43,7 +43,7 @@ snprintf(buffer, 50, displayed_string, "Hello, World !");
 printf("%s", buffer);//String: Hello, World ! 
 ```
 
-### Error
+## Error
 
 If the message length to form is bigger than the storage buffer, there will be an overflow, then the message could get copied to the memory address of message, with will effect other variable inside the program. This case especially happen to data structure like ``union ``.
 
@@ -57,7 +57,7 @@ sprintf(displayedString, "%d%d", a, b);
 
 Although overflow will not happen in this case but if ``displayedString`` is a member inside an ``union``, it will cause error to other variable inside the union.
 
-## strcpy()
+# strcpy()
 
 ```c
 char* strcpy(char* destination, const char* source);
@@ -81,7 +81,7 @@ printf("%s\n", string1);//HelHello, World !
 printf("%s\n", string2);//Hello, World !
 ```
 
-## strncpy() 
+# strncpy() 
 
 Copy ``n`` character from ``src`` string to ``dest`` string.
 
@@ -96,7 +96,7 @@ strncpy(dest, helloWorld, 2);
 printf("%s \n",dest); //He
 ```
 
-## strdup()
+# strdup()
 
 ```c
 strdup(const char* s);
@@ -110,11 +110,12 @@ printf("%s", new_string);
 free(new_string);
 ```
 
-## bcopy()
+# bcopy()
 
 Copy ``n`` bytes from the area pointed to by ``s1`` to the area pointed to by ``s2``.
 
 ```c
+#include <strings.h>
 void bcopy(const void *s1, void *s2, size_t n);
 ```
 **Example**
