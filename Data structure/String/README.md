@@ -1,10 +1,11 @@
-# Operations
-
-## [Char array as string](Char%20array%20as%20string.md)
+# [Char array as string](Char%20array%20as%20string.md)
 
 * [Define](Char%20array%20as%20string.md#define)
+* [Get size of string char]()
+* [Char array as argument in function]()
+* [Overflow a char buffer as string]()
 
-## [Char pointer as string](Char%20pointer%20as%20string.md)
+# [Char pointer as string](Char%20pointer%20as%20string.md)
 
 # API
 
