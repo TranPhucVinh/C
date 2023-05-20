@@ -1,4 +1,4 @@
-# [API=](API.md)
+# [API](API.md)
 
 # Single TCP receiver for multiple TCP senders
 
