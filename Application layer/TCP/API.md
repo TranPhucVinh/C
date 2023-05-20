@@ -19,7 +19,7 @@ int accept(int sockfd, struct sockaddr *restrict addr, socklen_t *restrict addrl
 ```
 Accept a connection on a socket. If no pending connections are present on the queue, and the socket is not marked as nonblocking, ``accept()`` blocks the caller until a connection is present.
 
-# setsockopt()
+## setsockopt()
 
 ```c
 int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen);
@@ -53,6 +53,15 @@ Look up an IP address from a domain name
 struct hostent *gethostbyname(const char *name);
 ```
 
+```c
+struct hostent {
+    char  *h_name;            /* official name of host */
+    char **h_aliases;         /* A zero-terminated array of alternate names for the host */
+    int    h_addrtype;        /* host address type */
+    int    h_length;          /* length of address */
+    char **h_addr_list;       /* list of addresses */
+}
+```
 ## socket()
 
 Create new socket
@@ -125,18 +134,6 @@ u_short htons(
 ```
 
 The ``htons`` function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
-
-## hostent
-
-```c
-struct hostent {
-    char  *h_name;            /* official name of host */
-    char **h_aliases;         /* alias list */
-    int    h_addrtype;        /* host address type */
-    int    h_length;          /* length of address */
-    char **h_addr_list;       /* list of addresses */
-}
-```
 
 # arpa/inet.h
 
