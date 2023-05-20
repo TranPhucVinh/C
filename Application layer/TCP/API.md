@@ -43,29 +43,8 @@ To start that server immediately right after stopping it, ``setsockopt()`` must 
 ```c
 setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val));
 ```
-# netdb.h
-
-## gethostbyname()
-
-Look up an IP address from a domain name
- 
-```c
-struct hostent *gethostbyname(const char *name);
-```
-
-```c
-struct hostent {
-    char  *h_name;            /* official name of host */
-    char **h_aliases;         /* A zero-terminated array of alternate names for the host */
-    int    h_addrtype;        /* host address type */
-    int    h_length;          /* length of address */
-    char **h_addr_list;       /* list of addresses */
-}
-```
 ## socket()
-
 Create new socket
-
 ```c
 int socket(int protocolFamily, int  type, int protocol)
 ```
@@ -110,7 +89,25 @@ int shutdown(int sockfd, int how)
 
 **Return**: ``0`` success,`` -1`` errors
 
-# Other functions
+# netdb.h
+
+## gethostbyname()
+
+Look up an IP address from a domain name
+ 
+```c
+struct hostent *gethostbyname(const char *name);
+```
+
+```c
+struct hostent {
+    char  *h_name;            /* official name of host */
+    char **h_aliases;         /* A zero-terminated array of alternate names for the host */
+    int    h_addrtype;        /* host address type */
+    int    h_length;          /* length of address */
+    char **h_addr_list;       /* list of addresses */
+}
+```
 
 ```c
 #include <netdb.h>
