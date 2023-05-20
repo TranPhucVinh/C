@@ -16,6 +16,13 @@
 * [strdup()](String%20copy%20functions.md#strdup)
 * [bcopy()](String%20copy%20functions.md#bcopy)
 
+# [Char pointer array](../Array/Two%20dimension%20array%20on%20heap%20memory.md#create-a-char-pointer-with-row-stored-on-stack-memory-and-column-stored-on-heap-memory): Strings as array member
+
+```c
+char *string_array[3] = {"string 1", "string 2", "string 3"};
+```
+There is no built-in functions or specific method in C to get the total member of a [char pointer array](../Array/Two%20dimension%20array%20on%20heap%20memory.md#create-a-char-pointer-with-row-stored-on-stack-memory-and-column-stored-on-heap-memory) or [a double pointer](../../Physical%20layer/Memory/Pointer/Pointer%20to%20pointer.md) char.
+
 # [String append functions](String%20append%20functions.md)
 
 * [atoi()](#atoi)

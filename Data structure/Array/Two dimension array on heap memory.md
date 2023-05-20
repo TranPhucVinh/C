@@ -90,7 +90,7 @@ for (int i=0; i < ARRAY_SIZE; i++){
 }
 //Other operations are like above
 ```
-
+**Unable to get total elements**: There is no built-in functions or specific method in C to get the total member of a char pointer array or [a double pointer](../../Physical%20layer/Memory/Pointer/Pointer%20to%20pointer.md) char.
 # 2D array as a function parameter
 
 A 2 dimension array declared by pointer to pointer can be passed into functions:
