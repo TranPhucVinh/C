@@ -59,7 +59,7 @@ printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
 
 # Define a string pointer on heap memory
 
-Check [Dynamic memory allocation with malloc() for string](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md#malloc-for-string).
+Check [Dynamic memory allocation with malloc() for string](../../Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#malloc-for-string).
 
 ## Error when using strcpy() to define or set value
 
