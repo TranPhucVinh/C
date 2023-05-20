@@ -49,6 +49,14 @@ int socket_init(){
     receiver_addr.sin_addr.s_addr = htonl(INADDR_ANY); 
     receiver_addr.sin_port = htons(PORT);      
 
+    // setsockopt() must be called before bind() so that SO_REUSEADDR can take effect
+    #ifdef REUSEADDR
+        int enable_val = 1;
+        if (!setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val))){
+            printf("Set socket to reuse address successfully\n");
+        } else printf("Unable to set socket to reuse address\n");
+    #endif
+
     //Bind to the local address
     if (bind(receiver_fd, (struct sockaddr *) &receiver_addr, sizeof(receiver_addr)) < 0) {
         printf("Fail to bind socket to local address\n");
@@ -62,12 +70,6 @@ int socket_init(){
     sender_length = sizeof(sender_addr);//Get address size of sender
     bzero(buffer, BUFFSIZE);//Delete buffer
 
-    #ifdef REUSEADDR
-        int enable_val = 1;
-        if (!setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val))){
-            printf("Set socket to reuse address successfully\n");
-        } else printf("Unable to set socket to reuse address\n");
-    #endif
     return receiver_fd;
 }
 

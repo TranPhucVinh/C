@@ -1,6 +1,6 @@
-## sys/socket.h
+# sys/socket.h
 
-### listen()
+## listen()
 
 Listen for connections on a socket
 
@@ -10,18 +10,42 @@ int listen(int sockfd, int backlog);
 
 ``backlog``: defines the maximum length to which the queue of pending connections for ``sockfd`` may grow. If a connection request arrives when the queue is full, the client may receive an error with an indication of ``ECONNREFUSED`` or, if the underlying protocol supports retransmission, the request may be ignored so that a later reattempt at connection succeeds.
 
-In [tcp_server.c](tcp_server.c) program, with ``MAXPENDING`` is set to ``5`` for ``backlog`` parameters, when initiating more than 5 new TCP client ([tcp_client.c](tcp_client.c)) connection at the same time, i.e 6 connections, and even start sending data to TCP server at the same time, ``ECONNREFUSED`` error don't return as expected theoretically. That might happen as those 6 TCP client connection might not actually coming at TCP server at the same time and the queue can still pack them properly.
+In [tcp_single_receiver.c](tcp_single_receiver.c) program, with ``MAXPENDING`` is set to ``5`` for ``backlog`` parameters, when initiating more than 5 new TCP client ([tcp_multiple_senders.c](tcp_multiple_senders.c)) connection at the same time, i.e 6 connections, and even start sending data to TCP server at the same time, ``ECONNREFUSED`` error don't return as expected theoretically. That might happen as those 6 TCP client connection might not actually coming at TCP server at the same time and the queue can still pack them properly.
 
-### accept()
+## accept()
 
 ```c
 int accept(int sockfd, struct sockaddr *restrict addr, socklen_t *restrict addrlen);
 ```
 Accept a connection on a socket. If no pending connections are present on the queue, and the socket is not marked as nonblocking, ``accept()`` blocks the caller until a connection is present.
 
-## netdb.h
+# setsockopt()
 
-### gethostbyname()
+```c
+int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen);
+```
+Set options on sockets. On success, ``0`` is returned. On error, ``-1`` is returned.
+* ``level``: The level at which the option resides. For options at the **socket level**, set to ``SOL_SOCKET``
+* ``optname``: Option name depended on the ``level`` set before
+* ``optlen``: For socket level option, ``optlen`` must be nonzero to enable a boolean option, or zero if the option is to be disabled. With ``level=SOL_SOCKET``, ``enable_val=NULL`` and ``optlen=0`` ``setsockopt()`` return ``-1`` (fail)
+
+RFC 9293 defines:
+
+* **MSL** (**Maximum Segment Lifetime**), the time a TCP segment can exist in the internetwork system. Arbitrarily defined to be 2 minutes. 
+* **TIME_WAIT = MSL*2**
+
+So by default (i.e without ``setsockopt()`` setup), after stopping a TCP server, like [tcp_single_receiver.c](tcp_single_receiver.c) which includes ``bind()`` to bind socket to current IP address, then restart it immediately, ``bind()`` function will fail, with error log like from [tcp_single_receiver.c](tcp_single_receiver.c) program: **Fail to bind socket to local address**
+
+That happen as the time interval between 2 stop and restart time is less than **TIME_WAIT**. User has to wait for that time interval to be greater than **TIME_WAIT** to restart the server.
+
+To start that server immediately right after stopping it, ``setsockopt()`` must be used with ``optname=SO_REUSEADDR`` (fully implemented in [tcp_single_receiver.c](tcp_single_receiver.c)):
+
+```c
+setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val));
+```
+# netdb.h
+
+## gethostbyname()
 
 Look up an IP address from a domain name
  
@@ -29,7 +53,7 @@ Look up an IP address from a domain name
 struct hostent *gethostbyname(const char *name);
 ```
 
-### socket()
+## socket()
 
 Create new socket
 
@@ -50,7 +74,7 @@ int socket(int protocolFamily, int  type, int protocol)
 
 **Return**: A file descriptor for the created socket
 
-### connect()
+## connect()
 
 Connect to socket with specific address.
 
@@ -61,8 +85,7 @@ int connect(int sockfd, struct sockaddr *addr, unsigned int addrLength)
 *  ``sockfd``: created ``sockfd`` from function ``socket()``.
 *  ``addr``: server address wished to connect.
 *  ``addrLength``: length of Server address (byte). 4 byte for IPV4, 16 byte for IPV6.
-
-### shutdown()
+## shutdown()
 
 Shut down all or part of the connection open on ``sockfd``
 
@@ -78,7 +101,7 @@ int shutdown(int sockfd, int how)
 
 **Return**: ``0`` success,`` -1`` errors
 
-### Other functions
+# Other functions
 
 ```c
 #include <netdb.h>
@@ -93,7 +116,7 @@ The ``herror()`` function prints the error message associated with the current v
 struct hostent *hp;
 ```
 
-### htons
+## htons
 
 ```c
 u_short htons(
@@ -103,7 +126,7 @@ u_short htons(
 
 The ``htons`` function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
 
-### hostent
+## hostent
 
 ```c
 struct hostent {
@@ -115,9 +138,9 @@ struct hostent {
 }
 ```
 
-## arpa/inet.h
+# arpa/inet.h
 
-### inet_ntop()
+## inet_ntop()
 
 ```c
 #include <arpa/inet.h>
@@ -126,7 +149,7 @@ const char *inet_ntop(int af, const void *restrict src, char *restrict dst, sock
 
 ``inet_ntop``: convert IPv4 and IPv6 addresses from binary to text form
 
-### sockaddr, in_addr, sockaddr_in
+## sockaddr, in_addr, sockaddr_in
 
 ```c
 struct sockaddr { 
@@ -153,6 +176,6 @@ struct sockaddr_in{
 * ``sin_addr``: connect address. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces.
 * ``sin_zero``: not used, set value 0
 
-## Other libraries
+# Other libraries
 
 ``netinet/in.h``: Internet Protocol family
