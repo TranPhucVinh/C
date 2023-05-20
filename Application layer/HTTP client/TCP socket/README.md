@@ -2,7 +2,17 @@
 
 ## Get request
 
-GET request ``example.com``: [get_data.c](get_data.c)
+Get information of a hostname, like ``example.com``, by [gethostbyname()](): [get_host_information.c](get_host_information.c)
+
+**Result**:
+```
+Host name: example.com
+Alias: (null)
+Host address type is AF_INET
+Address length: 4
+//Garbage value
+```
+GET request to ``example.com``: [get_data.c](get_data.c)
 
 ## Send data
 
