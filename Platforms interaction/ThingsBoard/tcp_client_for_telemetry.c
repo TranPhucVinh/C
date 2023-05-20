@@ -47,14 +47,11 @@ int socket_connect(char *host, in_port_t port){
 }
 
 int main(int argc, char *argv[]){
-	int client_fd;
     char send_json[100];
-    
-    client_fd = socket_connect(HOST, PORT);
 
     while (1){
-        sprintf(send_json, "{'unix_tcp_client':%d}", send_number);
-        
+        int client_fd = socket_connect(HOST, PORT);
+        sprintf(send_json, "{'unix_tcp_client':%d}", send_number);        
         char *http_request = form_http_request(send_json);
 
         #ifdef DEBUG    
@@ -75,15 +72,11 @@ int main(int argc, char *argv[]){
                 char* recv_buf = NULL;
                 int index = 0;
                 int read_size_chunk = 0;
-                recv_buf = (char*)malloc(1024 * sizeof(char));
+                recv_buf = (char*)malloc(100 * sizeof(char));
                 while(1)
                 {
                     read_size_chunk = read(client_fd, &recv_buf[index += read_size_chunk], 100);
-                    if(read_size_chunk > 0)
-                    {
-                        recv_buf = realloc(recv_buf, index + read_size_chunk + 100);
-                        printf("%s\n", recv_buf);
-                    }
+                    if(read_size_chunk > 0) recv_buf = realloc(recv_buf, index + read_size_chunk + 100);
                     else
                     {
                         recv_buf = realloc(recv_buf, index + 1);
@@ -91,13 +84,15 @@ int main(int argc, char *argv[]){
                         break;
                     }
                 }
+                printf("%s\n", recv_buf);
             #endif
             send_number += 1;
+
+            shutdown(client_fd, SHUT_RDWR); 
+            close(client_fd); 
             sleep(3);
         }
     }
-    shutdown(client_fd, SHUT_RDWR); 
-    close(client_fd); 
 	return 0;
 }
 
