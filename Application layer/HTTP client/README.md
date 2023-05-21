@@ -9,7 +9,7 @@ HTTP client implemented by
 
 ### gethostbyname()
 
-Look up an IP address from a domain name
+Get information of a given host
  
 ```c
 struct hostent *gethostbyname(const char *name);
@@ -21,8 +21,7 @@ struct hostent {
     char **h_aliases;         /* A zero-terminated array of alternate names for the host */
     int    h_addrtype;        /* host address type */
     int    h_length;          /* length of address */
-    char **h_addr_list;       /* A zero-terminated array of network addresses for the host. Host addresses are returned in network byte order.
- */
+    char **h_addr_list;       /* A zero-terminated array of network addresses for the host. Host addresses are returned in network byte order*/
 }
 ```
 
@@ -34,10 +33,6 @@ extern int h_errno;
 ``h_errno`` refers to the host error.
 
 The ``herror()`` function prints the error message associated with the current value of h_errno on stderr.
-
-```c
-struct hostent *hp;
-```
 
 ### htons
 
