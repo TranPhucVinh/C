@@ -114,6 +114,59 @@ username$hostname:$ ps
 username$hostname:$ # Wait for 5 seconds as child process, which is orphan now, is still running while parent process is killed
 username$hostname:$ Child process # Child process has finished running after 5 seconds
 ```
+## Orphan process can't receive signal register from its parent process
+An orphan process can't receive any signal previously registered from its parent process as its parent has died.
+In this example, we register SIGINT for later Ctr+C with the intention to stop parent and child process, then we let both parent and child process run for the first 5 seconds. After 5 seconds, parent process ends while child process, which **is orphaned** now keeps running. Pressing Ctr+C for SIGINT won't kill child process:
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>   
+
+#define DELAY_TIME 1
+
+void sigint_handler(int signal_number){
+	kill(getpid(), SIGKILL);
+}
+
+int main(int argc, char *argv[])  {
+    signal(SIGINT, sigint_handler);
+	int pid = fork();
+	if (pid) {
+        // Let child process and parent process run for the first 5 seconds
+        sleep(DELAY_TIME*5);
+        printf("Parent process ends, only child process runs\n");
+    } else {
+        int number;
+        while (1){
+		    printf("number: %d\n", number);
+		    number += 1;
+		    sleep(DELAY_TIME);
+		}
+    }
+}
+```
+**Result**
+```
+username$hostname:~$./a.out
+number: 0
+number: 1
+number: 2
+number: 3
+number: 4
+Parent process ends, only child process runs
+number: 5 # child process, which is orphaned now keeps running
+username$hostname:~$ number: 6 # child process, which is orphaned now keeps running
+number: 7
+number: 8
+^C # Ctr+C SIGINT won't stop child process
+username$hostname:~$ ^C # Ctr+C SIGINT won't stop child process
+username$hostname:~$ ^C # Ctr+C SIGINT won't stop child process
+username$hostname:~$
+number: 9 # Child process keeps running and can't be stopped
+number: 10
+...
+```
 # Implementation
 * [Communication between parent and child processes using pipe](Communication%20between%20parent%20and%20child%20processes%20using%20pipe.md)
 * [Signal for fork()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Process%20cloning/Signal%20for%20fork().md)

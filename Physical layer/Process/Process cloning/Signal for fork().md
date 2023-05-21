@@ -83,5 +83,3 @@ int main(int argc, char *argv[])  {
     // Other operations are like: Kill child process while parent process keeps running normally
 }
 ```
-
-# SIGSTOP and SIGCONT with fork()
