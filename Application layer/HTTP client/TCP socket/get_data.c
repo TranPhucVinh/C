@@ -9,6 +9,8 @@
 #define PORT 80
 #define PATH "/"
 
+#define READ_CHUNK  100
+
 char *form_http_request();
 
 /*
@@ -19,16 +21,16 @@ char *form_http_request();
 */
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
-	struct sockaddr_in addr;
+	struct sockaddr_in socket_address;
 	int socket_fd;     
 
 	if((hp = gethostbyname(host)) == NULL){
         printf("Fail to get host %s\n", HOST);
 		return -1;
 	}
-	bcopy(hp->h_addr, &addr.sin_addr, hp->h_length);
-	addr.sin_port = htons(port);
-	addr.sin_family = AF_INET;
+    memcpy(&socket_address.sin_addr, hp->h_addr, hp->h_length);
+	socket_address.sin_port = htons(port);
+	socket_address.sin_family = AF_INET;
 	socket_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
 	if(socket_fd == -1){
@@ -36,7 +38,7 @@ int socket_connect(char *host, in_port_t port){
 		exit(1);
 	}
 	
-	if(connect(socket_fd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1){
+	if(connect(socket_fd, (struct sockaddr *)&socket_address, sizeof(struct sockaddr_in)) == -1){
 		perror("connect");
 		exit(1);
 	}
@@ -61,13 +63,13 @@ int main(int argc, char *argv[]){
         char* recv_buf = NULL;
         int index = 0;
         int read_size_chunk = 0;
-        recv_buf = (char*)malloc(1024);
+        recv_buf = (char*)malloc(READ_CHUNK);
         while(1)
         {
-            read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], 1024);
+            read_size_chunk = read(fd, &recv_buf[index += read_size_chunk], READ_CHUNK);
             if(read_size_chunk > 0)
             {
-                recv_buf = realloc(recv_buf, index + read_size_chunk + 1024);
+                recv_buf = realloc(recv_buf, index + read_size_chunk + READ_CHUNK);
             }
             else
             {
