@@ -114,7 +114,7 @@ username$hostname:$ ps
 username$hostname:$ # Wait for 5 seconds as child process, which is orphan now, is still running while parent process is killed
 username$hostname:$ Child process # Child process has finished running after 5 seconds
 ```
-## Orphan process can't receive signal register from its parent process
+## Orphan process can't receive signals registered from its parent process
 An orphan process can't receive any signal previously registered from its parent process as its parent has died.
 In this example, we register SIGINT for later Ctr+C with the intention to stop parent and child process, then we let both parent and child process run for the first 5 seconds. After 5 seconds, parent process ends while child process, which **is orphaned** now keeps running. Pressing Ctr+C for SIGINT won't kill child process:
 ```c
