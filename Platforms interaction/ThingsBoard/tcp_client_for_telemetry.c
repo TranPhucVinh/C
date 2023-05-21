@@ -15,22 +15,22 @@
 #define PORT          	9090
 #define TOKEN         	"47DF5DqQgOvw2J9jSlKK"
 
-char    *form_http_request();
+#define READ_CHUNK      100
 
-int  send_number = 0;
+char    *form_http_request();
 
 int socket_connect(char *host, in_port_t port){
 	struct hostent *hp;
-	struct sockaddr_in addr;
+	struct sockaddr_in socket_address;
 	int client_fd;     
 
 	if((hp = gethostbyname(host)) == NULL){
 		herror("gethostbyname");
 		exit(1);
 	}
-	bcopy(hp->h_addr, &addr.sin_addr, hp->h_length);
-	addr.sin_port = htons(port);
-	addr.sin_family = AF_INET;
+	memcpy(&socket_address.sin_addr, hp->h_addr, hp->h_length);
+	socket_address.sin_port = htons(port);
+	socket_address.sin_family = AF_INET;
 	client_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
 	if(client_fd == -1){
@@ -38,7 +38,7 @@ int socket_connect(char *host, in_port_t port){
 		exit(1);
 	}
 	
-	if(connect(client_fd, (struct sockaddr *)&addr, sizeof(struct sockaddr_in)) == -1){
+	if(connect(client_fd, (struct sockaddr *)&socket_address, sizeof(struct sockaddr_in)) == -1){
 		perror("connect");
 		exit(1);
 
@@ -47,6 +47,7 @@ int socket_connect(char *host, in_port_t port){
 }
 
 int main(int argc, char *argv[]){
+    int  send_number = 0;
     char send_json[100];
 
     while (1){
@@ -72,11 +73,11 @@ int main(int argc, char *argv[]){
                 char* recv_buf = NULL;
                 int index = 0;
                 int read_size_chunk = 0;
-                recv_buf = (char*)malloc(100 * sizeof(char));
+                recv_buf = (char*)malloc(READ_CHUNK * sizeof(char));
                 while(1)
                 {
-                    read_size_chunk = read(client_fd, &recv_buf[index += read_size_chunk], 100);
-                    if(read_size_chunk > 0) recv_buf = realloc(recv_buf, index + read_size_chunk + 100);
+                    read_size_chunk = read(client_fd, &recv_buf[index += read_size_chunk], READ_CHUNK);
+                    if(read_size_chunk > 0) recv_buf = realloc(recv_buf, index + read_size_chunk + READ_CHUNK);
                     else
                     {
                         recv_buf = realloc(recv_buf, index + 1);
