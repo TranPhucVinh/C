@@ -90,6 +90,14 @@ int shutdown(int sockfd, int how)
 **Return**: ``0`` success,`` -1`` errors
 # arpa/inet.h
 
+## inet_ntoa()
+```c
+char *inet_ntoa(struct in_addr in);
+```
+Convert [struct in_addr](#sockaddr-inaddr-sockaddrin) into IPv4 string.
+
+For an implementation to parse IPv4 address from [struct in_addr](#sockaddr-inaddr-sockaddrin), check [gethostbyname()]() [example to get the hostname information, including its IP address](../Application%20layer/HTTP%20client/TCP%20socket/get_host_information.c).
+
 ## inet_ntop()
 
 ```c
@@ -123,8 +131,10 @@ struct sockaddr_in{
 
 * ``sin_family``, ``sa_family``: protocolFamily
 * ``sin_port``: port of socket
-* ``sin_addr``: connect address. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces.
+* ``sin_addr``: IP address in byte order. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces.
 * ``sin_zero``: not used, set value 0
+
+For an implementation to parse IPv4 address from struct sockaddr_in, check [gethostbyname()]() [example to get the hostname information, including its IP address](../Application%20layer/HTTP%20client/TCP%20socket/get_host_information.c).
 
 # Other libraries
 
