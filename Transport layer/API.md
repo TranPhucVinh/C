@@ -88,50 +88,6 @@ int shutdown(int sockfd, int how)
 * ``SHUT_RDWR``: No more receptions or transmissions
 
 **Return**: ``0`` success,`` -1`` errors
-
-# netdb.h
-
-## gethostbyname()
-
-Look up an IP address from a domain name
- 
-```c
-struct hostent *gethostbyname(const char *name);
-```
-
-```c
-struct hostent {
-    char  *h_name;            /* official name of host */
-    char **h_aliases;         /* A zero-terminated array of alternate names for the host */
-    int    h_addrtype;        /* host address type */
-    int    h_length;          /* length of address */
-    char **h_addr_list;       /* list of addresses */
-}
-```
-
-```c
-#include <netdb.h>
-extern int h_errno;
-```
-
-``h_errno`` refers to the host error.
-
-The ``herror()`` function prints the error message associated with the current value of h_errno on stderr.
-
-```c
-struct hostent *hp;
-```
-
-## htons
-
-```c
-u_short htons(
-  u_short hostshort
-);
-```
-
-The ``htons`` function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
-
 # arpa/inet.h
 
 ## inet_ntop()
