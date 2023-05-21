@@ -21,7 +21,10 @@ struct hostent {
     char **h_aliases;         /* A zero-terminated array of alternate names for the host */
     int    h_addrtype;        /* host address type */
     int    h_length;          /* length of address */
-    char **h_addr_list;       /* A zero-terminated array of network addresses for the host. Host addresses are returned in network byte order*/
+    char **h_addr_list;       /* A zero-terminated array of addresses from name server*/
+#ifdef __USE_MISC
+# define	h_addr	h_addr_list[0] /* Address, for backward compatibility.*/
+#endif
 }
 ```
 
