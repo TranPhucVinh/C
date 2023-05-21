@@ -9,7 +9,7 @@ HTTP client implemented by
 
 ### gethostbyname()
 
-Get information of a given host
+Get information of a given host, especially its hostname and IP address
  
 ```c
 struct hostent *gethostbyname(const char *name);
