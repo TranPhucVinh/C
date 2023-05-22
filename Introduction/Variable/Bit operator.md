@@ -89,7 +89,10 @@ int binVal0 = 0b1011;
 int binVal1 = 0b0100;
 int binResult = binVal0 ^ binVal1; //0b1111
 ```
-
+Given ``binResult`` (``0b1111``) and ``binVal0`` (``0b1011``) with ``binResult = binVal0 ^ binVal1``, find ``binVal1``:
+```c
+binVal1 = binVal0 ^ binResult;
+```
 # Bit shifting
 
 | Operator |7|6|5|4|3|2|1|0|Value|
