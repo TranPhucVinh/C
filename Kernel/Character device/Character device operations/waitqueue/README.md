@@ -1,6 +1,6 @@
 # Fundamental concepts
 
-A waitqueue, in general, will causes a thread to sleep to wait a specific event.
+A waitqueue, in general, will cause a thread to sleep to wait a specific event.
 
 # API
 
