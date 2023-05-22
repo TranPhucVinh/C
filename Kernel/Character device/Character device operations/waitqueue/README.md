@@ -4,15 +4,15 @@ A waitqueue, in general, will causes a thread to sleep to wait a specific event.
 
 # API
 
-### DECLARE_WAIT_QUEUE_HEAD()
+## DECLARE_WAIT_QUEUE_HEAD()
 
 ```c
-DECLARE_WAIT_QUEUE_HEAD()
+DECLARE_WAIT_QUEUE_HEAD(wq)
 ```
 
 Macro to declare a waitqueue
 
-### init_waitqueue_head()
+## init_waitqueue_head()
 
 ```c
 wait_queue_head_t wq;
@@ -21,7 +21,7 @@ init_waitqueue_head(wq);
 
 Init a waitqueue
 
-### wait_event()
+## wait_event()
 
 ```c
 wait_event(wq, condition);
@@ -34,7 +34,7 @@ wait_event(wq, condition);
 
 ``wake_up()`` has to be called after changing any variable that could change the result of the wait ``condition``.
 
-### wait_event_timeout()
+## wait_event_timeout()
 
 ```c
 wait_event_timeout(wq, condition, timeout);
@@ -49,7 +49,7 @@ Work like ``wait_event()``, with ``timeout`` to wait for condition
 
 # Examples
 
-**Example 1**:
+## Character device to check for the value sent from userspace
 
 Feature:
 
@@ -57,11 +57,11 @@ Create a character device with a waitqueue in a monitoring thread to check for t
 
 Program: [waitqueue_variable_compare.c](waitqueue_variable_compare.c)
 
-**Example 2**
+## waitqueue for TIMEOUT
 
-* Basic features like example 1
-* Wait for ``TIMEOUT`` for condition evaluation (with ``wait_event_timeout()``)
-* Call ``init_waitqueue_head()`` to init waitqueue
+* Features like the [Character device example](#character-device-to-check-for-the-value-sent-from-userspace)
+* Wait for ``TIMEOUT`` for condition evaluation (with [wait_event_timeout()](#wait_event_timeout))
+* Call [init_waitqueue_head()](#init_waitqueue_head) to init waitqueue
 
 ```c
 //Other operations are like waitqueue_variable_compare.c
