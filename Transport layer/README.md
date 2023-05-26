@@ -18,9 +18,9 @@
 
 ## Features
 
-1. Start a TCP sender (from [tcp_multiple_senders.c](tcp_multiple_senders.c)) when the TCP receiver (from [tcp_single_receiver.c](tcp_single_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
-2. TCP receiver starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
-3. TCP receiver starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
+1. Start a TCP sender (from [tcp_multiple_senders.c](tcp_multiple_senders.c)) when the **TCP receiver** (from [tcp_single_receiver.c](tcp_single_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
+2. **TCP receiver** starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
+3. **TCP receiver** starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
 When receving message, TCP receiver will print out: ``Message from TCP sender ID %d: %s``
 5. TCP receiver is able to count how many tcp_client are connected.
 6. TCP sender is sending data to TCP receiver properly, TCP sender is then disconnected. TCP receiver is able to detect that disconnected event, print out ``TCP sender with ID %d is disconnected``.
@@ -30,9 +30,9 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 
 ## Implementation
 
-Use [fork()](../../Physical%20layer/Process/Process%20cloning) to create a new process for a file descriptor for each ``tcp_client`` every time a new connection is established.
+**TCP receiver** uses [fork()](../../Physical%20layer/Process/Process%20cloning) to create a new process for a file descriptor for each ``tcp_client`` every time a new connection is established.
 
-Use [pipe()](../../Physical%20layer/File%20IO/pipe.md) to store all file descriptor of connected TCP senders to close them when [SIGINT signal](../../Physical%20layer/Signal/) is triggered to stop TCP receiver.
+**TCP receiver** uses [pipe()](../../Physical%20layer/File%20IO/pipe.md) to store all file descriptor of connected **TCP senders** to close them when [SIGINT signal](../../Physical%20layer/Signal/) is triggered to stop TCP receiver.
 
 * [tcp_multiple_senders.c](tcp_multiple_senders.c)
 * [tcp_single_receiver.c](tcp_single_receiver.c)
