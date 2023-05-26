@@ -1,3 +1,38 @@
+# API
+``poll()`` performs a similar task to [select()](select.md), it waits for one of a set of file descriptors to become ready to perform I/O
+
+```c
+#include <poll.h>
+
+int poll(struct pollfd *fds, nfds_t nfds, int timeout);
+```
+
+```c
+struct pollfd {
+    int   fd;         /* file descriptor */
+    short events;     /* requested events */
+    short revents;    /* returned events */
+};
+```
+
+``nfds_t``: An unsigned integer type used for the number of file descriptors.
+
+**Parameters**
+
+* ``nfds``: Total number of file descriptors to monitor by ``poll()``
+* ``events``: A bit mask specifying the events the application is interested in for the file descriptor ``fd``. It is an input parametr (i.e setup in program)
+
+    * ``POLLIN``: There is data to read.
+    * ``POLLOUT``: Writing is now possible
+
+* ``revents``:  The bits returned in ``revents`` can include any of those specified in ``events``, or one of the values ``POLLERR``, ``POLLHUP``, or ``POLLNVAL``. It is an output parameter, i.e return in function ``poll()``
+
+**Return**:  
+
+* On success, a positive number is returned; this is the number of structures which have nonzero ``revents`` fields
+* ``0``: Call timed out and no file descriptors were ready.
+* ``-1``: Error
+
 # Working with 1 file descriptor as the current running terminal
 
 Read entered data from the current running terminal
