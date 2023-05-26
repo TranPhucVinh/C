@@ -75,5 +75,3 @@ I/O multiplexing API includes:
 * Terminal operations: Read entered value from terminal and print out
 * USB ports operations: Read data from USB port with default baudrate 9600 and other customized baudrate like 115200
 * Read coordinate of a mouse cursor
-
-## [I/O multiplexing](IO%20multiplexing.md)
