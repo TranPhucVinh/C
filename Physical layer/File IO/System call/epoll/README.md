@@ -113,7 +113,7 @@ Timeout after 5000 miliseconds
 
 ## IPC with pipe with EPOLLET
 
-Features lilke [IPC with pipe without EPOLLET](), but monitor EPOLLIN and EPOLLET
+Features like [IPC with pipe without EPOLLET](), but monitor EPOLLIN and EPOLLET
 
 **Program**: [epoll_epollet_pipe.c](epoll_epollet_pipe.c)
 
