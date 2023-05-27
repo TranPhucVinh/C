@@ -46,13 +46,14 @@ int main(){
                 monitored_event[0].data.fd = sender_fd;//Add file descriptor sender_fd to monitor
 
                 if (epoll_ctl(epfd, EPOLL_CTL_ADD, sender_fd, monitored_event) < 0){
-                    printf("Unable to add current opening terminal STDIN_FILENO to be monitored by epoll\n");
+                    printf("Unable to add fd of connected TCP sender to be monitored by epoll\n");
                     return 0;
                 } else {
                     while (1){
-                        int epollret = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
-                        if (epollret == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
-                        else if (epollret > 0){
+                        int total_ready_fd;// Total ready file descriptors of TCP sender
+                        total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
+                        if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+                        else if (total_ready_fd == 1){// Only accept 1 TCP sender to connect
                             char 		buffer[BUFFSIZE];
                             bzero(buffer, BUFFSIZE);//Delete buffer
                             if (happened_event[0].events == EPOLLIN) {
@@ -67,7 +68,7 @@ int main(){
                                 }
                             }
                         } else {
-                            printf("epoll_wait error %d\n", epollret);        
+                            printf("epoll_wait error %d\n", total_ready_fd);        
                             close(epfd);
                             return -1;
                         }
