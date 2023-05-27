@@ -79,7 +79,7 @@ Read entered data from the 2 current running terminals:
 #define MAXEVENTS   1       //Only 1 event EPOLLIN for 2 file descriptors
 
 #define TERMINAL_1  "/dev/pts/4"
-#define TERMINAL_2  "/dev/pts/18"
+#define TERMINAL_2  "/dev/pts/20"
 
 struct epoll_event monitored_event[2], happened_event[1];
 char buffer[BUFF_SIZE];
@@ -118,12 +118,14 @@ int main(){
         } 
     
         while (1){
-            int epollret = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
-            if (epollret == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
-            else if (epollret > 0){
-                //As struct epoll_event monitored_event[2] and happened_event[1] are different
-                //so use for loop to check
-                for (int n = 0; n < 2; n++)
+            int total_ready_fd;// Total ready file descriptors
+            total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
+            if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+            else if (total_ready_fd > 0){
+                printf("Total ready fd is %d\n", total_ready_fd);
+                // As struct epoll_event monitored_event[2] and happened_event[1] 
+                // are different so use for loop to check
+                for (int n = 0; n < total_ready_fd; n++)
                 {
                     bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
                     if (happened_event[n].data.fd == ter_1) {
@@ -138,7 +140,7 @@ int main(){
                 }
             }
             else {
-                printf("epoll_wait error %d\n", epollret);        
+                printf("epoll_wait error %d\n", total_ready_fd);        
                 close(epfd);
                 return -1;
             }
