@@ -1,61 +1,118 @@
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
+#include <stdio.h>          
+#include <sys/socket.h>     /* for socket(), connect()*/
+#include <stdlib.h>         /* for atoi() and exit() */
+#include <string.h>         /* for memset() */
+#include <unistd.h>         /* for close() */
+#include <sys/types.h> 
+#include <netinet/in.h>
+#include <arpa/inet.h>      /* for inet_ntop() */
+#include <sys/mman.h>
+#include <sys/wait.h>
 #include <sys/epoll.h>
 
+#define REUSEADDR
+#define MAXPENDING 	5
+#define BUFFSIZE 	256
+#define MAXEVENTS   1       //1 event for EPOLLIN
+#define PORT 		8000
+
 #define TIMEOUT     5000    //miliseconds
-#define BUFF_SIZE   10
-#define MAXEVENTS   2       //2 event for EPOLLIN and EPOLLET
 
-struct epoll_event monitored_event[1], happened_event[1];
+int         socket_init();
+struct      epoll_event monitored_event[1], happened_event[1];
 
-int main(int argc, char *argv[])  {
-	int fd[2];
-	if(pipe(fd) == -1){
-		printf("An error occured when opening the pipe\n");
-		return 1;
-	}
+int main(){
+    struct 		sockaddr_in sender_addr;
+    socklen_t 	sender_length;
+    char        ip_str[30];
+    int         receiver_fd, sender_fd;
+
+    sender_length = sizeof(sender_addr);//Get address size of sender
+
+    receiver_fd = socket_init();
 
     int epfd = epoll_create1(EPOLL_CLOEXEC);
     if (epfd < 0) {
         printf("Unable to create an epoll fd\n");
         return 0;
-    }
-
-    monitored_event[0].events = EPOLLIN|EPOLLET;
-    monitored_event[0].data.fd = fd[0];//fd[0] of pipe
-    if (epoll_ctl(epfd, EPOLL_CTL_ADD, fd[0], monitored_event) < 0){
-        printf("Unable to add current opening terminal STDIN_FILENO to be monitored by epoll\n");
-        return 0;
-    }
-
-	int pid = fork();
-	if (!pid) {
-        char snd_str[30];//send string
-        sprintf(snd_str, "Hello, World !");
-        write(fd[1], snd_str, sizeof(snd_str));
-    }	
-    else {
+    } else {
+        printf("Waiting for a TCP sender to connect ...\n");
         while (1){
-            int epollret = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
-            if (epollret == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
-            else if (epollret > 0){
-                char rcv_str[50];
-                memset(rcv_str, 0, sizeof(rcv_str));
-                read(fd[0], rcv_str, 1);
+            if ((sender_fd = accept(receiver_fd, (struct sockaddr *) &sender_addr, &sender_length)) > 0){
+                inet_ntop(AF_INET, &(sender_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
+                printf("New TCP sender with fd %d connected with IP %s\n", sender_fd, ip_str);
 
-                //Without calling if (happened_event[0].events == EPOLLIN), program still has the same result 
-                if (happened_event[0].events == EPOLLIN) {
-                    printf("%s\n", rcv_str);
+                monitored_event[0].events = EPOLLIN;
+                monitored_event[0].data.fd = sender_fd;//Add file descriptor sender_fd to monitor
+
+                if (epoll_ctl(epfd, EPOLL_CTL_ADD, sender_fd, monitored_event) < 0){
+                    printf("Unable to add fd of connected TCP sender to be monitored by epoll\n");
+                    return 0;
+                } else {
+                    while (1){
+                        int total_ready_fd;// Total ready file descriptors of TCP sender
+                        total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
+                        if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+                        else if (total_ready_fd == 1){// Only accept 1 TCP sender to connect
+                            char 		buffer[BUFFSIZE];
+                            bzero(buffer, BUFFSIZE);//Delete buffer
+                            if (happened_event[0].events == EPOLLIN) {
+                                int bytes_received = read(sender_fd, buffer, BUFFSIZE);
+                                if (bytes_received > 0) printf("Message from TCP sender: %s", buffer);
+                                else {
+                                    // If the connected TCP sender disconnects, break while(1) loop to wait
+                                    // for another TCP sender to connect
+                                    printf("TCP sender with fd %d and IP %s is disconnected\n", sender_fd, ip_str);
+                                    close(sender_fd); 
+                                    break;
+                                }
+                            }
+                        } else {
+                            printf("epoll_wait error %d\n", total_ready_fd);        
+                            close(epfd);
+                            return -1;
+                        }
+                    }
                 }
-            }
-            else {
-                printf("epoll_wait error %d\n", epollret);        
-                close(epfd);
-                return -1;
-            }
+            }   
         }
-    }	
-    close(fd[1]);
-    close(fd[0]);
+    }
+    return 1;
+}
+
+/*
+    Init socket parameters
+*/
+int socket_init(){
+    struct 	sockaddr_in receiver_addr;
+    
+    //Create TCP socket receiver
+    int receiver_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (receiver_fd < 0){
+        perror("receiver_fd\n");
+    } else printf("Create TCP receiver socket successfully\n");
+ 
+    receiver_addr.sin_family = AF_INET;                
+    receiver_addr.sin_addr.s_addr = htonl(INADDR_ANY); 
+    receiver_addr.sin_port = htons(PORT);      
+
+    // setsockopt() must be called before bind() so that SO_REUSEADDR can take effect
+    #ifdef REUSEADDR
+        int enable_val = 1;
+        if (!setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val))){
+            printf("Set socket to reuse address successfully\n");
+        } else printf("Unable to set socket to reuse address\n");
+    #endif
+
+    //Bind to the local address
+    if (bind(receiver_fd, (struct sockaddr *) &receiver_addr, sizeof(receiver_addr)) < 0) {
+        printf("Fail to bind socket to local address\n");
+        exit(0);
+    }
+    else printf("Start TCP socket receiver successfully through binding\n");
+
+    //Set up connection mode for socket sender
+    if (listen(receiver_fd, MAXPENDING) < 0) exit(0);
+
+    return receiver_fd;
 }

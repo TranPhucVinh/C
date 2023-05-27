@@ -26,7 +26,12 @@ int epoll_create1(int flags);
 ```c
 int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);
 ```
-The ``epoll_wait()`` system call waits for events on the ``epoll()`` instance referred to by the file descriptor ``epfd``. On success, ``epoll_wait()`` returns the number of file descriptors ready for the requested I/O, or zero if no file descriptor became ready during the requested ``timeout`` milliseconds.
+The ``epoll_wait()`` system call waits for events on the ``epoll()`` instance referred to by the file descriptor ``epfd``.
+
+**Return**:
+* the number of file descriptors ready for the requested I/O when **success**
+* ``0``: no file descriptor became ready during the requested ``timeout`` milliseconds.
+* ``-1``: Error and [errno](https://github.com/TranPhucVinh/C/tree/master/Introduction#error-handling) is set to indicate the error.
 
 ## epoll_ctl()
 
