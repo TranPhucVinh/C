@@ -26,16 +26,17 @@ int main(){
             return 0;
         } else {
             while (1){
-                int epollret = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
-                if (epollret == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
-                else if (epollret > 0){
+                int total_ready_fd;// Total ready file descriptors
+                total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
+                if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+                else if (total_ready_fd == 1){
                     char buffer[BUFF_SIZE];
                     bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
                     read(STDIN_FILENO, buffer, sizeof(buffer));
                     if (happened_event[0].events == EPOLLIN) printf("Entered string: %s", buffer);
                 }
                 else {
-                    printf("epoll_wait error %d\n", epollret);        
+                    printf("epoll_wait error %d\n", total_ready_fd);        
                     close(epfd);
                     return -1;
                 }
