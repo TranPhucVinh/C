@@ -44,7 +44,7 @@ Work like ``wait_event()``, with ``timeout`` to wait for condition
 
 **Return**
 
-* ``0``: if the ``condition`` evaluated to false after the timeout elapsed
+* ``0``: if the ``condition`` evaluated is false after the timeout elapsed
 * ``1``: if the ``condition`` evaluated is true
 
 # Examples
@@ -55,9 +55,10 @@ Feature:
 
 Create a character device with a waitqueue in a monitoring thread to check for the value sent from userspace. If that variable value is ``123`` (variable value is monitor by the ``waitqueue``), i.e waitqueue condition is true, the monitoring thread stops executing.
 
-Program: [waitqueue_variable_compare.c](waitqueue_variable_compare.c)
+**Character device**: [waitqueue_variable_compare.c](waitqueue_variable_compare.c)
 
-## waitqueue for TIMEOUT
+**Userspace**: ``echo 123 > /dev/fops_character_device``
+## wait_event_timeout(): waitqueue for TIMEOUT
 
 * Features like the [Character device example](#character-device-to-check-for-the-value-sent-from-userspace)
 * Wait for ``TIMEOUT`` for condition evaluation (with [wait_event_timeout()](#wait_event_timeout))
@@ -92,4 +93,44 @@ int device_init(void)
 	}
 	return 0;
 }
+```
+## Wait queue in character device to blocked/suspended a calling userspace process
+
+**Features**
+* Create a character device with a waitqueue in **read()** file operation to check for the value sent from userspace, i.e by **write()** system call. Any **read()** system call from a userspace process will cause that process to be blocked/suspended.
+* Sending ``123`` (variable value monitored by the ``waitqueue``), i.e waitqueue condition is true, to unblocked/unsuspended the userspace process
+
+**Program**
+
+* Chracter device to suspend the userspace process: [waitqueue_suspend_process.c](waitqueue_suspend_process.c)
+* Userspace process: [userspace_process.c](userspace_process.c)
+
+**Result**: 
+
+In terminal 1, run ``userspace_process``:
+
+```
+$ ./userspace_process
+PID 17764
+Open /dev/fops_character_device successfully
+(Blocking/suspending process PID 17764)
+```
+
+In ``dmesg``:
+
+```
+[  549.590021] open fops_character_device by userspace process with PID 17764
+[  549.590045] read
+[  549.590049] wait for watch_var == 0; userspace process 17764 will be blocked
+```
+In terminal 2, run ``echo 123 > /dev/fops_character_device``. Then ``userspace_process`` will be unblocked in terminal 1. In ``dmesg``:
+
+```
+[  572.458572] open fops_character_device by userspace process with PID 17764
+[  572.458623] write data: 123
+
+[  572.458627] watch_var is now 123
+[  572.458651] close
+[  572.458658] watch_var == 123; userspace process with PID 17764 is unblocked
+[  572.459049] close
 ```
