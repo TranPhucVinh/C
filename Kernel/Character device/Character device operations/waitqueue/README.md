@@ -32,7 +32,7 @@ wait_event(wq, condition);
 * ``wq``: the waitqueue to wait on
 * ``condition``: a C expression for the event to wait for
 
-``wake_up()`` has to be called after changing any variable that could change the result of the wait ``condition``.
+``wake_up()`` must be called after changing any variable that could change the result of the ``condition`` of ``wait_event()``.
 
 ## wait_event_timeout()
 
@@ -40,7 +40,7 @@ wait_event(wq, condition);
 wait_event_timeout(wq, condition, timeout);
 ```
 
-Work like ``wait_event()``, with ``timeout`` to wait for condition
+Work like ``wait_event()``, with ``timeout`` (in **jiffies**) to wait for condition
 
 **Return**
 
@@ -123,6 +123,15 @@ In ``dmesg``:
 [  549.590045] read
 [  549.590049] wait for watch_var == 0; userspace process 17764 will be blocked
 ```
+
+While ``userspace_process`` is blocking/suspending, it can't be killed or interrupt (e.g: by [kill](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Process/Signal.md#kill) command:
+
+```sh
+$ kill 17764 # This won't kill PID 17764
+$ kill -SIGKILL 17764 # This won't kill PID 17764
+$ kill -SIGINT 17764 #  This won't interrupt PID 17764
+```
+
 In terminal 2, run ``echo 123 > /dev/fops_character_device``. Then ``userspace_process`` will be unblocked in terminal 1. In ``dmesg``:
 
 ```

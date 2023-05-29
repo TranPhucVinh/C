@@ -56,10 +56,11 @@ int dev_close(struct inode *inodep, struct file *filep)
 
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
+	watch_var = 0;// Reset watch_var everytime having read() system call so that wait_event() always work
 	printk("read\n");
     printk("wait for watch_var == %d; userspace process %d will be blocked\n", watch_var, userspace_process->pid);
     wait_event(wq, watch_var == 123);
-    printk("watch_var == %d; userspace process %d is unblocked\n", watch_var, userspace_process->pid);
+    printk("watch_var == %d; monitoring thread has finished execution\n", watch_var);
 	return 0;
 }
 
