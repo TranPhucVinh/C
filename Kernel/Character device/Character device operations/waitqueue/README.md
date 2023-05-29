@@ -34,6 +34,8 @@ wait_event(wq, condition);
 
 ``wake_up()`` must be called after changing any variable that could change the result of the ``condition`` of ``wait_event()``.
 
+``wait_event()`` is marked with **TASK_UNINTERRUPTIBLE** state, i.e when the kernel module including this function causes the userspace process opening it to be blocked/suspended, signal SIGKILL or SIGINT can't be used to unblock/unsuspend it. Check [wait_event(): Wait queue in character device to blocked/suspended a calling userspace process](#wait-queue-in-character-device-to-blockedsuspended-a-calling-userspace-process) for that implementation.
+
 ## wait_event_timeout()
 
 ```c
@@ -95,6 +97,8 @@ int device_init(void)
 }
 ```
 ## Wait queue in character device to blocked/suspended a calling userspace process
+
+### wait_event()
 
 **Features**
 * Create a character device with a waitqueue in **read()** file operation to check for the value sent from userspace, i.e by **write()** system call. Any **read()** system call from a userspace process will cause that process to be blocked/suspended.
