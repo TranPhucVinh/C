@@ -96,13 +96,13 @@ In terminal 2, run ``echo 123 > /dev/fops_character_device``. Then ``userspace_p
 ```
 ## wait_event_interruptible() and wait_event_killable()
 
-**Features** are like the [wait_event() implementation](#wait_event-1), but the blocking/suspending userspace process can be interrupted/killed by SIGINT/SIGKILL signal.
+**Features** are like the [wait_event() implementation](#wait_event), but the blocking/suspending userspace process can be stopped by any signal like SIGINT, SIGKILL, SIGUSR1,...
 
 ```c
-//Other operations are like waitqueue_suspend_process.c
+// Other operations are like waitqueue_suspend_process.c
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
-	//Other operations are like waitqueue_suspend_process.c
+	// Other operations are like waitqueue_suspend_process.c
 	wait_event_interruptible(wq, watch_var == 123);
     // Same result: wait_event_killable(wq, watch_var == 123);
 
@@ -112,7 +112,7 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 
 ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
 {
-	//Other operations are like waitqueue_suspend_process.c
+	// Other operations are like waitqueue_suspend_process.c
 	wake_up_interruptible(&wq);
 	// wake_up(&wq) for wait_event_killable()
 	return sizeof(data);
@@ -133,13 +133,17 @@ PID 4863 // userspace process is blocking
 Open /dev/fops_character_device successfully // userspace process is blocking 
 Killed // After receiving kill -SIGKILL 4863
 ```
-
 With ``kill -SIGINT 4863``, the result is **(NULL)**:
-
 ```
 PID 4863 // userspace process is blocking 
 Open /dev/fops_character_device successfully // userspace process is blocking 
 (NULL) // After receiving kill -SIGINT 4863
+```
+With ``kill -SIGUSR1 4863``, the result is **User defined signal 1**:
+```
+PID 4863 // userspace process is blocking 
+Open /dev/fops_character_device successfully // userspace process is blocking 
+User defined signal 1
 ```
 **dmesg**
 ```

@@ -34,7 +34,7 @@ wait_event(wq, condition);
 
 ``wake_up()`` must be called after changing any variable that could change the result of the ``condition`` of ``wait_event()``.
 
-``wait_event()`` is marked with **TASK_UNINTERRUPTIBLE** state, i.e when the kernel module including this function causes the userspace process opening it to be blocked/suspended, signal SIGKILL or SIGINT can't be used to unblock/unsuspend it. Check [wait_event(): Wait queue in character device to blocked/suspended a calling userspace process](#wait_event-1) for that implementation.
+``wait_event()`` is marked with **TASK_UNINTERRUPTIBLE** state, i.e when the kernel module including this function causes the userspace process opening it to be blocked/suspended, signal SIGKILL or SIGINT can't be used to unblock/unsuspend it. Check [wait_event(): Wait queue in character device to blocked/suspended a calling userspace process](Implementations.md#wait_event) for that implementation.
 
 ## wait_event_timeout()
 
@@ -49,18 +49,24 @@ Work like [wait_event()](#wait_event), with ``timeout`` (in **jiffies**) to wait
 * ``0``: if the ``condition`` evaluated is false after the timeout elapsed. Kernel module will then keep on waiting until ``condition`` is ``true``
 * ``1``: if the ``condition`` evaluated is true
 
-## wait_event_interruptible() and wait_event_killable()
+## wait_event_interruptible()
 
 ```c
 wait_event_interruptible(wq, condition);
 ```
 Work like [wait_event()](#wait_event) with wake function must be ``wake_up_interruptible()``
+
+``wait_event_interruptible()`` is marked with **TASK_INTERRUPTIBLE** state. Userspace process with state **TASK_INTERRUPTIBLE** is waiting for some event. If a signal (can be any type SIGKILL, SIGINT, SIGUSR1,...) with is generated for a process in this state, then the operation is interrupted and the process is woken up by the delivery of a signal.
+
+Check [wait_event_interruptible(): Wait queue in character device to blocked/suspended a calling userspace process](Implementations.md#wait_event_interruptible-and-wait_event_killable) for that implementation.
+## wait_event_killable()
 ```c
 wait_event_killable(wq, condition);
 ```
 Work like [wait_event()](#wait_event) with wake function must be ``wake_up()``.
+``wait_event_killable()`` is marked with **TASK_KILLABLE**. **TASK_KILLABLE** is added since kernel 2.6.25 to address the hanging process problem. When a suspending/blocking process receives a fatal signal (i.e., one that would kill the process), this process will wake up.
 
-``wait_event_interruptible()`` is marked with **TASK_INTERRUPTIBLE** state and ``wait_event_killable()`` with **TASK_KILLABLE**; i.e when the kernel module including this function causes the userspace process opening it to be blocked/suspended, both signal SIGKILL or SIGINT can be used to unblock/unsuspend it. Check [wait_event_interruptible() and wait_event_killable: Wait queue in character device to blocked/suspended a calling userspace process](#wait_event_interruptible-and-wait_event_killable-1) for that implementation.
+Check [wait_event_killable(): Wait queue in character device to blocked/suspended a calling userspace process](Implementations.md#wait_event_interruptible-and-wait_event_killable) for that implementation.
 ## wait_event_interruptible_timeout()
 ```c
 wait_event_interruptible_timeout(wq, condition, timeout);
