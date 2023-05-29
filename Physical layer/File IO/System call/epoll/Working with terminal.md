@@ -81,7 +81,12 @@ Read entered data from the 2 current running terminals:
 #define TERMINAL_1  "/dev/pts/4"
 #define TERMINAL_2  "/dev/pts/20"
 
-struct epoll_event monitored_event[2], happened_event[1];
+struct epoll_event monitored_event[2];
+
+// It's impossible to enter input data to 2 terminals at the same time so 
+// happened_event[1] is always 1
+struct epoll_event happened_event[1];
+
 char buffer[BUFF_SIZE];
 
 int main(){
@@ -122,6 +127,8 @@ int main(){
             total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
             if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
             else if (total_ready_fd > 0){
+                // It's impossible to enter input data to 2 terminals at the same time so 
+                // Total ready fd is always 1
                 printf("Total ready fd is %d\n", total_ready_fd);
                 // As struct epoll_event monitored_event[2] and happened_event[1] 
                 // are different so use for loop to check
