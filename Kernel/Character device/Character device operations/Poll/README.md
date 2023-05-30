@@ -10,7 +10,7 @@ struct file_operations {
 };
 ```
 
-The ``poll_table`` structure, the second argument to the poll method, is used within the kernel to implement the poll and select calls; it is declared in ``<linux/poll.h>``, which must be included by the driver source. Driver writers need know nothing about its internals and must use it as an ``opaque`` object; it is passed to the driver method so that every event queue that could wake up the process and change the status of the poll operation can be added to the ``poll_table`` structure by calling the function ``poll_wait``:
+The ``poll_table_struct`` structure, the second argument to the poll method, is used within the kernel to implement the [poll](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/IO%20multiplexing%20examples.md) and select calls; it is declared in ``<linux/poll.h>``, which must be included by the driver source. Driver writers need know nothing about its internals and must use it as an ``opaque`` object; it is passed to the driver method so that every event queue that could wake up the process and change the status of the poll operation can be added to the ``poll_table`` structure by calling the function ``poll_wait``:
 
 ```c
 void poll_wait (struct file *, wait_queue_head_t *, poll_table *);

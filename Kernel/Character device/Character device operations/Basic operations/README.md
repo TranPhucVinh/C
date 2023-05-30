@@ -71,32 +71,6 @@ int main(){
 
 Then both file operation open (``dev_open()``) and close (``dev_close()``) are called in the character device after that userspace process finishes running, as the OS will automatically close the device file which will trigger the close file operation.
 
-# Character device as a FIFO
-
-To make a character device working as a FIFO for 2 process to R/W:
-
-```c
-char fifo[100];
-
-ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
-{
-	int bytes_response = copy_to_user(buf, fifo, sizeof(fifo));
-	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
-	else printk("%d bytes could not be send\n", bytes_response);
-	return sizeof(fifo);
-}
-
-ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
-{
-	memset(fifo, 0, sizeof(fifo));
-	copy_from_user(fifo, buf, len);
-	printk("String read from userspace: %s\n", fifo);
-	return sizeof(fifo);
-}
-```
-
-After successfully creating, simply R/W to that character device as a FIFO by 2 process with normal ``read()``/``write()`` functions.
-
 # struct file *private_data
 
 Every struct file object of the ``struct file_operations`` functions like open(), read(), write() and release() functions of a character device share ``private_data``, a void pointer. ``void *private_data`` of ``struct file`` can be used to share between those functions and returned to the userspace.
