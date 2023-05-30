@@ -136,7 +136,7 @@ int main(){
 
         if (pret == 0){
             printf("Timeout after %d miliseconds\n", TIMEOUT);
-        } else if (pret == POLLIN){
+        } else if (pret > 0){
             char buffer[BUFF_SIZE];
             bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
             if (fds[0].revents == POLLIN) {
@@ -147,7 +147,7 @@ int main(){
                 read(fds[1].fd, buffer, sizeof(buffer));
                 printf("String from terminal 2: %s", buffer);
             }
-        }
+        } else perror("poll()");
     }
     return 0;
 }
