@@ -21,7 +21,8 @@ Wait for event to be ready.
 
 Implementation of poll for userspace process - character device takes advantages of [waitqueue](../waitqueue/).
 
-# Examples
+# Implementations
+## poll handling in character device
 
 Response those poll event from character device ([character_device_poll.c](character_device_poll.c)) to userspace process ([user_space_poll.c](user_space_poll.c)):
 
@@ -51,4 +52,31 @@ Timeout after 5000 miliseconds
 open() to get POLLPRI from /dev/fops_character_device # open() of echo "any string" > /dev/fops_character_device
 write() to get POLLOUT from /dev/fops_character_device # write() of echo "any string" > /dev/fops_character_device
 close() to get POLLHUP from /dev/fops_character_device # write() of echo "any string" > /dev/fops_character_device
+```
+## epoll handling in character device
+
+Response those epoll event from character device ([character_device_epoll.c](character_device_epoll.c)) to userspace process ([user_space_epoll.c](user_space_epoll.c)):
+
+* EPOLLET for open()
+* EPOLLIN for read()
+* EPOLLOUT for write()
+* EPOLLHUP for close()
+
+**Program**
+* [character_device_epoll.c](character_device_epoll.c)
+* [user_space_epoll.c](user_space_epoll.c)
+
+**Result**
+```sh
+$ ./user_space_epoll
+Timeout after 5000 miliseconds
+# Run echo "any string" > /dev/fops_character_device in the 2nd terminal to get those 3 responses
+open() to get EPOLLET from /dev/fops_character_device
+write() to get EPOLLOUT from /dev/fops_character_device
+close() to get EPOLLHUP from /dev/fops_character_device
+Timeout after 5000 miliseconds
+# Run cat /dev/fops_character_device in the 2nd terminal to get those 3 responses
+open() to get EPOLLET from /dev/fops_character_device
+read() to get EPOLLIN from /dev/fops_character_device
+close() to get EPOLLHUP from /dev/fops_character_device
 ```
