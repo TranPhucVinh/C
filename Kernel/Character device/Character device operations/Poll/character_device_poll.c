@@ -7,6 +7,8 @@
 
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
+#define TOTAL_MINOR                1
+#define BASE_MINOR				   0
 
 MODULE_LICENSE("GPL");
 
@@ -38,7 +40,7 @@ int dev_open(struct inode *inodep, struct file *filep)
 {
 	flag = POLLPRI;
 	wake_up(&waitqueue);
-	printk("open\n");
+	printk("open(); flag = POLLPRI\n");
 	return 0;
 }
 
@@ -46,41 +48,48 @@ int dev_close(struct inode *inodep, struct file *filep)
 {
 	flag = POLLHUP;
 	wake_up(&waitqueue);
-	printk("close\n");
+	printk("close(); flag = POLLHUP\n");
 	return 0;
 }
 
-ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
+// Must have proper resposnsed string for cat command from userspace to trigger read() systemcall
+ssize_t dev_read(struct file *filep, char __user *buf, size_t len, loff_t *offset)
 {
 	flag = POLLIN;
-	wake_up(&waitqueue);
-
-	// Must have proper resposnsed string for cat command from
-	// userspace to trigger read() systemcall
-	char responsed_string[] = "Response string from kernel space to user space\n";
-	int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
-	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
-	else printk("%d bytes could not be send\n", bytes_response);
-	return sizeof(responsed_string);
+	char responsed_string[] = "Response string from kernel space to user space";
+	if(*offset > 0) return 0; /* End of file */
+	else {
+		int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
+		if (!bytes_response){
+			printk("Responsed string to userpsace has been sent; flag = POLLIN\n");
+			*offset = sizeof(responsed_string);
+			return *offset;
+		} else {
+			printk("%d bytes could not be send\n", bytes_response);
+			return -1;
+		}
+	}
 }
 
 char data[100];
-ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
+ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
 {
 	flag = POLLOUT;
 	wake_up(&waitqueue);
 
 	memset(data, 0, sizeof(data));
 	copy_from_user(data, buf, len);
-	printk("write data: %s\n", data);
+	printk("write data: %s; flag = POLLOUT\n", data);
 	return sizeof(data);
 }
 
-unsigned int dev_poll(struct file *file, poll_table *wait){
-	poll_wait(file, &waitqueue, wait);
-	int tmp = flag;
+unsigned int dev_poll(struct file *filep, poll_table *wait){
+	poll_wait(filep, &waitqueue, wait);
+	int responsed_flag = flag;
+
+	// Reset flag; if not resetting, flag will keep its old value after a POLL event is triggered
 	flag = 0;
-	return tmp;
+	return responsed_flag;
 }
 
 int device_init(void)
@@ -89,7 +98,7 @@ int device_init(void)
 
 	int ret;
 
-	ret = alloc_chrdev_region(&dev_id, 0, 1, "fops_alloc_chrdev_region");
+	ret = alloc_chrdev_region(&dev_id, BASE_MINOR, TOTAL_MINOR, "fops_alloc_chrdev_region");
 	if(ret)
 	{
 		printk("can not register major no\n");
