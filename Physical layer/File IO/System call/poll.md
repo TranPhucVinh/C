@@ -60,12 +60,14 @@ int main(){
        
         if (pret == 0){
             printf("Timeout after %d miliseconds\n", TIMEOUT);
-        } else if (pret == POLLIN){
-            char buffer[BUFF_SIZE];
-            bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
-            read(STDIN_FILENO, buffer, sizeof(buffer));
-            printf("Entered string: %s", buffer);
-        }
+        } else if (pret > 0){
+			if (fds.revents == POLLIN) {
+				char buffer[BUFF_SIZE];
+				bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+				read(STDIN_FILENO, buffer, sizeof(buffer));
+				printf("Entered string: %s", buffer);
+			}
+        } else perror("poll()");
     }
     return 0;
 }
