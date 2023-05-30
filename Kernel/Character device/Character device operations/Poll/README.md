@@ -33,3 +33,22 @@ Response those poll event from character device ([character_device_poll.c](chara
 **Program**
 * [character_device_poll.c](character_device_poll.c)
 * [user_space_poll.c](user_space_poll.c)
+
+**Result**:
+
+```sh
+$ ./user_space_poll
+Open /dev/fops_character_device successfully 
+open() to get POLLPRI from /dev/fops_character_device # open() of user_space_poll
+# Run cat /dev/fops_character_device in the 2nd terminal to get those 3 responses
+open() to get POLLPRI from /dev/fops_character_device # open() of cat /dev/fops_character_device
+read() to get POLLIN from /dev/fops_character_device # read() of cat /dev/fops_character_device
+close() to get POLLHUP from /dev/fops_character_device # close() of cat /dev/fops_character_device
+Timeout after 5000 miliseconds
+Timeout after 5000 miliseconds
+Timeout after 5000 miliseconds
+# Run echo "any string" > /dev/fops_character_device in the 2nd terminal to get those 3 responses
+open() to get POLLPRI from /dev/fops_character_device # open() of echo "any string" > /dev/fops_character_device
+write() to get POLLOUT from /dev/fops_character_device # write() of echo "any string" > /dev/fops_character_device
+close() to get POLLHUP from /dev/fops_character_device # write() of echo "any string" > /dev/fops_character_device
+```
