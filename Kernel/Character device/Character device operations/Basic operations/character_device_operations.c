@@ -46,15 +46,19 @@ int dev_close(struct inode *inodep, struct file *filep)
 
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
-	/*
-		Must have \n for proper sending as user read with cat /dev/character_device
-		without \n, cat /dev/character_device will read empty
-	*/
-	char responsed_string[] = "Response string from kernel space to user space\n";
-	int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
-	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
-	else printk("%d bytes could not be send\n", bytes_response);
-	return sizeof(responsed_string);
+	char responsed_string[] = "Response string from kernel space to user space";
+	if(*offset > 0) return 0; /* End of file */
+	else {
+		int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
+		if (!bytes_response){
+			printk("Responsed string to userpsace has been sent\n");
+			*offset = sizeof(responsed_string);
+			return *offset;
+		} else {
+			printk("%d bytes could not be send\n", bytes_response);
+			return -1;
+		}
+	}
 }
 
 char data[100];

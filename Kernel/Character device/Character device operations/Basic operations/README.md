@@ -37,15 +37,13 @@ In terminal (userspace): Use ``cat /dev/fops_character_device`` to read the repo
 
 In ``character_device_operation``, use function ``copy_to_user()`` to get the string responsed from the kernel space to print out on user space
 
-**Error**: If the response string have no ``\n``, userspace can't receive the string properly (e.g: ``cat /dev/fops_character_device`` won't print out any string)
+### Error: Infinite read from [cat](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/Read%20operations.md#cat)
+
+With ``dev_read()`` function definition's like below, ``cat /dev/fops_character_device`` will result in infinite read of the responsed string ``responsed_string[]``:
 
 ```c
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
-	/*
-		Must have \n for proper sending as user read with cat /dev/character_device
-		without \n, cat /dev/character_device will read empty
-	*/
 	char responsed_string[] = "Response string from kernel space to user space\n";
 	int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
 	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
@@ -53,6 +51,9 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	return sizeof(responsed_string);
 }
 ```
+That happens as [cat](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/Read%20operations.md#cat) continually reads until it gets an empty response. Once it finished getting some data it goes back and asks whether there are still data left.
+
+This issue must be solved by using ``loff_t *offset`` argument of ``dev_read()``, which accesses to the offset of the current device file of the character device.
 
 # Userspace program for 2-way communication with character device
 
