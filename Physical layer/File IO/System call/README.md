@@ -59,7 +59,7 @@ The ``tcsetattr()`` function shall set the parameters associated with the termin
 I/O multiplexing API includes:
 
 * [select()](select.md)
-* [poll()](poll.md)
+* [poll()](poll)
 * [epoll](epoll)
 
 # Examples
