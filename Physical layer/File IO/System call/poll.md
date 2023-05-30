@@ -29,7 +29,7 @@ struct pollfd {
 
 **Return**:  
 
-* On success, a positive number is returned; this is the number of structures which have nonzero ``revents`` fields
+* On success, a positive number is returned
 * ``0``: Call timed out and no file descriptors were ready.
 * ``-1``: Error
 

@@ -8,11 +8,6 @@
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
 
-#define OPEN_FLAG		1
-#define READ_FLAG		2
-#define WRITE_FLAG		3
-#define CLOSE_FLAG		4
-
 MODULE_LICENSE("GPL");
 
 dev_t dev_id;
@@ -41,7 +36,7 @@ struct file_operations fops = {
 
 int dev_open(struct inode *inodep, struct file *filep)
 {
-	flag = OPEN_FLAG;
+	flag = POLLPRI;
 	wake_up(&waitqueue);
 	printk("open\n");
 	return 0;
@@ -49,7 +44,7 @@ int dev_open(struct inode *inodep, struct file *filep)
 
 int dev_close(struct inode *inodep, struct file *filep)
 {
-	flag = CLOSE_FLAG;
+	flag = POLLHUP;
 	wake_up(&waitqueue);
 	printk("close\n");
 	return 0;
@@ -57,16 +52,22 @@ int dev_close(struct inode *inodep, struct file *filep)
 
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
-	flag = READ_FLAG;
+	flag = POLLIN;
 	wake_up(&waitqueue);
-	printk("read\n");
-	return 0;
+
+	// Must have proper resposnsed string for cat command from
+	// userspace to trigger read() systemcall
+	char responsed_string[] = "Response string from kernel space to user space\n";
+	int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
+	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
+	else printk("%d bytes could not be send\n", bytes_response);
+	return sizeof(responsed_string);
 }
 
 char data[100];
 ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
 {
-	flag = WRITE_FLAG;
+	flag = POLLOUT;
 	wake_up(&waitqueue);
 
 	memset(data, 0, sizeof(data));
@@ -77,14 +78,9 @@ ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t 
 
 unsigned int dev_poll(struct file *file, poll_table *wait){
 	poll_wait(file, &waitqueue, wait);
-
-	//All flag can be set to a flag, like POLLIN
-	if ((flag == OPEN_FLAG) || (flag == READ_FLAG) || (flag == WRITE_FLAG) || (flag == CLOSE_FLAG)) {
-		flag = 0;
-		return POLLIN;
-	}
-
-	return 0;
+	int tmp = flag;
+	flag = 0;
+	return tmp;
 }
 
 int device_init(void)
