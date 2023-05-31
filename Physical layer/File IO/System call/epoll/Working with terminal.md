@@ -30,10 +30,12 @@ int main(){
                 total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
                 if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
                 else if (total_ready_fd == 1){
-                    char buffer[BUFF_SIZE];
-                    bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
-                    read(STDIN_FILENO, buffer, sizeof(buffer));
-                    if (happened_event[0].events == EPOLLIN) printf("Entered string: %s", buffer);
+                    if (happened_event[0].events == EPOLLIN) {
+                        char buffer[BUFF_SIZE];
+                        bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+                        read(STDIN_FILENO, buffer, sizeof(buffer));
+                        printf("Entered string: %s", buffer);
+                    }
                 }
                 else {
                     printf("epoll_wait error %d\n", total_ready_fd);        
