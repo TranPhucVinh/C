@@ -4,6 +4,7 @@
 #include <linux/init.h>
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
+#include <linux/slab.h>
 
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
@@ -17,6 +18,7 @@ int dev_open(struct inode *, struct file *);
 int dev_close(struct inode *, struct file *);
 ssize_t dev_read(struct file*, char __user *, size_t, loff_t *);
 ssize_t dev_write(struct file *, const char __user *, size_t, loff_t *);
+char *data;
 
 struct chr_dev_info {
 	struct cdev *character_device;
@@ -44,16 +46,26 @@ int dev_close(struct inode *inodep, struct file *filep)
 	return 0;
 }
 
-ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
+ssize_t dev_read(struct file *filep, char __user *buf, size_t len, loff_t *offset)
 {
-	printk("read\n");
-	return 0;
+	if(*offset > 0) return 0; /* End of file */
+	else {
+		int bytes_response = copy_to_user(buf, data, strlen(data));
+		if (!bytes_response){
+			printk("Responded string to userpsace has been sent\n");
+			*offset = strlen(data);
+			return *offset;
+		} else {
+			printk("%d bytes could not be send\n", bytes_response);
+			return -1;
+		}
+	}
 }
 
-char data[100];
-ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
+ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
 {
-	memset(data, 0, sizeof(data));
+	kfree(data);
+	data = (char*) kzalloc(len, GFP_KERNEL);
 	copy_from_user(data, buf, len);
 	printk("write data: %s\n", data);
 	return sizeof(data);
@@ -99,6 +111,7 @@ void destroy_character_device(struct chr_dev_info *dev_info, int total_minor){
 
 int device_init(void)
 {
+	data = NULL;
 	if (create_character_device(DEVICE_NAME, DEVICE_CLASS, TOTAL_MINOR, BASE_MINOR, &dev_info, &fops)){
 		printk("Unable to create character device %s\n", DEVICE_NAME);
 		return -1;
