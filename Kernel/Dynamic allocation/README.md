@@ -67,6 +67,7 @@ void kmem_cache_destroy(kmem_cache_t *cp);
 ```
 
 Destroy slab cache object ``cp``
+## There is no [realloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#realloc) function in Kernel
 
 # Examples
 
