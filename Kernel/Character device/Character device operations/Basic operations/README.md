@@ -54,6 +54,25 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 That happens as [cat](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/Read%20operations.md#cat) continually reads until it gets an empty response. Once it finished getting some data it goes back and asks whether there are still data left.
 
 This issue must be solved by using ``loff_t *offset`` argument of ``dev_read()``, which accesses to the offset of the current device file of the character device.
+## dev_write of file_operations is triggered multiple times
+
+Simply print out the length everytime write() system call is performed and does not thing to ``*buf`` will result in multiple times called of this print out function:
+```c
+ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
+{
+	printk("length: %d\n", len);//length now is triggered multiple times
+	return sizeof(data);
+}
+```
+```sh
+$ echo "12345678" > /dev/fops_character_device
+$ dmesg
+[10772.742742] open
+[10772.742790] length: 9
+[10772.742805] length: 5
+[10772.742814] length: 1
+[10772.742891] close
+```
 
 # Userspace program for 2-way communication with character device
 
