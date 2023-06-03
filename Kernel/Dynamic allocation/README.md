@@ -29,6 +29,24 @@ int init_module(void)
 	return 0;
 }
 ```
+## krealloc()
+```c
+void * krealloc(const void * p, size_t new_size, gfp_t flags);
+```
+Reallocate memory, correspond to [realloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#realloc) in userspace
+```c
+char *str;
+
+/* Initial memory allocation */
+str = (char *) kmalloc(15, GFP_KERNEL);
+strcpy(str, "Learn malloc");
+printk(KERN_INFO "%s\n", str);// Learn malloc
+str = krealloc(str, 20, GFP_KERNEL);
+strcpy(str, "Hello, World !");
+printk(KERN_INFO "%s\n", str);// Hello, World !
+kfree(str);
+```
+
 ## kfree()
 ```c
 void kfree(const void * objp);
@@ -67,7 +85,6 @@ void kmem_cache_destroy(kmem_cache_t *cp);
 ```
 
 Destroy slab cache object ``cp``
-
 # Examples
 
 ## [kmalloc() example](kmalloc_example.c)
