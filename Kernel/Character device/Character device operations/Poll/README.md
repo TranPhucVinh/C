@@ -62,6 +62,7 @@ Response those epoll event from character device ([character_device_epoll.c](cha
 * EPOLLOUT for write()
 * EPOLLHUP for close()
 
+All those epoll events are only supported in Linux kernel > 5.0. Ubuntu 16.04 with 4.15.0-142-generic doesn't supported those epoll events.
 **Program**
 * [character_device_epoll.c](character_device_epoll.c)
 * [user_space_epoll.c](user_space_epoll.c)
