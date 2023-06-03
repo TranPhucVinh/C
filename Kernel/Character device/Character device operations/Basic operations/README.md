@@ -72,6 +72,15 @@ int main(){
 
 Then both file operation open (``dev_open()``) and close (``dev_close()``) are called in the character device after that userspace process finishes running, as the OS will automatically close the device file which will trigger the close file operation.
 
+# echo character device
+
+**Features**:
+* Character device responses the string written to it previously
+* Use dynamic allocation to allocate [char *data]() which is used to store the string written from the userspace (write() system call) then response/echo (read() system call) back to userspace.
+* **Note**: Note on [dev_write()]() function which returns the length of the string written from the userspace, not returning sizeof(data) as there is no portable way to find out the size of a kmalloc'ed block.
+
+**Program**: [echo_character_device.c](echo_character_device.c)
+
 # struct file *private_data
 
 Every struct file object of the ``struct file_operations`` functions like open(), read(), write() and release() functions of a character device share ``private_data``, a void pointer. ``void *private_data`` of ``struct file`` can be used to share between those functions and returned to the userspace.
