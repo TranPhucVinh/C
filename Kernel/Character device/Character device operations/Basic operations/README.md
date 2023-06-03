@@ -76,8 +76,8 @@ Then both file operation open (``dev_open()``) and close (``dev_close()``) are c
 
 **Features**:
 * Character device responses the string written to it previously
-* Use dynamic allocation to allocate [char *data]() which is used to store the string written from the userspace (write() system call) then response/echo (read() system call) back to userspace.
-* **Note**: Note on [dev_write()]() function which returns the length of the string written from the userspace, not returning sizeof(data) as there is no portable way to find out the size of a kmalloc'ed block.
+* Use dynamic allocation to allocate [char *data](echo_character_device.c#L69) which is used to store the string written from the userspace (write() system call) then response/echo (read() system call) back to userspace.
+* **Note**: Note on [dev_write()](echo_character_device.c#L66) function which returns the length of the string written from the userspace, not returning sizeof(data) as there is no portable way to find out the size of a kmalloc'ed block.
 
 **Program**: [echo_character_device.c](echo_character_device.c)
 
