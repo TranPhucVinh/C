@@ -49,7 +49,7 @@ int device_init(void)
 ## wait_event()
 
 ### Features
-* Create a character device with a waitqueue in **read()** file operation to check for the value sent from userspace, i.e by **write()** system call. Any **read()** system call from a userspace process will cause that process to be blocked/suspended.
+* Create a character device with a waitqueue in **dev_read()** file operation to check for the value sent from userspace, i.e by **write()** system call. Any **read()** system call from a userspace process will cause that process to be blocked/suspended.
 * Sending ``123`` (variable value monitored by the ``waitqueue``), i.e waitqueue condition is true, to unblocked/unsuspended the userspace process
 
 ### Program

@@ -4,7 +4,7 @@
 #include <linux/init.h>
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
-#include <linux/slab.h> //for kmalloc()
+#include <linux/slab.h>
 
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"

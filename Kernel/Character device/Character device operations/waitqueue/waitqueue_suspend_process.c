@@ -6,6 +6,7 @@
 #include <linux/uaccess.h>
 #include <linux/kthread.h>
 #include <linux/wait.h>//for wait_queue()
+#include <linux/slab.h>
 
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
@@ -17,13 +18,15 @@
 MODULE_LICENSE("GPL");
 DECLARE_WAIT_QUEUE_HEAD(wq);/* Static declaration of waitqueue */
 
-long watch_var;
-struct task_struct *kthread_1;
-
-int dev_open(struct inode *, struct file *);
-int dev_close(struct inode *, struct file *);
+int 	dev_open(struct inode *, struct file *);
+int 	dev_close(struct inode *, struct file *);
 ssize_t dev_read(struct file*, char __user *, size_t, loff_t *);
 ssize_t dev_write(struct file *, const char __user *, size_t, loff_t *);
+
+long 	watch_var;
+struct 	task_struct *kthread_1;
+char    *data;
+int     responsed_size;// Store the size of (char *data) for R/W system call
 
 struct chr_dev_info {
 	struct cdev *character_device;
@@ -56,20 +59,32 @@ int dev_close(struct inode *inodep, struct file *filep)
 
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
+	char responsed_string[] = "Response string from kernel space to user space";
 	watch_var = 0;// Reset watch_var everytime having read() system call so that wait_event() always work
-	printk("read\n");
-    printk("wait for watch_var == %d; userspace process %d will be blocked\n", watch_var, userspace_process->pid);
-    wait_event(wq, watch_var == 123);
-    printk("watch_var == %d; monitoring thread has finished execution\n", watch_var);
-	return 0;
+	if(*offset > 0) return 0; /* End of file */
+	else {
+		printk("read(); wait for watch_var == %d; userspace process %d will be blocked\n", watch_var, userspace_process->pid);
+		wait_event(wq, watch_var == 123);
+		printk("watch_var == %d; monitoring thread has finished execution\n", watch_var);
+
+		int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
+		if (!bytes_response){
+			printk("Responsed string to userpsace has been sent\n");
+			*offset = sizeof(responsed_string);
+			return *offset;
+		} else {
+			printk("%d bytes could not be send\n", bytes_response);
+			return -1;
+		}
+	}
 }
 
-char data[100];
 ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
 {
-	memset(data, 0, sizeof(data));
-	copy_from_user(data, buf, len);
-	printk("write data: %s\n", data);
+	kfree(data);
+    data = (char*) kzalloc(len, GFP_KERNEL);
+    copy_from_user(data, buf, len);
+	printk("String read from userspace: %s\n", data);
 
 	/* Convert string to long int */
 	if(kstrtol(data, 10, &watch_var) == -EINVAL) printk("Can't convert string to long int\n");

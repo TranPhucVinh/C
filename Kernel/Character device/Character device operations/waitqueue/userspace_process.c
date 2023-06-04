@@ -14,10 +14,10 @@ int main(){
         printf("Fail to open %s\n",DEV_NAME);
         return 1;
     } else {
-        int a;
+        char str[50];
         printf("Open %s successfully\n", DEV_NAME);
-        read(fd, &a, 1);
-        printf("read() successfully\n");
+        read(fd, str, sizeof(str));
+        printf("%s\n", str);
         return 0;
     }
 }
