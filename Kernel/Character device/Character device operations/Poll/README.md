@@ -63,6 +63,9 @@ Response those epoll event from character device ([character_device_epoll.c](cha
 * EPOLLHUP for close()
 
 All those epoll events are only supported in Linux kernel > 5.0. Ubuntu 16.04 with 4.15.0-142-generic doesn't supported those epoll events.
+
+[character_device_epoll.c](character_device_epoll.c) is an echo character device which responsed to read() system call the string previously written to it (by write() system call)
+
 **Program**
 * [character_device_epoll.c](character_device_epoll.c)
 * [user_space_epoll.c](user_space_epoll.c)

@@ -4,6 +4,7 @@
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
 #include <linux/poll.h>
+#include <linux/slab.h> //for kmalloc()
 
 #define DEVICE_NAME					"fops_character_device"
 #define DEVICE_CLASS				"fops_device_class"
@@ -26,7 +27,9 @@ ssize_t dev_read(struct file*, char __user *, size_t, loff_t *);
 ssize_t dev_write(struct file *, const char __user *, size_t, loff_t *);
 unsigned int dev_poll(struct file *file, poll_table *wait);
 
-int flag;
+char    *data;
+int     responsed_size;// Store the size of (char *data) for R/W system call
+int     flag;
 
 struct file_operations fops = {
 	.open = dev_open,
@@ -55,14 +58,14 @@ int dev_close(struct inode *inodep, struct file *filep)
 // Must have proper resposnsed string for cat command from userspace to trigger read() systemcall
 ssize_t dev_read(struct file *filep, char __user *buf, size_t len, loff_t *offset)
 {
-	flag = EPOLLIN;
-	char responsed_string[] = "Response string from kernel space to user space";
-	if(*offset > 0) return 0; /* End of file */
+    flag = EPOLLIN;
+    wake_up(&waitqueue);
+    if(*offset > 0) return 0; /* End of file */
 	else {
-		int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
+		int bytes_response = copy_to_user(buf, data, responsed_size);
 		if (!bytes_response){
-			printk("Responsed string to userpsace has been sent; flag = EPOLLIN\n");
-			*offset = sizeof(responsed_string);
+			printk("Responsed string to userpsace has been sent\n");
+			*offset = responsed_size;
 			return *offset;
 		} else {
 			printk("%d bytes could not be send\n", bytes_response);
@@ -71,16 +74,18 @@ ssize_t dev_read(struct file *filep, char __user *buf, size_t len, loff_t *offse
 	}
 }
 
-char data[100];
 ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
 {
 	flag = EPOLLOUT;
 	wake_up(&waitqueue);
 
-	memset(data, 0, sizeof(data));
-	copy_from_user(data, buf, len);
-	printk("write data: %s; flag = EPOLLOUT\n", data);
-	return sizeof(data);
+	kfree(data);
+    data = (char*) kzalloc(len, GFP_KERNEL);
+    copy_from_user(data, buf, len);
+	printk("String read from userspace: %s\n", data);
+
+    responsed_size = len;
+	return responsed_size;
 }
 
 unsigned int dev_poll(struct file *filep, poll_table *wait){
