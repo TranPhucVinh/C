@@ -107,7 +107,7 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
     // Same result: wait_event_killable(wq, watch_var == 123);
 
     printk("watch_var == %d; userspace process %d is unblocked\n", watch_var, userspace_process->pid);
-	return 0;
+	// Other operations are like waitqueue_suspend_process.c
 }
 
 ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
