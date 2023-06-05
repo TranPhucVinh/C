@@ -39,6 +39,11 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 
 ## Implementation
 
+* **Blocking Signals**: Blocking a signal means telling the operating system to hold it and deliver it later. 
+* **Signal mask**: The collection of signals that are currently blocked is called the signal mask.
+* **Signal set**: All of the signal blocking functions use a data structure called a signal set (``sigset_t``) to specify what signals are affected.
+
+Implementations include:
 * [IPC by signal](IPC%20by%20signal.md)
 * [Process signal mask](Process%20signal%20mask.md)
 * [Working with specific signal](Working%20with%20specific%20signal.md)
