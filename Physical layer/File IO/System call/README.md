@@ -11,8 +11,9 @@ ssize_t numwritten = write(fd, buffer, count);//defined in unistd.h
 
 int status = close(fd);//defined in unistd.h
 ```
+The file I/O system calls refer to open files using a file descriptor.
 
-**File descriptor**: The I/O system calls refer to open files using a file descriptor, a (usually small) non-negative integer. A file descriptor is typically obtained by a call to ``open()``, which takes a pathname argument specifying a file upon which I/O is to be performed.
+As can be seen from the 4 key system calls, a file descriptor is typically obtained by a call to ``open()``, which takes a pathname argument specifying a file upon which I/O is to be performed.
 
 Normally, a process inherits three open file descriptors when it is started by the shell (defined in ``stdio.h`` on Windows and in ``unistd.h`` on Unix)
 

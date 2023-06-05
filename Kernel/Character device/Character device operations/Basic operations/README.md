@@ -19,7 +19,7 @@ char data[100];
 /*
     This function gives infinite loop error
 */
-ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
+ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
 {
 	memset(data, 0, sizeof(data));
 	copy_from_user(data, buf, len);
