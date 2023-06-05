@@ -8,9 +8,11 @@ OS-based application
 
 ![](../Environment/Images/os_based_application.PNG)
 
-``Object files``, executable or not, are typically stored in a container format, such as ``Executable and Linkable Format`` (``ELF``) or ``Portable Executable`` (``PE``) which is Operating System-specific
+**Object files**, executable or not, are typically stored in a container format, such as **Executable and Linkable Format** (**ELF**) or **Portable Executable** (**PE**) which is Operating System-specific.
 
-``Executable and Linkable Format`` (``ELF``, formerly named Extensible Linking Format) is a common standard file format for ``executable files``, ``object code``, ``shared libraries``, and ``core dumps``.
+**Binary format identification**: Each program file includes metainformation describing the format of the executable file. This enables the kernel to interpret the remaining information in the file. Historically, two widely used formats for UNIX executable files were the original **a.out** (“assembler output”) format and the later, more sophisticated **COFF** (Common Object File Format). Nowadays, most UNIX implementations (including Linux) employ the **Executable and Linking Format** (ELF), which provides a number of advantages over the older formats.
+
+**Executable and Linkable Format** (``ELF``, formerly named Extensible Linking Format) is a common standard file format for ``executable files``, ``object code``, ``shared libraries``, and ``core dumps``.
 
 # C program compilation process
 
