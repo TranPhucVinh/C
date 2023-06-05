@@ -115,3 +115,8 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	return sizeof(private_data);
 }
 ```
+# Data structures maintained by the kernel for file IO
+From the API and implementation seen above, there are three data structures maintained by the kernel for file IO:
+* the per-process file descriptor table
+* the system-wide table of open file descriptions
+* the file system i-node table

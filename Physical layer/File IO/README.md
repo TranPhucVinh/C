@@ -2,7 +2,7 @@
 
 File is an instance of an OS object, like process, device, data,...
 
-**File descriptor** is an integer in your application that refers to the file description in the kernel. **File description** is the structure in the kernel that maintains the state of an open file (its current position, blocking/non-blocking, etc.). In Linux kernel, file descripion is [struct file](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/Basic%20operations).
+**File descriptor** is a (usually small) non-negative integer in your application that refers to the file description in the kernel. **File description** is the structure in the kernel that maintains the state of an open file (its current position, blocking/non-blocking, etc.). In Linux kernel, file descripion is [struct file](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/Basic%20operations).
 
 # Implementations
 ## [stdio](stdio)
