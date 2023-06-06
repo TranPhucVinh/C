@@ -43,31 +43,33 @@ int main(){
                 total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
                 if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
                 else if (total_ready_fd == 1){
-                    switch (happened_event[0].events) {
-                        case EPOLLIN:
-                        {
-                            printf("read() to get EPOLLIN from %s\n", DEVICE_NAME);
-                            break;
-                        } 
-                        case EPOLLET:
-                        {
-                            printf("open() to get EPOLLET from %s\n", DEVICE_NAME);
-                            break;
-                        }
-                        case EPOLLOUT:
-                        {
-                            printf("write() to get EPOLLOUT from %s\n", DEVICE_NAME);
-                            break;
-                        }
-                        case EPOLLHUP:
-                        {
-                            printf("close() to get EPOLLHUP from %s\n", DEVICE_NAME);
-                            break;
-                        }
-                        default:
-                        {
-                            printf("Unhandled epoll event from %s\n", DEVICE_NAME);
-                            break;
+                    if (happened_event[0].data.fd == fd){
+                        switch (happened_event[0].events) {
+                            case EPOLLIN:
+                            {
+                                printf("read() to get EPOLLIN from %s\n", DEVICE_NAME);
+                                break;
+                            } 
+                            case EPOLLET:
+                            {
+                                printf("open() to get EPOLLET from %s\n", DEVICE_NAME);
+                                break;
+                            }
+                            case EPOLLOUT:
+                            {
+                                printf("write() to get EPOLLOUT from %s\n", DEVICE_NAME);
+                                break;
+                            }
+                            case EPOLLHUP:
+                            {
+                                printf("close() to get EPOLLHUP from %s\n", DEVICE_NAME);
+                                break;
+                            }
+                            default:
+                            {
+                                printf("Unhandled epoll event from %s\n", DEVICE_NAME);
+                                break;
+                            }
                         }
                     }
                 }
