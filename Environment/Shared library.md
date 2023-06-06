@@ -1,6 +1,15 @@
 ## Fundamental concepts
 
+Shared libraries are libraries that are linked dynamically and are intended to be shared by executable files and further shared object files. They are loaded into memory at load time or run time, rather than being copied by a linker during the creation of the executable file.
+
+Shared libraries allow common OS code to be bundled into a wrapper and used by any application software on the system without loading multiple copies into memory. All the applications on the system can use it without using more memory.
+
 ![](Images/shared_library.png)
+
+Shared Library by system:
+
+* Linux (for Linux and Solaris): sharedlib.so
+* Windows: sharedlib.dll
 
 ## Implementation
 
