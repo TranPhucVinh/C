@@ -126,6 +126,17 @@ int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oldset
 * ``SIG_BLOCK``: Block ``sigset_t *restrict set`` signals
 * ``SIG_UNBLOCK``: Unblock ``sigset_t *restrict set`` signals
 * ``SIG_SETMASK``: Working like ``SIG_BLOCK`` if ``oldset`` is not used
+# sigpending() and sigismember()
+```c
+#include <signal.h>
+int sigpending(sigset_t *set);
+int sigismember (const sigset_t *set, int signum);
+```
+``sigpending()`` will set the list of pending/masking into its ``sigset_t *set``.
+
+``sigismember()`` tests whether the signal ``signum`` is a member of the ``sigset_t *set``. It returns ``1`` if the signal is in the set, ``0`` if not, and ``-1`` if there is an error.
+
+Check [process signal mask document](Process%20signal%20mask.md#sigpending-and-sigismember) for implementation of ``sigpending()`` and ``sigismember()`` inside ``sigprocmask()`` when a signal is masked.
 # pause()
 ```c
 int pause(void);

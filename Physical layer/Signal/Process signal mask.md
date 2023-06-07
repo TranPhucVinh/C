@@ -107,3 +107,37 @@ int main(){
 	while(1);//Start an infinite loop and handle with signal
 }
 ```
+# sigpending() and sigismember()
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+
+int  main(void)
+{
+    sigset_t newmask, pendmask;
+	sigemptyset(&newmask);
+	sigaddset(&newmask, SIGINT);
+	if (sigprocmask(SIG_BLOCK, &newmask, NULL) < 0){
+        perror("SIG_BLOCK error");
+    }
+	while(1)
+	{
+        //Set the list of pending/masking into pendmask
+		if (!sigpending(&pendmask)) {
+            // Check whether the pending/masking signal is SIGINT
+            if (sigismember(&pendmask, SIGINT))
+            {
+                printf("SIGINT is pending\n");
+                break;// Without break, sigismember() will return true infinitely in this case
+            }
+        } else perror("sigpending() error");
+	}
+}
+```
+**Test**: When ``./a.out`` is running, pressing **Ctr+C**, the result is 
+```
+username@hostname:~$ ./a.out
+^CSIGINT is pending
+username@hostname:~$
+```
