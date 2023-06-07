@@ -28,7 +28,7 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
 63) SIGRTMAX-1	64) SIGRTMAX	
 ```
-
+* [SIGHUP](Working%20with%20specific%20signal.md#sighup-sigusr1-sigusr2-can-stop-a-process-without-signal_handler-required) can be used to stop a process without signal_handler() required.
 * [SIGUSR1 and SIGUSR2](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) are user defined signal
 * [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process. 
 * ``SIGQUIT``: **SIGQUIT** signal is similar to [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint)
