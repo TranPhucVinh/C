@@ -1,14 +1,14 @@
-## Fundamental concepts
+# Fundamental concepts
 
 Masking signal is the process to mask a specific signal so that it won't cause any effect when the running process is handle the signal handler function of the main/expected signal.
 
-## Implementations
+# Implementations
 
-### Masking signal
+## Masking signal by sa_mask of struct sigaction
 
-**Example**: Function ``signal_handler()`` is called when signal ``SIGUSR2`` is triggered and signal ``SIGTSTP`` (``Ctr+Z``) is masked so that it won't cause effect, i.e stopping the current running process, when ``signal_handler()`` is running.
+**Feature**: Function ``signal_handler()`` is called when signal ``SIGUSR2`` is triggered, then the ``while(1)`` loop in ``signal_handler()`` will block the program. With signal ``SIGTSTP`` (``Ctr+Z``) is masked, pressing Ctr+Z won't cause effect, i.e stopping ``while(1)`` when ``signal_handler()`` is running.
 
-**Source code**
+### Source code
 
 ```c
 #include <stdio.h>
@@ -17,6 +17,7 @@ Masking signal is the process to mask a specific signal so that it won't cause a
 #include <signal.h>   
 
 sigset_t set;
+struct sigaction sa;
 
 void signal_handler(int signal_number){
 	char displayed_string[50];
@@ -35,18 +36,19 @@ int main(){
     sigemptyset(&set);
     sigaddset(&set, SIGTSTP);//Mask Ctr+Z
 
-    struct sigaction sa;
     sa.sa_handler = &signal_handler;
     sa.sa_mask = set;
-    sigaction(SIGUSR2, &sa, NULL);
+    sigaction(SIGUSR1, &sa, NULL);
 	while(1);//Start an infinite loop and handle with signal
 }
 ```
+### Testing
+When ``a.out`` is running with PID ``1006``, run ``kill -SIGUSR1 1006`` will call ``signal_handler()``  then enter ``while(1)`` loop, then pressing Ctr+Z won't stop that ``while(1)`` loop. Only pressing Ctr+C can stop the program.
+
+### Notes
 
 Without ``sa.sa_mask = set``, when ``signal_handler()`` is running with ``while(1)`` loop ``signal_handler() is triggered``, if pressing ``Ctr+Z``, the process will stop.
-
-``sa.sa_mask = set`` will disable ``Ctr+Z`` in this case.
-
+## Masking signal with sigprocmask()
 To mask ``Ctr+Z`` by ``sigprocmask()``, simply replace ``sa.sa_mask = set`` by ``sigprocmask()``:
 
 ```c
@@ -64,7 +66,7 @@ int main(){
 }
 ```
 
-### Unmask signal with sigprocmask()
+## Unmask signal with sigprocmask()
 
 Masking features like the example above. When delay 20 seconds in ``signal_handler()``, unmask ``SIGTSTP`` ``Ctr+Z``:
 
