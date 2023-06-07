@@ -145,6 +145,8 @@ PID 4863 // userspace process is blocking
 Open /dev/fops_character_device successfully // userspace process is blocking 
 User defined signal 1
 ```
+Other signal, even the irrelevant signals like **SIGFPE**, **SIGSYS**,... still stop ``userspace_process`` successfully.
+
 **dmesg**
 ```
 [ 1555.943495] Create character device fops_character_device successfully
