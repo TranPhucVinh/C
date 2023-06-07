@@ -115,6 +115,11 @@ union sigval {
 ```c
 int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oldset);
 ```
+``sigprocmask()`` is used to fetch and/or change the signal mask of the calling thread.
+
+``oldset``: If oldset is **non-NULL**, the previous value of the signal mask is stored in oldset
+
+``set``: If ``set`` is **NULL**, then the signal mask is unchanged (i.e., ``how`` is ignored), but the current value of the signal mask is nevertheless returned in oldset (if it is **not NULL**).
 
 ``how``:
 

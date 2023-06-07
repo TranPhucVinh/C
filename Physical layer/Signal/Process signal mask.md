@@ -44,7 +44,6 @@ int main(){
 ```
 ### Testing
 When ``a.out`` is running with PID ``1006``, run ``kill -SIGUSR1 1006`` will call ``signal_handler()``  then enter ``while(1)`` loop, then pressing Ctr+Z won't stop that ``while(1)`` loop. Only pressing Ctr+C can stop the program.
-
 ### Notes
 
 Without ``sa.sa_mask = set``, when ``signal_handler()`` is running with ``while(1)`` loop ``signal_handler() is triggered``, if pressing ``Ctr+Z``, the process will stop.
@@ -68,7 +67,7 @@ int main(){
 
 ## Unmask signal with sigprocmask()
 
-Masking features like the example above. When delay 20 seconds in ``signal_handler()``, unmask ``SIGTSTP`` ``Ctr+Z``:
+Masking features like in [Masking signal by sa_mask of struct sigaction](#masking-signal-by-sa_mask-of-struct-sigaction). When delay 20 seconds in ``signal_handler()``, unmask ``SIGTSTP`` ``Ctr+Z``:
 
 ```c
 #include <stdio.h>
