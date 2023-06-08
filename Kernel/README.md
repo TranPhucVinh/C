@@ -1,5 +1,15 @@
 The **Linux kernel** is the lowest level of software running on a Linux system. It is charged with managing the hardware, running user programs, and maintaining the overall security and integrity of the whole system.
 
+Tasks performed by the kernel:
+
+* Process scheduling
+* Memory management
+* Provision of a file system
+* Creation and termination of processes
+* Access to devices
+* Networking
+* Provision of a system call application programming interface (API)
+
 **KBuild** is the build system used by the Linux kernel.
 
 For bootloader and the Linux booting process, check [Linux bootloader document](Linux%20bootloader.md)
