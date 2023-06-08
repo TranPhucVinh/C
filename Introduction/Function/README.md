@@ -120,15 +120,6 @@ int main () {
 }
 ```
 
-# [Recursive function](Recursive%20function.md)
-* [Use recursive to calculate the sum from 1 to n]()
-* [Logarit can only be calculated by recursive]()
-* [Hanoi tower]()
-* [Raspbian device tree: Find all nodes with compatible string]()
-* [Permutation]()
-* [Combination]()
-* [Check if an index existed inside a linked list]()
-
 # Command line arguments with main()
 
 ```c
