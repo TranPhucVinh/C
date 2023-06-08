@@ -10,7 +10,6 @@ int main(void)
 	}
 }
 ```
-[]()
 # SIGUSR1 and SIGUSR2
 
 Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
