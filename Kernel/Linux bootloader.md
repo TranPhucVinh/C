@@ -7,7 +7,7 @@ Linux bootloader is a small amount of machine specific code to initialize the sy
 * Optional loading of an initial RAM disk at the correct memory address.
 * Setting of the kernel command-line and other parameters (e.g, device tree, machine type)
 
-**U-Boot** (fullname Das U-Boot) is the boot loader used in embedded devices to package the instructions to boot the device's operating system kernel. It is available for various computer architectures, like ARM, RISC-V, x86,...
+**U-Boot** (fullname Das U-Boot) is the **bootloader** used in embedded devices to package the instructions to boot the device's operating system kernel. It is available for various computer architectures, like ARM, RISC-V, x86,...
 
 **U-Boot** is the standard bootloader for ARM Linux.
 
@@ -15,9 +15,9 @@ Linux bootloader is a small amount of machine specific code to initialize the sy
 
 Linux booting process will follow those steps:
 
-1. The boot process begins at POR (Power On Reset) where the hardware reset logic forces the ARM core to begin execution starting from the on-chip boot ROM. The boot ROM can support several devices (e.g, NOR flash, NAND flash, SD card, eMMC). (**eMMC** (**embedded Multi Media Controller**) is an on-board  memory chip that holds data like the OS).
+1. The boot process begins at **POR** (**Power On Reset**) where the hardware reset logic forces the ARM core to begin execution starting from the on-chip boot ROM. The boot ROM can support several devices (e.g, NOR flash, NAND flash, SD card, eMMC). (**eMMC** (**embedded Multi Media Controller**) is an on-board  memory chip that holds data like the OS).
 
-2. The U-Boot loads both the kernel image and the compiled device tree binary into RAM (like DDR3 RAM) and passes the memory address of the device tree binary into the kernel as part of the launch.
+2. The **U-Boot** loads both the kernel image and the compiled device tree binary into RAM (like DDR3 RAM) and passes the memory address of the device tree binary into the kernel as part of the launch.
 
 3. The U-Boot jumps to the kernel code.
 
