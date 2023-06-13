@@ -15,7 +15,7 @@ Linux bootloader is a small amount of machine specific code to initialize the sy
 
 Linux booting process will follow those steps:
 
-1. The boot process begins at POR (Power On Reset) where the hardware reset logic forces the ARM core to begin execution starting from the on-chip boot ROM. The boot ROM can support several devices (e.g, NOR flash, NAND Flash, SD/eMMC). (**eMMC** (**embedded Multi Media Controller**) is an on-board  memory chip that holds data like the OS).
+1. The boot process begins at POR (Power On Reset) where the hardware reset logic forces the ARM core to begin execution starting from the on-chip boot ROM. The boot ROM can support several devices (e.g, NOR flash, NAND Flash, SD CARD, eMMC). (**eMMC** (**embedded Multi Media Controller**) is an on-board  memory chip that holds data like the OS).
 
 2. The U-Boot loads both the kernel image and the compiled device tree binary into RAM (like DDR3 RAM) and passes the memory address of the device tree binary into the kernel as part of the launch.
 
