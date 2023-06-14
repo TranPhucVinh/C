@@ -120,7 +120,7 @@ For conditional check like ``#ifdef``, ``#undef``,... check [Condition in macro 
 
 # Stringizing operator (#)
 
-The # operator turns the argument it precedes into a quoted string. 
+The ``#`` operator turns the argument it precedes into a quoted string. 
 
 ```c
 #define RETURN_STRING(displayedString) #displayedString
