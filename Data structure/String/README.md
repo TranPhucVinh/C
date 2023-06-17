@@ -8,6 +8,7 @@
 # [Char pointer as string](Char%20pointer%20as%20string.md)
 * [Define](Char%20pointer%20as%20string.md#define)
 * [Change value](Char%20pointer%20as%20string.md#change-value)
+* [Char pointer as argument in function](Char%20pointer%20as%20string.md#char-pointer-as-argument-in-function)
 # [String copy functions](String%20copy%20functions.md)
 
 * [sprintf()](String%20copy%20functions.md#sprintf)
