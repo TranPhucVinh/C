@@ -8,11 +8,11 @@
 ## Send data to the character device
 
 * Change permission of the character device: ``sudo chmod 777 /dev/fops_character_device``
-* Then ``echo "Hello, World !" > /dev/fops_character_device``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``, use ``copy_from_user()`` to get that data/string from the user space.
+* Then ``echo "Hello, World !" > /dev/fops_character_device``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``), use ``copy_from_user()`` to get that data/string from the user space.
 
 **Note**: Function ``dev_write()`` now mapped to the write operation from user space to kernel space, e.g ``echo "Data" > /dev/fops_character_device`` 
 
-**Error**: If ``dev_write()`` function return 0, there will be error as using ``echo`` to send data will result in the infinite loop.
+**Error**: If ``dev_write()`` function returns ``0``, there will be error as using ``echo`` to send data will result in the infinite loop.
 
 ```c
 char data[100];
@@ -51,7 +51,7 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	return sizeof(responsed_string);
 }
 ```
-That happens as [cat](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/Read%20operations.md#cat) continually reads until it gets an empty response. Once it finished getting some data it goes back and asks whether there are still data left.
+That happens as [cat](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/Read%20operations.md#cat) continually reads until it gets an empty response. Once it finished getting some data, it goes back and asks whether there are still data left.
 
 This issue must be solved by using ``loff_t *offset`` argument of ``dev_read()``, which accesses to the offset of the current device file of the character device.
 
