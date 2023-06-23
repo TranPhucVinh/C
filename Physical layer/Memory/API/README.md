@@ -1,4 +1,4 @@
-### memcpy()
+# memcpy()
 
 ``memcpy()`` copies n characters from memory area ``str2`` to memory area ``str1``.
 
@@ -41,7 +41,7 @@ memcpy(dest+10, "456", 3);
 printf("String: %s\n", dest);
 ```
 
-### memmove()
+# memmove()
 
 Like ``memcpy()``, ``memmove()`` copies n characters from memory area ``str2`` to memory area ``str1``.
 
