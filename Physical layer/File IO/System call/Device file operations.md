@@ -19,31 +19,22 @@ int main() {
 
 **Note**: Using ``read()`` with other ``stdout`` functions like ``puts()``, ``printf()``, ... results in garbage value printing and other ``stdout`` error.
 
-Read entered data from the current running terminal (``/dev/tty``)
+Read entered data from the current running terminal (``/dev/tty``) then printout:
 
 ```c
 #include <stdio.h>
-#include <string.h>
 #include <unistd.h>
+#include <string.h>
 #include <fcntl.h>
 
-const char filePath[] = "/dev/tty";
-char bufferRead[20];
-
-int fileDescription;
-void delaySeconds(long seconds);
-
-int main(){
-   fileDescription = open(filePath, O_RDONLY); //READ ONLY
-   while(1){
-	   bzero(bufferRead, sizeof(bufferRead));
-      if(fileDescription < 0) return 1;
-      else {
-         read(fileDescription, bufferRead, sizeof(bufferRead));
-         printf("%s", bufferRead);
-      }
-   }
-    return 0;
+int main() {
+	while(1){
+		int fd = open("/dev/tty", O_RDWR);
+		char buffer[10];
+        bzero(buffer, sizeof(buffer));//Empty the previously entered buffer
+		read(fd, buffer, sizeof(buffer));
+		write(fd, buffer, sizeof(buffer));
+	}
 }
 ```
 

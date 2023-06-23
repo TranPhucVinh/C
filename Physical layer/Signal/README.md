@@ -28,17 +28,22 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
 63) SIGRTMAX-1	64) SIGRTMAX	
 ```
-
+* [SIGHUP](Working%20with%20specific%20signal.md#sighup-sigusr1-sigusr2-can-stop-a-process-without-signal_handler-required) can be used to stop a process without signal_handler() required.
 * [SIGUSR1 and SIGUSR2](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) are user defined signal
 * [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process. 
 * ``SIGQUIT``: **SIGQUIT** signal is similar to [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint)
 * [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
 * [SIGKILL](Working%20with%20specific%20signal.md#sigkill): immediately terminate a process, **SIGKILL** cannot be caught, handled or ignored. It is impossible to block this signal.
-* [SIGSTOP and SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [One process stop then continue another process based on its PID](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT)
+* [SIGSTOP and SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
 * [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
 
 ## Implementation
 
+* **Blocking Signals**: Blocking a signal means telling the operating system to hold it and deliver it later. 
+* **Signal mask**: The collection of signals that are currently blocked is called the signal mask.
+* **Signal set**: All of the signal blocking functions use a data structure called a signal set (``sigset_t``) to specify what signals are affected.
+
+Implementations include:
 * [IPC by signal](IPC%20by%20signal.md)
 * [Process signal mask](Process%20signal%20mask.md)
 * [Working with specific signal](Working%20with%20specific%20signal.md)

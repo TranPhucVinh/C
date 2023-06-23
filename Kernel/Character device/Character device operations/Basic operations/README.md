@@ -8,7 +8,7 @@
 ## Send data to the character device
 
 * Change permission of the character device: ``sudo chmod 777 /dev/fops_character_device``
-* Then ``echo "Hello, World !" > /dev/fops_character_device``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``), use ``copy_from_user()`` to get that data/string from the user space.
+* Then ``echo "Hello, World !" > /dev/fops_character_device``. As sending the data from user space (using ``echo Hello, World !``, with string ``Hello, World !`` is in userspace) to kernel space (print out with ``printk()``), use ``copy_from_user()`` to 
 
 **Note**: Function ``dev_write()`` now mapped to the write operation from user space to kernel space, e.g ``echo "Data" > /dev/fops_character_device`` 
 
@@ -19,7 +19,7 @@ char data[100];
 /*
     This function gives infinite loop error
 */
-ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
+ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
 {
 	memset(data, 0, sizeof(data));
 	copy_from_user(data, buf, len);
@@ -115,3 +115,8 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	return sizeof(private_data);
 }
 ```
+# Data structures maintained by the kernel for file IO
+From the API and implementation seen above, there are three data structures maintained by the kernel for file IO:
+* the per-process file descriptor table
+* the system-wide table of open file descriptions
+* the file system i-node table

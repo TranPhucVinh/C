@@ -145,6 +145,8 @@ PID 4863 // userspace process is blocking
 Open /dev/fops_character_device successfully // userspace process is blocking 
 User defined signal 1
 ```
+Other signal, even the irrelevant signals like **SIGFPE**, **SIGSYS**,... still stop ``userspace_process`` successfully.
+
 **dmesg**
 ```
 [ 1555.943495] Create character device fops_character_device successfully
@@ -167,5 +169,22 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 		printk("watch_var is still not 123, but timeout elapsed!\n");
 	printk("watch_var == %d; userspace process %d is unblocked\n", watch_var, userspace_process->pid);
 	return 0;
+}
+```
+# signal_pending()
+
+For implementation with [wait_event_interruptible() and wait_event_killable()](#wait_event_interruptible-and-wait_event_killable), to distinguish whether the blocking process is stopped by receiving the right condition or by receiving signal, ``signal_pending()`` is used.
+
+``signal_pending()`` will return true if receiving any signal. It must be put behind [wait_event_interruptible()](README.md#wait_event_interruptible)
+
+```c
+//Other operations are like source code in wait_event_interruptible() and wait_event_killable()
+printk("read(); wait for watch_var == %d; userspace process %d will be blocked\n", watch_var, userspace_process->pid);
+wait_event_interruptible(wq, watch_var == 123);
+printk("watch_var == %d; monitoring thread has finished execution\n", watch_var);
+
+// Must put signal_pending() behind wait_event_interruptible()
+if (signal_pending(userspace_process)){
+	printk(KERN_INFO "Signal receive\n");
 }
 ```

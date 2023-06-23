@@ -46,7 +46,7 @@ error: initializer element is not computable at load time
 printf("ptrString[0]: %c \n", ptrString[0]); //ptrString[0]: H 
 ```
 
-# Get size
+## Get size
 
 ``size_t strlen(const char *)``: Return length of a char pointer string, even for [char pointer as function argument](#char-pointer-as-argument-in-function)
 
@@ -57,7 +57,7 @@ char *string3;
 printf("%d\n", strlen(string3));//Segmentation fault (core dumped)
 ```
 
-# Define a string pointer on heap memory
+## Define a string pointer on heap memory
 
 Check [Dynamic memory allocation with malloc() for string](../../Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#malloc-for-string).
 

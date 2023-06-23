@@ -1,3 +1,15 @@
+# SIGHUP, SIGUSR1, SIGUSR2 can stop a process without signal_handler() required
+An infinite running process like this can be stopped by SIGHUP, SIGUSR1, SIGUSR2
+```c
+int main(void)
+{
+	while(1)
+	{
+        printf("Hello, World !\n");
+        sleep(1);
+	}
+}
+```
 # SIGUSR1 and SIGUSR2
 
 Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process

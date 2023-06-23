@@ -64,7 +64,7 @@ Check [wait_event_interruptible(): Wait queue in character device to blocked/sus
 wait_event_killable(wq, condition);
 ```
 Work like [wait_event()](#wait_event) with wake function must be ``wake_up()``.
-``wait_event_killable()`` is marked with **TASK_KILLABLE**. **TASK_KILLABLE** is added since kernel 2.6.25 to address the hanging process problem. When a suspending/blocking process receives a fatal signal (i.e., one that would kill the process), this process will wake up.
+``wait_event_killable()`` is marked with **TASK_KILLABLE**. **TASK_KILLABLE** is added since kernel 2.6.25 to address the hanging process problem. When a suspending/blocking process receives a fatal signal (i.e., one that would kill the process), this process will wake up. Generally, the signal handling mechanism of ``wait_event_killable()``  works identically to [wait_event_interruptible()](#wait_event_interruptible).
 
 Check [wait_event_killable(): Wait queue in character device to blocked/suspended a calling userspace process](Implementations.md#wait_event_interruptible-and-wait_event_killable) for that implementation.
 ## wait_event_interruptible_timeout()

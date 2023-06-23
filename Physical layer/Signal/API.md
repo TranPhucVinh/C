@@ -115,12 +115,28 @@ union sigval {
 ```c
 int sigprocmask(int how, const sigset_t *restrict set, sigset_t *restrict oldset);
 ```
+``sigprocmask()`` is used to fetch and/or change the signal mask of the calling thread.
+
+``oldset``: If oldset is **non-NULL**, the previous value of the signal mask is stored in oldset
+
+``set``: If ``set`` is **NULL**, then the signal mask is unchanged (i.e., ``how`` is ignored), but the current value of the signal mask is nevertheless returned in oldset (if it is **not NULL**).
 
 ``how``:
 
 * ``SIG_BLOCK``: Block ``sigset_t *restrict set`` signals
 * ``SIG_UNBLOCK``: Unblock ``sigset_t *restrict set`` signals
 * ``SIG_SETMASK``: Working like ``SIG_BLOCK`` if ``oldset`` is not used
+# sigpending() and sigismember()
+```c
+#include <signal.h>
+int sigpending(sigset_t *set);
+int sigismember (const sigset_t *set, int signum);
+```
+``sigpending()`` will set the list of pending/masking into its ``sigset_t *set``.
+
+``sigismember()`` tests whether the signal ``signum`` is a member of the ``sigset_t *set``. It returns ``1`` if the signal is in the set, ``0`` if not, and ``-1`` if there is an error.
+
+Check [process signal mask document](Process%20signal%20mask.md#sigpending-and-sigismember) for implementation of ``sigpending()`` and ``sigismember()`` inside ``sigprocmask()`` when a signal is masked.
 # pause()
 ```c
 int pause(void);
