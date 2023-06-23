@@ -31,9 +31,18 @@ char responsed_string[] = "1234567890111213Hello, World !\n";
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
 	int bytes_response = copy_to_user(buf, responsed_string + *offset, sizeof(responsed_string) - *offset);
-	if (!bytes_response) printk("Responsed string to userpsace has been sent\n");
-	else printk("%d bytes could not be send\n", bytes_response);
-	return sizeof(responsed_string) - *offset;
+    if(*offset > 0) return 0; /* End of file */
+    else {
+        if (!bytes_response) {
+            printk("Responsed string to userpsace has been sent\n");
+            *offset = sizeof(responsed_string);
+            return sizeof(responsed_string);
+        }
+    	else {
+            printk("%d bytes could not be send\n", bytes_response);
+            return -1;
+        }
+    }
 }
 
 loff_t dev_llseek(struct file *filep, loff_t offset, int whence){
@@ -85,6 +94,10 @@ For ``index=3`` like above, the result will be:
 
 ```
 4567890111213Hello, World !
+```
+Result with ``cat`` ``cat /dev/fops_character_device``:
+```
+1234567890111213Hello, World !
 ```
 # nonseekable_open()
 
