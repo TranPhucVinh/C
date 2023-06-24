@@ -165,9 +165,8 @@ struct file_operations {
 };
 ```
 
-``file_operations write()`` function pointer mapped to the write operation from user space to kernel space, e.g ``echo "Data" > /dev/character_device_name`` 
-
-``file_operations read()`` function pointer mapped to the read operation as kernel space response data to user space and userspace read that responsed data by ``cat /dev/character_device_name``
+* ``ssize_t (*write)`` function pointer mapped to the write operation from user space to kernel space. E.g ``echo "Data" > /dev/character_device_name``, ``write()`` system call
+* ``ssize_t (*read)`` function pointer mapped to the read operation as kernel space response data to user space when having a read() system call from userspace, e.g ``cat /dev/character_device_name``
 
 # linux/cdev.h
 
