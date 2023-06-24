@@ -6,27 +6,25 @@
 #define DEV_NAME "/dev/fops_character_device"
 
 char buffer[20];
-char write_string[] = "String writes to character device";
+char write_string[] = "String written to character device";
 
 int fd;
 
 int main(){
-    while(1){
-        // open(), write(), read() and close() inside a while loop
-        // to simulate the echo and cat command
-        fd = open(DEV_NAME, O_RDWR);
-        if(fd < 0) {
-            printf("Fail to open %s\n",DEV_NAME);
-            return 1;
-        }
-        else {
+    fd = open(DEV_NAME, O_RDWR);
+    if(fd < 0) {
+        printf("Fail to open %s\n",DEV_NAME);
+        return 1;
+    }
+    else {
+        while(1){
             write(fd, write_string, sizeof(write_string));
             read(fd, buffer, sizeof(buffer));
-            printf("%s\n", buffer);
+            printf("%s; count\n", buffer);
+            memset(buffer, 0, sizeof(buffer));
+            sleep(1);
         }
-        memset(buffer, 0, sizeof(buffer));
         close(fd);
-        sleep(1);
+        return 0;
     }
-    return 0;
 }
