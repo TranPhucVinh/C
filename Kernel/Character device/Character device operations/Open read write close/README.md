@@ -1,3 +1,56 @@
+# Read system call to character device
+
+``ssize_t dev_read()`` function of ``struct file_operations`` will handle the read() system call from userspace:
+
+```c
+ssize_t dev_read(struct file *filep, char __user *buf, size_t len, loff_t *offset);
+```
+* [struct file *filep](#data-structures-maintained-by-the-kernel-for-file-io)
+* ``char __user *buf``: Buffer of the userspace application which involves the ``read()`` sytem call
+* ``size_t len``: Length/size of the userspace buffer (``char __user *buf``), i.e ``size_t len`` of ``dev_read()`` in character device is able to get the size of the userspace buffer of the read() system call.
+* [loff_t *offset](../llseek.md)
+
+Userspace application with ``read()`` system call:
+
+```c
+#define RD_SIZE 30
+
+char buffer[RD_SIZE];
+
+int fd;
+
+int main(){
+    fd = open(CHAR_DEV, O_RDWR);
+    if(fd < 0) {
+        printf("Fail to open %s\n",CHAR_DEV);
+        return 1;
+    }
+    else {
+        while(1){  
+            read(fd, buffer, sizeof(buffer));
+            sleep(1);
+        }
+        close(fd);
+        return 0;     
+    }
+}
+```
+
+Character device with ``dev_read()`` function like this will print out the size of the userspace buffer of the ``read()`` system call, like the userspace application above:
+```c
+ssize_t dev_read(struct file *filep, char __user *buf, size_t len, loff_t *offset)
+{
+	// char responsed_string[] = "Response string from kernel space to user space";
+	printk("read() size_t len %d\n", len);
+	return 0;
+}
+```
+Result in dmesg:
+```
+[ 2173.646379] read() size_t len 30
+[ 2174.646754] read() size_t len 30
+...
+```
 # Read and write system call to character device
 
 [character_device_operations.c](character_device_operations.c) supports 2 features:
@@ -81,7 +134,13 @@ Then both file operation open (``dev_open()``) and close (``dev_close()``) are c
 
 **Program**: [echo_character_device.c](echo_character_device.c)
 
-# struct file *private_data
+# Data structures maintained by the kernel for file IO
+From the API and implementation seen above, there are three data structures maintained by the kernel for file IO:
+* the per-process file descriptor table: ``struct file *filep``
+* the system-wide table of open file descriptions
+* the file system i-node table: ``struct inode *inodep``
+
+## struct file *private_data
 
 Every struct file object of the ``struct file_operations`` functions like open(), read(), write() and release() functions of a character device share ``private_data``, a void pointer. ``void *private_data`` of ``struct file`` can be used to share between those functions and returned to the userspace.
 
@@ -115,8 +174,3 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 	return sizeof(private_data);
 }
 ```
-# Data structures maintained by the kernel for file IO
-From the API and implementation seen above, there are three data structures maintained by the kernel for file IO:
-* the per-process file descriptor table
-* the system-wide table of open file descriptions
-* the file system i-node table
