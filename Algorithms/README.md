@@ -1,3 +1,16 @@
+# Algorithms
+
+There are 3 types of algorithms:
+* Sorting algorithms
+* Searching algorithms
+* Graph algorithms
+
+Algorithm complexity includes:
+* **Time complexity**: The amount of time an algorithm takes to produce a result as a function of the size of the input
+* **Space complexity** or memory complexity: The amount of memory used by an algorithm
+
+The most most efficient and scalable alogorithm is the one with both lowest time and space complexity.
+
 # [Big O](Big%20O)
 
 # Beginner level
