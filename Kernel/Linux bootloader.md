@@ -7,24 +7,24 @@ Linux bootloader is a small amount of machine specific code to initialize the sy
 * Optional loading of an initial RAM disk at the correct memory address.
 * Setting of the kernel command-line and other parameters (e.g, device tree, machine type)
 
-**U-Boot** (fullname Das U-Boot) is the **bootloader** used in embedded devices to package the instructions to boot the device's operating system kernel. It is available for various computer architectures, like ARM, RISC-V, x86,...
+**U-Boot** (fullname Das U-Boot) is the **bootloader** used in embedded devices, as the **second stage bootloader**, to boot the device's operating system kernel. It is available for various computer architectures, like ARM, RISC-V, x86,...
 
-**U-Boot** is the standard bootloader for ARM Linux.
+**U-Boot** is the standard bootloader for ARM Linux so it is also called **ARM U-Boot**.
 
 # Linux booting process
 
 6 steps detail:
 
-* [BIOS](#BIOS): System startup/Hardware init with **bootloader**
-* Bootloader stage 1: [Master Boot Record (MBR)](#MBR) loads and executes GRUB bootloader
-* Bootloader stage 2: [GRUB](#GRUB) executes Kernel
+* [BIOS](#BIOS) (or **RBL** in SoC computer): System startup/Hardware init with **bootloader**
+* **First stage bootloader**: [Master Boot Record (MBR)](#MBR) loads and executes GRUB bootloader
+* **Second stage bootloader**: [GRUB](#GRUB) executes Kernel
 * [Kernel](#Kernel) will executes process init located in ``/sbin/init``
 * Execute [init](#init) process
 * Run level: Start userspace for command line
 
 ## BIOS
 
-BIOS (Basic Input/Output System) will perform some system integrity checks, then search, load, and executes the **bootloader program**. Originally, BIOS firmware was stored in a **ROM chip** on the PC motherboard. In later computer systems, the BIOS contents are stored on flash memory so it can be rewritten without removing the chip from the motherboard.
+BIOS (Basic Input/Output System) is the firmware/program to perform some system integrity checks, then search, load, and executes the **bootloader program**. Originally, BIOS firmware was stored in a **ROM chip** on the PC motherboard. In later computer systems, the BIOS contents are stored on flash memory so it can be rewritten without removing the chip from the motherboard. In single board computer, this is also known as the **RBL** (**ROM boot loader**).
 
 Once the bootloader program is detected and loaded into the memory, BIOS gives the control to it.
 
@@ -47,6 +47,7 @@ MBR contains information about GRUB
 * GRUB displays a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as specified in the grub configuration file.
 * GRUB has the knowledge of the filesystem.
 * GRUB configuration file is ``/boot/grub/grub.cfg``. In Ubuntu 20.04 ``grub.cfg`` file, it contains ``initrd`` (Initial RAM Disk) image (checked by searching ``initrd`` in that file). ``initrd`` is used by kernel as temporary root file system until kernel is booted and the real root file system is mounted. It also contains necessary drivers compiled inside, which helps it to access the hard drive partitions, and other hardware.
+* GRUB for ARM Linux is also called GRUB Uboot.
 
 ## Kernel
 
