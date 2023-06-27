@@ -67,13 +67,20 @@ Library ``sys/time.h`` defines:
 ```c
 struct timeval
 {
-  __time_t tv_sec;		/* Seconds.  */
+  __time_t tv_sec;		/* Seconds since Epoch Times */
   __suseconds_t tv_usec;	/* Microseconds.  */
 };
 ```
 ```c
 int gettimeofday(struct timeval *restrict tv, struct timezone *_Nullable restrict tz);
 ```
+
+```c
+int settimeofday(struct timeval *restrict tv, struct timezone *_Nullable restrict tz);
+```
+**Return**:
+* ``0``: Success
+* ``-1``: Fail
 
 **Note**: The value of ``tv_usec`` is always less than one million.
 ## time.h
@@ -84,6 +91,11 @@ Library ``time.h`` defines
 * ``asctime()``
 * ``strftime()``
 * ``clock()``: returns the number of clock ticks elapsed since the start of the program
+
+```c
+time_t mktime(struct tm *timeptr);
+```
+Convert ``timeptr`` to Epoch time.
 
 ``struct rtc_time`` and ``struct tm`` both define:
 

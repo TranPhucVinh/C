@@ -66,7 +66,7 @@ void get_time_of_day(struct timezone *tz){
 }
 ```
 
-**Convert epoch time to human readable time**
+**Convert Epoch time to human readable time**
 
 ```c
 time_t currentTime;
@@ -122,7 +122,11 @@ void delaySeconds(long seconds){
 	}
 }
 ```
+# Set time by settimeofday()
 
+Program [settimeofday.c](settimeofday.c)
+
+**Note**: Must run with **sudo** for ``settimeofday()``.
 # Read and write RTC time of /dev/rtc
 
 ## Read RTC time
