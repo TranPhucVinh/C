@@ -104,7 +104,7 @@ Library ``time.h`` defines
 ```c
 #define CLOCKS_PER_SEC  ((clock_t) 1000000)
 ```
-# Examples
+# [Examples](Examples.md)
 
 * [Get current time with time()](Examples.md#get-current-time-with-time)
 * [Get day, month and year with localtime()]()

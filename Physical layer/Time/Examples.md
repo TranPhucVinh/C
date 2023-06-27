@@ -50,18 +50,18 @@ int main() {
 
 void get_time_of_day(struct timezone *tz){
     struct timeval tv;
+    struct tm *_tm;
     time_t t;
-    struct tm *info;
     char buffer[64];
     
     gettimeofday(&tv, NULL);
     t = tv.tv_sec;
 
-    info = localtime(&t);
-    printf("%s", asctime(info));
-    strftime (buffer, sizeof buffer, "Today is %A, %B %d.\n", info);
+    _tm = localtime(&t);
+    printf("%s", asctime(_tm));
+    strftime (buffer, sizeof buffer, "Today is %A, %B %d.\n", _tm);
     printf("%s", buffer);
-    strftime (buffer, sizeof buffer, "The time is %I:%M %p.\n", info);
+    strftime (buffer, sizeof buffer, "The time is %I:%M %p.\n", _tm);
     printf("%s",buffer);
 }
 ```
