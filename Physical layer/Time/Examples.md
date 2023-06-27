@@ -32,30 +32,37 @@ int ticks = clock();
 printf("total second: %f", (float) ticks/CLOCKS_PER_SEC);//total second: 4.766941
 ```
 
-# Get current time of day in Unix-alike system
+# Get current time of day by gettimeofday() in Unix-alike system
 
 ```c
 #include <stdio.h>
 #include <time.h>
 #include <sys/time.h>
 
+#define TIMEZONE NULL
+
+void get_time_of_day(struct timezone *tz);
+
 int main() {
-  struct timeval tv;
-  time_t t;
-  struct tm *info;
-  char buffer[64];
- 
-  gettimeofday(&tv, NULL);
-  t = tv.tv_sec;
+    get_time_of_day(NULL);
+    return 0;
+}
 
-  info = localtime(&t);
-  printf("%s", asctime(info));
-  strftime (buffer, sizeof buffer, "Today is %A, %B %d.\n", info);
-  printf("%s", buffer);
-  strftime (buffer, sizeof buffer, "The time is %I:%M %p.\n", info);
-  printf("%s",buffer);
+void get_time_of_day(struct timezone *tz){
+    struct timeval tv;
+    time_t t;
+    struct tm *info;
+    char buffer[64];
+    
+    gettimeofday(&tv, NULL);
+    t = tv.tv_sec;
 
-  return 0;
+    info = localtime(&t);
+    printf("%s", asctime(info));
+    strftime (buffer, sizeof buffer, "Today is %A, %B %d.\n", info);
+    printf("%s", buffer);
+    strftime (buffer, sizeof buffer, "The time is %I:%M %p.\n", info);
+    printf("%s",buffer);
 }
 ```
 
