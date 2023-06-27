@@ -43,11 +43,10 @@ MBR contains information about GRUB
 
 ## GRUB
 
-* GRUB stands for Grand Unified Bootloader. If you have multiple kernel images installed on your system, you can choose which one to be executed.
-* GRUB displays a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as specified in the grub configuration file.
+* GRUB stands for Grand Unified Bootloader. GRUB for ARM Linux is also called **GRUB Uboot**.
+* If the system has multiple kernel images installed, GRUB can choose which one to be executed. GRUB will then display a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as specified in the grub configuration file.
 * GRUB has the knowledge of the filesystem.
 * GRUB configuration file is ``/boot/grub/grub.cfg``. In Ubuntu 20.04 ``grub.cfg`` file, it contains ``initrd`` (Initial RAM Disk) image (checked by searching ``initrd`` in that file). ``initrd`` is used by kernel as temporary root file system until kernel is booted and the real root file system is mounted. It also contains necessary drivers compiled inside, which helps it to access the hard drive partitions, and other hardware.
-* GRUB for ARM Linux is also called GRUB Uboot.
 
 ## Kernel
 
