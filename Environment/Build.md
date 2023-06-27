@@ -14,6 +14,11 @@ OS-based application
 
 **Executable and Linkable Format** (``ELF``, formerly named Extensible Linking Format) is a common standard file format for ``executable files``, ``object code``, ``shared libraries``, and ``core dumps``.
 
+**a.out** as an executable file (compiled in Linux) **is an ELF file**. Verify that by [file](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/Read%20operations.md#file) command:
+```
+username@hostname:$ file a.out
+a.out: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=a03182d85b68de9f8682289e2411d7fa3e5fa820, for GNU/Linux 3.2.0, not stripped
+```
 # C program compilation process
 
 ![](../Environment/Images/gcc_compilation_process.png)
