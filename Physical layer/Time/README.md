@@ -71,9 +71,8 @@ struct timeval
   __suseconds_t tv_usec;	/* Microseconds.  */
 };
 ```
-
 ```c
-gettimeofday(&tv, NULL);
+int gettimeofday(struct timeval *restrict tv, struct timezone *_Nullable restrict tz);
 ```
 
 **Note**: The value of ``tv_usec`` is always less than one million.
