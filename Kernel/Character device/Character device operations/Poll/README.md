@@ -92,3 +92,7 @@ close() to get EPOLLHUP from /dev/fops_character_device
 **Program**
 * [character_device_epollin.c](character_device_epollin.c)
 * [user_space_epollin.c](user_space_epollin.c)
+
+Userspace program to monitor EPOLLIN in multiple character device:
+* Character device: Create 2 character devices char_dev_1 and char_dev_2 from [character_device_epollin.c](character_device_epollin.c)
+* Userspace program: [user_space_epollin_multi_char_dev.c](user_space_epollin_multi_char_dev.c)
