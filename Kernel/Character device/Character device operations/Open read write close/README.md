@@ -107,6 +107,11 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 That happens as [cat](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/File%20system/Read%20operations.md#cat) continually reads until it gets an empty response. Once it finished getting some data, it goes back and asks whether there are still data left.
 
 This issue must be solved by using ``loff_t *offset`` argument of ``dev_read()``, which accesses to the offset of the current device file of the character device.
+### Using [llseek()](../llseek.md) is mandatory to support multiple read() system call
+
+As [dev_read](character_device_operations.c#L51) has updated the ``*offset`` to fix the [infinite read from cat](#error-infinite-read-from-cat), [dev_llseek()](character_device_operations.c#L81) must be used to changed the offset back to 0 for next time calling [read() in the userspace program](user_space_2_way_communications.c#L27).
+
+[lseek() must also be used in the userspace program](user_space_2_way_communications.c#L25) to change the offset back to 0 in [the responsed string of the character device](character_device_operations.c#L22).
 
 # Userspace program for 2-way communication with character device
 
