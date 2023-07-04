@@ -53,7 +53,7 @@ open() to get POLLPRI from /dev/fops_character_device # open() of echo "any stri
 write() to get POLLOUT from /dev/fops_character_device # write() of echo "any string" > /dev/fops_character_device
 close() to get POLLHUP from /dev/fops_character_device # write() of echo "any string" > /dev/fops_character_device
 ```
-## epoll handling in character device
+## epoll handling in character device: Response any events to the userspace process
 
 Response those epoll event from character device ([character_device_epoll.c](character_device_epoll.c)) to userspace process ([user_space_epoll.c](user_space_epoll.c)):
 
@@ -84,3 +84,11 @@ open() to get EPOLLET from /dev/fops_character_device
 read() to get EPOLLIN from /dev/fops_character_device
 close() to get EPOLLHUP from /dev/fops_character_device
 ```
+## epoll handling in character device: Monitor EPOLLIN event for write() system call/cat command
+
+* cat command/write() system call will write a string to character device, which also trigger EPOLLIN event.
+* Userspace program monitors EPOLLIN event of character device. When userspace program catches that EPOLLIN event from the character device, it will read the string previously written to this character device.
+
+**Program**
+* [character_device_epollin.c](character_device_epollin.c)
+* [user_space_epollin.c](user_space_epollin.c)
