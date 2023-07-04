@@ -113,9 +113,9 @@ As [dev_read](character_device_operations.c#L51) has updated the ``*offset`` to 
 
 [lseek() must also be used in the userspace program](user_space_2_way_communications.c#L25) to change the offset back to 0 in [the responsed string of the character device](character_device_operations.c#L22).
 
-# Userspace program for 2-way communication with character device
+## [Userspace program](user_space_2_way_communications.c) for [character_device_operations.c](character_device_operations.c)
 
-Program [user_space_2_way_communications.c](user_space_2_way_communications.c) supports 2-way communications R/W between userspace and character device.
+Program [user_space_2_way_communications.c](user_space_2_way_communications.c) writes a string to the [character device](character_device_operations.c) then reads the responsed string from that one.
 
 **Note**
 
