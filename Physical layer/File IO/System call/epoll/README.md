@@ -130,6 +130,8 @@ Timeout after 5000 miliseconds
 Timeout after 5000 miliseconds
 ```
 # Working with character device
-Response any epoll event from a character device to a userspace process opening it. Check [epoll in Character device operations](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/Poll#epoll-handling-in-character-device)
+* [Response any epoll event from a character device to a userspace process opening it](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/Poll#epoll-handling-in-character-device-response-any-events-to-the-userspace-process)
+* [Monitor EPOLLIN event for write() system call/cat command](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/Poll#epoll-handling-in-character-device-monitor-epollin-event-for-write-system-callcat-command)
+
 # Applications
 * [kmess](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/System%20call/kmess): A program to display kernel log realtime
