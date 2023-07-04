@@ -18,6 +18,7 @@ int     dev_open(struct inode *, struct file *);
 int     dev_close(struct inode *, struct file *);
 ssize_t dev_read(struct file*, char __user *, size_t, loff_t *);
 ssize_t dev_write(struct file *, const char __user *, size_t, loff_t *);
+loff_t  dev_llseek(struct file *filep, loff_t offset, int whence);
 char    *data;
 int     responsed_size;// Store the size of (char *data) for R/W system call
 
@@ -33,6 +34,7 @@ struct file_operations fops = {
 	.release = dev_close,
 	.read = dev_read,
 	.write = dev_write,
+	.llseek = dev_llseek,
 };
 
 int dev_open(struct inode *inodep, struct file *filep)
@@ -77,6 +79,31 @@ ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t
     // no portable way to find out the size of a kmalloc'ed block.
     responsed_size = len;
 	return responsed_size;
+}
+
+/*
+	As dev_read() has *offset management to handle read operation with cat command,
+	llseek must be used to handle multiple read operation by read() syscall as this
+	SEEK_SET will return the proper position/offset to the buffer of the read() syscall
+*/
+loff_t dev_llseek(struct file *filep, loff_t offset, int whence){
+	loff_t newpos;
+    switch(whence) {
+        case SEEK_SET:
+            newpos = offset;
+            break;
+    
+        case SEEK_END:
+            newpos = responsed_size - offset;
+            break;
+
+        default:
+            return -EINVAL;
+    }
+    if (newpos < 0) return -EINVAL;
+
+    filep->f_pos = newpos;// Change the position to newpos
+    return newpos;
 }
 
 int create_character_device(const char* dev_name, const char* dev_class, int total_minor, int base_minor, struct chr_dev_info *dev_info, struct file_operations *fops){
