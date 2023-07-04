@@ -17,6 +17,9 @@ int dev_open(struct inode *, struct file *);
 int dev_close(struct inode *, struct file *);
 ssize_t dev_read(struct file*, char __user *, size_t, loff_t *);
 ssize_t dev_write(struct file *, const char __user *, size_t, loff_t *);
+loff_t dev_llseek(struct file *filep, loff_t offset, int whence);
+
+char rsp_str[] = "Response string from kernel space to userspace";
 
 struct chr_dev_info {
 	struct cdev *character_device;
@@ -30,6 +33,7 @@ struct file_operations fops = {
 	.release = dev_close,
 	.read = dev_read,
 	.write = dev_write,
+	.llseek = dev_llseek
 };
 
 int dev_open(struct inode *inodep, struct file *filep)
@@ -46,13 +50,12 @@ int dev_close(struct inode *inodep, struct file *filep)
 
 ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset)
 {
-	char responsed_string[] = "Response string from kernel space to user space";
 	if(*offset > 0) return 0; /* End of file */
 	else {
-		int bytes_response = copy_to_user(buf, responsed_string, sizeof(responsed_string));
+		int bytes_response = copy_to_user(buf, rsp_str, sizeof(rsp_str));
 		if (!bytes_response){
 			printk("Responsed string to userpsace has been sent\n");
-			*offset = sizeof(responsed_string);
+			*offset = sizeof(rsp_str);
 			return *offset;
 		} else {
 			printk("%d bytes could not be send\n", bytes_response);
@@ -62,12 +65,37 @@ ssize_t dev_read(struct file*filep, char __user *buf, size_t len, loff_t *offset
 }
 
 char data[100];
-ssize_t dev_write(struct file*filep, const char __user *buf, size_t len, loff_t *offset)
+ssize_t dev_write(struct file *filep, const char __user *buf, size_t len, loff_t *offset)
 {
 	memset(data, 0, sizeof(data));
 	copy_from_user(data, buf, len);
 	printk("String read from userspace: %s\n", data);
 	return sizeof(data);
+}
+
+/*
+	As dev_read() has *offset management to handle read operation with cat command,
+	llseek must be used to handle multiple read operation by read() syscall as this
+	SEEK_SET will return the proper position/offset to the buffer of the read() syscall
+*/
+loff_t dev_llseek(struct file *filep, loff_t offset, int whence){
+	loff_t newpos;
+    switch(whence) {
+        case SEEK_SET:
+            newpos = offset;
+            break;
+    
+        case SEEK_END:
+            newpos = sizeof(rsp_str) - offset;
+            break;
+
+        default:
+            return -EINVAL;
+    }
+    if (newpos < 0) return -EINVAL;
+
+    filep->f_pos = newpos;// Change the position to newpos
+    return newpos;
 }
 
 int create_character_device(const char* dev_name, const char* dev_class, int total_minor, int base_minor, struct chr_dev_info *dev_info, struct file_operations *fops){
