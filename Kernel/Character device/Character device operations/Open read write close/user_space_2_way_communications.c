@@ -19,9 +19,15 @@ int main(){
     else {
         while(1){
             write(fd, write_string, sizeof(write_string));
-            read(fd, buffer, sizeof(buffer));
-            printf("%s; count\n", buffer);
-            memset(buffer, 0, sizeof(buffer));
+            
+            // lseek() with offest=0 must be used to support calling read()
+            // multiple times to get the proper read/non-empty read buffer
+            int offset = lseek(fd, 0, SEEK_SET);
+            if (!offset){
+                read(fd, buffer, sizeof(buffer));
+                printf("%s\n", buffer);
+                memset(buffer, 0, sizeof(buffer));
+            }
             sleep(1);
         }
         close(fd);
