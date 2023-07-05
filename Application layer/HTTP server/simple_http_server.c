@@ -5,17 +5,17 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <fcntl.h>
-#include <signal.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/socket.h>
 #include <sys/sendfile.h>
 #include <sys/wait.h>
 
-#define BUFFSIZE    1000
-#define PORT        8000
-#define MAX_PENDING 5
-#define	FILE_NAME		"index.html"
+#define     REUSEADDR
+#define     BUFFSIZE          1000
+#define     PORT              8000
+#define     MAX_PENDING       5
+#define	    FILE_NAME		   "index.html"
 
 const char *httpd_hdr_str = "HTTP/1.1 %s\r\nContent-Type: %s\r\nContent-Length: %d\r\n";
 
@@ -33,14 +33,22 @@ void socket_parameter_init(){
     server_addr.sin_addr.s_addr = htonl(INADDR_ANY); 
     server_addr.sin_port = htons(PORT);      
 
-    //Bind to the local address
+    // setsockopt() must be called before bind() so that SO_REUSEADDR can take effect
+    #ifdef REUSEADDR
+        int enable_val = 1;
+        if (!setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val))){
+            printf("Set socket to reuse address successfully\n");
+        } else printf("Unable to set socket to reuse address\n");
+    #endif
+
+    // Bind to the local address
     if (bind(server_fd, (struct sockaddr *) &server_addr, sizeof(server_addr)) < 0) {
         printf("Fail to bind socket to local address\n");
         exit(0);
     }
     else printf("Start TCP socket server successfully through binding\n");
 
-    //Set up connection mode for socket server
+    // Set up connection mode for socket server
     if (listen(server_fd, MAX_PENDING) < 0) exit(0);
 
     client_length = sizeof(client_addr);//Get address size of server
@@ -49,19 +57,19 @@ void socket_parameter_init(){
 
 int main()
 {
-    socket_parameter_init();
+   socket_parameter_init();
 	printf("Waiting for a TCP client to connect ...\n");
 
-    while(1){
-        if((client_fd = accept(server_fd, (struct sockaddr*)&client_addr, &client_length)) > 0 ){
+   while(1){
+      if((client_fd = accept(server_fd, (struct sockaddr*)&client_addr, &client_length)) > 0 ){
 			char* buffer = malloc(BUFFSIZE);
 			char* temp_buffer = malloc(BUFFSIZE);
 			bzero(buffer, BUFFSIZE);
 			bzero(temp_buffer, BUFFSIZE);
 
 			char ip_str[30];
-            inet_ntop(AF_INET, &(client_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
-            printf("New TCP client connected with IP %s\n", ip_str);
+         inet_ntop(AF_INET, &(client_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
+         printf("New TCP client connected with IP %s\n", ip_str);
 
 			int bytes_received = read(client_fd, buffer, BUFFSIZE);
 			if (bytes_received > 0) {
@@ -107,7 +115,7 @@ int main()
 
 				bzero(buffer, BUFFSIZE);         //Delete buffer
 			} 			
-	    }
+      }
 	}
-    return 0;
+   return 0;
 }
