@@ -90,8 +90,3 @@ Entering ``1234567890`` (10 character): Print out:
 
 * ``String from terminal 2: 1``
 * ``String from terminal 2: 2``
-
-... Print out every single chracter inside ``buffer[BUFF_SIZE]``
-
-* ``String from terminal 2: 9``
-* ``String from terminal 2: 0``
