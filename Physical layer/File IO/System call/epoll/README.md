@@ -11,7 +11,7 @@ The central concept of the ``epoll`` API is the epoll instance, an in-kernel dat
 
 ## epoll_create()
 
-```c
+```cpp
 #include <sys/epoll.h>
 int epoll_create(int size);
 int epoll_create1(int flags);
@@ -23,10 +23,11 @@ int epoll_create1(int flags);
 
 ## epoll_wait()
 
-```c
+```cpp
 int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);
 ```
-* ``maxevents``: is the maximum number of epoll_event/file descriptors to be monitored. Should be set to the size of the ``struct epoll_event *events`` array
+* ``maxevents``: is the maximum number of epoll_event/file descriptors to be monitored. Should be set to the size of the ``struct epoll_event *events`` array.
+
 The ``epoll_wait()`` system call waits for events on the ``epoll()`` instance referred to by the file descriptor ``epfd``.
 
 **Return**:
@@ -60,7 +61,7 @@ struct epoll_event {
 };
 ```
 
-The ``events`` member of the ``epoll_event`` structure is a bit mask composed by ORing together zero or more of the available event types like ``EPOLLIN``, ``EPOLLOUT``,...
+The ``events`` member of the ``epoll_event`` structure is a bit mask composed by ORing together zero or more of the available **event types** like ``EPOLLIN``, ``EPOLLOUT``,...
 
 * ``EPOLLIN``: The associated file is available for ``read()`` operations
 * ``EPOLLOUT``: The associated file is available for ``write()`` operations
