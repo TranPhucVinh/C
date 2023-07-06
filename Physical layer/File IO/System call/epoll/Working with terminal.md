@@ -8,7 +8,7 @@
 
 #define TIMEOUT     5000    //miliseconds
 #define BUFF_SIZE   10
-#define MAXEVENTS   1       //1 event for EPOLLIN
+#define MAXEVENTS   1       //Monitor 1 file descriptor/1 terminal
 
 struct epoll_event monitored_event[1], happened_event[1];
 
