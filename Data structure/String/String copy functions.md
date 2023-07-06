@@ -1,7 +1,7 @@
 # sprintf()
 
-```c
-int sprintf ( char * str, const char * format, ... );
+```cpp
+int sprintf(char *str, const char *format,...);
 ```
 
 Composes a string with the same text that would be printed if format was used on ``printf()``, but instead of being printed, the content is stored as a C string in the ``buffer`` pointed by ``str``. This function can be used to convert an int to a string. The real size of the format string is returned, not size of the string buffer used to store.
@@ -35,7 +35,7 @@ printf("%s\n", clockValue);
 
 # snprintf()
 
-```c
+```cpp
 char displayed_string[] = "String: %s ";
 char buffer[50];
 
@@ -49,7 +49,7 @@ If the message length to form is bigger than the storage buffer, there will be a
 
 E.g:
 
-```c
+```cpp
 char displayedString[5];
 int a = 100, b = 100;
 sprintf(displayedString, "%d%d", a, b);
@@ -59,7 +59,7 @@ Although overflow will not happen in this case but if ``displayedString`` is a m
 
 # strcpy()
 
-```c
+```cpp
 char* strcpy(char* destination, const char* source);
 ```
 ``strcpy()`` returns the copied string. Memory of ``destination`` must be allocated first (by char pointer or char array).
@@ -73,7 +73,7 @@ printf("string: %s\n", string); //string: Hello, World!!
 
 **Example**
 
-```c
+```cpp
 char string1[3], string2[3];
 strcpy(string1, "Hello, World !");
 strcpy(string2, "Hello, World !");
@@ -85,7 +85,7 @@ printf("%s\n", string2);//Hello, World !
 
 Copy ``n`` character from ``src`` string to ``dest`` string.
 
-```c
+```cpp
 char *strncpy(char *dest, const char *src, size_t n)
 ```
 
