@@ -4,13 +4,13 @@
 #include <string.h>//for bzero()
 #include <sys/epoll.h>
 
-#define TIMEOUT     5000    //miliseconds
+#define TIMEOUT     5000    // miliseconds
 #define BUFF_SIZE   10
-#define MAXEVENTS   1       //1 event for EPOLLIN
+#define MAXEVENTS   1       // Monitor 1 file descriptor/1 terminal
 
 #define FIFO        "FIFO"
 
-struct epoll_event monitored_event[1], happened_event[1];
+struct epoll_event monitored_event[MAXEVENTS], happened_event[MAXEVENTS];
 
 int main(){
     int epfd = epoll_create1(EPOLL_CLOEXEC);
@@ -22,7 +22,6 @@ int main(){
         if (fd > 0){
             printf("Open FIFO successfully %d\n", fd);
             monitored_event[0].events = EPOLLET;
-
             monitored_event[0].data.fd = fd;
 
             if (epoll_ctl(epfd, EPOLL_CTL_ADD, fd, monitored_event) < 0){

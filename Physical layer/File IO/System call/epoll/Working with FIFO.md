@@ -1,6 +1,6 @@
 # EPOLLHUP and EPOLLET in FIFO
 
-Everytime running [send.c](#send.c) will send a string to ``FIFO``, [fifo_epollet.c](fifo_epollet.c) which monitor event ``EPOLLHUP`` (with flag ``EPOLLET`` to make sure the event happen only 1 time exactly as edge trigger) will print out the received string.
+Everytime running [send.c](#send.c) will send a string to ``FIFO``, [fifo_epollet.c](fifo_epollet.c) which monitor event type **EPOLLHUP** (with event type **EPOLLET** to make sure the event happen only 1 time exactly as edge trigger) will print out the received string.
 
 ## send.c
 
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])  {
 
 ## Note
 
-``EPOLLHUP`` will be returned continuously on ``fifo_epollet.c`` side right after ``send.c`` successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+``EPOLLHUP`` will be returned continuously on [fifo_epollet.c](fifo_epollet.c) side right after ``send.c`` successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
 
 Program [endlessly_epollhup_event.c](endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO). In ``endlessly_epollhup_event.c``, it only monitors ``EPOLLHUP`` event and has nothing to deal with ``EPOLLET``. Right after the FIFO receives the sent data from ``send.c``, ``EPOLLHUP`` event keeps appearing endlessly. Program ``endlessly_epollhup_event.c`` uses ``count``, a variable to count how many time ``EPOLLHUP`` happens and ``count`` value will increase expressly.
 
@@ -69,7 +69,7 @@ while(1);
 close(fd);
 ```
 
-``receiver.c`` will have most features like [epollin_fifo.c](epollin_fifo.c), except it only reads 1 byte from the FIFO to keep level-triggered event
+``receiver.c`` will have most features like [epollin_fifo.c](epollin_fifo.c), except it only reads 1 byte from the FIFO to keep level-triggered event:
 
 ```c
 //Other parts are like epollin_fifo.c
@@ -83,7 +83,7 @@ else if (epollret > 0){
     }
 }
 ```
-**Result**:  1 byte is read until the whole string inside the pipe is read out.
+**Result**: 1 byte is read until the whole string inside the FIFO is read out.
 
 ```
 Open FIFO successfully 4
@@ -128,7 +128,7 @@ else if (epollret > 0){
 }
 ```
 
-**Result**: Only 1 byte is read as the status in pipe is change from 0 to having data which is edge trigger. After reading 1 byte, there is still data left inside the pipe so edge trigger event doesn't happen.
+**Result**: Only 1 byte is read as the status in FIFO is change from 0 to having data which is edge trigger. After reading 1 byte, there is still data left inside the FIFO so edge trigger event doesn't happen.
 
 ```
 Open FIFO successfully 4
