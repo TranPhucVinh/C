@@ -26,6 +26,7 @@ int epoll_create1(int flags);
 ```c
 int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);
 ```
+* ``maxevents``: is the maximum number of epoll_event/file descriptors to be monitored. Should be set to the size of the ``struct epoll_event *events`` array
 The ``epoll_wait()`` system call waits for events on the ``epoll()`` instance referred to by the file descriptor ``epfd``.
 
 **Return**:
