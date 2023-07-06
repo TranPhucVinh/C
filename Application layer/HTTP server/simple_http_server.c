@@ -52,70 +52,69 @@ void socket_parameter_init(){
     if (listen(server_fd, MAX_PENDING) < 0) exit(0);
 
     client_length = sizeof(client_addr);//Get address size of server
-   	
 }
 
 int main()
 {
-   socket_parameter_init();
+    socket_parameter_init();
 	printf("Waiting for a TCP client to connect ...\n");
 
-   while(1){
-      if((client_fd = accept(server_fd, (struct sockaddr*)&client_addr, &client_length)) > 0 ){
-			char* buffer = malloc(BUFFSIZE);
-			char* temp_buffer = malloc(BUFFSIZE);
-			bzero(buffer, BUFFSIZE);
-			bzero(temp_buffer, BUFFSIZE);
+    while(1){
+        if((client_fd = accept(server_fd, (struct sockaddr*)&client_addr, &client_length)) > 0 ){
+			char* resp_buf = malloc(BUFFSIZE);// Response buffer for HTTP response
+			char* resp_str = malloc(BUFFSIZE);// Response string for HTTP response
+			bzero(resp_buf, BUFFSIZE);
+			bzero(resp_str, BUFFSIZE);
 
 			char ip_str[30];
-         inet_ntop(AF_INET, &(client_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
-         printf("New TCP client connected with IP %s\n", ip_str);
+            inet_ntop(AF_INET, &(client_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
+            printf("New TCP client connected with IP %s\n", ip_str);
 
-			int bytes_received = read(client_fd, buffer, BUFFSIZE);
+			int bytes_received = read(client_fd, resp_buf, BUFFSIZE);
 			if (bytes_received > 0) {
-				char* method = strtok(buffer, " ");
+				char* method = strtok(resp_buf, " ");
 				char* uri    = strtok(NULL, " ");
-				char* prot   = strtok(NULL, "\r\n");
 
 				if(!strcmp(method, "GET")){
+                    printf("URI %s\n", uri);
 					if (!strcmp(uri, "/")){
-						int sz = sprintf(temp_buffer, "Text responsed from TCP server");
-						int snz = snprintf(buffer, BUFFSIZE, httpd_hdr_str, "200 OK", "text/plain", sz);
-						strcat(buffer, "\r\n");
-						strcat(buffer, temp_buffer);
-						write(client_fd, buffer, sz+snz+2);
+						int sz = sprintf(resp_str, "Text responsed from TCP server");
+						int snz = snprintf(resp_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/plain", sz);
+						strcat(resp_buf, "\r\n");
+						strcat(resp_buf, resp_str);
+						write(client_fd, resp_buf, sz+snz+2);
 					} else if (!strcmp(uri, "/getfile")){
 						int fd = open(FILE_NAME, O_RDONLY);
 						if (fd > 0){
-							int sz = read(fd, temp_buffer, BUFFSIZE);
-							int snz = snprintf(buffer, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sz);
-							strcat(buffer, "\r\n");
-							strcat(buffer, temp_buffer);
-							write(client_fd, buffer, strlen(buffer));
+							int sz = read(fd, resp_str, BUFFSIZE);
+							int snz = snprintf(resp_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sz);
+							strcat(resp_buf, "\r\n");
+							strcat(resp_buf, resp_str);
+							write(client_fd, resp_buf, strlen(resp_buf));
 							close(fd);
 						} else {
-							int sz = sprintf(temp_buffer, "File %s not found", FILE_NAME);
-							int snz = snprintf(buffer, BUFFSIZE, httpd_hdr_str, "200 OK", "text/plain", sz);
-							strcat(buffer, "\r\n");
-							strcat(buffer, temp_buffer);
-							write(client_fd, buffer, sz+snz+2);
+							int sz = sprintf(resp_str, "File %s not found", FILE_NAME);
+							int snz = snprintf(resp_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/plain", sz);
+							strcat(resp_buf, "\r\n");
+							strcat(resp_buf, resp_str);
+							write(client_fd, resp_buf, sz+snz+2);
 						}
 					} else {
-						int sz = sprintf(temp_buffer, "Not found %s", uri);
-						int snz = snprintf(buffer, BUFFSIZE, httpd_hdr_str, "200 OK", "text/plain", sz);
-						strcat(buffer, "\r\n");
-						strcat(buffer, temp_buffer);
-						write(client_fd, buffer, sz+snz+2);
+						int sz = sprintf(resp_str, "Not found %s", uri);
+						int snz = snprintf(resp_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/plain", sz);
+						strcat(resp_buf, "\r\n");
+						strcat(resp_buf, resp_str);
+						write(client_fd, resp_buf, sz+snz+2);
 					}
 				} 
 
-				free(buffer);
-				free(temp_buffer);
+				free(resp_buf);
+				free(resp_str);
 				close(client_fd);
 
-				bzero(buffer, BUFFSIZE);         //Delete buffer
+				bzero(resp_buf, BUFFSIZE);         //Delete resp_buf
 			} 			
       }
 	}
-   return 0;
+    return 0;
 }
