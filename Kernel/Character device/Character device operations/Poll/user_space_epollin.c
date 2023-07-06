@@ -6,11 +6,11 @@
 
 #define TIMEOUT     5000    //miliseconds
 #define BUFF_SIZE   50
-#define MAXEVENTS   1       //Only 1 event EPOLLIN
+#define MAXEVENTS   1       // Monitor 1 file descriptor of character device DEVICE_NAME
 
 #define DEVICE_NAME	"/dev/fops_character_device"
 
-struct epoll_event monitored_event[1], happened_event[1];
+struct epoll_event monitored_event[MAXEVENTS], happened_event[MAXEVENTS];
 
 int main(){
     int epfd = epoll_create1(EPOLL_CLOEXEC);

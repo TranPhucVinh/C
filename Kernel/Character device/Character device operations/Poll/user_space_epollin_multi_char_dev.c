@@ -4,14 +4,14 @@
 #include <string.h>//for bzero()
 #include <sys/epoll.h>
 
-#define TIMEOUT     5000    //miliseconds
+#define TIMEOUT     5000    // miliseconds
 #define BUFF_SIZE   50
-#define MAXEVENTS   1       //Only 1 event EPOLLIN for 2 file descriptors
+#define MAXEVENTS   2       // Monitor 2 file descriptors for CHAR_DEV_1 and CHAR_DEV_2
 
 #define CHAR_DEV_1  "/dev/char_dev_1"
 #define CHAR_DEV_2  "/dev/char_dev_2"
 
-struct epoll_event monitored_event[2], happened_event[2];
+struct epoll_event monitored_event[MAXEVENTS], happened_event[MAXEVENTS];
 char buffer[BUFF_SIZE];
 
 int main(){
@@ -53,12 +53,9 @@ int main(){
             if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
             else if (total_ready_fd > 0){
                 printf("Total ready fd is %d\n", total_ready_fd);
-                // As struct epoll_event monitored_event[2] and happened_event[1] 
-                // are different so use for loop to check
-                // sleep(5);
                 for (int n = 0; n < total_ready_fd; n++)
                 {
-                    printf("debug fd trigger: %d\n", happened_event[n].data.fd);
+                    printf("ready fd: %d\n", happened_event[n].data.fd);
                     bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
                     if (happened_event[n].data.fd == fd_1) {
                         if (happened_event[n].events == EPOLLIN) {

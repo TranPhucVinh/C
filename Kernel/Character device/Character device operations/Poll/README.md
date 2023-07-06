@@ -93,6 +93,21 @@ close() to get EPOLLHUP from /dev/fops_character_device
 * [character_device_epollin.c](character_device_epollin.c)
 * [user_space_epollin.c](user_space_epollin.c)
 
-Userspace program to monitor EPOLLIN in multiple character device:
+**Userspace program to monitor EPOLLIN in multiple character device**:
 * Character device: Create 2 character devices char_dev_1 and char_dev_2 from [character_device_epollin.c](character_device_epollin.c)
 * Userspace program: [user_space_epollin_multi_char_dev.c](user_space_epollin_multi_char_dev.c)
+
+**Note**: Sending string to 2 character devices at the same time like this: 
+
+```sh
+username@hostname:~/ (echo "String for char_dev_1" > /dev/char_dev_1)&&(echo "String for char_dev_2" > /dev/char_dev_2)
+```
+Then the today ready file at one time is still 1:
+```
+Total ready fd is 1
+ready fd: 4
+String of char_dev_1: String for char_dev_1
+Total ready fd is 1
+ready fd: 5
+String of char_dev_2: String for char_dev_2
+```
