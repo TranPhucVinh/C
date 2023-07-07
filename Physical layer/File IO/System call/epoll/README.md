@@ -28,12 +28,12 @@ int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout)
 ```
 * ``maxevents``: the maximum number of epoll_event/file descriptors to be monitored **concurrently**. Should be set to the size of the ``struct epoll_event *events`` array.
 
-**Concurrently** means that epoll can handle maximum **maxevents** file descriptors with the monitored event at the same time. E.g:
+**Concurrently** means that epoll can handle maximum **maxevents** file descriptors with the monitored event at the same time. **E.g**:
 With ``maxevents = 5`` and the monitored event is **EPOLLIN**, when there are 6 monitored file descriptors with event **EPOLLIN** happen, only 5 among those 6 file descriptors are handled.
 
 **Concurrently** also means that epoll can handle more than **maxevents** file descriptors with the monitored event as long as the monitored event of those file descriptors happen **respectively**, **not concurrently**
 
-E.g: With ``maxevents = 1`` and the monitored event is **EPOLLIN**, when there are more than 1 monitored file descriptors with event **EPOLLIN** happen respectively, those file descriptors are handled properly by epoll.
+**E.g**: With ``maxevents = 1`` and the monitored event is **EPOLLIN**, when there are more than 1 monitored file descriptors with event **EPOLLIN** happen respectively, those file descriptors are handled properly by epoll.
 
 **Return**:
 * the number of file descriptors ready for the requested I/O when **success**
