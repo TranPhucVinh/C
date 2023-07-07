@@ -10,47 +10,51 @@
 #define PORT 8000
 
 #define BUFFSIZE 256
-int sockfd;
-struct sockaddr_in receiver_addr;
-char buffer[BUFFSIZE];
+
+int socket_parameter_init();
+void error(const char *msg);
+
+int main(){
+   int sender_fd = socket_parameter_init();
+    
+    // Send data
+    while(1){
+        char buffer[BUFFSIZE];
+        printf("message: ");
+        bzero(buffer, BUFFSIZE);
+        fgets(buffer, BUFFSIZE, stdin);
+
+        write(sender_fd, buffer, BUFFSIZE);
+    }
+
+    close(sender_fd); //Close socket
+    return 0;
+}
 
 void error(const char *msg){
     perror(msg);
     exit(0);
 }
  
-void socket_parameter_init(){
+int socket_parameter_init(){
+    int sender_fd;
+    struct sockaddr_in receiver_addr;
     receiver_addr.sin_family      = PF_INET;
     receiver_addr.sin_addr.s_addr = inet_addr(HOST);          
     receiver_addr.sin_port        = htons(PORT);
 
     // Create TCP socket
-    if ((sockfd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0){
+    if ((sender_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0){
         printf("Fail to create socket\n");
         exit(0);
     } else printf("Create socket successfully\n");
 
     // Connect to server
-    if (connect(sockfd, (struct sockaddr *)&receiver_addr, sizeof(receiver_addr))<0){
+    if (connect(sender_fd, (struct sockaddr *)&receiver_addr, sizeof(receiver_addr)) < 0){
         if (errno == ECONNREFUSED) {
             printf("Server hasn't been started or server doesn't support connection\n");
         } else printf("Can't connect to server with error %d", errno);
         exit(0);
     } else printf("connect to server success\n");
-}
-
-int main(){
-    socket_parameter_init();
-    
-    // Send data
-    while(1){
-        printf("message: ");
-        bzero(buffer, BUFFSIZE);
-        fgets(buffer, BUFFSIZE, stdin);
-
-        write(sockfd, buffer, BUFFSIZE);
-    }
-
-    close(sockfd); //Close socket
-    return 0;
+    return sender_fd;
 }

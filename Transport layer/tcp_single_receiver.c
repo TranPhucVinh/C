@@ -20,22 +20,81 @@
 #define NO_FD       -1  //No file descriptor used for shared memory
 #define BASE_ADDR   0   //No specific base address to set in shared memory
 
-int 		sender_fd;
-socklen_t 	sender_length;
-char 		buffer[BUFFSIZE];
-struct 		sockaddr_in sender_addr, receiver_addr;
-
-int         socket_id = 0;
 int         *total_connected_sender;
 
+int         socket_param_init();
 void        sigint_handler(int signal_number);
 
 int         sender_fd_pipe[2];
 
+int main(int argc, char *argv[]){
+    int 		receiver_fd, sender_fd;
+    int         socket_id = 0;
+    struct 		sockaddr_in sender_addr;
+    
+    socklen_t 	sender_length = sizeof(sender_addr);//Get address size of sender
+
+    signal(SIGINT, sigint_handler);
+
+    receiver_fd = socket_param_init();
+
+    // Create a pipe for sender socket fd
+    if(pipe(sender_fd_pipe) == -1){
+		printf("An error occured when creating a pipe for sender fd\n");
+		return 1;
+	}
+
+    printf("Waiting for a TCP sender to connect ...\n");
+    
+    //sender handler
+    while(1){
+        // wait for sender to connect, return new socket for that sender
+        if ((sender_fd = accept(receiver_fd, (struct sockaddr *) &sender_addr, &sender_length)) > 0){
+            char ip_str[30];
+            inet_ntop(AF_INET, &(sender_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
+            *total_connected_sender += 1;
+            socket_id += 1;
+            printf("New TCP sender with fd %d connected with IP %s, %d TCP senders have connected now\n", sender_fd, ip_str, *total_connected_sender);
+            
+            write(sender_fd_pipe[1], &sender_fd, sizeof(int));
+
+            int pid = fork();
+            if (!pid) {
+                printf("TCP sender has ID %d\n", socket_id);
+
+                while (1){
+                    char buffer[BUFFSIZE];
+                    bzero(buffer, BUFFSIZE);//Delete buffer
+
+                    int  bytes_received = read(sender_fd, buffer, BUFFSIZE);
+                    if (bytes_received > 0) {
+                        printf("Message from TCP sender ID %d: %s", socket_id, buffer);
+                        bzero(buffer, BUFFSIZE);         //Delete buffer
+                    } 
+                    /*
+                        else condition includes:
+                        1. Right after the TCP socket is disconnected, read() will return 0.
+                            If tcp_multiple_senders.c sends empty string, read() won't return 0. 
+                        2. socket error, read() returns -1
+                    */
+                    else {
+                        printf("TCP sender with ID %d is disconnected\n", socket_id);
+                        *total_connected_sender -= 1;
+                        printf("%d TCP senders have connected now\n", *total_connected_sender);
+                        close(sender_fd); 
+                        kill(getpid(), SIGKILL);
+                    }
+                }
+            } 
+        }
+    }   
+}
+
 /*
     Init socket parameters
 */
-int socket_init(){
+int socket_param_init(){
+    struct sockaddr_in receiver_addr;
     total_connected_sender = (int *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *total_connected_sender = 0;
 
@@ -67,64 +126,7 @@ int socket_init(){
     //Set up connection mode for socket sender
     if (listen(receiver_fd, MAXPENDING) < 0) exit(0);
 
-    sender_length = sizeof(sender_addr);//Get address size of sender
-    bzero(buffer, BUFFSIZE);//Delete buffer
-
     return receiver_fd;
-}
-
-int main(int argc, char *argv[]){
-    signal(SIGINT, sigint_handler);
-
-    int receiver_fd = socket_init();
-
-    // Create a pipe for sender socket fd
-    if(pipe(sender_fd_pipe) == -1){
-		printf("An error occured when creating a pipe for sender fd\n");
-		return 1;
-	}
-
-    printf("Waiting for a TCP sender to connect ...\n");
-    
-    //sender handler
-    while(1){
-        // wait for sender to connect, return new socket for that sender
-        if ((sender_fd = accept(receiver_fd, (struct sockaddr *) &sender_addr, &sender_length)) > 0){
-            char ip_str[30];
-            inet_ntop(AF_INET, &(sender_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
-            *total_connected_sender += 1;
-            socket_id += 1;
-            printf("New TCP sender with fd %d connected with IP %s, %d TCP senders have connected now\n", sender_fd, ip_str, *total_connected_sender);
-            
-            write(sender_fd_pipe[1], &sender_fd, sizeof(int));
-
-            int pid = fork();
-            if (!pid) {
-                printf("TCP sender has ID %d\n", socket_id);
-
-                while (1){
-                    int bytes_received = read(sender_fd, buffer, BUFFSIZE);
-                    if (bytes_received > 0) {
-                        printf("Message from TCP sender ID %d: %s", socket_id, buffer);
-                        bzero(buffer, BUFFSIZE);         //Delete buffer
-                    } 
-                    /*
-                        else condition includes:
-                        1. Right after the TCP socket is disconnected, read() will return 0.
-                            If tcp_multiple_senders.c sends empty string, read() won't return 0. 
-                        2. socket error, read() returns -1
-                    */
-                    else {
-                        printf("TCP sender with ID %d is disconnected\n", socket_id);
-                        *total_connected_sender -= 1;
-                        printf("%d TCP senders have connected now\n", *total_connected_sender);
-                        close(sender_fd); 
-                        kill(getpid(), SIGKILL);
-                    }
-                }
-            } 
-        }
-    }   
 }
 
 /*
