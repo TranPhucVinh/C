@@ -10,71 +10,108 @@
 #include <sys/wait.h>
 #include <sys/epoll.h>
 
+#include <vector>
+#include <algorithm> //find()
+
 #define REUSEADDR
 #define MAXPENDING 	5
 #define BUFFSIZE 	256
-#define MAXEVENTS   1       //1 event for EPOLLIN
+#define MAXEVENTS   1       // Maximum number connected TCP senders to handle/monitor
 #define PORT 		8000
 
-#define TIMEOUT     5000    //miliseconds
+#define TIMEOUT     5000    // miliseconds
 
-int         socket_init();
-struct      epoll_event monitored_event[1], happened_event[1];
+int         socket_parameter_init();
+struct      epoll_event sender_connect_event;// New TCP sender connection event
+struct      epoll_event happened_events[MAXEVENTS];
 
 int main(){
     struct 		sockaddr_in sender_addr;
     socklen_t 	sender_length;
     char        ip_str[30];
-    int         receiver_fd, sender_fd;
-
-    sender_length = sizeof(sender_addr);//Get address size of sender
-
-    receiver_fd = socket_init();
+    int         receiver_fd;
+    std::vector<int> tcp_senders_fd_list;
 
     int epfd = epoll_create1(EPOLL_CLOEXEC);
     if (epfd < 0) {
         printf("Unable to create an epoll fd\n");
         return 0;
-    } else {
-        printf("Waiting for a TCP sender to connect ...\n");
-        while (1){
-            if ((sender_fd = accept(receiver_fd, (struct sockaddr *) &sender_addr, &sender_length)) > 0){
-                inet_ntop(AF_INET, &(sender_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
-                printf("New TCP sender with fd %d connected with IP %s\n", sender_fd, ip_str);
+    }
 
-                monitored_event[0].events = EPOLLIN;
-                monitored_event[0].data.fd = sender_fd;//Add file descriptor sender_fd to monitor
+    sender_length = sizeof(sender_addr);//Get address size of sender
+    receiver_fd = socket_parameter_init();
 
-                if (epoll_ctl(epfd, EPOLL_CTL_ADD, sender_fd, monitored_event) < 0){
-                    printf("Unable to add fd of connected TCP sender to be monitored by epoll\n");
-                    return 0;
-                } else {
-                    while (1){
-                        int total_ready_fd;// Total ready file descriptors of TCP sender
-                        total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
-                        if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
-                        else if (total_ready_fd == 1){// Only accept 1 TCP sender to connect
-                            char 		buffer[BUFFSIZE];
-                            bzero(buffer, BUFFSIZE);//Delete buffer
-                            if (happened_event[0].events == EPOLLIN) {
-                                int bytes_received = read(sender_fd, buffer, BUFFSIZE);
-                                if (bytes_received > 0) printf("Message from TCP sender: %s", buffer);
-                                else {
-                                    // If the connected TCP sender disconnects, break while(1) loop to wait
-                                    // for another TCP sender to connect
-                                    printf("TCP sender with fd %d and IP %s is disconnected\n", sender_fd, ip_str);
-                                    close(sender_fd); 
-                                    break;
-                                }
-                            }
+    sender_connect_event.events  = EPOLLIN;
+    sender_connect_event.data.fd = receiver_fd;
+    if(epoll_ctl(epfd, EPOLL_CTL_ADD, receiver_fd, &sender_connect_event)){
+        printf("Failed to add receiver_fd to be monitored by epoll");
+        close(receiver_fd);
+        return 1;
+    }
+
+    printf("Waiting for a TCP sender to connect ...\n");
+    while (1){
+        /*
+            ready_socket_fds: Total ready TCP socket file descriptors
+            Those TCP sockets can be both TCP receiver and senders
+        */
+        int ready_socket_fds = epoll_wait(epfd, happened_events, MAXEVENTS, TIMEOUT);
+        if (ready_socket_fds == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+        else {
+            /*
+                By using while(1) and this for() loop, happened_events() is updated in 
+                everytime the EPOLLIN happens to TCP receiver and TCP senders
+
+            */
+            for(int i = 0; i < ready_socket_fds; i++){
+                int socket_fd = happened_events[i].data.fd;
+
+                /*
+                    A new TCP sender connects to TCP receiver will trigger
+                    the EPOLLIN event in that TCP receiver
+                */
+                if(socket_fd == receiver_fd){
+                    int sender_fd;
+                    if ((sender_fd = accept(receiver_fd, (struct sockaddr *) &sender_addr, &sender_length)) > 0){
+                        inet_ntop(AF_INET, &(sender_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
+                        printf("New TCP sender with fd %d connected with IP %s\n", sender_fd, ip_str);
+
+                        struct epoll_event tcp_sender_event;// epoll_event to monitor the newly connected TCP sender
+                        tcp_sender_event.events = EPOLLIN;
+                        tcp_sender_event.data.fd = sender_fd;//Add file descriptor sender_fd to monitor
+
+                        // Add that tcp_sender_event to be monitored by epoll
+                        if (epoll_ctl(epfd, EPOLL_CTL_ADD, sender_fd, &tcp_sender_event) < 0){
+                            printf("Unable to add fd of the connected TCP sender to be monitored by epoll\n");
                         } else {
-                            printf("epoll_wait error %d\n", total_ready_fd);        
-                            close(epfd);
-                            return -1;
+                            tcp_senders_fd_list.push_back(sender_fd);
+                            printf("Succesfully add TCP sender fd %d to monitored list\n", sender_fd);
+                            printf("Totally %ld TCP senders are connected now\n", tcp_senders_fd_list.size());
                         }
                     }
                 }
-            }   
+
+                /*
+                    Any connected TCP sender writes data to TCP receiver
+                    will trigger the EPOLLIN event in that TCP receiver
+                */
+                else {
+                    char buffer[BUFFSIZE];
+                    bzero(buffer, BUFFSIZE);//Delete buffer
+                    int bytes_received = read(socket_fd, buffer, BUFFSIZE);
+                    if (bytes_received > 0) printf("Message from TCP sender with fd %d: %s", socket_fd, buffer);
+                    else {
+                        auto pos = find(tcp_senders_fd_list.begin(), tcp_senders_fd_list.end(), socket_fd);
+                        if(pos != tcp_senders_fd_list.end()){
+                            tcp_senders_fd_list.erase(pos);
+                        }
+                        epoll_ctl(epfd, EPOLL_CTL_DEL, socket_fd, NULL);
+                        printf("TCP sender with fd %d and IP %s is disconnected\n", socket_fd, ip_str);
+                        printf("Totally %ld TCP senders are connected now\n", tcp_senders_fd_list.size());
+                        close(socket_fd); 
+                    }
+                }
+            } 
         }
     }
     return 1;
@@ -83,7 +120,7 @@ int main(){
 /*
     Init socket parameters
 */
-int socket_init(){
+int socket_parameter_init(){
     struct 	sockaddr_in receiver_addr;
     
     //Create TCP socket receiver
