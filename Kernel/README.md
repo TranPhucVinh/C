@@ -50,7 +50,7 @@ For interrupt implementation and handling in kernel space for both single kernel
 
 On embedded systems, devices are often not connected through a bus. Such devices, instead of being dynamically detected, must be statically described:
 
-1. By **direct instantiation** of ``struct platform_device`` structures, as done on a few old ARM non-Device Tree based platforms. Definition is done in the board-specific or SoC specific code.
+1. By **direct instantiation** of ``struct platform_device`` structures, as done on a few old ARM non-Device tree based platforms. Definition is done in the board-specific or SoC specific code.
 
 2. In the **Device Tree**, a hardware description file used on some architectures. The device drivers match with the physical devices described in the ``.dts`` file. After this matching, the driver's ``probe()`` function is called. An ``.of_match_table`` has to be included in the driver's code to allow this matching.
 
@@ -78,3 +78,13 @@ This is the list of Linux drivers that have been created so far:
 
 * [GPIO driver (implemented on Raspbian)](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel/GPIO)
 * [I2C driver: I2C driver for a specific I2C slave on an existed I2C bus (implemented on Raspbian)](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Kernel#i2c-driver)
+# Linux porting
+
+Porting Linux for an SoC results in the source code used to build bootloader and the whole OS to run on that SoC. This whole source code is called BSP (Board Support Package). SoC's customers will use that BSP to develop their own application for the SoC
+
+For example with a WiFi SoC. The WiFi vendor will buy a BSP from that WiFi SoC producer then design hardware for that WiFi SoC. This circuit can then boot up with its default feature like UART communication. The vendor then might need to develop application like WiFi params configuration via web, setup Firewall, WiFi-TV
+
+The OS from Linux porting include kernel and root file system. So Linux porting is then divided into 3 parts:
+* Porting bootloader
+* Porting kernel
+* Porting rootfs
