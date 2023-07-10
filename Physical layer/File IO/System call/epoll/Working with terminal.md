@@ -86,7 +86,11 @@ Entering ``1234567890123`` (More than 10 characters): Print out
 
 * If entering a string inside ``TIMEOUT`` ms on the 2nd terminal ``/dev/pts/2``, print out every character inside that entered string, i.e
 
-Entering ``1234567890`` (10 character): Print out: 
+Entering ``1234567890`` (10 character), one by one, the character to print out is not continuouslt. E.g:
 
 * ``String from terminal 2: 1``
 * ``String from terminal 2: 2``
+* ``String from terminal 2: 5`` (3 and 4 are missing
+* ``String from terminal 2: 7`` (6 are missing)
+ 
+That happens as the shell also takes control of this 2nd terminal so the process to enter the input string cause race condition
