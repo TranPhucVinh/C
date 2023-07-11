@@ -1,6 +1,10 @@
 # Fundamental concepts
 
 Kernel threads have emerged from the need to run kernel code in process context. A kernel thread is a thread that only runs in kernel mode and has no user address space or other user attributes.
+# [Fundamental concepts implementations](Fundamental%20concepts%20implementations.md)
+
+* [Create a single kernel thread and send an int number as argument to it](Fundamental%20concepts%20implementations.md#create-a-single-kernel-thread-and-send-an-int-number-as-argument-to-it)
+* [Print out a string every 1 second in a kernel thread](Fundamental%20concepts%20implementations.md#print-out-a-string-every-1-second-in-a-kernel-thread)
 
 # [Race condition](Race%20condition.md)
 
@@ -82,10 +86,3 @@ Get pointer to current task structure. This will return a pointer of type ``stru
 ```c
 void mutex_lock(mutex);
 ```
-
-# Examples
-
-[Kernel thread examples](Examples.md):
-
-* [Create a single kernel thread and send an int number as argument to it](Examples.md#create-a-single-kernel-thread-and-send-an-int-number-as-argument-to-it)
-* [Print out a string every 1 second in a kernel thread](Examples.md#print-out-a-string-every-1-second-in-a-kernel-thread)
