@@ -10,6 +10,10 @@ Tasks performed by the kernel:
 * Networking
 * Provision of a system call application programming interface (API)
 
+Kernel can be divided into 3 types: monolithic, microkernel, and hybrid. Linux use monolithic kernel. OS X (XNU) and Windows 7 use hybrid kernel.
+
+Android use Linux Kernel. Windows and Windows Phone use NT kernel. OS X and iOS use Darwin kernel. 
+
 **KBuild** is the build system used by the Linux kernel.
 
 For bootloader and the Linux booting process, check [Linux bootloader document](Linux%20bootloader.md)
