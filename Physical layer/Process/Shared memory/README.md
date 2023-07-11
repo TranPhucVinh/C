@@ -4,6 +4,10 @@ Shared memory allows 2 or more process to share the same region of physical memo
 
 # API
 
+## [mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Virtual%20memory.md#mmap)
+
+**mmap()**, as **memory map**, can be used for both virtual memory mapping and shared memory.
+
 ## shmget()
 
 Allocates a System V shared memory segment

@@ -1,4 +1,4 @@
-## mmap()
+# mmap()
 
 ```c
 #include <sys/mman.h>
@@ -23,10 +23,11 @@ On success, ``mmap()`` returns a pointer to the mapped area.
 
 ``flags``:
 
-* ``MAP_SHARED``: Share this mapping for usage in shared memory
+* ``MAP_SHARED``: Share this mapping for usage in [shared memory](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Shared%20memory)
+* ``MAP_PRIVATE``: Create a private copy-on-write mapping
 * ``MAP_ANONYMOUS``: The mapping doesn't involve any file descriptor (i.e fd=-1)
 
-### Examples
+## Examples
 
 **Example 1**: [Read the value stored in Raspberry Pi physical address 0x3f20000](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Physical%20layer/Direct%20register%20access.md#mmap)
 
@@ -49,7 +50,7 @@ On success, ``mmap()`` returns a pointer to the mapped area.
 struct stat sb;
 
 int main(void){
-    int fd = open("evk_test.c", O_RDONLY);
+    int fd = open("main.c", O_RDONLY);
 
     /*
         Get page size of fd to read size of the file then send as page size argument 
@@ -58,7 +59,7 @@ int main(void){
     if (fstat(fd, &sb) == -1) printf("Couldn't get file size\n");
     else printf("File size %ld\n", sb.st_size);
 
-    //MAP_PRIVATE: Use map private to make the reading private, using other map value is fine
+    //MAP_PRIVATE: Create a private copy-on-write mapping
     char *file_content = (char *)mmap(NULL, sb.st_size, PROT_READ, MAP_PRIVATE, fd, BASE_ADDR);
 
     printf("%s\n", file_content);
