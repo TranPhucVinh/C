@@ -11,7 +11,27 @@ Then run on wine command prompt: ``wine cmd``
 ```
 Z:\home\tranphucvinh\Documents\Gitlab\windows-batch>a.out.so
 ```
+# File IO systemcall
 
+File IO systemcall API in ``unistd.h`` and ``fcntl.h`` work properly in Windows:
+```c
+// This read file program works properly in Windows
+#include <stdio.h>
+#include <unistd.h> //for read()
+#include <fcntl.h> //for open()
+
+int fd;
+
+int main(){
+    char buffer[10];
+
+    fd = open("README.md", O_RDONLY);
+    if (fd > 0){
+        read(fd, buffer, 10);
+        puts(buffer);
+    }
+}
+```
 # Process library in Windows
 
 ``process.h`` is a C header file which contains function declarations and macros used in working with threads and processes.
