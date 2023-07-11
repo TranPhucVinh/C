@@ -90,16 +90,10 @@ When creating a variable, the compiler will assign an address to store that vari
 
 **Dynamic memory allocation** can be defined as a procedure in which the size of a data structure (like array) is changed during the runtime. Variables inside heap memory block are not automatically freed up after execution but are required to be freed up by code (``free`` or ``delete``). Dynamic memory Allocation is done during program execution.
 
-# Pointer
+# [Pointer](Pointer)
 
-Check [pointer document](Pointer).
+# [Garbage collection](Garbage%20collection.md)
 
-# Garbage collection
-
-Check [garbage collection document]().
-
-# Virtual memory
-
-Check [virtual memory document]().
+# [Virtual memory](Virtual%20memory.md)
 
 # Memory API
