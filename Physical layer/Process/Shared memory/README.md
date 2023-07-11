@@ -1,3 +1,5 @@
+OS provides every process a separated memory space. In order for processes to communicate with each other through the memory space, a shared memory space is required.
+
 Shared memory allows 2 or more process to share the same region of physical memory. When one process copies the data into a shared memory, that data is immediately available to all other process sharing the same segment. That's why shared memory is **the fastest IPC**.
 
 # API
