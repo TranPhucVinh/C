@@ -49,6 +49,14 @@ void cleanup_module(void)
 
 **Note**: If the infinite loop is ``while(!kthread_should_stop());`` then the OS will be hung immediately right after running ``insmod``.
 
+ps command will result in:
+```sh
+username@hostname:~/ ps
+  PID USER       		VSZ STAT COMMAND
+  ...	
+14469 username          0 	DW   [kthread_1]
+  ...
+```
 # Print out a string every 1 second in a kernel thread
 
 ```c

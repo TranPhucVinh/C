@@ -3,7 +3,9 @@
 Kernel threads have emerged from the need to run kernel code in process context. A kernel thread is a thread that only runs in kernel mode and has no user address space or other user attributes.
 # [Fundamental concepts implementations](Fundamental%20concepts%20implementations.md)
 
-* [Create a single kernel thread and send an int number as argument to it](Fundamental%20concepts%20implementations.md#create-a-single-kernel-thread-and-send-an-int-number-as-argument-to-it)
+Every running kernel thread of a kernel module will have its PID and can be listed out by [ps command]() where every kernel thread is marked with ``[]`` in the COMMAND section.
+
+* [Create a single kernel thread and send an int number as argument to it](Fundamental%20concepts%20implementations.md#create-a-single-kernel-thread-and-send-an-int-number-as-argument-to-it). **[kthread_1]** is then available when checking with **ps command**.
 * [Print out a string every 1 second in a kernel thread](Fundamental%20concepts%20implementations.md#print-out-a-string-every-1-second-in-a-kernel-thread)
 
 # [Race condition](Race%20condition.md)
