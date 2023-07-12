@@ -135,23 +135,30 @@ Out of tree implementations include:
 * [Header files and source files in different directory](#header-files-and-source-files-in-different-directory)
 * [Sharing variables and functions between multiple kernel modules](Sharing%20variables%20and%20functions%20between%20multiple%20kernel%20modules.md)
 
-## Kernel module information
+# Kernel module information
 
-### Get module name
+## Get module name
 
 Get module name by ``THIS_MODULE->name``:
 ```c
 printk(KERN_INFO "Module name %s\n", THIS_MODULE->name);
 ```
 
-### [Parameters for modules](Parameters%20for%20modules.md)
+## [Parameters for modules](Parameters%20for%20modules.md)
 
 Get modules parameters and passing command line arguments to a module
 
-### [THIS_MODULE](THIS_MODULE.md)
+## [THIS_MODULE](THIS_MODULE.md)
 
 THIS_MODULE is a struct object of [struct module](API.md#struct-module) which is used to indicate to the current module to access its information.
 
+## Generate random numbers
+
+```c
+#include <linux/random.h>// For prandom_u32()
+[...]
+printk("Generate a random uint 32-bit: %d\n", prandom_u32());
+```
 # [API](API.md)
 
 * [module_init() vs init_module() and module_exit() vs cleanup_module()](API.md#module_init-vs-init_module-and-module_exit-vs-cleanup_module)
