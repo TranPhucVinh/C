@@ -1,5 +1,3 @@
-# 
-
 ```
 working_folder
 |--kernel_module_1
