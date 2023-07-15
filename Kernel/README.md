@@ -14,7 +14,7 @@ Kernel can be divided into 3 types: monolithic, microkernel, and hybrid. Linux u
 
 Android use Linux Kernel. Windows and Windows Phone use NT kernel. OS X and iOS use Darwin kernel. 
 
-**KBuild** is the build system used by the Linux kernel.
+[KBuild](KBuild.md) is the build system used by the Linux kernel.
 
 For bootloader and the Linux booting process, check [Linux bootloader document](Linux%20bootloader.md)
 
