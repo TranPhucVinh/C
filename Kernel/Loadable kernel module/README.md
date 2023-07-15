@@ -41,7 +41,7 @@ To show which loadable kernel modules are currently loaded: ``lsmod``
 
 ## Source code
 
-``ubuntu_kernel_module.c``: The very first kernel module built on Ubuntu 16.04
+[ubuntu_kernel_module.c](ubuntu_kernel_module.c): The very first kernel module built on Ubuntu 16.04
 
 **Result**
 
