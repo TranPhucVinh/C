@@ -1,4 +1,4 @@
-``.config`` file located in ``/usr/src/$(shell uname -r)`` (e.g ``/usr/src/linux-headers-4.15.0-213-generic``) has ``CONFIG_*`` flags like:
+In Ubuntu 18.04, ``.config`` file located in ``/usr/src/$(shell uname -r)`` (e.g ``/usr/src/linux-headers-4.15.0-213-generic``) has ``CONFIG_*`` flags like:
 
 ```c
 CONFIG_64BIT=y
@@ -19,8 +19,8 @@ MODULE_LICENSE("GPL");
 
 int init_module(void)
 {
-	printk(KERN_INFO "%d\n", CONFIG_64BIT);
-	printk(KERN_INFO "%s\n", CONFIG_ARCH_DEFCONFIG);
+	printk(KERN_INFO "%d\n", CONFIG_64BIT);// 1
+	printk(KERN_INFO "%s\n", CONFIG_ARCH_DEFCONFIG);// arch/x86/configs/x86_64_defconfig
 	return 0;
 }
 
