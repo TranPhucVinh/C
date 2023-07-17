@@ -1,8 +1,8 @@
-The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain.
+The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain. With GCC installed, command ``gcc`` and ``cc`` are available.
 
 # Build source file and build flags
 
-``gcc main.c``: Build the whole source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
+``gcc main.c`` or ``cc main.c``: Build the whole source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
 
 ``gcc -o main main.c``: Specify the executable output file as ``main``. To run: ``./main``
 
