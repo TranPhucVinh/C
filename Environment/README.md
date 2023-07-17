@@ -4,9 +4,7 @@
 
 Check [Build document](Build.md)
 
-## GCC compiler
-
-Check [GCC compiler document](GCC%20compiler.md)
+## [GCC compiler](GCC%20compiler.md)
 
 ## G++ compiler
 
