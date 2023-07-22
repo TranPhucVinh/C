@@ -1,3 +1,5 @@
+# config file for KConfig in Ubuntu PC
+
 In Ubuntu 18.04, ``.config`` file located in ``/usr/src/$(shell uname -r)`` (e.g ``/usr/src/linux-headers-4.15.0-213-generic``) has ``CONFIG_*`` flags like:
 
 ```c
@@ -29,3 +31,5 @@ void cleanup_module(void)
 	printk(KERN_INFO "clean up module\n");
 }
 ```
+# config file for KConfig in other ARM Linux single board computer
+In ARM Linux single board computer, config files are treated different as it depends on the distro build process of that board.
