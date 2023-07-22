@@ -35,4 +35,4 @@ void cleanup_module(void)
 In ARM Linux single board computer, config files are treated different as it depends on the distro build process of that board.
 
 * In [Raspbian Raspberry Pi](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/blob/main/Kernel/README.md#kconfig-configs-kernel-module-which-stores-raspbian-configuration), file ``config.gz``, which stores file ``config`` for ``CONFIG_*`` flags, will be exported to ``/proc`` just only when module ``configs`` is inserted: ``sudo modprobe configs``
-* In [Armbian Orange Pi](https://github.com/TranPhucVinh/Orange-Pi/blob/master/README.md#config-file-for-kconfig-in-armbian-orange-pi-zero-board), config.gz file, which stores file ``config`` for ``CONFIG_*`` flags, is available by default in ``/proc``
+* In [Armbian Orange Pi](https://github.com/TranPhucVinh/Orange-Pi/blob/master/README.md#config-file-for-kconfig-in-armbian-orange-pi-zero-board), ``config.gz`` file, which stores file ``config`` for ``CONFIG_*`` flags, is available by default in ``/proc``
