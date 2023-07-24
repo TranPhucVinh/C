@@ -151,6 +151,9 @@ Get modules parameters and passing command line arguments to a module
 ## [THIS_MODULE](THIS_MODULE.md)
 
 THIS_MODULE is a struct object of [struct module](API.md#struct-module) which is used to indicate to the current module to access its information.
+* [Get current module information like name, version](THIS_MODULE.md#get-current-module-information-like-name-version)
+* [Get all kernel modules from THIS_MODULE](THIS_MODULE.md#get-all-kernel-modules-from-this_module)
+* [try_module_get() and module_put()](THIS_MODULE.md#try_module_get-and-module_put)
 
 ## Generate random numbers
 
