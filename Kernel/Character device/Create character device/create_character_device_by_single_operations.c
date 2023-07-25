@@ -5,8 +5,8 @@
 #include <linux/cdev.h>
 #include <linux/uaccess.h>
 
-#define DEVICE_NAME					"fops_character_device"
-#define DEVICE_CLASS				"fops_device_class"
+#define DEVICE_NAME					"fops_character_device" // Device fops_character_device will be available inside class /sys/class/fops_device_class
+#define DEVICE_CLASS				"fops_device_class" // Class fops_device_class will be available in /sys/class
 
 #define TOTAL_MINOR                1
 #define BASE_MINOR				   0
