@@ -31,19 +31,29 @@ Then insert module parameters with ``module_param()``
 
 MODULE_LICENSE("GPL");
 
-int number = 9;
+int number  = 9;
+char *char_ptr  = "Char pointer as string";
+char char_arr[]  = "Char array as string";
 
 //Must be outside init_module()
 module_param(number, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 
+/*
+	charp: type char pointer for string. charp type must be used for string char pointer, not char array
+*/
+module_param(char_ptr, charp, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+
+//char_array_as_string: is the name to be displayed on /sys/module/$(kernel_module_name)/parameters/ 
+module_param_string(char_array_as_string, char_arr, sizeof(char_arr), S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+
 int init_module(void)
 {
-        return 0;
+	return 0;
 }
 
 void cleanup_module(void)
 {
-        printk(KERN_INFO "clean up module\n");
+	printk(KERN_INFO "clean up module\n");
 }
 ```
 
@@ -52,8 +62,16 @@ Then module parameter, ``/sys/module/ubuntu_kernel_module$`` will have (has ``pa
 ```
 coresize  holders  initsize  initstate  notes  parameters  refcnt  sections  srcversion  taint  uevent
 ```
-
-Folder ``parameters`` will have ``number``. ``cat number`` return ``9``.
+```sh
+username@hostname:~/ ls /sys/module/ubuntu_kernel_module/parameters/
+char_array_as_string  char_ptr              number
+username@hostname:~/ cat /sys/module/ubuntu_kernel_module/parameters/number
+9                                                                          
+username@hostname:~/ cat /sys/module/test_platform_driver/parameters/char_array_as_string
+Char array as string
+username@hostname:~/ cat /sys/module/test_platform_driver/parameters/char_ptr
+Char pointer as string
+``` 
 
 To overwrite the value of ``number``:
 
