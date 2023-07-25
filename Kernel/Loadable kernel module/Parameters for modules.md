@@ -53,6 +53,9 @@ Folder ``parameters`` will have ``number``. ``cat number`` return ``9``.
 
 To overwrite the value of ``number``:
 
+Write with echo: ``echo 10 > /sys/module/ubuntu_kernel_module/parameters/number``
+
+Re-insert kernel module:
 ```
 sudo insmod ubuntu_kernel_module.ko number=1234
 ```
