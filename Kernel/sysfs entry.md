@@ -1,5 +1,13 @@
 # Fundamental concepts
 
+## /sys/class
+
+Creating a character device will result in a new device class inside /sys/class and a new device inside that newly created device class.
+
+Check [create_character_device_by_single_operations.c](https://github.com/TranPhucVinh/C/blob/master/Kernel/Character%20device/Create%20character%20device/create_character_device_by_single_operations.c) for that implementation.
+
+## /sys/kernel
+
 Inserting a kernel module for sysfs entry will create a directory/file inside ``sys/kernel``.
 
 # API
