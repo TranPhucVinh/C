@@ -3,6 +3,10 @@
 ```c
 module_param(variable_name, variable_type , permissions);
 ```
+```c
+module_param_string(name, string, len, perm);
+```
+* ``name``: the name to be displayed on /sys/module/$(kernel_module_name)/parameters/ 
 
 ``permissions``:
 
