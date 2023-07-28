@@ -89,7 +89,7 @@ Destroy slab cache object ``cp``
 
 ## [kmalloc() example](kmalloc_example.c)
 
-* Implement ``kmalloc()`` for ``int``, ``int array`` and string as ``char pointer``.
+* Implement ``kmalloc()`` for ``int``, ``int array``, string as ``char pointer`` and ``struct pointer``
 * ``kzalloc()`` will work identically.
 
 ## [kmem_cache example](kmem_cache.c)
