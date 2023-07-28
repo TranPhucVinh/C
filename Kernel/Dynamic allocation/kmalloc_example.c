@@ -4,10 +4,17 @@
 
 MODULE_LICENSE("GPL");
 
+struct databaseNode
+{
+   int id;
+   int intValue;
+};
+
 int init_module(void)
 {
 	char *str;
     int *number, *int_array;
+    struct databaseNode *node;
 
 	/* Initial memory allocation */
 	str = (char *) kmalloc(15, GFP_KERNEL);
@@ -30,6 +37,16 @@ int init_module(void)
     printk(KERN_INFO "%d %d %d\n", int_array[0], int_array[1], int_array[2]);
 	kfree(int_array);
 	printk(KERN_INFO "DEBUG %d %d %d\n", int_array[0], int_array[1], int_array[2]);//-1222998076 -1931286851 3
+
+    node = (struct databaseNode *)kmalloc(sizeof(struct databaseNode), GFP_KERNEL);
+
+    node->id = 1;
+    node->intValue = 100;
+
+    printk(KERN_INFO "%d %d\n", node->id, node->intValue);//1 100
+	kfree(node);
+	printk(KERN_INFO "DEBUG: after kfree(): %d %d\n", node->id, node->intValue);//-960811396 1552769983
+
 	return 0;
 }
 
