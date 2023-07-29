@@ -15,7 +15,7 @@ BIOS (Basic Input/Output System) is the firmware/program to perform some system 
 
 Once the bootloader program is detected and loaded into the memory, BIOS gives control to it.
 
-Most BIOS implementations are specifically designed to work with a particular computer or motherboard model, by interfacing with various devices especially system chipset. 
+Most BIOS implementations are specifically designed to work with a particular computer or motherboard model, by interfacing with various devices, especially system chipset. 
 
 When setting up the PC, you can press a key (typically F12 of F2, but it depends on your system) during the BIOS startup to change the boot sequence.
 
@@ -75,7 +75,7 @@ State machine for those 5 steps
 OS source files are stored in the storage media (SD card, NAND flash,...) and is loaded into RAM when running.
 # Kernel image
 * ``zImage``: a compressed version of the Linux kernel image that is self-extracting
-* ``uImage``: an image file that has a U-Boot wrapper (installed by the ``mkimage`` utility) that includes the OS type and loader information
+* ``uImage``: an image file that has a U-Boot wrapper (installed by the ``mkimage`` utility) that includes the OS type and loader information. uImage is a zImage contains Uboot image header. [Uboot](#linux-bootloader) will look for uImage.
 * ``boot.scr``: a user-defined image file that is read before loading ``uImage``, allowing the user to replace the loading of ``uImage``, preventing the user from recompiling ``uImage``.
 # Linux bootloader
 
