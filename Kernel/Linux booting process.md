@@ -13,7 +13,7 @@
 
 BIOS (Basic Input/Output System) is the firmware/program to perform some system integrity checks, then search, load, and executes the **bootloader program**. Originally, BIOS firmware was stored in a **ROM chip** on the PC motherboard. In later computer systems, the BIOS contents are stored on flash memory so it can be rewritten without removing the chip from the motherboard. In single board computer, this is also known as the **RBL** (**ROM boot loader**).
 
-Once the bootloader program is detected and loaded into the memory, BIOS gives the control to it.
+Once the bootloader program is detected and loaded into the memory, BIOS gives control to it.
 
 Most BIOS implementations are specifically designed to work with a particular computer or motherboard model, by interfacing with various devices especially system chipset. 
 
@@ -21,7 +21,7 @@ When setting up the PC, you can press a key (typically F12 of F2, but it depends
 
 ## MBR
 
-MBR is located in the 1st sector of the bootable disk, typically in ``/dev/sda``, with the small size of less than 512 bytes. It has 3 components:
+MBR is located in the 1st sector of the bootable disk, typically in ``/dev/sda``, with a small size of less than 512 bytes. It has 3 components:
 * Primary bootloader info
 * Partition table info
 * MBR validation check
@@ -31,9 +31,9 @@ MBR contains information about GRUB
 ## GRUB
 
 * GRUB stands for Grand Unified Bootloader. GRUB for ARM Linux is also called **GRUB Uboot**.
-* If the system has multiple kernel images installed, GRUB can choose which one to be executed. GRUB will then display a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as specified in the grub configuration file.
-* GRUB has the knowledge of the filesystem.
-* GRUB configuration file is ``/boot/grub/grub.cfg``. In Ubuntu 20.04 ``grub.cfg`` file, it contains ``initrd`` (Initial RAM Disk) image (checked by searching ``initrd`` in that file). ``initrd`` is used by kernel as temporary root file system until kernel is booted and the real root file system is mounted. It also contains necessary drivers compiled inside, which helps it to access the hard drive partitions, and other hardware.
+* If the system has multiple [kernel images](#kernel-image) installed, GRUB can choose which one to be executed. GRUB will then display a splash screen, waits for few seconds, if you don’t enter anything, it loads the default [kernel image](#kernel-image) as specified in the grub configuration file.
+* GRUB has knowledge of the filesystem.
+* GRUB configuration file is ``/boot/grub/grub.cfg``. In Ubuntu 20.04 ``grub.cfg`` file, it contains ``initrd`` (Initial RAM Disk) image (checked by searching ``initrd`` in that file). ``initrd`` is used by the kernel as a temporary root file system until kernel is booted and the real root file system is mounted. It also contains necessary drivers compiled inside, which helps it to access the hard drive partitions, and other hardware.
 
 ## Kernel
 
@@ -55,7 +55,7 @@ Linux booting process will follow those steps:
 
 1. The boot process begins at **POR** (**Power On Reset**) where the hardware reset logic forces the ARM core to begin execution starting from the on-chip boot ROM. The boot ROM can support several devices (e.g, NOR flash, NAND flash, SD card, eMMC). (**eMMC** (**embedded Multi Media Controller**) is an on-board memory chip that holds data like the OS).
 
-2. The **[U-Boot](#linux-bootloader)** loads both the kernel image and the compiled device tree binary into RAM (like DDR3 RAM) and passes the memory address of the device tree binary into the kernel as part of the launch.
+2. The **[U-Boot](#linux-bootloader)** loads both the [kernel image](#kernel-image) and the compiled device tree binary into RAM (like DDR3 RAM) and passes the memory address of the device tree binary into the kernel as part of the launch.
 
 3. The U-Boot jumps to the kernel code.
 
@@ -72,13 +72,17 @@ State machine for those 5 steps
 
 ![](../Environment/Images/booting_process.png)
 
-OS source file are stored in the storage media (SD card, NAND flash,...) and is loaded into RAM when running.
+OS source files are stored in the storage media (SD card, NAND flash,...) and is loaded into RAM when running.
+# Kernel image
+* ``zImage``: a compressed version of the Linux kernel image that is self-extracting
+* ``uImage``: an image file that has a U-Boot wrapper (installed by the ``mkimage`` utility) that includes the OS type and loader information
+* ``boot.scr``: a user-defined image file that is read before loading ``uImage``, allowing the user to replace the loading of ``uImage``, preventing the user from recompiling ``uImage``.
 # Linux bootloader
 
 Linux bootloader is a small amount of machine specific code to initialize the system. Its duty is to:
 
 * Configuration of the memory system.
-* Loading of the kernel image and the device tree at the correct addresses.
+* Loading of the [kernel image](#kernel-image) and the device tree at the correct addresses.
 * Optional loading of an initial RAM disk at the correct memory address.
 * Setting of the kernel command-line and other parameters (e.g, device tree, machine type)
 
