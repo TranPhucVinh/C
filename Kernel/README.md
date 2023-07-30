@@ -16,7 +16,7 @@ Android use Linux Kernel. Windows and Windows Phone use NT kernel. OS X and iOS 
 
 Modules which are included in the kernel are installed by the vendor in this directory ``/lib/modules/$(KERNELRELEASE)/kernel/``
 
-And external modules are installed by the vendor in this directory:	``/lib/modules/$(KERNELRELEASE)/extra/``
+And external modules are installed by the vendor in this directory:	``/lib/modules/$(KERNELRELEASE)/extra/``. Ubuntu 18.04 doesn't have that ``extra`` folder.
  
 [KBuild](KBuild.md) is the build system used by the Linux kernel.
 
