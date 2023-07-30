@@ -23,7 +23,8 @@ Parameters:
 * ``loadable_kernel_module.o``: object file built from ``loadable_kernel_module.c``
 * ``-C``: [-C option of Make](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Build%20automation%20tools/Make/Syntax.md#-c-option) which changes to the location on the compiler used to build the kernel module
 * ``M=$PWD``: Informs kbuild that an external module is being built. The value given to ``M`` is the absolute path of the directory where the external module (kbuild file) is located.
-* ``make clean`` will clean all build file in the current folder
+* ``make module`` or target ``module`` of ``/lib/modules/$(shell uname -r)/build`` Makefile: compile the obj-m specified kernel module
+* ``make clean`` or target ``module`` of ``/lib/modules/$(shell uname -r)/build`` Makefile: clean all build file in the current folder
 
 With the ``Makefile`` above, simply run the Makefile with ``make``.
 
