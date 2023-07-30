@@ -14,6 +14,10 @@ Kernel can be divided into 3 types: monolithic, microkernel, and hybrid. Linux u
 
 Android use Linux Kernel. Windows and Windows Phone use NT kernel. OS X and iOS use Darwin kernel. 
 
+Modules which are included in the kernel are installed by the vendor in this directory ``/lib/modules/$(KERNELRELEASE)/kernel/``
+
+And external modules are installed by the vendor in this directory:	``/lib/modules/$(KERNELRELEASE)/extra/``
+ 
 [KBuild](KBuild.md) is the build system used by the Linux kernel.
 
 For bootloader and the Linux booting process, check [Linux bootloader document](Linux%20bootloader.md)
