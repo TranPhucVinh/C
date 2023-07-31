@@ -1,8 +1,10 @@
+# API
+## module_param()
 ``module_param()`` macro takes 3 arguments: the name of the variable, its type and permissions for the corresponding file in ``sysfs``.
-
 ```c
 module_param(variable_name, variable_type , permissions);
 ```
+## module_param_string()
 ```c
 module_param_string(name, string, len, perm);
 ```
@@ -16,7 +18,29 @@ module_param_string(name, string, len, perm);
 * ``S_IWGRP``: Write permission bit for the group owner of the file
 
 Function ``module_param()`` must be outside ``init_module()``.
+## struct kernel_param; struct kparam_string
+```c
+struct kernel_param {
+	const char *name;//name of the kernel parameter; not kernel module name
+	struct module *mod;
+	const struct kernel_param_ops *ops;
+	const u16 perm;
+	s8 level;
+	u8 flags;
+	union {
+		void *arg;
+		const struct kparam_string *str;
+		const struct kparam_array *arr;
+	};
+};
 
+/* Special one for strings we want to copy into */
+struct kparam_string {
+	unsigned int maxlen;
+	char *string;
+};
+```
+# Create a kernel module with parameter and update those parameter value
 Before inserting module parameter, ``/sys/module/ubuntu_kernel_module$`` will have:
 
 ```sh
