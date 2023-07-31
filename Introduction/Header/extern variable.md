@@ -3,15 +3,14 @@
 ``header.h``
 
 ```c
+#include <stdio.h>
 int a;
 ```
 
 ``header.c``
 
 ```c
-#include <stdio.h>
 #include "head.h"
-
 a = 18;
 ```
 
@@ -33,7 +32,20 @@ head.c:5:2: error: ‘a’ does not name a type
   a = 18;
 ```
 
-Compiling this on ``gcc`` won't give error and just give warning instead.
+Compiling this on ``gcc`` won't give error and just give warning instead then runs properly
+
+```
+username@hostname~/C_GCC$ gcc main.c head.c
+main.c:3:1: warning: return type defaults to ‘int’ [-Wimplicit-int]
+    3 | main(){
+      | ^~~~
+head.c:3:1: warning: data definition has no type or storage class
+    3 | a = 18;
+      | ^
+head.c:3:1: warning: type defaults to ‘int’ in declaration of ‘a’ [-Wimplicit-int]
+username@hostname~/C_GCC$ ./a.out
+18
+```
 
 ### Problem solve with extern
 
