@@ -47,13 +47,24 @@ struct module {
     struct list_head list;
     ...
     char name[MODULE_NAME_LEN];
-    const char *version;
+	/* Sysfs stuff. */
+	struct module_kobject mkobj;
+	struct module_attribute *modinfo_attrs;
     ...
     unsigned int taints;
     ...
 };
 ```
-
+# struct module_kobject
+```c
+struct module_kobject {
+	struct kobject kobj;
+	struct module *mod;
+	struct kobject *drivers_dir;
+	struct module_param_attrs *mp;
+	struct completion *kobj_completion;
+} __randomize_layout;
+```
 # atomic_read() and atomic_set()
 
 ```c
