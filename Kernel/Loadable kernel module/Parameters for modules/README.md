@@ -18,7 +18,7 @@ module_param_string(name, string, len, perm);
 * ``S_IWGRP``: Write permission bit for the group owner of the file
 
 Function ``module_param()`` must be outside ``init_module()``.
-## struct kernel_param; struct kparam_string
+## struct kernel_param and struct kparam_string
 ```c
 struct kernel_param {
 	const char *name;//name of the kernel parameter; not kernel module name
@@ -40,46 +40,14 @@ struct kparam_string {
 	char *string;
 };
 ```
-# Create a kernel module with parameter and update those parameter value
+# Create a kernel module with parameters and update those parameter value
 Before inserting module parameter, ``/sys/module/ubuntu_kernel_module$`` will have:
 
 ```sh
 coresize  holders  initsize  initstate  notes  refcnt  sections  srcversion  taint  uevent
 ```
 
-Then insert module parameters with ``module_param()``
-
-```c
-#include <linux/module.h>
-#include <linux/kernel.h>
-
-MODULE_LICENSE("GPL");
-
-int number  = 9;
-char *char_ptr  = "Char pointer as string";
-char char_arr[]  = "Char array as string";
-
-//Must be outside init_module()
-module_param(number, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
-
-/*
-	charp: type char pointer for string. charp type must be used for string char pointer, not char array
-*/
-module_param(char_ptr, charp, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
-
-//char_array_as_string: is the name to be displayed on /sys/module/$(kernel_module_name)/parameters/ 
-module_param_string(char_array_as_string, char_arr, sizeof(char_arr), S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
-
-int init_module(void)
-{
-	return 0;
-}
-
-void cleanup_module(void)
-{
-	printk(KERN_INFO "clean up module\n");
-}
-```
+Kernel module [insert_params.c](insert_params.c) will insert parameters with type int, string as char pointer and string as char array.
 
 Then module parameter, ``/sys/module/ubuntu_kernel_module$`` will have (has ``parameter`` folder):
 
@@ -115,3 +83,6 @@ int number;
 
 module_param(number, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 ```
+# Use a kernel module to modify the parameters of another kernel module
+
+After inserting kernel module [insert_params.c](insert_params.c), we will use [modify_kernel_module_params.c](modify_kernel_module_params.c) to modify the parameters of [insert_params.c](insert_params.c)
