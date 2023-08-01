@@ -77,6 +77,7 @@ int main()
 }
 ```
 
-# Use struct for string parsing
+# [Use struct for string parsing](Use%20struct%20for%20string%20parsing.md)
 
-Check [Use struct for string parsing document](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Examples/Use%20struct%20for%20string%20parsing.md)
+* [Split a string into specific sequences]()
+* [Parsing a hex char array]()
