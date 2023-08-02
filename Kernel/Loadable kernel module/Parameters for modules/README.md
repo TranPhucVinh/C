@@ -4,6 +4,7 @@
 ```c
 module_param(variable_name, variable_type , permissions);
 ```
+* ``variable_type``: int, ``charp`` (char pointer),...
 ## module_param_string()
 ```c
 module_param_string(name, string, len, perm);
@@ -47,7 +48,7 @@ Before inserting module parameter, ``/sys/module/ubuntu_kernel_module$`` will ha
 coresize  holders  initsize  initstate  notes  refcnt  sections  srcversion  taint  uevent
 ```
 
-Kernel module [insert_params.c](insert_params.c) will insert parameters with type int, string as char pointer and string as char array.
+Kernel module [insert_params.c](insert_params.c) will insert parameters with type int, [string as char pointer](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/String/Char%20pointer%20as%20string.md) and [string as char array](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/String/Char%20array%20as%20string.md).
 
 Then module parameter, ``/sys/module/ubuntu_kernel_module$`` will have (has ``parameter`` folder):
 
