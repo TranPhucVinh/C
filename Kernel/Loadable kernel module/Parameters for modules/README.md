@@ -5,6 +5,31 @@
 module_param(variable_name, variable_type , permissions);
 ```
 * ``variable_type``: int, ``charp`` (char pointer),...
+## module_param_array()
+
+```c
+module_param_array(name, type, num, perm);
+```
+For arguments ``num``:
+
+* If setting ``num`` to NULL, that array kernel parameters is displayed in ``/sys/module/$(kernel_module_name)/parameters/``
+* If setting ``num`` to a variable like ``arr_argc``, this array kernel parameter isn't displayed in ``/sys/module/$(kernel_module_name)/parameters/``. ``arr_argc`` will have the number or array elements initialized by the user at module loading time:
+
+```c
+//Other implementations are identically to insert_params.c
+int arr_argc = 0;
+int int_arr[] = {1, 2};
+module_param_array(int_arr, int, &arr_argc, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+int init_module(void)
+{
+	printk("arr_argc: %d\n", arr_argc);
+	return 0;
+}
+```
+Inserting [insert_params.ko](insert_params.c) with array values setup for ``int_arr``: ``insmod insert_params.ko int_arr=123,456``
+
+Then in ``dmesg``: ``arr_argc: 2``
+
 ## module_param_string()
 ```c
 module_param_string(name, string, len, perm);
@@ -48,7 +73,7 @@ Before inserting module parameter, ``/sys/module/ubuntu_kernel_module$`` will ha
 coresize  holders  initsize  initstate  notes  refcnt  sections  srcversion  taint  uevent
 ```
 
-Kernel module [insert_params.c](insert_params.c) will insert parameters with type int, [string as char pointer](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/String/Char%20pointer%20as%20string.md) and [string as char array](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/String/Char%20array%20as%20string.md).
+Kernel module [insert_params.c](insert_params.c) will insert parameters with [type int by module_param()](#module_param)), [int array by module_param_array()](), [string as char pointer by module_param()](#module_param) and [string as char array by module_param_string()](#module_param_string).
 
 Then module parameter, ``/sys/module/ubuntu_kernel_module$`` will have (has ``parameter`` folder):
 
