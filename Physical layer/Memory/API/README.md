@@ -5,23 +5,28 @@
 ```c
 void *memcpy(void *str1, const void *str2, size_t n)
 ```
-
-Example with ``char[]`` (static memory)
-
+``memcpy()`` in static memory
 ```c
 const char src[50] = "Hello, World!";
 char dest[50];
 memcpy(dest, src, strlen(src)+1);
 printf("String: %s\n", dest); //String: Hello, World!
 ```
-Example with ``*char`` (dynamic memory)
+``memcpy()`` in dynamic memory
 ```c
 const char *src = "Hello, World!";
 char *dest = (char *) malloc(15);
 memcpy(dest, src, strlen(src)+1);
 printf("String: %s\n", dest); //String: Hello, World!
 ```
-
+``memcpy()`` from dynamic memory to static memory
+```c
+char src[50] = "Hello, World !";
+char *dest;
+dest = (char*)malloc(sizeof(src)*sizeof(char));
+memcpy(dest, src, sizeof(src));
+printf("String: %s\n", dest); //String: Hello, World!
+```
 ``memcpy()`` in specific position
 
 ```c
