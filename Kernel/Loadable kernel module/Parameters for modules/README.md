@@ -60,10 +60,18 @@ struct kernel_param {
 	};
 };
 
-/* Special one for strings we want to copy into */
 struct kparam_string {
 	unsigned int maxlen;
 	char *string;
+};
+
+struct kparam_array
+{
+	unsigned int max;//Total member of the array
+	unsigned int elemsize;//size of each element, e.g elemsize=4 byte for int array
+	unsigned int *num;
+	const struct kernel_param_ops *ops;
+	void *elem;
 };
 ```
 ## struct param_attribute and struct module_param_attrs
@@ -131,7 +139,7 @@ module_param(number, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 
 After inserting kernel module [insert_params.c](insert_params.c), we will use [modify_kernel_module_params.c](modify_kernel_module_params.c) to:
 
-* Search for a specific kernel module based on its name: [search_for_km()]()
-* List all parameters of the searched kernel module: [list_all_km_params()]()
-* Read and update the parameters of a kernel module from the current one: [read_and_update_km_parameters()]()
-* Read and update the array parameters of a kernel module from the current one: [read_and_update_array_km_parameters()]()
+* Search for a specific kernel module based on its name: [search_for_km()](modify_kernel_module_params.c#L54)
+* List all parameters of the searched kernel module: [list_all_km_params()](modify_kernel_module_params.c#L75)
+* Read and update the parameters of a kernel module from the current one: [read_and_update_km_parameters()](modify_kernel_module_params.c#L105)
+* Read and update the array parameters of a kernel module from the current one: [read_and_update_array_km_parameters()](modify_kernel_module_params.c#L134)
