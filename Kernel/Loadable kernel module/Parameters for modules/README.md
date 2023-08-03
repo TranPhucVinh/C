@@ -81,7 +81,7 @@ struct module_param_attrs
 {
 	unsigned int num;// number of kernel parameters of the kernel module
 	struct attribute_group grp;
-	struct param_attribute attrs;
+	struct param_attribute attrs[];
 };
 ```
 # Create a kernel module with parameters and update those parameter value

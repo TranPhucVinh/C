@@ -24,14 +24,16 @@ struct module_param_attrs
 {
 	unsigned int num;// number of kernel parameters of the kernel module
 	struct attribute_group grp;
-	struct param_attribute attrs;
+	struct param_attribute attrs[];
 };
 
 void            read_and_update_km_parameters(char *km_name, char *str_value);
 int             search_for_km(char *km_name, module_object *search_module);
+int             list_all_km_params(char *km_name);
 
 int init_module(void)
 {
+    list_all_km_params(KM_NAME);
     read_and_update_km_parameters(KM_NAME, STR_VALUE);
     return 0;
 }
@@ -41,6 +43,11 @@ void cleanup_module(void)
     printk(KERN_INFO "clean up module\n");
 }
 
+/*
+    Search for kernel modules
+    @km_name: Name of the kernel module to search to update its string parameters
+    @search_module:
+*/
 int search_for_km(char *km_name, module_object *search_module){
     struct module *position;
     int index = 1;
@@ -59,6 +66,36 @@ int search_for_km(char *km_name, module_object *search_module){
 }
 
 /*
+    List all parameters of the searched kernel module
+    @km_name: Name of the kernel module to search to update its string parameters
+*/
+int list_all_km_params(char *km_name){
+    struct module_param_attrs   *_module_param_attrs;
+    struct kernel_param         *_kernel_param;
+    module_object               *_search_module;
+
+    _search_module = (module_object*)kmalloc(sizeof(module_object), GFP_KERNEL);
+    _module_param_attrs = (struct module_param_attrs *)kmalloc(sizeof(struct module_param_attrs), GFP_KERNEL);
+    _kernel_param = (struct kernel_param *)kmalloc(sizeof(struct kernel_param), GFP_KERNEL);
+
+    if (search_for_km(km_name, _search_module)) {
+        printk("Found %s\n", km_name);
+        _module_param_attrs = _search_module->mp;
+        printk("Total parameters of %s is %d\n", km_name, _module_param_attrs->num);
+        int i = 0;
+        for (i = 0; i < _module_param_attrs->num; i++){
+            printk("%s ", ((_module_param_attrs->attrs[i]).param)->name);
+        }
+        printk("\n");
+        return 1;
+    }
+    else {
+        printk("%s not existed or hasn't been inserted\n", km_name);
+        return 0;
+    }
+}
+
+/*
     Read and update the parameters of a kernel module from the current one
     @km_name: Name of the kernel module to search to update its string parameters
     @str_value: String value to update
@@ -74,15 +111,16 @@ void read_and_update_km_parameters(char *km_name, char *str_value){
     _kernel_param = (struct kernel_param *)kmalloc(sizeof(struct kernel_param), GFP_KERNEL);
     _kparam_string = (struct kparam_string *)kmalloc(sizeof(struct kparam_string), GFP_KERNEL);
 
-    if (search_for_km(km_name, _search_module)) printk("Found %s\n", km_name);
+    if (search_for_km(km_name, _search_module)) {
+        printk("Found %s\n", km_name);
+        _module_param_attrs = _search_module->mp;
+        _kernel_param = (_module_param_attrs->attrs)->param;
+
+        printk("Parameter's name: %s\n", _kernel_param->name);
+        memcpy(_kparam_string, _kernel_param->str, _kernel_param->str->maxlen);
+        printk("Before changing, kernel param string value is: %s\n", _kparam_string->string);
+        strcpy(_kparam_string->string, str_value);
+        printk("After changing, kernel param string value is: %s\n", _kparam_string->string);
+    }
     else printk("%s not existed or hasn't been inserted\n", km_name);
-
-    _module_param_attrs = _search_module->mp;
-    _kernel_param = (_module_param_attrs->attrs).param;
-
-    printk("Parameter's name: %s\n", _kernel_param->name);
-    _kparam_string = _kernel_param->str;
-    printk("Before changing, kernel param string value is: %s\n", _kparam_string->string);
-    strcpy(_kparam_string->string, str_value);
-    printk("After changing, kernel param string value is: %s\n", _kparam_string->string);
 }
