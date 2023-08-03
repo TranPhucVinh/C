@@ -129,4 +129,9 @@ module_param(number, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 ```
 # Use a kernel module to modify the parameters of another kernel module
 
-After inserting kernel module [insert_params.c](insert_params.c), we will use [modify_kernel_module_params.c](modify_kernel_module_params.c) to modify the parameters of [insert_params.c](insert_params.c)
+After inserting kernel module [insert_params.c](insert_params.c), we will use [modify_kernel_module_params.c](modify_kernel_module_params.c) to:
+
+* Search for a specific kernel module based on its name: [search_for_km()]()
+* List all parameters of the searched kernel module: [list_all_km_params()]()
+* Read and update the parameters of a kernel module from the current one: [read_and_update_km_parameters()]()
+* Read and update the array parameters of a kernel module from the current one: [read_and_update_array_km_parameters()]()
