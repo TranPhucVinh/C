@@ -66,6 +66,24 @@ struct kparam_string {
 	char *string;
 };
 ```
+## struct param_attribute and struct module_param_attrs
+Both ``struct param_attribute`` and ``struct module_param_attrs`` are **defined internally** inside [linux/kernel/params.c](https://github.com/torvalds/linux/blob/master/kernel/params.c) (Official Linux repository). Copy those 2 structs to any kernel module source code that wish to parse the kernel parameters.
+
+``struct module_param_attrs`` is a member of [struct module_kobject](https://github.com/TranPhucVinh/C/blob/master/Kernel/Loadable%20kernel%20module/API.md#struct-module_kobject)
+```c
+struct param_attribute
+{
+	struct module_attribute mattr;
+	const struct kernel_param *param;
+};
+
+struct module_param_attrs
+{
+	unsigned int num;// number of kernel parameters of the kernel module
+	struct attribute_group grp;
+	struct param_attribute attrs;
+};
+```
 # Create a kernel module with parameters and update those parameter value
 Before inserting module parameter, ``/sys/module/ubuntu_kernel_module$`` will have:
 
