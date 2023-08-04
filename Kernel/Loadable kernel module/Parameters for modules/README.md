@@ -44,6 +44,15 @@ module_param_string(name, string, len, perm);
 * ``S_IWGRP``: Write permission bit for the group owner of the file
 
 Function ``module_param()`` must be outside ``init_module()``.
+## module_param_cb()
+``module_param_cb()`` initializes kernel module parameters along callback functions. When using ``module_param_cb()``, other module param fucntion init like ``module_param()`` can't be used.
+```c
+module_param_cb(name, ops, arg, perm)
+```
+* **name**: param name string in ``/sys/module/<kernel_module_name>/parameters/<name_string>``
+* **ops**: the struct kernel_param_ops which contain pointer to handler function
+* **arg**: argument variable pointer
+* **perm**: permission type
 ## struct kernel_param and struct kparam_string
 ```c
 struct kernel_param {
