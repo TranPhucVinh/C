@@ -171,3 +171,4 @@ printk("Generate a random uint 32-bit: %d\n", prandom_u32());
 * [container_of()]() and [example]()
 * [Debug with pr_debug()]()
 * [Using delay with msleep() in linux/delay.h]()
+* [Shouldn't use kernel module for file IO manipulation](API.md#shouldnt-use-kernel-module-for-file-io-manipulation)
