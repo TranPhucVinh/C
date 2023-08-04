@@ -144,6 +144,8 @@ int number;
 
 module_param(number, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 ```
+# Create a kernel module with parameter, along with callback, and update this parameter value
+With [insert_params_with_callback.c](insert_params_with_callback.ko), every time the kernel parameter is read, update, their corresponded function will be called. That's implemented by using [module_param_cb()](#module_param_cb) function.
 # Use a kernel module to modify the parameters of another kernel module
 
 After inserting kernel module [insert_params.c](insert_params.c), we will use [modify_kernel_module_params.c](modify_kernel_module_params.c) to:
