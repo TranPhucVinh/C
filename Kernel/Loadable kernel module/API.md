@@ -65,6 +65,15 @@ struct module_kobject {
 	struct completion *kobj_completion;
 } __randomize_layout;
 ```
+# IS_ERR() and PTR_ERR()
+```c
+IS_ERR(ptr);//IS_ERR() is a macro which takes a pointer as its argument
+```
+``IS_ERR()`` return ``0`` when there is no error and return non-zero when there is error
+```c
+PTR_ERR(ptr);//IS_ERR() is a macro which takes a pointer as its argument
+```
+``IS_ERR()`` returns the error number which is defined in ``linux/errno.h`` like ``EIO``, ``ENOENT``,...
 # atomic_read() and atomic_set()
 
 ```c
