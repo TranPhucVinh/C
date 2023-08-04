@@ -264,3 +264,5 @@ void cleanup_module(void)
 }
 ```
 This will return: ``Time: 1631445504``
+# Shouldn't use kernel module for file IO manipulation
+Although kernel support several functions for file IO manipulation (on userspace, of course), like ``filp_open()`` to open a file on userspace, user shouldn't use kernel module for that purpose. The kernel is not a process and afile-descriptor needs a process-context for it. Otherwise how would the kernel keep your STDIN_FILENO separate from the other's STDIN_FILENO ?
