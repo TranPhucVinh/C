@@ -2,9 +2,9 @@
 
 6 steps detail:
 
-* [BIOS](#BIOS) (or **RBL** in SoC computer): System startup/Hardware init with **bootloader**
+* [BIOS](#BIOS) (or **RBL**, **ROM Bootloader**, in SoC computer): System startup/Hardware init with **bootloader**
 * **First stage bootloader**: [Master Boot Record (MBR)](#MBR) loads and executes GRUB bootloader
-* **Second stage bootloader**: [GRUB](#GRUB) executes Kernel
+* **Second stage bootloader** or **Secondary bootloader** (**SBL**): [GRUB](#GRUB) executes Kernel
 * [Kernel](#Kernel) will executes process init located in ``/sbin/init``
 * Execute [init](#init) process
 * Run level: Start userspace for command line
