@@ -119,9 +119,9 @@ Convert ``timeptr`` to Epoch time.
 # [Examples](Examples.md)
 
 * [Get current time with time()](Examples.md#get-current-time-with-time)
-* [Get day, month and year with localtime()]()
-* [Get total second with clock()]()
+* [Get day, month and year with localtime()](Examples.md#get-day-month-and-year-with-localtime)
+* [Get total second with clock()](Examples.md#get-total-second-with-clock)
 * [Get current time of day in Unix-alike system]()
 * [Overflow Epoch times (Y2K38)]()
 * [Delay for a number of seconds]()
-* [Read and write RTC time of /dev/rtc](): [Read RTC time]() and [write RTC time]()
+* [Read and write RTC time of /dev/rtc](Examples.md#read-and-write-rtc-time-of-devrtc): [Read RTC time](read_rtc_time.c) and [write RTC time](write_rtc_time.c)

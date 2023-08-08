@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 #include <fcntl.h> //for open()
 #include <sys/ioctl.h>
 
@@ -13,8 +14,8 @@ int rtc;
 struct rtc_time rtc_set_time;
 
 int main(int argc, char *argv[]) {
-    int day = 23, month = 4, year = 2022;
-    int hour = 0, minute = 1, second = 1;
+    int day = 8, month = 8, year = 2023;
+    int hour = 13, minute = 1, second = 1;
     
     rtc_set_time.tm_mday = day;
     rtc_set_time.tm_mon = month - 1;
@@ -28,6 +29,7 @@ int main(int argc, char *argv[]) {
 	if (rtc){
 		if (ioctl(rtc, RTC_SET_TIME, &rtc_set_time) == -1) {
             printf("Fail to open %s\n", RTC_DEV);
+			printf("%d\n", errno);
         } else {
             printf("Set date and time successfully, use hwclock() command to check\n");            
         }
