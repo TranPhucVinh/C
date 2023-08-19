@@ -1,15 +1,3 @@
-# SIGHUP, SIGUSR1, SIGUSR2 can stop a process without signal_handler() required
-An infinite running process like this can be stopped by SIGHUP, SIGUSR1, SIGUSR2
-```c
-int main(void)
-{
-	while(1)
-	{
-        printf("Hello, World !\n");
-        sleep(1);
-	}
-}
-```
 # SIGUSR1 and SIGUSR2
 
 Print out a string if multiple signals like ``10`` (``SIGUSR1``) and ``12`` (``SIGUSR2``) are sent to PID of this process
@@ -76,64 +64,6 @@ int main(){
 }
 ```
 
-# SIGTSTP and SIGINT
-
-Using ``Ctr+Z`` for ``SIGTSTP`` signal:
-
-```c
-void signal_handler(int signal_number){
-	char displayed_string[50];
-	bzero(displayed_string, 50);
-	
-	int sz = snprintf(displayed_string, sizeof(displayed_string), "Signal %d is caught\n", signal_number);
-	write(STDOUT_FILENO, displayed_string, sz); 
-}
-
-int main(){ 
-	signal(SIGTSTP, signal_handler);
-	while(1);//Start an infinite loop and handle with signal
-}
-```
-
-Then pressing ``Ctr+Z`` won't stop the process and just cause the program to simply print out the string ``You have entered signal number: 20``. That happen as ``Ctr+Z`` sends the suspend signal on most Linux terminals, so with the signal handler function the program won't stop execution on the terminal.
-
-The same behavior happen with ``Ctr+C`` as ``SIGINT``:
-
-```
-//Other operations like above
-signal(SIGINT, signal_handler);
-//Other operations like above
-```
-**Result**
-
-```
-^CYou have entered signal number: 2
-^CYou have entered signal number: 2
-^CYou have entered signal number: 2
-```
-
-# SIGKILL
-
-Self-terminated a process after printing from ``0`` to ``10``:
-
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <signal.h>   
-
-int pid;
-int number;
-
-int main(){  
-    pid = getpid();
-    while (1){
-        printf("%d\n", number);
-        if (number == 10) kill(pid, SIGKILL);
-        else number += 1;
-    }
-}
-```
-
 # SIGWINCH
 
 If changing the current terminal size by mouse, the size of the terminal is printed out.
@@ -189,3 +119,37 @@ Signal 8 is caught, divided by 0
 .... // Run forever
 ```
 **Must**: The divided-by-0 result must be stored into a variable to trigger **SIGFPE**. If simply call ``5/0``, **SIGFPE** won't be triggered.
+# SIGTTIN
+When a background job tries to read from its current terminal, SIGTTIN will be triggered:
+
+``sigttin.c``
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <fcntl.h>
+#include <signal.h>   
+
+#define TERMINAL "/dev/pts/0"
+
+void signal_handler(int signal_number){
+	char displayed_string[50];
+	bzero(displayed_string, 50);
+    if (signal_number == SIGTTIN) {
+        int sz = snprintf(displayed_string, sizeof(displayed_string), "Signal SIGTTIN is caught\n");
+    	write(STDOUT_FILENO, displayed_string, sz); 
+    }
+}
+
+int main() {
+    signal(SIGTTIN, signal_handler);
+	int fd = open(TERMINAL, O_RDWR);
+	if (fd > 0){
+        printf("open %s successfully\n", TERMINAL);
+        char buffer[10];
+        bzero(buffer, sizeof(buffer));//Empty the previously entered buffer
+        read(fd, buffer, sizeof(buffer));
+	} else printf("Unable to open\n");
+}
+```
+Running ``./sigttin&`` in the terminal will result in ``Signal SIGTTIN is caught`` is printed out infinitely.
