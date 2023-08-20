@@ -33,7 +33,7 @@ Source code are built with Bazel with attached [BUILD](BUILD) file and file arch
 |--WORKSPACE
 |--BUILD
 ```
-
+Compile ``main.c`` under that file architecture: ``gcc -I"cJSON-1.7.15" -Ithingsboard main.c thingsboard/thingsboard.c "cJSON-1.7.15"/cJSON.c``
 Get JWT and parsed into ``token`` and ``refreshToken``: [thingsboard_get_jwt.c](thingsboard_get_jwt.c)
 
 Read response from ``/api/auth/user``: [thingsboard_auth_user.c](thingsboard_auth_user.c)
