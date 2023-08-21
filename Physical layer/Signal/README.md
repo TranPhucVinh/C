@@ -33,7 +33,8 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process. 
 * ``SIGQUIT``: **SIGQUIT** signal is similar to [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint)
 * [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
-* [SIGTTIN](): When a background job tries to read from its current terminal, SIGTTIN will be triggered
+* [SIGTTIN](Working%20with%20specific%20signals.md#sigttin): When a background job tries to read from its current terminal, SIGTTIN will be triggered
+* [SIGTTOU](Working%20with%20specific%20signals.md#sigttou): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
 * [SIGKILL](Working%20with%20specific%20signal.md#sigkill): immediately terminate a process, **SIGKILL** cannot be caught, handled or ignored. It is impossible to block this signal.
 * [SIGSTOP and SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
 * [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
