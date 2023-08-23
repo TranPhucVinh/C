@@ -178,6 +178,22 @@ const int a = 9;
 static int array[a];
 ```
 (Using ``const`` for this program still results in the same error)
+# Variable-length array
+A **variable-length array**, also called **variable-sized** or **runtime-sized**, is an array data structure whose length is determined at run time (instead of at compile time)
+```c
+void array(int n)
+{
+    int value[n];
+    for (int i = 0; i < n; ++i) value[i]=i;
+    for (int i = 0; i < n; ++i) printf("%d ", value[i]);
+    printf("\n");
+    return;
+}
+
+int main(){
+    array(10);
+}
+```
 # Array as an argument of a function
 
 Using array with size
