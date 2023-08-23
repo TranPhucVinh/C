@@ -13,11 +13,9 @@ C doesn't support function overloading as it is not an OOP language
 
 For function overloading in [CPP](https://github.com/TranPhucVinh/Cplusplus), check [CPP function overloading document](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#function-overloading).
 
-# Default arguments
+# C doesn't support default arguments
 
-C doesn't support default arguments.
-
-For default arguments in ``CPP``, check ``Function.md`` in ``Cplusplus\Introduction``.
+Only CPP supports default arguments, check [CPP function for this implementation](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#default-arguments).
 
 # Error handling
 
