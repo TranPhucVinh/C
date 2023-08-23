@@ -1,6 +1,6 @@
 # Array as an argument of a function
 
-Using array with size
+## Using array with size
 
 ```c
 #include <stdio.h>
@@ -26,7 +26,7 @@ Or can define:
 void intArray(int array[], int size);
 ```
 
-Using array pointer
+## Using array pointer
 
 ```c
 #include <stdio.h>
@@ -66,7 +66,7 @@ void intArray(int *array, int size){
 ```
 # Function returns an array
 
-Using stack memory with ``static``:
+## Using stack memory with static
 
 ```c
 #include <stdio.h>
@@ -84,7 +84,7 @@ int *returnArray(){
 }
 ```
 
-Using heap memory with ``malloc()``:
+## Using heap memory with malloc()
 
 ```c
 #include <stdio.h>
