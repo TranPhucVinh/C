@@ -95,6 +95,8 @@ int main(int argc, char *argv[]){
 */
 int socket_param_init(){
     struct sockaddr_in receiver_addr;
+
+	//Must use MAP_ANONYMOUS as no file descriptor used for shared memory (macro NO_FD)
     total_connected_sender = (int *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *total_connected_sender = 0;
 
