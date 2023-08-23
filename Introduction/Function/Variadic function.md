@@ -1,7 +1,7 @@
 **Variable length argument** is a feature that allows a function to receive any number of arguments. Function that supports variable length argument is called **variadic function**. Examples of **variadic functions** are ``printf()``, ``sprintf()``,...
 
 For **variable length argument** to be used, an ``int`` variable is required to represent the total number variable arguments passed.
-
+# API
 ## va_arg()
 
 ```c
@@ -10,7 +10,11 @@ type va_arg(va_list ap, type)
 
 * ``ap``:  object of type ``va_list``
 * ``type``: type name
-
+# va_copy()
+```c
+void va_copy(va_list dest, va_list src);
+```
+Copy **variable length argument** ``src`` to ``dest``
 # Define a variadic function
 
 ```c
@@ -115,7 +119,7 @@ test.c:48:2: warning: second parameter of ‘va_start’ not last named argument
 ```
 
 ## Change value of a string as a variable length argument
-
+**By using the same argument**
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -127,6 +131,30 @@ int multipleArgumentsFunction(int totalArgument,...){
 
 	strcpy(va_arg(valist, char*), "Display string");
 	va_end(valist); //clean up the memory assigned to va_list variable.
+	return 0;
+}
+
+int main() {
+	char displayedString[] = "Hello, World !";
+	printf("%s\n", displayedString);//Hello, World !
+	multipleArgumentsFunction(1, displayedString);
+	printf("%s\n", displayedString);//Display string
+} 
+```
+**By using [va_copy()](#va_copy)**
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h> //for va_list, va_start(), va_end()
+
+int multipleArgumentsFunction(int totalArgument,...){
+    va_list src;        
+    va_list dest;            
+
+    va_start(src, totalArgument);                   
+    strcpy(va_arg(src, char*), "Display string");
+    va_copy(dest, src);
+	va_end(dest);
 	return 0;
 }
 
