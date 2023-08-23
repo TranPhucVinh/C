@@ -72,7 +72,35 @@ int main() {
 ```
 
 Address of ``student_object`` and ``student_object.id`` are the same.
+## Flexible array member
+struct allows declaring an array as its member without the initial size, which is called **flexible array member**. struct object with that flexible array member then must be a pointer as it needs to initialize the size. 
 
+**Flexible array member** of a struct must be the last member of that struct
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct struct_data_type {
+	int id;
+
+    // Flexible Array Member array must be the last member of a struct
+	char str_value[];
+};
+
+char str[] = "Hello, World !";
+int main(){
+    struct struct_data_type *val;
+
+    val = (struct struct_data_type *) malloc(sizeof(int) + sizeof(char[strlen(str)]));
+    val->id = 123;
+    strcpy(val->str_value, str);
+    printf("%d, %s\n", val->id, val->str_value);//0, Hello, World !
+
+    // This is wrong as size of struct object is not declared for str_value
+    // struct struct_data_type value_0 = {0, "Hello, World !"};//Wrong, compilation error
+}
+```
 # struct as data type of function
 
 ```c
@@ -229,7 +257,3 @@ databaseNode0 = (struct databaseNode *)malloc(sizeof(struct databaseNode));
 databaseNode0->add_function_pointer = add_two_number;
 databaseNode0->subtract_function_pointer = subtract_two_number;
 ```
-
-# Memory problem with struct
-
-Check ``Overflow memset()`` in ``Physical layer/Memory/memset.md``
