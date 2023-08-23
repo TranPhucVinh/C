@@ -1,19 +1,18 @@
-* [Function](Function)
-* [Variable](Variable)
-* [Header](https://github.com/TranPhucVinh/C/tree/master/Introduction/Header)
-* [Macro](https://github.com/TranPhucVinh/C/tree/master/Introduction/Macro)
-* [Data type](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20type)
-* [Keywords](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords)
-* [Data structure](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure)
-* [Linkage](Linkage.md)
-
-# Function overloading
+# [Function](#function)
+# [Variable](Variable)
+# [Header](https://github.com/TranPhucVinh/C/tree/master/Introduction/Header)
+# [Macro](https://github.com/TranPhucVinh/C/tree/master/Introduction/Macro)
+# [Data type](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20type)
+# [Keywords](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords)
+# [Linkage](Linkage.md)
+# [Function](Function)
+## Function overloading
 
 C doesn't support function overloading as it is not an OOP language
 
 For function overloading in [CPP](https://github.com/TranPhucVinh/Cplusplus), check [CPP function overloading document](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#function-overloading).
 
-# C doesn't support default arguments
+## C doesn't support default arguments
 
 Only CPP supports default arguments, check [CPP function for this implementation](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#default-arguments).
 
