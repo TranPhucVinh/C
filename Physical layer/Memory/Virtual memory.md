@@ -25,7 +25,7 @@ On success, ``mmap()`` returns a pointer to the mapped area.
 
 * ``MAP_SHARED``: Share this mapping for usage in [shared memory](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Shared%20memory)
 * ``MAP_PRIVATE``: Create a private copy-on-write mapping
-* ``MAP_ANONYMOUS``: The mapping doesn't involve any file descriptor (i.e fd=-1)
+* ``MAP_ANONYMOUS``: The mapping doesn't involve any file descriptor (i.e parameter ``fd =-1``)
 
 ## Examples
 
