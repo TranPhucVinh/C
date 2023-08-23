@@ -4,7 +4,7 @@
 * [struct as data type of function]()
 * [struct as a function argument]()
 * [Function as member of a struct](): [Function without arguments]() and [Function with arguments]()
-* [Memory problem with struct]()
+* **Memory problem with struct**: Check [overflow memset() in Memory](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/API/memset.md#overflow-memset) for the overflow issue with struct
 * [Size of struct](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Size%20of%20struct.md)
 * [Struct pointer](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/struct%20pointer.md)
 * [Bit field](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Bit%20field.md)
