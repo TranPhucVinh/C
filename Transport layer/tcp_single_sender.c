@@ -32,6 +32,7 @@ int         *total_connected_receiver;
 char        responded_str[50];
 
 void socket_parameter_init(){
+    	//Must use MAP_ANONYMOUS as no file descriptor used for shared memory (macro NO_FD)
     total_connected_receiver = (int *)mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_ANONYMOUS, NO_FD, BASE_ADDR);
     *total_connected_receiver = 0;
 
