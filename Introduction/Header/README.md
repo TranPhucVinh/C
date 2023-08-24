@@ -25,7 +25,7 @@ int main(){
 }
 ```
 
-## Define function in ``.c`` file
+## Define function and variable in ``.c`` file
 
 ``head.h``
 
@@ -33,6 +33,7 @@ int main(){
 #include <stdio.h>
 
 void displayString();
+int a;
 ```
 
 ``head.c``
@@ -43,6 +44,7 @@ void displayString();
 void displayString(){
     printf("Hello World \n");
 }
+int a = 123;
 ```
 
 ``main.c``
@@ -52,6 +54,7 @@ void displayString(){
 
 int main(){
 	displayString(); //Hello World
+	printf("%d", a);
 }
 ```
 
