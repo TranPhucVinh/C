@@ -1,6 +1,6 @@
 # Fundamental concepts
 
-Identifiers like variables and functions have another property named linkage. An identifier’s linkage determines whether other declarations of that name refer to the same object or not.
+Identifiers like variables and functions have another property named **linkage**. An identifier’s linkage determines whether other declarations of that name refer to the same object or not.
 
 There are 3 types of linkage:
 * No linkage
