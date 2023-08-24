@@ -80,8 +80,7 @@ int main(){
 	printf("%d \n", a);
 }
 ```
-
-**Error**: 
+Compile  ``gcc main.c head.c`` will give error:
 
 ```
 /usr/bin/ld: /tmp/cc27NLmt.o:(.data+0x0): multiple definition of `a'; /tmp/ccZ06TNs.o:(.data+0x0): first defined here
