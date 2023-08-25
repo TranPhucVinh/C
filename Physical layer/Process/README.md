@@ -16,6 +16,12 @@ Inter-process communication methods are:
 
 Command [ipcs](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Process/System%20V%20IPC.md#ipcs) is useful for checking the message queue, shared memory and semaphore information.
 
+# RPC
+
+In distributed computing, a **remote procedure call** (**RPC**) is when a computer program causes a procedure (subroutine) to execute in a different address space (commonly on another computer on a shared network), which is written as if it were a normal (local) procedure call. This is **a form of client–server interaction** (**caller** is **client**, **executor** is **server**), typically implemented via a request–response message-passing system. 
+
+**RPCs are a form of inter-process communication (IPC)**, in that different processes have different address spaces: if on the same host machine, they have distinct virtual address spaces, even though the physical address space is the same; while if they are on different hosts, the physical address space is different.
+
 # API
 
 ## getpid() and getppid()
