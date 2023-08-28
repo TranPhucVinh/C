@@ -30,11 +30,11 @@ In distributed computing, a **remote procedure call** (**RPC**) is when a comput
 #include <unistd.h>
 
 printf("PID %d\n", getpid());
-printf("Parent PID %d\n", getppid());
+printf("Parent PID or PPID %d\n", getppid());
 ```
 ``getpid()`` returns the process ID of the calling process (this is often used by routines that generate unique temporary filenames)
 
-``getppid()`` returns the ID of the parent, the process that crate the child process.
+``getppid()`` returns the **PPID**, i.e **ID of the parent process**, the process that create the child process. When running a process inside a terminal, its PPID is the PID of this terminal.
 
 ## exit()
 
