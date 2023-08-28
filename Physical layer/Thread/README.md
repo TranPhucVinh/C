@@ -93,13 +93,13 @@ However, [the same program implemented with G++ pthread]() result in str_thread 
 * [Get return from threads and store to a variable in single thread and multiple threads](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#get-return-from-threads-and-store-to-a-variable)
 * [Enter value for struct member using thread](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Fundamental%20concepts%20examples.md#enter-value-for-struct-member-using-thread)
 
-## Inter-task communication
+# Inter-task communication
 
 [Using global variable to share values between 2 threads](share_global_variables_between_2_threads.c)
-
+## pthread doesn't have API for suspending and resuming thread
 pthread doesn't have functions to suspend and resume thread. Suspend and resume features must be implemented by [mutex](Race%20condition/Mutex.md) and [conditional variable](Race%20condition/Mutex.md#condition-variable). Check [suspend and resume between 2 threads example](suspend_and_resume_threads.c). For efficient implementation, suspend and resume threads must be implemented with OOP. Check [the corresponding document in CPP](https://github.com/TranPhucVinh/Cplusplus/tree/master/Physical%20layer/Thread#suspend-and-resume-threads) for that implementation.
 
-# [Race condition](Race%20condition)
+## [Race condition](Race%20condition)
 
 A race condition is a situation where the result produced by two processes (or threads) operating on shared resources depends in an unexpected way on the relative order in which the processes gain access to the CPU(s).
 
@@ -121,9 +121,9 @@ When 2 threads trying to access a resource, data race might be happen if the rac
 
 ## Use multiple threads for calculation
 
-[Use 2 threads to calculate the sum from 1 to 2147483646](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/sum_from_1_to_n.c). This example will take 3 seconds to perform while [the raw function call](https://github.com/TranPhucVinh/C/blob/master/Introduction/Examples/sum_from_1_to_n.c) will take 5 seconds to execute.
+[Use 2 threads to calculate the sum from 1 to 2147483646](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/sum_from_1_to_n.c). This example will take 3 seconds to perform while [the raw function call](https://github.com/TranPhucVinh/C/blob/master/Algorithms/sum_from_1_to_n.c) will take 5 seconds to execute.
 
-Using 3 thread will cause overflow error when compiling:
+Using 3 threads will cause overflow error when compiling:
 
 ```c
 range_1.lower_range = 0;
