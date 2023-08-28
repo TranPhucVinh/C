@@ -9,7 +9,7 @@ int main(){
     while(1) sleep(1);
 }
 ```
-``foreground_job.c``: Start the background job by [& (ampersand operator)](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Operators.md#-control-operator)
+**foreground_job.c**: Background job **background_job** includes a ``while(1)`` loop which we want to start it inside **foreground_job** but still want **foreground_job** to keep running without stucking inside the ``while(1)`` loop of **foreground_job**. The solution for that is to use [& (ampersand operator)](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Operators.md#-control-operator) to start the background job **background_job**
 ```c
 #include <iostream>
 #include <string>
@@ -47,4 +47,29 @@ username@hostname:~/$  ps
 28489 pts/2    00:00:00 background_job
 28490 pts/2    00:00:00 ps  
 ```
+When **background_job** includes the string display like this:
+```c
+int main(){
+    while(1){
+        printf("Background job\n");
+        sleep(1);
+    }
+}
+```
 
+**Result** when running ``foreground_job``
+
+```
+username@hostname:~$ ./foreground_job
+start
+end
+username@hostname:~$ Background job
+Background job
+Background job
+Background job
+...
+```
+After killing/stopping ``foreground_job``, ``background_job`` still runs in the background.
+# [Kill the infinite background job by signal](Background%20job%20with%20infinite%20loop.md#kill-the-infinite-background-job-by-signal)
+# [Run the infinite background job, get its PID then kills it by functions inside in the parent process](Background%20job%20with%20infinite%20loop.md#run-the-infinite-background-job-get-its-pid-then-kills-it-by-functions-inside-in-the-parent-process)
+# [Stop background_job by SIGSTOP and continue it by SIGCONT](Background%20job%20with%20infinite%20loop.md#stop-background_job-by-sigstop-and-continue-it-by-sigcont)
