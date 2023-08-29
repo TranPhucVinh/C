@@ -139,8 +139,7 @@ Timeout after 5000 miliseconds
 # Working with character device
 * [Response any epoll event from a character device to a userspace process opening it](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/Poll#epoll-handling-in-character-device-response-any-events-to-the-userspace-process)
 * [Monitor EPOLLIN event for write() system call/cat command](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/Poll#epoll-handling-in-character-device-monitor-epollin-event-for-write-system-callcat-command)
+* [kmess](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/System%20call/kmess): A program to display kernel log realtime
 # Working with TCP and HTTP
 * [Single TCP receiver for multiple TCP senders](https://github.com/TranPhucVinh/C/tree/master/Transport%20layer#single-tcp-receiver-for-multiple-tcp-senders-handled-by-epoll)
 * [HTTP server for multiple HTTP client]()
-# Applications
-* [kmess](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/System%20call/kmess): A program to display kernel log realtime
