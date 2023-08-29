@@ -18,7 +18,9 @@ In [tcp_single_receiver.c](tcp_single_receiver.c) program, with ``MAXPENDING`` i
 int accept(int sockfd, struct sockaddr *restrict addr, socklen_t *restrict addrlen);
 ```
 Accept a connection on a socket. If no pending connections are present on the queue, and the socket is not marked as nonblocking, ``accept()`` blocks the caller until a connection is present.
-
+**Return**:
+* A file descriptor for the accepted socket (a nonnegative integer), when success
+* ``-1`` on error
 ## setsockopt()
 
 ```c
