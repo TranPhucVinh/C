@@ -18,8 +18,6 @@ For TCP socket, EPOLLIN event type is triggered in the TCP receiver when:
 * A new TCP sender connects successfully to that TCP receiver
 * A connected TCP sender write data to that TCP receiver
 
-to monitor all file descriptors of the connected **TCP senders** so that **TCP receiver** can detect the time out event (**Timeout after 5000 miliseconds**) from **TCP sender**.
-
 **Program**:
 * [epoll_for_tcp_receiver.c](epoll_for_tcp_receiver.c)
 * [tcp_multiple_senders.c](tcp_multiple_senders.c)
