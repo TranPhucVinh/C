@@ -20,8 +20,11 @@
 #define MAXEVENTS   1       // Maximum numbers of connected HTTP clients to handle/monitor
 #define PORT 		8000
 
+#define ELEMENT_NUMBERS 1
+
 #define TIMEOUT     5000    // miliseconds
 
+char        *read_file(const char *file_name);
 int         socket_parameters_init();
 struct      epoll_event http_client_conn_evt;// New HTTP client connected event
 struct      epoll_event happened_events[MAXEVENTS];
@@ -96,13 +99,8 @@ int main(){
 
                 // Any connected HTTP client writes data to HTTP server will trigger the EPOLLIN event in that HTTP server
                 else {
-                    char tmp_buf[BUFFSIZE];// Temporary buffer to read index.html
                     char req_buf[BUFFSIZE];// Buffer for HTTP request from HTTP client
-                    char res_buf[BUFFSIZE];// Buffer for HTTP response for HTTP client
-
-                    bzero(tmp_buf, BUFFSIZE);//Delete buffer
                     bzero(req_buf, BUFFSIZE);//Delete buffer
-                    bzero(res_buf, BUFFSIZE);//Delete buffer
 
                     int bytes_received = read(socket_fd, req_buf, BUFFSIZE);
                     if (bytes_received > 0) {
@@ -114,30 +112,48 @@ int main(){
                             if(!strcmp(uri, "/")){
                                 int fd = open("index.html", O_RDONLY);
                                 if (fd > 0){
-                                    int sz = read(fd, tmp_buf, BUFFSIZE);
-                                    snprintf(res_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sz);
+                                    close(fd);//Only open this file to check for its existence
+                                    char *html = read_file("index.html");
+
+                                    //HTTP response buffer size
+                                    int rsp_buf_sz = strlen(html) + sizeof(httpd_hdr_str) + sizeof("200 OK") + sizeof("text/html") + sizeof("\r\n");
+
+                                    char *res_buf = (char*) malloc(rsp_buf_sz);
+                                    bzero(res_buf, rsp_buf_sz);//Delete buffer
+
+                                    snprintf(res_buf, rsp_buf_sz, httpd_hdr_str, "200 OK", "text/html", rsp_buf_sz);
                                     strcat(res_buf, "\r\n");
-                                    strcat(res_buf, tmp_buf);
-                                    write(socket_fd, res_buf, BUFFSIZE);
+                                    strcat(res_buf, html);
+                                    write(socket_fd, res_buf, rsp_buf_sz);
+                                    // printf("%s\n", res_buf);
                                 } else {
+                                    char res_buf[100];
                                     char no_file[] = "There is no index.html file";
                                     snprintf(res_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sizeof(no_file));
                                     strcat(res_buf, "\r\n");
                                     strcat(res_buf, no_file);
-                                    printf("%s\n", res_buf);
+                                    // printf("%s\n", res_buf);
                                     write(socket_fd, res_buf, BUFFSIZE);
                                 }
-                            }
-                            else {
-                                int sz = sprintf(tmp_buf, "Not found %s", uri);
+                            } else {
+                                char no_uri[50];
+                                char res_buf[100];
+                                int sz = sprintf(no_uri, "Not found %s", uri);
                                 snprintf(res_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sz);
                                 strcat(res_buf, "\r\n");
-                                strcat(res_buf, tmp_buf);
+                                strcat(res_buf, no_uri);
                                 write(socket_fd, res_buf, BUFFSIZE);
                             }
+                        } else {
+                            char no_uri[50];
+                            char res_buf[100];
+                            int sz = sprintf(no_uri, "Not found %s", uri);
+                            snprintf(res_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sz);
+                            strcat(res_buf, "\r\n");
+                            strcat(res_buf, no_uri);
+                            write(socket_fd, res_buf, BUFFSIZE);
                         }
-                    }
-                    else {
+                    } else {
                         auto pos = find(http_client_fd_list.begin(), http_client_fd_list.end(), socket_fd);
                         if(pos != http_client_fd_list.end()){
                             http_client_fd_list.erase(pos);
@@ -189,4 +205,24 @@ int socket_parameters_init(){
     if (listen(http_server_fd, MAXPENDING) < 0) exit(0);
 
     return http_server_fd;
+}
+
+char *read_file(const char *file_name){
+    long file_size;
+    FILE *fp;
+	fp = fopen(file_name, "r");
+	if (fp){
+		fseek(fp, 0L, SEEK_END);//Set file position from index 0 to the end of file
+		file_size = ftell(fp);//Then get the file size
+		fseek(fp, 0L, SEEK_SET);//Return file position back to the beginning
+
+		char *buffer;
+		buffer = (char *) malloc(file_size);
+		bzero(buffer, file_size);
+		fread(buffer, file_size, ELEMENT_NUMBERS, fp);
+        return buffer;
+	} else {
+        printf("Unable to open file %s\n", file_name);
+        return NULL;
+    }
 }
