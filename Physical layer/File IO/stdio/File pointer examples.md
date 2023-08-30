@@ -1,15 +1,22 @@
-# Check size of a file then read that file
-
+# Read the whole file without knowing its size
+This will check size of a file then read that file. This will help avoiding dynamically allocating the read buffer when reading that file
 ```c
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+#define FILE_NAME  "index.html" 
 #define ELEMENT_NUMBERS 1
-long file_size;
 
-char file_name[] = "test.c";
+char *read_file(const char *file_name);
 int main(int argc, char *argv[]) {
-	FILE *fp;
+    char *rd_buf = read_file(FILE_NAME);
+    printf("%s\n", rd_buf);
+}	
+
+char *read_file(const char *file_name){
+    long file_size;
+    FILE *fp;
 	fp = fopen(file_name, "r");
 	if (fp){
 		fseek(fp, 0L, SEEK_END);//Set file position from index 0 to the end of file
@@ -20,9 +27,12 @@ int main(int argc, char *argv[]) {
 		buffer = (char *) malloc(file_size);
 		bzero(buffer, file_size);
 		fread(buffer, file_size, ELEMENT_NUMBERS, fp);
-		printf("%s\n", buffer);
-	} else printf("Unable to open file %s\n", file_name);
-}	
+        return buffer;
+	} else {
+        printf("Unable to open file %s\n", file_name);
+        return NULL;
+    }
+}
 ```
 
 Using ``sys/stat.h``:
