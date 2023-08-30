@@ -118,7 +118,7 @@ int main(){
                                     //HTTP response buffer size
                                     int rsp_buf_sz = strlen(html) + sizeof(httpd_hdr_str) + sizeof("200 OK") + sizeof("text/html") + sizeof("\r\n");
 
-                                    char *res_buf = (char*) malloc(rsp_buf_sz);
+                                    char *res_buf = (char*) malloc(rsp_buf_sz + 1);
                                     bzero(res_buf, rsp_buf_sz);//Delete buffer
 
                                     snprintf(res_buf, rsp_buf_sz, httpd_hdr_str, "200 OK", "text/html", rsp_buf_sz);
@@ -217,7 +217,7 @@ char *read_file(const char *file_name){
 		fseek(fp, 0L, SEEK_SET);//Return file position back to the beginning
 
 		char *buffer;
-		buffer = (char *) malloc(file_size);
+		buffer = (char *) malloc(file_size + 1);
 		bzero(buffer, file_size);
 		fread(buffer, file_size, ELEMENT_NUMBERS, fp);
         return buffer;
