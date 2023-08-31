@@ -83,7 +83,7 @@ Hello, World !
 56
 Hello, World !
 ```
-However, [the same program implemented with G++ pthread]() result in str_thread blocking.
+However, [the same program implemented with G++ pthread](https://github.com/TranPhucVinh/Cplusplus/blob/master/Physical%20layer/Thread/Fundamental%20concepts.md#thread-is-blocked-by-while1) result in str_thread blocking.
 
 ## Fundamental concepts examples
 
