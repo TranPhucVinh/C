@@ -2,7 +2,11 @@ Message queue allows the process to exchange the data in the form of messages.
 
 Message queue is the slowest IPC as when two process want to communicate by message queue, kernel has to make a linked list to send the data to it. By that, kernel has to do lots of work.
 
-# API
+There are 2 types of message queue
+* System V
+* POSIX
+  
+# System V API
 
 ## msgget()
 
@@ -10,7 +14,7 @@ Message queue is the slowest IPC as when two process want to communicate by mess
 int msgget(key_t key, int msgflg);
 ```
 
-Get a System V message queue identifier
+Get a System V message queue identifier or create it.
 
 On success, ``msgget()`` returns the message queue identifier (a nonnegative integer) (``msqid`` listed in ``ipcs``).  On failure, ``-1`` is returned, and ``errno`` is set to indicate the error.
 
@@ -73,7 +77,7 @@ int msgctl(int msqid, int cmd, struct msqid_ds *buf);
 
 Perform the control operation specified by ``cmd`` on the System V message queue with identifier ``msqid``.
 
-# Implementations
+# System V implementations
 
 * [Sending and receiving a single message in a message queue](Implementations.md#sending-and-receiving-a-single-message-in-a-message-queue)
 * [Sending and receiving messages with multiple types in a message queue](Implementations.md#sending-and-receiving-messages-with-multiple-types-in-a-message-queue)
