@@ -137,6 +137,23 @@ int sigismember (const sigset_t *set, int signum);
 ``sigismember()`` tests whether the signal ``signum`` is a member of the ``sigset_t *set``. It returns ``1`` if the signal is in the set, ``0`` if not, and ``-1`` if there is an error.
 
 Check [process signal mask document](Process%20signal%20mask.md#sigpending-and-sigismember) for implementation of ``sigpending()`` and ``sigismember()`` inside ``sigprocmask()`` when a signal is masked.
+# struct sigevent()
+``struct sigevent``, which is **only used as the argument of an API, is used by various APIs to describe the way a process is to be notified about an event, e.g in [mq_notify()]() when a new message is sent into the POSIX message queue.
+
+```c
+struct sigevent {
+    int    sigev_notify;  /* Notification method */
+    int    sigev_signo;   /* Notification signal */
+    union sigval sigev_value; /* Data passed with notification */
+    void (*sigev_notify_function)(union sigval); /* Function used for thread notification (SIGEV_THREAD) */
+    void  *sigev_notify_attributes; /* Attributes for notification thread (SIGEV_THREAD) */
+    pid_t  sigev_notify_thread_id; /* ID of thread to signal (SIGEV_THREAD_ID); Linux-specific */
+};
+```
+* ``sigev_notify`` takes those value:
+	* ``SIGEV_NONE``: don't do anything when the event occurs
+ 	* ``SIGEV_SIGNAL``: Notify the process by sending the signal specified in ``sigev_signo``
+	* ``SIGEV_THREAD``: Notify the process by invoking ``sigev_notify_function`` "as if" it were the start function of a new thread
 # pause()
 ```c
 int pause(void);
