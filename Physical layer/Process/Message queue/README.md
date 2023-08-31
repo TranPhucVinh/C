@@ -140,7 +140,17 @@ Return: On success, mq_send() returns ``0``; on error, ``-1`` is returned.
 ssize_t mq_receive(mqd_t mqdes, char msg_ptr[.msg_len], size_t msg_len, unsigned int *msg_prio);
 ```
 **Return**: On success, mq_receive() returns the number of bytes in the received message. on error, ``-1`` is returned
+## mq_notify()
+```c
+int mq_notify(mqd_t mqdes, const struct sigevent *sevp);
+```
+Register for notification when a message is available inside the POSIX message queue.
+
+Please note that [struct sigevent](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Signal/API.md#struct-sigevent) in this function is always used as the argument of an API.
+
+**Return**: On success ``mq_notify()`` returns ``0``; on error, ``-1`` is returned, with errno set to indicate the error.
 # POSIX message queue implementations
 * [Create a POSIX message queue]()
 * [Send message to a message queue]()
 * [Receive message from a message queue]()
+* [Wait for a message sent into the POSIX message queue by mq_notify()](POSIX%20message%20queue%20implementations.md#wait-for-a-message-sent-into-the-posix-message-queue)
