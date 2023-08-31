@@ -137,8 +137,8 @@ int sigismember (const sigset_t *set, int signum);
 ``sigismember()`` tests whether the signal ``signum`` is a member of the ``sigset_t *set``. It returns ``1`` if the signal is in the set, ``0`` if not, and ``-1`` if there is an error.
 
 Check [process signal mask document](Process%20signal%20mask.md#sigpending-and-sigismember) for implementation of ``sigpending()`` and ``sigismember()`` inside ``sigprocmask()`` when a signal is masked.
-# struct sigevent()
-``struct sigevent``, which is **only used as the argument of an API, is used by various APIs to describe the way a process is to be notified about an event, e.g in [mq_notify()]() when a new message is sent into the POSIX message queue.
+# struct sigevent
+``struct sigevent``, which is **only used as the argument of an API**, is used by various APIs to describe the way a process is to be notified about an event, e.g in [mq_notify()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Message%20queue/README.md#mq_notify) when a new message is sent into the POSIX message queue.
 
 ```c
 struct sigevent {
@@ -154,6 +154,8 @@ struct sigevent {
 	* ``SIGEV_NONE``: don't do anything when the event occurs
  	* ``SIGEV_SIGNAL``: Notify the process by sending the signal specified in ``sigev_signo``
 	* ``SIGEV_THREAD``: Notify the process by invoking ``sigev_notify_function`` "as if" it were the start function of a new thread
+ 
+Check [mq_notify() implementation to wait for a message sent into the POSIX message queue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Message%20queue/POSIX%20message%20queue%20implementations.md#wait-for-a-message-sent-into-the-posix-message-queue) as an implemenation of **struct sigevent**.
 # pause()
 ```c
 int pause(void);
