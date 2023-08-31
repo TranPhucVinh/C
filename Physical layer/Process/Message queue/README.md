@@ -82,3 +82,65 @@ Perform the control operation specified by ``cmd`` on the System V message queue
 * [Sending and receiving a single message in a message queue](Implementations.md#sending-and-receiving-a-single-message-in-a-message-queue)
 * [Sending and receiving messages with multiple types in a message queue](Implementations.md#sending-and-receiving-messages-with-multiple-types-in-a-message-queue)
 * [Remove a message queue](Implementations.md#remove-a-message-queue)
+# POSIX message queue API
+
+With POSIX message queue, messages are transferred to and from a queue using [mq_send()]() and [mq_receive()](). When a process has finished using the queue, it closes it using [mq_close()](), and when the queue is no longer required, it can be deleted using [mq_unlink()](). A process can request asynchronous notification of the arrival of a message on a previously empty queue using [mq_notify()]().
+
+Each message has an associated priority, and messages are always delivered to the receiving process highest priority first.
+
+Message priorities range from ``0`` (**low**) to ``sysconf(_SC_MQ_PRIO_MAX) - 1`` (**high**).  On Linux, `sysconf(_SC_MQ_PRIO_MAX)`` returns ``32768``, but POSIX.1 requires only that an implementation support at least priorities in the range ``0`` to ``31``; some implementations provide only this range.
+## Create and mount mqueue device file
+In order to monitor the POSIX message queue by CLI like ipcs in System V, take those steps:
+```sh
+username@hostname:~$ sudo mkdir /dev/mqueue
+username@hostname:~$ sudo mount -t mqueue mqueue /dev/mqueue
+```
+From now, all POSIX message queue can be found inside ``/dev/mqueue``
+```sh
+username@hostname:~$ cat /dev/mqueue/message_queue_name # View property of a message queue
+QSIZE:0          NOTIFY:0     SIGNO:0     NOTIFY_PID:0  
+```
+## Compile and libraries
+Compile with external library ``rt`` (realtime): ``gcc main.c -lrt``.
+```c
+#include <fcntl.h>           /* For O_* constants */
+#include <sys/stat.h>        /* For mode constants */
+#include <mqueue.h>
+```
+## mq_open() and struct mq_attr
+```c
+mqd_t mq_open(const char *name, int oflag, mode_t mode, struct mq_attr *attr);
+```
+
+Creates a new POSIX message queue or opens an existing queue.
+**Parameters**:
+* ``name``: Name of the POSIX message queue, its first character must start with ``/``
+**Return**:
+
+* On success, mq_open() returns a message queue descriptor
+* On error, ``-1`` is returned
+
+```c
+struct mq_attr {
+    long mq_flags;       /* Flags (ignored for mq_open()) */
+    long mq_maxmsg;      /* Max. numbers of messages on queue */
+    long mq_msgsize;     /* Max. message size (bytes) */
+    long mq_curmsgs;     /* Numbers of messages currently in queue (ignored for mq_open()) */
+};
+```
+## mq_send()
+```c
+int mq_send(mqd_t mqdes, const char msg_ptr[.msg_len], size_t msg_len, unsigned int msg_prio);
+```
+* ``msg_prio``: specify the priority of this message.  Messages are placed on the queue in decreasing order of priority, with newer messages of the same priority being placed after older messages with the same priority
+
+Return: On success, mq_send() returns ``0``; on error, ``-1`` is returned.
+## mq_receive()
+```c
+ssize_t mq_receive(mqd_t mqdes, char msg_ptr[.msg_len], size_t msg_len, unsigned int *msg_prio);
+```
+**Return**: On success, mq_receive() returns the number of bytes in the received message. on error, ``-1`` is returned
+# POSIX message queue implementations
+* [Create a POSIX message queue]()
+* [Send message to a message queue]()
+* [Receive message from a message queue]()
