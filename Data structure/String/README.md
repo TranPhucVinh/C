@@ -141,7 +141,7 @@ Returns a pointer to the first occurrence of ``str2`` in ``str1``, or a null poi
 
 ## tolower()
 
-The ``tolower()`` function takes an uppercase alphabet and convert it to a lowercase character. If the arguments passed to the tolower() function is other than an uppercase alphabet, it returns the same character that is passed to the function.
+The ``tolower()`` function takes an uppercase alphabet and converts it to a lowercase character. If the arguments passed to the tolower() function is other than an uppercase alphabet, it returns the same character that is passed to the function.
 
 ```c
 #include <ctype.h>
