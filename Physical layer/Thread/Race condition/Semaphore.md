@@ -29,7 +29,7 @@ Types of semaphore:
 
 A [mutex](Mutex.md) can be released by the same thread which acquired it while semaphore (especially binary semaphore when compared to mutex) values can be changed by other thread also.
 
-# API
+# POSIX API
 
 ## sem_init()
 
