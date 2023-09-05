@@ -25,6 +25,17 @@ int main()
     printf("%d %d\n", mq_fd, errno);
 }
 ```
+# Remove a POSIX message queue by mq_unlink()
+```c
+#define MQ_NAME "/MQ_NAME"// Must have / as its 1st character
+
+int main()
+{  
+    int mq_fd = mq_unlink(MQ_NAME);
+    if (!mq_fd) printf("Remove %s successfully\n", MQ_NAME);
+    else if (mq_fd == -1) printf("Unable to remove %s\n", MQ_NAME);
+}
+```
 # Send message to a message queue
 ```c
 #include <stdio.h>
