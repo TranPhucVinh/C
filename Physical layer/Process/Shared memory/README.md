@@ -79,7 +79,7 @@ else printf("Unable to detached shared memory segment\n");
 printf("after detaching %d\n", *ptr); // Segmentation fault
 ```
 
-# Implementations
+# System V shared memory implementations
 
 * [Write and read an int value in a shared memory region]()
 * [Write and read int and string value in 2 shared memory regions]()
