@@ -78,14 +78,14 @@ int main()
     } else printf("Unable open %s\n", MQ_NAME);
 }
 ```
-# Wait for a message sent into the POSIX message queue
-``mq_notify.c``
+# Send and receive message from a message queue with other data type like int, float
+As ``mq_send()`` and ``mq_receive()`` allow sending/receiving char* by default, typecasting the data sent/receive in those 2 functions to ``(*char)`` for other data type.
+``send_int.c``
 ```c
 #include <stdio.h>
 #include <fcntl.h>           /* For O_* constants */
 #include <sys/stat.h>        /* For mode constants */
 #include <mqueue.h>
-#include <signal.h>
 #include <errno.h>
 
 #define MQ_NAME "/MQ_NAME"//Must have / as its 1st character
@@ -93,31 +93,70 @@ int main()
 #define QUEUE_PERMISSION    0666
 #define MSG_PRIOR           0
 
-union sigval value;
-struct sigevent sigevt;
-void msg_queue_receive(union sigval val);
-
 int main()
 {  
-    sigevt.sigev_notify = SIGEV_THREAD;
-    sigevt.sigev_notify_function = msg_queue_receive;
-    
     mqd_t mq_fd = mq_open(MQ_NAME, O_RDWR);
     if (mq_fd > 0){
-        value.sival_int = mq_fd;
-        sigevt.sigev_notify_function(value);
-        mq_notify(mq_fd, &sigevt);
+        int snd_int = 13579;
+        if (!mq_send(mq_fd, (char*)&snd_int, sizeof(snd_int), MSG_PRIOR)){
+            printf("Message delivered successfully\n");
+        } else {
+            printf("Unable to deliver message\n");
+            if (errno == 90) printf("Sent message is longer than the MAX_MSG_SIZE\n");
+        }
     } else printf("Unable open %s\n", MQ_NAME);
 }
+```
+``recv_int.c``
+```c
+#include <stdio.h>
+#include <fcntl.h>           /* For O_* constants */
+#include <sys/stat.h>        /* For mode constants */
+#include <mqueue.h>
+#include <errno.h>
 
-void msg_queue_receive(union sigval val){
-    char recv_buf[50];
-    int mq_fd = val.sival_int;
-    if (mq_receive(mq_fd, recv_buf, sizeof(recv_buf), MSG_PRIOR) > -1){
-        printf("Received message: %s\n", recv_buf);
-    } else {
-        printf("Unable to receive message %d\n", errno);
-    }
+#define MQ_NAME "/MQ_NAME"//Must have / as its 1st character
+
+#define QUEUE_PERMISSION    0666
+#define MSG_PRIOR           0
+
+/*
+    This macro will expand the read size for the buffer to receive from the message queue
+    Please note that although receving only one int number from the send_int process,
+    the received buffer size allocated by mq_receive() must be bigger than its data type
+    at least 3 times, i.e 4 byte*3 for int type. This conclusion comes from manual testing
+*/ 
+
+#define EXPANDED_RD_SIZE    3
+int main()
+{  
+    mqd_t mq_fd = mq_open(MQ_NAME, O_RDWR);
+    if (mq_fd > 0){
+        int recv_int; 
+        // Simply type-casting mq_receive()
+        if (mq_receive(mq_fd, (char*)&recv_int, sizeof(recv_int)*EXPANDED_RD_SIZE, MSG_PRIOR) > -1){
+            printf("Received message: %d\n", recv_int);
+        } else {
+            printf("Unable to receive message %d\n", errno);
+        }
+    } else printf("Unable open %s\n", MQ_NAME);
 }
 ```
+**For float number**: ``send_float.c``
+```c
+float float_number = 135.79;
+if (!mq_send(mq_fd, (char*)&float_number, sizeof(float_number), MSG_PRIOR)){
+    printf("Message delivered successfully\n");
+} //...
+```
+``recv_float.c``
+```c
+float recv_float; 
+if (mq_receive(mq_fd, (char*)&recv_float, sizeof(recv_float)*EXPANDED_RD_SIZE, MSG_PRIOR) > -1){
+    printf("Received message: %lf\n", recv_float);
+} //...
+```
+# Wait for a message sent into the POSIX message queue
+**Program**: [mq_notify.c](mq_notify.c)
+
 **Result**: When starting, this ``mq_notify`` program will be blocked as there is no message inside the POSIX message queue. Use the [Send message to a message queue]() program to send message to that POSIX message queue. ``mq_notify`` will read that string message out then stops.
