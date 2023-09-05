@@ -128,6 +128,11 @@ struct mq_attr {
     long mq_curmsgs;     /* Numbers of messages currently in queue (ignored for mq_open()) */
 };
 ```
+## mq_unlink()
+```c
+int mq_unlink(const char *name);// Removes the specified message queue name
+```
+On success ``mq_unlink()`` returns **0**; on error, **-1** is returned.
 ## mq_send()
 ```c
 int mq_send(mqd_t mqdes, const char msg_ptr[.msg_len], size_t msg_len, unsigned int msg_prio);
