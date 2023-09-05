@@ -1,4 +1,4 @@
-# Write and read an int value in a shared memory region
+# Write and read an int value in a shared memory region between 2 processes
 
 ## Write an int value in a shared memory region
 
