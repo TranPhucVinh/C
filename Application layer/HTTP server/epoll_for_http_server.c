@@ -67,7 +67,6 @@ int main(){
             /*
                 By using while(1) and this for() loop, happened_events() is updated in 
                 everytime the EPOLLIN happens to HTTP server and HTTP clients
-
             */
             for(int i = 0; i < ready_socket_fds; i++){
                 int socket_fd = happened_events[i].data.fd;
@@ -104,7 +103,8 @@ int main(){
 
                     int bytes_received = read(socket_fd, req_buf, BUFFSIZE);
                     if (bytes_received > 0) {
-                        printf("Message from HTTP client with socket fd %d: %s", socket_fd, req_buf);
+                        // printf("Message from HTTP client with socket fd %d: %s", socket_fd, req_buf);
+                        printf("New HTTP client with socket fd %d\n", socket_fd);
                         char* method = strtok(req_buf, " ");
                         char* uri    = strtok(NULL, " ");
 
@@ -116,7 +116,7 @@ int main(){
                                     char *html = read_file("index.html");
 
                                     //HTTP response buffer size
-                                    int rsp_buf_sz = strlen(html) + sizeof(httpd_hdr_str) + sizeof("200 OK") + sizeof("text/html") + sizeof("\r\n");
+                                    int rsp_buf_sz = strlen(html) + strlen(httpd_hdr_str) + strlen("200 OK") + strlen("text/html") + strlen("\r\n");
 
                                     char *res_buf = (char*) malloc(rsp_buf_sz + 1);
                                     bzero(res_buf, rsp_buf_sz);//Delete buffer
@@ -124,34 +124,42 @@ int main(){
                                     snprintf(res_buf, rsp_buf_sz, httpd_hdr_str, "200 OK", "text/html", rsp_buf_sz);
                                     strcat(res_buf, "\r\n");
                                     strcat(res_buf, html);
-                                    write(socket_fd, res_buf, rsp_buf_sz);
+                                    write(socket_fd, res_buf, strlen(res_buf));
+                                    free(res_buf);
+                                    free(html);
                                     // printf("%s\n", res_buf);
                                 } else {
                                     char res_buf[100];
                                     char no_file[] = "There is no index.html file";
-                                    snprintf(res_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sizeof(no_file));
+                                    snprintf(res_buf, sizeof(res_buf), httpd_hdr_str, "200 OK", "text/html", sizeof(no_file));
                                     strcat(res_buf, "\r\n");
                                     strcat(res_buf, no_file);
                                     // printf("%s\n", res_buf);
-                                    write(socket_fd, res_buf, BUFFSIZE);
+                                    write(socket_fd, res_buf, sizeof(res_buf));
                                 }
-                            } else {
+                            } else if (!strcmp(uri, "/favicon.ico")){// URL favicon.ico is always requested by the web browser
+                                printf("Simply return HTTP/1.1 200 for /favicon.ico\n");
+                                int rsp_buf_sz = strlen(httpd_hdr_str) + strlen("200 OK") + strlen("text/html") + strlen("\r\n");
+                                char *res_buf = (char*) malloc(rsp_buf_sz + 1);
+                                bzero(res_buf, rsp_buf_sz);//Delete buffer
+
+                                snprintf(res_buf, rsp_buf_sz, httpd_hdr_str, "200 OK", "text/html", rsp_buf_sz);
+                                strcat(res_buf, "\r\n");
+                                write(socket_fd, res_buf, strlen(res_buf));
+                                free(res_buf);
+                            }
+                            else {
                                 char no_uri[50];
-                                char res_buf[100];
+                                char res_buf[100] = {0};
                                 int sz = sprintf(no_uri, "Not found %s", uri);
-                                snprintf(res_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sz);
+                                snprintf(res_buf, sizeof(res_buf), httpd_hdr_str, "200 OK", "text/html", sz);
                                 strcat(res_buf, "\r\n");
                                 strcat(res_buf, no_uri);
-                                write(socket_fd, res_buf, BUFFSIZE);
+                                write(socket_fd, res_buf, sizeof(res_buf));
+                                printf("%s\n", no_uri);
                             }
                         } else {
-                            char no_uri[50];
-                            char res_buf[100];
-                            int sz = sprintf(no_uri, "Not found %s", uri);
-                            snprintf(res_buf, BUFFSIZE, httpd_hdr_str, "200 OK", "text/html", sz);
-                            strcat(res_buf, "\r\n");
-                            strcat(res_buf, no_uri);
-                            write(socket_fd, res_buf, BUFFSIZE);
+                            printf("Unhandle METHOD: %s\n", method);
                         }
                     } else {
                         auto pos = find(http_client_fd_list.begin(), http_client_fd_list.end(), socket_fd);
@@ -218,8 +226,9 @@ char *read_file(const char *file_name){
 
 		char *buffer;
 		buffer = (char *) malloc(file_size + 1);
-		bzero(buffer, file_size);
+		bzero(buffer, file_size + 1);
 		fread(buffer, file_size, ELEMENT_NUMBERS, fp);
+        fclose(fp);
         return buffer;
 	} else {
         printf("Unable to open file %s\n", file_name);
