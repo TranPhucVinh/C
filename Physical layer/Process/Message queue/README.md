@@ -88,7 +88,7 @@ With POSIX message queue, messages are transferred to and from a queue using [mq
 
 Each message has an associated priority, and messages are always delivered to the receiving process highest priority first.
 
-Message priorities range from ``0`` (**low**) to ``sysconf(_SC_MQ_PRIO_MAX) - 1`` (**high**).  On Linux, `sysconf(_SC_MQ_PRIO_MAX)`` returns ``32768``, but POSIX.1 requires only that an implementation support at least priorities in the range ``0`` to ``31``; some implementations provide only this range.
+Message priorities range from ``0`` (**low**) to ``sysconf(_SC_MQ_PRIO_MAX) - 1`` (**high**).  On Linux, ``sysconf(_SC_MQ_PRIO_MAX)`` returns ``32768``, but POSIX.1 requires only that an implementation support at least priorities in the range ``0`` to ``31``; some implementations provide only this range.
 ## Create and mount mqueue device file
 In order to monitor the POSIX message queue by CLI like ipcs in System V, take those steps:
 ```sh
@@ -101,7 +101,7 @@ username@hostname:~$ cat /dev/mqueue/message_queue_name # View property of a mes
 QSIZE:0          NOTIFY:0     SIGNO:0     NOTIFY_PID:0  
 ```
 ## Compile and libraries
-Compile with external library ``rt`` (realtime): ``gcc main.c -lrt``.
+Compile with external library **rt** (realtime): **gcc main.c -lrt**
 ```c
 #include <fcntl.h>           /* For O_* constants */
 #include <sys/stat.h>        /* For mode constants */
