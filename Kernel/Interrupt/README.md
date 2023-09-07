@@ -11,7 +11,7 @@ Threaded IRQ is a technique used for bottom half which is implemented by ``reque
 
 # API
 
-### request_irq()
+## request_irq()
 
 ```c
 #include <linux/interrupt.h>
@@ -33,7 +33,7 @@ int request_irq(unsigned int irq,
 
 ``irq_handler_t (*handler)(int, void *, struct pt_regs *)`` returns ``IRQ_HANDLED`` to indicates that the IRQ is handled successfully.  The return value of kernel IRQ handler function, generally, is used by the kernel to detect and suppress spurious interrupts and this return value has not thing to deal with the userspace.
 
-### free_irq()
+## free_irq()
 
 Free an interrupt allocated with ``request_irq``
 
@@ -41,7 +41,7 @@ Free an interrupt allocated with ``request_irq``
 void free_irq (	unsigned int irq, void * dev_id);
 ```
 
-### request_threaded_irq()
+## request_threaded_irq()
 
 ```c
 int request_threaded_irq(unsigned int irq, 
@@ -57,7 +57,7 @@ int request_threaded_irq(unsigned int irq,
 
 **Example**: Haven't implemented example for this API, check [the corresponding example in character device with devm_request_threaded_irq()](interrupt_for_character_device.c)
 
-### devm_request_threaded_irq()
+## devm_request_threaded_irq()
 
 ``devm_request_threaded_irq()`` is used to handle interrupt for character device.
 
@@ -77,7 +77,7 @@ int devm_request_threaded_irq	(
 
 * ``thread_fn``: function to be called in a threaded interrupt context, ``NULL`` for devices which handle everything
 
-### devm_free_irq()
+## devm_free_irq()
 
 ``devm_free_irq()`` works like ``free_irq()`` but it has to go with ``devm_request_threaded_irq()`` in the same program to avoid memory issue with currently used IRQ number when ``insmod`` and ``rmmod`` the module several times.
 
@@ -85,7 +85,7 @@ int devm_request_threaded_irq	(
 void devm_free_irq(struct device *dev, unsigned int irq, void *dev_id);
 ```
 
-### disable_irq() and enable_irq()
+## disable_irq() and enable_irq()
 
 ```c
 void disable_irq (unsigned int irq);//Disable interrupt
@@ -117,7 +117,7 @@ void enable_irq (unsigned int irq);//Enable interrupt
 
 ## GPIO interrupt
 
-Check the corresponding example in Raspbian for [toggling LED by button using interrupt](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/toggle_led_by_gpio_interrupt.c).
+Check the implementation in Raspbian for [toggling LED by button using interrupt](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/blob/main/Kernel/GPIO/toggle_led_by_gpio_interrupt.c).
 
 After inserting that kernel module, the interrupt type with the specified device name (by macro ``DEV_NAME``) and the IRQ number (``int irq_number``) can be listed out by ``cat /proc/interrupts``.
 
@@ -151,11 +151,7 @@ void cleanup_module(void)
 
 **Note**: If inserting kernel module ``disable_interrupt`` before inserting ``keyboard_interrupt``,  ``keyboard_interrupt`` is still able to register interrupt 1 successfully although interrupt 1 is disable by ``disable_interrupt``.
 
-## Interrupt for character device examples
-
-**Example 1**
-
-Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
+## Interrupt for character device: Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
 
 Program: [interrupt_for_character_device.c](interrupt_for_character_device.c)
 
@@ -218,10 +214,9 @@ int init_module(void)
 }
 //Other operations are like interrupt_for_character_device.c
 ```
+## Interrupt for character device: Count, enable and disable interrupt 1
 
-**Example 2**
-
-Features
+**Features**
 * Handle interrupt 1 like in example 1
 * Disable and enable interrupt 1 from userspace through ``ioctl()``
 
