@@ -106,7 +106,6 @@ void enable_irq (unsigned int irq);//Enable interrupt
 
 ```
         CPU0       CPU1       CPU2       CPU3       
-0:         13          0          0          0  IR-IO-APIC    2-edge      timer
 1:          0          0          0        157  IR-IO-APIC    1-edge      i8042, DEV_NAME IRQ_1
 ```
 
