@@ -1,11 +1,11 @@
 # One thread function handler to increase a share value issue
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value) with mutex, even with multiple threads, not just 2 tasks:
-## Use [pthread_mutex_lock()](../API.md#pthread_mutex_lock)
+## Use [pthread_mutex_lock()](API.md#pthread_mutex_lock)
 
 **Program**: [pthread_mutex_lock.c](pthread_mutex_lock.c)
 
 **Result**: ``share_value after executing 2 threads: 9000000``
-## Using [pthread_mutex_trylock()](../API.md#pthread_mutex_trylock)
+## Using [pthread_mutex_trylock()](API.md#pthread_mutex_trylock)
 
 With [pthread_mutex_trylock()](../API.md#pthread_mutex_trylock), if fails to lock the mutex, the thread will handle other task
 
@@ -45,11 +45,11 @@ share_value after executing 2 threads: 29753
 
 Finish executing task 1 to print out ``Hello, World !`` 20 times with 1 second delay then execute task 2 to print out count up number from 1 to 20 with 1 second delay.
 
-Program: [simple_boolean_variable_as_mutex.c](simple_boolean_variable_as_mutex.c)
+Program: [simple_boolean_variable_as_mutex.c](src/simple_boolean_variable_as_mutex.c)
 
 # Using mutex to lock the variable
 
-Instead of using a boolean variable [like above](#using-a-simple-boolean-variable-as-a-mutex-key-to-implement-with-2-tasks), mutex can be used as the lock between 2 threads: [mutex_to_lock_the_variables.c](mutex_to_lock_the_variables.c)
+Instead of using a boolean variable [like above](#using-a-simple-boolean-variable-as-a-mutex-key-to-implement-with-2-tasks), mutex can be used as the lock between 2 threads: [mutex_to_lock_the_variables.c](src/mutex_to_lock_the_variables.c)
 
 # Condition variable
 pthread condition variable is used in multithread which have already involved mutex
