@@ -143,3 +143,37 @@ int init_module(void)
 Kernel module program [disable_enable_interrupt_for_character_device.c](disable_enable_interrupt_for_character_device.c)
 
 User space program [ioctl_disable_enable_interrupt.c](ioctl_disable_enable_interrupt.c)
+# Bottom half implementation: Tasklet
+* Tasklets are atomic, so we cannot use sleep() and such synchronization primitives as mutexes, semaphores, etc. from them. But we can use spinlock.
+* A tasklet only runs on the same core (CPU) that schedules it.
+## API
+Declare a tasklet dynamically
+
+```c
+void tasklet_init(struct tasklet_struct *t,  void (*func)(unsigned long), unsigned long data); 
+```
+Declare a tasklet statically:
+
+```c
+DECLARE_TASKLET(name, _callback) //_callback takes 1 argument with type struct tasklet_struct
+```
+```C
+#define DECLARE_TASKLET(name, _callback)        \
+	struct tasklet_struct name = {             \
+	.count = ATOMIC_INIT(0),            	     \
+	.callback = _callback,                     \
+	.use_callback = true,                	     \
+}
+```
+```c
+struct tasklet_struct
+{
+	struct tasklet_struct *next;
+	unsigned long state;
+	atomic_t count;
+	void (*func)(unsigned long);
+	unsigned long data;
+};
+```
+## Trigger IRQ 1 (keyboard interrupt) to trigger bottom half tasklet
+Program: [tasklet_irq_1.c](tasklet_irq_1.c)
