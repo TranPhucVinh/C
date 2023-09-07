@@ -91,7 +91,19 @@ int main(){
 ```
 
 # Operators
-
+## Unary operators
+Unary operators are the operators that perform operations on a single operand to produce a new value. Unary operators include:
+* Minus ``–``
+* Increment ``++``
+* Decrement ``--``
+* NOT ``!``
+* Ampersand operator/address of: ``&``
+* sizeof()
+**Minus**
+```c
+int a = 10;
+int b = -a;  // b = -10
+`` 
 ## [Bit operator](Bit%20operator.md)
 
 * [Bitwise operator]()
