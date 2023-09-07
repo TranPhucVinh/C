@@ -9,13 +9,13 @@ The **top half** is our interrupt handler. If not much work is required, then th
 
 There are 4 **bottom half** mechanisms are available in Linux:
 * Workqueue: Executed in a process context
-* Threaded IRQs: implemented by [request_threaded_irq()](API.md#request_threaded_irq)
+* [Threaded IRQs](): implemented by [request_threaded_irq()](API.md#request_threaded_irq)
 * Softirqs: Executed in an atomic context
-* Tasklets: Executed in an atomic context
+* [Tasklets](): Executed in an atomic context
 
 # [API](API.md)
 
-# Examples
+# Top half implementation: Simple IRQ handler
 
 ## Interrupt 1 (keyboard interrupt)
 
@@ -70,8 +70,8 @@ void cleanup_module(void)
 ```
 
 **Note**: If inserting kernel module ``disable_interrupt`` before inserting ``keyboard_interrupt``,  ``keyboard_interrupt`` is still able to register interrupt 1 successfully although interrupt 1 is disable by ``disable_interrupt``.
-
-## Interrupt for character device: Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
+# Bottom half implementation: Threaded IRQ
+## Threaded IRQ for character device: Count how many times the keyboard is pressed on Ubuntu by using interrupt 1
 
 Program: [interrupt_for_character_device.c](interrupt_for_character_device.c)
 
@@ -134,10 +134,10 @@ int init_module(void)
 }
 //Other operations are like interrupt_for_character_device.c
 ```
-## Interrupt for character device: Count, enable and disable interrupt 1
+## Threaded IRQ for character device: Count, enable and disable interrupt 1
 
 **Features**
-* Handle interrupt 1 like in example 1
+* Handle interrupt 1 like in [Count how many times the keyboard is pressed on Ubuntu by using interrupt 1]()
 * Disable and enable interrupt 1 from userspace through ``ioctl()``
 
 Kernel module program [disable_enable_interrupt_for_character_device.c](disable_enable_interrupt_for_character_device.c)
