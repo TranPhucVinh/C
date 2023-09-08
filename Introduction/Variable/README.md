@@ -99,6 +99,7 @@ Unary operators are the operators that perform operations on a single operand to
 * NOT ``!``
 * Ampersand operator/address of: ``&``
 * sizeof()
+
 **Minus**
 ```c
 int a = 10;
