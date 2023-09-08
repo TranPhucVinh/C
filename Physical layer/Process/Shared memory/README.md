@@ -11,7 +11,7 @@ Shared memory allows 2 or more process to share the same region of physical memo
 ```c
 int shm_open(const char *name, int oflag, mode_t mode);
 ```
-Open a POSIX shared memory object. Create a new one with mode **O_CREAT**.
+Open a POSIX shared memory object. Create a new one with mode **O_CREAT**. After being created, the newly created POSIX shared memory object is located inside ``/dev/shm``.
 ## shm_unlink()
 ```c
 int shm_unlink(const char *name);
