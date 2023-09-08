@@ -2,12 +2,22 @@ OS provides every process a separated memory space. In order for processes to co
 
 Shared memory allows 2 or more process to share the same region of physical memory. When one process copies the data into a shared memory, that data is immediately available to all other process sharing the same segment. That's why shared memory is **the fastest IPC**.
 
-# API
-
+# POSIX API
+**Note**: POSIX shared memory API don't support read and write. They support creating, deleting and mapping (e.g mmap()). Read and write for shared memory is supported in System V API.
 ## [mmap()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Virtual%20memory.md#mmap)
 
 **mmap()**, as **memory map**, can be used for both virtual memory mapping and shared memory.
-
+## shm_open()
+```c
+int shm_open(const char *name, int oflag, mode_t mode);
+```
+Open a POSIX shared memory object. Create a new one with mode **O_CREAT**.
+## shm_unlink()
+```c
+int shm_unlink(const char *name);
+```
+Unlink a POSIX shared memory object.
+# System V API
 ## shmget()
 
 Allocates a System V shared memory segment
