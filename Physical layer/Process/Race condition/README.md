@@ -30,7 +30,7 @@ int main(){
 }
 ```
 ``race_condition.sh``: Run this script to build increase_shared_mem_value.c then start 2 processes in the background.
-```c
+```sh
 gcc increase_shared_mem_value.c
 
 # Run 2 a.out as background process to have race condition
