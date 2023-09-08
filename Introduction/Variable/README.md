@@ -103,7 +103,7 @@ Unary operators are the operators that perform operations on a single operand to
 ```c
 int a = 10;
 int b = -a;  // b = -10
-`` 
+```
 ## [Bit operator](Bit%20operator.md)
 
 * [Bitwise operator]()
