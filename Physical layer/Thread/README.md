@@ -103,7 +103,7 @@ pthread doesn't have functions to suspend and resume thread. Suspend and resume 
 
 A race condition is a situation where the result produced by two processes (or threads) operating on shared resources depends in an unexpected way on the relative order in which the processes gain access to the CPU(s).
 
-When 2 threads trying to access a resource, data race might be happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times).
+When 2 threads try to access a resource, data race might happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times).
 
 [Race condition document](Race%20condition) includes:
 * [One thread function handler to increase a share value](Race%20condition/README.md#one-thread-function-handler-to-increase-a-share-value)
