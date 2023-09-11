@@ -10,7 +10,9 @@ Clone the calling process, creating an exact copy known as the child porcess. Th
 * ``-1`` for errors
 * ``pid`` of the child process is returned to the parent process.
 * ``0`` as the child process has been created successfully. ``0`` is returned to the child process.
+
 Implementation of [fork()](fork().md) includes:
+
 * [fork() execution](fork().md#)
 * [Running child process inside infinite loop](fork().md#)
 * [Running multiple fork()](fork().md#)
