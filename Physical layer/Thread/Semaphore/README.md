@@ -27,7 +27,7 @@ Types of semaphore:
 1. **Binary semaphore**: Semaphore with value can range only ``0`` and ``1``. In some systems, binary semaphores are known as mutex locks, as they are locks that provide mutual exclusions.
 2. **Counting semaphore**: Semaphore with value can range over an unrestricted domain. Counting semaphores that are used to manage resources are created so that their initial count value equals the number of resources that are available. To obtain control of a resource, a task must first obtain a semaphore—decrementing the semaphore’s count value. When the count value reaches zero, there are no free resources. When a task finishes with the resource, it ‘gives’ the semaphore back incrementing the semaphore’s count value. 
 
-A [mutex](Mutex.md) can be released by the same thread which acquired it while semaphore (especially binary semaphore when compared to mutex) values can be changed by other thread also.
+A [mutex](../Mutex.md) can be released by the same thread which acquired it while semaphore (especially binary semaphore when compared to mutex) values can be changed by other thread also.
 
 # POSIX API
 
@@ -56,106 +56,18 @@ If ``pshared`` is nonzero, then the semaphore is shared between processes, and s
 
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value):
 
-```c
-#include <stdio.h>
-#include <pthread.h>
-#include <semaphore.h>
-
-#define PSHARED 0
-#define SEM_VAL	1
-
-#define RANGE 10000
-
-int share_value;
-
-void *thread_function(void *ptr);
-
-sem_t mutex;
-
-int main()
-{  
-    sem_init(&mutex, PSHARED, SEM_VAL);
-
-	pthread_t thread_1, thread_2, thread_3;
-	int thread_1_return, thread_2_return, thread_3_return;
-
-	thread_1_return = pthread_create(&thread_1, NULL, thread_function, "Thread 1");
-    thread_2_return = pthread_create(&thread_2, NULL, thread_function, "Thread 2");
-    thread_3_return = pthread_create(&thread_3, NULL, thread_function, "Thread 3");
-	pthread_join(thread_1, NULL);
-    pthread_join(thread_2, NULL);
-    pthread_join(thread_3, NULL);
-    printf("share_value after executing 2 threads: %d\n", share_value);//30000
-}
-
-void *thread_function(void *ptr){
-	for (int i = 0; i < RANGE; i++) {
-		if (!sem_wait(&mutex)){
-			share_value++;
-			sem_post(&mutex);
-		} else printf("%s fails to lock\n", (char*)ptr);
-   }   
-}
-```
+Program: [multiple_threads_increase_shared_value.c](multiple_threads_increase_shared_value.c)
 
 # Accessing a shared variable between 2 thread function handlers issue, solved by semaphore
 
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <pthread.h>
-#include <semaphore.h>
-
-#define PSHARED 0
-#define SEM_VAL	1
-
-sem_t mutex;
-char displayed_string[30];
-
-void *func_thread_1(void *ptr);
-void *func_thread_2(void *ptr);
-
-pthread_t thread_1;
-pthread_t thread_2;
-
-char thread_1_str[] = "Thread 1\n";
-char thread_2_str[] = "Thread 2\n";
-
-int main()
-{
-	sem_init(&mutex, PSHARED, SEM_VAL);
-	pthread_create(&thread_1, NULL, func_thread_1, NULL);
-	pthread_create(&thread_2, NULL, func_thread_2, NULL);
-	pthread_join(thread_1, NULL);
-	pthread_join(thread_2, NULL);
-	sem_destroy(&mutex);
-}
-
-void *func_thread_1(void *ptr){
-	write(STDOUT_FILENO, thread_1_str, sizeof(thread_1_str));
-
-	if (!sem_wait(&mutex)){
-		memcpy(displayed_string, "Hello, World !\n", 15);
-		sem_post(&mutex);
-	}
-}
-
-void *func_thread_2(void *ptr){
-	if (!sem_wait(&mutex)){
-		write(STDOUT_FILENO, displayed_string, sizeof(displayed_string));
-		sem_post(&mutex);
-	}
-	write(STDOUT_FILENO, thread_2_str, sizeof(thread_1_str));
-}
-```
+Program: [multiple_threads_access_shared_value.c](multiple_threads_access_shared_value.c)
 
 **Result**
 
 Run 1st time
 
 ```
-
+(Empty)
 Thread 2
 Thread 1
 ```
@@ -172,7 +84,7 @@ Run 3rd time:
 
 ```
 Thread 1
-
+(Empty)
 Thread 2
 ```
 
