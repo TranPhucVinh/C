@@ -92,7 +92,7 @@ number: 501
 ... (program will then keep running forever)
 ```
 
-Running both child and parent process inside infinite loops:
+# Running both child and parent process inside infinite loops
 
 ```c
 int child_number, parent_number;
