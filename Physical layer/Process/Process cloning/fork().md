@@ -91,9 +91,8 @@ username$hostname:~/pwd$ ^C number: 500
 number: 501
 ... (program will then keep running forever)
 ```
-
 # Running both child and parent process inside infinite loops
-
+## With fork()
 ```c
 int child_number, parent_number;
 int main(int argc, char *argv[])  {
@@ -127,7 +126,20 @@ username$hostname:~/pwd$ ^C //Ctr+C to cancel
 ```
 
 ``Ctr+C`` to cancel the program running both child and parent process inside infinite loop will end the program properly.
-
+## With [vfork()](README.md#vfork)
+```c
+//Other part are like the program in Running both child and parent process inside infinite loops with fork()
+int pid = vfork();
+//Other part are like the program in Running both child and parent process inside infinite loops with fork()
+```
+In this program when creating the child process with [vfork()](README.md#vfork), parent process will be blocked so that its while(1) loop won't be executed.
+**Result**
+```sh
+child process number: 0
+child process number: 1
+child process number: 2   
+...//Parent is blocked and won't execute
+```
 # Running multiple fork()
 
 ```c
