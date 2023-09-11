@@ -84,6 +84,14 @@ fork()                      |
 So putting ``wait()`` inside child process execution gives no effect.
 # [waitpid()](waitpid().md)
 ``waitpid()`` system call suspends execution of the calling process until a child specified by pid argument has changed state. It is used in parent process to monitor the state change of its child process.
+# vfork()
+```c
+pid_t vfork(void);
+```
+``vfork()`` creates a child process and block parent. 
+
+Check [Running both child and parent process inside infinite loops when creating the child process]() with both fork() and vfork() for comparison.
+
 # Oprhan process
 A process whose parent process no more exists i.e. either finished or terminated without waiting for its child process to terminate is called an **orphan process**.
 ```c
