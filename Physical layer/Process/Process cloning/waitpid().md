@@ -1,4 +1,4 @@
-
+# API
 
 ```c
 pid_t waitpid(pid_t pid, int *status, int options);
@@ -12,7 +12,7 @@ pid_t waitpid(pid_t pid, int *status, int options);
 
 * ``WIFSTOPPED(status)``: returns ``true`` if the child process was stopped by delivery of a signal; this is only possible if the call was done using **WUNTRACED**
 * ``WIFCONTINUED(status)``: returns ``true`` if the child process was resumed by delivery of **SIGCONT**
-
+# Implementations
 ```c
 #include <stdio.h>
 #include <unistd.h>
