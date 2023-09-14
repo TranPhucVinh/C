@@ -75,3 +75,34 @@ void enable_irq (unsigned int irq);//Enable interrupt
 ```
 
 * ``unsigned int irq``: Interrupt to enable
+# Tasklet API
+
+Declare a tasklet dynamically
+
+```c
+void tasklet_init(struct tasklet_struct *t,  void (*func)(unsigned long), unsigned long data); 
+```
+Declare a tasklet statically:
+
+```c
+DECLARE_TASKLET(name, _callback) //_callback takes 1 argument with type struct tasklet_struct
+```
+```C
+#define DECLARE_TASKLET(name, _callback)        \
+	struct tasklet_struct name = {             \
+	.count = ATOMIC_INIT(0),            	     \
+	.callback = _callback,                     \
+	.use_callback = true,                	     \
+}
+```
+```c
+struct tasklet_struct
+{
+	struct tasklet_struct *next;
+	unsigned long state;
+	atomic_t count;
+	void (*func)(unsigned long);
+	unsigned long data;
+};
+```
+# Workqueue API

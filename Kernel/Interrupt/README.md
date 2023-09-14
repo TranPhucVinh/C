@@ -8,7 +8,7 @@ When interrupt triggers, the interrupt handler should be executed very quickly a
 The **top half** is our interrupt handler. If not much work is required, then the top half is enough. But if we have more work when interrupt is triggered, then we need the bottom half.  
 
 There are 4 **bottom half** mechanisms are available in Linux:
-* Workqueue: Executed in a process context
+* [Workqueue](): Executed in a process context
 * [Threaded IRQs](): implemented by [request_threaded_irq()](API.md#request_threaded_irq)
 * Softirqs: Executed in an atomic context
 * [Tasklets](): Executed in an atomic context
@@ -146,34 +146,11 @@ User space program [ioctl_disable_enable_interrupt.c](ioctl_disable_enable_inter
 # Bottom half implementation: Tasklet
 * Tasklets are atomic, so we cannot use sleep() and such synchronization primitives as mutexes, semaphores, etc. from them. But we can use spinlock.
 * A tasklet only runs on the same core (CPU) that schedules it.
-## API
-Declare a tasklet dynamically
+## [Tasklet API](API.md#tasklet-api)
 
-```c
-void tasklet_init(struct tasklet_struct *t,  void (*func)(unsigned long), unsigned long data); 
-```
-Declare a tasklet statically:
-
-```c
-DECLARE_TASKLET(name, _callback) //_callback takes 1 argument with type struct tasklet_struct
-```
-```C
-#define DECLARE_TASKLET(name, _callback)        \
-	struct tasklet_struct name = {             \
-	.count = ATOMIC_INIT(0),            	     \
-	.callback = _callback,                     \
-	.use_callback = true,                	     \
-}
-```
-```c
-struct tasklet_struct
-{
-	struct tasklet_struct *next;
-	unsigned long state;
-	atomic_t count;
-	void (*func)(unsigned long);
-	unsigned long data;
-};
-```
 ## Trigger IRQ 1 (keyboard interrupt) to trigger bottom half tasklet
 Program: [tasklet_irq_1.c](tasklet_irq_1.c)
+# Bottom half implementation: Workqueue
+## [Workqueue API](API.md#workqueue-api)
+## Trigger IRQ 1 (keyboard interrupt) to trigger bottom half workqueue
+Program: [workqueue_irq_1.c](workqueue_irq_1.c)
