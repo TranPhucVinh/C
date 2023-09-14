@@ -106,3 +106,16 @@ struct tasklet_struct
 };
 ```
 # Workqueue API
+Statically declare a workqueue:
+
+```c
+DECLARE_WORK(struct work_struct name,  void (*func)(void *)); 
+```
+
+```c
+int schedule_work(struct work_struct *work);
+```
+Dsetroy the statically created workqueue:
+```c
+void destroy_work_on_stack(struct work_struct *work);
+```
