@@ -44,7 +44,7 @@ gcc increase_shared_mem_value.c
 **Result** ``540637 1183649`` (Expected ``(don't care 1st a.out&) 2000000 (2nd a.out& must be 2000000)`` 
 **Problem solved**: Program [2_processes_increase_a_sysv_shared_mem_value.c](2_processes_increase_a_sysv_shared_mem_value.c) with a POSIX named semaphore previously created by [sem_open()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open).
 # Two processes increase the value of a POSIX shared memory region
-``write_shared_mem.c``
+``write_posix_shared_mem.c``
 ```c
 #include <stdio.h>
 #include <sys/types.h>
@@ -97,11 +97,11 @@ int main(){
 Script to run:
 ```sh
 set -e #Quit script if any command, like gcc write_shared_mem.c, fails
-./remove_shared_mem 
-./create_shared_mem  
-gcc write_shared_mem.c -o write_shared_mem -lrt
-./write_shared_mem & # Run write_shared_mem as background job
-./write_shared_mem & # Run write_shared_mem as background job
+./remove_posix_shared_mem 
+./create_posix_shared_mem  
+gcc write_posix_shared_mem.c -o write_posix_shared_mem -lrt
+./write_posix_shared_mem & # Run write_shared_mem as background job
+./write_posix_shared_mem & # Run write_shared_mem as background job
 ```
 **Result**
 ```sh
