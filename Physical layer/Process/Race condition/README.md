@@ -42,7 +42,10 @@ gcc increase_shared_mem_value.c
 # ./a.out
 ```
 **Result** ``540637 1183649`` (Expected ``(don't care 1st a.out&) 2000000 (2nd a.out& must be 2000000)`` 
+
 **Problem solved**: Program [2_processes_increase_a_sysv_shared_mem_value.c](2_processes_increase_a_sysv_shared_mem_value.c) with a POSIX named semaphore previously created by [sem_open()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open).
+
+For this System V race condition, espeically with shmget() which takes an existed SHM_KEY, using [sem_open()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open) to solve the race condition is the best solution. Using unamed semaphore [sem_init()]() doesn't work as its memory mapping to share the unamed semaphore between the processes require the file descriptor from the share memory reqgion which doesn't exist in the System V shared memory API. Reference to the [sem_init implementation to solve the same race condition issue in POSIX shared memory]().
 # Two processes increase the value of a POSIX shared memory region
 ``write_posix_shared_mem.c``
 ```c
