@@ -68,7 +68,7 @@ The ``pshared`` argument indicates whether this semaphore is to be shared betwee
 
 If ``pshared`` has the value ``0``, then the semaphore is shared between the threads of a process, and should be located at some address that is visible to all threads (e.g., a global variable, or a variable allocated dynamically on the heap).
 
-If ``pshared`` is nonzero, then the semaphore is shared between processes, and should be located in a region of shared memory.
+If ``pshared`` is nonzero, then the semaphore is shared between processes, and should be located in a region of shared memory. For implementation of sem_init with ``pshared`` is nonzero to share between processes to handle race condition, check [Process race condition: Two processes increase the value of a POSIX shared memory region](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Race%20condition#two-processes-increase-the-value-of-a-posix-shared-memory-region) and the [sem_init() implementation to solve that race condition](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Race%20condition/2_processes_increase_a_posix_shared_mem_value_sem_init.c).
 
 ## sem_wait() and sem_post()
 
