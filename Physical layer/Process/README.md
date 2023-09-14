@@ -35,7 +35,11 @@ printf("Parent PID or PPID %d\n", getppid());
 ``getpid()`` returns the process ID of the calling process (this is often used by routines that generate unique temporary filenames)
 
 ``getppid()`` returns the **PPID**, i.e **ID of the parent process**, the process that create the child process. When running a process inside a terminal, its PPID is the PID of this terminal.
-
+## ftok()
+```c
+key_t ftok(const char *pathname, int id);
+```
+Convert a ``pathname`` and an ``id`` to a System V IPC key to be used for [msgget()](https://github.com/TranPhucVinh/C/blob/5404146d439518f91248821a945bf33ec95425b2/Physical%20layer/Process/Message%20queue/README.md#msgget), [semget()](), or [shmget()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Shared%20memory/README.md#shmget).
 ## exit()
 
 Exit the current program (as a process) and return value ``status`` for the further process.
