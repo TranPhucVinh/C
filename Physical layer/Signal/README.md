@@ -38,6 +38,9 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * [SIGKILL](Working%20with%20specific%20signal.md#sigkill): immediately terminate a process, **SIGKILL** cannot be caught, handled or ignored. It is impossible to block this signal.
 * [SIGSTOP and SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
 * [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
+* [SIGBUS](): SIGBUS is triggered when
+  * 1. A bus error is a fault raised by hardware, notifying an operating system (OS) that a process is trying to access memory that the CPU cannot physically address.
+  * 2. Process tries to access an undefined virtual memory address. Although trying to access an undefined virtual memory address is generally considered to be a segmentation fault rather than a bus error, the processor cannot tell the difference and treats it as the SIGBUS.
 
 ## Implementation
 
