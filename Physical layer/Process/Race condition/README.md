@@ -1,6 +1,7 @@
 # Two processes increase the value of a System V shared memory region
 
 Start 2 process which increases the value of a shared memory region. By using a shell script to start them in order to cause race condition, run those processes as background.
+
 ``increase_shared_mem_value.c``
 ```c
 #include <stdio.h>
@@ -113,4 +114,7 @@ gcc write_posix_shared_mem.c -o write_posix_shared_mem -lrt
 ```
 To solve that race condition, we can use an existed POSIX semaphore to manage the shared memory value between the 2 background job ``write_shared_mem``.
 
-**Problem solved**: Program [2_processes_increase_a_sysv_shared_mem_value.c](2_processes_increase_a_sysv_shared_mem_value.c) with a POSIX named semaphore previously created by [sem_open()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open).
+**Problem solved**: 
+
+* Program [2_processes_increase_a_posix_shared_mem_value.c](2_processes_increase_a_posix_shared_mem_value.c) with a **POSIX named semaphore** previously created by [sem_open()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open) (named semaphore).
+* Program [2_processes_increase_a_posix_shared_mem_value_sem_init.c](2_processes_increase_a_posix_shared_mem_value.c) with a **POSIX unnamed semaphore** created by [sem_init()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open) along with the memory sharing/trauncating process achieved by [mmap()]().
