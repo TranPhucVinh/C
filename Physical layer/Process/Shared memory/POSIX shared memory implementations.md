@@ -1,3 +1,14 @@
+# General define
+```c
+#include <stdio.h>
+#include <fcntl.h>           /* For O_* constants */
+#include <errno.h>
+#include <sys/mman.h>
+#include <sys/stat.h>        /* For mode constants */
+#include <fcntl.h>           /* For O_* constants */
+
+#define SHARED_MEM_NAME    "/SHARED_MEMORY"
+```
 # Create a POSIX shared memory
 ```c
 int main(){
@@ -18,17 +29,6 @@ int main(){
         printf("errno %d\n", errno);
     } else printf("Create %s successfully\n", SHARED_MEM_NAME); 
 }
-```
-# General define
-```c
-#include <stdio.h>
-#include <fcntl.h>           /* For O_* constants */
-#include <errno.h>
-#include <sys/mman.h>
-#include <sys/stat.h>        /* For mode constants */
-#include <fcntl.h>           /* For O_* constants */
-
-#define SHARED_MEM_NAME    "/SHARED_MEMORY"
 ```
 
 # Write value to the created POSIX shared memory
