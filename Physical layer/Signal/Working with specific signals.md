@@ -119,5 +119,10 @@ Signal 8 is caught, divided by 0
 .... // Run forever
 ```
 **Must**: The divided-by-0 result must be stored into a variable to trigger **SIGFPE**. If simply call ``5/0``, **SIGFPE** won't be triggered.
-# SIGTTIN
-# SIGTTOU
+# [SIGTTIN](SIGTTIN%20and%20SIGTTOU.md#sigttin)
+When a background job tries to read from its current terminal, SIGTTIN will be triggered
+* [Trigger SIGTTIN as the background job]()
+* [Can't trigger SIGTTIN when a foreground job starts the background job which wants to have SIGGTTIN]()
+
+# [SIGTTOU](SIGTTIN%20and%20SIGTTOU.md#sigttou)
+# SIGBUS
