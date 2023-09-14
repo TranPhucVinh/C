@@ -1,4 +1,4 @@
-# One thread function handler to increase a share value
+# One thread function handler to increase a shared value
 
 ```c
 #include <stdio.h>
@@ -35,6 +35,14 @@ With ``RANGE`` is less than ``10000``, that data race issue doesn't happen, as t
 * [Using mutex](Mutex.md)
 * [Using semaphore](Semaphore.md)
 
+**Note**: For both mutex and semaphore solution, if putting a debug line like this inside the ``thread_function()``:
+```c
+void *thread_function(void *ptr){
+	for (int i = 0; i < RANGE; i++) share_value++;
+	printf("share_value %d", share_value);
+}
+```
+**Result**
 # One thread function handler to increase and decrease a shared value
 
 In this case, we expect the shared value to be ``0``

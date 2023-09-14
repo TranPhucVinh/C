@@ -52,15 +52,15 @@ If ``pshared`` is nonzero, then the semaphore is shared between processes, and s
 * ``sem_wait()``: lock a semaphore
 * ``sem_post()``: unlock a semphore
 
-# One thread function handler to increase a share value issue, solved by semaphore
+# One thread function handler to increase a shared value issue, solved by semaphore
 
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value):
 
-Program: [multiple_threads_increase_shared_value.c](multiple_threads_increase_shared_value.c)
+Program: [multiple_threads_increase_shared_value.c](src/multiple_threads_increase_shared_value.c)
 
 # Accessing a shared variable between 2 thread function handlers issue, solved by semaphore
 
-Program: [multiple_threads_access_shared_value.c](multiple_threads_access_shared_value.c)
+Program: [multiple_threads_access_shared_value.c](src/multiple_threads_access_shared_value.c)
 
 **Result**
 
