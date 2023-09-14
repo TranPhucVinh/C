@@ -42,7 +42,13 @@ void *thread_function(void *ptr){
 	printf("share_value %d", share_value);
 }
 ```
-**Result**
+**Result**:
+```
+7977229 #Thread 1
+8736671 #Thread 2
+9000000 #Thread 3
+```
+``7977229`` in thread 1 means its has already finished increasing from 1 to ``RANGE`` for share_value while thread 2 and thread 3 are still increasing. Same explanation for ``8736671`` in thread 2.
 # One thread function handler to increase and decrease a shared value
 
 In this case, we expect the shared value to be ``0``
