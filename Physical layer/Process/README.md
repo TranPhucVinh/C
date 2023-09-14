@@ -1,9 +1,4 @@
-# Fundamental concepts
-
-* [Process cloning](Process%20cloning)
-* [Inter-process communication](#inter-process-communication)
-
-## Inter-process communication
+# Inter-process communication
 
 Inter-process communication methods are:
 * [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
@@ -15,7 +10,7 @@ Inter-process communication methods are:
 * [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
 
 Command [ipcs](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Process/System%20V%20IPC.md#ipcs) is useful for checking the message queue, shared memory and semaphore information.
-
+# [Process cloning](Process%20cloning)
 # RPC
 
 In distributed computing, a **remote procedure call** (**RPC**) is when a computer program causes a procedure (subroutine) to execute in a different address space (commonly on another computer on a shared network), which is written as if it were a normal (local) procedure call. This is **a form of client–server interaction** (**caller** is **client**, **executor** is **server**), typically implemented via a request–response message-passing system. 
