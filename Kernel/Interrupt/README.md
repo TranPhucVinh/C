@@ -10,7 +10,7 @@ The **top half** is our interrupt handler. If not much work is required, then th
 There are 4 **bottom half** mechanisms are available in Linux:
 * [Workqueue](): Executed in a process context
 * [Threaded IRQs](): implemented by [request_threaded_irq()](API.md#request_threaded_irq)
-* Softirqs: Executed in an atomic context
+* Softirqs: Executed in an atomic context. The softirq is rarely used as we have tasklets and tasklets are built on softirq. Most of the stuff, we can do using the tasklets.
 * [Tasklets](): Executed in an atomic context
 
 # [API](API.md)
