@@ -30,7 +30,30 @@ Types of semaphore:
 A [mutex](../Mutex.md) can be released by the same thread which acquired it while semaphore (especially binary semaphore when compared to mutex) values can be changed by other thread also.
 
 # POSIX API
+## sem_open()
+``sem_open()`` will create a named semaphore
+```c
+#include <stdio.h>
+#include <fcntl.h>           /* For O_* constants */
+#include <errno.h>
+#include <sys/stat.h>        /* For mode constants */
+#include <semaphore.h>
 
+#define SEM_NAME    "/SEMAPHORE_SHARED_MEM"//Semaphore for shared memory; must started with /
+#define SEM_INIT_vALUE  1 //Semaphore initialize value
+sem_t *sem;
+
+int main(){
+    sem = sem_open(SEM_NAME, O_CREAT|O_RDWR, 777, SEM_INIT_vALUE);
+    if (sem == SEM_FAILED) {
+        printf("Fail to create %s\n", SEM_NAME);
+        printf("errno %d\n", errno);
+        if (errno == 13) printf("Permission denied\n");
+    }
+    else printf("Create %s successfully\n", SEM_NAME);
+}
+```
+This POSIX named semaphore then be available inside ``/dev/shm/sem.SEMAPHORE_SHARED_MEM``
 ## sem_init()
 
 ```c
