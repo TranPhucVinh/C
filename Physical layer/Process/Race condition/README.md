@@ -42,6 +42,7 @@ gcc increase_shared_mem_value.c
 # ./a.out
 ```
 **Result** ``540637 1183649`` (Expected ``(don't care 1st a.out&) 2000000 (2nd a.out& must be 2000000)`` 
+**Problem solved**: Program [2_processes_increase_a_sysv_shared_mem_value.c](2_processes_increase_a_sysv_shared_mem_value.c) with a POSIX named semaphore previously created by [sem_open()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open).
 # Two processes increase the value of a POSIX shared memory region
 ``write_shared_mem.c``
 ```c
@@ -55,7 +56,7 @@ gcc increase_shared_mem_value.c
 #define SIZE    50// Size of the share memory segment
 
 #define SHM_ADDR         NULL
-#define SHARED_MEM_PATH    "/dev/shm/SHARED_MEMORY" 
+#define SHARED_MEM_PATH    "/dev/shm/SHARED_MEMORY" //POSIX shared memory path
 #define DUMMY_PROJECT_ID   1
 
 int id;
@@ -108,4 +109,5 @@ gcc write_shared_mem.c -o write_shared_mem -lrt
 1049490 //Expected 2000000
 ```
 To solve that race condition, we can use an existed POSIX semaphore to manage the shared memory value between the 2 background job ``write_shared_mem``.
+
 **Problem solved**: Program [2_processes_increase_a_sysv_shared_mem_value.c](2_processes_increase_a_sysv_shared_mem_value.c) with a POSIX named semaphore previously created by [sem_open()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md#sem_open).
