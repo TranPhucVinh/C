@@ -167,7 +167,37 @@ Total argument: 2
 ```
 
 **Application**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
+# Short-Circuiting
+Short-circuiting is one of the optimization steps of the compiler, in this step unnecessary calculation is avoided during the evaluation of an expression. Expression is evaluated from left to right. It works under && and || operator, when the value of the expression can be calculated certainly by only evaluating parts of the expression.
+```cpp
+int a = 1, b = 1, c = 1;
 
+if (a == b || c++) {
+	printf("%d\n", c);// 1
+}
+printf("%d\n", c);// 1
+
+if (a != b && c++) {
+	printf("%d\n", c);// 1
+}
+printf("%d\n", c);// 1
+```
+``(a == b || c++)`` as ``a`` is equal to ``b`` so ``||`` is always right, then ``c++`` is not calculated.
+
+``(a != b && c++)`` as ``a != b`` is wrong so ``&&`` is alway wrong, then ``c++`` is not calculated.
+
+If the left side of the || expression is wrong/&& expression is true, the right side will be calculated. 
+```c
+int a = 1, b = 1, c = 1;
+
+if (a != b || c++) {
+	printf("%d\n", c);// 2
+}
+
+if (a == b && c++) {
+	printf("%d\n", c);// 3
+}
+```
 # Other concepts
 
 * [Definition and Declaration](Definition%20and%20Declaration.md)
