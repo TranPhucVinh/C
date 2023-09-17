@@ -1,7 +1,6 @@
 ``size a.out``: displays the size of the text, initialized data, and uninitialized data (bss) segments of binary executable file ``a.out``
 
-# [Embedded command](Embedded%20command.md)
-
+# Embedded command
 ## system()
 
 Run embedded Unix or Windows commands in ``C`` source code
@@ -12,7 +11,7 @@ int system(const char *command);
 ```
 **Return**
 * ``-1``: Error
-* Status number of command when sucess
+* Status number of command when success
 **Example**:
 ```c
 system("ls"); //Run ls command
@@ -25,7 +24,7 @@ On Windows, the ``a.exe`` of this file will run normally in Git Bash and will re
 [Use system() to start and kill a background job, which includes while(1) loop](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Background%20job):
 * [Use system() to start a background job which includes a while(1) loop]()
 * [Kill the infinite background job by signal]()
-* [Run the infinite background job, get its PID then kills it by functions inside in the parent process]()
+* [Run the infinite background job, get its PID then kill it by functions inside in the parent process]()
 ## popen() and pclose()
 The ``popen()`` function opens a process by creating a pipe, forking, and invoking the shell.
 
