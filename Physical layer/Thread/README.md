@@ -142,6 +142,7 @@ range_2.upper_range = N/3 + N/3;
 range_3.lower_range = N/3 + N/3 + 1;
 range_3.upper_range = N;
 ```
+## [Multithread HTTP server built on TCP API](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20server#multithread-http-server-built-on-tcp-api)
 
 # Other concepts
 
