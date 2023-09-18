@@ -23,6 +23,33 @@ The ``pthread_join()`` function waits for the thread specified by ``thread`` to 
 If ``retval`` is not ``NULL``, then ``pthread_join()`` copies the exit status  of the target thread (i.e., the value that the target thread supplied to [pthread_exit()](API.md#pthread_exit)) into the location pointed to by ``retval``.  If the target thread was canceled, then ``PTHREAD_CANCELED`` is placed in the location pointed to by ``retval``.
 
 On success, ``pthread_join()`` returns ``0``; on error, it returns an error number.
+**Important note**: Please note that **pthread_join() doesn't start, create or join the specified thread to the current process** as **pthread_create()** has already done that. **pthread_join()** just simply waits for the thread it specified to finish execution. [Using pthread_join() for the thread included while(1) loop will block the program](#).
+## pthread_join() will block the process if the thread it specifies included while(1)
+
+The thread specified by pthread_join() which includes ``while(1)`` like this will block the program. The lines of code befine pthread_join() then won't be reached:
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
+
+void *display_string(void *ptr){
+	while (1){
+        printf("%s\n", (char*)ptr);
+        sleep(1);
+    }
+}
+
+int main()
+{  
+	pthread_t thread_id;
+	pthread_t str_thread;
+    char str[] = "Hello, World !";
+    pthread_create(&str_thread, NULL, display_string, str);
+    pthread_join(str_thread, NULL);
+	printf("str_thread_ finish executing\n");//This line of code won't be reached as pthread_join() has blocked the program
+    printf("Thread ID %lu\n", thread_id);//This line of code won't be reached as pthread_join() has blocked the program
+}
+```
 # pthread_exit()
 ```c
 void pthread_exit(void *retval);
