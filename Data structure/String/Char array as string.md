@@ -25,6 +25,15 @@ printf("string: %s", REQUEST);
 ```
 
 This define can be implemented identically  with [char pointer](Char%20pointer%20as%20string.md)
+
+[Define with formated string, this is useful when using snprintf() function](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/String/String%20copy%20functions.md#snprintf)
+```c
+char displayed_string[] = "String: %s ";
+char buffer[50];
+
+snprintf(buffer, 50, displayed_string, "Hello, World !");
+printf("%s", buffer);//String: Hello, World ! 
+```
 # Read by index
 
 ```c
