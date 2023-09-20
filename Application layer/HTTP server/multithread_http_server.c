@@ -130,7 +130,7 @@ void *http_client_thread_handler(void *ptr){
 	bzero(req_buf, BUFFSIZE);//Delete buffer
 
 	http_client_fd = http_client_obj->http_client_fd;
-	//putting while(1) will block another newly connected HTTP client as a new thread
+	
 	while(1){
 		int bytes_received = read(http_client_fd, req_buf, BUFFSIZE);
 		if (bytes_received > 0) {
