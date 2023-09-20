@@ -25,8 +25,7 @@ printf("string: %s", REQUEST);
 ```
 
 This define can be implemented identically  with [char pointer](Char%20pointer%20as%20string.md)
-
-Index handler
+# Read by index
 
 ```c
 char helloWorld[] = "Hello world 10 times";
@@ -34,7 +33,7 @@ printf("%s \n",helloWorld+3); //lo world 10 times
 printf("%c \n", helloWorld[3]); //l
 ```
 
-Change value
+# Change string value at specific index
 
 ```c
 char hw[] = "Hello, World!";
