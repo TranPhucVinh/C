@@ -7,7 +7,7 @@ unsigned char displayedString[] = "Hello, World !";
 printf("%s\n", displayedString);////Hello, World!
 ```
 
-**Other way to define**
+**Define with multiple ""**
 
 ```c
 #include <stdio.h>
