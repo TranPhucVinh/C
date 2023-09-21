@@ -46,10 +46,49 @@ int main()
 	pthread_t str_thread;
     char str[] = "Hello, World !";
     pthread_create(&str_thread, NULL, display_string, str);
-    pthread_join(str_thread, NULL);
+	pthread_join(str_thread, NULL);
 	printf("str_thread_ finish executing\n");//This line of code won't be reached as pthread_join() has blocked the program
     printf("Thread ID %lu\n", thread_id);//This line of code won't be reached as pthread_join() has blocked the program
+	while(1){//This while(1) loop won't be reached as pthread_join() has blocked the program
+		printf("Thread display_string() is running now\n");
+		sleep(1);
+	}
 }
+```
+**Result**:
+```
+Hello, World !
+Hello, World !
+...
+```
+# pthread_detach()
+```cpp
+int pthread_detach(pthread_t thread);
+```
+Using [pthread_detach()]() to run the thread independently. This is useful to avoid the thread which includes the infinitely loop blocking the program:
+In [the pthread_join() program above which blocks the process as its thread includes while(1)](#pthread_join-will-block-the-process-if-the-thread-it-specifies-included-while1), change pthread_join() to pthread_detach():
+```cpp
+pthread_t thread_id;
+pthread_t str_thread;
+char str[] = "Hello, World !";
+pthread_create(&str_thread, NULL, display_string, str);
+pthread_detach(str_thread);
+printf("str_thread_ finish executing\n");
+printf("Thread ID %lu\n", thread_id);
+while(1){
+	printf("Thread display_string() is running now\n");
+	sleep(1);
+}
+```
+**Result**
+```
+str_thread_ finish executing
+Thread ID 0
+Thread display_string() is running now
+Hello, World !
+Thread display_string() is running now
+Hello, World !
+...
 ```
 # pthread_exit()
 ```c
