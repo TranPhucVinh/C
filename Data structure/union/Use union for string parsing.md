@@ -1,10 +1,36 @@
-## Example 1
+# Union packing 4 8-bit int numbers to a 32-bit number
+```cpp
+#include <stdio.h>
+#include <stdint.h>
+
+union ipv4 {
+	struct {
+		uint8_t a;
+		uint8_t b;
+		uint8_t c;
+		uint8_t d;
+	} bytes;
+	uint32_t int32;
+};
+
+int main( int argc, char ** argv ) {
+	union ipv4 addr;
+	addr.bytes = { 192, 168, 0, 96 };
+	printf("%d.%d.%d.%d - (%d)\n", addr.bytes.a, addr.bytes.b, addr.bytes.c, addr.bytes.d, addr.int32);//192.168.0.96 - (1610655936)
+	return 0;
+}
+```
+**Explain**:
+```
+1100000000000001010100011000000 = 1610655936 = 0b1100000 (0d96). 00000000 (0d0). 10101000 (0d168). 11000000 (0d192)
+```
+# Parse a char array into 3 smaller char array
 
 Using ``struct`` inside ``union`` to split a string with the following sequence ``id``,  ``command`` and ``check_sum``.
 
 E.g: ``12345`` has ``id`` is ``1``, ``command`` is ``234`` and ``check_sum`` is ``5``.
 
-### Program
+## Program
 
 ```c
 #include <stdio.h>
@@ -44,7 +70,7 @@ printf("%s\n", frame.data.command);//2345
 printf("%s\n", frame.data.check_sum);//5
 ```
 
-### Setting up value for parsing
+## Setting up value for parsing
 
 ```c
 #include <stdio.h>
@@ -110,7 +136,7 @@ static char check_sum[1];
 
 However using ``static`` is not actuall prefered. Converting string to hex value for later parsing, check **Example 2**.
 
-## Example 2
+# Parse a char array into smaller chars and numbers
 
 Parsing a char array into the following fields
 
@@ -124,6 +150,6 @@ Char array: ``0x24 0x00 0x01 0x1A 0x05 0x1F 0x20 0x2F 0x1C 0x17 0x20 0x61``
 * Soil temperature: ``23,32`` (``0x17`` ``0x20``)
 * Checksum: 0x61 (OR 11 bytes give 0x0261, 0x61 is the lower byte)
 
-Program: ``union_string_parsing.c``
+Program: [union_string_parsing.c](union_string_parsing.c)
 
 **Note**: For not using ``printf()`` and ``write()`` function to display the result, set up debug with GDB to watch the variable. Parsed variables like ``dcd_header[1]``, ``id[8]``, ``checksum[8]``,... must be declared as local variable inside ``union_string_parsing()`` for ``Watch`` in GDB.
