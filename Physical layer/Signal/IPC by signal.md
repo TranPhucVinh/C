@@ -1,4 +1,4 @@
-### sigqueue(): Sending signal and an int number from a process to other process
+# sigqueue(): Sending signal and an int number from a process to other process
 
 Send signal ``SIGUSR1`` and parameter with int value ``12`` to process with macro ``PID`` by using ``sigqueue()``
 
@@ -58,7 +58,7 @@ int main(){
 	while(1);//Start an infinite loop and handle with signal
 }
 ```
-### sigqueue(): Can't send void* sival_ptr from a process to other process
+# sigqueue(): Can't send void* sival_ptr from a process to other process
 
 Can't send a pointer from a process to other process by this method
 
