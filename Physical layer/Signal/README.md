@@ -11,7 +11,7 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * [SIGSEGV](Working%20with%20specific%20signals.md#sigsegv) (Signal Segmentation Violation): Invalid access to storage − When a program tries to read or write outside the memory it is allocated for it.
 * ``SIGTERM`` (Signal Terminate): politely ask a program to terminate. Unlike [SIGKILL](Working%20with%20specific%20signal.md#sigkill), this signal can be blocked, handled, and ignored.
 
-``Unix`` and ``Unix-like`` operating systems (such as Linux) define more than 15 additional signals. The whole supported signals are:
+**Unix** and **Unix-like** operating systems (such as Linux) define more than 15 additional signals. The whole supported signals are:
 
 1. [SIGHUP](Working%20with%20specific%20signal.md#sighup-sigusr1-sigusr2-can-stop-a-process-without-signal_handler-required) can be used to stop a process without signal_handler() required.
 2. [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint) (Signal Interrupt)
