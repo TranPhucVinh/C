@@ -24,7 +24,7 @@ If ``retval`` is not ``NULL``, then ``pthread_join()`` copies the exit status  o
 
 On success, ``pthread_join()`` returns ``0``; on error, it returns an error number.
 
-**Important note**: **pthread_join() doesn't start, create or join the specified thread to the current process** as **pthread_create()** has already done that. **pthread_join()** just simply waits for the thread it specified to finish execution. [Using pthread_join() for the thread included while(1) loop will block the program](#).
+**Important note**: **pthread_join() doesn't start, create or join the specified thread to the current process** as **pthread_create()** has already done that. **pthread_join()** just simply waits for the thread it specified to finish execution. [Using pthread_join() for the thread included while(1) loop will block the program](#pthread_join-will-block-the-process-if-the-thread-it-specifies-included-while1).
 ## pthread_join() will block the process if the thread it specifies included while(1)
 
 The thread specified by pthread_join() which includes ``while(1)`` like this will block the program. The lines of code befine pthread_join() then won't be reached:
