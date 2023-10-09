@@ -1,1 +1,1 @@
-* ``ES-SM-TH-01S.c``: Read soil humidity every 1 second
+* [ES-SM-TH-01S.c](ES-SM-TH-01S.c): Read soil humidity every 1 second
