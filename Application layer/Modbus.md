@@ -1,1 +1,0 @@
-Check ES-SM-TH-01S soil moisure sensor for Modbus implementation.

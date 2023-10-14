@@ -1,0 +1,1 @@
+Modbus RTU master/client reads multiple holding register of **ES-SM-TH-01S** soil sensor as a slave every 1 second [ES-SM-TH-01S.c](ES-SM-TH-01S.c).
