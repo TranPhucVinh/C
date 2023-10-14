@@ -45,8 +45,8 @@ Thread ID 140053257754368
 
 ## Program's flow
 
-* **Step 1**: Execute thread 1 ([pthread_join()](API.md#pthread_join))
-* **Step 2**: Perform program operation behind [pthread_join()](API.md#pthread_join)
+* **Step 1**: Execute thread 1. ([pthread_join()](API.md#pthread_join) will make the current process to wait for all operations in thread 1 to finish.
+* **Step 2**: Perform program operation after thread 1 finishes executing, i.e perform program operation behind [pthread_join()](API.md#pthread_join)
 
 If the thread is an infinite loop, the program operation behind [pthread_join()](API.md#pthread_join) can't be reached.
 
@@ -56,7 +56,6 @@ When not using [pthread_join()](API.md#pthread_join):
 int main()
 {  
 	pthread_t thread_1;
-
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	printf("thread_1 finish executing\n");
 }
@@ -68,22 +67,17 @@ int main()
 thread_1 finish executing
 ```
 
-We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem, use [pthread_join()](API.md#pthread_join).
-
-## Thread is blocked by while(1)
-
-Based on the program flow defined above as thread function handler needs to finish executing to start the later steps, thread function handler which includes ``while(1)`` like this is expected to be blocked permanently and the operations after its [pthread_join()](API.md#pthread_join) call won't be executed. However, this program will execute 2 threads normally: [2_threads_include_while_1.c](src/2_threads_include_while_1.c)
-**Result**: Test on WSL Ubuntu 20.04
+We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem without using [pthread_join()](API.md#pthread_join), we can put ``sleep(1)``:
+```c
+int main()
+{  
+	pthread_t thread_1;
+	pthread_create(&thread_1, NULL, func_thread_1, NULL);
+	printf("thread_1 finish executing\n");
+	sleep(1);
+}
 ```
-Hello, World !
-56
-Hello, World !
-56
-Hello, World !
-56
-Hello, World !
-```
-However, [the same program implemented with G++ pthread](https://github.com/TranPhucVinh/Cplusplus/blob/master/Physical%20layer/Thread/Fundamental%20concepts.md#thread-is-blocked-by-while1) result in str_thread blocking.
+**Note for using [pthread_join()](API.md#pthread_join)**: **pthread_join() doesn't start, create or join the specified thread to the current process** as **pthread_create()** has already done that. **pthread_join()** just simply waits for the thread it specified to finish execution. [Using pthread_join() for the thread included while(1) loop will block the program](API.md#pthread_join-will-block-the-process-if-the-thread-it-specifies-included-while1).
 
 ## Fundamental concepts examples
 
@@ -95,7 +89,7 @@ However, [the same program implemented with G++ pthread](https://github.com/Tran
 
 # Inter-task communication
 
-[Using global variable to share values between 2 threads](src/share_global_variables_between_2_threads.c)
+## [Using global variable to share values between 2 threads](src/share_global_variables_between_2_threads.c)
 ## pthread doesn't have API for suspending and resuming thread
 pthread doesn't have functions to suspend and resume thread. Suspend and resume features must be implemented by [mutex](Race%20condition/Mutex.md) and [conditional variable](Race%20condition/Mutex.md#condition-variable). Check [suspend and resume between 2 threads example](suspend_and_resume_threads.c). For efficient implementation, suspend and resume threads must be implemented with OOP. Check [the corresponding document in CPP](https://github.com/TranPhucVinh/Cplusplus/tree/master/Physical%20layer/Thread#suspend-and-resume-threads) for that implementation.
 
@@ -111,12 +105,13 @@ When 2 threads try to access a resource, data race might happen if the racing be
 * [Accessing a shared variable between 2 thread function handlers](Race%20condition/README.md#accessing-a-shared-variable-between-2-thread-function-handlers)
 * [Semaphore](Race%20condition/Semaphore.md)
 * [Mutex](Race%20condition/Mutex.md)
-
+# [Thread barrier](Thread%20barrier.md)
 # [API](API.md)
 * [pthread_create()](API.md#pthread_create)
 * [pthread_join()](API.md#pthread_join)
 * [pthread_self()](API.md#pthread_self)
-
+* [pthread_barrier_init()](Thread%20barrier.md#pthread_barrier_init)
+* [pthread_barrier_destroy()](Thread%20barrier.md#pthread_barrier_destroy)
 # Application
 
 ## Use multiple threads for calculation
@@ -148,6 +143,7 @@ range_2.upper_range = N/3 + N/3;
 range_3.lower_range = N/3 + N/3 + 1;
 range_3.upper_range = N;
 ```
+## [Multithread HTTP server built on TCP API](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20server#multithread-http-server-built-on-tcp-api)
 
 # Other concepts
 

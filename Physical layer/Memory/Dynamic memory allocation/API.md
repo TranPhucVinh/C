@@ -124,7 +124,7 @@ printf("size %d \n", strlen(str)); //12
 ```
 
 # free()
-
+``free()`` will deallocated the allocated dynamic memory region
 ```c
 int *intPointer;
 
@@ -135,7 +135,17 @@ printf("Int value before: %d \n", *intPointer); //12
 free(intPointer);
 printf("Int value after: %d \n", *intPointer); //0
 ```
-
+Assign value to the deallocated pointer result in unexpected behavior:
+```c
+intPointer = (int *) malloc(1);
+*intPointer = 12;
+    
+printf("Int value before: %d \n", *intPointer); //12
+free(intPointer);
+printf("Int value after: %d \n", *intPointer); //0
+*intPointer = 134;// Assign value to the deallocated pointer result in unexpected behavior
+// This is the result when running on WSL 20.04 and Xilinx Linux 5.15 board
+printf("Int value after: %d \n", *intPointer); //134
 # calloc()
 
 Dynamic allocating a region of memory like ``malloc()`` then set ``NULL`` value to all member inside that memory block. calloc() is corresponded to [kzalloc() in Kernel space](https://github.com/TranPhucVinh/C/tree/master/Kernel/Dynamic%20allocation#kzalloc).

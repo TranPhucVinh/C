@@ -126,56 +126,30 @@ When a background job tries to read from its current terminal, SIGTTIN will be t
 
 # [SIGTTOU](SIGTTIN%20and%20SIGTTOU.md#sigttou)
 # SIGBUS
-When mapping memory with mmap() for an unnamed semaphore with the wrong length, SIGBUS is triggered:
+When mapping memory with mmap() for an unnamed semaphore with the wrong length, SIGBUS is triggered. Program: [trigger_sigbus_by_mmap.c](trigger_sigbus_by_mmap.c)
 
+Check the [sem_init implementation for process race condition: Two processes increase the value of a POSIX shared memory region](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Race%20condition/2_processes_increase_a_posix_shared_mem_value_sem_init.c) for the correct way of mapping memory for unnamed semaphore.
+# SIGSEGV
+Write value to a string char pointer like this will trigger **SIGSEGV** signal:
 ```c
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <fcntl.h>           /* For O_* constants */
-#include <sys/shm.h>
-#include <sys/mman.h>
-#include <semaphore.h>
-#include <signal.h>   
-
-#define SHM_NAME    "/SHARED_MEMORY"
-#define BASE_ADDR   0   //No specific base address to set in shared memory
-
-int     *ptr;
-sem_t   *sem_ptr;
-
-void signal_handler(int signal_number);
-
-int main(){
-    signal(SIGBUS, signal_handler);
-    int shm_fd = shm_open(SHM_NAME, O_CREAT|O_RDWR, 0777);
-    if (shm_fd < 0) {
-		printf("Unable to open %s\n", SHM_NAME);
-		return 0;
-	}
-	printf("Shared memory object %s is opened successfully with fd %d\n", SHM_NAME, shm_fd);
-
-    sem_ptr = mmap(NULL, sizeof(sem_t), PROT_WRITE, MAP_SHARED, shm_fd, BASE_ADDR);
-    if (sem_ptr < 0){
-        printf("mmap() for semaphore fails\n");
-        return 0;
-    }
-	printf("Semaphore mmap() successfully\n");
-
-	// This sem_init() triggers SIGBUS
-    if (sem_init(sem_ptr, 1, 1) == -1 ){
-        printf("Unable to init POSIX semaphore\n");
-        return 0;
-    }
-    printf("Init POSIX semaphore successfully\n");
-}
-
-void signal_handler(int signal_number){
-	char displayed_string[50];
-	bzero(displayed_string, 50);
-	
-	int sz = snprintf(displayed_string, sizeof(displayed_string), "SIGBUS: Signal %d is caught\n", signal_number);
-	write(STDOUT_FILENO, displayed_string, sz); 
+int main( int argc, char ** argv ) {
+	signal(SIGSEGV, signal_handler);
+  char *p = NULL ;
+  *p = 'A' ;
 }
 ```
-Check the [sem_init implementation for process race condition: Two processes increase the value of a POSIX shared memory region](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Race%20condition/2_processes_increase_a_posix_shared_mem_value_sem_init.c) for the correct way of mapping memory for unnamed semaphore.
+As assigning value to the deallocated pointer result in unexpected behavior, this won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
+```c
+signal(SIGSEGV, signal_handler);
+int *intPointer;
+
+// This won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
+intPointer = (int *) malloc(1);
+*intPointer = 12;
+	
+printf("Int value before: %d \n", *intPointer); //12
+free(intPointer);
+printf("Int value after: %d \n", *intPointer); //0
+*intPointer = 134;// Assign value to the deallocated pointer result in unexpected behavior
+printf("Int value after: %d \n", *intPointer); //134
+```

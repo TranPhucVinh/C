@@ -7,7 +7,7 @@ unsigned char displayedString[] = "Hello, World !";
 printf("%s\n", displayedString);////Hello, World!
 ```
 
-**Other way to define**
+**Define with multiple ""**
 
 ```c
 #include <stdio.h>
@@ -26,7 +26,15 @@ printf("string: %s", REQUEST);
 
 This define can be implemented identically  with [char pointer](Char%20pointer%20as%20string.md)
 
-Index handler
+[Define with formatted string, this is useful when using snprintf() function](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/String/String%20copy%20functions.md#snprintf)
+```c
+char displayed_string[] = "String: %s ";
+char buffer[50];
+
+snprintf(buffer, 50, displayed_string, "Hello, World !");
+printf("%s", buffer);//String: Hello, World ! 
+```
+# Read by index
 
 ```c
 char helloWorld[] = "Hello world 10 times";
@@ -34,7 +42,7 @@ printf("%s \n",helloWorld+3); //lo world 10 times
 printf("%c \n", helloWorld[3]); //l
 ```
 
-Change value
+# Change string value at specific index
 
 ```c
 char hw[] = "Hello, World!";

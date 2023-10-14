@@ -134,9 +134,13 @@ struct sockaddr_in{
 
 * ``sin_family``, ``sa_family``: protocolFamily
 * ``sin_port``: port of socket
-* ``sin_addr``: IP address in byte order. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces.
+* ``sin_addr``: IP address in byte order. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces. With ``INADDR_ANY`` specified, then ``localhost``, ``0.0.0.0`` and ``127.0.0.1`` will all be available.
 * ``sin_zero``: not used, set value 0
 
+To bind to the IP address of the current device, e.g ``192.168.1.4``, use inet_addr:
+```c
+http_server_addr.sin_addr.s_addr = inet_addr("192.168.1.4");
+```
 For an implementation to parse IPv4 address from struct sockaddr_in, check [gethostbyname()]() [example to get the hostname information, including its IP address](../Application%20layer/HTTP%20client/TCP%20socket/get_host_information.c).
 
 # Other libraries

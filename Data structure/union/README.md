@@ -1,6 +1,6 @@
 A union is a special data type available in C that allows to store different data types in the same memory location.
 
-## Define
+# Define
 
 ```c
 union data {
@@ -41,7 +41,7 @@ int main (){
 }
 ```
 
-### Problem solved
+## Problem solved
 
 ```c
 data.i = 1;
@@ -75,7 +75,7 @@ printf("%s", float_buffer); //f: 1.000000
 printf("%s", string_buffer);//str: hello 
 ```
 
-### Size
+# Size
 
 ``union`` has the size of its biggest data type member
 
@@ -89,7 +89,7 @@ union Data {
 printf("size of data: %d", sizeof(data)); //20: size of str[20]
 ```
 
-## union as function argument
+# union as function argument
 
 ```c
 #include <stdio.h>
@@ -119,3 +119,7 @@ void unionFunction(union data data0){
     printf("data.str: %s\n", data0.str);
 }
 ```
+# [Union for string parsing]()
+* [Union packing 4 8-bit int numbers to a 32-bit number]()
+* [Parse a char array into 3 smaller char array]()
+* [Parse a char array into smaller chars and numbers]()
