@@ -3,7 +3,7 @@
 Open file/stream or possibly create a file
 
 ```c
-int fd = int open(const char *path, int mode)
+int fd = open(const char *path, int mode)
 ```
 
 ``path``: path of file or stream (like ``stdin``, ``stdout``, ``stderr``,...)
