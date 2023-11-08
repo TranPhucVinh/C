@@ -103,7 +103,7 @@ When 2 threads try to access a resource, data race might happen if the racing be
 * [One thread function handler to increase a share value](Race%20condition/README.md#one-thread-function-handler-to-increase-a-share-value)
 * [One thread function handler to increase and decrease a shared value](Race%20condition/README.md#one-thread-function-handler-to-increase-and-decrease-a-shared-value)
 * [Accessing a shared variable between 2 thread function handlers](Race%20condition/README.md#accessing-a-shared-variable-between-2-thread-function-handlers)
-* [Semaphore](Race%20condition/Semaphore.md)
+* [Semaphore](Semaphore.md)
 * [Mutex](Race%20condition/Mutex.md)
 # [Thread barrier](Thread%20barrier.md)
 # [API](API.md)
