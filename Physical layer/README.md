@@ -22,8 +22,7 @@ On Windows, the ``a.exe`` of this file will run normally in Git Bash and will re
 ``system("dir")`` will run properly in [Windows Command prompt](https://github.com/TranPhucVinh/Windows-Batch).
 
 [Use system() to start and kill a background job, which includes while(1) loop](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Background%20job/Background%20job%20with%20infinite%20loop.md):
-* [Use system() to start a background job which includes a while(1) loop]()
-* [Kill the infinite background job by signal]()
+* [Kill the infinite background job by signal](Background%20job%20with%20infinite%20loop.md#kill-the-infinite-background-job-by-signal)
 * [Run the infinite background job, get its PID then kill it by functions inside in the parent process]()
 ## popen() and pclose()
 The ``popen()`` function opens a process by creating a pipe, forking, and invoking the shell.
