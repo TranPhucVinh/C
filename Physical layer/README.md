@@ -24,6 +24,7 @@ On Windows, the ``a.exe`` of this file will run normally in Git Bash and will re
 [Use system() to start and kill a background job, which includes while(1) loop](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Background%20job/Background%20job%20with%20infinite%20loop.md):
 * [Kill the infinite background job by signal](Background%20job%20with%20infinite%20loop.md#kill-the-infinite-background-job-by-signal)
 * [Run the infinite background job, get its PID then kill it by functions inside in the parent process](Background%20job%20with%20infinite%20loop.md#run-the-infinite-background-job-get-its-pid-then-kills-it-by-functions-inside-in-the-parent-process)
+* [Stop background_job by SIGSTOP and continue it by SIGCONT](Process/Background%20job/Background%20job%20with%20infinite%20loop.md#stop-background_job-by-sigstop-and-continue-it-by-sigcont)
 ## popen() and pclose()
 The ``popen()`` function opens a process by creating a pipe, forking, and invoking the shell.
 
