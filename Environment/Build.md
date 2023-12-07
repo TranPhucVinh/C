@@ -19,26 +19,6 @@ OS-based application
 username@hostname:$ file a.out
 a.out: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=a03182d85b68de9f8682289e2411d7fa3e5fa820, for GNU/Linux 3.2.0, not stripped
 ```
-# C program compilation process
-
-![](../Environment/Images/gcc_compilation_process.png)
-
-**Preprocessor**
-
-Before compilation, preprocessor takes the source code and perform operation:
-* Remove new line, space, comment
-* Include header file
-
-**Compilation**: Build the output from preprocessor to assembly code (``.s``)
-
-**Assemble**: Compile assembly code to machine language (0 and 1). ``.o`` or ``.obj`` file will then output, those files (e.g ``main.o``) are all binary files.
-
-**Linker**: Linker will compile object files (e.g a1.o, a2.o, a3.o,...) and libraries (e.g C standard library) to produce a single executable file.
-
-![](../Environment/Images/linker.png)
-
-# Other definitions
-
 ## Cross compiler
 
 A cross compiler is a compiler capable of creating executable code for a platform other than the one on which the compiler is running. For example, a compiler that runs on a Windows 7 PC but generates code that runs on Android smartphone is a cross compiler.
@@ -56,3 +36,20 @@ GNU toolchain include: GNU Compiler
 On Windows, you can get the GNU toolchain when install:
 * MingGW
 * Cygwin
+# C program compilation process
+
+![](../Environment/Images/gcc_compilation_process.png)
+
+**Preprocessor**
+
+Before compilation, preprocessor takes the source code and perform operation:
+* Remove new line, space, comment
+* Include header file
+
+**Compilation**: Build the output from preprocessor to assembly code (``.s``)
+
+**Assemble**: Compile assembly code to machine language (0 and 1). ``.o`` or ``.obj`` file will then output, those files (e.g ``main.o``) are all binary files.
+
+**Linker**: Linker will compile object files (e.g a1.o, a2.o, a3.o,...) and libraries (e.g C standard library) to produce a single executable file.
+
+![](../Environment/Images/linker.png)

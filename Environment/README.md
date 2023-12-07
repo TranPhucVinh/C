@@ -1,8 +1,9 @@
 # Software development environment
 
-## Build process
-
-Check [Build document](Build.md)
+* Bare metal vs OS-based applications
+* [Cross compiler](Build.md#cross-compiler)
+* [Toolchain](Build.md#toolchain)
+* [C program compilation process](Build.md#c-program-compilation-process)
 
 ## [GCC compiler](GCC%20compiler.md)
 
