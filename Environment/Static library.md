@@ -10,7 +10,7 @@ Static library filenames usually have ``.a`` extension on Unix-like systems and 
 
 ```
 |--main.c
-|--head.h
+|--heade.h
 |--head.c
 ```
 
