@@ -6,7 +6,7 @@ Static library filenames usually have ``.a`` extension on Unix-like systems and 
 
 # Implementation
 
-## Source code
+## Static lib for header and source files
 
 ```
 |--main.c
@@ -23,35 +23,34 @@ void display_string();
 ```
 ``header.c``
 ```c
-#include <stdio.h>//Dont' need to call head.h
+#include <stdio.h>//Dont' need to call header.h
 
 void display_string(){
     printf("Hello World !\n");
 }
 ```
+By using static library, ``header.c`` will define function ``display_string()`` and doesn't need to include ``header.h``.
 
 ### main.c
 
 ```c
-#include "header.h"
+#include "header.h"//Call header.h for display_string()
 
 int main(){
 	display_string(); //Hello World
 }
 ```
 
-By using static library, ``head.c`` will define function ``display_string()`` and doesn't need to include ``head.h``.
-
 ## Compilation steps
 
-Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c head.c``
+Compile and assemble ``head.c`` into an object file ``head.o``: ``gcc -c header.c``
 
-Archive ``head.o`` to ``head.a`` as a static library: ``ar r head.a head.o``
+Archive ``head.o`` to ``head.a`` as a static library: ``ar r header.a header.o``
 
 Link static library in the final build for ``a.out``:
 
 ```sh
-gcc main.c -L. -l:head.a
+gcc main.c -L. -l:header.a
 ```
 
 ``-L.``: State that static library is in current folder
@@ -59,20 +58,20 @@ gcc main.c -L. -l:head.a
 With ``-l:`` flag, the static library can have any type like ``.xyz`` and will give normal result:
 
 ```sh
-ar r static_lib.xyz head.o
+ar r static_lib.xyz header.o
 gcc test.c -L. -l:static_lib.xyz
 ```
 
-It's better to name the static library to ``libhead.a`` so that flag ``-lhead`` can be used. ``-lhead`` will then find ``libhead.a`` in the folder specified by ``-L``.
+It's better to name the static library to ``libheader.a`` so that flag ``-lheader`` can be used. ``-lhead`` will then find ``libheader.a`` in the folder specified by ``-L``.
 
 ```sh
-ar r libhead.a head.o
-gcc test.c -L. -lhead
+ar r libheader.a head.o
+gcc test.c -L. -lheader
 ```
 
-If there is any later change in ``head.c``, ``head.o`` then has to be built again.
-
-Single ``head.c`` file can be used by ``main.c`` for function ``display_string()`` in the example above:
+If there is any later change in ``header.c``, ``header.o`` then has to be built again.
+## Static lib as a single source file
+Single ``header.c`` file can be used by ``main.c`` for function ``display_string()`` in the example above:
 
 ``main.c``
 
@@ -85,7 +84,7 @@ int main(){
 	display_string(); //Hello World
 }
 ```
-``head.c`` kept as above. Take all steps like above to build ``libhead.a`` then link the static lib.
+``header.c`` kept as above. Take all steps like above to build ``libhead.a`` then link the static lib.
 
 **Note**
 
