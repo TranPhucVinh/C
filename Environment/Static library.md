@@ -10,18 +10,18 @@ Static library filenames usually have ``.a`` extension on Unix-like systems and 
 
 ```
 |--main.c
-|--heade.h
-|--head.c
+|--header.h
+|--header.c
 ```
 
-``head.h``
+``header.h``
 
 ```c
 #include <stdio.h>
 
 void display_string();
 ```
-``head.c``
+``header.c``
 ```c
 #include <stdio.h>//Dont' need to call head.h
 
@@ -33,7 +33,7 @@ void display_string(){
 ### main.c
 
 ```c
-#include "head.h"
+#include "header.h"
 
 int main(){
 	display_string(); //Hello World
