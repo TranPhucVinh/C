@@ -20,7 +20,7 @@ And external modules are installed by the vendor in this directory:	``/lib/modul
  
 [KBuild](KBuild.md) is the build system used by the Linux kernel.
 
-For bootloader and the Linux booting process, check [Linux bootloader document](Linux%20bootloader.md)
+For [bootloader](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linux%20booting%20process.md#linux-bootloader) and the [Linux booting process](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linux%20booting%20process.md#linux-booting-process), check [Linux booting process document](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linux%20booting%20process.md)
 
 # Loadable kernel module
 
