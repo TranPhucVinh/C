@@ -10,7 +10,7 @@ Organize a workspace folder for C source code with the following architecture:
 
 ``main.c`` is the source code.
 
-``WORKSPACE`` can be left empty when there is no specific requirement
+``WORKSPACE`` can be left empty as there is no specific requirement when we build this simple C program
 
 ``BUILD``:
 
