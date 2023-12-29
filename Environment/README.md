@@ -1,27 +1,22 @@
 # Software development environment
 
-* Bare metal vs OS-based applications
+* [Bare metal vs OS-based applications](Build.md#fundamental-concepts)
 * [Cross compiler](Build.md#cross-compiler)
 * [Toolchain](Build.md#toolchain)
 * [C program compilation process](Build.md#c-program-compilation-process)
 
 ## [GCC compiler](GCC%20compiler.md)
+The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain. With GCC installed, command ``gcc`` and ``cc`` are available.
+* [Build source file and build flags](), [external linkage](GCC%20compiler.md#compile-with-multiple-files-when-there-is-no-header-file) when compiling multiple files with no header file
+* [Linker flags](GCC%20compiler.md#linker-flags)
+* [-I flag](GCC%20compiler.md#include-directory-of-header-files-with--i): Include directory of header files
 
+**Compilers developed from GCC**:
+* With AVR, we have ``AVR-GCC ``is a part of GCC and support compiling C program for AVR microcontrollers.
+* ESP8266 core includes an ``xtensa gcc toolchain``.
 ## G++ compiler
 
-```shell
-g++ -o output_file file.cpp
-```
-
-In Linux: ``./output_file``
-
-In Windows: ``./output_file.exe``
-
-To compile with mupltiples header files
-
-``g++ -o outputFile main.c other.c etc.c``
-
-``g++ -o outputFile main.cpp other.cpp etc.cpp``
+G++ compiler is best to use on CPP source code, instead of C. Refer to [CPP for its implementation](https://github.com/TranPhucVinh/Cplusplus/blob/master/README.md#g-compiler).
 
 A ``C`` source code with ``CPP`` syntax can be compiled normally: ``g++ test.c``
 
@@ -36,8 +31,6 @@ int main(){
   cout << "hello cpp";
 }
 ```
-
-A ``C`` source file can be compiled normally with other ``CPP`` header files: ``g++ main.c test.cpp``
 
 ## Static library and shared library
 

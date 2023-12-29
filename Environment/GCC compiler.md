@@ -1,10 +1,8 @@
-The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain. With GCC installed, command ``gcc`` and ``cc`` are available.
-
 # Build source file and build flags
 
-``gcc main.c`` or ``cc main.c``: Build the whole source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix)
+``gcc main.c`` or ``cc main.c``: Build the whole source file ``main.c`` into ``a.exe`` (Windows) or ``a.out`` (Unix). To run: ``./a.out`` (Unix) or ``./a.exe`` (Windows)
 
-``gcc -o main main.c``: Specify the executable output file as ``main``. To run: ``./main``
+``gcc -o main main.c``: Specify the executable output file as ``main``. 
 
 To run ``a.out`` in absolute path: ``/home/username/Documents/a.out`` (must not have ``./``)
 
@@ -94,7 +92,7 @@ int main(){
 ```
 working_folder
 |--main
-    |--head.h
+|    |--head.h
 |--main.c
 ```
 
@@ -105,7 +103,7 @@ Inside ``working_folder`` folder, compile ``main.c`` : ``gcc -Imain main.c``
 ```
 working_folder
 |--main
-   |--main.c
+|   |--main.c
 |--head.h
 ```
 
@@ -116,9 +114,9 @@ Inside ``main`` folder, compile ``main.c`` : ``gcc -I.. main.c``
 ```
 working_folder
 |--main
-   |--head.h
+|   |--head.h
 |--inc
-   |--head_1.h
+|   |--head_1.h
 |--main.c
 ```
 
@@ -147,9 +145,9 @@ Inside ``working_folder``, compile ``main.c``: ``gcc -Iinc -Imain main.c``
 ```
 working_folder
 |--src
-   |--head.c
+|   |--head.c
 |--inc
-   |--head.h
+|   |--head.h
 |--main.c
 ```
 ``head.h``
@@ -205,8 +203,3 @@ Predefine during compilation with -D flag: Check [Macro document: Using macro to
 ``gcc -c test.c test1.c -o test.o`` will be error
 
 ``test.c`` and ``test1.c`` have to be compiled seperatedly for ``test.o`` and ``test1.o``
-
-# Compilers developed from GCC
-
-* With AVR, we have ``AVR-GCC ``is a part of GCC and support compiling C program for AVR microcontrollers.
-* ESP8266 core includes an ``xtensa gcc toolchain``.
