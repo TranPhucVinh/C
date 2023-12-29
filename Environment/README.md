@@ -5,16 +5,16 @@
 * [Toolchain](Build.md#toolchain)
 * [C program compilation process](Build.md#c-program-compilation-process)
 
-## [GCC compiler](GCC%20compiler.md)
+# [GCC compiler](GCC%20compiler.md)
 The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain. With GCC installed, command ``gcc`` and ``cc`` are available.
 * [Build source file and build flags](), [external linkage](GCC%20compiler.md#compile-with-multiple-files-when-there-is-no-header-file) when compiling multiple files with no header file
 * [Linker flags](GCC%20compiler.md#linker-flags)
 * [-I flag](GCC%20compiler.md#include-directory-of-header-files-with--i): Include directory of header files
-
+* [Makefile for GCC](Makefile%20for%20GCC.md)
 **Compilers developed from GCC**:
 * With AVR, we have ``AVR-GCC ``is a part of GCC and support compiling C program for AVR microcontrollers.
 * ESP8266 core includes an ``xtensa gcc toolchain``.
-## G++ compiler
+# G++ compiler
 
 G++ compiler is best to use on CPP source code, instead of C. Refer to [CPP for its implementation](https://github.com/TranPhucVinh/Cplusplus/blob/master/README.md#g-compiler).
 
@@ -32,16 +32,38 @@ int main(){
 }
 ```
 
-## Static library and shared library
+# Static library and shared library
 
 * [Static library](Static%20library.md) 
 * [Shared library](Shared%20library.md)
 
 GCC assumes that all libraries start with ``lib`` and end with ``.so`` or ``.a`` (``.so ``is for shared object or shared libraries, and ``.a`` is for archive, or statically linked libraries).
 
-## Linux environment
+# [Bazel for C](Bazel.md)
+# Visual Studio Code
+## Build C source code
 
-### Set up command from a C process
+``Ctr+Shift+B`` will build a single file. Visual Studio Code will ask the user to choose which compiler to build the file.
+
+For a script to build the file, put the file inside a folder. Then press ``Ctr+Shift+B`` and choose the ``detected task`` icon, ``Configure task`` will appear, press that icon and ``task.json`` will appear.
+
+If saved ``tasks.json`` as default the press ``Ctr+Shift+B`` again, Visual Studio Code will still ask for the compiler option.
+
+Change ``"group": "build"`` in ``tasks.json`` to the following fields for automotically build:
+
+```json
+"group": {
+    "isDefault": true,
+    "kind": "build"
+}
+```
+
+## Debug with GDB
+
+Check [the related document in GDB](GDB/Visual%20Studio%20Code.md) for implementation of GDB on Visual Studio Code.
+# Linux environment
+
+## Set up command from a C process
 
 To make ``a.out`` file compiled from a C source code to be a system wide available command, put it inside ``/bin`` folder.
 
@@ -63,14 +85,13 @@ Manual document for functions prototype can be accessed by ``man function_protot
 
 E.g: ``man scanf``
 
-### nm
+## nm
 
 List symbols from object files
 
 ```sh
 nm a.out
 ```
-
 # Github project environment
 
 [Images used in that projects](Images)
