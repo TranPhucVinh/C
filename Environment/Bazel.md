@@ -42,7 +42,9 @@ If building successfully, the workspace architecture will be:
 To run the built program: ``bazel run test_bazel``
 
 File ``BUILD`` and ``WORKSPACE`` can also be named **BUILD.bazel** and **WORKSPACE.bazel** so that they won't be confused with other source codes.
-# Build a specific component
+
+**BUILD** is for Bazel target, while the empty **WORKSPACE** file is to build the source code.
+# Build a single component
 
 This architecture will help a project to have multiple components, in this case the component is ``main``:
 
@@ -60,7 +62,19 @@ Build component ``main``: ``bazel build //main:test_bazel``
 Run component ``main``: ``bazel run //main:test_bazel``
 
 **Note**: Currently, in 9th September 2022, bazel is unable to build if it is inside a path with space like ``~/home/username/Work in progress$`` 
+# Build multiple components
+```
+|--repo_1
+|	|--main.c
+|	|--BUILD
+|--repo_2
+|	|--main.c
+|	|--BUILD
+|--WORKSPACE
+```
+Build all those 2 components: ``bazel build //...``
 
+Run each of those component: ``bazel run repo_1`` and ``bazel run repo_2``
 # Build with header files and library
 
 ```sh
