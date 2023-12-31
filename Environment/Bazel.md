@@ -1,3 +1,5 @@
+[Bazel](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Build%20automation%20tools/Bazel.md) is an open-source build and test tool similar to Make, Maven, and Gradle. Bazel is multi-platform. It runs on Linux, macOS, and Windows.
+
 # Build the first C program
 
 Organize a workspace folder for C source code with the following architecture:
