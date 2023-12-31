@@ -40,6 +40,8 @@ If building successfully, the workspace architecture will be:
 ```
 
 To run the built program: ``bazel run test_bazel``
+
+File ``BUILD`` and ``WORKSPACE`` can also be named **BUILD.bazel** and **WORKSPACE.bazel** so that they won't be confused with other source codes.
 # Build a specific component
 
 This architecture will help a project to have multiple components, in this case the component is ``main``:
