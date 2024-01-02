@@ -1,11 +1,11 @@
 # Build with header files and library
 
 ```sh
-|--main.c
-|--head.c
-|--head.h
-|--WORKSPACE
-|--BUILD
+├── main.c
+├── head.c
+├── head.h
+├── WORKSPACE
+└── BUILD
 ```
 
 Now change ``BUILD`` file to:
@@ -104,7 +104,7 @@ For ``head.h`` inside ``include`` folder:
 ├── include
 │   └── head.h
 ├── head.a
-├── main.c
+└── main.c
 ```
 
 ```sh
