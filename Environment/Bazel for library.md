@@ -52,9 +52,9 @@ main.c:1:18: fatal error: header.h: No such file or directory
 
 ``include`` keyword in ``BUILD`` file is used to include the general folder for ``include`` in C source code like ``#include "header.h``. With ``includes = ["cJSON-1.7.15"],`` in ``BUILD`` file, user can call ``#include "cJSON.h"`` instead of ``#include "cJSON-1.7.15/cJSON.h"``
 
-# Build external library
+# Build with external library
 
-Build external library like ``pthread`` (``gcc main.c -lpthread``):
+Build with external library like ``pthread`` (``gcc main.c -lpthread``):
 
 ```c
 cc_binary(
