@@ -18,7 +18,7 @@ Organize a workspace folder for C source code with the following architecture:
 
 ``BUILD``:
 
-```
+```sh
 cc_binary(
     name = "test_bazel",
     srcs = ["main.c"],
@@ -27,7 +27,7 @@ cc_binary(
 
 ``cc_binary`` specifies for C/C++ source code. ``test_bazel`` is the build target.
 
-To build: ``bazel build test_bazel``
+To build: ``bazel build test_bazel`` or ``bazel build //:test_bazel``
 
 If building successfully, the workspace architecture will be:
 
@@ -41,7 +41,7 @@ If building successfully, the workspace architecture will be:
 └── BUILD
 ```
 
-To run the built program: ``bazel run test_bazel``
+To run the built program: ``bazel run test_bazel`` or ``bazel run //:test_bazel``
 
 File ``BUILD`` and ``WORKSPACE`` can also be named **BUILD.bazel** and **WORKSPACE.bazel** so that they won't be confused with other source codes.
 

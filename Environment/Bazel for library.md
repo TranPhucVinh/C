@@ -2,8 +2,8 @@
 
 ```sh
 ├── main.c
-├── head.c
-├── head.h
+├── header.c
+├── header.h
 ├── WORKSPACE
 └── BUILD
 ```
@@ -13,8 +13,8 @@ Now change ``BUILD`` file to:
 ```sh
 cc_library(
     name = "library_name",
-    srcs = ["head.c"],
-    hdrs = ["head.h"],
+    srcs = ["header.c"],
+    hdrs = ["header.h"],
 )
 
 cc_binary(
@@ -26,29 +26,29 @@ cc_binary(
 )
 ```
 
-``main.c``, ``head.c`` and ``head.h`` are all defined in [GCC compiler: Build source file](https://github.com/TranPhucVinh/C/blob/master/Environment/GCC%20compiler.md#build-source-file)
+``main.c``, ``header.c`` and ``header.h`` are all defined in [GCC compiler: Build source file](https://github.com/TranPhucVinh/C/blob/master/Environment/GCC%20compiler.md#build-source-file)
 
 To build: ``bazel build test_bazel``
 
 To run: ``bazel run test_bazel``
 
-**Note**: Although ``main.c`` has included ``head.h`` like below, ``BUILD`` script must have ``hdrs``. 
+**Note**: Although ``main.c`` has included ``header.h`` like below, ``BUILD`` script must have ``hdrs``. 
 
 ``main.c``
 
 ```c
 #include <stdio.h>
-#include "head.h"
+#include "header.h"
 ```
 
 Without ``hdrs``, there will be error:
 
 ```
-main.c:1:18: fatal error: head.h: No such file or directory
- #include "head.h"
+main.c:1:18: fatal error: header.h: No such file or directory
+ #include "header.h"
 ```
 
-**Build with header files/library files inside specific folder**: Check [cJSON implementation in C](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/JSON/README.md) for that implementation.
+**Build with header files/library files inside specific folder**: Check [cJSON implementation in C](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/JSON/README.md) for that implementation.
 
 ``include`` keyword in ``BUILD`` file is used to include the general folder for ``include`` in C source code like ``#include "header.h``. With ``includes = ["cJSON-1.7.15"],`` in ``BUILD`` file, user can call ``#include "cJSON.h"`` instead of ``#include "cJSON-1.7.15/cJSON.h"``
 
