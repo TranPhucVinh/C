@@ -1,5 +1,7 @@
 [Bazel](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Build%20automation%20tools/Bazel.md) is an open-source build and test tool similar to Make, Maven, and Gradle. Bazel is multi-platform. It runs on Linux, macOS, and Windows.
 
+Bazel doesn't support build folder to have space like ``~/home/username/Work in progress$``
+
 # Build the first C program
 
 Organize a workspace folder for C source code with the following architecture:
@@ -61,7 +63,6 @@ Build component ``main``: ``bazel build //main:test_bazel``
 
 Run component ``main``: ``bazel run //main:test_bazel``
 
-**Note**: Currently, in 9th September 2022, bazel is unable to build if it is inside a path with space like ``~/home/username/Work in progress$`` 
 # Build multiple components
 ```
 |--repo_1
