@@ -8,7 +8,7 @@ To run ``a.out`` in absolute path: ``/home/username/Documents/a.out`` (must not 
 
 To compile with multiple files (with or even without header file): ``gcc main.c file_1.c file_2.c``
 
-## Compile with multiple files when there is no header file
+## Compile multiple files when there is no header file
 
 ``head.c``
 
@@ -27,14 +27,9 @@ int main(){
     display_string();
 }
 ```
-Compile: ``gcc main.c head.c``
+Compile: ``gcc main.c head.c`` or ``g++ main.c head.c``
 
-This gives warning but work normally:
-```
-main.c:4:5: warning: implicit declaration of function ‘display_string’ [-Wimplicit-function-declaration]
-     display_string();
-```
-Compile those files on G++ gives error: ``gcc main.c head.c``
+This gives warning on GCC but error on G++:
 
 ```
 main.c:4:19: error: ‘display_string’ was not declared in this scope
