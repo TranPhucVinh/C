@@ -6,7 +6,7 @@
 * [C program compilation process](Build.md#c-program-compilation-process)
 
 # [GCC compiler](GCC%20compiler.md)
-The **GNU Compiler Collection** (**GCC**) is a compiler system produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain. With GCC installed, command ``gcc`` and ``cc`` are available.
+The **GNU Compiler Collection** (**GCC**) is a **compiler system** produced by the GNU Project supporting various programming languages. GCC is a key component of the GNU toolchain. With GCC installed, command **gcc** and **cc** are available.
 * [Build source file and build flags](), [external linkage](GCC%20compiler.md#compile-with-multiple-files-when-there-is-no-header-file) when compiling multiple files with no header file
 * [Linker flags](GCC%20compiler.md#linker-flags)
 * [-I flag](GCC%20compiler.md#include-directory-of-header-files-with--i): Include directory of header files
