@@ -108,11 +108,11 @@ Inside ``main`` folder, compile ``main.c`` : ``gcc -I.. main.c``
 
 ```
 working_folder
-|--main
-|   |--head.h
-|--inc
-|   |--head_1.h
-|--main.c
+├── lib1
+|   └── lib1.h
+├── lib2.h
+|   └── lib2.h
+└── main.c
 ```
 
 ``head_1.h``
@@ -125,15 +125,15 @@ int b = 10;
 
 ```c
 #include <stdio.h>
-#include "head.h"
-#include "head_1.h"
+#include "lib1.h"
+#include "lib2.h"
 
 int main(){
 	printf("%d %d\n", a, b);
 }
 ```
 
-Inside ``working_folder``, compile ``main.c``: ``gcc -Iinc -Imain main.c``
+Inside ``working_folder``, compile ``main.c``: ``gcc -Ilib1 -Ilib2 main.c``
 
 ## Header file and source file in different directories
 
