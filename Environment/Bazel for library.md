@@ -1,4 +1,4 @@
-# Build with header files and library
+# Build with header files and library in the same folcder
 
 ```sh
 ├── main.c
@@ -48,9 +48,66 @@ main.c:1:18: fatal error: header.h: No such file or directory
  #include "header.h"
 ```
 
-**Build with header files/library files inside specific folder**: Check [cJSON implementation in C](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/JSON/README.md) for that implementation.
+# Build with header files/library files inside specific folders
 
+```sh
+working_folder
+├── lib1
+|   └── lib1.h
+├── lib2.h
+|   └── lib2.h
+├── WORKSPACE
+├── BUILD
+└── main.c
+```
+``lib1.h``
+```c
+int a = 1;
+```
+``lib1.h``
+```c
+int b = 2;
+```
+``main.c``
+```c
+#include <stdio.h>
+#include "lib1.h"
+#include "lib2.h"
+
+int main(){
+	printf("%d %d\n", a, b);
+}
+```
+``BUILD``
+```sh
+cc_import(
+	name = "lib1",
+    hdrs = ["lib1/lib1.h"],
+    includes = ["lib1"],
+)
+
+cc_import(
+	name = "lib2",
+    hdrs = ["lib2/lib2.h"],
+    includes = ["lib2"],
+)
+
+cc_binary(
+    name = "test_bazel",
+    srcs = ["main.c"],
+    deps = [
+        ":lib1",
+        ":lib2",
+    ],
+)
+```
 ``include`` keyword in ``BUILD`` file is used to include the general folder for ``include`` in C source code like ``#include "header.h``. With ``includes = ["cJSON-1.7.15"],`` in ``BUILD`` file, user can call ``#include "cJSON.h"`` instead of ``#include "cJSON-1.7.15/cJSON.h"``
+
+Build: ``bazel build test_bazel``
+
+Run: ``bazel run test_bazel``
+
+**Implementation**:  [Bazel for cJSON implementation in C](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/JSON/README.md)
 
 # Build with external library
 
