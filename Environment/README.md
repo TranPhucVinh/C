@@ -1,4 +1,4 @@
-# Software development environment
+# Environment for C programming
 
 * [Bare metal vs OS-based applications](Build.md#fundamental-concepts)
 * [Cross compiler](Build.md#cross-compiler)
@@ -92,6 +92,4 @@ List symbols from object files
 ```sh
 nm a.out
 ```
-# Github project environment
-
-[Images used in that projects](Images)
+# [Images used in Github project](Images)
