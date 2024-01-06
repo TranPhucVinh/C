@@ -1,5 +1,17 @@
 # [API](API.md)
 
+# A TCP sender sends string to a TCP receiver
+
+## Features
+1. Start a TCP sender (from [tcp_sgl_sndr_sgl_rx.c](tcp_sgl_sndr_sgl_rx.c)) when the TCP receiver (from [tcp_sgl_rx_sgl_sndr.c](tcp_sgl_rx_sgl_sndr.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
+2. [TCP receiver](tcp_sgl_rx_sgl_sndr.c) starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
+3. **TCP receiver** starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
+4. TCP sender is sending data to TCP receiver properly, TCP sender is then disconnected. TCP receiver is able to detect that disconnected event, print out ``TCP sender has disconnected. Stop TCP receiver, too``. TCP receiver then stops
+
+## Program
+* TCP receiver (TCP single receiver for a single TCP sender): [tcp_sgl_rx_sgl_sndr.c](tcp_sgl_rx_sgl_sndr.c)
+* TCP sender (TCP single sender for a single TCP receiver): [tcp_sgl_sndr_sgl_rx.c](tcp_sgl_sndr_sgl_rx.c)
+
 # Single TCP receiver for multiple TCP senders, handled by [epoll](../Physical%20layer/File%20IO/System%20call/epoll/)
 ## Features
 1. Start a TCP sender (from [tcp_multiple_senders.c](tcp_multiple_senders.c)) when the TCP receiver (from [epoll_for_tcp_receiver.c](epoll_for_tcp_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
