@@ -107,7 +107,7 @@ int *ptr = (int*)&value;
 *ptr = 0;
 ```
 
-# Change value of a string by function using pointer.
+# Change value of a string by function using pointer
 
 Check: ``Example 2 Change value of a string by function using pointer`` in ``Introduction/Data structure/String/Examples part 1.md``.
 
@@ -140,7 +140,7 @@ Values of a and b are 4 6
 Values of a and b now are 6 4 
 ```
 
-# Get address of a variable then store into a pointer.
+# Get address of a variable then store into a pointer
 
 ```c
 #include <stdio.h>
