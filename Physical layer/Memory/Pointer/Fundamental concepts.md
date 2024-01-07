@@ -73,20 +73,22 @@ int *pointer = &number;
 printf("number: %d\n", number);//190
 ```
 
-## Must not directly set value for a pointer deferencing (i.e *pointer)
+## Must not directly set value for a pointer dereferencing (i.e *pointer)
 
-Based on pointer concept, a pointer store value of another variable so directly setting the value for its deferencing is a useless act and result in **Segmentation fault**
+Based on the pointer concept, a pointer stores value of another variable so directly setting the value for its dereferencing is a useless act and results in **Segmentation fault**
  
 ```c
-//Must not do this as it result in segmentation fault
+//Must not do this as it results in a segmentation fault
 int *p = 9;//Segmentation fault
 ```
 
 ## Must not arbitrarily set value at specific register address
 
-E.g: Set value at register address ``6295624``
+Modern computer systems use virtual memory techniques so that physical register addresses can't be set arbitrarily. The following example to arbitrarily set value at a specific register address is the wrong implementation and must not be done in real-life applications:
 
 ```c
+// THIS IS A WRONG IMPLEMENTATION AND IS ONLY USED FOR EDUCATIONAL PURPOSE ONLY
+// Set value at register address ``6295624``
 #include <stdio.h>
 
 int *ptr;
@@ -94,13 +96,12 @@ int *ptr;
 int main() 
 {
 	ptr = (int *)6295624; 
-	*ptr = 12;
-	printf("*ptr: %d", *ptr);//12
+	*ptr = 12;//Segmentation fault
 	return 0;
 }
 ```
 
-**Note**: The compiler for that program to work properly is a pure ANSI compiler. For GCC, register address can't be set abritrarily. To work with the program above with the address like ``6295624``, the address ``6295624`` must be the GCC allowable address. User must find the allowable address first with ``&`` for a dummy variable. E.g:
+To work with the program above with an address like ``6295624``, the address ``6295624`` must be the GCC allowable address. User must find the allowable address first with ``&`` for a dummy variable. E.g:
 
 ```c
 int dummy_variable;
