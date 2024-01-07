@@ -84,11 +84,11 @@ int *p = 9;//Segmentation fault
 
 ## Must not arbitrarily set value at specific register address
 
-Modern computer systems use virtual memory techniques so that physical register addresses can't be set arbitrarily. The following example to arbitrarily set value at a specific register address is the wrong implementation and must not be done in real-life applications:
+Modern computer systems use virtual memory techniques so that physical register addresses can't be set arbitrarily. The following example is to arbitrarily setting value at a specific register address is the wrong implementation and must not be done in real-life applications:
 
 ```c
-// THIS IS A WRONG IMPLEMENTATION AND IS ONLY USED FOR EDUCATIONAL PURPOSE ONLY
-// Set value at register address ``6295624``
+// THIS IS A WRONG IMPLEMENTATION AND IS ONLY USED FOR EDUCATIONAL PURPOSE
+// Set value at register address 6295624
 #include <stdio.h>
 
 int *ptr;
