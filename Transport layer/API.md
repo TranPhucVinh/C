@@ -2,7 +2,7 @@
 
 ## listen()
 
-Listen for connections on a socket
+Listen for TCP connections on a TCP socket
 
 ```c
 int listen(int sockfd, int backlog);
@@ -11,6 +11,8 @@ int listen(int sockfd, int backlog);
 ``backlog``: defines the maximum length to which the queue of pending connections for ``sockfd`` may grow. If a connection request arrives when the queue is full, the client may receive an error with an indication of ``ECONNREFUSED`` or, if the underlying protocol supports retransmission, the request may be ignored so that a later reattempt at connection succeeds.
 
 In [tcp_single_receiver.c](tcp_single_receiver.c) program, with ``MAXPENDING`` is set to ``5`` for ``backlog`` parameters, when initiating more than 5 new TCP client ([tcp_multiple_senders.c](tcp_multiple_senders.c)) connection at the same time, i.e 6 connections, and even start sending data to TCP server at the same time, ``ECONNREFUSED`` error don't return as expected theoretically. That might happen as those 6 TCP client connection might not actually coming at TCP server at the same time and the queue can still pack them properly.
+
+As defined, ``listen()`` is only used for TCP, not UDP. When calling ``listen()`` for UDP socket error 95 (EOPNOTSUPP) **Operation not supported**.
 
 ## accept()
 
