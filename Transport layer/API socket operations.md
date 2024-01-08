@@ -112,3 +112,6 @@ ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct 
 The only difference between ``send()`` and ``write()`` is the presence of flags. With a zero flags argument, **send()** is equivalent to **write()**.
 
 For UDP socket, flag **MSG_CONFIRM** must be used 
+# Receive message from socket
+
+[read()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/unistd.md#read) is used for TCP socket (i.e connection-mode, **SOCK_STREAM**), not UDP.
