@@ -1,10 +1,9 @@
-# sys/socket.h
-
-## listen()
+# listen()
 
 Listen for TCP connections on a TCP socket
 
 ```c
+#include <sys/socket.h>
 int listen(int sockfd, int backlog);
 ```
 
@@ -14,9 +13,10 @@ In [tcp_single_receiver.c](tcp_single_receiver.c) program, with ``MAXPENDING`` i
 
 As defined, ``listen()`` is only used for TCP, not UDP. When calling ``listen()`` for UDP socket error 95 (EOPNOTSUPP) **Operation not supported**.
 
-## accept()
+# accept()
 
 ```c
+#include <sys/socket.h>
 int accept(int sockfd, struct sockaddr *restrict addr, socklen_t *restrict addrlen);
 ```
 Accept a connection on a socket. If no pending connections are present on the queue, and the socket is not marked as nonblocking, ``accept()`` blocks the caller until a connection is present.
@@ -24,9 +24,10 @@ Accept a connection on a socket. If no pending connections are present on the qu
 **Return**:
 * A file descriptor for the accepted socket (a nonnegative integer), when success
 * ``-1`` on error
-## setsockopt()
+# setsockopt()
 
 ```c
+#include <sys/socket.h>
 int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen);
 ```
 Set options on sockets. On success, ``0`` is returned. On error, ``-1`` is returned.
@@ -48,9 +49,10 @@ To start that server immediately right after stopping it, ``setsockopt()`` must 
 ```c
 setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val));
 ```
-## socket()
+# socket()
 Create new socket
 ```c
+#include <sys/socket.h>
 int socket(int protocolFamily, int  type, int protocol)
 ```
 
@@ -67,22 +69,24 @@ int socket(int protocolFamily, int  type, int protocol)
 
 **Return**: A file descriptor for the created socket
 
-## connect()
+# connect()
 
-Connect to socket with specific address.
+Connect to socket with specific address
 
 ```c
+#include <sys/socket.h>
 int connect(int sockfd, struct sockaddr *addr, unsigned int addrLength) 
 ```
 
 *  ``sockfd``: created ``sockfd`` from function ``socket()``.
 *  ``addr``: server address wished to connect.
 *  ``addrLength``: length of Server address (byte). 4 byte for IPV4, 16 byte for IPV6.
-## shutdown()
+# shutdown()
 
 Shut down all or part of the connection open on ``sockfd``
 
 ```c
+#include <sys/socket.h>
 int shutdown(int sockfd, int how)
 ```
 
@@ -93,3 +97,18 @@ int shutdown(int sockfd, int how)
 * ``SHUT_RDWR``: No more receptions or transmissions
 
 **Return**: ``0`` success,`` -1`` errors
+# Send message to socket
+
+Beside ``write()``, there are 3 more functions to send message to socket:
+```c
+#include <sys/socket.h>
+
+ssize_t send(int sockfd, const void *buf, size_t len, int flags);
+ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen);
+ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags);
+```
+**write()**, **send()**, and **sendto()** are all used for TCP socket (i.e connection-mode, **SOCK_STREAM**)
+
+The only difference between ``send()`` and ``write()`` is the presence of flags. With a zero flags argument, **send()** is equivalent to **write()**.
+
+For **sendmsg()**, the message is pointed to by the elements of the array **msg.msg_iov**. Flag **MSG_CONFIRM** must be used for UDP socket.
