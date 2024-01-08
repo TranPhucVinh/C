@@ -1,5 +1,8 @@
 # [API](API.md)
-
+* [Socket parameters setup](API%20socket%20parameters%20setup.md)
+* [Socket operations](API%20socket%20operations.md):
+  * listen(), accept(), setsockopt(), socket(), connect(), shutdown()
+  * Send message to socket: write(), send(), sendto()
 # A TCP sender sends string to a TCP receiver
 
 ## Features
