@@ -78,3 +78,10 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 
 * [tcp_multiple_receivers.c](tcp_multiple_receivers.c)
 * [tcp_single_sender.c](tcp_single_sender.c)
+
+# A UDP sender sends string to a UDP receiver
+* Based on the UDP mechanism, a [UDP sender](udp_sgl_sndr_sgl_rx.c) can start normally without the need of an existed UDP receiver. UDP sender doesn't need to connect to the targeted UDP receiver (by connect()) before sending message.
+* Simply start the [UDP receiver](udp_sgl_rx_sgl_sndr.c) then both **UDP sender** and **receiver** can start exchanging message.
+**Program**: 
+* UDP receiver (UDP single receiver for a single UDP sender): [udp_sgl_rx_sgl_sndr.c](udp_sgl_rx_sgl_sndr.c)
+* UDP sender (UDP single sender for a single UDP receiver): [udp_sgl_sndr_sgl_rx.c](udp_sgl_sndr_sgl_rx.c)
