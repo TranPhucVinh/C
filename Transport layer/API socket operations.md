@@ -101,17 +101,27 @@ int shutdown(int sockfd, int how)
 
 [write()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/unistd.md#write) is used for TCP socket (i.e connection-mode, **SOCK_STREAM**), not UDP
 
-Beside ``write()``, there are 3 more functions to send message to socket:
+Beside **write()**, there are 2 more functions to send message to socket:
 ```c
 #include <sys/socket.h>
 
 ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen);
 ```
-
 The only difference between ``send()`` and ``write()`` is the presence of flags. With a zero flags argument, **send()** is equivalent to **write()**.
 
 For UDP socket, flag **MSG_CONFIRM** must be used 
 # Receive message from socket
 
 [read()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/unistd.md#read) is used for TCP socket (i.e connection-mode, **SOCK_STREAM**), not UDP.
+
+Beside **read()**, there are 2 more functions to read recevied message from socket:
+```c
+#include <sys/types.h>
+#include <sys/socket.h>
+ssize_t recv(int sockfd, void *buf, size_t len, int flags);
+ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *src_addr, socklen_t *addrlen);
+```
+The only difference between **recv()** and **read()** is the presence of flags. With a zero flags argument, **send()** is equivalent to **write()**.
+
+**MSG_WAITALL**: This flag requests that the operation block until the full request is satisfied. This flag is used for UDP socket.
