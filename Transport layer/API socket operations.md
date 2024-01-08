@@ -111,4 +111,4 @@ ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags);
 
 The only difference between ``send()`` and ``write()`` is the presence of flags. With a zero flags argument, **send()** is equivalent to **write()**.
 
-For **sendmsg()**, the message is pointed to by the elements of the array **msg.msg_iov**. Flag **MSG_CONFIRM** must be used for UDP socket.
+For UDP socket, flag **MSG_CONFIRM** must be used 
