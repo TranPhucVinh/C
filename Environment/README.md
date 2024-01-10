@@ -12,7 +12,7 @@ The **GNU Compiler Collection** (**GCC**) is a **compiler system** produced by t
 * [-I flag](GCC%20compiler.md#include-directory-of-header-files-with--i): Include directory of header files
 * [Makefile for GCC](Makefile%20for%20GCC.md)
 **Compilers developed from GCC**:
-* With AVR, we have ``AVR-GCC ``is a part of GCC and support compiling C program for AVR microcontrollers.
+* With AVR, we have ``AVR-GCC`` is a part of GCC and support compiling C program for AVR microcontrollers.
 * ESP8266 core includes an ``xtensa gcc toolchain``.
 # G++ compiler
 
@@ -39,7 +39,8 @@ int main(){
 
 GCC assumes that all libraries start with ``lib`` and end with ``.so`` or ``.a`` (``.so ``is for shared object or shared libraries, and ``.a`` is for archive, or statically linked libraries).
 
-# [Bazel for C](Bazel.md)
+# [Bazel for C](Bazel)
+# [CMake for C](CMake)
 # Visual Studio Code
 ## Build C source code
 
