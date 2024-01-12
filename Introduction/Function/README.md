@@ -76,7 +76,7 @@ void inner_function(){
    printf("Don't call any inner");
 }
 ```
-Inner function method is applied in [callback by function pointer](Callback%20function.md#handle-callback-by-function-pointer) where the function pointer is declared inside the callback function.
+Inner function method is applied in [callback by function pointer](Callback%20function.md#handle-callback-by-function-pointer) where the [function pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Function%20pointer.md) is declared inside the callback function.
 
 ## Short term function data type
 
@@ -166,7 +166,8 @@ argv[1]: Hello, World !
 Total argument: 2
 ```
 
-**Application**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
+**Example**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
+# [Function pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Function%20pointer.md)
 # Short-Circuiting
 Short-circuiting is one of the optimization steps of the compiler, in this step unnecessary calculation is avoided during the evaluation of an expression. Expression is evaluated from left to right. It works under && and || operator, when the value of the expression can be calculated certainly by only evaluating parts of the expression.
 ```cpp
