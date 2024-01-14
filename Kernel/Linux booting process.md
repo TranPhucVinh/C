@@ -1,6 +1,6 @@
 # Linux booting process
 
-6 steps detail:
+Linux booting process generally involves 6 steps:
 
 * [BIOS](#BIOS) (or **RBL**, **ROM Bootloader**, in SoC computer): System startup/Hardware init with **bootloader**
 * **First stage bootloader**: [Master Boot Record (MBR)](#MBR) loads and executes GRUB bootloader
