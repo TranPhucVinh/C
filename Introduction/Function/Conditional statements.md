@@ -184,7 +184,7 @@ i value is 9
 
 # goto
 
-**Example 1**: Example of ``goto``
+## Simple goto example
 ```c
 #include <stdio.h>
 
@@ -220,7 +220,7 @@ goto LABEL_0;
 		
 	return 0;
 ```
-**Example 2**: Infinite loop with ``goto``
+## Infinite loop with goto
 
 ```c
 #include <stdio.h>
