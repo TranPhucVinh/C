@@ -22,7 +22,7 @@
 * fseek()
 * ftell()
 * getline()
-* [popen()]() and [pclose()]()
+* [popen() and pclose()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/README.md#popen-and-pclose) for embedded command
 
 ## [Examples](File%20pointer%20examples.md)
 
