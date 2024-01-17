@@ -1,6 +1,6 @@
 Compile: ``gcc bluetooth_Scan.c -lbluetooth``
 
-### Example
+# Example
 
 ``bluetooth_scan.c``: Scan device
 
@@ -8,6 +8,6 @@ Compile: ``gcc bluetooth_Scan.c -lbluetooth``
 
 ```
 Found 2 device
-A4:50:46:93:40:2B  Mi Phone
-A0:A8:CD:08:70:E0  LENOVOEDGEE540
+A4:50:46:93:40:2B  Bluetooth_device_1
+A0:A8:CD:08:70:E0  Bluetooth_device_2
 ```
