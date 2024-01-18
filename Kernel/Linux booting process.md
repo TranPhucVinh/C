@@ -74,7 +74,9 @@ State machine for those 5 steps
 
 OS source files are stored in the storage media (SD card, NAND flash,...) and is loaded into RAM when running.
 # Kernel image
-* ``zImage``: a compressed version of the Linux kernel image that is self-extracting
+The kernel image isn't an executable kernel, but a compressed kernel image.
+* ``zImage``: a compressed version of the Linux kernel image that is self-extracting,  less than 512KB
+* ``bzImage``: big compressed image, greater than 512KB
 * ``uImage``: an image file that has a U-Boot wrapper (installed by the ``mkimage`` utility) that includes the OS type and loader information. uImage is a zImage contains Uboot image header. [Uboot](#linux-bootloader) will look for uImage.
 * ``boot.scr``: a user-defined image file that is read before loading ``uImage``, allowing the user to replace the loading of ``uImage``, preventing the user from recompiling ``uImage``.
 # Linux bootloader
