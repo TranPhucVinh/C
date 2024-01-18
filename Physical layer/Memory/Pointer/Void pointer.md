@@ -13,7 +13,7 @@ int main () {
 }
 ```
 
-### Error
+# Can't define void pointer like this
 
 ```c
 void *pointer;
@@ -32,7 +32,7 @@ int a = 0;
 pointer = &a;
 ```
 
-### Error
+**Void pointer doesn't allow dereferencing**:
 
 ```c
 printf("Value *pointer is: %d \n", *pointer);
@@ -43,7 +43,7 @@ test.c:8:40: error: 'void*' is not a pointer-to-object type
     printf("Value *pointer is: %d \n", *pointer);
 ```
 
-### Casting pointer void to char
+# Casting pointer void to char
 
 ```c
 char *hw = "Hello, World!";
@@ -53,7 +53,7 @@ pointer = hw;
 printf("Char value is: %s \n", pointer); //Hello, World!
 ```
 
-### Change value of variable by void pointer in a function
+# Change value of variable by void pointer in a function
 
 ```c
 int add(void *number);
@@ -70,7 +70,7 @@ int add(void *number){
 }
 ```
 
-### void pointer as function argument
+# void pointer as function argument
 
 **void pointer for int and string array as function argument**
 
