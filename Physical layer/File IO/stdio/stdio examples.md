@@ -9,6 +9,7 @@ printf(string_output_format, displayedString);
 # Print out an entered string and an entered character
 
 ```c
+// THIS IS AN UNOPTIMIZED EXAMPLE INTENDED FOR EDUCATIONAL PURPOSE. MUST NOT DO THIS IN PRACTICAL IMPLEMENTATION
 #include <stdio.h> 
 
 int main() 
@@ -35,7 +36,7 @@ a
 
 **Output** ``Hello``
 
-**Explain**: On pressing ``Enter`` (carriage return) on output screen after the first input, as the buffer of previous variable was the space for new container (as we didn't clear it) , the program skips the following input of container. This problem especially happens with ``scanf()`` function.
+**Explain**: On pressing **Enter** (carriage return) on output screen after the first input, as the buffer of previous variable was the space for new container (as we didn't clear it), the program skips the following input of container. This problem especially happens with [scanf()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/stdin%20and%20stdout%20API.md#scanf) function.
 
 **Problem solve**: Add ``while ((getchar()) != ‘\n’)``
 
