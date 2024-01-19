@@ -159,8 +159,8 @@ int main()
 	printf("Program ends\n");
 } 
 ```
-**Reslt**
-``
+**Result**
+```
 a
 a
 Program ends
