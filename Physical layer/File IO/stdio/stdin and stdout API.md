@@ -7,13 +7,24 @@ printf("%d ", a) // int
 printf("%s ", a) // string
 ```
 
-**Example**: ``printf("%s \n", "Hello, World!"); //Hello, World!``
+**Example**:  
+```c
+printf("%s \n", "Hello, World!"); //Hello, World!
+```
 
 **Return**: return the total print out character
 
 ```c
 int returnPrintf = printf("Hello, World!\n");
 printf("%d \n", returnPrintf); //14
+```
+
+**Use formated output in printf()**
+
+```c
+const char* string_output_format = "Displayed string: %s\n";
+char displayedString[] = "Hello, World !";
+printf(string_output_format, displayedString);       
 ```
 
 # scanf()
