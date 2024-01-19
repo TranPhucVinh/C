@@ -136,9 +136,40 @@ char buf[1];
 fgets(buf, 2, stdin); 
 ```
 
-**Note**: As ``fgets()`` is stopped when encountering a newline, it must not be use to read a file including newline. Use [fread()](#fread) instead.
+However. this method results in **Error when reading entered character into buf[1]**:
+```c
+#include <stdio.h> 
 
-**Error when reading 2 entered string repeatedly**:
+#define SIZE 50
+
+int main() 
+{ 
+    char ch[1], s[SIZE];
+
+    fgets(ch, 2, stdin);
+    printf("%c", ch[0]);
+
+	// Same result with:
+	// fgets(ch, 2, stdin);
+    // printf("%s", ch);
+
+    fgets(s, SIZE, stdin);
+    printf("%s", s);
+
+	printf("Program ends\n");
+} 
+```
+**Reslt**
+``
+a
+a
+Program ends
+```
+(``fgets(s, SIZE, stdin)`` won't be called).
+
+**Problem solved**: Use [readline()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/realloc_string_entered.c#L13) function from [realloc_string_entered.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/realloc_string_entered.c) which includes memoization of fgets().
+
+**Note**: As ``fgets()`` is stopped when encountering a newline, it must not be use to read a file including newline. Use [fread()](#fread) instead.
 
 # fprintf()
 
