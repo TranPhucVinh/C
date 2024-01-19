@@ -138,6 +138,8 @@ fgets(buf, 2, stdin);
 
 **Note**: As ``fgets()`` is stopped when encountering a newline, it must not be use to read a file including newline. Use [fread()](#fread) instead.
 
+**Error when reading 2 entered string repeatedly**:
+
 # fprintf()
 
 Sends formatted output to a stream.
