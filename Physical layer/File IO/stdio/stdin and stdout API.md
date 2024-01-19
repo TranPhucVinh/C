@@ -49,11 +49,11 @@ printf("value: %c", a);
 ```
 
 **Result**
-
-    Enter 4 -> output 4
-    Enter character a  -> output character a
-    Enter abc -> output a
-
+```
+Enter 4 -> output 4
+Enter character a  -> output character a
+Enter abc -> output a
+```
 ## Must not have whitespace after format in scanf
 
 ```c
@@ -76,7 +76,7 @@ printf("value: %s", str);
 
 **Result** If you type in value with whitespace, like ``Hello, World!``, this will just print out only ``Hello,``.
 
-Use **scanset character** ``[]`` to support entering the string included whitespace:
+Use [scanset character](#) ``[]`` to support entering the string included whitespace:
 ```c
 char displayedString[80];
 scanf("%[^\n]", displayedString);// Hello, World !
@@ -87,7 +87,25 @@ Here,  ``^\n`` stands for taking input until a newline isn't encountered.
 Using ``scanf()`` is not recommended as it doesn't have buffer overflow protection, unless you know for certain that the input will always be of a specific format (and perhaps not even then).
 
 A proper word entering can be solved with [fgets()](File%20pointer%20API.md#fgets).
+## scanset character
 
+Scanset character ``%[]``, which is only supported in ``scanf()``, is used to can specify single character or range of characters to be accepted or ommited in the entered string.
+
+This scanset implementation accept the capitalized entered string.
+```c
+char str[80];
+memset(str, 0, 80);
+printf("Enter a string: ");
+scanf("%[A-Z]s", str);
+
+printf("You entered: %s\n", str);  
+```
+**Result**
+```
+Enter a string: "Hello_World -> You entered: "H" (Capitalized "W" is ommited"
+Enter a string: "HELLO_world" -> You entered: "HELLO"
+Enter a string: "hEllo" -> You entered: "(null)" (1st character "h" isn't capitalized so the whole string is ommitted)
+```
 # %.*s
 
 ```c
