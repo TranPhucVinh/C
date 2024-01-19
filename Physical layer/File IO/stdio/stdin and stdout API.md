@@ -54,7 +54,7 @@ printf("value: %c", a);
     Enter character a  -> output character a
     Enter abc -> output a
 
-## Whitespace problem
+## Must not have whitespace after format in scanf
 
 ```c
 int a;
@@ -64,20 +64,27 @@ printf("%d", a);
 
 You have to type value a; then type one more to finish command although the value of ``a`` is still printed out correctly. To print out the value of ``a`` just after typing it, delete the space after ``%d``.
 
-## Print out a string as char variable
+## Whitespace issue with string
 
 Because the array with ``char a[10]`` is a pointer so it doesn't need the pointer get value ``&`` in scanf.
 
 ```c
-char a[10]; //10 character of string
-scanf("%s", a);
-printf("value: %s", a);
+char str[10]; //string with 10 characters
+scanf("%s", str);
+printf("value: %s", str);
 ```
 
-If you type in value with whitespace, like ``Hello, World!``, this will just print out only ``Hello,``.
+**Result** If you type in value with whitespace, like ``Hello, World!``, this will just print out only ``Hello,``.
 
-Using ``scanf()`` is not highly recommended as it doesn't have buffer overflow protection, unless you know for certain that the input will always be of a specific format (and perhaps not even then).
+Use **scanset character** ``[]`` to support entering the string included whitespace:
+```c
+char displayedString[80];
+scanf("%[^\n]", displayedString);// Hello, World !
+printf("%s\n", displayedString);// Hello, World !
+```
+Here,  ``^\n`` stands for taking input until a newline isn't encountered.
 
+Using ``scanf()`` is not recommended as it doesn't have buffer overflow protection, unless you know for certain that the input will always be of a specific format (and perhaps not even then).
 
 A proper word entering can be solved with [fgets()](File%20pointer%20API.md#fgets).
 
