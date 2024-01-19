@@ -11,7 +11,7 @@ A process also has its environment which comes with environment variables. The s
 
 Forget to deallocate memory in HEAP causes Memory leak.
 
-* All the **global** and **static variable** which **are not initialized** or **initiliazed with 0** are stored in the BSS segment (``Block Started by Symbol``). Upon execution, all the uninitialized global variables are initialized with the value zero.
+* All the **global** and **static variable** which **are not initialized** or **initiliazed with 0** are stored in the **BSS** segment (**Block Started by Symbol**). Upon execution, all the uninitialized global variables are initialized with the value zero.
 
 E.g:
 
