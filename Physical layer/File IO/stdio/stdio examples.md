@@ -1,11 +1,3 @@
-# Using formated output in printf()
-
-```c
-const char* string_output_format = "Displayed string: %s\n";
-char displayedString[] = "Hello, World !";
-printf(string_output_format, displayedString);       
-```
-
 # Print out an entered string and an entered character
 
 ```c
@@ -38,7 +30,7 @@ a
 
 **Explain**: On pressing **Enter** (carriage return) on output screen after the first input, as the buffer of previous variable was the space for new container (as we didn't clear it), the program skips the following input of container. This problem especially happens with [scanf()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/stdin%20and%20stdout%20API.md#scanf) function.
 
-**Problem solve**: Add ``while ((getchar()) != ‘\n’)``
+**Problem solve**: Add ``while ((getchar()) != '\n')``
 
 This will reads the buffer characters till the end and discards them(including newline) and using it after the ``scanf()`` statement clears the input buffer and allows the input in the desired container.
 
