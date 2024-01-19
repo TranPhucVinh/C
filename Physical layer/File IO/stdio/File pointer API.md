@@ -103,8 +103,8 @@ fgets(char *s, int n, FILE *stream);
 ```c
 char buf[15];
 printf("Enter string: ");
-fgets(buf, 15, stdin); 
-printf("string is: %s\n", buf);
+fgets(buf, 15, stdin);// Hello, World !
+printf("string is: %s\n", buf);// Hello, World !
 ```
 
 This will printout the entered string **followed with a new line**, to remove that new line:
