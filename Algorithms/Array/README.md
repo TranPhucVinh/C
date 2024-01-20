@@ -31,3 +31,8 @@ void main() {
     printf("min: %d\n", min);
 }
 ```
+# Saddle point
+
+Find [saddle point](https://github.com/TranPhucVinh/C/tree/master/Data%20structure/Array) in a 2D array. Also check [saddle point document](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) for the method to find saddle point inside a 2D array.
+
+Program [saddle_point.c](saddle_point.c)
