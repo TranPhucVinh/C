@@ -66,3 +66,7 @@ Traverse all rows one by one and do the following for every row ``i``:
 3. If yes, then saddle point else continues till the end of the matrix.
 
 Program [saddle_point.c](https://github.com/TranPhucVinh/C/blob/master/Algorithms/saddle_point.c)
+# [Algorithm problem with array](https://github.com/TranPhucVinh/C/tree/master/Algorithms/Array)
+* Find min number in an array
+* Saddle point
+* Sort an array into **ascending** or **descending** order: Refer to [Sorting algorithms](https://github.com/TranPhucVinh/C/tree/master/Algorithms/Sorting%20algorithms#selection-sort)
