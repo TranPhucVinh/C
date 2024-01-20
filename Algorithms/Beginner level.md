@@ -1,4 +1,4 @@
-## Draw square with dots
+# Draw square with dots
 
 ```
    m 
@@ -43,38 +43,7 @@ main() {
 }
 ```
 
-## Find min number in an array
-
-```c
-#include <stdio.h>
-
-void set_value_for_array(int *array, int n){
-	for (int i=0;i<n;i++){
-		printf("Enter value array[%d]:",i );
-		scanf("%d", &array[i]);
-	}
-}
-void main() {
-	int n;
-	printf("enter number n:");
-	scanf("%d", &n);
-	int array[n];
-	set_value_for_array(array, n);
-
-	for (int i=0; i < n; i++){
-		printf("Value of member %d is %d\n", i, array[i]);
-	}
-
-    int min;
-    min = array[0];
-    for (int i=1; i < n; i++){
-        if (min >= array[i]) min = array[i];
-	}
-    printf("min: %d\n", min);
-}
-```
-
-## Find prime number
+# Find prime number
 
 Find prime number with a limited of integer value
 
@@ -117,7 +86,7 @@ enter the limit value 29
 2 3 5 7 11 13 17 19 23 29
 ```
 
-## Reverse number
+# Reverse number
 
 Enter a number, print it in reverse order: 12345 => 54321
 
