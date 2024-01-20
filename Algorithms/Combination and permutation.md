@@ -1,4 +1,14 @@
-# Definition
+# Combination: Find all possible combinations of r elements in a given array of size n
+
+The idea is to start from first index (index = 0) in ``data[]``, one by one fix elements at this index and recur for remaining indexes. 
+
+Let the input array be ``{1, 2, 3, 4, 5}`` and ``r=3``. We first fix 1 at index 0 in data[], then recur for remaining indexes, then we fix 2 at index 0 and recur. Finally, we fix 3 and recur for remaining indexes. When number of elements in ``data[]`` becomes equal to ``r`` (size of a combination), we print ``data[]``.
+
+![](https://github.com/TranPhucVinh/C/blob/master/Environment/Images/combination.jpg)
+
+Full source code: [combination.c](combination.c)
+
+# Permutation
 
 A permutation of a set is an arrangement of its members into a sequence or linear order, or if the set is already ordered, a rearrangement of its elements. The word "permutation" also refers to the act or process of changing the linear order of an ordered set.
 
@@ -46,8 +56,7 @@ So the function for permutation based on the analysis till now is:
 
 ```c
 /*
-
-    @cid: current ID
+    @cid: current ID
 */
 void permute(char *str_arr, int cid)
 
@@ -58,10 +67,7 @@ void permute(char *str_arr, int cid)
     }
 }
 ```
-
 For permutation implementation to get back to the original string after permute() has listed out all permutation of a fixed postion, e.g continue to list out all 2xx after 1xx is finished, swap() to get back to the orignal string need to be called after permute(str_arr, cid+1) is finished. So the for loop will be:
-
-
 ```c
 for (int i = cid; i < strlen(str_arr); i++){
         swap(str_arr, i, cid);
