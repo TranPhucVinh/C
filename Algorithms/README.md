@@ -1,4 +1,4 @@
-# Algorithms
+# Overview of algorithms
 
 There are 3 types of algorithms:
 * Sorting algorithms
@@ -11,6 +11,8 @@ Algorithm complexity includes:
 
 The most most efficient and scalable alogorithm is the one with both lowest time and space complexity.
 
+# [Big O](Big%20O)
+
 # Binary search
 
 **Question**: What is the meaning/application of the DFS output in binary search as this output doesn't seem to give any information to state which path is traversed to get this output ? When investigating the DFS output, which information does it provide us ?
@@ -21,8 +23,6 @@ A suggestion for that can be:
 Raw database -> Specific key increment/decrement database (achieved by sorting algorithm) -> traversal table outputted by binary search.
 
 We finally use that traversal table for searching, which will result in efficient search compared to raw database searching.
-
-# [Big O](Big%20O)
 
 # Beginner level
 
@@ -36,6 +36,18 @@ We finally use that traversal table for searching, which will result in efficien
 * [Saddle point](saddle%point)
 * [Expert system](Expert%20system)
 
+## Saddle point
+
+Find [saddle point](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) in a 2D array. Also check [saddle point document](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) for the method to find saddle point inside a 2D array.
+
+Program [saddle_point.c](saddle_point.c)
+
+# [Sequence](Sequence.md)
+
+Sequence or **sequence of numbers** problem include:
+* [Sum from 1 to n]()
+* [Find if a given number is the sum of consecutive numbers](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-if-a-given-number-is-the-sum-of-consecutive-numbers)
+* [Find the nth digit of an infinite integer sequence](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-the-nth-digit-of-an-infinite-integer-sequence)
 ## Sum from 1 to n
 
 Features: Number ``n`` entered as ``main()`` argument
@@ -50,18 +62,6 @@ Handle error:
 For the max accepted number of ``2147483647``, the result must be ``unsigned long int``, not ``int``.
 
 Program: [sum_from_1_to_n.c](sum_from_1_to_n.c)
-
-## Saddle point
-
-Find [saddle point](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) in a 2D array. Also check [saddle point document](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) for the method to find saddle point inside a 2D array.
-
-Program [saddle_point.c](saddle_point.c)
-
-# Medium level
-
-* [Find if a given number is the sum of consecutive numbers](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-if-a-given-number-is-the-sum-of-consecutive-numbers)
-* [Find the nth digit of an infinite integer sequence](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-the-nth-digit-of-an-infinite-integer-sequence)
-
 # [Permutation](Permutation.md), [combination](Combination.md)
 
 # Sorting algorithms
