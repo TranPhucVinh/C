@@ -1,4 +1,4 @@
-Pointer to pointer is also known as double pointer.
+**Pointer to pointer** is also called **double pointer**.
 
 # Define a double pointer and use it to change the variable's value
 
