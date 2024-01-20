@@ -1,6 +1,7 @@
 # List of problem
 * [Find min number in an array](Beginner%20level.md#find-min-number-in-an-array)
 * [Saddle point](saddle%point)
+* Sort an array into **ascending** or **descending** order: Refer to [Sorting algorithms](https://github.com/TranPhucVinh/C/tree/master/Algorithms/Sorting%20algorithms#selection-sort)
 # Find min number in an array
 
 ```c
