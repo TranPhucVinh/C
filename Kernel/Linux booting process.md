@@ -1,13 +1,11 @@
 # Linux booting process
 
-Linux booting process generally involves 6 steps:
+Linux booting process generally involves 4 steps:
 
-* [BIOS](#BIOS) (or **RBL**, **ROM Bootloader**, in SoC computer): System startup/Hardware init with **bootloader**
-* **First stage bootloader**: [Master Boot Record (MBR)](#MBR) loads and executes GRUB bootloader
-* **Second stage bootloader** or **Secondary bootloader** (**SBL**): [GRUB](#GRUB) executes Kernel
-* [Kernel](#Kernel) will executes process init located in ``/sbin/init``
-* Execute [init](#init) process
-* Run level: Start userspace for command line
+* System startup: Hardware init, call [BIOS](#BIOS) or **RBL** (**ROM Bootloader**) in SoC computer)
+* **Bootloader stage**: **First stage bootloader** [Master Boot Record (MBR)](#MBR) loads and executes GRUB bootloader; **Second stage bootloader** or **Secondary bootloader** (**SBL**): [GRUB](#GRUB) executes Kernel
+* [Kernel stage](#Kernel) will executes process init located in ``/sbin/init``
+* Execute [init](#init) process, run level: Start userspace for command line
 
 ## BIOS
 
