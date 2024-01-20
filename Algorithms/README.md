@@ -21,14 +21,9 @@ The most most efficient and scalable alogorithm is the one with both lowest time
 * [Find prime number](Beginner%20level.md#find-prime-number)
 * [Reverse number](Beginner%20level.md#reverse-number)
 
-# Array
+# [Array](Array)
 * [Find min number in an array](Beginner%20level.md#find-min-number-in-an-array)
 * [Saddle point](saddle%point)
-## Saddle point
-
-Find [saddle point](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) in a 2D array. Also check [saddle point document](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) for the method to find saddle point inside a 2D array.
-
-Program [saddle_point.c](saddle_point.c)
 
 # [Sequence](Sequence.md)
 
