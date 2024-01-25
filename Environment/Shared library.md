@@ -9,7 +9,7 @@ Shared libraries allow common OS code to be bundled into a wrapper and used by a
 Shared Library by system:
 
 * Linux (for Linux and Solaris): sharedlib.so
-* Windows: sharedlib.dll
+* Windows: sharedlib.dll (**Dynamic-link library**)
 
 ## Implementation
 
