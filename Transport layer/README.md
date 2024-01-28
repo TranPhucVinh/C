@@ -6,19 +6,19 @@
 # A TCP sender sends string to a TCP receiver
 
 ## Features
-1. Start a TCP sender (from [tcp_sgl_sndr_sgl_rx.c](tcp_sgl_sndr_sgl_rx.c)) when the TCP receiver (from [tcp_sgl_rx_sgl_sndr.c](tcp_sgl_rx_sgl_sndr.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
-2. [TCP receiver](tcp_sgl_rx_sgl_sndr.c) starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
+1. Start a TCP sender (from [tcp_sgl_sndr_sgl_rx.c](src/tcp_sgl_sndr_sgl_rx.c)) when the TCP receiver (from [tcp_sgl_rx_sgl_sndr.c](src/tcp_sgl_rx_sgl_sndr.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
+2. [TCP receiver](src/tcp_sgl_rx_sgl_sndr.c) starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
 3. **TCP receiver** starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
 4. TCP sender is sending data to TCP receiver properly, TCP sender is then disconnected. TCP receiver is able to detect that disconnected event, print out ``TCP sender has disconnected. Stop TCP receiver, too``. TCP receiver then stops
 
 ## Program
-* TCP receiver (TCP single receiver for a single TCP sender): [tcp_sgl_rx_sgl_sndr.c](tcp_sgl_rx_sgl_sndr.c)
-* TCP sender (TCP single sender for a single TCP receiver): [tcp_sgl_sndr_sgl_rx.c](tcp_sgl_sndr_sgl_rx.c)
+* TCP receiver (TCP single receiver for a single TCP sender): [tcp_sgl_rx_sgl_sndr.c](src/tcp_sgl_rx_sgl_sndr.c)
+* TCP sender (TCP single sender for a single TCP receiver): [tcp_sgl_sndr_sgl_rx.c](src/tcp_sgl_sndr_sgl_rx.c)
 
 # Single TCP receiver for multiple TCP senders, handled by [epoll](../Physical%20layer/File%20IO/System%20call/epoll/)
 ## Features
-1. Start a TCP sender (from [tcp_multiple_senders.c](tcp_multiple_senders.c)) when the TCP receiver (from [epoll_for_tcp_receiver.c](epoll_for_tcp_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
-2. [TCP receiver](epoll_for_tcp_receiver.c) starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
+1. Start a TCP sender (from [tcp_multiple_senders.c](src/tcp_multiple_senders.c)) when the TCP receiver (from [epoll_for_tcp_receiver.c](src/epoll_for_tcp_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
+2. [TCP receiver](src/epoll_for_tcp_receiver.c) starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
 3. When there is no new TCP sender connected to TCP receiver or the connected TCP receiver doesn't send anything to TCP sender, TCP receiver will print out **Timeout after 5000 miliseconds**.
 4. **TCP receiver** starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
 When receving message, TCP receiver will print out: ``Message from TCP sender with fd %d: %s``
@@ -27,21 +27,21 @@ When receving message, TCP receiver will print out: ``Message from TCP sender wi
 
 ## Implementation
 
-**TCP receiver** uses [epoll](../Physical%20layer/File%20IO/System%20call/epoll/) with EPOLLIN event type.
+**TCP receiver** uses [epoll](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/File%20IO/System%20call/epoll) with EPOLLIN event type.
 
 For TCP socket, EPOLLIN event type is triggered in the TCP receiver when:
 * A new TCP sender connects successfully to that TCP receiver
 * A connected TCP sender write data to that TCP receiver
 
 **Program**:
-* [epoll_for_tcp_receiver.c](epoll_for_tcp_receiver.c)
-* [tcp_multiple_senders.c](tcp_multiple_senders.c)
+* [epoll_for_tcp_receiver.c](src/epoll_for_tcp_receiver.c)
+* [tcp_multiple_senders.c](src/tcp_multiple_senders.c)
 
 # Single TCP receiver for multiple TCP senders, handled by fork()
 
 ## Features
 
-1. Start a TCP sender (from [tcp_multiple_senders.c](tcp_multiple_senders.c)) when the **TCP receiver** (from [tcp_single_receiver.c](tcp_single_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
+1. Start a TCP sender (from [tcp_multiple_senders.c](src/tcp_multiple_senders.c)) when the **TCP receiver** (from [tcp_single_receiver.c](src/tcp_single_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
 2. **TCP receiver** starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
 3. **TCP receiver** starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
 When receving message, TCP receiver will print out: ``Message from TCP sender ID %d: %s``
@@ -66,7 +66,7 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 
 ## Features
 
-1. Start a TCP receiver (from [tcp_multiple_receivers.c](tcp_multiple_receivers.c)) when the TCP sender (from tcp_single_sender.c) is not started: TCP receiver prints out ``TCP sender hasn't been started or TCP sender doesn't support connection``
+1. Start a TCP receiver (from [tcp_multiple_receivers.c](src/tcp_multiple_receivers.c)) when the TCP sender (from tcp_single_sender.c) is not started: TCP receiver prints out ``TCP sender hasn't been started or TCP sender doesn't support connection``
 2. TCP sender starts when there is no TCP receiver connected/started, TCP sender prints out ``Waiting for a TCP receiver to connect ...`` until a TCP receiver is connected.
 3. TCP sender starts then a TCP receiver connects to it, TCP sender then prints out that TCP receiver IP address. Then TCP receiver sends a string **NRC** (stands for **New Receiver Connected**) as a flag to TCP sender to confirm that it's ready to receive message sent from TCP sender. If TCP sender received flag ``NRC`` successfully, it will send a responded string ``String responded to TCP receiver ID %d`` to TCP receiver.
 
@@ -74,18 +74,18 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 
 4. TCP sender is able to count how many TCP receivers are connected.
 5. While step 3 is running properly as a responded string has been sent, TCP receiver is disconnected. TCP sender is able to detect that disconnected event, print out ``TCP receiver with ID %d is disconnected``.
-6. TCP receiver is identified by ID number increased by 1. If that TCP receiver is disconnected, that ID number won't be used again in [tcp_single_sender.c](tcp_single_sender.c) program when another TCP receiver is connected.
+6. TCP receiver is identified by ID number increased by 1. If that TCP receiver is disconnected, that ID number won't be used again in [tcp_single_sender.c](src/tcp_single_sender.c) program when another TCP receiver is connected.
 
 ## Implementation
 
-* [tcp_multiple_receivers.c](tcp_multiple_receivers.c)
-* [tcp_single_sender.c](tcp_single_sender.c)
+* [tcp_multiple_receivers.c](src/tcp_multiple_receivers.c)
+* [tcp_single_sender.c](src/tcp_single_sender.c)
 
 # A UDP sender sends string to a UDP receiver
-* Based on the UDP mechanism, a [UDP sender](udp_sgl_sndr_sgl_rx.c) can start normally without the need of an existed UDP receiver. UDP sender doesn't need to connect to the targeted UDP receiver (by connect()) before sending message.
-* Simply start the [UDP receiver](udp_sgl_rx_sgl_sndr.c) then both **UDP sender** and **receiver** can start exchanging message.
-* For programming, as using **sendto()** (in [UDP sender](udp_sgl_sndr_sgl_rx.c)) and **recvfrom()** (in  [UDP receiver](udp_sgl_rx_sgl_sndr.c)) which requires **sockaddr_in**  as parameter, a socket param init function, like [socket_parameter_init(char *host, int port)]() in **TCP**, can't be used. It's better to handle this [encapsulation](https://github.com/TranPhucVinh/Cplusplus/blob/master/Object-oriented%20programming/README.md#encapsulation) in UDP by using OOP.
+* Based on the UDP mechanism, a [UDP sender](src/udp_sgl_sndr_sgl_rx.c) can start normally without the need of an existed UDP receiver. UDP sender doesn't need to connect to the targeted UDP receiver (by connect()) before sending message.
+* Simply start the [UDP receiver](src/udp_sgl_rx_sgl_sndr.c) then both **UDP sender** and **receiver** can start exchanging message.
+* For programming, as using **sendto()** (in [UDP sender](src/udp_sgl_sndr_sgl_rx.c)) and **recvfrom()** (in [UDP receiver](src/udp_sgl_rx_sgl_sndr.c)) which requires **sockaddr_in**  as parameter, a socket param init function, like [socket_parameter_init(char *host, int port)]() in **TCP**, can't be used. It's better to handle this [encapsulation](https://github.com/TranPhucVinh/Cplusplus/blob/master/Object-oriented%20programming/README.md#encapsulation) in UDP by using OOP.
 
 **Program**: 
-* UDP receiver (UDP single receiver for a single UDP sender): [udp_sgl_rx_sgl_sndr.c](udp_sgl_rx_sgl_sndr.c)
-* UDP sender (UDP single sender for a single UDP receiver): [udp_sgl_sndr_sgl_rx.c](udp_sgl_sndr_sgl_rx.c)
+* UDP receiver (UDP single receiver for a single UDP sender): [udp_sgl_rx_sgl_sndr.c](src/udp_sgl_rx_sgl_sndr.c)
+* UDP sender (UDP single sender for a single UDP receiver): [udp_sgl_sndr_sgl_rx.c](src/udp_sgl_sndr_sgl_rx.c)

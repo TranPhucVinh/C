@@ -6,7 +6,7 @@ Inter-process communication methods are:
 * [Semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md)
 * [Message queue](Message%20queue)
 * [Shared memory](Shared%20memory)
-* [Socket](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/TCP)
+* [Socket](https://github.com/TranPhucVinh/C/tree/master/Transport%20layer)
 * [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
 
 Command [ipcs](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Process/System%20V%20IPC.md#ipcs) is useful for checking the message queue, shared memory and semaphore information.
