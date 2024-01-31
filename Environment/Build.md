@@ -50,6 +50,6 @@ Before compilation, preprocessor takes the source code and perform operation:
 
 **Assemble**: Compile assembly code to machine language (0 and 1). ``.o`` or ``.obj`` file will then output, those files (e.g ``main.o``) are all binary files.
 
-**Linker**: Linker will compile object files (e.g a1.o, a2.o, a3.o,...) and libraries (e.g C standard library) to produce a single executable file.
+**Linker**: Linker will compile object files (e.g a1.o, a2.o, a3.o,...) and libraries (C standard library, [static library](Static%20library.md), [shared library](Shared%20library.md)) to produce a single executable file.
 
 ![](../Environment/Images/linker.png)
