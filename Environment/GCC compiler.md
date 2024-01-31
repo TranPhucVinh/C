@@ -61,6 +61,10 @@ E.g: ``gcc httpClient.c -lcurl``
 
 For other usages of ``-L`` and ``-l``, check [static library document](Static%20library.md).
 
+# -static
+
+**-static** flag is used for [static libraries](Static%20library.md), i.e copying all neccessary libraries into the executable file. This flag, along with static libraries, are useful in customized Linux system, e.g a [customized Raspbian with busybox](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/tree/main/Kernel/Build%20Raspbian%20from%20scratch), where those 3 dynamic libraries **linux-vdso**, **libc** and **ld-linux-x86-64** to run a C source file are missing. In this case, compiling the source with with **-static** (**aarch64-linux-gnu-gcc -static main.c**) will help copying all neccessary libraries into the executable file. Reference to [Setup communication between host PC and the Raspberry Pi board containing this customized Raspbian then run a.out file](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/blob/main/Kernel/Build%20Raspbian%20from%20scratch/Implementations.md#setup-communication-between-host-pc-and-the-raspberry-pi-board-containing-this-customized-raspbian-then-run-aout-file) for that implementation.
+
 # Include directory of header files with -I
 
 **General define**: Use this defines to all examples below
