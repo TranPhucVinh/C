@@ -2,6 +2,14 @@
 
 ![](../Environment/Images/static_library.png)
 
+Static libraries are copied by a linker during the creation of the executable file, i.e they're built into the executable file. By using static libraries, executable files will have all neccessarry libraries and don't need to call for any libraries in the system like **shared**/[dynamic libraries](Shared%20library.md).
+
+As having all static libraries built into, an executable file built with static libraries will have a bigger size than the shared libraries ones. (i.e ``a.out`` of ``gcc -static main.c`` has bigger size than its corresponding in shared library ``gcc main.c``)
+
+For a "Hello, World" a.out program compiled with ``-static`` flag for static library ``gcc -static main.c``, all 3 libraries **linux-vdso**, **libc** and **ld-linux-x86-64** are built into it. 
+
+Using static libraries are useful in customized Linux system, e.g a [customized Raspbian with busybox](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/tree/main/Kernel/Build%20Raspbian%20from%20scratch), where those 3 dynamic libraries are missing. In this case, compiling the source with with **-static** **aarch64-linux-gnu-gcc -static main.c** will help copying all neccessary libraries into the executable file. Reference to [Setup communication between host PC and the Raspberry Pi board containing this customized Raspbian then run a.out file](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/blob/main/Kernel/Build%20Raspbian%20from%20scratch/Implementations.md#setup-communication-between-host-pc-and-the-raspberry-pi-board-containing-this-customized-raspbian-then-run-aout-file) for that implementation.
+
 Static library filenames usually have ``.a`` extension on Unix-like systems and ``.lib`` extension on Microsoft Windows.
 
 # Implementation
