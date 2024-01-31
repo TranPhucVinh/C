@@ -1,4 +1,4 @@
-## Fundamental concepts
+# Fundamental concepts
 
 Shared libraries are libraries that are linked dynamically and are intended to be shared by executable files and further shared object files. They are loaded into memory at load time or run time, rather than being copied by a linker during the creation of the executable file.
 
@@ -11,7 +11,7 @@ Shared Library by system:
 * Linux (for Linux and Solaris): sharedlib.so
 * Windows: sharedlib.dll (**Dynamic-link library**)
 
-## Implementation
+# Implementation
 
 We need to compile our library source code into position-independent code (PIC) object file ``head.o``: ``gcc -c -fpic head.c``
 
@@ -35,11 +35,19 @@ To run ``a.out`` without embedding inside ``LD_LIBRARY_PATH``, shared library ``
 
 Copy ``libhead.so`` to ``/lib``: ``sudo cp libhead.so /lib``. Then run ``a.out`` normally. Same implementation with ``/usr/lib``.
 
-## ldd command
+# ldd command
 
 ``ldd`` command prints shared object dependencies. 
 
-With shared library implementation like above, run ``ldd a.out`` will give result:
+``ldd`` for a **"Hello, World" a.out program** (compile: **gcc main.c**):
+```
+linux-vdso.so.1 (0x00007ffc2f155000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5a0f989000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f5a0fb8d000)
+```
+As we can see, a simple C program (built with out any flag) will need to call to the "default" dynamic libraries in the system to run, i.e **linux-vdso.so**, **libc.so** and **ld-linux-x86-64.so** in this case.
+
+With shared library implementation like above (**libhead.so** as the shared library), run ``ldd a.out`` will give result:
 
 ```
 linux-vdso.so.1 (0x00007ffe507a8000)
