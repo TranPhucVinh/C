@@ -1,6 +1,6 @@
 # Fundamental concepts
 
-**Shared libraries** or **dynamic libraries** are libraries that are linked dynamically and are intended to be shared by executable files and further shared object files. They are loaded into memory at load time or run time, rather than being copied by a linker during the creation of the executable file.
+**Shared libraries** or **dynamic libraries** are libraries that are linked dynamically and are intended to be shared by executable files and further shared object files. They are **loaded into memory at load time or run time**, rather than being copied by a linker during the creation of the executable file. As being loaded into memory during runtime, dynamic libraries help reducing the size of the compiled source which included it whem compared to [static library](Static%20library.md)
 
 Shared libraries allow common OS code to be bundled into a wrapper and used by any application software on the system without loading multiple copies into memory. All the applications on the system can use it without using more memory.
 
@@ -10,6 +10,16 @@ Shared Library by system:
 
 * Linux (for Linux and Solaris): sharedlib.so
 * Windows: sharedlib.dll (**Dynamic-link library**)
+
+By default, a C program compiled without any flags, i.e ``gcc main.c``, will have 3 dynamic libraries **linux-vdso.so**, **libc.so** and **ld-linux-x86-64.so**.
+
+Verify that by using ``ldd`` for a **"Hello, World" a.out program** (compile: **gcc main.c**):
+```
+linux-vdso.so.1 (0x00007ffc2f155000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5a0f989000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f5a0fb8d000)
+```
+So when running that "Hello, World" a.out program, those 3 dynamic libraries are required to be inside dynamic libraries folder on the system. If using a customized Linux system, e.g a [customized Raspbian with busybox](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/tree/main/Kernel/Build%20Raspbian%20from%20scratch), those 3 dynamic libraries are missing and this a.out program won't be executable.
 
 # Implementation
 
@@ -38,14 +48,6 @@ Copy ``libhead.so`` to ``/lib``: ``sudo cp libhead.so /lib``. Then run ``a.out``
 # ldd command
 
 ``ldd`` command prints shared object dependencies. 
-
-``ldd`` for a **"Hello, World" a.out program** (compile: **gcc main.c**):
-```
-linux-vdso.so.1 (0x00007ffc2f155000)
-libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5a0f989000)
-/lib64/ld-linux-x86-64.so.2 (0x00007f5a0fb8d000)
-```
-As we can see, a simple C program (built with out any flag) will need to call to the "default" dynamic libraries in the system to run, i.e **linux-vdso.so**, **libc.so** and **ld-linux-x86-64.so** in this case.
 
 With shared library implementation like above (**libhead.so** as the shared library), run ``ldd a.out`` will give result:
 
