@@ -92,21 +92,25 @@ Enter a number, print it in reverse order: 12345 => 54321
 
 ```c
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
 
-main () {
-
-	int a,b, number=0;
-
-	printf("enter the value of a");
-	scanf("%d",&a);
-
-	while(a != 0)
+int reverse_number(int old_number) {
+    int tmp;
+    int new_number = 0;
+    while(old_number != 0)
 	{
-		b = a%10;
-		a = a/10;
-		number = number*10 + b;
+		tmp = old_number%10;
+		old_number = old_number/10;
+		new_number = new_number*10 + tmp;
 	}
-	printf("%d \n", number );
+    return new_number;
+}
+
+int main() {
+    printf("%d\n", reverse_number(12345));
+    return 0;
 }
 ```
 # Palindrome
