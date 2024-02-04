@@ -1,6 +1,6 @@
 # [Fundamental concepts](Fundamental%20concepts.md)
 
-* [Build a struct](Fundamental%20concepts.md#build-a-struct), [address of a struct](Fundamental%20concepts.md#address-of-a-struct), [flexible array member](Fundamental%20concepts.md#flexible-array-member)
+* [Build a struct](Fundamental%20concepts.md#build-a-struct) (a single struct object and a struct array), [address of a struct](Fundamental%20concepts.md#address-of-a-struct), [flexible array member](Fundamental%20concepts.md#flexible-array-member)
 * [struct as data type of function](Fundamental%20concepts.md#struct-as-data-type-of-function)
 * [struct as a function argument](struct%20and%20function.md#struct-as-a-function-argument)
 * [Function as member of a struct](struct%20and%20function.md#function-as-member-of-a-struct): [Function without arguments](struct%20and%20function.md#function-without-arguments) and [Function with arguments](struct%20and%20function.md#function-with-arguments)
