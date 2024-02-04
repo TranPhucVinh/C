@@ -1,6 +1,6 @@
 # Build a struct
 
-Struct as a data type and create an object from that struct
+Struct as a data type: **create an object** and a **struct array** from that struct
 
 ```c
 #include <stdio.h>
