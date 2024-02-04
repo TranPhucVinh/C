@@ -87,7 +87,7 @@ int z = x++ + ++y -8;
 printf("x %d, y %d, z %d", x, y, z);//6 8 5
 ```
 
-# :=
+# := operator is not available in userspace and kernel GCC compiler
 
 ``:=`` is an assignment operator which is supported in just some programming language and tools.
 
@@ -106,3 +106,33 @@ error: expected expression before ‘=’ token
 ```
 
 ``:=`` is available on [Makefile](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Bash%20script/Build%20automation%20tools/Make/Fundamental%20concepts.md#operator), as it is equal to ``=``
+
+# Symbols name
+
+``;`` semicolon
+
+``:`` colon
+
+``-`` hyphen 
+
+``—`` dash
+
+``_`` underscore
+
+``*`` asterisk
+
+``()`` round bracket, bracket and parenthesis
+
+``[]`` square brackets
+
+``{}`` curly brackets, or braces.
+
+``'`` apostrophe or single quote
+
+``"`` double quote
+
+``/`` slash
+
+``\`` backlash. backlash doesn’t have a standard English meaning but is often used in various computing contexts.
+
+``#`` tag, social hashtag
