@@ -1,12 +1,12 @@
 # Fundamental concepts
 
 There are two types of type conversion:
-* **Implicit Type Conversion**, also known as automatic type conversion.
-* **Explicit Type Conversion**: This process is also called **type casting** and it is user-defined. The user can typecast the result to make it of a particular data type.
+* [Implicit Type Conversion](#implicit-type-conversion), also known as automatic type conversion.
+* [Explicit Type Conversion](#explicit-type-conversion): This process is also called **type casting** and it is user-defined. The user can typecast the result to make it of a particular data type, i.e **changing an expression from one data type to another**. 
 
 # Implicit type conversion
 
-* Implicit Type Conversion is done by the compiler on its own, without any external trigger from the user.
+* **Implicit Type Conversion** is **done by the compiler** on its own, without any external trigger from the user.
 * Generally takes place when in an expression more than one data type is present. In such condition, type conversion (also called **type promotion**) takes place to avoid lose of data.
 * It is possible for implicit conversions to lose information, signs can be lost (when signed is implicitly converted to unsigned), and overflow can occur (when long long is implicitly converted to float).
 
@@ -53,7 +53,7 @@ int a = (998/1024)*100; // a = 0
 
 # Explicit type conversion
 
-Explicit Type Conversion, which is user-defined, allows user to typecast the result to make it of a particular data type.
+Explicit Type Conversion, which is user-defined, allows user to **typecast the result** to make it of a particular data type.
 
 **Syntax**
 
