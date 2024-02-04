@@ -4,21 +4,21 @@
 #include <stdio.h>
 #include <string.h>
 
-struct databaseNode {
+struct StructObject {
 	int id;
 	char stringValue[50];
-} databaseNode0;
+} struct_obj;
 
-main(){
+int main(){
 	printf("Enter ID: ");
-	scanf("%d", &databaseNode0.id);
+	scanf("%d", &struct_obj.id);
 	getc(stdin); //To handle with issue scanf before fgets
 
 	printf("Enter string value: ");
-	fgets(databaseNode0.stringValue, 50, stdin); //fgets allow to enter value with space
+	fgets(struct_obj.stringValue, 50, stdin); //fgets allow to enter value with space
 
-	printf("databaseNode0 has id %d with string value %s \n", databaseNode0.id, databaseNode0.stringValue);
-}	
+	printf("StructObject0 has id %d with string value %s \n", struct_obj.id, struct_obj.stringValue);
+}		
 ```
 
 # Nested struct
