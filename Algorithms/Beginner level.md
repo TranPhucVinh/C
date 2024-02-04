@@ -96,7 +96,7 @@ Enter a number, print it in reverse order: 12345 => 54321; negative number, like
 
 int reverse_number(int old_number) {
     int tmp;
-    int new_number = 0;
+    long new_number = 0; // As there is "new_number*10 + tmp" in later step, so new_number must be long
     if (old_number < 0) {
         printf("Negative number can't be reversed\n");
         exit(0);
