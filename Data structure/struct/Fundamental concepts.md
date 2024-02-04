@@ -90,12 +90,12 @@ struct struct_data_type {
 
 char str[] = "Hello, World !";
 int main(){
-    struct struct_data_type *val;
+    struct struct_data_type *struct_obj;
 
-    val = (struct struct_data_type *) malloc(sizeof(int) + sizeof(char[strlen(str)]));
-    val->id = 123;
-    strcpy(val->str_value, str);
-    printf("%d, %s\n", val->id, val->str_value);//0, Hello, World !
+    struct_obj = (struct struct_data_type *) malloc(sizeof(int) + sizeof(char[strlen(str)]));
+    struct_obj->id = 123;
+    strcpy(struct_obj->str_value, str);
+    printf("%d, %s\n", struct_obj->id, struct_obj->str_value);//0, Hello, World !
 
     // This is wrong as size of struct object is not declared for str_value
     // struct struct_data_type value_0 = {0, "Hello, World !"};//Wrong, compilation error
