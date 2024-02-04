@@ -88,17 +88,19 @@ enter the limit value 29
 
 # Reverse number
 
-Enter a number, print it in reverse order: 12345 => 54321
+Enter a number, print it in reverse order: 12345 => 54321; negative number, like -123, is invalid
 
 ```c
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
 #include <stdlib.h>
 
 int reverse_number(int old_number) {
     int tmp;
     int new_number = 0;
+    if (old_number < 0) {
+        printf("Negative number can't be reversed\n");
+        exit(0);
+    }
     while(old_number != 0)
 	{
 		tmp = old_number%10;
