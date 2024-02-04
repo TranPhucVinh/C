@@ -3,7 +3,7 @@
 * ``.``: access the instance inside a **struct object**
 * ``->``: used by **pointer struct object** to access the value
 
-# Create a struct pointer
+# Struct pointer on stack memory
 
 Create a struct pointer: Use a struct pointer object to set value for a struct object
 
@@ -35,7 +35,7 @@ int main()
 }
 ```
 
-# Set value for struct pointer
+# Struct pointer on heap memory
 
 **This is a wrong implementation with struct pointer and must be avoided**
 
