@@ -10,7 +10,7 @@
 * [Bit field](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Bit%20field.md)
 * [Self referential struct](https://github.com/TranPhucVinh/C/blob/master/Introduction/Data%20structure/struct/Self%20referential%20struct.md)
 
-# [Examples](Examples)
+# [Implementations](Implementations)
 
 * [Enter value for struct member using scanf()]()
 * [Nested struct]()
