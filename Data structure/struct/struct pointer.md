@@ -34,34 +34,31 @@ int main()
 **This is a wrong implementation with struct pointer and must be avoided**
 
 ```c
+// THIS IS A WRONG IMPLEMENTATION AND IS ONLY USED FOR EDUCATIONAL PURPOSE
 #include <stdio.h> 
-#include <stdlib.h>
   
-struct databaseNode { 
+struct StructObject { 
     int id;
-    int intValue;
 }; 
 
 int main() 
 { 
-    struct databaseNode *node0;
-    node0->id = 1;
-    node0->intValue = 100;
+    struct StructObject *obj;
+    obj->id = 1;
     return 0; 
-} 
+}
 ```
-**Output**: ``Segmentation fault``
+**Result**: ``Segmentation fault``
 
-Problem solved:
+**Problem solved**: Use **malloc()** for dynamic allocation
 
 ```c
-node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode));
-
-node0->id = 1;
-node0->intValue = 100;
+struct StructObject *obj;
+obj = (struct databaseNode *)malloc(sizeof(struct StructObject));
+obj->id = 1;
 ```
 
-**Note**: Not use ``node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode*));``, as size of struct pointer is always ``8``, just like other data type.
+**Note**: **Must not use** ``obj = (struct StructObject *)malloc(sizeof(struct StructObject*));//WRONG``, as size of struct pointer is always ``8``, just like other data type.
 
 # Pass by value; pass by reference with struct pointer
 
