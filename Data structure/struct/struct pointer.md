@@ -3,7 +3,7 @@
 * ``.``: access the instance inside a **struct object**
 * ``->``: used by **pointer struct object** to access the value
 
-# Struct pointer on stack memory
+# struct pointer on stack memory
 
 Create a struct pointer: Use a struct pointer object to set value for a struct object
 
@@ -29,7 +29,7 @@ int main()
 }
 ```
 
-# Struct pointer on heap memory
+# struct pointer on heap memory
 
 **This is a wrong implementation with struct pointer and must be avoided**
 
@@ -54,7 +54,7 @@ int main()
 
 ```c
 struct StructObject *obj;
-obj = (struct databaseNode *)malloc(sizeof(struct StructObject));
+obj = (struct StructObject*)malloc(sizeof(struct StructObject));
 obj->id = 1;
 ```
 
