@@ -51,7 +51,7 @@ Member databaseNode0 has id 1
 ID of databaseNode0 from linkedDatabaseNode is 2, and the displayed string: Displayed string
 ```
 
-# Form an ``uint16_t`` number from 2 ``uint8_t`` numbers with ``struct``.
+# Form an ``uint16_t`` number from 2 ``uint8_t`` numbers with ``struct``
 
 ```c
 #include <stdio.h>

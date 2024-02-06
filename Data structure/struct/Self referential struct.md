@@ -1,4 +1,4 @@
-### Self Referential Structure with Single Link
+# Self Referential Structure with Single Link
 
 ```c
 #include <stdio.h> 
@@ -26,8 +26,7 @@ int main()
 Node 2 ID node1.link->id: 30
 Node 2 intValue node1.link->intValue: 40
 ```
-
-### Self Referential Structure with Multiple Links
+# Self Referential Structure with Multiple Links
 
 Created a link data structure node like this
 
@@ -85,7 +84,7 @@ int main()
 1       2       3
 ```
 
-### Applications
+# Applications
 
 Self referential structures are very useful in creation of other complex data structures:
 

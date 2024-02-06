@@ -1,6 +1,6 @@
 Bit field defines the maximum bit that a variable can store in a struct. This will save the memory of a struct.
 
-### Example
+# Examples
 
 ```c
 struct time_struct {
@@ -46,7 +46,7 @@ struct time_struct time_value = {11, 31, 31};
 printf("hour:minute:second: %d:%d:%d\n", time_value.hour, time_value.minute, time_value.second);//hour:minute:second: 11:31:31
 ```
 
-### Size
+# Size
 
 ```c
 struct time_struct {
