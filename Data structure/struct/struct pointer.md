@@ -10,26 +10,20 @@ Create a struct pointer: Use a struct pointer object to set value for a struct o
 ```c
 #include <stdio.h>
 
-struct databaseNode
-{
-   int id;
-   int intValue;
+struct StructObject {
+	int id;
+	char str_val[50];
 };
 
 int main()
 {
-    struct databaseNode *databaseNodePtr, databaseNode1;
-    databaseNodePtr = &databaseNode1;
+    struct StructObject *ptr_obj;
+    struct StructObject obj = {1, "Hello, World !"};
+    ptr_obj = &obj;
 
-    printf("Enter ID: ");
-    scanf("%d", &databaseNodePtr->id);
-
-    printf("Enter int value: ");
-    scanf("%d", &databaseNodePtr->intValue);
-
-    printf("databaseNode1:\n");
-    printf("ID: %d\n", databaseNode1.id);
-    printf("intValue: %d\n", databaseNode1.intValue);
+    printf("ptr_obj:\n");
+    printf("ID: %d\n", ptr_obj->id);
+    printf("str_val: %s\n", ptr_obj->str_val);
 
     return 0;
 }
