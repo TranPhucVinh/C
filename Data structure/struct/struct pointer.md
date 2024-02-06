@@ -63,46 +63,47 @@ node0->intValue = 100;
 
 **Note**: Not use ``node0 = (struct databaseNode *)malloc(sizeof(struct databaseNode*));``, as size of struct pointer is always ``8``, just like other data type.
 
-# Pass by value and pass by reference with struct pointer
+# Pass by value; pass by reference with struct pointer
 
-As the issue of **pass by value**, passing a struct by value to a function to change its member value won't give effect:
+**Pass by value**: Passing a struct by value as a function argument to change its member's value won't give effect:
 
 ```c
 #include <stdio.h>
+#include <string.h>
 
-struct databaseNode {
+struct StructObject {
 	int id;
-	char stringValue[50];
+	char str_val[50];
 };
 
-void change_value(struct databaseNode node);
-
-main(){
-	struct databaseNode node = {1, "String value"};
-   printf("before: id is %d and string value is %s \n", node.id, node.stringValue);//before: id is 1 and string value is String value
-	change_value(node);
-   printf("after: id is %d and string value is %s \n", node.id, node.stringValue);//after: id is 1 and string value is String value 
-}
-
-void change_value(struct databaseNode node){
-	node.id = 100;
-   strcpy(node.stringValue, "Change string");
-}
-```
-**Problem solved**: Using struct pointer
-
-```c
-void change_value(struct databaseNode *node);
+void change_value(struct StructObject obj);
 
 int main(){
-	struct databaseNode node = {1, "String value"};
-   printf("%d %s \n", node.id, node.stringValue);//1 String value
-	change_value(&node);
-   printf("%d %s \n", node.id, node.stringValue);//100 Changed string
+	struct StructObject obj = {1, "String value"};
+   printf("before: id is %d and string value is %s \n", obj.id, obj.str_val);//before: id is 1 and string value is String value
+	change_value(obj);
+   printf("after: id is %d and string value is %s \n", obj.id, obj.str_val);//after: id is 1 and string value is String value 
 }
 
-void change_value(struct databaseNode *node){
-	node->id = 100;
-   strcpy(node->stringValue, "Changed string");
+void change_value(struct StructObject obj){
+	obj.id = 100;
+    strcpy(obj.str_val, "Change string");
+}
+```
+**Problem solved**: Use struct pointer
+
+```c
+void change_value(struct StructObject *obj);
+
+int main(){
+	struct StructObject obj = {1, "String value"};
+    printf("before: id is %d and string value is %s \n", obj.id, obj.str_val);//before: id is 1 and string value is String value
+	change_value(&obj);
+    printf("after: id is %d and string value is %s \n", obj.id, obj.str_val);//after: id is 1 and string value is String value 
+}
+
+void change_value(struct StructObject *obj){
+	obj->id = 100;
+    strcpy(obj->str_val, "Change string");
 }
 ```
