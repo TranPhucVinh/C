@@ -90,6 +90,9 @@ int main()
 
 	printf("After updating:\n");
 	display_link_list(&node_0);
+
+// Calling insert_node_at_middle(&node_0, 1, 123, 456) one more time insert a new node
+// result in infinite inserting due to while(current_node != NULL); as using static LinkedList ins_node
     return 0; 
 } 
 ```
