@@ -8,22 +8,25 @@ For a 2 dimension array with ``row`` and ``column`` on heap memory: Check [Creat
 #include <stdio.h>
 #include <stdlib.h>
 
-#define columnSize 3
-#define rowSize 2
+#define COLUMN_SZ 3
+#define ROW_SZ 2
 
 int main(){
-	int *array[columnSize];
+	int *array[COLUMN_SZ];
 
-	for (int column = 0; column < columnSize; column++){
-		array[column] = (int*) malloc (rowSize * sizeof(int));
+	for (int column = 0; column < COLUMN_SZ; column++){
+		array[column] = (int*) malloc (ROW_SZ * sizeof(int));
 	}
 
 	int number = 0;
-	for (int row = 0; row < rowSize; row++){
-		for (int column = 0; column < columnSize; column++){
-			array[row][column] = number;
-			number += 1;
+	for (int row = 0; row < ROW_SZ; row++){
+		for (int column = 0; column < COLUMN_SZ; column++){
+			array[row][column] = number++; // Assign number to array[row][column] then increase number by 1
 		}
+	}
+
+    for (int column = 0; column < COLUMN_SZ; column++){
+		free(array[column]);
 	}
 }
 ```
