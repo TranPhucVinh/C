@@ -2,21 +2,23 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct database_node { 
+struct _LinkedList { 
     int id;
     int value;
-    struct database_node* next_node; 
+    struct _LinkedList* next_node; 
 } *node_0; 
 
+typedef struct _LinkedList LinkedList;
+
 //Insert value to next_node and link 2 nodes to each other
-void insert_new_node(struct database_node *current_node, struct database_node *next_node, int id, int value)  {
+void insert_new_node(LinkedList *current_node, LinkedList *next_node, int id, int value)  {
     next_node->id = id;
     next_node->value = value;
     current_node->next_node = next_node;
 }
 
-void display_linked_list(struct database_node *first_node){
-    struct database_node *ptr = first_node;
+void display_linked_list(LinkedList *first_node){
+    LinkedList *ptr = first_node;
 
     while(ptr != NULL)
 	{        
@@ -34,12 +36,12 @@ void display_linked_list(struct database_node *first_node){
  * @id:
  * @value:
  */
-int insert_node_at_index(struct database_node *first_node, int index, int id, int value){
+int insert_node_at_index(LinkedList *first_node, int index, int id, int value){
 	int size;
-    struct database_node *current_node = first_node, *ins_node, *prev_node;
+    LinkedList *current_node = first_node, *ins_node, *prev_node;
 
-	ins_node = (struct database_node *)malloc(sizeof(struct database_node));
-    prev_node = (struct database_node *)malloc(sizeof(struct database_node));
+	ins_node = (LinkedList *)malloc(sizeof(LinkedList));
+    prev_node = (LinkedList *)malloc(sizeof(LinkedList));
 
     int tmp_index = 0;
 
@@ -83,14 +85,14 @@ int insert_node_at_index(struct database_node *first_node, int index, int id, in
 
 int main(int argc, char *argv[]) 
 { 
-    node_0 = (struct database_node *)malloc(sizeof(struct database_node));
+    node_0 = (LinkedList *)malloc(sizeof(LinkedList));
 
     node_0->id = 1;
     node_0->value = 100;
 
-    struct database_node *node_1, *node_2;
-    node_1 = (struct database_node *)malloc(sizeof(struct database_node));
-    node_2 = (struct database_node *)malloc(sizeof(struct database_node));
+    LinkedList *node_1, *node_2;
+    node_1 = (LinkedList *)malloc(sizeof(LinkedList));
+    node_2 = (LinkedList *)malloc(sizeof(LinkedList));
 
     insert_new_node(node_0, node_1, 2, 200);
     insert_new_node(node_1, node_2, 3, 300);
@@ -103,5 +105,8 @@ int main(int argc, char *argv[])
 	printf("After inserting:\n");
     display_linked_list(node_0);
 
+    free(node_0);
+    free(node_1);
+    free(node_2);
     return 0; 
 } 
