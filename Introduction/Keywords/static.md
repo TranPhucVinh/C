@@ -1,4 +1,4 @@
-A static variable genrally has [internal linkage](https://github.com/TranPhucVinh/C/blob/master/Introduction/Linkage.md#internal-linkage).
+A static variable generally has [internal linkage](https://github.com/TranPhucVinh/C/blob/master/Introduction/Linkage.md#internal-linkage).
 
 # Global static variable and static function
 
