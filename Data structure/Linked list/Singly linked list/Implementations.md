@@ -2,7 +2,8 @@
 
 * Create and read all member of a linked list: [create_and_read_linked_list.c](create_and_read_linked_list.c)
 * Insert a node on heap memory into to the linked list on stack memory: [insert_with_index_stack_memory.c](insert_with_index_stack_memory.c)
-* Insert a node on heap memory into to the linked list on heap memory: [insert_with_index_heap_memory.c](insert_with_index_heap_memory.c) 
+* Insert a node on heap memory into to the linked list on heap memory: [insert_with_index_heap_memory.c](insert_with_index_heap_memory.c)
+  
 **Create/insert a node at index 0 (node 1)**:
 
 Old linked list
