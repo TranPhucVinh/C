@@ -2,8 +2,6 @@
 
 Create and read all member of a linked list: [create_and_read_linked_list.c](create_and_read_linked_list.c)
 
-**Notes**: **ins_node**, which is used to insert a new node into the linked list with existed nodes on [stack](insert_with_index_stack_memory.c#L36) or [heap](insert_with_index_heap_memory.c#L41) memory, must always be on heap memory, i.e dynamically allocated by [malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#malloc), as its address won't be changed outside **insert_node_at_middle()** function.
-
 **Create/insert a node at index 0 (node 1)**:
 
 Old linked list
@@ -27,9 +25,52 @@ So in this diagram:
 
 So the inserted node is a temporary node to stored the value of node 1 old node.
 
-Check implementation for this in [insert_with_index.c](insert_with_index.c) program. This program supports inserting a new node to an existed linked list by the specified index. Function ``insert_node_at_index()`` supports inserting a new node at index 0 (beginning of the linked listed) and at the middle index. If the insert node is at index = linked list size, the linked list will appended.
+Check implementation for this in [insert_with_index_heap_memory.c](insert_with_index_heap_memory.c) program. This program supports inserting a new node to an existed linked list by the specified index. Function ``insert_node_at_index()`` supports inserting a new node at index 0 (beginning of the linked listed) and at the middle index. If the insert node is at index = linked list size, the linked list will appended.
 
 There is another way to insert a node at first index is to use double pointer, check [multiple_defines_for_insert_with_index.c](multiple_defines_for_insert_with_index.c) source code.
+
+**Notes**: ``ins_node``, which is used to insert a new node into the linked list with existed nodes on [stack](insert_with_index_stack_memory.c#L36) or [heap](insert_with_index_heap_memory.c#L41) memory, must always be on heap memory, i.e dynamically allocated by [malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#malloc), as its address won't be changed outside **insert_node_at_middle()** function.
+
+**Why a node on stack memory can't be inserted to the linked list ?**
+
+Function ``insert_node_at_middle()`` with a node on stack memory, i.e ``static LinkedList ins_node``, can only be called one time as using ``static LinkedList ins_node`` makes its address can't be changed in the next time calling this function:
+
+```c
+// THIS IS A WRONG IMPLEMENTATION TO INSERT A NODE. MUST NOT PRACTICE ITS IN REAL APPLICATION
+int insert_node_at_middle(LinkedList *first_node, int index, int id, int value){
+    int size;
+    LinkedList *current_node = first_node;
+    LinkedList *prev_node;
+    static LinkedList ins_node;
+
+    int tmp_index = 0;
+
+    ins_node.id = id;
+    ins_node.value = value;
+
+    // With static LinkedList ins_node, we can't insert a new node to node 1
+    while(current_node != NULL)
+	{        
+      	if (tmp_index == index) {
+            prev_node->next_node = &ins_node;
+			ins_node.next_node = current_node;
+			return 1;
+      	}
+        prev_node = current_node;  
+		current_node = current_node->next_node;
+		tmp_index++;
+    }
+
+	size = tmp_index;
+
+	if (index == size){
+		prev_node->next_node = &ins_node;
+		return 1;
+	} 
+   
+    return 0;
+}
+```
 
 # Read
 
