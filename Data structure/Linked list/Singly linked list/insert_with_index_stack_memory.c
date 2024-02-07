@@ -7,7 +7,6 @@ struct _LinkedList {
     struct _LinkedList* next_node; 
 }; 
 
-
 typedef struct _LinkedList LinkedList;
 
 //Insert value to Next node and link 2 nodes to each other
