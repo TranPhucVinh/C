@@ -60,7 +60,7 @@ int a = 6;
 * ``a``: lvalue
 * ``6``: rvalue
 
-# ++i (prefix) and i++ (postfix)
+# Increment operator ++: ++i (prefix) and i++ (postfix)
 
 ``++i`` will increment the value of i, and then return the incremented value to ``j``
 
