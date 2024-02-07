@@ -2,7 +2,9 @@
 
 Create and read all member of a linked list: [create_and_read_linked_list.c](create_and_read_linked_list.c)
 
-Create/insert a node at index 0 (node 1):
+**Notes**: **ins_node**, which is used to insert a new node into the linked list with existed nodes on [stack](insert_with_index_stack_memory.c#L36) or [heap](insert_with_index_heap_memory.c#L41) memory, must always be on heap memory, i.e dynamically allocated by [malloc()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#malloc), as its address won't be changed outside **insert_node_at_middle()** function.
+
+**Create/insert a node at index 0 (node 1)**:
 
 Old linked list
 
