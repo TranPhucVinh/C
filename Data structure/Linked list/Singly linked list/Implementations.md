@@ -66,10 +66,31 @@ int insert_node_at_middle(LinkedList *first_node, int index, int id, int value){
 	if (index == size){
 		prev_node->next_node = &ins_node;
 		return 1;
-	} 
-   
+	}  
     return 0;
 }
+int main() 
+{ 
+    struct database_node node_0 = {1, 100};
+
+    struct database_node node_1, node_2;
+    insert_new_node(&node_0, &node_1, 2, 200);
+    insert_new_node(&node_1, &node_2, 3, 300);
+    insert_new_node(&node_1, &node_2, 4, 400);
+    node_2.next_node = NULL; //End link list
+
+	printf("Before updating:\n");
+    display_link_list(&node_0);
+
+    insert_node_at_middle(&node_0, 1, 123, 456);
+
+	printf("After updating:\n");
+	display_link_list(&node_0);
+
+// Calling insert_node_at_middle(&node_0, 1, 123, 456) one more time insert a new node
+// result in infinite inserting due to while(current_node != NULL); as using static LinkedList ins_node
+    return 0; 
+} 
 ```
 
 # Read
