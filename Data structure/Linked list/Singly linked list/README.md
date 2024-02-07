@@ -1,6 +1,4 @@
-# Fundamental concept
-
-## Structure of a Singly Linked list data structure
+# Structure of a Singly Linked list data structure
 
 ```
 Node 1 -> Node 2 -> Node 3 -> ... -> NULL
@@ -8,7 +6,14 @@ Node 1 -> Node 2 -> Node 3 -> ... -> NULL
 
 For memory storage reason, linked list must be implemented on heap memory.
 
-## Why can't use linked list in stack memory
+# [Implementations](Implementations.md)
+
+* [Create](Implementations.md#create): Create and read all member of a linked list, insert a new node to an existed linked list by the specified index
+* [Read](Implementations.md#read): [Read the whole linked list](), [read a node at specific index](), get linked list size, get the middle member of the linked list by 1 time traversing
+* [Update](Implementations.md#update): Update node value at a specific index
+* [Delete](Implementations.md#delete): Delete node at specific index (at index 0, middle index and the last index)
+
+# Why can't use linked list in stack memory
 
 This program will insert new node and display link list successfully. For ``insert_node_at_middle()``, this function can only be called one time as using ``static struct database_node`` so its address can't be changed in the next time calling this function:
 
@@ -88,13 +93,6 @@ int main()
     return 0; 
 } 
 ```
-
-# [Implementations](Implementations.md)
-
-* [Create](Implementations.md#create): Create and read all member of a linked list, insert a new node to an existed linked list by the specified index
-* [Read](Implementations.md#read): [Read the whole linked list](), [read a node at specific index](), get linked list size, get the middle member of the linked list by 1 time traversing
-* [Update](Implementations.md#update): Update node value at a specific index
-* [Delete](Implementations.md#delete): Delete node at specific index (at index 0, middle index and the last index)
 
 # Examples
 
