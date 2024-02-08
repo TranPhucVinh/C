@@ -16,3 +16,4 @@ For memory storage reason, linked list must be implemented on heap memory.
 # Examples
 
 * Create linked list from a given array: [array_to_linked_list.c](array_to_linked_list.c)
+* Create an array from a given linked list: [linked_list_to_array.c](linked_list_to_array.c)
