@@ -119,20 +119,18 @@ int main() {
 
 Check if a string is palindrome: a word, phrase, or sequence that reads the same backward as forward, e.g., **madam** or **nurses run**.
 
-If palindrome return ``true``, if not return ``false``.
-
-```js
-function checkPalindrome(inputString) {
-    var i;
-    var a=0;
-    for (i=0; i<inputString.length; i++){
-        if (inputString[i]==inputString[inputString.length-1-i]){a++;}
+```c
+void isPalindrome(char* s) {
+    int a = 0;
+    for (int i=0; i < strlen(s); i++){
+        if (s[i]==s[strlen(s)-1-i]){a++;}
         else {
-            return false;
+            printf("String %s is not palindrome\n", s);    
+            exit(0);        
         }
     }
-    if ((a==(inputString.length))){ 
-        return true;
-    }
+    if ((a==(strlen(s)))){ 
+        printf("String %s is palindrome\n", s);
+    } 
 }
 ```
