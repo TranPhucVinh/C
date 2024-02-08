@@ -134,3 +134,4 @@ void isPalindrome(char* s) {
     } 
 }
 ```
+List all palindrome numbers from 1 to MAX_NUMBER: [list_all_palindromes.c](list_all_palindromes.c)
