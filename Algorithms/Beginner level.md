@@ -134,3 +134,7 @@ void isPalindrome(char* s) {
     } 
 }
 ```
+Check if a linked list is palindrome. E.g:
+* 1->2->1 is palindrome
+* 3->2->1 isn't palindrome
+**Solution**: [Convert that linked list into an array](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/linked_list_to_array.c) then start traversing this array for palindrome validation.
