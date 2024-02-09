@@ -6,7 +6,7 @@ A process also has its environment which comes with environment variables. The s
 
 * The command line arguments and the environment variables are stored at the top of the process memory layout at the higher addresses.
 * **Stack segment** is the memory area which is used by the process to store the local variables of function and other information that is saved every time a function is called. This other information includes the return address ie the address from where the function was called, some information on the callers environment like its machine registers etc are stored on stack. Also worth mentioning here is that each time a recursive function is called a new stack frame is generated so that the each set of local variables does not interfere with any other set.
-* **Heap segment** is the one which is used for dynamic memory allocation. This segment is not limited to a single process, instead it is shared among all the processes running in the system. Any process could dynamically allocate memory from this segment. Since this segment is shared across the processes so memory from this segment should be used cautiously a**nd should be deallocated as soon as the process is done using that memory.
+* **Heap segment** is the one which is used for dynamic memory allocation. This segment is not limited to a single process, instead it is shared among all the processes running in the system. Any process could dynamically allocate memory from this segment. Since this segment is shared across the processes so memory from this segment should be used cautiously and should be deallocated as soon as the process is done using that memory.
 
 Forgetting deallocating memory in HEAP segment causes Memory leak.
 
