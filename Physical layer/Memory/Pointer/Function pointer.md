@@ -81,6 +81,7 @@ void (*polymorphism)();
 
 void function_define(void function()){
     polymorphism = function;
+	polymorphism();
 }
 
 void display_str_1(){
@@ -94,9 +95,7 @@ void display_str_2(){
 int main()
 { 	
     function_define(display_str_1);
-    polymorphism();
     function_define(display_str_2);
-    polymorphism();
 }
 ```
 ```
