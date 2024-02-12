@@ -1,22 +1,21 @@
-
 # struct as a function argument
 
 ```c
 #include <stdio.h>
 
-struct databaseNode {
+struct StructObject {
 	int id;
 	char stringValue[50];
 };
 
-void structFunction(struct databaseNode node);
+void structFunction(struct StructObject node);
 
-main(){
-	struct databaseNode node = {1, "String value"};
+int main(){
+	struct StructObject node = {1, "String value"};
 	structFunction(node);
 }
 
-void structFunction(struct databaseNode node){
+void structFunction(struct StructObject node){
 	printf("id is %d and string value is %s \n", node.id, node.stringValue);
 }
 ```
@@ -34,20 +33,20 @@ void display_string(){
 	printf("Hello, World !\n");
 }
 
-struct struct_data_type {
+struct StructObject {
 	int id;
 	char string_value[50];
 	void (*init)();
 };
 
 int main(){
-    struct struct_data_type value_0 = {
+    struct StructObject obj = {
 		.id = 123,
 		.string_value = "String value",
 		.init = display_string
 	};
-	printf("%d %s\n", value_0.id, value_0.string_value);
-	value_0.init();
+	printf("%d %s\n", obj.id, obj.string_value);// 123 String value
+	obj.init();// Hello, World !
 }
 ```
 
