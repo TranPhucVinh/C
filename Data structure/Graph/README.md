@@ -12,6 +12,8 @@ Command ``dot``:
 
 * ``-Tpdf``: Output the graph to pdf
 
+File ``.dot``, e.g ``test.dot``, is used to store graph information.
+
 Undirected graph:
 ```
 graph {
