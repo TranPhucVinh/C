@@ -53,12 +53,13 @@ void callback(int a, int b){
 void set_callback(void function()){
    void (*display_pointer)(int a, int b);
    display_pointer = function;
-   display_pointer(56, 78);
+   display_pointer(1, 2);
 }
 
 int main()
-{  
-   set_callback(callback);
+{
+   set_callback(&callback);
+// Or: set_callback(&callback);
 }
 ```
 
