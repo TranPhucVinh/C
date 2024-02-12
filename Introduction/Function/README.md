@@ -168,41 +168,21 @@ Total argument: 2
 
 **Example**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
 # [Function pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Function%20pointer.md)
-# Short-Circuiting
-Short-circuiting is one of the optimization steps of the compiler, in this step unnecessary calculation is avoided during the evaluation of an expression. Expression is evaluated from left to right. It works under && and || operator, when the value of the expression can be calculated certainly by only evaluating parts of the expression.
-```cpp
-int a = 1, b = 1, c = 1;
 
-if (a == b || c++) {
-	printf("%d\n", c);// 1
-}
-printf("%d\n", c);// 1
-
-if (a != b && c++) {
-	printf("%d\n", c);// 1
-}
-printf("%d\n", c);// 1
-```
-``(a == b || c++)`` as ``a`` is equal to ``b`` so ``||`` is always right, then ``c++`` is not calculated.
-
-``(a != b && c++)`` as ``a != b`` is wrong so ``&&`` is alway wrong, then ``c++`` is not calculated.
-
-If the left side of the || expression is wrong/&& expression is true, the right side will be calculated. 
-```c
-int a = 1, b = 1, c = 1;
-
-if (a != b || c++) {
-	printf("%d\n", c);// 2
-}
-
-if (a == b && c++) {
-	printf("%d\n", c);// 3
-}
-```
+# [Conditional statements](Conditional%20statements.md)
+* if else (short hand)
+* for
+* swith case
+* go to
+* break, continue, return
+# [Conditional statements expression](Conditional%20statements%20expression.md)
+* Condition changed during execution
+* Set variable to 0 in a condition will return false
+* Condition with !=0 number
+* Short circuiting
+* assert
 # [Other concepts](Other%20concepts.md)
-
-* [Conditional statements](Conditional%20statements.md)
-* [Scope](Scope.md)
 * [Callback function](Callback%20function.md)
 * [Variadic function and variable length argument](Variadic%20function.md)
+* [Scope](Scope.md)
 * [Random number generators](Random%20number.md)
