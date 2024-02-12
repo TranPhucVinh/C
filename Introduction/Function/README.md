@@ -199,9 +199,8 @@ if (a == b && c++) {
 	printf("%d\n", c);// 3
 }
 ```
-# Other concepts
+# [Other concepts](Other%20concepts.md)
 
-* [Definition and Declaration](Definition%20and%20Declaration.md)
 * [Conditional statements](Conditional%20statements.md)
 * [Scope](Scope.md)
 * [Callback function](Callback%20function.md)

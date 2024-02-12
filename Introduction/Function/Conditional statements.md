@@ -20,7 +20,7 @@ Take [Find the nth digit of an infinite integer sequence](https://github.com/Tra
 Condition when setting variable can be false (``0``) when the variable is set to ``0``:
 
 ```c
-int a  = 20, b = 0;
+int a = 20, b = 0;
 
 int main(){
     if (a=b) printf("true");
