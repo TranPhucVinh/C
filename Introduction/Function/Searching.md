@@ -24,7 +24,7 @@ if (!ret){
 ```
 # Regular expression
 
-Create a regular expression pointer
+Create/Compile a regular expression pointer
 ```c
 #include <regex.h>
 int regcomp(&regex, expression, flag)
