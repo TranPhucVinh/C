@@ -45,7 +45,7 @@ main() {
 
 # Find prime number
 
-Find all prime numbers with a limited of integer value
+Find all prime numbers less than a given integer value
 
 ```c
 #include <stdio.h>
@@ -53,18 +53,14 @@ Find all prime numbers with a limited of integer value
 #define NUMBER 100
 
 int main () {
-    int total_divisor = 0;
-
     for (int i = 1; i <= NUMBER; i++)
     {
+		int total_divisor = 0;
         for (int j = 1; j <= i; j++)
         {
             if ((i % j) == 0) total_divisor++;
         }
-        if (total_divisor == 2) {
-            printf("%d ", i);
-        }
-        total_divisor = 0;
+        if (total_divisor == 2) printf("%d ", i);
     }
 }
 ```
