@@ -45,45 +45,28 @@ main() {
 
 # Find prime number
 
-Find prime number with a limited of integer value
+Find all prime numbers with a limited of integer value
 
 ```c
 #include <stdio.h>
 
-main () {
-	int n, count = 0;
-	printf(" enter the limit value " );
-	scanf("%d", &n);
+#define NUMBER 100
 
-	if (n <= 0)
-	{
-		printf("number must be greater than 0");
-	}
-	else
-	{
-		for (int i = 1; i <= n ; i++)
-		{
-			for (int j = 1; j <= i; j++)
-			{
-				if ((i % j) == 0)
-				{
-					count++;
-				}
-			}
-			if (count == 2) {
-				printf("%d ", i );
-			}
-			count = 0;
-		}
-	}
+int main () {
+    int total_divisor = 0;
+
+    for (int i = 1; i <= NUMBER; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            if ((i % j) == 0) total_divisor++;
+        }
+        if (total_divisor == 2) {
+            printf("%d ", i);
+        }
+        total_divisor = 0;
+    }
 }
-```
-
-**Result**
-
-```
-enter the limit value 29
-2 3 5 7 11 13 17 19 23 29
 ```
 
 # Reverse number
