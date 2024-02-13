@@ -37,6 +37,27 @@ int logarit_calculation(int base, int value){
     return 1 + logarit_calculation(base, value/base);
 }
 ```
+# Fibonacci sequence
+Implementation of Fibonacci by recursive function for big number, like 50th, takes ten of seconds to run due to the stack grown up during the execution:
+```c
+long fibonacci(int n){ 
+    if ((n==1)||(n==2)) return 1;
+    else {
+       return fibonacci(n-1) + fibonacci(n-2);
+    }
+}
+fibonacci(50); // Take ten of seconds to run
+```
+Implementation of Fibonacci by using array to store all members and recursively define will take 1 second to run:
+```c
+long fibonacci[50];
+fibonacci[0] = 1;
+fibonacci[1] = 1;
+for (int i = 2; i < 50; i++){
+	fibonacci[i] = fibonacci[i-1] + fibonacci[i-2];
+}
+printf("%ld\n", fibonacci[49]);// 50th number
+```    
 # Other applications
 * [Hanoi tower](Hanoi_tower.c)
 * [Raspbian device tree: Find all nodes with compatible string](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/Device%20tree/find_all_nodes_with_comp_str.c)
