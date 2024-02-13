@@ -46,7 +46,29 @@ main() {
 # Find prime number
 
 Find all prime numbers less than a given integer value
+**Best approach**: A prime number isn't divisible to any number less than its square root.
 
+```c
+#include <stdio.h>
+#include <math.h>
+
+#define NUMBER 100
+
+int main () {
+    for (int i = 1; i <= NUMBER; i++)
+    {
+        int total_divisor = 0;
+        for (int j = 2; j <= sqrt(i); j++)
+        {
+            if ((i % j) == 0) total_divisor++;
+        }
+        if (total_divisor == 0) {
+            printf("%d ", i);
+        }
+    }
+}
+```
+**Naive approach**:
 ```c
 #include <stdio.h>
 
