@@ -37,3 +37,4 @@ void main() {
 Find [saddle point](https://github.com/TranPhucVinh/C/tree/master/Data%20structure/Array) in a 2D array. Also check [saddle point document](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20structure/Array#saddle-point) for the method to find saddle point inside a 2D array.
 
 Program [saddle_point.c](saddle_point.c)
+# [Using array to store Fibonacci sequence with recursively define will reduce execution time to 1 second, while Fibonacci recursive function takes tens of seconds to run](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Recursive%20function.md#fibonacci-sequence)
