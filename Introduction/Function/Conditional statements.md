@@ -42,6 +42,42 @@ for(int index = 0;index<10;){
 
 ``for(;;)`` is equal to ``while(1)``.
 
+**Draw a rectangle with dots**
+```
+column  
+***
+* * row
+* *
+***
+```'
+```c
+#include <stdio.h>
+int main() {
+	int column = 3;
+    int row = 4;
+
+	for (int i = 1; i <= row ; i++)
+	{
+		if ((i == 1) || (i == row))
+		{
+			for (int j = 1; j <= column; j++){
+				printf("*");
+			}
+			printf("\n");
+		}
+		else {
+			for (int j = 1; j <= column; j++)
+			{
+				if ((j == 1 ) || (j == column)) {
+					printf("*");
+				}
+				else printf(" ");
+			}
+			printf("\n");
+		}
+	}
+}
+```
 # switch case
 
 Error ``jump to case label [-fpermissive]`` might happen if the instruction inside ``case`` is not put inside ``{}``. 
