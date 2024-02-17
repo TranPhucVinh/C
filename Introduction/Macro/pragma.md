@@ -1,5 +1,9 @@
 The ‘#pragma’ directive is the method specified by the C standard for providing additional information to the compiler, beyond what is conveyed in the language itself. ``#pragma`` varies between compilers. Those are GCC defined ``#pragma``
 
+# [#pragma once](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#pragma-once-to-fix-functions-redefinition-issue)
+
+**#pragma once** is used to cause the current header file to be included only once in a single compilation.
+
 # #pragma GCC dependency
 
 **#pragma GCC dependency** allows you to check the relative dates of the current file and the dependent files. If the dependent file is more recent than the current file, a warning is issued.
