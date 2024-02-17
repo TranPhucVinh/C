@@ -61,7 +61,7 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 * [tcp_single_receiver.c](tcp_single_receiver.c)
 
 # [Single TCP receiver for multiple TCP senders, handled by multithread](https://github.com/TranPhucVinh/Cplusplus/tree/master/Transport%20layer#single-tcp-receiver-for-multiple-tcp-senders-handled-by-multithread)
-
+**Note**: This implementation has a special feature: **TCP receiver** only **accepts a specific number of connected TCP senders**, defined by **MAX_CONNECTIONS** in **TCP receiver source code**.
 # Single TCP sender for multiple TCP receiver, handled by fork()
 
 ## Features
