@@ -109,20 +109,15 @@ Compile  ``gcc main.c head.c`` don't give any error while compiling with **g++**
 
 To follow ODR rule, use:
 
-* [extern](README.md#use-extern-to-solve-odr-issue)
+* [extern](README.md#use-extern-to-follow-odr)
 * [static](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/static.md#global-static-and-odr)
 
-## Use extern to solve ODR issue
+## Use extern to follow ODR
 
-``head.h``
+``header.h``
 
 ```c
 #include <stdio.h>
 extern int a;
 ```
-``head.c``
-```c
-#include "head.h"
-int a = 10;
-```
-``main.c`` kept as above
+``header.c`` and ``main.c`` are kept as above
