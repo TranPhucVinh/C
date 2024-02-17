@@ -1,4 +1,4 @@
-# strok(): Split string
+# strtok(): Split string
 
 Split string ``ABCD`` seperated by character ``C``
 
