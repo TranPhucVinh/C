@@ -11,7 +11,7 @@ int listen(int sockfd, int backlog);
 
 In [tcp_single_receiver.c](tcp_single_receiver.c) program, with ``MAXPENDING`` is set to ``5`` for ``backlog`` parameters, when initiating more than 5 new TCP client ([tcp_multiple_senders.c](tcp_multiple_senders.c)) connection at the same time, i.e 6 connections, and even start sending data to TCP server at the same time, ``ECONNREFUSED`` error don't return as expected theoretically. That might happen as those 6 TCP client connection might not actually coming at TCP server at the same time and the queue can still pack them properly.
 
-As defined, ``listen()`` is only used for TCP, not UDP. When calling ``listen()`` for UDP socket error **95** (**EOPNOTSUPP**) **Operation not supported**.
+As defined, ``listen()`` is only used for TCP, not UDP. When calling ``listen()`` for UDP socket, there will be error **95** (**EOPNOTSUPP**) **Operation not supported**.
 
 # accept()
 
