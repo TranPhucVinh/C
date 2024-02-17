@@ -25,7 +25,7 @@ int main(){
 }
 ```
 
-## Define function and variable in ``.c`` file
+## Define function inside ``.c`` file
 
 ``header.h``
 
@@ -33,7 +33,6 @@ int main(){
 #include <stdio.h>
 
 void display_string();
-int a;
 ```
 
 ``header.c``
@@ -44,7 +43,6 @@ int a;
 void display_string(){
     printf("Hello, World !\n");
 }
-int a = 123;
 ```
 
 ``main.c``
@@ -54,11 +52,10 @@ int a = 123;
 
 int main(){
 	display_string(); //Hello, World !
-	printf("%d", a);
 }
 ```
 
-For variables defined in header file, check the related ``extern`` document.
+For [One definition rule (ODR)](#one-definition-rule-odr), only functions are allowed to be defined inside .c source file. Defining variables inside .c source files causes compilation error, especcially with G++
 
 # One definition rule (ODR)
 
