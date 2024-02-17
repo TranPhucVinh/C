@@ -27,22 +27,22 @@ int main(){
 
 ## Define function and variable in ``.c`` file
 
-``head.h``
+``header.h``
 
 ```cpp
 #include <stdio.h>
 
-void displayString();
+void display_string();
 int a;
 ```
 
-``head.c``
+``header.c``
 
 ```cpp
-#include "head.h"
+#include "header.h"
 
-void displayString(){
-    printf("Hello World \n");
+void display_string(){
+    printf("Hello, World !\n");
 }
 int a = 123;
 ```
@@ -50,10 +50,10 @@ int a = 123;
 ``main.c``
 
 ```c
-#include "head.h"
+#include "header.h"
 
 int main(){
-	displayString(); //Hello World
+	display_string(); //Hello, World !
 	printf("%d", a);
 }
 ```
