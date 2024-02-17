@@ -21,7 +21,7 @@ Using ``\`` to add a new line when define macro
 printf("%lf", PI);
 ```
 ## Macro to get OS type
-```
+```c
 #include <stdio.h>
 
 int main()
