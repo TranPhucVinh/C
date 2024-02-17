@@ -59,20 +59,20 @@ For [One definition rule (ODR)](#one-definition-rule-odr), only functions are al
 
 # One definition rule (ODR)
 ## Defining variable inside header files are prohibited due to ODR
-``header.h``
+**Those implementations break ODR**:
+
+**header.h**
 
 ```c
 #include <stdio.h>
 
 int a = 10;
 ```
-``header.c``
+**header.c**
 ```c
 #include "header.h"
 ```
-
-``main.c``
-
+**main.c**
 ```c
 #include "header.h"
 
@@ -87,6 +87,7 @@ Compile  ``gcc main.c head.c`` will give error:
 collect2: error: ld returned 1 exit status
 ```
 ## Defining variable inside source files are prohibited due to ODR
+**Those implementations break ODR**:
 **header.h**
 ```c
 #include <stdio.h>
@@ -120,4 +121,40 @@ To follow ODR rule, use:
 #include <stdio.h>
 extern int a;
 ```
-``header.c`` and ``main.c`` are kept as above
+``header.c`` and ``main.c`` are kept unchanged
+# pragma once to fix functions redefinition issue
+**This implementation causes functions redefinition issue**:
+``header_1.h``
+```c
+#include <stdio.h>
+
+void display_string(){
+	printf("Hello, World !\n");
+}
+```
+``header_2.h``
+```c
+#include "header_1.h"
+```
+```c
+#include "header_1.h"
+#include "header_2.h"
+
+int main(){
+    display_string();
+}
+```
+**Error**:  ``redefinition of ‘display_string’``
+
+To fix that issue, use **#pragma once** in **header_1.h** to **cause the current header file to be included only once in a single compilation**
+**header_1.h**
+```c
+#pragma once
+
+#include <stdio.h>
+
+void display_string(){
+	printf("Hello, World !\n");
+}
+```
+**header_2.h** and **main.c** are kept unchanged
