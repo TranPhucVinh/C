@@ -147,6 +147,7 @@ int main(){
 **Error**:  ``redefinition of ‘display_string’``
 
 To fix that issue, use **#pragma once** in **header_1.h** to **cause the current header file to be included only once in a single compilation**
+
 **header_1.h**
 ```c
 #pragma once
