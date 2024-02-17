@@ -3,10 +3,10 @@
 Split string ``ABCD`` seperated by character ``C``
 
 ```cpp
-char* splitString = "ABCD";
-char* separator;
-separator = strtok(splitString, "C");
-printf("%s", separator); //AB
+har orgin_string[] = "ABCD";
+char *separator;
+separator = strtok(orgin_string, "C");
+printf("%s %s\n", separator, orgin_string); //AB AB; separator and orgin_string now are equal to each other
 ```
 
 Passing more than 1 character for delimiters cause segment fault error
