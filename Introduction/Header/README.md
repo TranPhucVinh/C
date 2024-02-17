@@ -2,13 +2,13 @@
 
 ## Define function, variable in ``.h`` file
 
-``head.h``
+``header.h``
 
 ```c
 #include <stdio.h>
 
-void displayString(){
-	printf("Hello World \n");
+void display_string(){
+	printf("Hello, World !\n");
 }
 
 int value = 6;
@@ -17,10 +17,10 @@ int value = 6;
 ``main.c``
 
 ```c
-#include "head.h"
+#include "header.h"
 
 int main(){
-	displayString(); //Hello World
+	display_string(); //Hello, World !
 	printf("%d \n", value); //6
 }
 ```
