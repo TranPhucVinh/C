@@ -157,7 +157,7 @@ Additional BUILD file (lies on the same level of **main.c**):
 ```bazel
 filegroup(
     name = "lib_src",
-    srcs = ["main.py"],
+    srcs = ["main.c"],
     visibility = ["//main:__pkg__"],
 )
 ```
