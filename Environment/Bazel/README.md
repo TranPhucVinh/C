@@ -165,7 +165,7 @@ filegroup(
 Main BUILD file (inside BUILD folder):
 
 ```bazel
-py_binary(
+cc_binary (
     name = "main",
     srcs = ["//:lib_src"],
 )
