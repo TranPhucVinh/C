@@ -65,6 +65,7 @@ Run component ``main``: ``bazel run //main:test_bazel``
 
 # Build multiple components
 ```
+working_folder
 ├──repo_1
 |	├──main.c
 |	└── BUILD
@@ -73,9 +74,22 @@ Run component ``main``: ``bazel run //main:test_bazel``
 |	└── BUILD
 └── WORKSPACE
 ```
+``BUILD`` for ``repo_1``
+
+```sh
+cc_binary(
+    name = "repo_1, # "name = repo_2" for repo_2
+    srcs = ["main.c"],
+)
+```
+
 Build all those 2 components: ``bazel build //...``
 
-Run each of those component: ``bazel run repo_1`` and ``bazel run repo_2``
+Run each of those component: 
+```sh
+username@hsotname:~/working_folder$ bazel run repo_1 # Call bazel run in working_folder, no need to get inside repo_1 
+username@hsotname:~/working_folder$ bazel run repo_2 # Call bazel run in working_folder, no need to get inside repo_2
+```
 # Read file when running bazel build
 
 ```sh
