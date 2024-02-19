@@ -10,7 +10,7 @@
 
 Now change ``BUILD`` file to:
 
-```sh
+```bazel
 cc_library(
     name = "library_name",
     srcs = ["header.c"],
@@ -79,7 +79,7 @@ int main(){
 }
 ```
 ``BUILD``
-```sh
+```bazel
 cc_import(
 	name = "lib1",
     hdrs = ["lib1/lib1.h"],
@@ -113,7 +113,7 @@ Run: ``bazel run test_bazel``
 
 Build with external library like ``pthread`` (``gcc main.c -lpthread``):
 
-```c
+```bazel
 cc_binary(
     name = "main",
     srcs = ["main.c"],
@@ -131,7 +131,7 @@ linkopts = ["-lpthread", "-li2c"],
 
 Include an existed static library ``.a`` to ``BUILD`` with ``cc_import()``
 
-```c
+```bazel
 cc_import(
 	name = "library_name",
 	hdrs = ["head.h"],
@@ -164,7 +164,7 @@ For ``head.h`` inside ``include`` folder:
 └── main.c
 ```
 
-```sh
+```bazel
 cc_import(
 	name = "library_name",
 	static_library = "head.a",
