@@ -111,18 +111,19 @@ int get_string_size(char *string)
 printf("String size %d\n", get_string_size(displayed_string));//String size: 14
 ```
 
-## Fail in dynamically assigned the size of array
+## Must not dynamically assign array size
 
-Enter the size of array
+**Must not enter array size**:
 
 ```c
-int i, n, array[n];
+// Must not do this
+int n, array[n];
 printf("Enter the number of members: ");
 scanf("%d", &n);
 
 //Segment fault in those lines
-for (i = 0; i < n; i++){    
-   array[i] = i;
+for (int i = 0; i < n; i++){    
+    array[i] = i;
 }
 ```
 
@@ -146,11 +147,7 @@ const int b = 2;
 int array[b] = {1, 2};
 ```
 
-Compiled in GCC gives:
-
-```
-error: variable-sized object may not be initialized
-```
+Compiled in GCC gives error: **error: variable-sized object may not be initialized**
 
 But this compiled normally on G++ without warning.
 
