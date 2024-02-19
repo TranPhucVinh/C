@@ -142,3 +142,35 @@ To read ``test.json`` inside folder ``file``, the source code now need to change
 ```c
 printf("%s\n", read_file("file/test.json"));
 ```
+# Source code and main BUILD file are in different folder
+```py
+working_folder
+├── main
+|    └── BUILD # This is the main BUILD file
+├── main.c # main source code
+├── BUILD # 
+└── WORKSPACE
+```
+As Bazel **forbids up-level references (..)** and **current-directory references (./)**, so we need 2 BUILD files as one additional BUILD file, which lies on the same level of **main.c**, to **support the main BUILD file to call main.py**
+
+Additional BUILD file (lies on the same level of **main.c**):
+```bazel
+filegroup(
+    name = "lib_src",
+    srcs = ["main.py"],
+    visibility = ["//main:__pkg__"],
+)
+```
+
+Main BUILD file (inside BUILD folder):
+
+```bazel
+py_binary(
+    name = "main",
+    srcs = ["//:lib_src"],
+)
+```
+```sh
+username@hsotname:~/working_folder$ bazel run main:main
+username@hsotname:~/working_folder$ bazel run main:main
+```
