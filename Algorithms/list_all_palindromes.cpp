@@ -4,6 +4,8 @@
 
 #define MAX_NUMBER 99999999
 
+using namespace std;
+
 int reverse_number(int old_number) {
     int tmp;
     long new_number = 0; // As there is "new_number*10 + tmp" in later step, so
