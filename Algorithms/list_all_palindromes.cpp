@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 #define MAX_NUMBER 99999999
 
@@ -71,16 +71,25 @@ int generate_palindromes(int i, int is_odd){
 int main() {
     // listPalindrome(MAX_NUMBER);// This will take a few seconds to run as having big time complexity
 
+    vector<int> palindromes;
+
     // This will take less than 1 sec to complete 
     // This for loop will generate odd length palindromes first then go with even length palindromes
     for (int k = 0; k < 2; k++){
         int i = 1;
         
         while(generate_palindromes(i, k%2) < MAX_NUMBER){
-            printf("%d ", generate_palindromes(i,k%2));
+            palindromes.push_back(generate_palindromes(i,k%2));
             i += 1;
         }
     }
+
+    std::sort(palindromes.begin(), palindromes.end());
+
+    for (int i = 0; i < palindromes.size(); i++){
+        cout << palindromes[i] << " ";
+    }
+    cout << endl;
     
     return 0;
 }
