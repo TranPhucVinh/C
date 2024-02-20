@@ -13,18 +13,12 @@ The most most efficient and scalable alogorithm is the one with both lowest time
 
 # [Big O](Big%20O)
 
-# Beginner level
-
-[Beginner level algorithm examples include](Beginner%20level.md):
-
-* [Draw square with dots](Beginner%20level.md#draw-square-with-dots)
-* [Find prime number](Beginner%20level.md#find-prime-number)
-* [Reverse number](Beginner%20level.md#reverse-number)
-
 # [Array](Array)
 * [Find min number in an array](Beginner%20level.md#find-min-number-in-an-array)
 * [Saddle point](saddle%point)
-
+# String
+* [Convert a valid Roman numerals to integer, using map](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/src/map_roman_numerals_to_integer.cpp)
+* [Convert an integer to Roman numeral by using vector tuple](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/src/vector_tuple_integer_to_roman_numeral.cpp)
 # [Sequence](Sequence.md)
 
 Sequence or **sequence of numbers** problem include:
