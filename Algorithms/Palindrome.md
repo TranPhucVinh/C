@@ -27,9 +27,9 @@ int main() {
     return 0;
 }
 ```
-# Palindrome
+# Check if a string is palindrome
 
-Check if a string is palindrome: a word, phrase, or sequence that reads the same backward as forward, e.g., **madam** or **nurses run**.
+Palindrome a word, phrase, or sequence that reads the same backward as forward, e.g., **madam** or **nurses run**.
 
 ```c
 void isPalindrome(char* s) {
@@ -47,9 +47,68 @@ void isPalindrome(char* s) {
 }
 ```
 
-**Check if a linked list is palindrome**. E.g:
+# Check if a linked list is palindrome
+E.g:
 * 1->2->1 is palindrome
 * 3->2->1 isn't palindrome
 **Solution**: [Convert that linked list into an array](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/linked_list_to_array.c) then start traversing this array for palindrome validation.
 
-**List all palindrome numbers from 1 to MAX_NUMBER**: [list_all_palindromes.c](list_all_palindromes.c) (using 2 methods brute force and self-generating them)
+# List all palindrome numbers from 1 to MAX_NUMBER
+[list_all_palindromes.c](list_all_palindromes.c) (using 2 methods brute force and self-generating them)
+# Find palindrome with fixed length
+
+Given an integer array **queries** and a positive integer **intLength**, return an array **_Palindromes** where **_Palindromes[i]** is either the **queries[i]th** smallest positive palindrome of length **intLength** or **-1** if no such palindrome exists.
+
+**Test case 1**:
+
+* Input: queries = [1,2,3,4,5,90], intLength = 3
+* Output: [101,111,121,131,141,999]
+* Explanation:
+The first few palindromes of length 3 are:
+```
+101, 111, 121, 131, 141, 151, 161, 171, 181, 191, 202, ...
+```
+The 90th palindrome of length 3 is 999.
+
+**Test case 2**:
+
+* Input: queries = [2,4,6], intLength = 4
+* Output: [1111,1331,1551]
+* Explanation:
+
+The first six palindromes of length 4 are:
+
+1001, 1111, 1221, 1331, 1441, and 1551.
+
+## Solution
+
+A high time-complexity approach is to generate all panlindrom with length **intLength** then starts finding the **queries[i]th** inside that array. This approach takes many time to execute when intLength >= 13.
+
+The **best approach** is to generate only the smallest positive palindrome based on **queries[i]th**.
+
+## Analysis for the best approach
+
+The even number palindrome with length **intLength**, e.g 1221, 3223,.. (``intLength=4``) can be generate from the number of **intLength/2** length. E.g 12, 34,... will generate 1221, 3443,...
+
+The odd number palindromes with length **intLength**, e.g 12321, 32123,.. (``intLength=5``) can be generate from the number of **intLength/2 + 1** length. E.g 123, 321,... will generate 12321, 12321,... (as we remove the "number at middle index")
+
+Take an example with ``intLength = 4``, by this mechanism (for even number palindrome), we can generate a list of ascending palindrome if we generate from the ascending numbers of ``intLength/2 = 2`` length.
+
+```
+10 -> 1001 # 1st smallest
+11 -> 1111 # 2nd smallest
+12 -> 1221 # 3rd smallest
+..
+98 -> 9889 # 98st smallest
+99 -> 9999 # 99st smallest
+```
+
+For the list above, with queries[i] = 3, generate number ``1221`` from ``12`` for the 3rd smallest.
+
+By this approach, we will save time as we only generate the **queries[i]th smallest number required**, not generating all palindromes.
+
+Similar implementation for odd number palindromes.
+
+## Source code
+
+[find_palindrome_with_fixed_length.cpp](src/find_palindrome_with_fixed_length.cpp)
