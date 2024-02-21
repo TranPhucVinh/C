@@ -46,7 +46,12 @@ void isPalindrome(char* s) {
     } 
 }
 ```
+# Check if a phrase is a palindrome
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
+E.g: "A man, a plan, a canal: Panama" is a palindrome phrase as amanaplanacanalpanama is a palindrome
+
+Source code: [palindrome_phrase_validity.cpp](src/palindrome_phrase_validity.cpp)
 # Check if a linked list is palindrome
 E.g:
 * 1->2->1 is palindrome
