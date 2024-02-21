@@ -53,8 +53,10 @@ E.g:
 * 3->2->1 isn't palindrome
 **Solution**: [Convert that linked list into an array](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/linked_list_to_array.c) then start traversing this array for palindrome validation.
 
-# List all palindrome numbers from 1 to MAX_NUMBER
-[list_all_palindromes.c](list_all_palindromes.c) (using 2 methods brute force and self-generating them)
+# List all palindrome from 1 to MAX_NUMBER, generate all palindrome with a fixed length
+**Source code**: [list_all_palindromes.c](list_all_palindromes.c)
+
+**Notes**: [Function listPalindrome()](src/list_all_palindromes.cpp#L30C6-L30C20) is a brute force approach to list all palindrome, while we can use the self-generating method as a better solution.
 # Find palindrome with fixed length
 
 Given an integer array **queries** and a positive integer **intLength**, return an array **_Palindromes** where **_Palindromes[i]** is either the **queries[i]th** smallest positive palindrome of length **intLength** or **-1** if no such palindrome exists.
