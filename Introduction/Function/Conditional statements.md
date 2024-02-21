@@ -11,7 +11,22 @@ Example:
 int number = 20;
 number = 20 ? printf("true") : printf("false");
 ```
+Must not use double condition in one check:
+```c
+// MUST NOT DO THAT
+int a = 3;
+if ((1 < a < 2)){// This condition will always return true, and give no compilation error
+	printf(a);// Won't be printed as failed condition
+}
 
+```
+Use that instead:
+```c
+int a = 3;
+if ((1 < a) && (a < 2)){
+	printf(a);// Won't be printed as failed condition
+}
+```
 # for
 
 Omit 1st expression
