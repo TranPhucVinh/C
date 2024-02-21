@@ -55,43 +55,48 @@ void listPalindrome(int max_number) {
     * Odd length palindromic numbers: 101, 111, 121,...
     * Even length palindromic numbers: 1001, 3223, 123321,...
 */
-int generate_palindromes(int i, int is_odd){
-    int tmp;
-    if (is_odd){
-        tmp = i/10;
-    } else {
-        tmp = i;
-    }
-        
-    while(tmp > 0){
-        i = i * 10 + (tmp % 10);
-        tmp = tmp / 10;
-    }
-    return i;
-}
+void generate_palindromes_with_length(long length){
+    vector<long long> palindromes;
 
-int main() {
-    // listPalindrome(MAX_NUMBER);// This will take a few seconds to run as having big time complexity
-
-    vector<int> palindromes;
-
-    // This will take less than 1 sec to complete 
-    // This for loop will generate odd length palindromes first then go with even length palindromes
-    for (int k = 0; k < 2; k++){
-        int i = 1;
-        
-        while(generate_palindromes(i, k%2) < MAX_NUMBER){
-            palindromes.push_back(generate_palindromes(i,k%2));
-            i += 1;
+    if (length == 1){
+        for (long long i = 1; i < 10; i++){
+            palindromes.push_back(i);
         }
+        return;
+    }
+    
+    // If length is odd
+    if (length%2){
+        long half_length = (length - 1)/2;
+        for (long long i = 0; i < 10; i++){
+            for (long long j = pow(10, (half_length-1)); j < pow(10, half_length); j++){
+                string reverse_j = to_string(j);
+                reverse(reverse_j.begin(), reverse_j.end());
+                palindromes.push_back(stoll(to_string(j) + to_string(i) + reverse_j, 0, 10));
+            }
+        } 
+    } 
+    // If length is even
+    else {
+        long long half_length = length/2;
+        for (long long i = pow(10, (half_length-1)); i < pow(10, half_length); i++){
+            string reverse_i = to_string(i);
+            reverse(reverse_i.begin(), reverse_i.end());
+            palindromes.push_back(stoll(to_string(i) + reverse_i, 0, 10));
+        } 
     }
 
     std::sort(palindromes.begin(), palindromes.end());
 
-    for (int i = 0; i < palindromes.size(); i++){
-        cout << palindromes[i] << " ";
+    for (long long i = 0; i < palindromes.size(); i++){
+       cout << palindromes[i] << endl;
     }
-    cout << endl;
+}
+
+int main() {
+    listPalindrome(MAX_NUMBER);// This will take a few seconds to run as having big time complexity
+
+    generate_palindromes_with_length(15);
     
     return 0;
 }
