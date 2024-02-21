@@ -47,7 +47,7 @@ void intArray(int *array, int size){
 }
 ```
 
-Change value of an array by a function
+## Change value of an array by a function
 ```c
 void intArray(int *array, int size);
 int array[] = {1, 2, 3};
