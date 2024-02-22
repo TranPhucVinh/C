@@ -57,7 +57,10 @@ char str[] = "1234";
 int a = atoi(str);
 printf("%d \n", a); //1234
 ```
-
+```c
+char str[] = "3.14";// Convert a float string to int
+printf("%d \n", atoi(str)); //3
+ ```
 The function stops reading the input string at the first character that it cannot recognize as part of a number.
 
 ```c
