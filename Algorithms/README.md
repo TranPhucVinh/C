@@ -16,9 +16,7 @@ The most most efficient and scalable alogorithm is the one with both lowest time
 # [Array](Array)
 * [Find min number in an array](Beginner%20level.md#find-min-number-in-an-array)
 * [Saddle point](saddle%point)
-# String
-* [Convert a valid Roman numerals to integer, using map](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/src/map_roman_numerals_to_integer.cpp)
-* [Convert an integer to Roman numeral by using vector tuple](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/src/vector_tuple_integer_to_roman_numeral.cpp)
+
 # [Sequence](Sequence.md)
 
 Sequence or **sequence of numbers** problem include:
