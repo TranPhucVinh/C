@@ -28,13 +28,9 @@ struct stat {
         precision for the following timestamp fields.
         For the details before Linux 2.6, see NOTES. */
 
-    struct timespec st_atim;  /* Time of last access */
-    struct timespec st_mtim;  /* Time of last modification */
-    struct timespec st_ctim;  /* Time of last status change */
-
-#define st_atime st_atim.tv_sec      /* Backward compatibility */
-#define st_mtime st_mtim.tv_sec
-#define st_ctime st_ctim.tv_sec
+    struct timespec st_atime;  /* Time of last access */
+    struct timespec st_mtime;  /* Time of last modification */
+    struct timespec st_ctime;  /* Time of last status change */
 };
 ```
 
