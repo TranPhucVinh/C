@@ -45,19 +45,29 @@ Enter filename then print out the information about a file such as inode, file t
 ```c
 #include <stdio.h>
 #include <sys/stat.h>
+#include <time.h>
 
 int main(int argc, char *argv[]) {
 	struct stat statBuffer;
-    char filePath[] = "test.c";
+    struct tm *_tm;
+
+    char filePath[] = "main.c";
+    char time_buffer[64];// time buffer
+
 
     if (!stat(filePath, &statBuffer)){
 		printf("ID of device containing file st_dev: %ld\n", statBuffer.st_dev);
 		printf("Inode number st_ino: %ld\n", statBuffer.st_ino);
         printf("Mode of file: %o\n", statBuffer.st_mode);//View file type + file permission under octal
+
+        _tm = localtime(&(statBuffer.st_atime));
+        printf("%s", asctime(_tm));
+        strftime (time_buffer, sizeof time_buffer, "File is last accessed in %A, %B %d. %I:%M %p\n", _tm);
+        printf("%s", time_buffer);
 	} else {
 		puts("File not exist");
 	}
-}		
+}	
 ```
 
 For file type + file permission, if it returns:
