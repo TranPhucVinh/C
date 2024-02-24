@@ -9,6 +9,9 @@ class Solution {
 public:
     int primePalindrome(int n) {
         if ((n == 1) || (n==2)) return 2;
+        
+        // Except 11, all prime palindrome has odd length (as all odd length palindrome are divisible by 11.
+        // So to limit the calculation process in brute force approach, with 10000000 <= n < 1000000000 (8 char), start find from  n = 100000000
         if (10000000 <= n && n < 1000000000) n = 100000000;
         while(true){
             if(check_palindrome(n)){
