@@ -116,6 +116,32 @@ By this approach, we will save time as we only generate the **queries[i]th small
 
 Similar implementation for odd number palindromes.
 
-## Source code
+**Source code**: [palindrome_find_palindrome_with_fixed_length.cpp](src/palindrome_find_palindrome_with_fixed_length.cpp)
+# Prime palindrome
 
-[find_palindrome_with_fixed_length.cpp](src/find_palindrome_with_fixed_length.cpp)
+Given an integer **n**, return the smallest prime palindrome >= **n**.
+
+Example 1:
+* Input: n = 6
+* Output: 7
+
+Example 2:
+* Input: n = 8
+* Output: 11
+
+Example 3:
+* Input: n = 13
+* Output: 101
+
+## Bruce force approach
+
+A note for brute approach is that 
+## Analysis for the best approach
+
+Except 11, all prime palindrome has odd length (as all odd length palindrome are divisible by 11.
+
+**Prove**: For any palindrome with even length: ``abcddcba = (a * 10000001 + b * 100001 * 10 + c * 1001 * 100 + d * 11 * 1000) % 11 = 0``
+
+The approach is to generate all palindrome from the size of the required number **n**, then check if that newly generated palindrome is prime. If not, keep generating.
+
+**Source code**: [palindrome_prime_palindrome_generate_prime_palindrome](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/palindrome_prime_palindrome_generate_prime_palindrome.cpp)
