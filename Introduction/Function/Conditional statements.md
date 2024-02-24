@@ -64,7 +64,7 @@ column
 * * row
 * *
 ***
-```'
+```
 ```c
 #include <stdio.h>
 int main() {
