@@ -54,7 +54,38 @@ The ``tcsetattr()`` function shall set the parameters associated with the termin
 * If ``optional_actions`` is ``TCSANOW``, the change shall occur immediately.
 * If ``optional_actions`` is ``TCSADRAIN``, the change shall occur after all output written to ``fildes`` is transmitted. This function should be used when changing parameters that affect output.
 * If ``optional_actions`` is ``TCSAFLUSH``, the change shall occur after all output written to ``fildes`` is transmitted, and all input so far received but not read shall be discarded before the change is made.
+## utime.h
 
+The **utime()** system call changes the access and modification times of the inode specified by filename to the **actime** and **modtime** fields of times respectively:
+```c
+#include <utime.h>
+
+int utime(const char *filename, const struct utimbuf *_Nullable times);
+
+struct utimbuf {
+    time_t actime;       /* access time */
+    time_t modtime;      /* modification time */
+};
+```
+**Example**: Change access time, modify time of a file
+```c
+#include <time.h>
+#include <utime.h>
+
+const char *filename = "index.html";
+
+int main() {
+    time_t mtime;
+
+    struct utimbuf new_times;
+	  new_times.actime = 1582665559; // Access time, Unix timestamp
+  	new_times.modtime = 1582665559; // Modify time, Unix timestamp
+
+    utime(filename, &new_times);
+
+    return 0;
+}
+```
 ## I/O multiplexing API
 
 I/O multiplexing API includes:
