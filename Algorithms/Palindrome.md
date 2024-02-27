@@ -157,7 +157,12 @@ Example 3:
 
 ## Bruce force approach
 
-A note for brute approach is that 
+A note for brute approach is that except 11, all prime palindrome has odd length (as all odd length palindrome are divisible by 11.
+
+So to limit the calculation process in brute force approach, with 10000000 <= n < 1000000000 (8 char), start find from  n = 100000000
+
+**Source code**: [palindrome_prime_palindrome_brute_force.cpp](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/palindrome_prime_palindrome_brute_force.cpp)
+
 ## Analysis for the best approach
 
 Except 11, all prime palindrome has odd length (as all odd length palindrome are divisible by 11.
@@ -166,4 +171,4 @@ Except 11, all prime palindrome has odd length (as all odd length palindrome are
 
 The approach is to generate all palindrome from the size of the required number **n**, then check if that newly generated palindrome is prime. If not, keep generating.
 
-**Source code**: [palindrome_prime_palindrome_generate_prime_palindrome](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/palindrome_prime_palindrome_generate_prime_palindrome.cpp)
+**Source code**: [palindrome_prime_palindrome_generate_prime_palindrome.cpp](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/palindrome_prime_palindrome_generate_prime_palindrome.cpp)
