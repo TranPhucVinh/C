@@ -46,6 +46,28 @@ void isPalindrome(char* s) {
     } 
 }
 ```
+To reduce traversing time, just traverse to the middle of the string, i.e **strlen(s)/2**:
+```c
+void isPalindrome(char* s) {
+    int a = 0;
+
+    if (strlen(s) == 3) {
+        if (s[0] == s[2]) printf("String %s is palindrome\n", s);
+        else printf("String %s is not palindrome\n", s);
+        return;
+    }
+
+    for (int i=0; i < strlen(s)/2; i++){
+        if (s[i]==s[strlen(s)-1-i]) a++;
+        else {
+            printf("String %s is not palindrome\n", s);    
+            exit(0);        
+        }
+    }
+
+    if (a == strlen(s)/2) printf("String %s is palindrome\n", s);
+}
+```
 # Check if a phrase is a palindrome
 A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
