@@ -21,3 +21,18 @@ Some test cases:
 Leetcode: [8. String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/description/)
 
 Source code: [string_to_integer.cpp](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/string_to_integer.cpp)
+
+# Repeated substring pattern
+
+Given a string **s**, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
+
+* s = "abab" -> true as it is the substring **ab** twice
+* s = "aba" -> false
+* s = "abcabcabcabc" -> true as it is the substring "abc" four times or the substring "abcabc" twice.
+
+**Algorithm**: 
+* The substring size must not be greater than half length of string **s**: ``substr_size <= length/2``
+* String **s** length must be divided by the substring size: ``substr_size*k = length``
+From that, we will generate all possible size of the substring then start finding if at least one among them can form the original string **s**.
+
+Source code: [string_repeated_substring_pattern.cpp](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/string_repeated_substring_pattern.cpp)
