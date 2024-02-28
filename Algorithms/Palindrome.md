@@ -76,9 +76,12 @@ E.g: "A man, a plan, a canal: Panama" is a palindrome phrase as amanaplanacanalp
 Source code: [palindrome_phrase_validity.cpp](src/palindrome_phrase_validity.cpp)
 # Given a string s, return true if the s can be palindrome after deleting at most one character from it
 
-* s = "abca" -> true as you could delete the character 'c'.
+* s = "abca" -> true as you can delete the character 'c'.
 * s = "abc" -> false.
-* s = "cbbcc" -> true you could delete the character 'c' at index 3, s= "cbbc"
+* s = "eedede" -> true as you can delete the character 'e' at index 1, s= "edede" or delete the character 'd' at index 4, s= "eedee"
+* s = "cbbcc" -> true as you can delete the character 'c' at index 3, s= "cbbc"
+ 
+**Algorithm**: If there is an unmatched character when performing the check at ``s[i] == s[s.size()-1-i]``, remove ``s[i]`` then check palindromic in that new string. If that string isn't palindromic, remove ``s[s.size()-1-i]`` character, then check palindromic in that new string.
 # Check if a linked list is palindrome
 E.g:
 * 1->2->1 is palindrome
