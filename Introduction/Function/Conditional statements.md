@@ -117,7 +117,7 @@ switch (number){
 String char can't be passed into ``switch case``.
 
 # break
-
+**break** will break the execution of its current loop
 ```c
 for (i=0; i<10; i++){
 		if(i==5) break;
