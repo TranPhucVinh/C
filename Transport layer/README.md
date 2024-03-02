@@ -22,7 +22,7 @@
 3. When there is no new TCP sender connected to TCP receiver or the connected TCP receiver doesn't send anything to TCP sender, TCP receiver will print out **Timeout after 5000 miliseconds**.
 4. **TCP receiver** starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
 When receving message, TCP receiver will print out: ``Message from TCP sender with fd %d: %s``
-5. **TCP receiver** is able to count how many **TCP senders** are connected.
+5. **TCP receiver** is able to **count how many TCP senders are connected**.
 6. TCP sender is sending data to TCP receiver properly, TCP sender is then disconnected. TCP receiver is able to detect that disconnected event, print out ``TCP sender with fd %d and IP %s is disconnected``.
 
 ## Implementation
@@ -34,8 +34,8 @@ For TCP socket, EPOLLIN event type is triggered in the TCP receiver when:
 * A connected TCP sender write data to that TCP receiver
 
 **Program**:
-* [epoll_for_tcp_receiver.c](src/epoll_for_tcp_receiver.c)
-* [tcp_multiple_senders.c](src/tcp_multiple_senders.c)
+* [epoll_tcp_sgl_rx_multi_sndr.c](src/epoll_tcp_sgl_rx_multi_sndr.c)
+* [tcp_multi_sndr_epoll_sgl_rx.c](src/tcp_multi_sndr_epoll_sgl_rx.c)
 
 # Single TCP receiver for multiple TCP senders, handled by fork()
 
