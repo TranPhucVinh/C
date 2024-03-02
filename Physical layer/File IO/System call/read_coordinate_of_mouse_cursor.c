@@ -20,7 +20,7 @@ void main(void)
     struct input_event *temp;
     unsigned int x, y;
     x = y = 0;
-    fd = open(MOUSE_INPUT_EVENT, O_RDONLY);//mouse
+    fd = open(MOUSE_INPUT_EVENT, O_RDONLY);
     if (fd >0){
         while (1)
         {
