@@ -19,9 +19,7 @@ As defined, ``listen()`` is only used for TCP, not UDP. When calling ``listen()`
 #include <sys/socket.h>
 int accept(int sockfd, struct sockaddr *restrict addr, socklen_t *restrict addrlen);
 ```
-Accept a connection on a socket. **accept()** blocks the caller until a connection is present.
-
-The **accept()** system call is only used for connection-based socket, i.e TCP socket.
+The **accept()** system call accepts a TCP connection on a socket, and is only used for connection-based socket, i.e TCP socket. **accept()** blocks the caller until a connection is present.
 
 **Return**:
 * A file descriptor for the accepted socket (a nonnegative integer), when success
