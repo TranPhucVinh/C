@@ -13,9 +13,7 @@ The most most efficient and scalable alogorithm is the one with both lowest time
 
 # [Big O](Big%20O)
 
-# [Array](Array)
-* [Find min number in an array](Beginner%20level.md#find-min-number-in-an-array)
-* [Saddle point](saddle%point)
+# [Array](Array.md)
 
 # [Sequence](Sequence.md)
 
