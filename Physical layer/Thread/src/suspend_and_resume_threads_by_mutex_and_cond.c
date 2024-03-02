@@ -7,7 +7,6 @@ void *suspend_thread_func(void *ptr);
 void *resume_thread_func(void *ptr);
 
 int number = 0;
-int suspend_thread_return, resume_thread_return;
 
 pthread_t suspend_thread, resume_thread;
 pthread_mutex_t suspendMutex;
@@ -33,8 +32,8 @@ int main(void){
     pthread_mutex_init(&suspendMutex, NULL);
     pthread_cond_init(&resumeCond, NULL);
 	
-	suspend_thread_return = pthread_create(&suspend_thread, NULL, suspend_thread_func, NULL);
-    resume_thread_return = pthread_create(&resume_thread, NULL, resume_thread_func, NULL);
+	pthread_create(&suspend_thread, NULL, suspend_thread_func, NULL);
+    pthread_create(&resume_thread, NULL, resume_thread_func, NULL);
 
 	pthread_join(suspend_thread, NULL);
     pthread_join(resume_thread, NULL);
