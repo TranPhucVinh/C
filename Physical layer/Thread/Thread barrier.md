@@ -10,7 +10,7 @@ The ``pthread_barrier_init()`` function shall allocate any resources required to
 ```c
 int pthread_barrier_destroy(pthread_barrier_t *barrier);
 ```
-The ``pthread_barrier_destroy()`` function shall destroy the barrier referenced by barrier and release any resources used by the barrier. The effect of subsequent use of the barrier is undefined until the barrier is reinitialized by another call to ``pthread_barrier_init()``.
+The ``pthread_barrier_destroy()`` function shall destroy the barrier referenced by barrier and release any resources used by the barrier.
 
 # Create the same number of threads specified by the thread barrier to pass the barrier
 ```c
