@@ -123,7 +123,7 @@ void *func_thread(void *ptr){
 	return number;//This return value setup won't be reached as pthread_exit() is called above
 }
 ```
-# pthread_self()
+# pthread_self() and thread ID
 
 ```c
 pthread_t pthread_self(void);
@@ -133,6 +133,7 @@ The ``pthread_self()`` function **returns the ID of the calling thread**. This i
 
 That ID is the special ID used by the POSIX Thread API, which is not equal to the thread ID returned by **syscall(SYS_gettid)**.
 
+**syscall(SYS_gettid)** returns the thread ID managed by the system, not by the POSIX Thread API. In a single-threaded process, **syscall(SYS_gettid)** value is equal to the process ID returned by **getpid()**.  In a multithreaded process, the **syscall(SYS_gettid)** value in each thread are unique.
 # pthread_mutex_lock()
 
 ``pthread_mutex_lock()`` will wait until the mutex is successfully locked so that it will block the program at this waiting time. Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#use-pthread_mutex_lock).
