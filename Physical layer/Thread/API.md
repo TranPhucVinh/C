@@ -4,13 +4,13 @@
 int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
 ```
 
-The ``pthread_create()`` function starts a new thread in the calling process. The new thread starts execution by invoking ``start_routine()``; ``arg`` is passed as the sole argument of ``start_routine()``. It means, simply call ``pthread_create()`` will start executing the thread.
+The ``pthread_create()`` function starts a new thread in the calling process. The new thread starts execution by invoking ``start_routine()``; ``arg`` is passed as the sole argument of ``start_routine()``. It means, simply calling ``pthread_create()`` will start executing the thread.
 
 The ``attr`` argument points to a ``pthread_attr_t`` structure whose contents are used at thread creation time to determine attributes for the new thread; this structure is initialized using ``pthread_attr_init()`` and related functions. If ``attr`` is ``NULL``, then the thread is created with default attributes.
 
 Before returning, a successful call to ``pthread_create()`` stores the ID of the new thread in the buffer pointed to by ``thread``, known as **thread ID**; this identifier is used to refer to the thread in subsequent calls to other pthreads functions.
 
-On success, ``pthread_create()`` returns ``0``; on error, it returns an ``error number``, and the contents of ``*thread`` are ``undefined``.
+On success, **pthread_create()** returns **0**; on error, it returns an ``error number``, and the contents of ``*thread`` are ``undefined``.
 
 # pthread_join()
 
@@ -129,9 +129,9 @@ void *func_thread(void *ptr){
 pthread_t pthread_self(void);
 ```
 
-The ``pthread_self()`` function **returns the ID of the calling thread**. This is the same value that is returned in *thread in the ``pthread_create()`` call that created this thread.
+The ``pthread_self()`` function **returns the ID of the calling thread**. This is the same value that is returned in ``*thread`` in the **pthread_create()** call that created this thread.
 
-**Note**: This function must always be called inside the thread function handler so that it can get the proper thread ID of the calling thread. Check [pthread implementation to create a thread to print out a string](README.md#create-a-thread-to-print-out-a-string)
+That ID is the special ID used by the POSIX Thread API, which is not equal to the thread ID returned by **syscall(SYS_gettid)**.
 
 # pthread_mutex_lock()
 
