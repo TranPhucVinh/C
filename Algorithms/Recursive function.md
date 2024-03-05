@@ -20,21 +20,17 @@ int sum_of_numbers(int number){
 ```c
 #include <stdio.h>
 
-int logarit_calculation(int base, int value);
-
-int main(){
-    int logarit = logarit_calculation(2, 1024);
-    printf("a %d\n", logarit);
-}
-
 int logarit_calculation(int base, int value){
-    int logarit;
     if (base == 0) {
         printf("logarit base can't be 0\n");
         return 0;
     }
     if (value == 1) return 0;
     return 1 + logarit_calculation(base, value/base);
+}
+
+int main(){
+    printf("a %d\n", logarit_calculation(2, 1024));
 }
 ```
 # Fibonacci sequence
