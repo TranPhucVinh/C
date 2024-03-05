@@ -25,7 +25,7 @@ int logarit_calculation(int base, int value){
         printf("logarit base can't be 0\n");
         return 0;
     }
-    if (value == 1) return 0;
+    if ((value == 1)||(value == 0)) return 0;
     return 1 + logarit_calculation(base, value/base);
 }
 
