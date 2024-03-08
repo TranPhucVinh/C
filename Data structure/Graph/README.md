@@ -50,3 +50,13 @@ Build an adjacency matrix to present a directed graph:
 * ``print_graph()``
 
 Program: [adjacency_matrix_graph.c](adjacency_matrix_graph.c)
+# DFS
+
+**Question**: What is the meaning/application of the DFS output in graph, binary tree as this output doesn't seem to give any information to state which path is traversed to get this output ? When investigating the DFS output, which information does it provide us ?
+
+**Answer**: Searching data in a raw database (i.e database stored without any arrangement/ordered by a specific key) is inefficient. For efficient searching, database arrangement from the raw one is required.
+A suggestion for that can be:
+
+Raw database -> Specific key increment/decrement database (achieved by sorting algorithm) -> traversal table outputted by binary search.
+
+We finally use that traversal table for searching, which will result in efficient search compared to raw database searching.
