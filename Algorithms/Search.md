@@ -45,24 +45,19 @@ int main(){
 ## Implement by looping
 ```c
 int search_number(int target, int *array, int start_index, int end_index) {
-    int _start_index, _end_index;
-
-    _start_index    = start_index;
-    _end_index      = end_index;
-
     int middle = 0;
 
-    while (_start_index <= _end_index){
-        if (_start_index == _end_index) {
-            if (target == array[_start_index]){
-                printf("%d found at %d\n", target, _start_index);
+    while (start_index <= end_index){
+        if (start_index == end_index) {
+            if (target == array[start_index]){
+                printf("%d found at %d\n", target, start_index);
                 return target;
             } else {
                 printf("%d not found\n", target);      
                 return -1;
             }
         }
-        middle = (_start_index + _end_index)/2;// Middle index
+        middle = (start_index + end_index)/2;// Middle index
 
         if (target == array[middle]) {
             printf("%d found at %d\n", target, middle);
@@ -70,12 +65,10 @@ int search_number(int target, int *array, int start_index, int end_index) {
         }
 
         else if (target > array[middle]){
-            _start_index = middle+1;
-            _end_index = end_index;
+            start_index = middle+1;
             continue;
         } else {
-            _start_index = start_index;
-            _end_index = middle;
+            end_index = middle;
             continue;
         }
     }
@@ -85,7 +78,7 @@ int search_number(int target, int *array, int start_index, int end_index) {
 int main(){
     int arr[] = {1, 2, 5, 12, 34};
     int arr_sz = sizeof(arr)/sizeof(int);
-    search_number(1, arr, 0, arr_sz-1);
+    search_number(34, arr, 0, arr_sz-1);
 }
 ```
 # Application
