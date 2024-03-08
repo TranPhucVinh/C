@@ -30,7 +30,7 @@ int search_number(int target, int *array, int start_index, int end_index) {
     else if (target > array[middle]){
         return search_number(target, array, middle+1, end_index);
     } else {
-        return search_number(target, array, start_index, middle-1);
+        return search_number(target, array, start_index, middle);
     }
     
     return 0;
@@ -39,7 +39,7 @@ int search_number(int target, int *array, int start_index, int end_index) {
 int main(){
     int arr[] = {1, 2, 5, 12, 34};
     int arr_sz = sizeof(arr)/sizeof(int);
-    search_number(34, arr, 0, 0);
+    search_number(34, arr, 0, arr_sz-1);
 }
 ```
 ## Implement by looping
