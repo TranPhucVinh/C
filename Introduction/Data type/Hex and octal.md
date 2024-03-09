@@ -1,4 +1,4 @@
-## Hex
+# Hex
 
 Convert int to hex using ``%x``
 
@@ -65,7 +65,7 @@ int value = msb<<8 + lsb;
 ```
 It will be interpreted as ``value = msb<<(8 + lsb)`` so the result will be totally wrong.
 
-## BCD
+# BCD
 
 BCD encoded for number ``16``: 
 
@@ -90,7 +90,7 @@ int bcdToDec(__uint8_t num)
 }
 ```
 
-## Octal
+# Octal
 
 Octal number is indicated by ``0``
 
