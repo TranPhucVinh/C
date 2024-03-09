@@ -29,3 +29,29 @@ int mySqrt(int x) {
 }
 ```
 Use binary search as a better approach which takes 0ms run time (calculated by Leetcode)
+```c
+int find_sqrt(int target, long start_index, long end_index) {
+    long long middle = 0;
+    if (start_index == end_index) {
+        return start_index-1;
+    }
+    middle = (start_index + end_index)/2;// Middle index
+    if (middle*middle == target) {
+        return middle;
+    }
+    else if (target > middle*middle){
+        return find_sqrt(target, middle+1, end_index);
+    } else {
+        return find_sqrt(target, start_index, middle);
+    }
+    
+    return 0;
+}
+
+int mySqrt(int x) {
+    if (x == 0) return 0;
+    if (x == 1) return 1;
+    
+    return find_sqrt(x, 1, x);
+}
+```
