@@ -62,4 +62,4 @@ int main() {
 }
 ```
 # Find all negative numbers inside a descending array
-[binary_search_find_neg_num_descending_array.c]()
+[binary_search_find_neg_num_descending_array.c](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/binary_search_find_neg_num_descending_array.c)
