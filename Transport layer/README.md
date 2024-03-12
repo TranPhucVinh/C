@@ -95,5 +95,5 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 # A multithread UDP receiver reads message sent from a UDP sender
 All features are like [A UDP sender sends string to a UDP receiver](), except UDP receiver has multiple thread to reads the message.
 
-* UDP receiver: [udp_multithread_receiver.c](src/udp_multithread_receiver.cpp)
+* UDP receiver: [udp_multithread_receiver.c](src/udp_multithread_receiver.c)
 * UDP sender: [udp_sgl_sndr_sgl_rx.c](src/udp_sgl_sndr_sgl_rx.c)
