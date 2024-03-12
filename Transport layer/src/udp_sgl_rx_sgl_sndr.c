@@ -11,7 +11,7 @@
 #define BUFFSIZE 	256
 #define PORT 		8000
 
-int main(int argc, char *argv[]){
+int udp_socket_param_init(){
     struct sockaddr_in receiver_addr;
     socklen_t len; 
 
@@ -32,13 +32,17 @@ int main(int argc, char *argv[]){
     }
     else printf("Start UDP socket receiver successfully through binding\n");
 
-    // As using recvfrom() which requires sockaddr_in as parameter, a socket param init function, like socket_parameter_init() in TCP, can't be used.
-    // It's better to handle this encapsulation in UDP by using OOP.
+    return receiver_fd;
+}
+int main(int argc, char *argv[]){
+    int receiver_fd = udp_socket_param_init();
+    struct sockaddr_in src_addr;// Dummy src_addr;
+    socklen_t src_addr_len = sizeof(src_addr);  //len is value/result
 
     while(1){
         char buffer[BUFFSIZE];
         bzero(buffer, BUFFSIZE);//Delete buffer
-        int bytes_received = recvfrom(receiver_fd, (char *)buffer, BUFFSIZE, MSG_WAITALL, (struct sockaddr *) &receiver_addr, &len);
+        int bytes_received = recvfrom(receiver_fd, (char *)buffer, BUFFSIZE, MSG_WAITALL, (struct sockaddr *) &src_addr, &src_addr_len);
         if (bytes_received > 0) {
             printf("Message from UDP sender: %s", buffer);
             bzero(buffer, BUFFSIZE);         //Delete buffer
