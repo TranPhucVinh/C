@@ -92,3 +92,8 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 * **Feature**: UDP sender reads the typed-in message from stdin then sends that message to any UDP receivers listening to it.
 * UDP receiver (UDP single receiver for a single UDP sender): [udp_sgl_rx_sgl_sndr.c](src/udp_sgl_rx_sgl_sndr.c)
 * UDP sender (UDP single sender for a single UDP receiver): [udp_sgl_sndr_sgl_rx.c](src/udp_sgl_sndr_sgl_rx.c)
+# A multithread UDP receiver reads message sent from a UDP sender
+All features are like [A UDP sender sends string to a UDP receiver](), except UDP receiver has multiple thread to reads the message.
+
+* UDP receiver: [udp_multithread_receiver.c](src/udp_multithread_receiver.cpp)
+* UDP sender: [udp_sgl_sndr_sgl_rx.c](src/udp_sgl_sndr_sgl_rx.c)
