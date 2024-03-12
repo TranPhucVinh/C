@@ -84,7 +84,7 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 # A UDP sender sends string to a UDP receiver
 * Based on the UDP mechanism, a [UDP sender](src/udp_sgl_sndr_sgl_rx.c) can start normally without the need of an existing UDP receiver. UDP sender doesn't need to connect to the targeted UDP receiver (by connect()) before sending message.
 * Simply start the [UDP receiver](src/udp_sgl_rx_sgl_sndr.c) then both **UDP sender** and **receiver** can start exchanging message.
-* For programming, as using **sendto()** (in [UDP sender](src/udp_sgl_sndr_sgl_rx.c)) and **recvfrom()** (in [UDP receiver](src/udp_sgl_rx_sgl_sndr.c)) which requires **sockaddr_in**  as parameter, a socket param init function, like [socket_parameter_init(char *host, int port)]() in **TCP**, can't be used. It's better to handle this [encapsulation](https://github.com/TranPhucVinh/Cplusplus/blob/master/Object-oriented%20programming/README.md#encapsulation) in UDP by using OOP.
+* For programming, as using **sendto()** (in [UDP sender](src/udp_sgl_sndr_sgl_rx.c)) which requires **sockaddr_in**  as parameter, a socket param init function, like [socket_parameter_init(char *host, int port)]() in **TCP**, can't be used. It's better to handle this [encapsulation](https://github.com/TranPhucVinh/Cplusplus/blob/master/Object-oriented%20programming/README.md#encapsulation) in UDP by using OOP.
 
 **Note**: A UDP server can't detect how many UDP clients are connected to it. Users might need to design the message sent from UDP client to UDP server with specific types of ID so that the UDP server can detect the clients to count.
 
