@@ -62,6 +62,28 @@ Hello, World !
 Hello, World !
 ...
 ```
+To avoid blocking, simply remove **pthread_join()**:
+```c
+pthread_t thread_id;
+pthread_t str_thread;
+char str[] = "Hello, World !";
+pthread_create(&str_thread, NULL, display_string, str);
+// pthread_join(str_thread, NULL);
+printf("str_thread finish executing\n");//This line of code won't be reached as pthread_join() has blocked the program
+printf("Thread ID %lu\n", thread_id);//This line of code won't be reached as pthread_join() has blocked the program
+while(1){//This while(1) loop won't be reached as pthread_join() has blocked the program
+	printf("Thread display_string() is running now\n");
+	sleep(1);
+}
+```
+**Result**
+```
+str_thread finish executing
+Thread ID 0
+Thread display_string() is running now
+Hello, World !
+...
+```
 # pthread_detach()
 ```cpp
 int pthread_detach(pthread_t thread);
