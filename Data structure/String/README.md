@@ -29,8 +29,7 @@ There is no built-in functions or specific method in C to get the total member o
 
 # [String append functions](String%20append%20functions.md)
 
-* [atoi()](#atoi)
-* [itoa()](#itoa)
+* [atoi()](#atoi) (**itoa()** isn't supported)
 * [strrev()](#strrev)
 * [strcat()](#String%20append%20functions.md#strcat), [strncat()](String%20append%20functions.md#strncat)
 * [Dynamically append a char pointer as string](String%20append%20functions.md#dynamically-append-a-char-pointer-as-string) by [malloc()](../../Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md#malloc)
@@ -69,15 +68,7 @@ int a = atoi(str);
 printf("%d \n", a); //123
 ```
 
-## itoa()
-
-``itoa()`` converts an integer value to a null-terminated string using the specified ``base``.
-
-```c
-char *itoa ( int value, char * str, int base );
-```
-
-``itoa()`` is not defined in ANSI-C and is not part of C++, but is supported by some compilers. Use ``sprintf()`` instead.
+**itoa()**, an atoi() "reverse" function, converts an integer value to a null-terminated string using the specified ``base``. **itoa()** is not defined in ANSI-C and is not part of C++, but is supported by some compilers. Use **sprintf()** instead.
 
 ## strrev()
 
