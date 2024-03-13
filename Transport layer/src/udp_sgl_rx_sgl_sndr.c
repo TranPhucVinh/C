@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
         bzero(buffer, BUFFSIZE);//Delete buffer
         int bytes_received = recvfrom(receiver_fd, (char *)buffer, BUFFSIZE, MSG_WAITALL, (struct sockaddr *) &src_addr, &src_addr_len);
         if (bytes_received > 0) {
-            printf("Message from UDP sender: %s", buffer);
+            printf("Message from UDP sender: %s\n", buffer);
             bzero(buffer, BUFFSIZE);         //Delete buffer
         } 
     }
