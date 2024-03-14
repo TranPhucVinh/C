@@ -1,5 +1,5 @@
 Thread barrier will stop the execution of all threads waiting at it until there are enough number of threads this thread barrier specifies waiting.
-# Use thread barrier to block the main process when not having enough threads are created
+# Use thread barrier to block all the threads when not having enough threads are created
 
 ```c
 #include <stdio.h>
@@ -26,6 +26,8 @@ int main()
         pthread_create(&thread_id[i], NULL, thread_func, NULL);
     }
 
+    // As pthread_join() will block the process until all the threads it specifed are finished, 
+    // and there is not enough thread to wait at the barrier, so this process is blocked
     for (int i = 0; i < TOTAL_THREADS; i++){
         pthread_join(thread_id[i], NULL);
     }
