@@ -106,12 +106,16 @@ A race condition is a situation where the result produced by two processes (or t
 When 2 threads try to access a resource, data race might happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times).
 
 [Race condition document](Race%20condition) includes:
-* [One thread function handler to increase a share value](Race%20condition/README.md#one-thread-function-handler-to-increase-a-share-value)
+* [One thread function handler to increase a shared value](Documents/Race%20condition.md#one-thread-function-handler-to-increase-a-shared-value)
 * [One thread function handler to increase and decrease a shared value](Race%20condition/README.md#one-thread-function-handler-to-increase-and-decrease-a-shared-value)
 * [Accessing a shared variable between 2 thread function handlers](Race%20condition/README.md#accessing-a-shared-variable-between-2-thread-function-handlers)
 * [Semaphore](Semaphore.md)
 * [Mutex](Race%20condition/Mutex.md)
 # [Thread barrier](Thread%20barrier.md)
+
+# Spin lock
+
+If a resource is locked, a thread that wants to access that resource may repetitively check whether the resource is available. During that time, the thread may loop and check the resource without doing any useful work. Suck a lock is termed as spin lock.
 # [API](API.md)
 * [pthread_create()](API.md#pthread_create)
 * [pthread_join()](API.md#pthread_join)
@@ -150,9 +154,3 @@ range_3.lower_range = N/3 + N/3 + 1;
 range_3.upper_range = N;
 ```
 ## [Multithread HTTP server built on TCP API](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20server#multithread-http-server-built-on-tcp-api)
-
-# Other concepts
-
-## Spin lock
-
-If a resource is locked, a thread that wants to access that resource may repetitively check whether the resource is available. During that time, the thread may loop and check the resource without doing any useful work. Suck a lock is termed as spin lock.
