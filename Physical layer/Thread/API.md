@@ -156,7 +156,40 @@ The ``pthread_self()`` function **returns the ID of the calling thread**. This i
 
 That ID is the special ID used by the POSIX Thread API, which is not equal to the thread ID returned by **syscall(SYS_gettid)**.
 
-**syscall(SYS_gettid)** returns the thread ID managed by the system, not by the POSIX Thread API. In a single-threaded process, **syscall(SYS_gettid)** value is equal to the process ID returned by **getpid()**.  In a multithreaded process, the **syscall(SYS_gettid)** value in each thread are unique.
+**syscall(SYS_gettid)** returns the thread ID managed by the system, not by the POSIX Thread API. In a single-threaded process, **syscall(SYS_gettid)** value is equal to the process ID returned by **getpid()** as **main()** is a thread, i.e the main thread of the process.  In a multithreaded process, the **syscall(SYS_gettid)** value in each thread are unique.
+```c
+#include <sys/syscall.h> 
+
+pthread_barrier_t barrier;
+
+void *thread_func(void *ptr){
+    printf("thread ID: %ld\n", syscall(SYS_gettid));
+    while(1){
+        printf("Hello, World !\n");
+        sleep(1);
+    }
+}
+
+int main()
+{  
+    printf("PID: %d\n", getpid());
+    printf("Main thread ID: %ld\n", syscall(SYS_gettid));// Equal to getpid()
+	pthread_t thread_id;
+
+    pthread_create(&thread_id, NULL, thread_func, NULL);
+    pthread_join(thread_id, NULL);
+}
+```
+**Result**
+```
+PID: 1614500
+Main thread ID: 1614500
+thread ID: 1614501
+Hello, World !
+Hello, World !
+...
+```
+To view all threads created by a process. Go to ``/proc/<pid>``, e.g ``/proc/1614500`` in this case. ``ls /proc/1614500/task`` returns ``1614500`` and ``1614501``
 # pthread_mutex_lock()
 
 ``pthread_mutex_lock()`` will wait until the mutex is successfully locked so that it will block the program at this waiting time. Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#use-pthread_mutex_lock).
