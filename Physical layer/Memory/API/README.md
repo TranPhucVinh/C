@@ -1,6 +1,6 @@
 # memcpy()
 
-``memcpy()`` copies n characters from memory area ``str2`` to memory area ``str1``.
+Copy n bytes from memory area ``str2`` to memory area ``str1``.
 
 ```c
 void *memcpy(void *str1, const void *str2, size_t n)
