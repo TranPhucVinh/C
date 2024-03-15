@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
+#include <linux/input-event-codes.h>// REL_X, REL_Y
+
 #define MOUSE_INPUT_EVENT   "/dev/input/event19"
 
 struct input_event {
@@ -28,10 +30,8 @@ void main(void)
             if (fsize > 0)
             {
                 temp = (struct input_event *)buff;
-                if (temp->code == 0)
-                x = temp->value;
-                else
-                y = temp->value;
+                if (temp->code == REL_X) x = temp->value;// X-axis
+                else if (temp->code == REL_Y) y = temp->value;// Y-axis
             }
             printf("x=%u y=%u\n", x, y);
         }

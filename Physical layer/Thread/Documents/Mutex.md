@@ -54,7 +54,7 @@ Instead of using a boolean variable [like above](#using-a-simple-boolean-variabl
 # Condition variable
 pthread condition variable is used in multithread which have already involved mutex
 ## One thread unblocks another thread
-In this example, after increasing the ``share_value`` to its ``RANGE``, thread 1 will set ``thread_2_run`` to allow thread 2 to run. Thread 2 will wait for ``thread_2_run`` then increases the ``share_value`` to ``RANGE``. This example is quite similar to [One thread function handler to increase a share value issue
+In this example, after increasing the ``share_value`` to its ``RANGE``, thread 1 will set ``thread_2_run`` to allow thread 2 to run. Thread 2 will wait for ``thread_2_run`` then increases the ``share_value`` to ``RANGE``. This example is quite similar to [One thread function handler to increase a shared value issue
 ](#one-thread-function-handler-to-increase-a-share-value-issue), except it has the flag ``thread_2_run`` to block thread 2 from running.
 
 ```cpp
@@ -112,7 +112,7 @@ void *thread_func_2(void *ptr){
 ```
 Not ready to run
 Not ready to run
-...//Loop forever
+...// Loop forever
 ```
 **Note**: One way to solve that issue is to use a [simple boolean variable as mutex](simple_boolean_variable_as_mutex.c).
 
