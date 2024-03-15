@@ -1,6 +1,6 @@
 Thread barrier will stop the execution of all threads waiting at it until there are enough number of threads this thread barrier specifies waiting.
-# Use thread barrier to block all the threads when not having enough threads are created
-
+# Use thread barrier to block the process when not having enough threads are created
+## Use pthread_join() with thread barrier to block the process
 ```c
 #include <stdio.h>
 #include <pthread.h>
@@ -86,6 +86,37 @@ Waiting at the barrier as not enough 2 threads are running ...
 // main process is blocked now as there is just only 1 thread left to call pthread_barrier_wait(), while thread barrier needs 2 thread to call this function so that it can be lifted.
 // Line printf("Thread barrier is lifted\n") won't be reached
 ```
+## Put pthread_barrier_wait() inside main() to block the process
+``pthread_barrier_wait()`` inside main() will make it wait for the 2 threads thread_id[0], thread_id[1] to finish their execution after 5 seconds to lift the thread barrier and finish the process.
+```c
+#define TOTAL_THREADS           2
+#define THREAD_BARRIERS_NUMBER  3
+#define PTHREAD_BARRIER_ATTR    NULL // pthread barrier attribute
+
+pthread_barrier_t barrier;
+
+void *thread_func(void *ptr){
+    printf("Waiting at the barrier as not enough %d threads are running ...\n", THREAD_BARRIERS_NUMBER);
+	sleep(5);
+    pthread_barrier_wait(&barrier);
+    printf("The barrier is lifted, thread id %ld is running now\n", pthread_self());
+}
+
+int main()
+{  
+	pthread_t thread_id[TOTAL_THREADS];
+
+    pthread_barrier_init(&barrier, PTHREAD_BARRIER_ATTR, THREAD_BARRIERS_NUMBER);
+    for (int i = 0; i < TOTAL_THREADS; i++){
+        pthread_create(&thread_id[i], NULL, thread_func, NULL);
+    }
+
+	pthread_barrier_wait(&barrier);
+
+    printf("Thread barrier is lifted\n"); // This line won't be called as TOTAL_THREADS < THREAD_BARRIERS_NUMBER
+	pthread_barrier_destroy(&barrier);
+}
+```
 # Use thread barrier to suspend and resume a thread
 Feature: Suspend a thread when reaching a specific value then resume that thread by another thread
 
@@ -96,6 +127,11 @@ Program: [suspend_and_resume_threads_by_thread_barrier](https://github.com/TranP
 int pthread_barrier_init(pthread_barrier_t *restrict barrier, const pthread_barrierattr_t *restrict attr, unsigned count);
 ```
 * **count**: the number of threads that must call **pthread_barrier_wait()** before any of them successfully return from the call. count must be greater than 0
+## pthread_barrier_wait()
+```c
+pthread_barrier_wait(pthread_barrier_t *b):
+```
+This function is called within each thread, just before it is ready to return. Once a thread’s function hits this, it will “wait” until all the other functions are also finished. As main() is also a thread, i.e the "main" thread of the process. Putting ``pthread_barrier_wait()`` inside main will cause main thread to wait for other threads of the process to finish to lift the thread barrier.
 ## pthread_barrier_destroy()
 ```c
 int pthread_barrier_destroy(pthread_barrier_t *barrier);
