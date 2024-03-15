@@ -12,6 +12,13 @@ char dest[50];
 memcpy(dest, src, strlen(src)+1);
 printf("String: %s\n", dest); //String: Hello, World!
 ```
+For 1-D array:
+
+```c
+int array[] = {1, 2, 3, 4, 5};
+int _tmp_array[5];
+memcpy(_tmp_array, array, sizeof(array));
+```
 ``memcpy()`` in dynamic memory
 ```c
 const char *src = "Hello, World!";
@@ -49,7 +56,6 @@ printf("String: %s\n", dest);
 # memmove()
 
 Like ``memcpy()``, ``memmove()`` copies n characters from memory area ``str2`` to memory area ``str1``.
-
 
 ```cpp
 char str1[] = "Hello";
