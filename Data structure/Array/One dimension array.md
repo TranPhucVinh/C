@@ -58,7 +58,27 @@ Read from ``index`` with:
 ## Update
 
 * Update value for array member from index: ``array[index] = new_value``
+* Rotate an array: Right rotation means moving the last element of a sequence to its first.
 
+Beside the normal approach to re-write the value in all array member, the best approach is to use the formular:
+
+```c
+int rotation_time = 1;
+new_array[(i + rotation_time) % array_size] = old_array[i];
+```
+```c
+void rotate(int *array, int arr_sz){
+    int rotate_time = 1;
+
+    int _tmp_array[arr_sz];
+
+    memcpy(_tmp_array, array, sizeof(_tmp_array));
+
+    for (int i = 0; i < arr_sz; i++){
+        array[(i + rotate_time) % arr_sz] = _tmp_array[i];
+    }
+}
+```
 ## Delete
 
 * Delete member in array from index: ``delete.c`` 
