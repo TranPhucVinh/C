@@ -2,7 +2,7 @@
 
 Semaphore is a technique to manage concurrent threads or process by using an integer value, which is known as a semaphore. The semaphore number is shared between thread or process to achieve synchronization in the multithread environment.
 
-The semaphore number can be accessed only through â standard atomic operations ``wait()`` and ``signal()``.
+The semaphore number can be accessed only through two standard atomic operations ``wait()`` and ``signal()``.
 
 For ``wait()``,  it is used **to test**:
 
