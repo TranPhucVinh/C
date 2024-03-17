@@ -18,3 +18,66 @@ void main(void)
     printf("\n");
 }
 ```
+# Count total duplicate string numbers inside a string
+
+```cpp
+string num = "1210";
+std::sort(num.begin(), num.end());
+
+int sz = num[num.size() - 1] - 48 + 1;// Value of the biggest string number, i.e "2" + 1
+cout << sz << endl;
+int hash_table[sz];
+
+for (int i = 0; i < sz; i++){
+    hash_table[i] = 0;
+}
+
+for (int i = 0; i < num.size(); i++){
+    hash_table[num[i] - 48] += 1; 
+}
+
+for (int i = 0; i < sz; i++){
+    printf("%d ", hash_table[i]);
+}
+```
+# Check if number has equal digit count and digit value (Leetcode 2283):
+
+E.g 1: num = "1210"
+* Output: true
+* Explanation:
+    * num[0] = '1'. The digit 0 occurs once in num.
+    * num[1] = '2'. The digit 1 occurs twice in num.
+    * num[2] = '1'. The digit 2 occurs once in num.
+    * num[3] = '0'. The digit 3 occurs zero times in num.
+
+E.g 2 Input: num = "030", Output: false
+
+E.g 3 Input: num = "8", Output: false
+
+```cpp
+bool digitCount(string num) {
+    string _tmp = num;
+    std::sort(_tmp.begin(), _tmp.end());
+    
+    int sz = 0;
+
+    if (_tmp[_tmp.size() - 1] - 48 >= _tmp.size()){
+        sz = _tmp[_tmp.size() - 1] - 48 + 1;
+    } else sz = _tmp.size();
+
+    int hash_table[sz];
+
+    for (int i = 0; i < sz; i++){
+        hash_table[i] = 0;
+    }
+
+    for (int i = 0; i < num.size(); i++){
+        hash_table[num[i] - 48] += 1; 
+    }
+
+    for (int i = 0; i < num.size(); i++){
+        if (num[i] - 48 != hash_table[i]) return false;
+    }
+    return true;
+}
+```
