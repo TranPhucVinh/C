@@ -81,3 +81,20 @@ bool digitCount(string num) {
     return true;
 }
 ```
+# Count total duplicate characters inside a string
+```c
+char str[] = "HelloWorld";
+int hash_table[58];// 26 lowercase + 26 uppercase + symbols between "A" to "a"
+
+for (int i = 0; i < 58; i++){
+    hash_table[i] = 0; 
+}
+
+for (int i = 0; i < sizeof(str); i++){
+    hash_table[str[i] - 65] += 1; 
+}
+
+for (int i = 0; i < sizeof(str); i++){
+    printf("%d ", hash_table[str[i] - 65]);
+}
+```
