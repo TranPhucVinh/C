@@ -43,7 +43,7 @@ While a<sub>i+n</sub> = a<sub>i</sub> + n
 
 So $\Sigma$ a<sub>i</sub> = (2a<sub>i</sub> + n) * (n+1)/2
 
-Shorten a<sub>i</sub> as $a$, $\Sigma$ a<sub>i</sub> will be
+Shorten a<sub>i</sub> as a, $\Sigma$ a<sub>i</sub> will be
 
 $\Sigma$ a<sub>i</sub> = ${ (2a + n)(n+1) } \over 2$
 
