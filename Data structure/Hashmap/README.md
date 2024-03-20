@@ -19,28 +19,7 @@ void main(void)
 }
 ```
 This is an inefficient implementation of hash map as ``hash_table[17]`` has many un-used index. [Unordered map](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/Unordered%20map.md#use-unordered-map-to-count-total-duplicate-numbers-inside-an-array) is the best approach for it.
-# Count total duplicate string numbers inside a string
 
-```cpp
-string num = "1210";
-std::sort(num.begin(), num.end());
-
-int sz = num[num.size() - 1] - 48 + 1;// Value of the biggest string number, i.e "2" + 1
-cout << sz << endl;
-int hash_table[sz];
-
-for (int i = 0; i < sz; i++){
-    hash_table[i] = 0;
-}
-
-for (int i = 0; i < num.size(); i++){
-    hash_table[num[i] - 48] += 1; 
-}
-
-for (int i = 0; i < sz; i++){
-    printf("%d ", hash_table[i]);
-}
-```
 # Check if number has equal digit count and digit value (Leetcode 2283):
 
 E.g 1: num = "1210"
