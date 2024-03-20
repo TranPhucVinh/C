@@ -18,6 +18,7 @@ void main(void)
     printf("\n");
 }
 ```
+This is an inefficient implementation of hash map as ``hash_table[17]`` has many un-used index. [Unordered map](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/Unordered%20map.md#use-unordered-map-to-count-total-duplicate-numbers-inside-an-array) is the best approach for it.
 # Count total duplicate string numbers inside a string
 
 ```cpp
