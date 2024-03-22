@@ -86,6 +86,7 @@ Source code: [palindrome_phrase_validity.cpp](src/palindrome_phrase_validity.cpp
 E.g:
 * 1->2->1 is palindrome
 * 3->2->1 isn't palindrome
+
 **Solution**: [Convert that linked list into an array](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/linked_list_to_array.c) then start traversing this array for palindrome validation.
 
 # List all palindrome from 1 to MAX_NUMBER, generate all palindrome with a fixed length
