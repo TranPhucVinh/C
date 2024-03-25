@@ -3,7 +3,7 @@
 
 #define RANGE 3000000
 
-int share_value;
+int shared_value;
 
 void *thread_function(void *ptr);
 
@@ -21,14 +21,14 @@ int main()
 	pthread_join(thread_1, NULL);
     pthread_join(thread_2, NULL);
     pthread_join(thread_3, NULL);
-    printf("share_value after executing 3 threads: %d\n", share_value);//9000000
+    printf("shared_value after executing 3 threads: %d\n", shared_value);//9000000
 	pthread_mutex_destroy(&lock);
 }
 
 void *thread_function(void *ptr){
 	for (int i = 0; i < RANGE; i++) {
 		if(!pthread_mutex_lock(&lock)){//pthread_mutex_lock() returns 0 if success.
-			share_value++;
+			shared_value += 1;
 			pthread_mutex_unlock(&lock);
 		} else printf("%s fails to lock\n", (char*)ptr);
    }   
