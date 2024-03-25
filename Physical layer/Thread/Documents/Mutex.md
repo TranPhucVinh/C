@@ -4,7 +4,7 @@ Solve the [one thread function handler to increase a shared value issue](https:/
 
 **Program**: [pthread_mutex_lock.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/pthread_mutex_lock.c)
 
-**Result**: ``share_value after executing 2 threads: 9000000``
+**Result**: ``shared_value after executing 3 threads: 9000000``
 ## Using [pthread_mutex_trylock()](API.md#pthread_mutex_trylock)
 
 With [pthread_mutex_trylock()](../API.md#pthread_mutex_trylock), if fails to lock the mutex, the thread will handle other task
