@@ -113,9 +113,6 @@ When 2 threads try to access a resource, data race might happen if the racing be
 * [Mutex](Race%20condition/Mutex.md)
 # [Thread barrier](Thread%20barrier.md)
 
-# Spin lock
-
-If a resource is locked, a thread that wants to access that resource may repetitively check whether the resource is available. During that time, the thread may loop and check the resource without doing any useful work. Suck a lock is termed as spin lock.
 # [API](API)
 * Thread creation
 * Inter-task communication
