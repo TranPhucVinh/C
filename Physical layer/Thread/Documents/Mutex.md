@@ -7,17 +7,15 @@ Solve the [one thread function handler to increase a shared value issue](https:/
 **Result**: ``shared_value after executing 3 threads: 9000000``
 ## Using [pthread_mutex_trylock()](API.md#pthread_mutex_trylock)
 
-With [pthread_mutex_trylock()](../API.md#pthread_mutex_trylock), if fails to lock the mutex, the thread will handle other task
+With [pthread_mutex_trylock()](../API.md#pthread_mutex_trylock), if fails to lock the mutex, the thread will handle other task, which results in failing to increase the shared value to the ``RANGE``:
 
 ```c
-/*
-    int main() and other operations are like 
-    pthread_mutex_lock() example
-*/
+int lock_count = 0;
+/* main() and other operations are like pthread_mutex_lock() example */
 void *thread_function(void *ptr){
 	for (int i = 0; i < RANGE; i++) {
       	if (!pthread_mutex_trylock(&lock)){
-			share_value++;
+			shared_value++;
 			pthread_mutex_unlock(&lock);
 		} else {
 			printf("Didn't get lock in %s, %d\n", (char*)ptr, lock_count);
@@ -38,7 +36,8 @@ Didn't get lock in Thread 2, 3
 Didn't get lock in Thread 3, 244
 Didn't get lock in Thread 2, 245
 Didn't get lock in Thread 1, 117
-share_value after executing 2 threads: 29753
+...
+shared_value after executing 3 threads: 8990896 // Expect: 9000000
 ```
 
 # Using a simple boolean variable as a mutex key to implement with 2 tasks
