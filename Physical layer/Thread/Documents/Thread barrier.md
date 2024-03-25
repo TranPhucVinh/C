@@ -124,7 +124,27 @@ Program: [suspend_and_resume_threads_by_thread_barrier](https://github.com/TranP
 
 # Application
 
-thread_barrier_udp_server.c
+When you download with Torrent, the total data is received from multiple sources. Once it's all done, your PC, as the server, arranges all the received packet by the correct order into a single download file.
+
+This thread barrier implementation is a mimic of that.
+
+We have a server listen to multiple clients. Once we receive those packet with type 's' (media type for example), we push those data into the buffer. As UDP server can't count how many UDP client are connected to it, we mark a new valid UDP client by that "s" character.
+
+The main thread will wait until all the packet is received and arrange it into the correct order.
+
+**Program**
+* [thread_barrier_udp_server.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/thread_barrier_udp_server.c)
+* [thread_barrier_udp_client.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/thread_barrier_udp_client.c)
+Script to run:
+
+```sh
+./thread_barrier_udp_client "s3sentence"&
+./thread_barrier_udp_client "dummy data1"&
+./thread_barrier_udp_client "s2a complete "&
+./thread_barrier_udp_client "s1This is "&
+./thread_barrier_udp_client "dummy data2"&
+```
+**Result**: ``thread_barrier_udp_server`` will print out: ``This is a complete sentence``
 # API
 ## pthread_barrier_init()
 ```cpp
