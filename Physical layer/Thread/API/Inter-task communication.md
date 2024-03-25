@@ -1,6 +1,12 @@
 # pthread_mutex_lock()
 
-``pthread_mutex_lock()`` will wait until the mutex is successfully locked so that it will block the program at this waiting time. Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#use-pthread_mutex_lock).
+``pthread_mutex_lock()`` will wait until the mutex is successfully locked so that it will block the program at this waiting time. 
+```c
+int pthread_mutex_lock(pthread_mutex_t *mutex);
+```
+**Return**: ``0`` when success or ``error_number`` to indicate the error.
+
+Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#use-pthread_mutex_lock).
 
 # pthread_mutex_trylock()
 
