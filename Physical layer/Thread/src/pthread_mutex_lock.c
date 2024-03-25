@@ -21,7 +21,7 @@ int main()
 	pthread_join(thread_1, NULL);
     pthread_join(thread_2, NULL);
     pthread_join(thread_3, NULL);
-    printf("share_value after executing 2 threads: %d\n", share_value);//9000000
+    printf("share_value after executing 3 threads: %d\n", share_value);//9000000
 	pthread_mutex_destroy(&lock);
 }
 
