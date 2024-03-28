@@ -53,7 +53,7 @@ int main(){
     else printf("Create %s successfully\n", SEM_NAME);
 }
 ```
-This POSIX named semaphore then be available inside ``/dev/shm/sem.SEMAPHORE_SHARED_MEM``
+This POSIX named semaphore will then be available inside ``/dev/shm/sem.SEMAPHORE_SHARED_MEM``
 ## sem_init()
 
 ```c
@@ -79,11 +79,11 @@ If ``pshared`` is nonzero, then the semaphore is shared between processes, and s
 
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value):
 
-Program: [multiple_threads_increase_shared_value.c](src/multiple_threads_increase_shared_value.c)
+Program: [multiple_threads_increase_shared_value.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/multiple_threads_increase_shared_value.c)
 
 # Accessing a shared variable between 2 thread function handlers issue, solved by semaphore
 
-Program: [multiple_threads_access_shared_value.c](src/multiple_threads_access_shared_value.c)
+Program: [multiple_threads_access_shared_value.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/multiple_threads_access_shared_value.c)
 
 **Result**
 
