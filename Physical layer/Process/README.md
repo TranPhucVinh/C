@@ -3,7 +3,7 @@
 Inter-process communication methods are:
 * [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
 * [FIFO](../File%20IO/FIFO)
-* [Semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Semaphore.md)
+* [Semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Documents/Semaphore.md)
 * [Message queue](Message%20queue)
 * [Shared memory](Shared%20memory)
 * [Socket](https://github.com/TranPhucVinh/C/tree/master/Transport%20layer)
