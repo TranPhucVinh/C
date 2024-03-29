@@ -72,7 +72,7 @@ If ``pshared`` is nonzero, then the semaphore is shared between processes, and s
 
 ## sem_wait() and sem_post()
 
-* **sem_wait()**: decrement/lock the semaphore. If the semaphore's value is >0, then the decrement proceeds, and the function returns immediately. If semaphore's value == 0, then ``sem_wait()`` blocks until either it becomes possible to perform the decrement or or a signal handler interrupts it.
+* **sem_wait()**: decrement/lock the semaphore. If the semaphore's value is >0, then the decrement proceeds, and the function returns immediately. If semaphore's value == 0, then ``sem_wait()`` blocks until either it becomes possible to perform the decrement or or a signal handler interrupts it. **Return**: 0 when success, -1 when fails.
 * ``sem_post()``: unlock a semphore
 
 # One thread function handler to increase a shared value issue, solved by binary semaphore
