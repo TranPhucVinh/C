@@ -41,7 +41,7 @@ For TCP socket, EPOLLIN event type is triggered in the TCP receiver when:
 
 ## Features
 
-1. Start a TCP sender (from [tcp_multiple_senders.c](src/tcp_multiple_senders.c)) when the **TCP receiver** (from [tcp_single_receiver.c](src/tcp_single_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
+1. Start a TCP sender (from [tcp_multiple_senders.c](src/tcp_multi_sndr_epoll_sgl_rx.c)) when the **TCP receiver** (from [tcp_single_receiver.c](src/tcp_single_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
 2. **TCP receiver** starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
 3. **TCP receiver** starts then a TCP sender connects to it, TCP receiver then prints out that TCP sender IP address. Then TCP sender sends data to TCP receiver properly.
 When receving message, TCP receiver will print out: ``Message from TCP sender ID %d: %s``
@@ -57,7 +57,7 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 
 **TCP receiver** uses [pipe()](../../Physical%20layer/File%20IO/pipe.md) to store all file descriptor of connected **TCP senders** to close them when [SIGINT signal](../../Physical%20layer/Signal/) is triggered to stop TCP receiver.
 
-* [tcp_multiple_senders.c](tcp_multiple_senders.c)
+* [tcp_multiple_senders.c](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/src/tcp_multi_sndr_epoll_sgl_rx.c)
 * [tcp_single_receiver.c](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/src/tcp_single_receiver.c)
 
 # [Single TCP receiver for multiple TCP senders, handled by multithread](https://github.com/TranPhucVinh/Cplusplus/tree/master/Transport%20layer#single-tcp-receiver-for-multiple-tcp-senders-handled-by-multithread)
