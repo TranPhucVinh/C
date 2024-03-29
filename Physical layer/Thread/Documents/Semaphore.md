@@ -137,3 +137,4 @@ Thread 1 is running
 Thread 3 is running
 // Program blocks permanently after taking all 4 keys
 ```
+**Application**: [Use counting semaphore to limit total number of connected TCP senders in TCP sender - receiver communication](https://github.com/TranPhucVinh/Cplusplus/tree/master/Transport%20layer#single-tcp-receiver-for-multiple-tcp-senders-use-counting-semaphore-to-limit-total-number-of-connected-tcp-senders)
