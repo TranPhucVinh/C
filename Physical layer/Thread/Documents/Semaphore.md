@@ -116,8 +116,6 @@ int main() {
 
     int _thread_index = 0;
 
-    int sem_val = 0;
-
     while (!sem_wait(&semaphore)){
         int *arg = (int*)malloc(sizeof(int));
         *arg = _thread_index;
