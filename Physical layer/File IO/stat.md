@@ -24,10 +24,6 @@ struct stat {
     blksize_t st_blksize;     /* Block size for filesystem I/O */
     blkcnt_t  st_blocks;      /* Number of 512B blocks allocated */
 
-    /* Since Linux 2.6, the kernel supports nanosecond
-        precision for the following timestamp fields.
-        For the details before Linux 2.6, see NOTES. */
-
     struct timespec st_atime;  /* Time of last access */
     struct timespec st_mtime;  /* Time of last modification */
     struct timespec st_ctime;  /* Time of last status change */
