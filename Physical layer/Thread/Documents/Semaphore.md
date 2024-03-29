@@ -90,3 +90,52 @@ Program: [semaphore_multiple_threads_access_shared_value.c](https://github.com/T
 | (Empty)<br>Thread 2 <br>Thread 1  <br>| Thread 1<br>Hello, World !<br>Thread 2|Thread 1<br>(Empty)<br>Thread 2|
 
 That problem happens as in some case thread 2 runs faster than thread 1.
+# Counting semaphore
+
+Limit the number of threads created by using counting semaphore: Every created thread will take a key. If there are 4 keys but want to create 5 threads, then only 4 threads are created:
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <semaphore.h>
+#include <stdlib.h>
+
+#define NUM_THREADS     5
+#define SEM_VAL         4
+#define NO_PROC_SHARED  0 // Not share in processess
+
+sem_t semaphore;
+
+void *thread_function(void *arg) {
+    printf("Thread %d is running\n", *((int *)arg));
+}
+
+int main() {
+    pthread_t threads[NUM_THREADS];
+
+    sem_init(&semaphore, NO_PROC_SHARED, SEM_VAL);
+
+    int _thread_index = 0;
+
+    int sem_val = 0;
+
+    while (!sem_wait(&semaphore)){
+        int *arg = (int*)malloc(sizeof(int));
+        *arg = _thread_index;
+        pthread_create(&threads[_thread_index], NULL, thread_function, arg);
+        _thread_index += 1;
+    }
+
+    // Destroy semaphore
+    sem_destroy(&semaphore);
+
+    return 0;
+}
+```
+**Result**
+```
+Thread 0 is running
+Thread 2 is running
+Thread 1 is running
+Thread 3 is running
+// Program blocks permanently after taking all 4 keys
+```
