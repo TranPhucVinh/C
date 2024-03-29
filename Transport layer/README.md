@@ -58,7 +58,7 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 **TCP receiver** uses [pipe()](../../Physical%20layer/File%20IO/pipe.md) to store all file descriptor of connected **TCP senders** to close them when [SIGINT signal](../../Physical%20layer/Signal/) is triggered to stop TCP receiver.
 
 * [tcp_multiple_senders.c](tcp_multiple_senders.c)
-* [tcp_single_receiver.c](tcp_single_receiver.c)
+* [tcp_single_receiver.c](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/src/tcp_single_receiver.c)
 
 # [Single TCP receiver for multiple TCP senders, handled by multithread](https://github.com/TranPhucVinh/Cplusplus/tree/master/Transport%20layer#single-tcp-receiver-for-multiple-tcp-senders-handled-by-multithread)
 **Note**: This implementation has a special feature: **TCP receiver** only **accepts a specific number of connected TCP senders**, defined by **MAX_CONNECTIONS** in **TCP receiver source code**.
