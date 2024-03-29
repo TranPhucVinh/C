@@ -87,28 +87,8 @@ Program: [multiple_threads_access_shared_value.c](https://github.com/TranPhucVin
 
 **Result**
 
-Run 1st time
-
-```
-(Empty)
-Thread 2
-Thread 1
-```
-
-Run 2nd time
-
-```
-Thread 1
-Hello, World !
-Thread 2
-```
-
-Run 3rd time:
-
-```
-Thread 1
-(Empty)
-Thread 2
-```
+| Run 1st time | Run 2nd time | Run 3rd time|
+| ------- |:------:|:------:|
+| (Empty)<br>Thread 2 <br>Thread 1  <br>| Thread 1<br>Hello, World !<br>Thread 2|Thread 1<br>(Empty)<br>Thread 2|
 
 That problem happens as in some case thread 2 runs faster than thread 1.
