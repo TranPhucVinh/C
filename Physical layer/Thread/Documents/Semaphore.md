@@ -74,7 +74,39 @@ If ``pshared`` is nonzero, then the semaphore is shared between processes, and s
 
 * **sem_wait()**: decrement/lock the semaphore. If the semaphore's value is >0, then the decrement proceeds, and the function returns immediately. If semaphore's value == 0, then ``sem_wait()`` blocks until either it becomes possible to perform the decrement or or a signal handler interrupts it. **Return**: 0 when success, -1 when fails.
 * ``sem_post()``: unlock a semphore
+## sem_getvalue()
+``sem_getvalue()`` is used to get semaphore value
+```cpp
+int shared_value;
+sem_t bin_sem;// Binary semaphore
 
+int main()
+{  
+    sem_init(&bin_sem, NO_PROC_SHARED, SEM_VAL);
+
+	pthread_t thread_id;
+	int thread_return;
+
+	thread_return = pthread_create(&thread_id, NULL, thread_function, "Thread 1");
+	pthread_join(thread_id, NULL);
+    printf("shared_value: %d\n", shared_value);//1
+}
+
+void *thread_function(void *ptr){
+    if (!sem_wait(&bin_sem)){
+        int sem_val;
+
+        sem_getvalue(&bin_sem, &sem_val);
+        printf("Semaphore value after sem_wait(): %d\n", sem_val);
+
+        shared_value++;
+
+        sem_post(&bin_sem);
+        sem_getvalue(&bin_sem, &sem_val);
+        printf("Semaphore value after sem_post(): %d\n", sem_val);
+    } else printf("%s fails to lock\n", (char*)ptr);
+}
+```
 # One thread function handler to increase a shared value issue, solved by binary semaphore
 
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value): [semaphore_multiple_threads_increase_shared_value.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/semaphore_multiple_threads_increase_shared_value.c)
