@@ -46,7 +46,7 @@ int main(){
     else {
         // When ret is 0, TARGET is < lower bound of the array
         if (!ret) printf("%d isn't found as it is less than the lower bound\n", TARGET);      
-        if (ret == arr_sz - 1) printf("%d isn't found as it is bigger than the lower bound\n", TARGET);
+        if (ret == arr_sz - 1) printf("%d isn't found as it is bigger than the upper bound\n", TARGET);
 
         printf("%d isn't found while it inside range [lower bound, upper bound]\n", TARGET);
     }
