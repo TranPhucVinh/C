@@ -1,22 +1,31 @@
 # Implement by recursive
 ```c
 #include <stdio.h>
+#include <stdbool.h>
 
+bool found = false;// Mark if the target is found
+
+/*
+    Return:
+    * Index of the found target
+    * the index when binary search recursive function search_number()
+      ends when target is inside [lower bound, upper bound]
+*/
 int search_number(int target, int *array, int start_index, int end_index) {
     int middle = 0;
     if (start_index == end_index) {
         if (target == array[start_index]){
-            printf("%d found at %d\n", target, start_index);
-            return target;
+            found = true;
+            return start_index;
         } else {
-            printf("%d not found\n", target);      
-            return -1;
+            found = false;
+            return start_index;
         }
     }
     middle = (start_index + end_index)/2;// Middle index
     if (target == array[middle]) {
-        printf("%d found at %d\n", target, middle);
-        return target;
+        found = true;
+        return middle;
     }
     else if (target > array[middle]){
         return search_number(target, array, middle+1, end_index);
@@ -27,10 +36,20 @@ int search_number(int target, int *array, int start_index, int end_index) {
     return 0;
 }
 
+#define TARGET 1
+
 int main(){
     int arr[] = {1, 2, 5, 12, 34};
     int arr_sz = sizeof(arr)/sizeof(int);
-    search_number(34, arr, 0, arr_sz-1);
+    int ret = search_number(TARGET, arr, 0, arr_sz-1);
+    if (found) printf("%d found at %d\n", TARGET, ret);
+    else {
+        // When ret is 0, TARGET is < lower bound of the array
+        if (!ret) printf("%d isn't found as it is less than the lower bound\n", TARGET);      
+        if (ret == arr_sz - 1) printf("%d isn't found as it is bigger than the lower bound\n", TARGET);
+
+        printf("%d isn't found while it inside range [lower bound, upper bound]\n", TARGET);
+    }
 }
 ```
 # Implement by looping
