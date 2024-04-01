@@ -99,26 +99,21 @@ As the array is sorted, so the best approach is to find the index of the 1st occ
 ```cpp
 int first_occurrence = -1; // Index of the first occurrence
 
+// If not found, return -1
 int find_first_occurrence(int target, int *array, int start_index, int end_index) {
     int middle = 0;
     if (start_index == end_index) {
-        if (target == array[start_index]){
-            first_occurrence = start_index;
-        } else {
-            if (first_occurrence == -1) printf("%d not found\n", target);
-        }
+        if (target == array[start_index]) first_occurrence = start_index;
         return first_occurrence;
     }
 
     middle = (start_index + end_index)/2;// Middle index
     if (target == array[middle]) {
-        first_occurrence = middle;
-        return find_first_occurrence(target, array, start_index, middle);;
+        return find_first_occurrence(target, array, start_index, middle);
     }
     else if (target > array[middle]){
         return find_first_occurrence(target, array, middle+1, end_index);
     } else {
-        
         return find_first_occurrence(target, array, start_index, middle);
     }
     
@@ -145,7 +140,7 @@ int find_last_occurrence(int target, int *array, int start_index, int end_index)
 
     if (target == array[middle]) {
         last_occurrence = middle;
-        return last_occurrence;
+        return find_last_occurrence(target, array, middle+1, end_index);
     }
     else if (target > array[middle]){
         return find_last_occurrence(target, array, middle+1, end_index);
