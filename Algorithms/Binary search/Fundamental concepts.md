@@ -145,7 +145,7 @@ int find_last_occurrence(int target, int *array, int start_index, int end_index)
 
     if (target == array[middle]) {
         last_occurrence = middle;
-        return find_last_occurrence(target, array, middle+1, end_index);
+        return last_occurrence;
     }
     else if (target > array[middle]){
         return find_last_occurrence(target, array, middle+1, end_index);
