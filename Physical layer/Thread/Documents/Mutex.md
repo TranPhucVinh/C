@@ -2,7 +2,7 @@
 Solve the [one thread function handler to increase a shared value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Documents/Race%20condition.md#one-thread-function-handler-to-increase-a-shared-value) with mutex, even with multiple threads, not just 2 tasks:
 ## Use [pthread_mutex_lock()](API.md#pthread_mutex_lock)
 
-**Program**: [pthread_mutex_lock.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/pthread_mutex_lock.c)
+**Program**: [mutex_pthread_mutex_lock.c](../src/mutex_pthread_mutex_lock.c)
 
 **Result**: ``shared_value after executing 3 threads: 9000000``
 ## Using [pthread_mutex_trylock()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/API/Inter-task%20communication.md#pthread_mutex_trylock)
@@ -112,9 +112,9 @@ Thread 2 isn't ready to run
 Thread 2 isn't ready to run
 ...// Loop forever
 ```
-**Note**: One way to solve that issue is to use a [simple boolean variable as mutex](../src/simple_boolean_variable_as_mutex.c).
+**Note**: One way to solve that issue is to use a [simple boolean variable as mutex](../src/mutex_simple_boolean_variable_as_mutex.c).
 
-**Problem solved by pthread conditional variable**: [pthread_cond_signal.c](../src/pthread_cond_signal.c)
+**Problem solved by pthread condition variable**: [pthread_cond_signal.c](../src/pthread_cond_signal.c)
 
 ## One thread unblocks multiple threads
 For thread 1 to allow multiple other threads, e.g thread 2, thread 3 to run, we must use [pthread_cond_broadcast()]() to broadcast the condition variable from thread 1.
