@@ -1,5 +1,5 @@
 # One thread function handler to increase a shared value
-Use one function handler in multiple threads to increase a shared value: [race_condition_multi_threads_increase_shared_var.c](../src/race_condition_multi_threads_increase_shared_var.c)
+Use one function handler in multiple threads to increase a shared value: [race_condition_multi_threads_increase_shared_value.c](../src/race_condition_multi_threads_increase_shared_value.c)
 
 **Result**: ``share_value after executing 2 threads: 14736`` (Expected ``20000``)
 
@@ -26,9 +26,7 @@ void *thread_function(void *ptr){
 ``7977229`` in thread 1 means its has already finished increasing from 1 to ``RANGE`` for share_value while thread 2 and thread 3 are still increasing. Same explanation for ``8736671`` in thread 2.
 # One thread function handler to increase and decrease a shared value
 
-In this case, we expect the shared value to be ``0``
-
-Source code: [race_condition_increase_and_decrease_shared_value.c](../src/race_condition_increase_and_decrease_shared_value.c)
+In this case, we expect the shared value to be ``0``. Source code: [race_condition_increase_and_decrease_shared_value.c](../src/race_condition_increase_and_decrease_shared_value.c)
 
 **Result**: (Run multiple times)
 
@@ -44,16 +42,6 @@ share_value -1070
 share_value -1098
 share_value 5460
 ```
-
-**Result**:
-
-Race condition still happen
-
-Run 1st time: ``share_value 10000``
-
-Run 2nd time: ``share_value 0``
-
-Run 3rd time: ``share_value -10000``
 
 Solved that race condition issue by mutex: [increase_and_decrease_a_shared_value_mutex.c](increase_and_decrease_a_shared_value_mutex.c)
 
