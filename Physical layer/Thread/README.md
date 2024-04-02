@@ -45,7 +45,7 @@ Thread ID 140053257754368
 
 ## Program's flow
 
-* **Step 1**: Execute thread 1. ([pthread_join()](API.md#pthread_join) will make the current process to wait for all operations in thread 1 to finish.
+* **Step 1**: Execute thread 1. [pthread_join()](API.md#pthread_join) will make the current process to wait for all operations in thread 1 to finish.
 * **Step 2**: Perform program operation after thread 1 finishes executing, i.e perform program operation behind [pthread_join()](API.md#pthread_join)
 
 If the thread is an infinite loop, the program operation behind [pthread_join()](API.md#pthread_join) can't be reached.

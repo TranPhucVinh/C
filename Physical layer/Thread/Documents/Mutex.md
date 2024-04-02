@@ -106,6 +106,7 @@ void *thread_func_2(void *ptr){
     printf("shared_value after thread 2: %d\n", shared_value);
 }
 ```
+**Result**
 ```
 Thread 1 starts
 Thread 2 starts
@@ -114,12 +115,21 @@ Thread 2 isn't ready to run
 ...// Loop forever
 ```
 
-**Problem solved by pthread condition variable**: [pthread_cond_signal.c](../src/pthread_cond_signal.c)
+**Problem solved by pthread condition variable**: [cond_signal.c](../src/cond_signal.c)
 
+**Result**
+```
+Thread 1 starts
+Thread 2 starts
+Not ready to run
+shared_value after thread 1: 3000000
+shared_value after thread 2: 6000000
+shared_value after executing 2 threads: 6000000
+```
 ## One thread unblocks multiple threads
 For thread 1 to allow multiple other threads, e.g thread 2, thread 3 to run, we must use [pthread_cond_broadcast()]() to broadcast the condition variable from thread 1.
 
-**Program**: [pthread_cond_broadcast.c](../src/pthread_cond_broadcast.c)
+**Program**: [cond_broadcast.c](../src/cond_broadcast.c)
 
 **Result**
 ```
