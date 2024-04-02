@@ -40,7 +40,7 @@ Didn't get lock in Thread 1, 117
 shared_value after executing 3 threads: 8990896 // Expect: 9000000
 ```
 
-# Using a simple boolean variable as a mutex key to implement with 2 tasks
+# Use a simple boolean variable as a mutex to make 2 threads run respectively
 
 Finish executing task 1 to print out ``Hello, World !`` 20 times with 1 second delay then execute task 2 to print out count up number from 1 to 20 with 1 second delay.
 
@@ -52,8 +52,8 @@ Instead of using a boolean variable [like above](#using-a-simple-boolean-variabl
 
 # Condition variable
 pthread condition variable is used in multithread which have already involved mutex
-## Make 2 threads run respectively
-In this example, after increasing the ``shared_value`` to its ``RANGE``, thread 1 will set flag ``thread_2_run`` to allow thread 2 to run. After being "enabled" by flag ``thread_2_run``, thread 2 will increase the ``shared_value`` to ``RANGE``. This example is quite similar to [One thread function handler to increase a shared value issue](#one-thread-function-handler-to-increase-a-shared-value), except it makes 2 threads run respectively as it has flag ``thread_2_run`` to control the order.
+## One thread unblocks another thread
+In this example, after increasing the ``shared_value`` to its ``RANGE``, thread 1 will set flag ``thread_2_run`` to allow thread 2 to run. After being "enabled" by flag ``thread_2_run``, thread 2 will increase the ``shared_value`` to ``RANGE``. This example is quite similar to [One thread function handler to increase a shared value issue](#one-thread-function-handler-to-increase-a-shared-value), except ``thread_1`` uses flag ``thread_2_run`` to enable ``thread_2`` to run.
 
 ```c
 #include <stdio.h>
@@ -112,7 +112,6 @@ Thread 2 isn't ready to run
 Thread 2 isn't ready to run
 ...// Loop forever
 ```
-**Note**: One way to solve that issue is to use a [simple boolean variable as mutex](../src/mutex_simple_boolean_variable_as_mutex.c).
 
 **Problem solved by pthread condition variable**: [pthread_cond_signal.c](../src/pthread_cond_signal.c)
 
