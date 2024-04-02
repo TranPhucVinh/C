@@ -82,7 +82,19 @@ share_value -704
 share_value -450
 share_value 91
 ```
+# Multiple threads run respectively
+With 2 different thread functions handler in 2 threads have delay, we want those 2 threads to run respectively, as thread 1 finishes running then thread 2 start running. Thread 2 finishes then thread 1 stars running,...
 
+**Program**: [race_condition_threads_run_respectively.c](../src/race_condition_threads_run_respectively.c)
+
+**Result**:
+```
+Thead 1: 0
+Thead 2: 0
+Thead 2: 1
+Thead 1: 1
+...
+```
 # Accessing a shared variable between 2 thread function handlers
 
 Thread issue:
