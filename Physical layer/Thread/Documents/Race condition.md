@@ -83,9 +83,7 @@ share_value -450
 share_value 91
 ```
 # Multiple threads run respectively
-With 2 different thread functions handler in 2 threads have delay, we want those 2 threads to run respectively, as thread 1 finishes running then thread 2 start running. Thread 2 finishes then thread 1 stars running,...
-
-**Program**: [race_condition_threads_run_respectively.c](../src/race_condition_threads_run_respectively.c)
+With 2 different thread functions handler in 2 threads have delay, we want those 2 threads to run respectively, as thread 1 finishes running then thread 2 start running: [race_condition_threads_run_respectively.c](../src/race_condition_threads_run_respectively.c)
 
 **Result**:
 ```
