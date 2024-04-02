@@ -40,15 +40,10 @@ Didn't get lock in Thread 1, 117
 shared_value after executing 3 threads: 8990896 // Expect: 9000000
 ```
 
-# Use a simple boolean variable as a mutex to make 2 threads run respectively
+# Multiple threads run respectively
 
-Finish executing task 1 to print out ``Hello, World !`` 20 times with 1 second delay then execute task 2 to print out count up number from 1 to 20 with 1 second delay.
-
-Program: [simple_boolean_variable_as_mutex.c](../src/simple_boolean_variable_as_mutex.c)
-
-# Using mutex to lock the variable
-
-Instead of using a boolean variable [like above](#using-a-simple-boolean-variable-as-a-mutex-key-to-implement-with-2-tasks), mutex can be used as the lock between 2 threads: [mutex_to_lock_the_variables.c](../src/mutex_to_lock_the_variables.c)
+* **Use a simple boolean variable as a mutex to make 2 threads run respectively**: [simple_boolean_variable_as_mutex.c](../src/mutex_boolean_variable_as_mutex.c)
+* **Use pthread mutex**: [mutex_to_lock_the_variables.c](../src/mutex_threads_run_respectively.c.c)
 
 # Condition variable
 pthread condition variable is used in multithread which have already involved mutex
