@@ -28,7 +28,7 @@ void *thread_function(void *ptr){
 
 In this case, we expect the shared value to be ``0``
 
-Source code: [increase_and_decrease_a_shared_value.c](increase_and_decrease_a_shared_value.c)
+Source code: [race_condition_increase_and_decrease_shared_value.c](../src/race_condition_increase_and_decrease_shared_value.c)
 
 **Result**: (Run multiple times)
 
