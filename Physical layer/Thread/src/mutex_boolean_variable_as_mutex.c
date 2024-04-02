@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <pthread.h>
 
+#define RANGE 5
+
 void *func_thread_1(void *ptr);
 void *func_thread_2(void *ptr);
 
@@ -20,22 +22,18 @@ int main()
 }
 
 void *func_thread_1(void *ptr){
-    int number = 0;//Must init variable for proper increment inside while()
-    while (mutex) ;
-    while(number < 20){
-        printf("Hello, World !\n");
-        number += 1;
+    while (mutex);
+    for (int i = 0; i < RANGE; i++) {
+        printf("Thead 1: %d\n", i);
         sleep(1);
     }
     mutex = 1;
 }
 
 void *func_thread_2(void *ptr){
-    int number = 0;//Must init variable for proper increment inside while()
-    while (!mutex) ;
-    while(number < 20){
-        printf("number: %d\n", number);
-        number += 1;
+    while (!mutex);
+    for (int i = 0; i < RANGE; i++) {
+        printf("Thead 2: %d\n", i);
         sleep(1);
     }
     mutex = 0;
