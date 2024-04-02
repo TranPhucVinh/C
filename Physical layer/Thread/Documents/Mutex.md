@@ -80,6 +80,7 @@ int main()
 }
 
 void *thread_func_1(void *ptr){
+    printf("Thread 1 starts\n");
 	for (int i = 0; i < RANGE; i++) {
 		if(!pthread_mutex_lock(&lock)){
 			shared_value++;
@@ -87,9 +88,11 @@ void *thread_func_1(void *ptr){
 		} else printf("%s fails to lock\n", (char*)ptr);
     }   
     thread_2_run = 1;
+    printf("shared_value after thread 1: %d\n", shared_value);
 }
 
 void *thread_func_2(void *ptr){
+    printf("Thread 2 starts\n");
     for (int i = 0; i < RANGE; i++) {
         if(!pthread_mutex_lock(&lock)){
         while(!thread_2_run){
@@ -100,9 +103,12 @@ void *thread_func_2(void *ptr){
         pthread_mutex_unlock(&lock);
         } else printf("%s fails to lock\n", (char*)ptr);
     }
+    printf("shared_value after thread 2: %d\n", shared_value);
 }
 ```
 ```
+Thread 1 starts
+Thread 2 starts
 Thread 2 isn't ready to run
 Thread 2 isn't ready to run
 ...// Loop forever
