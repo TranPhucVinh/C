@@ -95,63 +95,7 @@ Thead 1: 1
 ```
 # Accessing a shared variable between 2 thread function handlers
 
-Thread issue:
-
-```c
-#include <stdio.h>
-#include <pthread.h>
-
-char displayed_string[30];
-
-void *func_thread_1(void *ptr);
-void *func_thread_2(void *ptr);
-
-pthread_t thread_1;
-pthread_t thread_2;
-
-int main()
-{
-	pthread_create(&thread_1, NULL, func_thread_1, NULL);
-	pthread_create(&thread_2, NULL, func_thread_2, NULL);
-	pthread_join(thread_1, NULL);
-	pthread_join(thread_2, NULL);
-}
-
-void *func_thread_1(void *ptr){
-	printf("Thread 1\n");
-	sprintf(displayed_string, "%s", "Hello, World !");	
-}
-
-void *func_thread_2(void *ptr){
-	printf("%s\n", displayed_string);
-	printf("Thread 2\n");
-}
-```
-
-```
-Thread 1
-
-Thread 2
-```
-
-(Value of ``displayed_string`` hasn't been updated so it is empty. **This is the result from race condition**).
-
-If change to:
-
-```c
-void *func_thread_2(void *ptr){	
-	printf("Thread 2\n");
-	printf("%s\n", displayed_string);
-}
-```
-
-```
-Thread 1
-Thread 2
-Hello, World !
-```
-
-Beside race condition, that issue also happens due to using ``printf()`` and ``sprintf()``. Use ``write()`` and ``memcpy()`` will minimize the race condition incidents (as the result from race condition still happen but very little)
+Use ``write()`` and ``memcpy()`` will minimize the race condition incidents (as the result from race condition still happen but very little)
 
 ```c
 #include <stdio.h>
@@ -188,5 +132,10 @@ void *func_thread_2(void *ptr){
 	write(STDOUT_FILENO, thread_2_str, sizeof(thread_1_str));
 }
 ```
+**Result**
+
+| Run 1st time | Run 2nd time |
+| ------- |:------:|
+| (Empty)<br>Thread 2 <br>Thread 1  <br>| Thread 1<br>Hello, World !<br>Thread 2|
 
 That issue can be solved by [using semaphore](Semaphore.md#accessing-a-shared-variable-between-2-thread-function-handlers-issue).
