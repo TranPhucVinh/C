@@ -30,83 +30,12 @@ Types of semaphore:
 A [mutex](../Mutex.md) can be released by the same thread which acquired it while semaphore (especially binary semaphore when compared to mutex) values can be changed by other thread also.
 
 # POSIX API
-## sem_open()
-``sem_open()`` will create a named semaphore
-```c
-#include <stdio.h>
-#include <fcntl.h>           /* For O_* constants */
-#include <errno.h>
-#include <sys/stat.h>        /* For mode constants */
-#include <semaphore.h>
 
-#define SEM_NAME    "/SEMAPHORE_SHARED_MEM"//Semaphore for shared memory; must started with /
-#define SEM_INIT_vALUE  1 //Semaphore initialize value
-sem_t *sem;
+* [sem_open()](): create a named semaphore
+* [sem_init()](): initializes and unnamed semaphore
+* sem_wait() and sem_post()
+* sem_getvalue(): get semaphore value
 
-int main(){
-    sem = sem_open(SEM_NAME, O_CREAT|O_RDWR, 777, SEM_INIT_vALUE);
-    if (sem == SEM_FAILED) {
-        printf("Fail to create %s\n", SEM_NAME);
-        printf("errno %d\n", errno);
-        if (errno == 13) printf("Permission denied\n");
-    }
-    else printf("Create %s successfully\n", SEM_NAME);
-}
-```
-This POSIX named semaphore will then be available inside ``/dev/shm/sem.SEMAPHORE_SHARED_MEM``
-## sem_init()
-
-```c
-#include <semaphore.h>
-
-int sem_init(sem_t *sem, int pshared, unsigned int value);
-```
-
-``sem_init()`` initializes the unnamed semaphore at the address pointed to by ``sem``. The ``value`` argument specifies the initial value for the semaphore.
-
-The ``pshared`` argument indicates whether this semaphore is to be shared between the threads of a process, or between processes.
-
-If ``pshared`` has the value ``0``, then the semaphore is shared between the threads of a process, and should be located at some address that is visible to all threads (e.g., a global variable, or a variable allocated dynamically on the heap).
-
-If ``pshared`` is nonzero, then the semaphore is shared between processes, and should be located in a region of shared memory. For implementation of sem_init with ``pshared`` is nonzero to share between processes to handle race condition, check [Process race condition: Two processes increase the value of a POSIX shared memory region](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Race%20condition#two-processes-increase-the-value-of-a-posix-shared-memory-region) and the [sem_init() implementation to solve that race condition](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Race%20condition/2_processes_increase_a_posix_shared_mem_value_sem_init.c).
-
-## sem_wait() and sem_post()
-
-* **sem_wait()**: decrement/lock the semaphore. If the semaphore's value is >0, then the decrement proceeds, and the function returns immediately. If semaphore's value == 0, then ``sem_wait()`` blocks until either it becomes possible to perform the decrement or or a signal handler interrupts it. **Return**: 0 when success, -1 when fails.
-* ``sem_post()``: unlock a semphore
-## sem_getvalue()
-``sem_getvalue()`` is used to get semaphore value
-```cpp
-int shared_value;
-sem_t bin_sem;// Binary semaphore
-
-int main()
-{  
-    sem_init(&bin_sem, NO_PROC_SHARED, SEM_VAL);
-
-	pthread_t thread_id;
-	int thread_return;
-
-	thread_return = pthread_create(&thread_id, NULL, thread_function, "Thread 1");
-	pthread_join(thread_id, NULL);
-    printf("shared_value: %d\n", shared_value);//1
-}
-
-void *thread_function(void *ptr){
-    if (!sem_wait(&bin_sem)){
-        int sem_val;
-
-        sem_getvalue(&bin_sem, &sem_val);
-        printf("Semaphore value after sem_wait(): %d\n", sem_val);
-
-        shared_value++;
-
-        sem_post(&bin_sem);
-        sem_getvalue(&bin_sem, &sem_val);
-        printf("Semaphore value after sem_post(): %d\n", sem_val);
-    } else printf("%s fails to lock\n", (char*)ptr);
-}
-```
 # One thread function handler to increase a shared value issue, solved by binary semaphore
 
 Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value): [semaphore_multiple_threads_increase_shared_value.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/semaphore_multiple_threads_increase_shared_value.c)
