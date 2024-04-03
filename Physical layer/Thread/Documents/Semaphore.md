@@ -122,6 +122,9 @@ Program: [semaphore_multiple_threads_access_shared_value.c](https://github.com/T
 | (Empty)<br>Thread 2 <br>Thread 1  <br>| Thread 1<br>Hello, World !<br>Thread 2|Thread 1<br>(Empty)<br>Thread 2|
 
 That problem happens as in some case thread 2 runs faster than thread 1.
+# Different between binary semaphore and mutex
+* A thread can't unlock a mutex for another thread. In mutex, the only way for a thread to unlock a mutex for another thread is to use [condition variable](). Take this example: [suspend_and_resume_threads_by_mutex_and_cond.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/suspend_and_resume_threads_by_mutex_and_cond.c). While **a thread can post binary semaphore to other thread**, take this example: [suspend_and_resume_threads_by_semaphore.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/suspend_and_resume_threads_by_semaphore.c)
+* Binary semaphore is used for multi-process, e.g in case of shared memory, while mutex can only be used inside a single process.
 # Counting semaphore
 
 Limit the number of threads created by using counting semaphore: Every created thread will take a key. If there are 4 keys but want to create 5 threads, then only 4 threads are created:
