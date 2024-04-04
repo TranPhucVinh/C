@@ -40,6 +40,32 @@ int main () {
     }
 }
 ```
+# Integer factorization
+A **trial division method** is a common algorithm for integer factorization
+```cpp
+std::vector<int> factorize(int n) {
+    std::vector<int> factors;
+
+    if (n == 1) {
+        factors.push_back(1);
+        return factors;
+    }
+
+    for (long long i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
+            factors.push_back(i);
+            n /= i;
+        }
+    }
+
+    // If n is a prime number greater than 1
+    if (n > 1) {
+        factors.push_back(n);
+    }
+
+    return factors;
+}
+```
 # Find all natural numbers, which is less than a given N, to have only 3 divisors
 From prime number, we have a lemma: **Numbers with only 3 divisors are square numbers of prime numbers**
 ```c
