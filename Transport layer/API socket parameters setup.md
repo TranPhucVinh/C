@@ -41,7 +41,7 @@ struct sockaddr_in{
 
 * ``sin_family``, ``sa_family``: protocolFamily
 * ``sin_port``: port of socket
-* ``sin_addr``: IP address in byte order. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces. With ``INADDR_ANY`` specified, then ``localhost``, ``0.0.0.0`` and ``127.0.0.1`` will all be available.
+* ``sin_addr``: IP address in byte order. When ``INADDR_ANY`` is specified in the bind call, the socket will be bound to all local interfaces. For example in [Raspbian Busybox when the loopback interface isn't booted up automatically](), ``INADDR_ANY`` will bind to the Ethernet interface ``eth0`` instead. With ``INADDR_ANY`` specified, then ``localhost``, ``0.0.0.0`` and ``127.0.0.1`` will all be available.
 * ``sin_zero``: not used, set value 0
 
 To bind to the IP address of the current device, e.g ``192.168.1.4``, use inet_addr:
