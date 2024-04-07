@@ -4,9 +4,11 @@ In computer science, a thread of execution is the smallest sequence of programme
 
 The implementation of threads and processes differs between systems, like in MCU and OS, but in most cases a thread is a component of a process. Multiple threads can exist within one process, executing concurrently and sharing resources such as memory.
 
-Threads implemented in Unix are POSIX threads.
+A thread has its own:
+* Thread ID
+* Stack and local variables
 
-``pthreads`` is C POSIX threads library.
+Threads implemented in Unix are POSIX threads. ``pthreads`` is C POSIX threads library.
 
 Compile: ``gcc test.c -lpthread``
 
