@@ -1,9 +1,7 @@
 # [Open, read, write and close operations]()
 
-Character device basic operations includes:
-
-* [Read and write system call to character device](Basic%20operations/README.md#read-and-write-system-call-to-character-device)
-* [Userspace program for 2-way communication with character device](Basic%20operations/README.md#userspace-program-for-2-way-communication-with-character-device)
+* [Read and write system call to character device](Open%20read%20write%20close#read-system-call-to-character-device)
+* [Userspace program for 2-way communication with character device](Open%20read%20write%20close#userspace-program-for-character_device_operationsc)
 
 # [ioctl](ioctl)
 
