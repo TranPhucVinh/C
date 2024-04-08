@@ -13,9 +13,7 @@ Value returned on success depends on request, or ``–1`` on error.
 * STREAMS
 * ACLs
 
-## Examples
-
-**Example 1**: Get size of the terminal running the current C program
+# Get size of the terminal running the current C program
 
 ```c
 #include <sys/ioctl.h>
@@ -51,8 +49,8 @@ If the new values in the winsize structure differ from the terminal driver’s c
 
 Note, however, that these events on their own are insufficient to change the actual dimensions of the displayed window, which are controlled by software outside the kernel (such as a window manager or a terminal emulator program).
 
-**Example 2**: [Communication between userpsace process and character device by ioctl](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/ioctl)
+# [Communication between userpsace process and character device by ioctl](https://github.com/TranPhucVinh/C/tree/master/Kernel/Character%20device/Character%20device%20operations/ioctl)
 
-**Example 3**: [Communication between userpsace process and I2C bus device by ioctl in Raspbian with various I2C modules and sensors](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Sensors%20and%20Modules#i2c)
+# [Communication between userpsace process and I2C bus device by ioctl in Raspbian with various I2C modules and sensors](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Sensors%20and%20Modules#i2c)
 
-**Example 4**: [Read RTC time of /dev/rtc by ioctl()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Time/Examples.md#example-3)
+# [Read and write RTC time of /dev/rtc](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Time/Examples.md#read-and-write-rtc-time-of-devrtc)
