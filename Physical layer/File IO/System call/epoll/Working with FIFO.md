@@ -1,6 +1,8 @@
 # EPOLLHUP and EPOLLET in FIFO
 
-Everytime running [send.c](#send.c) will send a string to ``FIFO``, [fifo_epollet.c](fifo_epollet.c) which monitor event type **EPOLLHUP** (with event type **EPOLLET** to make sure the event happen only 1 time exactly as edge trigger) will print out the received string.
+**Features**: Everytime running [send.c](#send.c) will send a string to ``FIFO``, [fifo_epollet.c](fifo_epollet.c) which monitor event type **EPOLLHUP** (with event type **EPOLLET** to make sure the event happen only 1 time exactly as edge trigger) will print out the received string.
+
+**Create FIFO**: ``mkfifo -m 777 FIFO``
 
 ## send.c
 

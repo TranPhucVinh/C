@@ -17,34 +17,33 @@ int main(){
     if (epfd < 0) {
         printf("Unable to create an epoll fd\n");
         return 0;
-    } else {
-        monitored_event[0].events = EPOLLIN;
-        monitored_event[0].data.fd = STDIN_FILENO;//Add file descriptor STDIN_FILENO to monitor
+    } 
+	monitored_event[0].events = EPOLLIN;
+	monitored_event[0].data.fd = STDIN_FILENO;//Add file descriptor STDIN_FILENO to monitor
 
-        if (epoll_ctl(epfd, EPOLL_CTL_ADD, STDIN_FILENO, monitored_event) < 0){
-            printf("Unable to add current opening terminal STDIN_FILENO to be monitored by epoll\n");
-            return 0;
-        } else {
-            while (1){
-                int total_ready_fd;// Total ready file descriptors
-                total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
-                if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
-                else if (total_ready_fd == 1){
-                    if (happened_event[0].events == EPOLLIN) {
-                        char buffer[BUFF_SIZE];
-                        bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
-                        read(STDIN_FILENO, buffer, sizeof(buffer));
-                        printf("Entered string: %s", buffer);
-                    }
-                }
-                else {
-                    printf("epoll_wait error %d\n", total_ready_fd);        
-                    close(epfd);
-                    return -1;
-                }
-            }
-        }
-    }
+	if (epoll_ctl(epfd, EPOLL_CTL_ADD, STDIN_FILENO, monitored_event) < 0){
+		printf("Unable to add current opening terminal STDIN_FILENO to be monitored by epoll\n");
+		return 0;
+	}
+
+	while (1){
+		int total_ready_fd;// Total ready file descriptors
+		total_ready_fd = epoll_wait(epfd, happened_event, MAXEVENTS, TIMEOUT);
+		if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+		else if (total_ready_fd == 1){
+			if (happened_event[0].events == EPOLLIN) {
+				char buffer[BUFF_SIZE];
+				bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+				read(STDIN_FILENO, buffer, sizeof(buffer));
+				printf("Entered string: %s\n", buffer);
+			}
+		}
+		else {
+			printf("epoll_wait error %d\n", total_ready_fd);        
+			close(epfd);
+			return -1;
+		}
+	}
     return 1;
 }
 ```

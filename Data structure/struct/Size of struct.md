@@ -1,11 +1,11 @@
-## struct padding
+# struct padding
 
-**Note**:
+## Fundamental concepts
 
 * Padding is only added when a structure member is followed by a member with a larger size or at the end of the structure.
 * Padding is used to fix the size of the largest data type, not to fix the whole register.
 
-Size of struct calculation
+## struct size calculation
 
 **Example 1**
 
@@ -50,7 +50,7 @@ The variable are stacked in the memory like:
 |int c|c|c|c|c|
 |char b|b|**padding**|**padding**|**padding**|
 
-### Data struct padding for string char
+## struct padding for string char
 
 **Example**
 
@@ -84,7 +84,18 @@ The variable are stacked in the memory like:
 |char stringValue[7]|stringValue|stringValue|stringValue|stringValue|
 |char stringValue[7]|stringValue|stringValue|stringValue|**padding**|
 
-## struct packing
+## Disable struct padding
+
+```c
+struct databaseNode
+{
+    int id;
+    char stringValue[7];
+} __attribute__((packed)) node;
+
+sizeof(node);//11
+```
+# struct packing
 
 Using struct padding will increase the performance of the system. However, size of struct now is bigger than the expected size which will increase the size of the program.
 
@@ -96,7 +107,7 @@ If ``packsize >= size of the biggest member inside the struct``, struct packing 
 
 If ``packsize < size of the biggest member inside the struct``, data alignment is then based on ``packsize``.
 
-### Implementations
+## Implementations
 
 ```c
 #pragma pack(n) //(n = 1, 2, 4, 8, 16)
@@ -150,19 +161,3 @@ With ``packsize = 4``
 #pragma pack (4) //4 bytes
 printf("size = %d\n", sizeof(node));//12
 ```
-
-### Disable struct padding
-
-```c
-struct databaseNode
-{
-    int id;
-    char stringValue[7];
-} __attribute__((packed)) node;
-
-sizeof(node);//11
-```
-
-### Size of struct pointer
-
-Just like all other types of pointer, size of struct pointer is still ``8``.
