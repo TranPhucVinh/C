@@ -1,4 +1,4 @@
-## open()
+# open()
 
 Open file/stream or possibly create a file
 
@@ -30,7 +30,7 @@ printf("%d\n", errno);
 Run this program for the first time, ``errno`` is ``0`` as there is no errno and the file ``FILE_NAME`` is created.
 
 Run this program for the second time, ``errno`` is ``EEXIST 17 File exists`` as the file ``FILE_NAME`` has already been created.
-## creat()
+# creat()
 
 ```c
 int fileDescriptor = int creat(const char * pathname , mode_t mode);
@@ -45,7 +45,7 @@ fd = open(pathname, O_WRONLY | O_CREAT | O_TRUNC, mode);
 
 Because the ``open()`` flags argument provides greater control over how the file is opened (e.g., we can specify ``O_RDWR`` instead of ``O_WRONLY``), ``creat()`` is now obsolete, although it may still be seen in older programs.
 
-## File descriptor
+# File descriptor
 
 ```c
 const char filePath[] = "test.txt";
