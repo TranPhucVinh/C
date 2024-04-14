@@ -145,3 +145,6 @@ Timeout after 5000 miliseconds
 # Working with TCP and HTTP
 * [Single TCP receiver for multiple TCP senders](https://github.com/TranPhucVinh/C/tree/master/Transport%20layer#single-tcp-receiver-for-multiple-tcp-senders-handled-by-epoll)
 * [HTTP server for multiple HTTP client]()
+# EPOLLET to detect interrupt on GPIO
+
+[With sysfs, use EPOLLET to detect the edge-triggered interrupt on a GPIO in Raspberry Pi](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/blob/main/Physical%20layer/Interrupt.md#detect-the-interrupt-connected-to-a-gpio-for-everytime-there-is-an-edge-triggered).
