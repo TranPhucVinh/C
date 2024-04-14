@@ -1,6 +1,6 @@
 # EPOLLHUP and EPOLLET in FIFO
 
-**Features**: Everytime running [send.c](#send.c) will send a string to ``FIFO``, [epollet_fifo.c](src/epollet_fifo.c) which monitor event type **EPOLLHUP** (with event type **EPOLLET** to make sure the event happen only 1 time exactly as edge trigger) will print out the received string.
+**Features**: Everytime running [send.c](#send.c) will send a string to ``FIFO``, [epollet_fifo.c](src/epollet_fifo.c) which monitor event type **EPOLLHUP** (with event type **EPOLLET** to make sure the event happens only 1 time exactly as edge trigger) will print out the received string.
 
 **Create FIFO**: ``mkfifo -m 777 FIFO``
 
@@ -110,7 +110,7 @@ Timeout after 5000 miliseconds
 ```
 # Edge-triggered epoll with EPOLLET in FIFO
 
-With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c](epollin_fifo.c):
+With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c](src/epollin_fifo.c):
 
 ```c
 //All other part kept like in epollin_fifo.c.c

@@ -73,7 +73,7 @@ The ``events`` member of the ``epoll_event`` structure is a bit mask composed by
 * **EPOLLIN**: The associated file is available for **read()** operations
 * **EPOLLOUT**: The associated file is available for **write()** operations
 * **EPOLLHUP**: Hang up (i.e: close) happened on the associated file descriptor. [epoll_wait()](#epoll_wait) will always wait for this event; it is not necessary to set it in events when calling ``epoll_ctl()``. Check [epoll implementation with FIFO for EPOLLHUP example](#working-with-fifo)
-* **EPOLLET**: Edge-triggered event. **EPOLLET** won't be returned in ``struct epoll_event *event`` of ``epoll_wait()``. Check epoll implementation [in FIFO](#working-with-fifo) and [pipe](#working-with-pipe) for EPOLLET.
+* **EPOLLET**: Edge-triggered event. **EPOLLET won't be returned** in ``struct epoll_event *event`` of ``epoll_wait()``. Check epoll implementation [in FIFO](#working-with-fifo) and [pipe](#working-with-pipe) for EPOLLET.
 
 In constrast to edge-triggered, we have level-triggered. Level-triggered with epoll will have 2 state:
 
