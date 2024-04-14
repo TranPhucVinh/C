@@ -1,10 +1,10 @@
 # EPOLLHUP and EPOLLET in FIFO
 
-**Features**: Everytime running [send.c](#send.c) will send a string to ``FIFO``, [epollet_fifo.c](src/epollet_fifo.c) which monitor event type **EPOLLHUP** (with event type **EPOLLET** to make sure the event happens only 1 time exactly as edge trigger) will print out the received string.
+**Features**: Everytime running [epollet_fifo_write.c](#epollet_fifo_write.c) will send a string to ``FIFO``, [epollet_fifo_read.c](src/epollet_fifo_read.c) which monitors event type **EPOLLHUP** (with event type **EPOLLET** to make sure the event happens only 1 time exactly as edge trigger) will print out the received string.
 
 **Create FIFO**: ``mkfifo -m 777 FIFO``
 
-## send.c
+## epollet_fifo_write.c
 
 ```c
 #include <stdio.h>
@@ -24,15 +24,27 @@ int main(int argc, char *argv[])  {
 }
 ```
 
+## Result
+
+```
+username@hostname:~/work-in-progress$ ./epollet_fifo_read
+Open FIFO successfully 4
+String read from FIFO: Hello, Wor
+Timeout after 5000 miliseconds
+String read from FIFO: ld !
+Timeout after 5000 miliseconds
+String read from FIFO: 
+...
+```
 ## Note
 
-``EPOLLHUP`` will be returned continuously on [epollet_fifo.c](src/epollet_fifo.c) side right after ``send.c`` successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), ``EPOLLHUP`` as the same event keeps appearing endlessly.
+**EPOLLHUP** will be returned continuously on [epollet_fifo_read.c](src/epollet_fifo_read.c) side right after ``epollet_fifo_write.c`` successfully sends a string to ``FIFO`` and close its opened ``FIFO`` file descriptor. Without the ``EPOLLET`` flag (edge-triggered), **EPOLLHUP** as the same event keeps appearing endlessly.
 
-Program [endlessly_epollhup_event.c](src/endlessly_epollhup_event.c) will demonstrate this (with ``send.c`` as the sender to FIFO). In ``endlessly_epollhup_event.c``, it only monitors ``EPOLLHUP`` event and has nothing to deal with ``EPOLLET``. Right after the FIFO receives the sent data from ``send.c``, ``EPOLLHUP`` event keeps appearing endlessly. Program ``endlessly_epollhup_event.c`` uses ``count``, a variable to count how many time ``EPOLLHUP`` happens and ``count`` value will increase expressly.
+Program [endlessly_epollhup_event.c](src/endlessly_epollhup_event.c) will demonstrate this (with ``epollet_fifo_write.c`` as the sender to FIFO). In ``endlessly_epollhup_event.c``, it only monitors ``EPOLLHUP`` event and has nothing to deal with ``EPOLLET``. Right after the FIFO receives the sent data from ``epollet_fifo_write.c``, ``EPOLLHUP`` event keeps appearing endlessly. Program ``endlessly_epollhup_event.c`` uses ``count``, a variable to count how many time ``EPOLLHUP`` happens and ``count`` value will increase expressly.
 
 # EPOLLIN in FIFO
 
-``send.c`` will send a string to FIFO every 1 second:
+``epollet_fifo_write.c`` will send a string to FIFO every 1 second:
 
 ```c
 #include <stdio.h>
@@ -55,11 +67,11 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-[epollin_fifo.c](src/epollin_fifo.c) will read the string in FIFO, which is sent from ``send.c``, then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``send.c`` to FIFO. The string is sent every 1 second for EPOLLIN event will keeps happening.
+[epollin_fifo.c](src/epollin_fifo.c) will read the string in FIFO, which is sent from ``epollet_fifo_write.c``, then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``epollet_fifo_write.c`` to FIFO. The string is sent every 1 second for EPOLLIN event will keeps happening.
 
 # Level-triggered epoll in FIFO
 
-**send.c** will send a string to FIFO then enters infinite while loop (in order to keep FIFO opened):
+**epollet_fifo_write.c** will send a string to FIFO then enters infinite while loop (in order to keep FIFO opened):
 
 ```c
 char writeString[] = "Hello, World !";
@@ -110,7 +122,7 @@ Timeout after 5000 miliseconds
 ```
 # Edge-triggered epoll with EPOLLET in FIFO
 
-With send.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c](src/epollin_fifo.c):
+With epollet_fifo_write.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c](src/epollin_fifo.c):
 
 ```c
 //All other part kept like in epollin_fifo.c.c
