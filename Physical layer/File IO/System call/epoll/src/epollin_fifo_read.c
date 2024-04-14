@@ -39,10 +39,10 @@ int main(){
     */
     int count = 0;
     while (1){
-        int epollret = epoll_wait(epfd, &happened_event, MAXEVENTS, TIMEOUT);
-        if (epollret == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
-        else if (epollret < 0){
-            printf("epoll_wait error %d\n", epollret);        
+        int total_ready_fd = epoll_wait(epfd, &happened_event, MAXEVENTS, TIMEOUT);
+        if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+        else if (total_ready_fd < 0){
+            printf("epoll_wait error %d\n", total_ready_fd);        
             close(epfd);
             return -1;
         }
