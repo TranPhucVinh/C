@@ -92,46 +92,44 @@ while(1);
 close(fd);
 ```
 
-**receiver.c** will have most features like [epollin_fifo_read.c](src/epollin_fifo_read.c), except it only reads 1 byte from the FIFO to keep level-triggered event:
+**epollet_fifo_read.c** will have most features like [epollin_fifo_read.c](src/epollin_fifo_read.c), except it only reads 1 byte from the FIFO to keep level-triggered event:
 
 ```c
 //Other parts are like epollin_fifo_read.c
-else if (epollret > 0){
-    char buffer[BUFF_SIZE];
-    bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
-    read(fd, buffer, 1);
+char buffer[BUFF_SIZE];
+bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+read(fifo_fd, buffer, 1);
 
-    if (happened_event[0].events == EPOLLIN) {
-        printf("Entered string: %s\n", buffer);
-    }
+if (happened_event.events == EPOLLIN) {
+    printf("Entered string: %s, %d\n", buffer, count);
 }
 ```
 **Result**: 1 byte is read until the whole string inside the FIFO is read out.
 
 ```
 Open FIFO successfully 4
-Entered string: H
-Entered string: e
-Entered string: l
-Entered string: l
-Entered string: o
-Entered string: ,
-Entered string:  
-Entered string: W
-Entered string: o
-Entered string: r
-Entered string: l
-Entered string: d
-Entered string:  
-Entered string: !
-Entered string: 
+Read from buffer: H
+Read from buffer: e
+Read from buffer: l
+Read from buffer: l
+Read from buffer: o
+Read from buffer: ,
+Read from buffer:  
+Read from buffer: W
+Read from buffer: o
+Read from buffer: r
+Read from buffer: l
+Read from buffer: d
+Read from buffer:  
+Read from buffer: !
+Read from buffer: 
 Timeout after 5000 miliseconds
 Timeout after 5000 miliseconds
 ...
 ```
 # Edge-triggered epoll with EPOLLET in FIFO
 
-With epollet_fifo_write.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo_read.c](src/epollin_fifo_read.c):
+With **epollet_fifo_write.c** program like in [epoll level-triggered in FIFO](#level-triggered-epoll-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo_read.c](src/epollin_fifo_read.c):
 
 ```c
 //All other part kept like in epollin_fifo_read.c.c
