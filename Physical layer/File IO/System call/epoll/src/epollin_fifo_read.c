@@ -40,20 +40,21 @@ int main(){
     int count = 0;
     while (1){
         int total_ready_fd = epoll_wait(epfd, &happened_event, MAXEVENTS, TIMEOUT);
+
         if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
         else if (total_ready_fd < 0){
             printf("epoll_wait error %d\n", total_ready_fd);        
             close(epfd);
             return -1;
-        }
+        } else {
+            char buffer[BUFF_SIZE];
+            bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+            read(fifo_fd, buffer, sizeof(buffer));
 
-        char buffer[BUFF_SIZE];
-        bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
-        read(fifo_fd, buffer, sizeof(buffer));
-
-        if (happened_event.events == EPOLLIN) {
-            printf("Entered string: %s, %d\n", buffer, count);
-            count += 1;
+            if (happened_event.events & EPOLLIN) {
+                printf("Entered string: %s, %d\n", buffer, count);
+                count += 1;
+            }
         }
     }
     return 1;

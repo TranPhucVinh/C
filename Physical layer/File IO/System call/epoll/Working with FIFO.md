@@ -57,17 +57,19 @@ Program [endlessly_epollhup_event.c](src/endlessly_epollhup_event.c) will demons
 int main(int argc, char *argv[])  {
 	char writeString[] = "Hello, World !";
 
-	int fd = open(FIFO_NAME, O_WRONLY);
     while (1){
+        int fd = open(FIFO_NAME, O_WRONLY);
         if (write(fd, writeString, sizeof(writeString)) == -1) printf("Unable to write to FIFO");
         else printf("Write to FIFO successfully\n");
         sleep(1);
+        close(fd);
     }
-	close(fd);
 }
 ```
 
-[epollin_fifo_read.c](src/epollin_fifo_read.c) will read the string in FIFO, which is sent from ``epollin_fifo_write.c``, then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``epollin_fifo_write.c`` to FIFO. The string is sent every 1 second for EPOLLIN event will keeps happening.
+[epollin_fifo_read.c](src/epollin_fifo_read.c):
+* Read the string in FIFO, which is sent from ``epollin_fifo_write.c``, then print it out, count how many times the string is received (with ``count`` variable). The string is sent every 1 second for EPOLLIN event will keeps happening.
+* Print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``epollin_fifo_write.c`` to FIFO.
 
 **Result**
 ```
@@ -98,7 +100,7 @@ close(fd);
 //Other parts are like epollin_fifo_read.c
 char buffer[BUFF_SIZE];
 bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
-read(fifo_fd, buffer, 1);
+read(fifo_fd, buffer, 1);// Only read out 1 byte from FIFO to keep level-triggered
 
 if (happened_event.events == EPOLLIN) {
     printf("Entered string: %s, %d\n", buffer, count);
@@ -132,19 +134,26 @@ Timeout after 5000 miliseconds
 With **epollet_fifo_write.c** program like in [epoll level-triggered in FIFO](#level-triggered-epoll-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo_read.c](src/epollin_fifo_read.c):
 
 ```c
-//All other part kept like in epollin_fifo_read.c.c
+//All other part kept like in epollin_fifo_read.c
 #define MAXEVENTS   2       //2 event for EPOLLIN and EPOLLET
 
-monitored_event[0].events = EPOLLIN|EPOLLET;
+monitored_event.events = EPOLLIN|EPOLLET;
 
-//Other parts are like epollin_fifo_read.c
-else if (epollret > 0){
-    char buffer[BUFF_SIZE];
-    bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
-    read(fd, buffer, 1);
+while (1){
+    int total_ready_fd = epoll_wait(epfd, &happened_event, MAXEVENTS, TIMEOUT);
+    if (total_ready_fd == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
+    else if (total_ready_fd < 0){
+        printf("epoll_wait error %d\n", total_ready_fd);        
+        close(epfd);
+        return -1;
+    } else {
+        char buffer[BUFF_SIZE];
+        bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
+        read(fifo_fd, buffer, 1);
 
-    if (happened_event[0].events == EPOLLIN) {
-        printf("Entered string: %s\n", buffer);
+        if (happened_event.events == EPOLLIN) {
+            printf("Read from buffer: %s\n", buffer);
+        }   
     }
 }
 ```
