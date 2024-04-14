@@ -51,7 +51,7 @@ int main(){
             bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
             read(fifo_fd, buffer, sizeof(buffer));
 
-            if (happened_event.events & EPOLLIN) {
+            if (happened_event.events == EPOLLIN) {
                 printf("Entered string: %s, %d\n", buffer, count);
                 count += 1;
             }
