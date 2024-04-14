@@ -11,24 +11,26 @@ The central concept of the ``epoll`` API is the epoll instance, an in-kernel dat
 
 ## epoll_create()
 
-```cpp
+```c
 #include <sys/epoll.h>
-int epoll_create(int size);
 int epoll_create1(int flags);
 ```
 
-``epoll_create1()`` is the same as ``epoll_create()`` as they create a new ``epoll()`` instance. ``epoll_create()`` returns a file descriptor ``efd`` referring to the new ``epoll`` instance.
+``epoll_create1()`` creates a new ``epoll()`` instance and returns a file descriptor ``efd`` referring to the new ``epoll`` instance.
 
 * ``flags``: This argument takes only 1 value ``EPOLL_CLOEXEC`` as set the close-on-exec flag on the new file descriptor.
 
+``epoll_create()`` is an older variant of ``epoll_create1()`` and is deprecated.
+
 ## epoll_wait()
-The ``epoll_wait()`` system call waits for events on the ``epoll()`` instance referred to by the file descriptor ``epfd``.
-```cpp
+The **epoll_wait()** system call waits for events on the ``epoll()`` instance referred to by the file descriptor ``epfd``:
+```c
 int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);
 ```
 * ``maxevents``: the maximum number of epoll_event/file descriptors to be monitored **concurrently**. Should be set to the size of the ``struct epoll_event *events`` array.
 
 **Concurrently** means that epoll can handle maximum **maxevents** file descriptors with the monitored event at the same time. **E.g**:
+
 With ``maxevents = 5`` and the monitored event is **EPOLLIN**, when there are 6 monitored file descriptors with event **EPOLLIN** happen, only 5 among those 6 file descriptors are handled.
 
 **Concurrently** also means that epoll can handle more than **maxevents** file descriptors with the monitored event as long as the monitored event of those file descriptors happen **respectively**, **not concurrently**
@@ -66,12 +68,12 @@ struct epoll_event {
 };
 ```
 
-The ``events`` member of the ``epoll_event`` structure is a bit mask composed by ORing together zero or more of the available **event types** like ``EPOLLIN``, ``EPOLLOUT``,...
+The ``events`` member of the ``epoll_event`` structure is a bit mask composed by ORing together zero or more of the available **event types** like **EPOLLIN**, **EPOLLOUT**,...
 
-* **EPOLLIN**: The associated file is available for ``read()`` operations
-* **EPOLLOUT**: The associated file is available for ``write()`` operations
-* **EPOLLHUP**: Hang up (i.e: close) happened on the associated file descriptor. ``epoll_wait()`` will alway wait for this event; it is not necessary to set it in events when calling ``epoll_ctl()``. Check [epoll implementation with FIFO for EPOLLHUP example](#working-with-fifo)
-* **EPOLLET**: Edge-triggered event. ``EPOLLET`` won't be returned in ``struct epoll_event *event`` of ``epoll_wait()``. Check epoll implementation [in FIFO](#working-with-fifo) and [pipe](#working-with-pipe) for EPOLLET.
+* **EPOLLIN**: The associated file is available for **read()** operations
+* **EPOLLOUT**: The associated file is available for **write()** operations
+* **EPOLLHUP**: Hang up (i.e: close) happened on the associated file descriptor. [epoll_wait()](#epoll_wait) will always wait for this event; it is not necessary to set it in events when calling ``epoll_ctl()``. Check [epoll implementation with FIFO for EPOLLHUP example](#working-with-fifo)
+* **EPOLLET**: Edge-triggered event. **EPOLLET** won't be returned in ``struct epoll_event *event`` of ``epoll_wait()``. Check epoll implementation [in FIFO](#working-with-fifo) and [pipe](#working-with-pipe) for EPOLLET.
 
 In constrast to edge-triggered, we have level-triggered. Level-triggered with epoll will have 2 state:
 
@@ -96,7 +98,7 @@ So if a process (specified by a file descriptor) reads out data from that data s
 
 ## IPC with pipe without EPOLLET
 
-Parent process sends a string to pipe only one time. Child process will read one 1 byte from the pipe. Only EPOLLIN event is monitor.
+Parent process sends a string to pipe only one time. Child process will read one 1 byte from the pipe. Only **EPOLLIN** event is monitored.
 
 **Program**: [epoll_pipe_without_epollet.c](epoll_pipe_without_epollet.c)
 
@@ -125,7 +127,7 @@ Timeout after 5000 miliseconds
 
 ## IPC with pipe with EPOLLET
 
-Features like [IPC with pipe without EPOLLET](), but monitor EPOLLIN and EPOLLET
+Features like [IPC with pipe without EPOLLET](), but monitor **EPOLLIN** and **EPOLLET**.
 
 **Program**: [epoll_epollet_pipe.c](epoll_epollet_pipe.c)
 

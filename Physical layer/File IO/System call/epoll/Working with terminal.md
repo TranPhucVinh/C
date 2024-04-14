@@ -68,7 +68,7 @@ Read entered data from the 2 current running terminals:
 * Current running program (a.out) on 1st terminal /dev/pts/0
 * 2nd terminal is /dev/pts/2
 
-**Program**: [epoll_for_multiple_terminals.c](epoll_for_multiple_terminals.c)
+**Program**: [epoll_for_multiple_terminals.c](src/epoll_for_multiple_terminals.c)
 
 **Result**
 
@@ -89,7 +89,7 @@ Entering ``1234567890`` (10 character), one by one, the character to print out i
 
 * ``String from terminal 2: 1``
 * ``String from terminal 2: 2``
-* ``String from terminal 2: 5`` (3 and 4 are missing
+* ``String from terminal 2: 5`` (3 and 4 are missing)
 * ``String from terminal 2: 7`` (6 are missing)
  
 That happens as the shell also takes control of this 2nd terminal so the process to enter the input string cause race condition
