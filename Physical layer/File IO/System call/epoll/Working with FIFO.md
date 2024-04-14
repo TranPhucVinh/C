@@ -103,7 +103,7 @@ bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
 read(fifo_fd, buffer, 1);// Only read out 1 byte from FIFO to keep level-triggered
 
 if (happened_event.events == EPOLLIN) {
-    printf("Entered string: %s, %d\n", buffer, count);
+    printf("Entered string: %s\n", buffer);
 }
 ```
 **Result**: 1 byte is read until the whole string inside the FIFO is read out.
