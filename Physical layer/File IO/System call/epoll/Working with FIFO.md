@@ -44,7 +44,7 @@ Program [endlessly_epollhup_event.c](src/endlessly_epollhup_event.c) will demons
 
 # EPOLLIN in FIFO
 
-``epollet_fifo_write.c`` will send a string to FIFO every 1 second:
+**epollin_fifo_write.c** will send a string to FIFO every 1 second:
 
 ```c
 #include <stdio.h>
@@ -67,8 +67,17 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-[epollin_fifo.c](src/epollin_fifo.c) will read the string in FIFO, which is sent from ``epollet_fifo_write.c``, then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``epollet_fifo_write.c`` to FIFO. The string is sent every 1 second for EPOLLIN event will keeps happening.
+[epollin_fifo_read.c](src/epollin_fifo_read.c) will read the string in FIFO, which is sent from ``epollin_fifo_write.c``, then print it out, count how many times the string is received (with ``count`` variable), and print out ``Timeout after TIMEOUT miliseconds`` if there is no data sent from ``epollin_fifo_write.c`` to FIFO. The string is sent every 1 second for EPOLLIN event will keeps happening.
 
+**Result**
+```
+Open FIFO successfully 4
+Entered string: Hello, Wor, 0
+Entered string: ld !, 1
+Entered string: Hello, Wor, 2
+Entered string: ld !, 3
+...
+```
 # Level-triggered epoll in FIFO
 
 **epollet_fifo_write.c** will send a string to FIFO then enters infinite while loop (in order to keep FIFO opened):
@@ -83,10 +92,10 @@ while(1);
 close(fd);
 ```
 
-**receiver.c** will have most features like [epollin_fifo.c](src/epollin_fifo.c), except it only reads 1 byte from the FIFO to keep level-triggered event:
+**receiver.c** will have most features like [epollin_fifo_read.c](src/epollin_fifo_read.c), except it only reads 1 byte from the FIFO to keep level-triggered event:
 
 ```c
-//Other parts are like epollin_fifo.c
+//Other parts are like epollin_fifo_read.c
 else if (epollret > 0){
     char buffer[BUFF_SIZE];
     bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
@@ -122,15 +131,15 @@ Timeout after 5000 miliseconds
 ```
 # Edge-triggered epoll with EPOLLET in FIFO
 
-With epollet_fifo_write.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo.c](src/epollin_fifo.c):
+With epollet_fifo_write.c program like in [epoll level-triggered in FIFO](#epoll-level-triggered-in-fifo), adding ``EPOLLET`` to handle edge-trigger in [epollin_fifo_read.c](src/epollin_fifo_read.c):
 
 ```c
-//All other part kept like in epollin_fifo.c.c
+//All other part kept like in epollin_fifo_read.c.c
 #define MAXEVENTS   2       //2 event for EPOLLIN and EPOLLET
 
 monitored_event[0].events = EPOLLIN|EPOLLET;
 
-//Other parts are like epollin_fifo.c
+//Other parts are like epollin_fifo_read.c
 else if (epollret > 0){
     char buffer[BUFF_SIZE];
     bzero(buffer, sizeof(buffer));//Empty the buffer before entering value
