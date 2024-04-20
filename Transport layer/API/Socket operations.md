@@ -122,6 +122,6 @@ Beside **read()**, there are 2 more functions to read recevied message from sock
 ssize_t recv(int sockfd, void *buf, size_t len, int flags);
 ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *src_addr, socklen_t *addrlen);
 ```
-The only difference between **recv()** and **read()** is the presence of flags. With a zero flags argument, **send()** is equivalent to **write()**.
+The only difference between **recv()** and **read()** is the presence of flags. With a zero flags argument, **recv()** is equivalent to **read()**.
 
 **MSG_WAITALL**: This flag requests that the operation block until the full request is satisfied. This flag is used for UDP socket.
