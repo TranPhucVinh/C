@@ -94,9 +94,9 @@ socat file:test.txt tcp-listen:8000
 ```
 TCP client: [tcp_client_read_data.c](src/tcp_client_read_data.c)
 
-# A UDS sender sends string to a UDP receiver
-* [uds_recv.c](src/uds_recv.c)
-* [uds_sndr.c](src/uds_sndr.c)
+# A UDS sender sends a string to a UDP receiver
+* [uds_recv.c](src/uds_recv.c): Create a Unix domain socket located in UDS_PATH for IPC
+* [uds_sndr.c](src/uds_sndr.c): Send a string to Unix domain socket UDS_PATH for **uds_recv.c**
 # A UDP sender sends string to a UDP receiver
 * Based on the UDP mechanism, a [UDP sender](src/udp_sgl_sndr_sgl_rx.c) can start normally without the need of an existing UDP receiver. UDP sender doesn't need to connect to the targeted UDP receiver (by connect()) before sending message.
 * Simply start the [UDP receiver](src/udp_sgl_rx_sgl_sndr.c) then both **UDP sender** and **receiver** can start exchanging message.
