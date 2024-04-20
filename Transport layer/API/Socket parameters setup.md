@@ -58,6 +58,8 @@ struct sockaddr_un {
     char sun_path[108];         // Pathname
 };
 ```
-# Other libraries
+# Libraries list
 
-``netinet/in.h``: Internet Protocol family
+* **netinet/in.h**: Internet Protocol family
+* **sys/socket.h**: TCP and UDP library
+* **sys/un.h**: Unix Domain Socket library
