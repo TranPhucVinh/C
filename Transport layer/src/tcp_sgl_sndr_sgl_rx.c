@@ -49,12 +49,12 @@ int socket_parameter_init(char *host, int port){
         exit(0);
     } else printf("Create TCP socket successfully\n");
 
-    // Connect to server
+    // Connect to the TCP receiver to send data to it in later steps
     if (connect(sender_fd, (struct sockaddr *)&receiver_addr, sizeof(receiver_addr)) < 0){
         if (errno == ECONNREFUSED) {
-            printf("TCP server hasn't been started or server doesn't support connection\n");
-        } else printf("Can't connect to TCP server with error %d", errno);
+            printf("TCP receiver hasn't been started or it doesn't support connection\n");
+        } else printf("Can't connect to TCP receiver with error %d", errno);
         exit(0);
-    } else printf("connect to TCP server successfully\n");
+    } else printf("connect to TCP receiver successfully\n");
     return sender_fd;
 }
