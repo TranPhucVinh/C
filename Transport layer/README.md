@@ -1,3 +1,8 @@
+# IPC with sockets
+There are 3 types of socket used for IPC: 
+* **Stream sockets**, which use TCP as their underlying transport protocol
+* **Datagram sockets**, which use UDP as their underlying transport protocol
+* **Unix Domain Sockets (UDS)**, which use local files to send and receive data instead of network interfaces and IP packets. With UDS, the file named used for IPC is usually named with **.sock** or **.socket** extension.
 # [API](API)
 * [Socket parameters setup](API/Socket%20parameters%20setup.md)
 * [Socket operations](API/Socket%20operations.md):
@@ -89,6 +94,9 @@ socat file:test.txt tcp-listen:8000
 ```
 TCP client: [tcp_client_read_data.c](src/tcp_client_read_data.c)
 
+# A UDS sender sends string to a UDP receiver
+* [uds_recv.c](src/uds_recv.c)
+* [uds_sndr.c](src/uds_sndr.c)
 # A UDP sender sends string to a UDP receiver
 * Based on the UDP mechanism, a [UDP sender](src/udp_sgl_sndr_sgl_rx.c) can start normally without the need of an existing UDP receiver. UDP sender doesn't need to connect to the targeted UDP receiver (by connect()) before sending message.
 * Simply start the [UDP receiver](src/udp_sgl_rx_sgl_sndr.c) then both **UDP sender** and **receiver** can start exchanging message.
