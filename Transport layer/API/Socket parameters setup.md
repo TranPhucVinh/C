@@ -30,14 +30,14 @@ struct in_addr {
 };
 
 struct sockaddr_in{
-    unsigned short sin_family;
-    unsigned short sin_port; /* Address port (16 bits) */
-    struct in_addr sin_addr; /* Internet address (32 bits) */
-    char    sin_zero[8]; /* Not used, must be zero */
+    unsigned	short sin_family;
+    unsigned	short sin_port; /* Address port (16 bits) */
+    struct		in_addr sin_addr; /* Internet address (32 bits) */
+    char    	sin_zero[8]; /* Not used, must be zero */
 };
 ```
 
-``sockaddr`` and ``sockaddr_in`` are used to set up address parameter for client and server.
+``sockaddr`` and ``sockaddr_in`` are used to set up IPv4 address parameter for client and server.
 
 * ``sin_family``, ``sa_family``: protocolFamily
 * ``sin_port``: port of socket
@@ -50,6 +50,16 @@ http_server_addr.sin_addr.s_addr = inet_addr("192.168.1.4");
 ```
 For an implementation to parse IPv4 address from struct sockaddr_in, check [gethostbyname()]() [example to get the hostname information, including its IP address](../Application%20layer/HTTP%20client/TCP%20socket/get_host_information.c).
 
-# Other libraries
+## sockaddr_un
+**sockaddr_un** is used to setup Unix socket:
+```c
+struct sockaddr_un {
+    sa_family_t sun_family;     // AF_UNIX
+    char sun_path[108];         // Pathname
+};
+```
+# Libraries list
 
-``netinet/in.h``: Internet Protocol family
+* **netinet/in.h**: Internet Protocol family
+* **sys/socket.h**: TCP and UDP library
+* **sys/un.h**: Unix Domain Socket library
