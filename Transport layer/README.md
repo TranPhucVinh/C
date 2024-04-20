@@ -1,6 +1,6 @@
-# [API](API.md)
-* [Socket parameters setup](API%20socket%20parameters%20setup.md)
-* [Socket operations](API%20socket%20operations.md):
+# [API](API)
+* [Socket parameters setup](API/Socket%20parameters%20setup.md)
+* [Socket operations](API/Socket%20operations.md):
   * listen(), accept(), setsockopt(), socket(), connect(), shutdown()
   * Send message to socket: write(), send(), sendto()
 # A TCP sender sends string to a TCP receiver
@@ -80,6 +80,14 @@ When receving message, TCP receiver will print out: ``Message from TCP sender ID
 
 * [tcp_multiple_receivers.c](src/tcp_multiple_receivers.c)
 * [tcp_single_sender.c](src/tcp_single_sender.c)
+# TCP client
+TCP client receives data stream from a file of a TCP server, created by ``socat`` command:
+
+TCP server is use socat to send data from a file to the TCP socket:
+```sh
+socat file:test.txt tcp-listen:8000
+```
+TCP client: [tcp_client_read_data.c](src/tcp_client_read_data.c)
 
 # A UDP sender sends string to a UDP receiver
 * Based on the UDP mechanism, a [UDP sender](src/udp_sgl_sndr_sgl_rx.c) can start normally without the need of an existing UDP receiver. UDP sender doesn't need to connect to the targeted UDP receiver (by connect()) before sending message.
