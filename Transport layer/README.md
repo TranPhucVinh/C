@@ -9,7 +9,8 @@ There are 3 types of socket used for IPC:
   * listen(), accept(), setsockopt(), socket(), connect(), shutdown()
   * Send message to socket: write(), send(), sendto()
 # A TCP sender sends string to a TCP receiver
-
+<details>
+ 
 ## Features
 1. Start a TCP sender (from [tcp_sgl_sndr_sgl_rx.c](src/tcp_sgl_sndr_sgl_rx.c)) when the TCP receiver (from [tcp_sgl_rx_sgl_sndr.c](src/tcp_sgl_rx_sgl_sndr.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
 2. [TCP receiver](src/tcp_sgl_rx_sgl_sndr.c) starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
@@ -19,6 +20,7 @@ There are 3 types of socket used for IPC:
 ## Program
 * TCP receiver (TCP single receiver for a single TCP sender): [tcp_sgl_rx_sgl_sndr.c](src/tcp_sgl_rx_sgl_sndr.c)
 * TCP sender (TCP single sender for a single TCP receiver): [tcp_sgl_sndr_sgl_rx.c](src/tcp_sgl_sndr_sgl_rx.c)
+</details>
 
 # Single TCP receiver for multiple TCP senders, handled by [epoll](../Physical%20layer/File%20IO/System%20call/epoll/)
 ## Features
