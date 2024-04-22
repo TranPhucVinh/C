@@ -15,7 +15,7 @@ Based on that definition, for traversing, we need to know the total nodes of the
 
 # Verify if a given linked list is a circular linked list
 
-Use the same method of [Get the middle member of the linked list by 1 time traversing in Singly linked list]() as using 2 pointer ``p1`` and ``p2``.
+Use two-pointer method, which is a little similar to [Get the middle member of the linked list by 1 time traversing in Singly linked list]() as using 2 pointer ``p1`` and ``p2``.
 
 In every execution of the loop, ``p1`` will access to the next 2 nodes, while ``p2`` only access to its next node. If the linked list is circular, after a number of times, ``p1`` and ``p2`` will point to the same node.
 
