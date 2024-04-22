@@ -1,23 +1,23 @@
-# Build a struct
+# Define a struct
 
 Struct as a data type: **create an object** and a **struct array** from that struct
 
 ```c
 #include <stdio.h>
 
-struct struct_data_type {
+struct StructObject {
 	int id;
 	char string_value[50];
 };
 
 int main(){
-    struct struct_data_type value_0 = {0, "Value 0"};//struct as type for varaible
-	struct struct_data_type array[2];//struct as type for array
-	struct struct_data_type value_1 = {1, "Value 1"};
-	struct struct_data_type value_2 = {2, "Value 2"};
-	array[0] = value_1;
-	array[1] = value_2;
-    printf("%d, %s\n", value_0.id,value_0.string_value);//0, Value 0
+    struct StructObject obj_0 = {0, "Value 0"};//struct as type for varaible
+	struct StructObject array[2];//struct as type for array
+	struct StructObject obj_1 = {1, "Value 1"};
+	struct StructObject obj_2 = {2, "Value 2"};
+	array[0] = obj_1;
+	array[1] = obj_2;
+    printf("%d, %s\n", obj_0.id,obj_0.string_value);//0, Value 0
 	printf("%d, %s\n", array[0].id, array[0].string_value);//1, Value 1
 }
 ```
@@ -32,8 +32,7 @@ struct struct_data_type value_0 = {
 This compile normally on GCC but gives error in G++:
 
 ```
-error: C99 designator ‘stringValue’ outside aggregate initializer
-};
+error: C99 designator ‘string_value’ outside aggregate initializer
 ```
 Or by this way:
 
