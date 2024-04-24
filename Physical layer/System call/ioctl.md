@@ -54,3 +54,5 @@ Note, however, that these events on their own are insufficient to change the act
 # [Communication between userpsace process and I2C bus device by ioctl in Raspbian with various I2C modules and sensors](https://github.com/TranPhucVinh/Raspberry-Pi-C/tree/main/Sensors%20and%20Modules#i2c)
 
 # [Read and write RTC time of /dev/rtc](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Time/Examples.md#read-and-write-rtc-time-of-devrtc)
+
+# [ioctl for GPIO device file](https://github.com/TranPhucVinh/Raspberry-Pi-GNU/blob/main/Physical%20layer/GPIO/GPIO%20device%20file.md) 
