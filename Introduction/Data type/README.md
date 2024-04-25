@@ -12,6 +12,7 @@
 |long	 |8 bytes|-9223372036854775808 to 9223372036854775807|		
 |unsigned long|8 bytes|0 to 18446744073709551615|		
 |double|8 bytes||
+
 With Microsoft C++ 32-bit and 64-bit compilers, int has the range -2,147,483,648 to 2,147,483,647.
 
 ``GCC`` and ``G++`` define int as 4 bytes. Size of ``int`` different from various compiler of the MCU.
