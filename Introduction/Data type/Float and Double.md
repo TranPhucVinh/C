@@ -122,7 +122,17 @@ long double fmodl(long double x, long double y);
 Compile for ``math.h``: ``gcc test.c -lm``
 
 # double
+## Binary conversion
+IEEE 754 defines the double to binary conversion as:
+```
+| Sign bit (1 bit) | Exponent (11 bits) | Significand (52 bits) |
+```
+* Sign bit: 0 means positive number
+* Significand: This part represents the fractional component of the number. The leading bit is typically implied to be 1, except for special cases.
 
+Base on this definition, this uint8_t array ``{0, 0, 0, 0, 0, 144, 69, 64}`` results in number ``43.125``. Luckily, G++ has [reinterpret_cast](https://github.com/TranPhucVinh/Cplusplus/blob/master/Introduction/Data%20type/Explicit%20type%20conversion.md#reinterpret_cast) function which helps converting the uint8_t array to double number easily.
+
+## long float
 **double** can also be declared as **long float**.
 
 ```
@@ -131,7 +141,7 @@ float -> %f
 double -> %lf
 ```
 
-### Comparing float and double
+## Comparing float and double
 
 ```c
 #include <stdio.h>
