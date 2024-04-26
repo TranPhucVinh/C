@@ -30,9 +30,9 @@ int search_string(string target, vector<string> str_arr, int start_index, int en
     
     return 0;
 }
-#define TARGET "g"
+#define TARGET "b"
 int main(){
-    vector<string> str = {"c","f","j"};
+    vector<string> str = {"a", "ab", "abc", "abd", "b"};
 
     int ret = search_string(TARGET, str, 0, str.size()-1);
     if (found) cout << TARGET << " found at " << ret << endl;
