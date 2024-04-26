@@ -1,5 +1,6 @@
 # Find a string inside a sorted string array
 <details>
+    
 ```cpp
 #include <iostream>
 #include <string>
@@ -46,6 +47,7 @@ int main(){
     }
 }
 ```
+
 </details>
 
 # Find all negative numbers inside an ascending array
