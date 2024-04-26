@@ -1,8 +1,8 @@
-Two pointers is a technique to use 2 pointer, one at the beginning of a sequence (array, string, linked list), and the left one at the end of that sequence to start searching for a specific item, pattern.
+Two pointers is a technique to use 2 pointers, one at the beginning of a sequence (array, string, linked list), and the left one at any other position in the sequence, e.g the end of that sequence, to start searching for a specific item, pattern.
 
 # Check for a specific sum in a sorted array
 
-This problem is mostly known as two sum: Given an array in ascending order, find two numbers such that they add up to a specific target number.
+This problem is mostly known as **two sum**: Given an array in ascending order, find two numbers such that they add up to a specific target number.
 
 With two pointer technique:
 
