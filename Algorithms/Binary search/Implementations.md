@@ -70,9 +70,9 @@ Ccheck if there exist two indices i and j in an array such that:
 
 arr[i] == 2 * arr[j]
 
-* [10,2,5,3]: True [5, 10]
-* [-10,12,-20,-8,15]: True (-10, -20)
-* [3,1,7,11]: False
-* [-485, -242]: False
+* [10, 2, 5, 3]: True [5, 10]
+* {-10, 12, -20, -8, 15}: True [-10, -20]
+* {3, 1, 7, 11}: False
+* {-485, -242}: False
 
 [binary_search_check_if_an_index_and_its_double_existed.c](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/binary_search_check_if_an_index_and_its_double_existed.c)
