@@ -34,7 +34,7 @@ int search_string(string target, vector<string> str_arr, int start_index, int en
 int main(){
     vector<string> str = {"a", "ab", "abc", "abd", "b"};
 
-    int ret = search_string(TARGET, str, 0, str.size());
+    int ret = search_string(TARGET, str, 0, str.size()-1);
     if (found) cout << TARGET << " found at " << ret << endl;
     else {
         // When ret is 0, TARGET is < lower bound of the array
@@ -42,7 +42,7 @@ int main(){
             cout << TARGET << " isn't found as it is less than the lower bound\n";  
             return 0;
         }
-        if (ret == str.size()) cout << TARGET << " isn't found as it is bigger than the upper bound\n";
+        if (ret == str.size() - 1) cout << TARGET << " isn't found as it is bigger than the upper bound\n";
         else cout << TARGET << " isn't found while it inside range [lower bound, upper bound]\n";
     }
 }
