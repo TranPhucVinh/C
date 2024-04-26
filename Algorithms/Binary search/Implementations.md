@@ -1,20 +1,24 @@
 # Find a string inside a sorted string array
 ```cpp
-string search_string(string target, string *str_arr, int start_index, int end_index) {
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+bool found = false;// Mark if the target is found
+
+int search_string(string target, vector<string> str_arr, int start_index, int end_index) {
     int middle = 0;
     if (start_index == end_index) {
-        if (target == str_arr[start_index]){
-            cout << target << " found at " << start_index << endl;
-            return target;
-        } else {
-            cout << target << " not found\n";
-            return "NULL";
-        }
+        if (target == str_arr[start_index]) found = true;
+        else found = false;
+        return start_index;
     }
     middle = (start_index + end_index)/2;// Middle index
     if (target == str_arr[middle]) {
-        cout << target << " found at " << middle << endl;
-        return target;
+        found = true;
+        return middle;
     }
     else if (target > str_arr[middle]){
         return search_string(target, str_arr, middle+1, end_index);
@@ -24,11 +28,18 @@ string search_string(string target, string *str_arr, int start_index, int end_in
     
     return 0;
 }
-
+#define TARGET "b"
 int main(){
-    string str[] = {"a", "ab", "abc", "abd", "b"};
-    int str_arr_sz = sizeof(str)/sizeof(string);
-    search_string("b", str, 0, str_arr_sz-1);
+    vector<string> str = {"a", "ab", "abc", "abd", "b"};
+
+    int ret = search_string(TARGET, str, 0, str.size());
+    if (found) cout << TARGET << " found at " << ret << endl;
+    else {
+        // When ret is 0, TARGET is < lower bound of the array
+        if (!ret) cout << TARGET << " isn't found as it is less than the lower bound\n";  
+        if (ret == str.size()) cout << TARGET << " isn't found as it is bigger than the upper bound\n";
+        else cout << TARGET << " isn't found while it inside range [lower bound, upper bound]\n";
+    }
 }
 ```
 # Find all negative numbers inside an ascending array
