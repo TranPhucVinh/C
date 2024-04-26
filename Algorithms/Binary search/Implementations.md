@@ -1,4 +1,5 @@
 # Find a string inside a sorted string array
+<details>
 ```cpp
 #include <iostream>
 #include <string>
@@ -36,12 +37,17 @@ int main(){
     if (found) cout << TARGET << " found at " << ret << endl;
     else {
         // When ret is 0, TARGET is < lower bound of the array
-        if (!ret) cout << TARGET << " isn't found as it is less than the lower bound\n";  
+        if (!ret) {
+            cout << TARGET << " isn't found as it is less than the lower bound\n";  
+            return 0;
+        }
         if (ret == str.size()) cout << TARGET << " isn't found as it is bigger than the upper bound\n";
         else cout << TARGET << " isn't found while it inside range [lower bound, upper bound]\n";
     }
 }
 ```
+</details>
+
 # Find all negative numbers inside an ascending array
 ```c
 int find_last_occurrence(int *array, int start_index, int end_index) {
