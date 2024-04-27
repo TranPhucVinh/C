@@ -1,5 +1,5 @@
 # Fundamental concepts
-Binary search is used to search for a specific member inside an ascending order array. This search method has the time complexity of O(log(n)) which is faster than the linear search method to iterate through every member of the array, which results in O(n).
+Binary search is used to search for a specific member inside an **ascending order array**. This search method has the time complexity of O(log(n)) which is faster than the linear search method to iterate through every member of the array, which results in O(n).
 
 Generally, binary search will chopping the half the array and search at the middle of it for every time searching, until it finds out the searched target.
 
