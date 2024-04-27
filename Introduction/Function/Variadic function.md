@@ -165,3 +165,20 @@ int main() {
 	printf("%s\n", displayedString);//Display string
 } 
 ```
+## Add sum using variadic function
+```c
+int sum(int totalArgument,...){
+    int _sum = 0;
+	va_list valist;
+	va_start(valist, totalArgument);
+
+    for (int i = 0; i < totalArgument; i++){
+        _sum += va_arg(valist, int);
+    }
+	return _sum;
+}
+
+int main() {
+	printf("%d", sum(5, 1, 2, 3, 4, 5));
+}  
+```
