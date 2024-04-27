@@ -2,7 +2,7 @@ An array is collection of items stored at **continuous memory** locations.
 
 # [One dimension array](One%20dimension%20array.md)
 
-* [Create](One%20dimension%20array.md#create): [Create an array on stack memory](One%20dimension%20array.md#on-stack-memory) and [on heap memory](); [create/insert new member at specific index](create_new_member.c)
+* [Create](One%20dimension%20array.md#create): [Create an array on stack memory](One%20dimension%20array.md#on-stack-memory) and [on heap memory](); [create/insert new member at specific index](create_new_member.c); [create a vector](create_vector.c)
 * [Read](One%20dimension%20array.md#read)
 * [Update](One%20dimension%20array.md#update)
 * [Delete](One%20dimension%20array.md#delete): [Delete member in array from index](delete.c)
