@@ -165,7 +165,7 @@ int main() {
 	printf("%s\n", displayedString);//Display string
 } 
 ```
-## Add sum using variadic function
+## Add sum and min of a sequence
 ```c
 int sum(int totalArgument,...){
     int _sum = 0;
@@ -178,7 +178,21 @@ int sum(int totalArgument,...){
 	return _sum;
 }
 
+int min(int totalArgument,...){
+    va_list valist;
+    va_start(valist, totalArgument);
+
+    int min = va_arg(valist, int);
+    
+    for (int i = 1; i < totalArgument; i++){
+        int val = va_arg(valist, int);
+        if (val <= min) min = val;
+    }
+    return min;
+}
+
 int main() {
 	printf("%d", sum(5, 1, 2, 3, 4, 5));
+	printf("%d", min(5, 1, -19, 3, 4, 5));
 }  
 ```
