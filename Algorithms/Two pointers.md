@@ -43,6 +43,7 @@ vector<int> twoSum(vector<int>& numbers, int target) {
     return found_index; 
 }
 ```
+**Notes**: The condition for the above implementation is each number appears only 1 time.
 # Check for a specific substract in a sorted array
 ```cpp
 #include <iostream>
@@ -101,6 +102,8 @@ int main(){
 2 4
 1 3
 ```
+**Notes**: The condition for the above implementation is each number appears only 1 time.
+
 # Implementations
 * [Get the middle member of the linked list by 1 time traversing](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/Read.md#get-the-middle-member-of-the-linked-list-by-1-time-traversing)
 * [Verify if a given linked list is a circular linked list](https://github.com/TranPhucVinh/C/tree/master/Data%20structure/Linked%20list/Circular%20linked%20list#verify-if-a-given-linked-list-is-a-circular-linked-list)
