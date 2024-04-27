@@ -43,6 +43,64 @@ vector<int> twoSum(vector<int>& numbers, int target) {
     return found_index; 
 }
 ```
+# Check for a specific substract in a sorted array
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>    // std::sort
+
+using namespace std;
+
+vector<int> twoSubtraction(vector<int>& numbers, int target) {
+    vector<int> found_index;
+    int *start_ptr = &numbers[0];
+    int *end_ptr = &numbers[numbers.size()-1];
+    int start_ptr_index = 0;
+    int end_ptr_index = numbers.size()-1;
+
+    while (start_ptr_index != end_ptr_index ){
+        if ((*end_ptr - *start_ptr) > target) {
+            start_ptr++;
+            start_ptr_index++;
+        } else if ((*end_ptr - *start_ptr) < target){
+            end_ptr--;
+            end_ptr_index--;
+        } else {
+            found_index.push_back(*start_ptr);
+            found_index.push_back(*end_ptr);
+
+            numbers.erase(numbers.begin() + end_ptr_index);// Remove the last index after every time found
+            return found_index;
+        }  
+    }
+    
+    found_index.push_back(-1);
+    found_index.push_back(-1);
+    return found_index; 
+}
+#define TARGET 2
+int main(){
+    vector<int> found_index;
+    vector<int> numbers = {1, 2, 3, 4, 5};
+
+    while (numbers.size() > 2){// Loop until there are only 2 member left inside the vector
+        found_index = twoSubtraction(numbers, TARGET);
+        for (int i = 0; i < found_index.size(); i++){
+            cout << found_index[i] << " ";
+        }
+        cout << endl;
+    }
+    if ( (numbers.size() == 2) && ( (numbers[1] - numbers[0]) == TARGET)){
+        cout << numbers[1] << " " << numbers[0] << endl;
+    }
+}
+```
+**Result**
+```
+3 5
+2 4
+1 3
+```
 # Implementations
 * [Get the middle member of the linked list by 1 time traversing](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/Read.md#get-the-middle-member-of-the-linked-list-by-1-time-traversing)
 * [Verify if a given linked list is a circular linked list](https://github.com/TranPhucVinh/C/tree/master/Data%20structure/Linked%20list/Circular%20linked%20list#verify-if-a-given-linked-list-is-a-circular-linked-list)
