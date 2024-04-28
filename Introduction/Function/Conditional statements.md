@@ -57,7 +57,7 @@ for(int index = 0;index<10;){
 
 ``for(;;)`` is equal to ``while(1)``.
 
-**Draw a rectangle with dots**
+## Draw a rectangle with dots
 ```
 column  
 ***
@@ -91,6 +91,26 @@ int main() {
 			printf("\n");
 		}
 	}
+}
+```
+## Draw staircase
+n = 6
+```
+     #
+    ##
+   ###
+  ####
+ #####
+######
+```
+```c
+```
+void staircase(int n) {
+    for (int i = 1; i <= n; i++){
+        for (int j = n - i; j > 0; j--) printf(" ");
+        for (int k = 1; k <= i; k++) printf("#");
+        printf("\n");
+    }
 }
 ```
 # switch case
