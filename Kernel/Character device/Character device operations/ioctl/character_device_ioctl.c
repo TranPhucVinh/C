@@ -67,7 +67,7 @@ long dev_ioctl(struct file *filep, unsigned int cmd, unsigned long arg){
 	int userspace_argument;
 	if (copy_from_user(&userspace_argument, (int*)arg, sizeof(userspace_argument))) return -EFAULT;
     else {
-        printk("cmd %d, arg %ld, userspace_argument %d\n", cmd, arg, userspace_argument);
+        printk("cmd %d, userspace_argument %d, userspace_argument address %ld\n", cmd, userspace_argument, arg);
 
         userspace_process = get_current();
 
