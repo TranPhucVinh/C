@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 		if (ioctl(fd, cmd, &argument) == -1) {
            goto error_handler;
         } else {
-            printf("cmd %d, argument %d\n", cmd, argument);
+            printf("cmd %d, argument %d, argument's address %ld\n", cmd, argument, &argument);
 			printf("PID %d\n", getpid());
 			//Add return here so that error_handler won't be called after finishing
 			return 0;
