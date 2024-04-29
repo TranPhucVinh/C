@@ -25,7 +25,8 @@ Error number: 14
 User space program that communicate with ``character_device_ioctl_macro.c``: [user_space_ioctl_macro.c](user_space_ioctl_macro.c)
 
 # API
-
+## long dev_ioctl(struct file *filep, unsigned int cmd, unsigned long arg)
+* **arg**: Address of the user-space argument
 ## ioctl macro
 
 * ``_IO(int type, int number)``: used for a simple ioctl that sends nothing but the ``type`` and ``number``, and receives back nothing but an (integer) ``retval``
