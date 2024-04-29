@@ -7,6 +7,22 @@
 
 User space program that communicate with ``character_device_ioctl.c``: [user_space_ioctl.c](user_space_ioctl.c)
 
+**Result**: 
+
+**character_device_ioctl.c**: ``dmesg``
+```
+[23429.151158] open
+[23429.151193] cmd 10, userspace_argument 123, userspace_argument address 135232
+[23429.151211] PID 7362
+[23429.152641] close
+```
+
+**user_space_ioctl.c**
+```
+cmd 10, argument 123, argument's address 135232
+PID 7362
+```
+
 **Note**: If sending ``argument`` (the 3rd parameters of ``ioctl()``) with no ampersand, the ``EFAULT`` error is responsed from ``character_device_ioctl.c`` kernel module (by function ``copy_from_user()``:
 
 ```c
