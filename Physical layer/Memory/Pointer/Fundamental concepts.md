@@ -67,10 +67,13 @@ printf("Value *pointer is %d \n", *pointer); //9
 Set value for a variable by pointer:
 
 ```c
-int number;
+int number = 123;
+printf("number: %d\n", number);// 123
 int *pointer = &number;
 *pointer = 190;
-printf("number: %d\n", number);//190
+printf("number: %d\n", number);// 190
+*pointer += 1;
+printf("number: %d\n", number);// 191
 ```
 
 ## Must not directly set value for a pointer dereferencing (i.e *pointer)
