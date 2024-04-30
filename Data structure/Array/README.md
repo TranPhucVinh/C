@@ -52,9 +52,15 @@ a[i][j][k][l] = *(*(*(*(a+i)+j)+k)+l);
 # Two dimension array implementations
 * [Two dimension array on stack memory](Two%20dimension%20array%20on%20stack%20memory.md)
 * [Two dimension array on heap memory](Two%20dimension%20array%20on%20heap%20memory.md)
+
+# Matrix
+## Main diagonal and antidiagonal 
+* The main diagonal of a matrix is the list of entries a[i][j] such that i = j
+* The antidiagonal, which only **available inside a square matrix** of size N, is the list of entries a[i][j] such that i+j = N-1
+
 ## Saddle point
 
-In a 2D array with n * n size, a saddle point is an element of the matrix such that it is the minimum element in its row and the maximum in its column. 
+In a square matrix with n * n size, a saddle point is an element of the matrix such that it is the minimum element in its row and the maximum in its column. 
 
 **The algorithm to find the saddle point**
 
