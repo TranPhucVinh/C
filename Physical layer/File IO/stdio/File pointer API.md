@@ -5,7 +5,8 @@ Open file to read, write, append,...
 ```c
 FILE *fopen(const char *filename, const char *mode)
 ```
-
+<details>
+	
 **Example**
 
 ```c
@@ -23,7 +24,9 @@ file = fopen("text.md", "r"); //Open text.md to read
 * a+: open a file to read and append
 * ``b`` and ``rb``: open non-text files like image
 
-Get the file descriptor value from file pointer with ``fileno()``:
+</details>
+
+**fileno()**: Return the file descriptor value from file pointer
 
 ```c
 char filePath[] = "test.c";
@@ -44,7 +47,9 @@ Read totally ``nmemb*size`` bytes (including ``\n``) of data from ``stream`` and
 * ``size``: size in bytes of each element to be read.
 * ``nmemb``: This is the number of elements, each one with a size of size bytes.
 * ``stream``: This is the pointer to a ``FILE`` object that specifies an input stream.
-
+  
+<details>
+	
 ```c
 #define ELEMENT_NUMBERS 3
 #define READ_SIZE 2
@@ -59,6 +64,8 @@ fread(buffer, READ_SIZE, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_S
 printf("%s\n", buffer);
 fclose(fp);
 ```
+
+</details>
 
 Read 2 entered characters from ``stdin`` and print out
 
