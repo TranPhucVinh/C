@@ -56,7 +56,7 @@ a[i][j][k][l] = *(*(*(*(a+i)+j)+k)+l);
 # Matrix
 ## Main diagonal and antidiagonal 
 * The main diagonal of a matrix is the list of entries a[i][j] such that i = j
-* The antidiagonal, which only **available inside a square matrix** of size N, is the list of entries a[i][j] such that i+j = N-1
+* The antidiagonal, which only **available inside a square matrix** of size N, is the list of entries a[i][j] such that i+j = N-1 where 0 <= i, j < N
 
 ## Saddle point
 
