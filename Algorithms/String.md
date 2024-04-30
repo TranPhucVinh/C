@@ -1,3 +1,57 @@
+# Time conversion in AM/PM format
+* 12:01:00PM -> 12:01:00
+* 12:01:00AM -> 00:01:00
+* 07:05:45PM -> 19:05:45
+* 12:45:54PM -> 12:45:54
+
+<details>
+  
+```cpp
+vector<string> splitStringByDelimiter(string s, string delim) {
+    vector<string> all_substr;
+    std::size_t index = s.find(delim, 0);
+    string sub_str  = s.substr(0, index);
+    string new_string = s.substr(index+1);
+
+    while (index != string::npos) { 
+        if (sub_str != delim && sub_str.size() >= 1) {
+            all_substr.push_back(sub_str);
+        }
+
+        index = new_string.find(delim, 0);
+        sub_str  = new_string.substr(0, index);
+        new_string = new_string.substr(index+1);
+    }
+
+    if (sub_str != delim && sub_str.size() >= 1) {
+        all_substr.push_back(sub_str);
+    }
+
+    return all_substr;
+}
+
+string timeConversion(string s) {
+    string twenty_4hr_clock;
+
+    vector<string> all_substr = splitStringByDelimiter(s, ":");
+    std::string clock =  all_substr[2].substr(2, 2);
+    int hour = stoi(all_substr[0]);
+    if (clock == "AM") {
+        if (hour == 12) return "00:" + all_substr[1] + ":" + all_substr[2].substr(0, 2);
+        else return s.substr(0, 8);// Test case: 06:40:03AM -> 06:40:03
+    }
+    else {
+        if (hour == 12 && all_substr[1].substr(0, 2) == "00" && all_substr[2].substr(0, 2) == "00")
+        return "00:00:00AM";
+
+        if (hour < 12) hour +=12;
+    }
+    twenty_4hr_clock = std::to_string(hour) + ":" + all_substr[1] + ":" + all_substr[2].substr(0, 2);
+    return twenty_4hr_clock;
+}
+```
+</details>
+
 # [Convert a valid Roman numerals to integer, using map](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/src/map_roman_numerals_to_integer.cpp)
 # [Convert an integer to Roman numeral by using vector tuple](https://github.com/TranPhucVinh/Cplusplus/blob/master/Data%20structure/src/vector_tuple_integer_to_roman_numeral.cpp)
 # Convert string to integer
