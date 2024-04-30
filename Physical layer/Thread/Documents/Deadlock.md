@@ -4,7 +4,7 @@ If a process remains indefinitely unable to change its state because resources r
 
 ## Try to lock a mutex 2 times to create deadlock
 
-With program [pthread_mutex_lock.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/pthread_mutex_lock.c) to use a mutex to increase a shared value, if calling pthread_mutex_lock() 2 times as trying to lock the mutex, program will **hang infinitely** as there is no more mutex left in the process to be locked:
+With program [mutex_pthread_mutex_lock.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/mutex_pthread_mutex_lock.c) to use a mutex to increase a shared value, if calling pthread_mutex_lock() 2 times as trying to lock the mutex, program will **hang infinitely** as there is no more mutex left in the process to be locked:
 
 ```c
 void *thread_function(void *ptr){
