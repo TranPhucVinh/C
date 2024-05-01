@@ -19,4 +19,8 @@ Use two-pointer method, which is a little similar to [Get the middle member of t
 
 In every execution of the loop, ``p1`` will access to the next 2 nodes, while ``p2`` only access to its next node. If the linked list is circular, after a number of times, ``p1`` and ``p2`` will point to the same node.
 
+This two-pointer method will also be able to verify this type of circular linked list
+
+![](https://github.com/TranPhucVinh/C/blob/master/Environment/Images/circular_linked_list.jpg)
+
 Program: [verify_linked_list.c](verify_linked_list.c)
