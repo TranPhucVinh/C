@@ -43,7 +43,7 @@ shared_value after executing 3 threads: 8990896 // Expect: 9000000
 # Multiple threads run respectively
 
 * **Use a simple boolean variable as a mutex to make 2 threads run respectively**: [simple_boolean_variable_as_mutex.c](../src/mutex_boolean_variable_as_mutex.c)
-* **Use pthread mutex**: [mutex_to_lock_the_variables.c](../src/mutex_threads_run_respectively.c.c)
+* **Use pthread mutex**: [mutex_to_lock_the_variables.c](../src/mutex_threads_run_respectively.c)
 
 # Condition variable
 pthread condition variable is used in multithread which have already involved mutex
