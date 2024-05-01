@@ -1,6 +1,6 @@
 An array is a constant pointer.
 
-### Use pointer to get address and value of member of a one dimension array
+# Use pointer to get address and value of member of a one dimension array
 
 ```c
 #include <stdio.h>
@@ -39,7 +39,21 @@ int array[] = {1, 342, 3};
 printf("%d ", *(array+0));
 ```
 
-### Create pointer that point to array of pointer
+# Use pointer to loop through the array
+```c
+int *ptr;
+int array[3] = {1, 2, 3};
+
+int main(){ 
+	ptr = array;
+    while (*ptr != '\0'){
+        printf("%d ", *ptr);
+        ptr++;
+    }
+	return(0);
+}
+```
+# Create pointer that point to array of pointer
 
 
 Use pointer to get value of a multidimension array:
