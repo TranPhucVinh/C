@@ -173,8 +173,9 @@ void *func_thread_1(void *ptr){
 }
 ```
 
-# Enter value for struct member using thread 
+# Enter values for struct member using thread 
 
+<details>
 ```cpp
 #include <stdio.h>
 #include <pthread.h>
@@ -208,3 +209,4 @@ void *start_routine_thread(void *ptr){
 	fgets(databaseNode0.stringValue, 50, stdin); //fgets allow to enter value with space
 }
 ```
+</details>
