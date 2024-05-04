@@ -90,6 +90,7 @@ Waiting at the barrier as not enough 2 threads are running ...
 [pthread_barrier_wait()](#pthread_barrier_wait) inside main() will make it wait for the 2 threads thread_id[0], thread_id[1] to finish their execution after 5 seconds to lift the thread barrier and finish the process.
 
 <details>
+	
 ```c
 #define TOTAL_THREADS           2
 #define THREAD_BARRIERS_NUMBER  3
@@ -120,6 +121,7 @@ int main()
 }
 ```
 </details>
+
 **Result**
 ```
 Waiting at the barrier as not enough 3 threads are running ...
