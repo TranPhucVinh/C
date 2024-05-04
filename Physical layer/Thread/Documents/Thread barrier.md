@@ -87,7 +87,7 @@ Waiting at the barrier as not enough 2 threads are running ...
 // Line printf("Thread barrier is lifted\n") won't be reached
 ```
 ## Put pthread_barrier_wait() inside main() to block the process
-``pthread_barrier_wait()`` inside main() will make it wait for the 2 threads thread_id[0], thread_id[1] to finish their execution after 5 seconds to lift the thread barrier and finish the process.
+[pthread_barrier_wait()](#pthread_barrier_wait) inside main() will make it wait for the 2 threads thread_id[0], thread_id[1] to finish their execution after 5 seconds to lift the thread barrier and finish the process.
 ```c
 #define TOTAL_THREADS           2
 #define THREAD_BARRIERS_NUMBER  3
@@ -128,7 +128,7 @@ When you download with Torrent, the total data is received from multiple sources
 
 This thread barrier implementation is a mimic of that.
 
-We have a server listen to multiple clients. Once we receive those packet with type 's' (media type for example), we push those data into the buffer. As UDP server can't count how many UDP client are connected to it, we mark a new valid UDP client by that "s" character.
+We have a server listens to multiple clients. Once we receive those packet with type 's' (media type for example), we push those data into the buffer. As UDP server can't count how many UDP client are connected to it, we mark a new valid UDP client by that "s" character.
 
 The main thread will wait until all the packet is received and arrange it into the correct order.
 
