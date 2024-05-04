@@ -95,9 +95,9 @@ int main()
 ## pthread doesn't have API for suspending and resuming thread
 
 **Suspend a thread when reaching a specific value then resume that thread by another one** can be implemented by
-* [mutex](Race%20condition/Mutex.md) and [conditional variable](Race%20condition/Mutex.md#condition-variable): [suspend a thread when reaching a specific value then resume that thread by another thread](src/suspend_and_resume_threads_by_mutex_and_cond.c).
+* [mutex with condition variable](Documents/Mutex.md): [suspend a thread when reaching a specific value then resume that thread by another thread](src/suspend_and_resume_threads_by_mutex_and_cond.c)
 * [Semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/suspend_and_resume_threads_by_semaphore.c)
-* [Thread barrier](src/suspend_and_resume_threads_by_thread_barrier.c).
+* [Thread barrier](src/suspend_and_resume_threads_by_thread_barrier.c)
 
 For efficient implementation, suspend and resume threads must be implemented with OOP. Check [the corresponding document in CPP](https://github.com/TranPhucVinh/Cplusplus/tree/master/Physical%20layer/Thread#suspend-and-resume-threads) for that implementation.
 
