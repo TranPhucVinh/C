@@ -165,6 +165,7 @@ Script to run:
 int pthread_barrier_init(pthread_barrier_t *restrict barrier, const pthread_barrierattr_t *restrict attr, unsigned count);
 ```
 * **count**: the number of threads that must call **pthread_barrier_wait()** before any of them successfully return from the call. count must be greater than 0
+**Return**: **0** when success, **errno** when fails
 ## pthread_barrier_wait()
 ```c
 pthread_barrier_wait(pthread_barrier_t *b):
