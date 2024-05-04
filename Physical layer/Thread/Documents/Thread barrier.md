@@ -88,6 +88,8 @@ Waiting at the barrier as not enough 2 threads are running ...
 ```
 ## Put pthread_barrier_wait() inside main() to block the process
 [pthread_barrier_wait()](#pthread_barrier_wait) inside main() will make it wait for the 2 threads thread_id[0], thread_id[1] to finish their execution after 5 seconds to lift the thread barrier and finish the process.
+
+<details>
 ```c
 #define TOTAL_THREADS           2
 #define THREAD_BARRIERS_NUMBER  3
@@ -113,9 +115,19 @@ int main()
 
 	pthread_barrier_wait(&barrier);
 
-    printf("Thread barrier is lifted\n"); // This line won't be called as TOTAL_THREADS < THREAD_BARRIERS_NUMBER
+    printf("Thread barrier is lifted\n");
 	pthread_barrier_destroy(&barrier);
 }
+```
+</details>
+**Result**
+```
+Waiting at the barrier as not enough 3 threads are running ...
+Waiting at the barrier as not enough 3 threads are running ...
+// 5 seconds waiting
+The barrier is lifted, thread id 139793895839488 is running now
+The barrier is lifted, thread id 139793904232192 is running now
+Thread barrier is lifted
 ```
 # Use thread barrier to suspend and resume a thread
 Feature: Suspend a thread when reaching a specific value then resume that thread by another thread
