@@ -17,6 +17,7 @@ thread_barrier barrier;
 void thread_barrier_init(thread_barrier *barrier, pthread_mutexattr_t *mutex_attr, int thread_barrier_number){
     pthread_mutex_init(&(barrier->lock), mutex_attr);
     barrier->thread_barrier_number = thread_barrier_number;
+    barrier->total_thread = 0;// Init total thread to be 0
 }
 
 void thread_barrier_wait(thread_barrier *barrier){
