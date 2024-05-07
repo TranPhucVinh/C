@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define TOTAL_THREADS           3
+#define TOTAL_THREADS           4
 #define THREAD_BARRIERS_NUMBER  3
 #define PTHREAD_BARRIER_ATTR    NULL // pthread barrier attribute
 
@@ -25,7 +25,12 @@ void thread_barrier_wait(thread_barrier *barrier){
         pthread_mutex_unlock(&(barrier->lock));
     }
 
-    while (barrier->total_thread < barrier->thread_barrier_number);
+    while (barrier->total_thread < barrier->thread_barrier_number);\
+
+    if(!pthread_mutex_lock(&(barrier->lock))){
+        barrier->total_thread -= 1; // Decrease one thread as it has passed the thread barrier
+        pthread_mutex_unlock(&(barrier->lock));
+    }
 }
 
 void thread_barrier_destroy(thread_barrier *barrier){
@@ -33,7 +38,7 @@ void thread_barrier_destroy(thread_barrier *barrier){
 }
 
 void *thread_func(void *ptr){
-    printf("Waiting at the barrier as not enough %d threads are running ...\n", THREAD_BARRIERS_NUMBER);
+    printf("thread id %ld is waiting at the barrier, as not enough %d threads are running ...\n", pthread_self(), THREAD_BARRIERS_NUMBER);
     thread_barrier_wait(&barrier);
     printf("The barrier is lifted, thread id %ld is running now\n", pthread_self());
 }
