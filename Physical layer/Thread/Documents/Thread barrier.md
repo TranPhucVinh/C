@@ -136,6 +136,8 @@ This program has the same feature with [Use pthread_join() with thread barrier t
 
 Program: [thread_barrier_implemented_by_mutex.c](../src/thread_barrier_implemented_by_mutex.c)
 
+Beside using a value to keep track of the total thread, we can also use a boolean variable along with a mutex to implement the thread barried, this is known as Sense Reversal: [thread_barrier_sense_reversal.c](../src/thread_barrier_sense_reversal)
+
 # Use thread barrier to suspend and resume a thread
 Feature: Suspend a thread when reaching a specific value then resume that thread by another thread
 
