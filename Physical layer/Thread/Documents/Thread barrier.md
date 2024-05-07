@@ -131,6 +131,11 @@ The barrier is lifted, thread id 139793895839488 is running now
 The barrier is lifted, thread id 139793904232192 is running now
 Thread barrier is lifted
 ```
+## Use a single mutex to implement the thread barrier
+This program has the same feature with [Use pthread_join() with thread barrier to block the process](#use-pthread_join-with-thread-barrier-to-block-the-process), except it uses a single mutex to implement the thread barrier
+
+Program: [thread_barrier_implemented_by_mutex.c](../src/thread_barrier_implemented_by_mutex.c)
+
 # Use thread barrier to suspend and resume a thread
 Feature: Suspend a thread when reaching a specific value then resume that thread by another thread
 
