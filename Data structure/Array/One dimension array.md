@@ -46,7 +46,7 @@ Program: [create_new_member.c](create_new_member.c)
  
 ### On heap memory
 
-Check [Dynamic memory allocation](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Memory/Dynamic%20memory%20allocation) with [stdlib](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20stdlib.md) and [G++](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/Using%20G%2B%2B.md).
+Check [Dynamic memory allocation](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md) with **stdlib**.
 
 ## Read
 
