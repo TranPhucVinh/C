@@ -18,6 +18,13 @@ void *thread_function(void *ptr){
    }   
 }
 ```
+# Recursive mutex
+Recursive mutex is a mutex that may be locked multiple times by the same process/thread, without causing a deadlock.
+
+In this example, where 2 threads count down from a number with thread_odd only prints odd numbers and thread_even only prints even numbers, and both of those threads are defined recursively, a recursive mutex is mandatorily used.
+
+Program: [recursive_mutex_threads_print_odd_and_even_numbers.c](../src/recursive_mutex_threads_print_odd_and_even_numbers.c)
+
 # Spin lock
 
 If a resource is locked, a thread that wants to access that resource may repetitively check whether the resource is available. During that time, the thread may loop and check the resource without doing any useful work. Suck a lock is termed as spin lock.
