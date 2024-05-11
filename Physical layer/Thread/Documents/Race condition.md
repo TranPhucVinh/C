@@ -104,3 +104,20 @@ Use **write()** and **memcpy()** will minimize the race condition incidents (as 
 | (Empty)<br>Thread 2 <br>Thread 1  <br>| Thread 1<br>Hello, World !<br>Thread 2|
 
 That issue can be solved by [using semaphore](Semaphore.md#accessing-a-shared-variable-between-2-thread-function-handlers-issue).
+
+# Producer and consumer problem
+
+Given a buffer, i.e a shared variable, where the **producer thread** writes data to it for every TIME_INTERVAL seconds. The **main thread** as the **consumer thread** will pop out the data from that buffer to read, whenever that buffer isn't empty. The **main thread** simply uses a for loop to check for the available data of the buffer to read:
+
+**Program**: [producer_consumer_simple_loop_check.c](../src/producer_consumer_simple_loop_check.c)
+
+**Result**
+
+```
+Producer thread has produced: 1
+Main thread has consumed: 1
+Producer thread has produced: 1
+Main thread has consumed: 2
+Producer thread has produced: 1
+Main thread has consumed: 3
+```
