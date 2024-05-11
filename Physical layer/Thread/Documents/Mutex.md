@@ -46,7 +46,8 @@ shared_value after executing 3 threads: 8990896 // Expect: 9000000
 * **Use pthread mutex**: [mutex_to_lock_the_variables.c](../src/mutex_threads_run_respectively.c)
 
 # Condition variable
-pthread condition variable is used in multithread which have already involved mutex
+Mutex provides mutual exclusion for accessing the shared variable, while the condition variable is used to signal changes in the variable’s state. Pthread condition variable is used in multithread which have already involved mutex.
+
 ## One thread unblocks another thread
 In this example, after increasing the ``shared_value`` to its ``RANGE``, thread 1 will set flag ``thread_2_run`` to allow thread 2 to run. After being "enabled" by flag ``thread_2_run``, thread 2 will increase the ``shared_value`` to ``RANGE``. This example is quite similar to [One thread function handler to increase a shared value issue](#one-thread-function-handler-to-increase-a-shared-value), except ``thread_1`` uses flag ``thread_2_run`` to enable ``thread_2`` to run.
 
