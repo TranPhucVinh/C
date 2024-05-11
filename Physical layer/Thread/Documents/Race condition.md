@@ -123,3 +123,5 @@ Main thread has consumed: 3
 ```
 
 This program wastes CPU time, because the main thread continually loops, checking the state of the shared variable. A **condition variable** remedies this problem. It allows a thread to sleep (wait) until another thread notifies (signals) it that it must do something (i.e., that some “condition” has arisen that the sleeper must now respond to).
+
+**Program**: [producer_consumer_condition_variable.c](../src/producer_consumer_condition_variable.c)
