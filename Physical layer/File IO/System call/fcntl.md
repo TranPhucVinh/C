@@ -30,22 +30,7 @@ printf("%d\n", errno);
 Run this program for the first time, ``errno`` is ``0`` as there is no errno and the file ``FILE_NAME`` is created.
 
 Run this program for the second time, ``errno`` is ``EEXIST 17 File exists`` as the file ``FILE_NAME`` has already been created.
-# creat()
-
-```c
-int fileDescriptor = int creat(const char * pathname , mode_t mode);
-```
-``mode_t`` takes octal value like ``0777`` for better mode clarification.
-
-Calling ``creat()`` is equivalent to the following ``open()`` call:
-
-```c
-fd = open(pathname, O_WRONLY | O_CREAT | O_TRUNC, mode);
-```
-
-Because the ``open()`` flags argument provides greater control over how the file is opened (e.g., we can specify ``O_RDWR`` instead of ``O_WRONLY``), ``creat()`` is now obsolete, although it may still be seen in older programs.
-
-# File descriptor
+## File descriptor
 
 ```c
 const char filePath[] = "test.txt";
@@ -67,3 +52,28 @@ printf("%d", fileDescription);//3
 fileDescription = open(filePath, O_RDONLY);//Open test.txt again
 printf("%d", fileDescription);//4
 ```
+# creat()
+
+```c
+int fileDescriptor = int creat(const char * pathname , mode_t mode);
+```
+``mode_t`` takes octal value like ``0777`` for better mode clarification.
+
+Calling ``creat()`` is equivalent to the following ``open()`` call:
+
+```c
+fd = open(pathname, O_WRONLY | O_CREAT | O_TRUNC, mode);
+```
+
+Because the ``open()`` flags argument provides greater control over how the file is opened (e.g., we can specify ``O_RDWR`` instead of ``O_WRONLY``), ``creat()`` is now obsolete, although it may still be seen in older programs.
+# fcntl()
+Perform operation to the file descriptor ``fd`` depend on the command ``cmd``:
+```c
+int fcntl(int fd, int cmd, ... /* arg */ );
+```
+**Return**:
+* -1: Fail
+
+**cmd**:
+* F_GETFL: Get flag status of the file descriptor
+* F_SETFL: Set new flag status for the file descriptor
