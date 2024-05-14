@@ -48,7 +48,7 @@ All **Unix** and **Unix-like** standards signals are divided into:
 * [SIGUSR2](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) (along with **SIGUSR1**) is user defined signal
 * [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
 
-## Implementation
+# Implementation
 
 * **Blocking Signals**: Blocking a signal means telling the operating system to hold it and deliver it later. 
 * **Signal mask**: The collection of signals that are currently blocked is called the signal mask.
