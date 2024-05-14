@@ -75,5 +75,9 @@ int fcntl(int fd, int cmd, ... /* arg */ );
 * -1: Fail
 
 **cmd**:
-* F_GETFL: Get flag status of the file descriptor
-* F_SETFL: Set new flag status for the file descriptor
+* **F_GETFL**: Get flag status of the file descriptor
+* **F_SETFL**: Set new flag status for the file descriptor
+* **F_SETOWN**: Set the process ID that will receive **SIGIO** and **SIGURG** signals for events on the file descriptor ``fd``:
+```c
+fcntl(fd, F_SETOWN, getpid());
+```    
