@@ -37,21 +37,21 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
 * [SIGTTIN](Working%20with%20specific%20signals.md#sigttin): When a background job tries to read from its current terminal, SIGTTIN will be triggered
 * [SIGTTOU](Working%20with%20specific%20signals.md#sigttou): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
-
+## Operation Error Signals
+* SIGPIPE
+* SIGXCPU
+* SIGXFSZ
 
 * [SIGUSR1](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) (along with **SIGUSR2**) is user defined signal
 * [SIGUSR2](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) (along with **SIGUSR1**) is user defined signal
 
-* SIGPIPE
+
 
 * SIGSTKFLT
 
 
 
 
-
-* SIGXCPU
-* SIGXFSZ
 
 
 28. [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
