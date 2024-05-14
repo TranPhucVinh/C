@@ -37,13 +37,11 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 20. [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
 21. [SIGTTIN](Working%20with%20specific%20signals.md#sigttin): When a background job tries to read from its current terminal, SIGTTIN will be triggered
 22. [SIGTTOU](Working%20with%20specific%20signals.md#sigttou): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
-23. SIGURG
 24. SIGXCPU
 25. SIGXFSZ
 26. SIGVTALRM
 27. SIGPROF 
 28. [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
-29. SIGIO
 30. SIGPWR
 31. SIGSYS
 34. SIGRTMIN
@@ -55,7 +53,10 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 53. SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
 58. SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4
 61. SIGRTMAX-3	62) SIGRTMAX-2 63) SIGRTMAX-1	64) SIGRTMAX
-    
+
+**Asynchronous I/O Signals**
+* SIGIO
+* SIGURG
 ## Implementation
 
 * **Blocking Signals**: Blocking a signal means telling the operating system to hold it and deliver it later. 
