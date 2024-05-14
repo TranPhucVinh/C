@@ -23,15 +23,10 @@ Normally, a process inherits three open file descriptors when it is started by t
 #define	STDERR_FILENO	2	/* Standard error output.  */
 ```
 
-## Header files
-
-* ``fcntl.h``: file control options
-* ``unistd.h`` provides access to the POSIX OS API.
-
 # API
 
-* [fcntl.h header files API](fcntl.md)
-* [unistd.h header files API](unistd.md)
+* [fcntl.h header files API](fcntl.md): file control options
+* [unistd.h header files API](unistd.md): provide access to the POSIX OS API
 
 ## termios.h
 
