@@ -10,12 +10,12 @@ int fd = open(const char *path, int mode)
 
 ``mode``:
 
-* ``O_CREAT``: Create a file if not existed. If file is already existed, open that file successfully with a valid fd returned.
+* **O_CREAT**: Create a file if not existed. If file is already existed, open that file successfully with a valid fd returned.
 * ``O_RDONLY``: READ ONLY
 * ``O_WRONLY``: WRITE ONLY
 * ``O_RDWR``: READ and WRITE
 * ``O_APPEND``: APPEND to WRITE
-* ``O_NONBLOCK``: Prevents open() from blocking for a “long time” to open the file. This is only meaningful for some kinds of files like ``FIFO``, ``block file``, ``character device file``, and serial ports.
+* **O_NONBLOCK**: Prevents open() from blocking for a “long time” to open the file. This is only meaningful for some kinds of files like ``FIFO``, ``block file``, ``character device file``, serial ports and socket.
 * ``O_EXCL``: ``O_EXCL`` must go with ``O_CREAT`` with ``|`` operator to detect the error when trying to create (with ``O_CREAT``flag ) an existed file.
 
 **Return**: ``fd`` if file successfully opened or ``-1`` if error open, e.g: file not exist when opening with mode ``O_RDONLY``
