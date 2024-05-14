@@ -23,25 +23,37 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * **SIGQUIT**: **SIGQUIT** signal is similar to [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint)
 * [SIGKILL](Working%20with%20specific%20signal.md#sigkill): immediately terminate a process, **SIGKILL** cannot be caught, handled or ignored. It is impossible to block this signal.
 * [SIGHUP](Working%20with%20specific%20signal.md#sighup-sigusr1-sigusr2-can-stop-a-process-without-signal_handler-required) can be used to stop a process without signal_handler() required.
+## Alarm Signals
+* SIGALRM  
+* SIGVTALRM
+* SIGPROF
+## Asynchronous I/O Signals
+* SIGIO
+* SIGURG
+## Job Control Signals
+* [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process.
+* [SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGCONT** will continue the process continue from the state where it is stopped by **SIGSTOP**. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
+* [SIGSTOP](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
+* [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
+* [SIGTTIN](Working%20with%20specific%20signals.md#sigttin): When a background job tries to read from its current terminal, SIGTTIN will be triggered
+* [SIGTTOU](Working%20with%20specific%20signals.md#sigttou): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
 
-    
 
 * [SIGUSR1](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) (along with **SIGUSR2**) is user defined signal
 * [SIGUSR2](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) (along with **SIGUSR1**) is user defined signal
 
 * SIGPIPE
-* SIGALRM
+
 * SIGSTKFLT
-* [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process.
-* [SIGSTOP](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
-* [SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGCONT** will continue the process continue from the state where it is stopped by **SIGSTOP**. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
-* [SIGTSTP](Working%20with%20specific%20signal.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**
-* [SIGTTIN](Working%20with%20specific%20signals.md#sigttin): When a background job tries to read from its current terminal, SIGTTIN will be triggered
-* [SIGTTOU](Working%20with%20specific%20signals.md#sigttou): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
+
+
+
+
+
 * SIGXCPU
 * SIGXFSZ
-26. SIGVTALRM
-27. SIGPROF 
+
+
 28. [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
 30. SIGPWR
 
@@ -60,9 +72,7 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * SIGRTMAX-1
 * SIGRTMAX
 
-**Asynchronous I/O Signals**
-* SIGIO
-* SIGURG
+
 ## Implementation
 
 * **Blocking Signals**: Blocking a signal means telling the operating system to hold it and deliver it later. 
