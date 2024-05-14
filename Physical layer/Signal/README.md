@@ -1,11 +1,13 @@
 # Linux signal
 
-The C standard defines only 6 signals. They are all defined as macro in ``signal.h`` header (``csignal`` header in C++):
-
-
-
-**Unix** and **Unix-like** operating systems (such as Linux) define more than 15 additional signals. All other signals are:
-
+All **Unix** and **Unix-like** standards signals are divided into:
+* Program Error Signals
+* Termination Signals
+* Alarm Signals
+* Asynchronous I/O Signals
+* Job Control Signals
+* Operation Error Signals
+* Miscellaneous Signals
 ## Program Error Signals
 * [SIGFPE](Working%20with%20specific%20signal.md#sigfpe) (**Signal Floating-Point Exception**): Erroneous arithmetic operation, such as zero divide or an operation resulting in overflow (not necessarily with a floating-point operation).
 * **SIGILL** (Signal Illegal Instruction): Invalid function image, such as an illegal instruction. This is generally due to a corruption in the code or to an attempt to execute data.
@@ -41,37 +43,10 @@ The C standard defines only 6 signals. They are all defined as macro in ``signal
 * SIGPIPE
 * SIGXCPU
 * SIGXFSZ
-
+## Miscellaneous Signals
 * [SIGUSR1](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) (along with **SIGUSR2**) is user defined signal
 * [SIGUSR2](Working%20with%20specific%20signal.md#sigusr1-and-sigusr2) (along with **SIGUSR1**) is user defined signal
-
-
-
-* SIGSTKFLT
-
-
-
-
-
-
-28. [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
-30. SIGPWR
-
-34. SIGRTMIN
-35. SIGRTMIN+1
-36. SIGRTMIN+2	37) SIGRTMIN+3
-38. SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
-43. SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
-48. SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
-* SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
-* SIGRTMAX-6
-* SIGRTMAX-5
-* SIGRTMAX-4
-* SIGRTMAX-3
-* SIGRTMAX-2
-* SIGRTMAX-1
-* SIGRTMAX
-
+* [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
 
 ## Implementation
 
