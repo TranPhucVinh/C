@@ -51,15 +51,12 @@ Data type ``sigset_t`` represents a set of signals. Check [process signal mask d
 
 Signal handler function can be used with ``sa_sigaction`` to handle parameters:
 
-To use ``sa_sigaction`` and get the parameter successfully in ``sa_sigaction`` function handler, flag ``SA_SIGINFO`` must be used.
+To use ``sa_sigaction`` and get the parameter successfully in ``sa_sigaction`` function handler, flag **SA_SIGINFO** must be used. **SA_SIGINFO** in signal handling allows the signal handler to receive additional information about the signal via a siginfo_t structure. 
 
 ```c
-
 /*
-    ucontext: This is a pointer to a ucontext_t structure, cast to
-              void *.  The structure pointed to by this field contains
-              signal context information that was saved on the user-
-              space stack by the kernel
+    ucontext: This is a pointer to a ucontext_t structure, cast to void *.  The structure pointed to by this field contains
+              signal context information that was saved on the userspace stack by the kernel
 */
 void signal_action_handler(int signal_number, siginfo_t *siginfo, void *ucontext){
 	//Operations go here
