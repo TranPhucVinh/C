@@ -11,10 +11,9 @@
 #define BUFFSIZE 	256
 #define PORT 		8000
 
-int udp_socket_param_init(){
-    struct sockaddr_in receiver_addr;
-    socklen_t len; 
+struct sockaddr_in receiver_addr; // Set global as receiver_addr is used by both udp_socket_param_init() and main()
 
+int udp_socket_param_init(){
     //Create UDP socket receiver
     int receiver_fd = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if (receiver_fd < 0){
@@ -34,15 +33,15 @@ int udp_socket_param_init(){
 
     return receiver_fd;
 }
+
 int main(int argc, char *argv[]){
     int receiver_fd = udp_socket_param_init();
-    struct sockaddr_in src_addr;// Dummy src_addr;
-    socklen_t src_addr_len = sizeof(src_addr);  //len is value/result
+    socklen_t src_addr_len = sizeof(receiver_addr);  //len is value/result
 
     while(1){
         char buffer[BUFFSIZE];
-        bzero(buffer, BUFFSIZE);//Delete buffer
-        int bytes_received = recvfrom(receiver_fd, (char *)buffer, BUFFSIZE, MSG_WAITALL, (struct sockaddr *) &src_addr, &src_addr_len);
+        bzero(buffer, BUFFSIZE); // Delete buffer
+        int bytes_received = recvfrom(receiver_fd, (char *)buffer, BUFFSIZE, MSG_WAITALL, (struct sockaddr *) &receiver_addr, &src_addr_len);
         if (bytes_received > 0) {
             printf("Message from UDP sender: %s\n", buffer);
             bzero(buffer, BUFFSIZE);         //Delete buffer
