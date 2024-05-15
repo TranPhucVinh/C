@@ -34,7 +34,7 @@ int udp_socket_param_init(){
     return receiver_fd;
 }
 
-int main(int argc, char *argv[]){
+int main(){
     int receiver_fd = udp_socket_param_init();
     socklen_t src_addr_len = sizeof(receiver_addr);  //len is value/result
 
