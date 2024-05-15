@@ -1,19 +1,17 @@
 #include <stdio.h>      
-#include <sys/socket.h> /* for socket(), connect()*/
+#include <sys/socket.h> /* for socket() */
 #include <arpa/inet.h>  /* for sockaddr_in and inet_addr() */
-#include <stdlib.h>     /* for atoi() and exit() */
-#include <string.h>     /* for memset() */
+#include <stdlib.h>     /* for exit() */
+#include <string.h>     /* for bzero() */
 #include <unistd.h>     /* for close() */
-#include <errno.h>
 
 #define HOST "127.0.0.1"
 #define PORT 8000
 
 #define BUFFSIZE 256
-void error(const char *msg);
 
 int main(){
-   int sender_fd;
+    int sender_fd;
     struct sockaddr_in receiver_addr;
     receiver_addr.sin_family      = PF_INET;
     receiver_addr.sin_addr.s_addr = inet_addr(HOST);          
@@ -36,10 +34,7 @@ int main(){
         fgets(buffer, BUFFSIZE, stdin);
         sendto(sender_fd, buffer, BUFFSIZE, MSG_CONFIRM, (const struct sockaddr *) &receiver_addr, sizeof(receiver_addr)); 
     }
-    return 0;
-}
 
-void error(const char *msg){
-    perror(msg);
-    exit(0);
+    close(sender_fd);
+    return 0;
 }
