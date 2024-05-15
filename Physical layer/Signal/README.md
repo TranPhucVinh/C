@@ -25,12 +25,12 @@ All **Unix** and **Unix-like** standards signals are divided into:
 * **SIGQUIT**: **SIGQUIT** signal is similar to [SIGINT](Working%20with%20specific%20signal.md#sigtstp-and-sigint)
 * [SIGKILL](Working%20with%20specific%20signal.md#sigkill): immediately terminate a process, **SIGKILL** cannot be caught, handled or ignored. It is impossible to block this signal.
 * [SIGHUP](Working%20with%20specific%20signal.md#sighup-sigusr1-sigusr2-can-stop-a-process-without-signal_handler-required) can be used to stop a process without signal_handler() required.
-## Alarm Signals
+## Alarm signals
 * SIGALRM  
 * SIGVTALRM
 * SIGPROF
-## Asynchronous I/O Signals
-* SIGIO
+## [Asynchronous I/O signals](Asynchronous%20IO%20signals.md)
+* SIGIO: SIGIO is sent when a file descriptor is ready to perform I/O, especially terminals and sockets.
 * SIGURG
 ## Job Control Signals
 * [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process.
