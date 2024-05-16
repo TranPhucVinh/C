@@ -27,9 +27,11 @@ int main()
 
 void *thread_function(void *ptr){
     if(!pthread_mutex_lock(&lock)) {// pthread_mutex_lock() returns 0 if success
-        for (int i = 0; i < RANGE; i++) shared_value += 1;
+        for (int i = 0; i < RANGE; i++) {
+            shared_value += 1;
+        }
+        pthread_mutex_unlock(&lock);
     } else printf("%s fails to lock\n", (char*)ptr);
-    pthread_mutex_unlock(&lock);
 }
 
 /* 
