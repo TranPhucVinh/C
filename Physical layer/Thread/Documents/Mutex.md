@@ -13,6 +13,28 @@ With [pthread_mutex_trylock()](../API/Mutex%20and%20semaphore.md#pthread_mutex_t
 int lock_count = 0;
 /* main() and other operations are like pthread_mutex_lock() example */
 void *thread_function(void *ptr){
+    if (!pthread_mutex_trylock(&lock)){
+    	for (int i = 0; i < RANGE; i++) {      	
+			shared_value++;
+		} 
+        pthread_mutex_unlock(&lock);
+    } else {
+        printf("Didn't get lock in %s, %d\n", (char*)ptr, lock_count);
+        lock_count += 1;
+    }
+}   
+```
+**Result**
+```
+Didn't get lock in Thread 2, 0
+Didn't get lock in Thread 3, 0
+shared_value after executing 3 threads: 3000000
+```
+When using **pthread_mutex_trylock()** for every increment operation:
+```c
+int lock_count = 0;
+/* main() and other operations are like pthread_mutex_lock() example */
+void *thread_function(void *ptr){
 	for (int i = 0; i < RANGE; i++) {
       	if (!pthread_mutex_trylock(&lock)){
 			shared_value++;
