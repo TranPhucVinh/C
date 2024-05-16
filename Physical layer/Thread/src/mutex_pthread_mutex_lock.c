@@ -26,10 +26,20 @@ int main()
 }
 
 void *thread_function(void *ptr){
-	for (int i = 0; i < RANGE; i++) {
-		if(!pthread_mutex_lock(&lock)){//pthread_mutex_lock() returns 0 if success.
-			shared_value += 1;
-			pthread_mutex_unlock(&lock);
-		} else printf("%s fails to lock\n", (char*)ptr);
-   }   
+    if(!pthread_mutex_lock(&lock)) {// pthread_mutex_lock() returns 0 if success
+        for (int i = 0; i < RANGE; i++) shared_value += 1;
+    } else printf("%s fails to lock\n", (char*)ptr);
+    pthread_mutex_unlock(&lock);
 }
+
+/* 
+    Locking and unlocking the mutex for every increment like this is a waste of time
+    as the mutex has to be locked and unlock for RANGE times
+
+    for (int i = 0; i < RANGE; i++) {
+        if(!pthread_mutex_lock(&lock)){//pthread_mutex_lock() returns 0 if success.
+            shared_value += 1;
+            pthread_mutex_unlock(&lock);
+        } else printf("%s fails to lock\n", (char*)ptr);
+    }   
+*/
