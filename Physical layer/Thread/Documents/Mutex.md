@@ -61,6 +61,7 @@ Didn't get lock in Thread 1, 117
 ...
 shared_value after executing 3 threads: 8990896 // Expect: 9000000
 ```
+**Problem solved**: [mutex_pthread_mutex_trylock.c](../src/mutex_pthread_mutex_trylock.c)
 
 # Multiple threads run respectively
 
