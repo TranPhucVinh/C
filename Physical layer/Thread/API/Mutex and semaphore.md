@@ -10,7 +10,7 @@ Check [One thread function handler to increase a share value issue for its imple
 
 # pthread_mutex_trylock()
 
-``pthread_mutex_trylock()`` will check if the mutex is available for locking and return immediately without waiting. Check [One thread function handler to increase a share value issue for its implementation](Mutex.md#using-pthread_mutex_trylock).
+``pthread_mutex_trylock()`` will check if the mutex is available for locking and return immediately without waiting. Check [One thread function handler to increase a share value issue for its implementation](../Documents/Mutex.md#using-pthread_mutex_trylock).
 # pthread_cond_init()
 ```c
 int pthread_cond_init(pthread_cond_t *cond, const pthread_condattr_t *attr);
