@@ -80,6 +80,7 @@ siginfo_t {
 
 	//Other mmembers are ommitted
 
+	int      si_fd;        /* File descriptor that has the specified signal triggered */
 	pid_t    si_pid;       /* Sending process ID */
 	uid_t    si_uid;       /* Real user ID of sending process */
 	union sigval si_value; /* Signal value */
