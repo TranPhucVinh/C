@@ -12,7 +12,6 @@
 #define BUFFSIZE 256
 
 int socket_parameter_init(char *host, int port);
-void error(const char *msg);
 
 int main(){
     int sender_fd = socket_parameter_init(HOST, PORT);
@@ -29,11 +28,6 @@ int main(){
 
     close(sender_fd); //Close socket
     return 0;
-}
-
-void error(const char *msg){
-    perror(msg);
-    exit(0);
 }
  
 int socket_parameter_init(char *host, int port){
