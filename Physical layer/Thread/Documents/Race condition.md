@@ -125,3 +125,15 @@ Main thread has consumed: 3
 This program wastes CPU time, because the main thread continually loops, checking the state of the shared variable. A **condition variable** remedies this problem. It allows a thread to sleep (wait) until another thread notifies (signals) it that it must do something (i.e., that some “condition” has arisen that the sleeper must now respond to).
 
 **Program**: [producer_consumer_condition_variable.c](../src/producer_consumer_condition_variable.c)
+
+# Thread safe
+A function is **thread-safe** when it can be invoked or accessed concurrently by multiple threads without causing unexpected behavior, race conditions, or data corruption.
+
+Safety level of a thread can fall into 3 categories:
+* Unsafe
+* Thread safe, Serializable: Use a single mutex to protect all the resource from concurrent thread execution.
+* Thread safe, MT-Safe: Use a mutex for every single source to protect it from concurrent thread execution.
+
+Program: Increase all members of an array with ARR_SZ size by 2 threads by using
+* A single mutex to lock, this is **Thread safe, Serializable**: [thread_safe_serializable.c](../src/thread_safe_serializable.c)
+* ARR_SZ mutexes for all member to the array, this is **Thread safe, MT-Safe**: [thread_safe_mt_safe.c](../src/thread_safe_mt_safe.c)
