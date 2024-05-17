@@ -42,7 +42,7 @@ int main() {
     }
 
     // Get the file descriptor flags
-    if ((flags = fcntl(STDIN_FILENO, F_GETFL, 0)) == -1) {
+    if ((flags = fcntl(STDIN_FILENO, F_GETFL)) == -1) {
         perror("fcntl(F_GETFL)");
         exit(EXIT_FAILURE);
     }
