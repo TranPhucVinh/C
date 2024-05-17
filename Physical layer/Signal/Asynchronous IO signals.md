@@ -14,11 +14,11 @@ SIGIO is triggered when typing into the terminal:
 #include <signal.h>
 #include <string.h>
 
-void sigio_handler(int sig);
-int  sigio_setup_for_stdin_fd();
+void sigio_handler(int sig_num);
+void sigio_setup_for_stdin_fd(void (*sigio_handler)(int sig_num));
 
 int main() {
-    sigio_setup_for_stdin_fd();
+    sigio_setup_for_stdin_fd(sigio_handler);
 
     printf("Waiting for input to the terminal...\n");
     while (1) {
@@ -41,7 +41,7 @@ void sigio_handler(int sig) {
     write(STDOUT_FILENO, wr_buf, sizeof(wr_buf) - 1);
 }
 
-int sigio_setup_for_stdin_fd() {
+void sigio_setup_for_stdin_fd(void (*sigio_handler)(int sig_num)) {
     struct sigaction sa;
     int flags;
 
