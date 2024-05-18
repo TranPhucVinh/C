@@ -1,18 +1,18 @@
 # Linux signal
 
 All **Unix** and **Unix-like** standards signals are divided into:
-* Program Error Signals
+* Program error signals
 * Termination Signals
 * Alarm Signals
 * Asynchronous I/O Signals
 * Job Control Signals
 * Operation Error Signals
 * Miscellaneous Signals
-## Program Error Signals
-* [SIGFPE](Working%20with%20specific%20signal.md#sigfpe) (**Signal Floating-Point Exception**): Erroneous arithmetic operation, such as zero divide or an operation resulting in overflow (not necessarily with a floating-point operation).
+## [Program error signals](Documents/Program%20error%20signals.md)
+* [SIGFPE](Documents/Program%20error%20signals.md#sigfpe) (**Signal Floating-Point Exception**): Erroneous arithmetic operation, such as zero divide or an operation resulting in overflow (not necessarily with a floating-point operation).
 * **SIGILL** (Signal Illegal Instruction): Invalid function image, such as an illegal instruction. This is generally due to a corruption in the code or to an attempt to execute data.
 * [SIGSEGV](Working%20with%20specific%20signals.md#sigsegv) (**Signal Segmentation Violation**): Memory access violation, e.g trying to read or write from/to a memory area that your process does not have access to, when a program tries to read or write outside the memory it is allocated for it.
-* [SIGBUS](): SIGBUS is triggered when
+* [SIGBUS](Documents/Program%20error%20signals.md#sigbus): SIGBUS is triggered when
   * A bus error is a fault raised by hardware, notifying an operating system (OS) that a process is trying to access memory that the CPU cannot physically address.
   * Process tries to access an undefined virtual memory address. Although trying to access an undefined virtual memory address is generally considered to be a segmentation fault rather than a bus error, the processor cannot tell the difference and treats it as the SIGBUS.
 * **SIGABRT** (Signal Abort): Abnormal termination, such as is initiated by the function.
@@ -29,8 +29,8 @@ All **Unix** and **Unix-like** standards signals are divided into:
 * SIGALRM  
 * SIGVTALRM
 * SIGPROF
-## [Asynchronous I/O signals](Asynchronous%20IO%20signals.md)
-* SIGIO: SIGIO is sent when a file descriptor is ready to perform I/O, especially terminals and sockets.
+## [Asynchronous I/O signals](Documents/Asynchronous%20IO%20signals.md)
+* [SIGIO](Documents/Asynchronous%20IO%20signals.md): SIGIO is sent when a file descriptor is ready to perform I/O, especially terminals and sockets.
 * SIGURG
 ## Job Control Signals
 * [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process.
