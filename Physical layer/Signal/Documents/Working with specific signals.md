@@ -100,28 +100,3 @@ When a background job tries to read from its current terminal, SIGTTIN will be t
 * [Can't trigger SIGTTIN when a foreground job starts the background job which wants to have SIGGTTIN]()
 
 # [SIGTTOU](SIGTTIN%20and%20SIGTTOU.md#sigttou)
-
-# SIGSEGV
-Write value to a string char pointer like this will trigger **SIGSEGV** signal:
-```c
-int main( int argc, char ** argv ) {
-	signal(SIGSEGV, signal_handler);
-  char *p = NULL ;
-  *p = 'A' ;
-}
-```
-As assigning value to the deallocated pointer result in unexpected behavior, this won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
-```c
-signal(SIGSEGV, signal_handler);
-int *intPointer;
-
-// This won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
-intPointer = (int *) malloc(1);
-*intPointer = 12;
-	
-printf("Int value before: %d \n", *intPointer); //12
-free(intPointer);
-printf("Int value after: %d \n", *intPointer); //0
-*intPointer = 134;// Assign value to the deallocated pointer result in unexpected behavior
-printf("Int value after: %d \n", *intPointer); //134
-```

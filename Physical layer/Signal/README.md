@@ -11,7 +11,7 @@ All **Unix** and **Unix-like** standards signals are divided into:
 ## [Program error signals](Documents/Program%20error%20signals.md)
 * [SIGFPE](Documents/Program%20error%20signals.md#sigfpe) (**Signal Floating-Point Exception**): Erroneous arithmetic operation, such as zero divide or an operation resulting in overflow (not necessarily with a floating-point operation).
 * **SIGILL** (Signal Illegal Instruction): Invalid function image, such as an illegal instruction. This is generally due to a corruption in the code or to an attempt to execute data.
-* [SIGSEGV](Working%20with%20specific%20signals.md#sigsegv) (**Signal Segmentation Violation**): Memory access violation, e.g trying to read or write from/to a memory area that your process does not have access to, when a program tries to read or write outside the memory it is allocated for it.
+* [SIGSEGV](Documents/Program%20error%20signals.md#sigsegv) (**Signal Segmentation Violation**): Memory access violation, e.g trying to read or write from/to a memory area that your process does not have access to, when a program tries to read or write outside the memory it is allocated for it.
 * [SIGBUS](Documents/Program%20error%20signals.md#sigbus): SIGBUS is triggered when
   * A bus error is a fault raised by hardware, notifying an operating system (OS) that a process is trying to access memory that the CPU cannot physically address.
   * Process tries to access an undefined virtual memory address. Although trying to access an undefined virtual memory address is generally considered to be a segmentation fault rather than a bus error, the processor cannot tell the difference and treats it as the SIGBUS.
