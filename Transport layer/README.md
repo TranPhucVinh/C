@@ -20,6 +20,8 @@ There are 3 types of socket used for IPC:
 ## Program
 * TCP receiver (TCP single receiver for a single TCP sender): [tcp_sgl_rx_sgl_sndr.c](src/tcp_sgl_rx_sgl_sndr.c)
 * TCP sender (TCP single sender for a single TCP receiver): [tcp_sgl_sndr_sgl_rx.c](src/tcp_sgl_sndr_sgl_rx.c)
+
+For TCP single receiver for a single TCP sender, [SIGIO](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Signal/Documents/Asynchronous%20IO%20signals.md#sigio) can also be used to check for the readiness to read the receive data from TCP sender: [tcp_sgl_rx_sgl_sndr_sigio.c](src/tcp_sgl_rx_sgl_sndr_sigio.c)
 </details>
 
 # Single TCP receiver for multiple TCP senders, handled by [epoll](../Physical%20layer/File%20IO/System%20call/epoll/)
