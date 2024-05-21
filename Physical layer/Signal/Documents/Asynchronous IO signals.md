@@ -5,7 +5,7 @@ On most operating systems, terminals and sockets are the only kinds of files tha
 
 On GNU systems SIGIO will always be generated properly if you successfully set asynchronous mode with fcntl.
 
-SIGIO is triggered when typing into the terminal:
+## SIGIO is triggered when typing into the terminal
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,3 +74,6 @@ void sigio_setup_for_stdin_fd(void (*sigio_handler)(int sig_num)) {
     }
 }
 ```
+## SIGIO is triggered from the TCP receiver when a TCP sender sends data to it
+
+When [a TCP sender sends string to a TCP receiver](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/README.md#a-tcp-sender-sends-string-to-a-tcp-receiver), SIGIO can be used to check for the readiness to read the receive data from TCP sender: [tcp_sgl_rx_sgl_sndr_sigio.c](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/src/tcp_sgl_rx_sgl_sndr_sigio.c).
