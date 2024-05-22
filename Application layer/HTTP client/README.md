@@ -5,11 +5,17 @@ HTTP client implemented by
 
 # API
 
-## netdb.h
+**netdb.h** defines the following API:
+
+### getaddrinfo()
+
+```c
+int getaddrinfo(const char *restrict node, const char *restrict service, const struct addrinfo *restrict hints, struct addrinfo **restrict res);
+```
 
 ### gethostbyname()
 
-Get information of a given host, especially its hostname and IP address
+``gethostbyname()``, which is now deprecated, will get information of a given host, especially its hostname and IP address:
  
 ```c
 struct hostent *gethostbyname(const char *name);
@@ -22,9 +28,6 @@ struct hostent {
     int    h_addrtype;        /* host address type */
     int    h_length;          /* length of address */
     char **h_addr_list;       /* A zero-terminated array of addresses from name server*/
-#ifdef __USE_MISC
-# define	h_addr	h_addr_list[0] /* Address, for backward compatibility.*/
-#endif
 }
 ```
 
