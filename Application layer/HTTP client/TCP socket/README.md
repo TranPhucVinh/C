@@ -6,7 +6,9 @@ Get information of a hostname, like ``example.com``, including hostname and IP a
 * [getaddrinfo()](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20client#getaddrinfo): [get_host_info_getaddrinfo.c](get_host_info_getaddrinfo.c)
 * [gethostbyname()](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP%20client/README.md#gethostbyname) (**deprecated**): [get_host_info_gethostbyname.c](get_host_info_gethostbyname.c)
 
-GET request to ``example.com``: [get_data.c](get_data.c)
+GET request to ``example.com``: 
+* [getaddrinfo()](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20client#getaddrinfo): [get_data_getaddrinfo.c](get_data_getaddrinfo.c)
+* [gethostbyname()](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP%20client/README.md#gethostbyname) (**deprecated**): [get_data_gethostbyname.c](get_data_gethostbyname.c)
 
 ## Send data
 
