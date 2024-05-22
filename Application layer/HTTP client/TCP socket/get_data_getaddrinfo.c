@@ -27,7 +27,7 @@ int socket_connect(char *host, char *port){
 		.ai_socktype = SOCK_STREAM,
 	};
     struct addrinfo *response;
-    int err = getaddrinfo(HOST, PORT, &hints, &response);
+    int err = getaddrinfo(host, port, &hints, &response);
     if(err != 0 || response == NULL) {
 		printf("DNS lookup failed err=%d res=%p", err, response);
 		exit(1);
