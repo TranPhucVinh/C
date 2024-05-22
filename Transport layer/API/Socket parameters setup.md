@@ -4,9 +4,9 @@
 ```c
 char *inet_ntoa(struct in_addr in);
 ```
-Convert [struct in_addr](#sockaddr-inaddr-sockaddrin) into IPv4 string.
+Convert [struct in_addr](#sockaddr-in_addr-sockaddr_in) into IPv4 string.
 
-For an implementation to parse IPv4 address from [struct in_addr](#sockaddr-inaddr-sockaddrin), check [gethostbyname()]() [example to get the hostname information, including its IP address](../Application%20layer/HTTP%20client/TCP%20socket/get_host_information.c).
+For an implementation to parse IPv4 address from [struct in_addr](#sockaddr-in_addr-sockaddr_in), check [gethostbyname()]() [example to get the hostname information, including its IP address](../Application%20layer/HTTP%20client/TCP%20socket/get_host_information.c).
 
 ## inet_ntop()
 
