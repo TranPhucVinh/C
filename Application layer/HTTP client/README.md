@@ -39,6 +39,19 @@ extern int h_errno;
 ``h_errno`` refers to the host error.
 
 The ``herror()`` function prints the error message associated with the current value of h_errno on stderr.
+### struct addrinfo 
+```c
+struct addrinfo {
+    int              ai_flags;
+    int              ai_family;
+    int              ai_socktype;
+    int              ai_protocol;
+    socklen_t        ai_addrlen;
+    struct sockaddr *ai_addr;
+    char            *ai_canonname;
+    struct addrinfo *ai_next;
+};
+```
 
 ### htons
 
