@@ -1,0 +1,1 @@
+**NTP_TIMESTAMP_DELTA** is a constant used to convert Network Time Protocol (NTP) time to Unix time. NTP timestamps are measured in seconds since 00:00 (midnight) on January 1, 1900, while Unix time (also known as POSIX time or Epoch time) is measured in seconds since 00:00 (midnight) on January 1, 1970 (the Unix epoch).

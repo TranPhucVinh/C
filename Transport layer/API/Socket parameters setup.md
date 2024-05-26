@@ -11,7 +11,6 @@ For an implementation to parse IPv4 address from [struct in_addr](#sockaddr-in_a
 ## inet_ntop()
 
 ```c
-#include <arpa/inet.h>
 const char *inet_ntop(int af, const void *restrict src, char *restrict dst, socklen_t size);
 ```
 
@@ -57,6 +56,16 @@ struct sockaddr_un {
     sa_family_t sun_family;     // AF_UNIX
     char sun_path[108];         // Pathname
 };
+```
+## htonl, ntohl
+
+The **htonl()** function converts the unsigned integer hostlong from host byte order to network byte order.
+```c
+uint32_t htonl(uint32_t hostlong);
+```
+The **ntohl()** function converts the unsigned integer netlong from network byte order to host byte order.
+```c
+uint32_t ntohl(uint32_t netlong);
 ```
 # Libraries list
 
