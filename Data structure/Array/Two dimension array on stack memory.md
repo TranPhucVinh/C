@@ -29,8 +29,8 @@ Multidimension array is can be defined simply by ``{}`` as ``GCC`` and ``G++`` c
 
 int array[row][column] = {1, 2, 3, 4, 5, 6};
 
-printf("array[%d][%d]: %d", 0, 1, array[1][1]);//5
-printf("array[%d][%d]: %d", 0, 1, array[1][2]);//6
+printf("array[%d][%d]: %d\n", 1, 1, array[1][1]); // 5
+printf("array[%d][%d]: %d\n", 1, 2, array[1][2]); // 6
 ```
 
 Get column size: ``sizeof(array[0])/sizeof(array[0][0])``
