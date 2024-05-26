@@ -40,11 +40,11 @@ RFC 9293 defines:
 * **MSL** (**Maximum Segment Lifetime**), the time a TCP segment can exist in the internetwork system. Arbitrarily defined to be 2 minutes. 
 * **TIME_WAIT = MSL*2**
 
-So by default (i.e without ``setsockopt()`` setup), after stopping a TCP server, like [tcp_single_receiver.c](tcp_single_receiver.c) which includes ``bind()`` to bind socket to current IP address, then restart it immediately, ``bind()`` function will fail, with error log for that [tcp_single_receiver.c](tcp_single_receiver.c) program is **Fail to bind socket to local address**
+So by default (i.e without ``setsockopt()`` setup), after stopping a TCP server, like [tcp_single_receiver.c](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/src/tcp_single_receiver.c) which includes ``bind()`` to bind a socket to the current IP address, then restart it immediately, ``bind()`` function will fail, with error log for that [tcp_single_receiver.c](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/src/tcp_single_receiver.c) program is **Fail to bind socket to local address**
 
-That happen as the time interval between 2 stop and restart time is less than **TIME_WAIT**. User has to wait for that time interval to be greater than **TIME_WAIT** to restart the server.
+That happens as the time interval between 2 stop and restart time is less than **TIME_WAIT**. User has to wait for that time interval to be greater than **TIME_WAIT** to restart the server.
 
-To start that server immediately right after stopping it, ``setsockopt()`` must be used with ``optname=SO_REUSEADDR`` (fully implemented in [tcp_single_receiver.c](tcp_single_receiver.c)):
+To start that server immediately right after stopping it, **setsockopt()** must be used with ``optname=SO_REUSEADDR`` (fully implemented in [tcp_single_receiver.c](https://github.com/TranPhucVinh/C/blob/master/Transport%20layer/src/tcp_single_receiver.c)):
 
 ```c
 setsockopt(receiver_fd, SOL_SOCKET, SO_REUSEADDR, &enable_val, sizeof(enable_val));
