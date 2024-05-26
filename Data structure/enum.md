@@ -1,4 +1,5 @@
 # Define an enum
+**enum** is short for enumeration. An enum allows you to use a different name for one of the built-in storage types, and simultaneously defines what the legal values for the enum are:
 
 ```c
 enum {value0 = 10, value1, value2, value3, value4 = 10, value5 = 16, value6};
