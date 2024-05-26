@@ -7,15 +7,15 @@ HTTP client implemented by
 
 **netdb.h** defines the following API:
 
-### getaddrinfo()
+## getaddrinfo()
 
 ```c
 int getaddrinfo(const char *restrict node, const char *restrict service, const struct addrinfo *restrict hints, struct addrinfo **restrict res);
 ```
 
-### gethostbyname()
+## gethostbyname()
 
-``gethostbyname()``, which is now deprecated, will get information of a given host, especially its hostname and IP address:
+``gethostbyname()``, which is now **deprecated**, will get information of a given host, especially its hostname and IP address:
  
 ```c
 struct hostent *gethostbyname(const char *name);
@@ -39,7 +39,7 @@ extern int h_errno;
 ``h_errno`` refers to the host error.
 
 The ``herror()`` function prints the error message associated with the current value of h_errno on stderr.
-### struct addrinfo 
+## struct addrinfo 
 ```c
 struct addrinfo {
     int              ai_flags;
@@ -53,11 +53,11 @@ struct addrinfo {
 };
 ```
 
-### htons
+## htons
 
 ```c
 u_short htons(
-  u_short hostshort
+	u_short hostshort
 );
 ```
 
