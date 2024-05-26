@@ -98,7 +98,7 @@ socat file:test.txt tcp-listen:8000
 ```
 TCP client: [tcp_client_read_data.c](src/tcp_client_read_data.c)
 
-# A UDS sender sends a string to a UDP receiver
+# A UDS sender sends a string to a UDS receiver
 * [uds_recv.c](src/uds_recv.c): Create a Unix domain socket located in UDS_PATH for IPC
 * [uds_sndr.c](src/uds_sndr.c): Send a string to Unix domain socket UDS_PATH for **uds_recv.c**
 # A UDP sender sends string to a UDP receiver
