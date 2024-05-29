@@ -135,4 +135,4 @@ error: expected expression before ‘=’ token
 
 ``\`` backlash. backlash doesn’t have a standard English meaning but is often used in various computing contexts.
 
-``#`` tag, social hashtag
+* [#](https://github.com/TranPhucVinh/C/tree/master/Introduction/Macro#stringizing-operator-): tag, social hashtag, **stringizing operator**
