@@ -95,10 +95,10 @@ For power up with big number ``n`` to avoid stack overflow, compute ``half`` as 
 * If n is even, return ``half * half``.
 * If n is odd, return ``half * half * x``.
 
-**Source**: [recursive_power.c](recursive_power.c)
+**Source**: [recursive_power.c](src/recursive_power.c)
 
 # Other applications
-* [Hanoi tower](Hanoi_tower.c)
+* [Hanoi tower](src/recursive_hanoi_tower.c)
 * [Raspbian device tree: Find all nodes with compatible string](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/Device%20tree/find_all_nodes_with_comp_str.c)
 * [Permutation](Permutation.md)
 * [Combination](Combination.md)
