@@ -89,6 +89,14 @@ n steps = 1 step + total way to step in (n-1) steps = 2 steps + + total way to s
 
 So this will form a fibonacci sequence: total_steps[n] = total_steps[n-1] + total_steps[n-2]
 
+# pow(x,n) implemented by recursive
+
+For power up with big number ``n`` to avoid stack overflow, compute ``half`` as power(x, n/2):
+* If n is even, return ``half * half``.
+* If n is odd, return ``half * half * x``.
+
+**Source**: [recursive_power.c](recursive_power.c)
+
 # Other applications
 * [Hanoi tower](Hanoi_tower.c)
 * [Raspbian device tree: Find all nodes with compatible string](https://github.com/TranPhucVinh/Raspberry-Pi-C/blob/main/Kernel/Device%20tree/find_all_nodes_with_comp_str.c)
