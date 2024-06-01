@@ -1,3 +1,4 @@
+# [Installation](Install.md)
 # Telemetry
 
 ## Telemetry with TCP client has HTTP client
