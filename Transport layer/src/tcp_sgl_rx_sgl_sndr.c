@@ -14,7 +14,7 @@
 
 int         socket_param_init(int port);
 
-int main(int argc, char *argv[]){
+int main() {
     int 		receiver_fd, sender_fd;
     struct 		sockaddr_in sender_addr;
     socklen_t 	sender_length = sizeof(sender_addr);//Get address size of sender
