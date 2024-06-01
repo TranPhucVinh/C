@@ -7,9 +7,9 @@ For an ascending order array, binary search will search by searching at the midd
 * If array[middle] > target, it will start search at the middle of the 1/2 part of the array, starting from index 0 to index middle/2.
 * If array[middle] <> target, it will start search at the middle of the 1/2 part of the array, starting from index middle/2 to the last index of the array.
 
-# Fundamental concepts implementations
-* [Implement by recursive]()
-* [Implement by looping]()
+# [Fundamental concepts implementations](Fundamental%20concepts.md)
+* [Implement by recursive](Fundamental%20concepts.md#implement-by-recursive)
+* [Implement by looping](Fundamental%20concepts.md#implement-by-looping)
 * Count total occurence of a number inside a sorted array: Find index of the [1st occurrence](), [last occurenece]() of a number inside a sorted array
 # Application
 
