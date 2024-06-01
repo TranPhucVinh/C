@@ -103,10 +103,10 @@ int main(){
 1 3
 ```
 **Notes**: The condition for the above implementation is each number appears only 1 time.
-# Three some
+# Three sum
 Given an integer array nums, return all the triplets {nums[i], nums[j], nums[k]} such that nums[i] + nums[j] + nums[k] == target.
 
-We perform that by making the problem to be two sum - two pointer: [three_some.cpp](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/three_some.cpp)
+We perform that by making the problem to be two sum - two pointer: [three_sum.cpp](https://github.com/TranPhucVinh/C/blob/master/Algorithms/src/three_sum.cpp)
 
 # Implementations
 * [Get the middle member of the linked list by 1 time traversing](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/Read.md#get-the-middle-member-of-the-linked-list-by-1-time-traversing)
