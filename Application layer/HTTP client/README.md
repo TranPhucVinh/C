@@ -1,7 +1,7 @@
 HTTP client implemented by
 
-* TCP socket API
-* libcurl
+* [TCP socket API](TCP%20socket)
+* [libcurl](libcurl)
 
 # API
 
