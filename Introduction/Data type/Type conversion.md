@@ -72,7 +72,7 @@ int sum = (int)x + 1;
 printf("sum = %d\n", sum);//2
 ```
 
-## float to Int
+## float to int
 
 ```c
 int a = (int) 12.9;
