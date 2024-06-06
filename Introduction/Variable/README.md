@@ -50,7 +50,7 @@ int number;
 
 number = 9;
 
-int main(){
+int main() {
 	printf("number: %d \n", number);
 }
 ```
@@ -74,7 +74,7 @@ printf("_: %d\n", _);//9
 ```c
 #include <stdio.h> 
 
-int main(){ 
+int main() { 
 	int var = var;
 	printf("var: %d\n", var);//var: 0
 }
@@ -84,43 +84,8 @@ So this gives the same result:
 ```c
 #include <stdio.h> 
 int var = 9;
-int main(){ 
+int main() { 
 	int var = var;
 	printf("var: %d\n", var);//var: 0
 }
 ```
-# % operator
-An arithmetic property of **%** operator: If 
-```c
-a % m = a1
-b % m = b1
-```
-Then ``(a + b) % m = (a1 + b2)``
-# Unary operators
-Unary operators are the operators that perform operations on a single operand to produce a new value. Unary operators include:
-* Minus ``–``
-* [Increment ++](Symbol%20operator.md#increment-operator--i-prefix-and-i-postfix): ++i (prefix) and i++ (postfix)
-* Decrement ``--``
-* NOT ``!``
-* Ampersand operator/address of: ``&``
-* sizeof()
-
-**Minus**
-```c
-int a = 10;
-int b = -a;  // b = -10
-```
-# [Bit operator](Bit%20operator.md)
-
-* [Bitwise operator]()
-* [Mask or bitmask]()
-* [NOT operator !]()
-* [OR bit with | and +]()
-* [AND operator &]()
-* [XOR operator (^)]()
-* [Bit shifting]()
-* [Complement operator (~)]()
-
-# [Symbol operator](Symbol%20operator.md)
-
-* [:=]()
