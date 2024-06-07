@@ -1,6 +1,4 @@
-### Example 1
-
-Send data to Google drive
+# Send data to Google drive
 
 ```c
 #include <stdio.h>
