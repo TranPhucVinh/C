@@ -32,18 +32,6 @@ AND 00001000
   = 00001000
 ```
 
-# NOT operator !
-
-Change the whole value from ``0`` to ``1`` and ``diffrent from 0`` to ``0``:
-
-```c
-int a = 100;
-int b = 0;
-a = !a;
-b = !b;
-printf("a: %d, b: %d", a, b);//0, 1
-```
-
 # OR bit with | and +
 
 ```c
