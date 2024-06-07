@@ -8,11 +8,11 @@ b % m = b1
 ```
 Then ``(a + b) % m = (a1 + b2)``
 # Unary operators
-Unary operators are the operators that perform operations on a single operand to produce a new value. Unary operators include:
+Unary operators are the operators that perform operations on **a single operand** to produce a new value. Unary operators include:
 * Minus ``–``: Negates the value of its operand. For example, if i is 5, then -i is -5.
 * [Increment ++](Symbol%20operator.md#increment-operator--i-prefix-and-i-postfix): ++i (prefix) and i++ (postfix)
 * Decrement ``--``
-* NOT ``!``
+* [NOT operator !](): Invert the boolean value of its operand.
 * Ampersand operator/address of: ``&``
 * sizeof()
 
@@ -26,7 +26,6 @@ The **subtraction operator** and **the minus operator** refer to the same symbol
 
 * [Bitwise operator]()
 * [Mask or bitmask]()
-* [NOT operator !]()
 * [OR bit with | and +]()
 * [AND operator &]()
 * [XOR operator (^)]()
