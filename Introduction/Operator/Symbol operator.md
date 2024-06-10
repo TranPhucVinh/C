@@ -60,33 +60,6 @@ int a = 6;
 * ``a``: lvalue
 * ``6``: rvalue
 
-# Increment operator ++: ++i (prefix) and i++ (postfix)
-
-``++i`` will increment the value of i, and then return the incremented value to ``j``
-
-```c
-int i,j;
-j = ++i;
-```
-
-``j=1, i=1``
-
-
-``i++`` will return its initial value first to ``j`` then increases its value
-
-```c
-int i,j;
-j = i++;
-```
-
-``j=0, i=1``
-
-```c
-int x=5, y=7;
-int z = x++ + ++y -8;
-printf("x %d, y %d, z %d", x, y, z);//6 8 5
-```
-
 # := operator is not available in userspace and kernel GCC compiler
 
 ``:=`` is an assignment operator which is supported in just some programming language and tools.
