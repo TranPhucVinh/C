@@ -30,7 +30,7 @@ AND 00001000
   = 00001000
 ```
 
-# OR bit with | and +
+# Bitwise OR |
 
 ```c
 int binVal0 = 0b110;
@@ -42,18 +42,18 @@ printf("%d", binResult); //7 (0b111)
 ```c
 int binVal0 = 0b11;
 int binVal1 = 0b11;
+int binResult = binVal0|binVal1;
+printf("%d", binResult); //3
+```
+Compare the result with arithmetic operators addition +
+```c
+int binVal0 = 0b11;
+int binVal1 = 0b11;
 int binResult = binVal0+binVal1;
 printf("%d", binResult); //6
 ```	
 
-```c
-int binVal0 = 0b11;
-int binVal1 = 0b11;
-int binResult = binVal0|binVal1;
-printf("%d", binResult); //3
-```
-
-# AND operator (``&``)
+# Bitwase AND &
 
 ```c
 int binVal0 = 0b110;
