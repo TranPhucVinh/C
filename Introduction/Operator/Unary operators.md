@@ -44,3 +44,45 @@ int x=5, y=7;
 int z = x++ + ++y -8;
 printf("x %d, y %d, z %d", x, y, z);//6 8 5
 ```
+# Complement operator (~)
+The complement operator ~ is a bitwise unary operator. It performs a bitwise NOT operation on its operand, which means it **inverts all the bits of the operand**.
+```c
+int binVal0 = 0b00;
+int binResult = ~binVal0;
+printf("%d \n", binVal0);   //0
+printf("%d \n", binResult); //-1
+```
+
+**Explain**
+
+```c
+int binVal0 = 0b00;         //binVal0 = 0b 0000 0000;
+int binResult = ~binVal0;   //binResult = 0b 1111 1111;
+```
+
+When converting back to integer, the duplicate 1 bit from the left is omit, and one bit is kept for sign. So, there is 2 bit left
+
+```c
+binResult = 0b11 = -1
+```
+Other decimal value
+```c
+int binVal0 = 5;
+int binResult = ~binVal0;
+printf("%d \n", binVal0);   //5
+printf("%d \n", binResult); //-6 = 1111111111111010
+```
+
+## Complement unsigned char, unsigned int
+
+```c
+unsigned char binVal0 = 0b0;
+unsigned char binResult = ~binVal0;
+printf("%d \n", binResult); //255
+```	
+
+```c
+unsigned int binVal0 = 0b0;
+int binResult = ~binVal0;
+printf("%d \n", binResult); //-1
+```	
