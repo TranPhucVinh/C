@@ -32,9 +32,9 @@ Binary operators are operators that take two operands. These operators are used 
 
 [Bitwise operators](Bitwise%20operators.md)
 * [Mask or bitmask]()
-* [OR bit with | and +]()
+* [OR operator |]()
 * [AND operator &]()
-* [XOR operator (^)]()
+* [XOR operator ^]()
 * [Bit shifting](): << Left shift and >> Right shift
 
 ## [Symbol operators](Symbol%20operator.md)
