@@ -25,6 +25,19 @@ Binary operators are operators that take two operands. These operators are used 
 * ``>=`` : Greater than or equal to
 * ``<=`` : Less than or equal to
 
+**Assignment operators** perform an operation and then assign the result to the variable.
+* = : Assignment
+* += : Add and assign
+* -= : Subtract and assign
+* *= : Multiply and assign
+* /= : Divide and assign
+* %= : Modulus and assign
+* &= : Bitwise AND and assign
+* |= : Bitwise OR and assign
+* ^= : Bitwise XOR and assign
+* ``<<=`` : Left shift and assign
+* ``>>=`` : Right shift and assign
+
 **Logical operators** are used to combine conditional statements:
 
 * && : Logical AND
