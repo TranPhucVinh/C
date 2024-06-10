@@ -53,7 +53,7 @@ int binResult = binVal0+binVal1;
 printf("%d", binResult); //6
 ```	
 
-# Bitwase AND &
+# Bitwise AND &
 
 ```c
 int binVal0 = 0b110;
