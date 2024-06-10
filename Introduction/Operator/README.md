@@ -4,6 +4,7 @@ Unary operators are the operators that perform operations on **a single operand*
 * [Increment ++](Unary%20operators.md#increment-operator--i-prefix-and-i-postfix): ++i (prefix) and i++ (postfix)
 * Decrement ``--``
 * [NOT operator !](Unary%20operators.md#not-operator-): Invert the boolean value of its operand.
+* [Complement operator ~]()
 * Ampersand operator/address of: ``&``
 * sizeof()
 # Binary operators
@@ -28,15 +29,13 @@ Binary operators are operators that take two operands. These operators are used 
 
 * && : Logical AND
 * || : Logical OR
-## [Bit operators](Bit%20operators.md)
 
-* [Bitwise operator]()
+[Bitwise operators](Bitwise%20operators.md)
 * [Mask or bitmask]()
 * [OR bit with | and +]()
 * [AND operator &]()
 * [XOR operator (^)]()
-* [Bit shifting]()
-* [Complement operator (~)]()
+* [Bit shifting](): << Left shift and >> Right shift
 
 ## [Symbol operators](Symbol%20operator.md)
 
