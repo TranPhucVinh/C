@@ -1,9 +1,3 @@
-# Percent symbol
-
-To use percent symbol, use ``%%``:
-
-E.g: ``printf("%d%%", 100);``
-
 # Comma (,) operator
 
 Comma acts like a seperator within function calls and definitions, variable declarations and enum delcarations.
