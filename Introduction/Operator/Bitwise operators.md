@@ -1,5 +1,3 @@
-# Bitwise operator
-
 A bitwise operation operates on a bit string, a bit array or a binary numeral (considered as a bit string) at the level of its individual bits. Bitwise operators might be NOT, AND, OR, XOR,...
 
 # Mask or bitmask
