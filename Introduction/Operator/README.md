@@ -8,6 +8,22 @@ Unary operators are the operators that perform operations on **a single operand*
 * sizeof()
 # Binary operators
 Binary operators are operators that take two operands. These operators are used for arithmetic, comparison, logical operations, bitwise operations, and assignment.
+
+**Arithmetic operators** perform mathematical operations:
+
+* ``+`` : Addition
+* ``-`` : Subtraction
+* ``*``: Multiplication
+* ``/`` : Division
+* ``%`` : Modulus (remainder of division)
+
+**Comparison operators**
+* ``==`` : Equal to
+* ``!=`` : Not equal to
+* ``>`` : Greater than
+* ``<`` : Less than
+* ``>=`` : Greater than or equal to
+* ``<=`` : Less than or equal to
 ## [Bit operators](Bit%20operators.md)
 
 * [Bitwise operator]()
@@ -17,16 +33,6 @@ Binary operators are operators that take two operands. These operators are used 
 * [XOR operator (^)]()
 * [Bit shifting]()
 * [Complement operator (~)]()
-
-## Math operators
-**% operator**
-
-An arithmetic property of **%** operator: If 
-```c
-a % m = a1
-b % m = b1
-```
-Then ``(a + b) % m = (a1 + b2)``
 
 ## [Symbol operators](Symbol%20operator.md)
 
