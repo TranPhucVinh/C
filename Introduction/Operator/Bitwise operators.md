@@ -1,5 +1,3 @@
-# Bitwise operator
-
 A bitwise operation operates on a bit string, a bit array or a binary numeral (considered as a bit string) at the level of its individual bits. Bitwise operators might be NOT, AND, OR, XOR,...
 
 # Mask or bitmask
@@ -32,7 +30,7 @@ AND 00001000
   = 00001000
 ```
 
-# OR bit with | and +
+# Bitwise OR |
 
 ```c
 int binVal0 = 0b110;
@@ -44,18 +42,18 @@ printf("%d", binResult); //7 (0b111)
 ```c
 int binVal0 = 0b11;
 int binVal1 = 0b11;
+int binResult = binVal0|binVal1;
+printf("%d", binResult); //3
+```
+Compare the result with arithmetic operators addition +
+```c
+int binVal0 = 0b11;
+int binVal1 = 0b11;
 int binResult = binVal0+binVal1;
 printf("%d", binResult); //6
 ```	
 
-```c
-int binVal0 = 0b11;
-int binVal1 = 0b11;
-int binResult = binVal0|binVal1;
-printf("%d", binResult); //3
-```
-
-# AND operator (``&``)
+# Bitwise AND &
 
 ```c
 int binVal0 = 0b110;
@@ -100,46 +98,3 @@ shift <<= 1;
 ```
 
 Any number left shift by 1 (``<< 1``) will be multiple by 2. E.g ``25 << 1 = 50``
-
-# Complement operator (~)
-
-```c
-int binVal0 = 0b00;
-int binResult = ~binVal0;
-printf("%d \n", binVal0);   //0
-printf("%d \n", binResult); //-1
-```
-
-**Explain**
-
-```c
-int binVal0 = 0b00;         //binVal0 = 0b 0000 0000;
-int binResult = ~binVal0;   //binResult = 0b 1111 1111;
-```
-
-When converting back to integer, the duplicate 1 bit from the left is omit, and one bit is kept for sign. So, there is 2 bit left
-
-```c
-binResult = 0b11 = -1
-```
-Other decimal value
-```c
-int binVal0 = 5;
-int binResult = ~binVal0;
-printf("%d \n", binVal0);   //5
-printf("%d \n", binResult); //-6 = 1111111111111010
-```
-
-## Complement unsigned char, unsigned int
-
-```c
-unsigned char binVal0 = 0b0;
-unsigned char binResult = ~binVal0;
-printf("%d \n", binResult); //255
-```	
-
-```c
-unsigned int binVal0 = 0b0;
-int binResult = ~binVal0;
-printf("%d \n", binResult); //-1
-```	

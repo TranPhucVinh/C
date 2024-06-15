@@ -27,6 +27,8 @@ char displayedString[] = "Hello, World !";
 printf(string_output_format, displayedString);       
 ```
 
+**Percent symbol**: To use percent symbol, use ``%%``. E.g: ``printf("%d%%", 100);``
+
 # scanf()
 
 Read formatted input from ``stdin``
