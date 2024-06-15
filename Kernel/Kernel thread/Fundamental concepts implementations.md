@@ -58,12 +58,12 @@ username@hostname:~/ ps
   ...
 ```
 # Print out a string every 1 second in a kernel thread
-
+Use ``msleep()`` for miliseconds of delay
 ```c
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/kthread.h>
-#include <linux/delay.h> //For msleep()
+#include <linux/delay.h> // msleep()
 
 #define DELAY   1000
 
@@ -100,5 +100,22 @@ void cleanup_module(void)
 {
     printk(KERN_INFO "clean up module\n");
     kthread_stop(kthread_1);
+}
+```
+Use ``ssleep()`` for seconds of delay
+```c
+#include <linux/delay.h> // ssleep()
+
+#define DELAY   1 // second
+
+int thread_function(void *kernel_data) {
+    int index = 0;
+
+	while(!kthread_should_stop()){
+        printk("Hello, World !; index %d\n", index);
+        index += 1;
+        ssleep(DELAY);
+	}
+	return 0;
 }
 ```
