@@ -57,6 +57,12 @@ for(int index = 0;index<10;){
 
 ``for(;;)`` is equal to ``while(1)``.
 
+Increase by a number in the 3rd expression
+```c
+for (int i = 0; i <= 10; i=i+2) {
+        printf("%d ", i);
+} // Result: 0 2 4 6 8 10
+```
 ## Draw a rectangle with dots
 ```
 column  
