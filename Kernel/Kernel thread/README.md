@@ -13,10 +13,24 @@ Every running kernel thread of a kernel module will have its PID and can be list
 * [One thread function handler to increase a shared value](Race%20condition.md#one-thread-function-handler-to-increase-a-shared-value)
 * [One thread function handler to increase and decrease a shared value](Race%20condition.md#one-thread-function-handler-to-increase-and-decrease-a-shared-value)
 * [Accessing a shared variable between 2 thread function handlers](Race%20condition.md#accessing-a-shared-variable-between-2-thread-function-handlers)
-
-# [Mutex](Mutex.md)
+# Synchronization mechanism
+Synchronization mechanism for kernel threads are RCU, mutex_lock and spin_lock.
+## [Mutex](Mutex.md)
 * [Mutex for character device](Mutex.md#mutex-for-character-device)
 * [Mutex for kernel thread race condition](Mutex.md#mutex-for-kernel-thread-race-condition)
+## RCU
+Applying the locking mechanism like mutex to a linked list in the kernel space, when there are multiple thread to read and write to that linked list and that linked list is big, the performance will be effected. That's when the RCU mechanism, which is standed for Read-copy-update, is used. 
+
+Whenever a kernel thread is performing the write action, i.e inserting or deleting elements of a data structures, e.g a linked list, in shared memory, all readers are guaranteed to see and traverse either the older or the new structure, therefore avoiding inconsistencies (e.g., dereferencing null pointers). This method will be useful when there are multiple reader - single writer threads.
+
+With RCUI, a writer thread will follow the following steps:
+
+* Create a new structure
+* Copy the data from the old structure into the new one, and save a pointer to the old structure
+* Start the writing process: Modify the newly copied structure
+* Update the global pointer to refer to the new structure
+* sleep until the operating system kernel determines that there are no readers left using the old structure, for example, in the Linux kernel, by using function ``synchronize_rcu()``
+once awakened by the kernel, deallocate the old structure.
 
 # API
 
