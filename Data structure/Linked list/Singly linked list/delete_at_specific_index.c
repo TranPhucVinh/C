@@ -1,7 +1,6 @@
-# Delete node at specific index (at index 0, middle index and the last index)
+// Delete node at specific index (at index 0, middle index and the last index)
+// Other operations like in create_and_read_linked_list.c
 
-```c
-//Other operations like in create_and_read_linked_list.c
 void delete_node_at_index(struct database_node *first_node, int index){
     struct database_node *current_node = first_node, *prev_node;
     prev_node = (struct database_node *)malloc(sizeof(struct database_node));
@@ -28,5 +27,4 @@ void delete_node_at_index(struct database_node *first_node, int index){
    
     return;
 }
-//Other operations like in create_and_read_linked_list.c
-```
+// Other operations like in create_and_read_linked_list.c
