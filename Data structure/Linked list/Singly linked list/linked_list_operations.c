@@ -27,6 +27,32 @@ void display_link_list(LinkedList *first_node){
 	printf("\n");
 }
 
+void delete_node_at_index(LinkedList *first_node, int index){
+    LinkedList *current_node = first_node, *prev_node;
+    prev_node = (LinkedList*)malloc(sizeof(LinkedList));
+
+    // Delete the first node
+    if (index == 0) {      
+		*first_node = *(first_node->next_node);
+		first_node = first_node->next_node;
+        return;
+    }
+
+    int tmp_index = 0;
+
+    while(current_node != NULL) {        
+        if (tmp_index == index) {
+            prev_node->next_node = current_node->next_node;
+            return;
+        }
+        prev_node = current_node;  
+        current_node = current_node->next_node;
+        tmp_index++;
+    }
+   
+    return;
+}
+
 int main() 
 { 
     LinkedList *node_0, *node_1, *node_2;
@@ -42,6 +68,7 @@ int main()
     node_2->next_node = NULL; //End link list
 
     display_link_list(node_0);
-
+    delete_node_at_index(node_0, 0);
+    display_link_list(node_0);
     return 0; 
 } 
