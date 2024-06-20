@@ -1,5 +1,5 @@
 // Update node value at a specific index, then display the linked list before and after updating to see changes
-// Other operations like in create_and_read_linked_list.c
+// Other operations like in linked_list_operations.c
 
 int update_node_at_index(struct database_node *first_node, int index, int id, int value){
     struct database_node *ptr = first_node;
