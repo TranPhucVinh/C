@@ -11,7 +11,7 @@ For memory storage reason, linked list must be implemented on heap memory.
 * [Create](Create.md): Create and read all member of a linked list, insert a new node to an existed linked list by the specified index
 * [Read](Read.md): [Read the whole linked list](), [read a node at specific index](), get linked list size, get the middle member of the linked list by 1 time traversing
 * **Update**: [Update node value at a specific index](update_at_specific_index.c)
-* **Delete**: [Delete node at specific index (at index 0, middle index and the last index)](delete_at_specific_index.c)
+* **Delete**: Delete node at specific index (at index 0, middle index and the last index (function **delete_node_at_index()** in [linked_list_operations.c](linked_list_operations.c)).
 
 # Examples
 
