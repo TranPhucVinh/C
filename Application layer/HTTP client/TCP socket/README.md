@@ -3,21 +3,21 @@
 ## Get request
 
 Get information of a hostname, like ``example.com``, including hostname and IP address, use:
-* [getaddrinfo()](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20client#getaddrinfo): [get_host_info_getaddrinfo.c](get_host_info_getaddrinfo.c)
-* [gethostbyname()](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP%20client/README.md#gethostbyname) (**deprecated**): [get_host_info_gethostbyname.c](get_host_info_gethostbyname.c)
+* [getaddrinfo()](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20client#getaddrinfo): [get_host_info_getaddrinfo.c](src/get_host_info_getaddrinfo.c)
+* [gethostbyname()](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP%20client/README.md#gethostbyname) (**deprecated**): [get_host_info_gethostbyname.c](src/get_host_info_gethostbyname.c)
 
 GET request to ``example.com``: 
-* [getaddrinfo()](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20client#getaddrinfo): [get_data_getaddrinfo.c](get_data_getaddrinfo.c)
-* [gethostbyname()](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP%20client/README.md#gethostbyname) (**deprecated**): [get_data_gethostbyname.c](get_data_gethostbyname.c)
+* [getaddrinfo()](https://github.com/TranPhucVinh/C/tree/master/Application%20layer/HTTP%20client#getaddrinfo): [get_data_getaddrinfo.c](src/get_data_getaddrinfo.c)
+* [gethostbyname()](https://github.com/TranPhucVinh/C/blob/master/Application%20layer/HTTP%20client/README.md#gethostbyname) (**deprecated**): [get_data_gethostbyname.c](src/get_data_gethostbyname.c)
 
 ## Send data
 
 Send data to a [Python local HTTP server](https://github.com/TranPhucVinh/Python/blob/master/Application%20layer/HTTP/HTTP%20server/README.md#http-server): 
-* [send_data_getaddrinfo_char_port.c](send_data_getaddrinfo_char_port.c) with port as a string char
-* [send_data_getaddrinfo_int_port.c](send_data_getaddrinfo_char_port.c) with port as a int number
-* [send_data_gethostbyname.c](send_data_gethostbyname.c) (**deprecated**)
+* [send_data_getaddrinfo_char_port.c](src/send_data_getaddrinfo_char_port.c) with port as a string char
+* [send_data_getaddrinfo_int_port.c](src/send_data_getaddrinfo_char_port.c) with port as a int number
+* [send_data_gethostbyname.c](src/send_data_gethostbyname.c) (**deprecated**)
 
-Send data as querystring to a local HTTP server : [send_data_by_query_string.c](send_data_by_query_string.c), local HTTP server which receives this data to draw chart: [Draw chart Node.js HTTP server](https://github.com/TranPhucVinh/Node.js/tree/master/Projects/Draw%20chart)
+Send data as querystring to a local HTTP server : [send_data_by_query_string.c](src/send_data_by_query_string.c), local HTTP server which receives this data to draw chart: [Draw chart Node.js HTTP server](https://github.com/TranPhucVinh/Node.js/tree/master/Projects/Draw%20chart)
 
 ## Detect Internet connection status
 

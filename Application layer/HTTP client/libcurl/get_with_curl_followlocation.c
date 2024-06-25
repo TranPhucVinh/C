@@ -2,7 +2,7 @@
 #include <curl/curl.h>
 
 // const char host[] = "localhost:8000";
-const char host[] = "arduino.vn";
+const char host[] = "example.com";
 
 int main(void)
 {

@@ -57,9 +57,7 @@ void curl_thread(char *urlPointer){
   curl_global_cleanup();
 }
 
-int main(void)
-{
-  
+int main(void) {
   char *url1 = "localhost:8000";
   char *url2 = "localhost:8000/test";
   /* In windows, this will init the winsock stuff */ 
