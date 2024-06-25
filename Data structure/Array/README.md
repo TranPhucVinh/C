@@ -1,9 +1,9 @@
 An array is collection of items stored at **continuous memory** locations.
 
-# [One dimension array](One%20dimension%20array.md)
+# [One dimension array](One%20dimension%20array)
 
-* [Create](One%20dimension%20array.md#create): [Create an array on stack memory](One%20dimension%20array.md#on-stack-memory) and [on heap memory](); [create/insert new member at specific index](create_new_member.c); [create a vector](create_vector.c)
-* [Read](One%20dimension%20array.md#read)
+* [Create](One%20dimension%20array/Create.md): 
+* [Read](One%20dimension%20array/Read.md)
 * [Update](One%20dimension%20array.md#update)
 * [Delete](One%20dimension%20array.md#delete): [Delete member in array from index](delete.c)
 
@@ -11,47 +11,7 @@ An array is collection of items stored at **continuous memory** locations.
 * [Array as an argument of a function](One%20dimension%20array%20and%20function.md#array-as-an-argument-of-a-function): [using array with size]() and [using array pointer]()
 * [Function returns an array](): [Using stack memory with static]() and [Using heap memory with malloc()]()
 
-# Multidimension array
-
-GCC treats multidimension array as one dimension array.
-
-```c
-int array[3][3]={1, 2, 3, 4, 5, 6, 7, 8}
-```
-
-``array[3][3]`` can defined as ``array[][3]``. ``array[][3]`` infers that there are 3 columns. The missing value in each group is set to ``0``. So ``array[][3]`` is then treated as:
-
-```c
-int array[][3] ={
- 	{1,2,3},
-	{4,5,6},
-	{7,8}};
-```
-
-The interpreted of ``array[][3]`` in this case is **unique**.
-
-Define ``array[3][]`` is wrong and gives compilation error, as this array can't tell how many columns it has. The interpreted of ``array[3][]`` in this case is **not unique** as it now can be understand as:
-
-```c
-{{1,2},{3,4},{5,6,7,8}}
-{{1,2,3},{4},{5,6,7,8}}
-{{1,2,3,4},{5,6,7,8}}
-...//Not unique, must not define: int array[3][]
-```
-
-## An equivalent pointer expression for referring the same element a[i][j][k][l]
-
-We know that ``a[i]`` can be written as ``*(a+i)``. Same way, the array elements can be written like pointer expression as follows:
-
-```c
-a[i][j] = *(*(a+i)+j);
-a[i][j][k] = *(*(*(a+i)+j)+k);
-a[i][j][k][l] = *(*(*(*(a+i)+j)+k)+l);
-```
-
-# Two dimension array implementations
-* [Two dimension array on stack memory](Two%20dimension%20array%20on%20stack%20memory.md)
-* [Two dimension array on heap memory](Two%20dimension%20array%20on%20heap%20memory.md)
+# [Multidimension array](Multidimension%20array)
 
 # Matrix
 ## Main diagonal and antidiagonal 
