@@ -13,8 +13,6 @@ The most most efficient and scalable alogorithm is the one with both lowest time
 
 # [Big O](Big%20O)
 
-# [Array](Array.md)
-
 # [Sequence](Sequence.md)
 
 Sequence or **sequence of numbers** problem include:

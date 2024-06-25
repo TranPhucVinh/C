@@ -54,6 +54,21 @@ Read from ``index`` with:
 
 * ``array[index]``
 * ``*(array + index)``
+### Find min number in an array
+
+```c
+#include <stdio.h>
+
+void main() {
+	int array[5] = {5, 1, 3, 6, 2};
+
+    int min = array[0];
+    for (int i=1; i < n; i++){
+        if (min >= array[i]) min = array[i];
+	}
+    printf("min: %d\n", min);
+}
+```
 
 ## Update
 
