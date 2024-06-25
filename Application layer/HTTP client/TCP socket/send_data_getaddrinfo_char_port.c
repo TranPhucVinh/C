@@ -33,7 +33,7 @@ int socket_connect(char *host, char *port){
     struct sockaddr *addr;
     addr = response->ai_addr;
 
-	socket_fd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+	socket_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
 	if(socket_fd == -1){
 		perror("socket_fd");
