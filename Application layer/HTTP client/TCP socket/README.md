@@ -13,7 +13,7 @@ GET request to ``example.com``:
 ## Send data
 
 Send data to a [Python local HTTP server](https://github.com/TranPhucVinh/Python/blob/master/Application%20layer/HTTP/HTTP%20server/README.md#http-server): 
-* [send_data_getaddrinfo.c](send_data_getaddrinfo.c)
+* [send_data_getaddrinfo_char_port.c](send_data_getaddrinfo_char_port.c)
 * [send_data_gethostbyname.c](send_data_gethostbyname.c)
 
 Send data as querystring to a local HTTP server : [send_data_by_query_string.c](send_data_by_query_string.c), local HTTP server which receives this data to draw chart: [Draw chart Node.js HTTP server](https://github.com/TranPhucVinh/Node.js/tree/master/Projects/Draw%20chart)
