@@ -56,9 +56,7 @@ struct addrinfo {
 ## htons
 
 ```c
-u_short htons(
-	u_short hostshort
-);
+u_short htons(u_short hostshort);
 ```
 
 The ``htons`` function converts a ``u_short`` from host to TCP/IP network byte order (which is big-endian).
