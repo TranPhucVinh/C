@@ -1,8 +1,8 @@
-## Features
+# Features
 
 Process ``fifo_write`` writes data to FIFO ``FIFO 1`` every 1 second. Process ``fifo_read`` reads data from FIFO ``FIFO 1`` every 1 second.
 
-## fifo_write.c
+# fifo_write.c
 
 ```c
 #include <stdio.h>
@@ -52,7 +52,7 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-## fifo_read.c
+# fifo_read.c
 
 ```c
 #include <stdio.h>
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])  {
 }
 ```
 
-## Note
+# Note
 
 When sending/receiving int array with FIFO, the sending/receiving size in ``read()`` and ``write()`` must be:
 
