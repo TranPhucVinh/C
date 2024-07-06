@@ -12,4 +12,3 @@ Volatile keyword is useful for:
 
 * [Changing the value of a local or global const variable by pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Implementations.md#change-value-of-a-variable-with-pointer) and [memset()](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/API/memset.md#change-const-variable-with-memeset).
 * [Using a simple boolean variable as a mutex key to implement with 2 tasks in AVR Arduino FreeRTOS](https://github.com/TranPhucVinh/AVR-Arduino-framework/blob/master/FreeRTOS/Inter-task%20communication/Mutex.md#using-a-simple-boolean-variable-as-a-mutex-key-to-implement-with-2-tasks). Its corresponding example in ESP8266 RTOS and C multithread doesn't require ``volatile`` declaration.
-* ``overflowFlag`` variable in [Automatic filling machine AVR Arduino project](https://github.com/TranPhucVinh/AVR-Arduino-framework/tree/master/Projects/Automatic%20filling%20machine) is ``volatile``.

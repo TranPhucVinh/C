@@ -23,6 +23,8 @@ int main(){
     struct in_addr *addr;
     addr = &((struct sockaddr_in *)response->ai_addr)->sin_addr;
     printf("DNS lookup success, IP: %s\n", inet_ntoa(*addr));// 93.184.215.14
+    
+    freeaddrinfo(response);
 
 	return 0;
 }
