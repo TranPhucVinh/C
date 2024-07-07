@@ -5,8 +5,7 @@
 ```c
 void *func_thread_1(void *ptr);
 
-int main()
-{  
+int main() {  
     pthread_t thread_1;
 	int number = 56;
     pthread_create(&thread_1, NULL, func_thread_1, &number);
@@ -59,7 +58,7 @@ Parameter is 32719 (garbage value)
 Solution 1: Use ``static``
 
 ```c
-void *func_thread_1(void *ptr){
+void *func_thread_1(void *ptr) {
 	static int number = 56;
 	pthread_create(&thread_2_create, NULL, func_thread_2, &number);
 }
@@ -68,7 +67,7 @@ void *func_thread_1(void *ptr){
 Solution 2: Use ``malloc()``
 
 ```c
-void *func_thread_1(void *ptr){
+void *func_thread_1(void *ptr) {
 	int *number = (int*)malloc(sizeof(int));
 	*number = 123;
 	pthread_create(&thread_2_create, NULL, func_thread_2, number);
@@ -82,8 +81,7 @@ void *func_thread_1(void *ptr){
 **Using pointer of pointer**
 
 ```c
-int main()
-{  
+int main() {  
     int **thread_1_return;
 	pthread_t thread_1;
 

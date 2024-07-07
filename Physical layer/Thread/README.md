@@ -20,8 +20,7 @@ Compile: ``gcc test.c -lpthread``
 
 void *thread_func(void *ptr);
 
-int main()
-{  
+int main() {  
 	pthread_t thread_id;
 
 	pthread_create(&thread_id, NULL, thread_func, NULL);
@@ -30,7 +29,7 @@ int main()
     printf("Thread ID %lu\n", thread_id);
 }
 
-void *thread_func(void *ptr){
+void *thread_func(void *ptr) {
 	printf("Hello, World !\n");
     printf("Thread ID %lu\n", pthread_self());
 }
@@ -55,8 +54,7 @@ If the thread is an infinite loop, the program operation behind [pthread_join()]
 When not using [pthread_join()](API.md#pthread_join):
 
 ```c
-int main()
-{  
+int main() {  
 	pthread_t thread_1;
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	printf("thread_1 finish executing\n");
@@ -71,8 +69,7 @@ thread_1 finish executing
 
 We expect ``Hello, World !`` in ``func_thread_1()`` to be printed out but it is not. That happens as ``main()`` ends its life cycle before ``func_thread_1()`` is executed. To solve that problem without using [pthread_join()](API.md#pthread_join), we can put ``sleep(1)``:
 ```c
-int main()
-{  
+int main() {
 	pthread_t thread_1;
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
 	printf("thread_1 finish executing\n");
@@ -111,10 +108,14 @@ When 2 threads try to access a resource, data race might happen if the racing be
 * [One thread function handler to increase a shared value](Documents/Race%20condition.md#one-thread-function-handler-to-increase-a-shared-value)
 * [One thread function handler to increase and decrease a shared value](Race%20condition/README.md#one-thread-function-handler-to-increase-and-decrease-a-shared-value)
 * [Accessing a shared variable between 2 thread function handlers](Race%20condition/README.md#accessing-a-shared-variable-between-2-thread-function-handlers)
-* [Semaphore](Semaphore.md)
-* [Mutex](Race%20condition/Mutex.md)
+* [Semaphore](Documents/Semaphore.md)
+* [Mutex](Documents/Mutex.md)
 # [Thread barrier](Thread%20barrier.md)
+# Concurrency and parallelism
 
+If 2 threads are doing work in parallel, it means they're doing their works at exactly the same time. **Parallelism** typically requires some kind of hardware support like multiple core or coprocessor.
+
+If a machine has 1 core, it can only runs 1 thread at a time. In order to run multithread as **concurrent**, system has to run one thread for a short amount of time then switch to the other and run that one for a short amount time, then keeps switching back and forth. The switching mechanism will be quick enough that the users don't notice the switching.
 # [API](API)
 * Thread creation
 * Inter-task communication
