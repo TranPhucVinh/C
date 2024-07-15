@@ -97,7 +97,29 @@ Check 2 examples for that implementations
 
 * [Read big file in chunk with read size of each element = 1](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/stdio/File%20pointer%20examples.md#read-big-file-in-chunk-with-read-size-of-each-element--1)
 * [http_server_returns_beautiful_html_files.c in ESP8266-RTOS-SDK](https://github.com/TranPhucVinh/ESP8266-RTOS-SDK/blob/main/Applicaton%20layer/HTTP/http_server_returns_beautiful_html_files.c)
+# fdopen()
+Associate a file pointer from a file descriptor
+```c
+#include <stdio.h>
+#include <unistd.h> //for read()
+#include <fcntl.h> //for open()
 
+#define ELEMENT_NUMBERS 1
+#define READ_SIZE       100
+#define BUFFER_SIZE     100
+
+int main(){
+    char buffer[BUFFER_SIZE];
+    FILE *fptr;
+
+    int fd = open("README.md", O_RDONLY);
+    fptr = fdopen(fd, "r");
+    fread(buffer, READ_SIZE, ELEMENT_NUMBERS, fptr);//Will read ELEMENT_NUMBERS*READ_SIZE from fp
+    printf("%s\n", buffer);
+    fclose(fptr);
+    close(fd);
+}
+```
 # fgets()
 
 Read the content in a file or stream until encounter the new line character (``\n``) or until finished reading ``n-1`` character; then store in ``s``.
