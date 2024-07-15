@@ -1,40 +1,11 @@
-# printf()
 
-Sends formatted output to ``stdout``
-
-```c
-printf("%d ", a) // int
-printf("%s ", a) // string
-```
-
-**Example**:  
-```c
-printf("%s \n", "Hello, World!"); //Hello, World!
-```
-
-**Return**: return the total print out character
-
-```c
-int returnPrintf = printf("Hello, World!\n");
-printf("%d \n", returnPrintf); //14
-```
-
-**Use formated output in printf()**
-
-```c
-const char* string_output_format = "Displayed string: %s\n";
-char displayedString[] = "Hello, World !";
-printf(string_output_format, displayedString);       
-```
-
-**Percent symbol**: To use percent symbol, use ``%%``. E.g: ``printf("%d%%", 100);``
 
 # scanf()
 
 Read formatted input from ``stdin``
 
 ```c
-int scanf ( const char * format, ... );
+int scanf(const char * format,...);
 ```
 
 **Return**: number of items of the argument list successfully filled. This will return ``1`` (valid data enter) and ``0`` for invalid data enter.
@@ -119,45 +90,10 @@ Enter a string: "Hello_World -> You entered: "H" (Capitalized "W" is ommited"
 Enter a string: "HELLO_world" -> You entered: "HELLO"
 Enter a string: "hEllo" -> You entered: "(null)" (1st character "h" isn't capitalized so the whole string is ommitted)
 ```
-# %.*s
 
-```c
-void display_function(char *str, int str_len)
-{
-  printf("%.*s\n", str_len, str);
-}
-
-char *return_string(char *str, int str_len){
-    char *returned_string = (char*) malloc(str_len + 1);
-    sprintf(returned_string, "%.*s", str_len, str);
-    return returned_string;
-}
-
-int main(){
-    display_function("Hello, World !", 3);//Hel
-    char *returned_string = return_string("Displayed string", 5);
-    printf("%s\n", returned_string);//Displ
-    free(returned_string);
-}
-```
-
-# gets() and puts()
-
-## gets()
+# gets() is deprecated
 
 **gets()** is used to read the entered a string, but this function is now **deprecated** and **removed** in C compiler. Just use ``scanf()`` instead.
-
-## puts()
-
-Writes a string to ``stdout`` followed with a new line
-
-```c
-int puts(const char *str)
-```
-
-```c
-puts("hello"); //hello
-```
 
 # getchar(), putchar()
 
