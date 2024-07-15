@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
@@ -9,9 +10,11 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-#define MQTT_CONNECT 1
-#define MQTT_CONNACK 2
-#define MQTT_PUBLISH 3
+#define MQTT_CONNECT    1
+#define MQTT_CONNACK    2
+#define MQTT_PUBLISH    3
+#define MQTT_SUBSCRIBE  8
+#define MQTT_SUBACK     9
 
 #define FIX_HEADER_SIZE 2 // 1 byte (control packet) + 1 byte (remaining length)
 
@@ -27,7 +30,11 @@
 
 // PUBLISH
 #define PUB_SIZE        1024
+#define SUB_SIZE        1024
 #define QoS_0           0xf9
+
+// SUBSCRIBE
+#define SUBACK_FAILURE 0x80  // 3.9.3 Payload
 
 typedef struct {
     uint8_t control_type; // MQTT Control Packet type
@@ -68,6 +75,7 @@ typedef struct {
     mqtt_payload_t payload;
 } mqtt_packet_t;
 
+int   mqtt_broker_connect(const char* mqtt_broker, int mqtt_port);
 void  send_connect_packet(int sockfd, char *client_id, int keep_alive_sec);
 void  publish_message(int sockfd, char* topic, uint8_t *msg);
-int   mqtt_broker_connect(const char* mqtt_broker, int mqtt_port);
+void  subscribe_to_topic(int sockfd, char* topic);

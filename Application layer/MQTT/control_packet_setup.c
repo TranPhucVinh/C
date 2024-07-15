@@ -12,10 +12,18 @@ int form_fix_header(uint8_t *mqtt_packet_buf, mqtt_fix_header_t fix_header_s) {
             break;
 
         case MQTT_PUBLISH:
+        {
             /* Section 3.3 PUBLISH – Publish message */
             /* DUP flag and RETAIN are don't care */ 
             mqtt_packet_buf[index++] = ((fix_header_s.control_type << 4) & 0xF0) | (fix_header_s.control_flag & 0x0F & QoS_0);
             break;
+        }
+            
+        case MQTT_SUBSCRIBE:
+        {
+            mqtt_packet_buf[index++] = ((fix_header_s.control_type << 4) & 0xF0) | 0x02; /* Section 3.8.1 Fixed header */        
+            break;
+        }
 
         default:
             break;
@@ -69,6 +77,13 @@ int form_variable_header(uint8_t *mqtt_packet_buf, uint8_t control_type, mqtt_va
                 mqtt_packet_buf[index++] = topic_sz; /* Section 3.3.2.1 Topic Name */
                 strcpy(&mqtt_packet_buf[index], var_header_s.pub_topic_name);
                 index += topic_sz;
+            }
+            break;
+
+        case MQTT_SUBSCRIBE:
+            {
+                mqtt_packet_buf[index++] = var_header_s.packet_identifier[0];
+                mqtt_packet_buf[index++] = var_header_s.packet_identifier[1];
             }
             break;
 

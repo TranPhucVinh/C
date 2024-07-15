@@ -87,6 +87,42 @@ void publish_message(int sockfd, char* topic, uint8_t *msg) {
     }
 }
 
+void subscribe_to_topic(int sockfd, char* topic) {
+    uint8_t subscribe_packet[SUB_SIZE];
+    mqtt_packet_t mqtt_packet;
+    memset(&mqtt_packet, 0, sizeof(mqtt_packet_t));
+    uint8_t topic_sz = strlen(topic);
+
+    mqtt_packet.fix_header.control_type = MQTT_SUBSCRIBE;
+
+    int random_packet_identifier = rand() % 65536; 
+    mqtt_packet.var_header.packet_identifier[0] = (random_packet_identifier >> 4) & 0x0F;
+    mqtt_packet.var_header.packet_identifier[1] = (random_packet_identifier & 0x0F);
+
+    /* We form variable header first from FIX_HEADER_SIZE since the fix header size is determined later */
+    int index = FIX_HEADER_SIZE;
+    int var_header_sz = form_variable_header(&subscribe_packet[index], MQTT_SUBSCRIBE, mqtt_packet.var_header);
+    index += var_header_sz;
+
+    /* Form payload */
+    mqtt_packet.payload.subscribe_topic = topic;
+    int payload_sz = form_payload(&subscribe_packet[index], mqtt_packet.payload);
+    index += payload_sz;
+
+    uint8_t fix_header[FIX_HEADER_SIZE];
+    mqtt_packet.fix_header.remaining_length = payload_sz + var_header_sz;
+    int fix_header_sz = form_fix_header(fix_header, mqtt_packet.fix_header);
+    /* we need to place the fix header size in the correct place in the temp buffer */
+    int start_packet_index = FIX_HEADER_SIZE - fix_header_sz;
+    memcpy(&subscribe_packet[start_packet_index], fix_header, fix_header_sz);
+
+    printf("Subscribe to broker with packet identifier: 0x%02X%02X\n", mqtt_packet.var_header.packet_identifier[0], mqtt_packet.var_header.packet_identifier[1]);
+    if (write(sockfd, &subscribe_packet[start_packet_index], index - start_packet_index) < 0) {
+        perror("Send failed");
+        return;
+    }
+}
+
 int mqtt_broker_connect(const char* mqtt_broker, int mqtt_port) {
     int sockfd;
     struct sockaddr_in serv_addr;
