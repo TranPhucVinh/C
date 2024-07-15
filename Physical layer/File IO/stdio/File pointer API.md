@@ -39,18 +39,17 @@ printf("fd: %d\n", fileno(fptr));
 # fread()
 
 ```c
-size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream)
+size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
 ```
 
 Read totally ``nmemb*size`` bytes (including ``\n``) of data from ``stream`` and stores to ``ptr``.
 
 * ``ptr``: pointer to a block of memory with a minimum size of ``size*nmemb`` bytes.
-* ``size``: size in bytes of each element to be read.
-* ``nmemb``: This is the number of elements, each one with a size of size bytes.
+* ``sz``: size in bytes of each element to be read.
+* ``nmemb``: This is the number of elements, each one with a size of ``sz`` bytes.
 * ``stream``: This is the pointer to a ``FILE`` object that specifies an input stream.
   
 <details>
-	
 ```c
 #define ELEMENT_NUMBERS 3
 #define READ_SIZE 2
@@ -65,7 +64,6 @@ fread(buffer, READ_SIZE, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_S
 printf("%s\n", buffer);
 fclose(fp);
 ```
-
 </details>
 
 Read 2 entered characters from ``stdin`` and print out
