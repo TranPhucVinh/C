@@ -55,7 +55,7 @@ typedef struct {
 
 typedef struct {
     uint8_t *client_id;
-    uint8_t *sub_topic;
+    uint8_t *subscribe_topic;
     uint8_t *message;
     uint8_t *user_name;
     uint8_t *password;

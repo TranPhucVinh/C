@@ -1,4 +1,4 @@
-#include "mqtt_control_packet.h"
+#include "control_packet_setup.h"
 
 int form_fix_header(uint8_t *mqtt_packet_buf, mqtt_fix_header_t fix_header_s) {
     int index = 0;
@@ -93,13 +93,13 @@ int form_payload(uint8_t *mqtt_packet_buf, mqtt_payload_t payload_s) {
     }
 
     /* Form subscribe topic */
-    if (payload_s.sub_topic != NULL) { /* Section 3.8.3 Payload */
-        mqtt_packet_buf[index++] = 0;
-        mqtt_packet_buf[index++] = strlen(payload_s.sub_topic);
-        strcpy(&mqtt_packet_buf[index], payload_s.sub_topic);
-        index += strlen(payload_s.sub_topic);
-        /* Only support QoS 0 for now */
-        mqtt_packet_buf[index++] = 0;
+    if (payload_s.subscribe_topic != NULL) { /* Section 3.8.3 Payload */
+        mqtt_packet_buf[index++] = strlen(payload_s.subscribe_topic) & 0xF0; // topic length MSB
+        mqtt_packet_buf[index++] = strlen(payload_s.subscribe_topic) & 0x0F; // topic length LSB
+        strcpy(&mqtt_packet_buf[index], payload_s.subscribe_topic);
+        index += strlen(payload_s.subscribe_topic);
+
+        mqtt_packet_buf[index++] = 0; // QoS 0
     }
 
     /* Form message, for publish packet, section 3.3 PUBLISH – Publish message */

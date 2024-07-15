@@ -58,6 +58,8 @@ Control Packets PUBLISH (where QoS > 0), PUBACK, PUBREC, PUBREL, PUBCOMP, SUBSCR
 
 **Packet Identifier** is 2 bytes include **Packet Identifier MSB** (byte 1) and **Packet Identifier LSB** (byte 2).
 
+**SUBSCRIBE**, **UNSUBSCRIBE**, and **PUBLISH** (in cases where **QoS > 0**) Control Packets **MUST** contain a non-zero 16-bit Packet Identifier.
+
 # MQTT message flow
 
 ```mermaid
