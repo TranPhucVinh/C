@@ -50,6 +50,7 @@ Read totally ``nmemb*size`` bytes (including ``\n``) of data from ``stream`` and
 * ``stream``: This is the pointer to a ``FILE`` object that specifies an input stream.
   
 <details>
+
 ```c
 #define ELEMENT_NUMBERS 3
 #define READ_SIZE 2
@@ -64,6 +65,7 @@ fread(buffer, READ_SIZE, ELEMENT_NUMBERS, fp);//Will read ELEMENT_NUMBERS*READ_S
 printf("%s\n", buffer);
 fclose(fp);
 ```
+
 </details>
 
 Read 2 entered characters from ``stdin`` and print out
