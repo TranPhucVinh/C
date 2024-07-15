@@ -26,13 +26,14 @@ file = fopen("text.md", "r"); //Open text.md to read
 
 </details>
 
-**fileno()**: Return the file descriptor value from file pointer
+# fileno()
+Return the file descriptor value from file pointer
 
 ```c
-char filePath[] = "test.c";
+char filePath[] = "README.md";
 FILE *fptr; //file pointer
 fptr = fopen(filePath, "r");
-printf("fileno: %ld\n", fileno(fptr));
+printf("fd: %d\n", fileno(fptr));
 ```
 
 # fread()
