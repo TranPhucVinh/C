@@ -33,6 +33,14 @@ for (int i = 0; i <= 10; i=i+2) {
         printf("%d ", i);
 } // Result: 0 2 4 6 8 10
 ```
+# Omit 1st and 3rd expressions
+```c
+int index = 0;
+for(;index < 10;){
+	printf("index: %d\n", index);// index from 0 to 9
+	index++;
+}
+```
 # Draw a rectangle with dots
 ```
 column  
