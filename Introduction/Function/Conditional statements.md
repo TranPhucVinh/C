@@ -43,7 +43,7 @@ Omit 2nd expression, the 2nd expression now is ``true``
 
 ```c
 for(int index = 0;;index++){
-        printf("index: %d\n", index);
+	printf("index: %d\n", index);// Infinite index count up by 1
 }
 ```    
 Omit 3nd expression
