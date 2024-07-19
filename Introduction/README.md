@@ -8,13 +8,6 @@ For function overloading in [CPP](https://github.com/TranPhucVinh/Cplusplus), ch
 ## C doesn't support default arguments
 
 Only CPP supports default arguments, check [CPP function for this implementation](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#default-arguments).
-# [Variable](Variable.md)
-# [Header](https://github.com/TranPhucVinh/C/tree/master/Introduction/Header)
-# [Macro](https://github.com/TranPhucVinh/C/tree/master/Introduction/Macro)
-# [Data type](https://github.com/TranPhucVinh/C/tree/master/Introduction/Data%20type)
-# [Keywords](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords)
-# [Linkage](Linkage.md)
-
 # Error handling
 
 C doesn't support exception handling, ``try catch`` and ``throw`` are not available in C with GCC.
