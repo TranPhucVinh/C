@@ -139,5 +139,3 @@ int main(){
 	return 0;
 }
 ```
-
-Notice, ``goto label`` must be put in the same scope of ``goto``.
