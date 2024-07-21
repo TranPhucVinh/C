@@ -1,7 +1,5 @@
 # OS overview
 
-A 32-bit computer is the computer with totally 2^32 registers. 32-bit computer doesn't mean all of its registers are 32-bit.
-
 An OS in general does 3 main work:
 
 * Process management
@@ -9,8 +7,6 @@ An OS in general does 3 main work:
 * Scheduling
 
 **Scheduling**: The scheduler determines which task to execute. There are few mechanisms controlling access to CPU for tasks (timeslice, preemption, idle)
-
-In computing, a **system image** is a serialized copy of the entire state of a computer system stored in some non-volatile form such as a file. This can be an OS image, disk image and process image.
 
 # RTOS
 
