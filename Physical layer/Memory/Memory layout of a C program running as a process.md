@@ -54,3 +54,6 @@ int main()
 ```
 
 That happens as the compiler might reuse the same address it had before.
+# size
+
+``size a.out``: displays the size of the text, initialized data, and uninitialized data (bss) segments of binary executable file ``a.out``
