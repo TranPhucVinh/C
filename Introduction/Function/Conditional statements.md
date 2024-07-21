@@ -27,98 +27,7 @@ if ((1 < a) && (a < 2)){
 	printf(a);// Won't be printed as failed condition
 }
 ```
-# for
-
-Omit 1st expression
-
-```c
-int index = 0;
-for(; index < 10; index++){
-	printf("index: %d\n", index);
-}
-```
-**Result**: Print out from ``0`` to ``9``.
-
-Omit 2nd expression, the 2nd expression now is ``true``
-
-```c
-for(int index = 0;;index++){
-        printf("index: %d\n", index);
-}
-```    
-Omit 3nd expression
-```c
-int index = 0;
-for(int index = 0;index<10;){
-	printf("index: %d\n", index);
-}
-```
-**Result**: Print out ``0`` forever.
-
-``for(;;)`` is equal to ``while(1)``.
-
-Increase by a number in the 3rd expression
-```c
-for (int i = 0; i <= 10; i=i+2) {
-        printf("%d ", i);
-} // Result: 0 2 4 6 8 10
-```
-## Draw a rectangle with dots
-```
-column  
-***
-* * row
-* *
-***
-```
-```c
-#include <stdio.h>
-int main() {
-	int column = 3;
-    int row = 4;
-
-	for (int i = 1; i <= row ; i++)
-	{
-		if ((i == 1) || (i == row))
-		{
-			for (int j = 1; j <= column; j++){
-				printf("*");
-			}
-			printf("\n");
-		}
-		else {
-			for (int j = 1; j <= column; j++)
-			{
-				if ((j == 1 ) || (j == column)) {
-					printf("*");
-				}
-				else printf(" ");
-			}
-			printf("\n");
-		}
-	}
-}
-```
-## Draw staircase
-n = 6
-```
-     #
-    ##
-   ###
-  ####
- #####
-######
-```
-```c
-```
-void staircase(int n) {
-    for (int i = 1; i <= n; i++){
-        for (int j = n - i; j > 0; j--) printf(" ");
-        for (int k = 1; k <= i; k++) printf("#");
-        printf("\n");
-    }
-}
-```
+# [for](for%20loop.md)
 # switch case
 
 Error ``jump to case label [-fpermissive]`` might happen if the instruction inside ``case`` is not put inside ``{}``. 
@@ -179,42 +88,6 @@ i value is 7
 i value is 8 
 i value is 9 
 ```
-# return
-
-The ``return`` statement stops the execution of a function and returns a value from that function.
-
-Return in ``void``
-
-```c
-void returnNumber(){
-	int a = 0, b=0;
-
-	if ((a==0)&&(b==0)){
-	 	return;
-	 }
-	printf("inside \n");
-}
-
-int main() {
-	returnNumber();
-	printf("hello world");
-}
-```
-
-**Result**
-
-```
-hello world
-```
-
-If ``a==0`` and ``b==0``, it return in ``void returnNumber()`` and end the function.
-
-If we ommitted ``if ((a==0)&&(b==0))``, the result will be
-
-```
-inside
-hello world
-```
 # goto
 
 ## Simple goto example
@@ -266,5 +139,3 @@ int main(){
 	return 0;
 }
 ```
-
-Notice, ``goto label`` must be put in the same scope of ``goto``.

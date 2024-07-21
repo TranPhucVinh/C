@@ -119,7 +119,42 @@ int main () {
 
 }
 ```
+# return
 
+The ``return`` statement stops the execution of a function and returns a value from that function.
+
+Return in ``void``
+
+```c
+void returnNumber(){
+	int a = 0, b=0;
+
+	if ((a==0)&&(b==0)){
+	 	return;
+	 }
+	printf("inside \n");
+}
+
+int main() {
+	returnNumber();
+	printf("hello world");
+}
+```
+
+**Result**
+
+```
+hello world
+```
+
+If ``a==0`` and ``b==0``, it return in ``void returnNumber()`` and end the function.
+
+If we ommitted ``if ((a==0)&&(b==0))``, the result will be
+
+```
+inside
+hello world
+```
 # Command line arguments with main()
 
 ```c
