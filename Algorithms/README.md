@@ -11,10 +11,6 @@ Algorithm complexity includes:
 
 The most most efficient and scalable alogorithm is the one with both lowest time and space complexity.
 
-# [Big O](Big%20O)
-
-# [Permutation](Permutation.md), [combination](Combination.md)
-# [Search](Search.md)
 # Sorting algorithms
 
 * [Selection sort](Sorting%20algorithms#selection-sort)
