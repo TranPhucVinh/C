@@ -13,26 +13,6 @@ The most most efficient and scalable alogorithm is the one with both lowest time
 
 # [Big O](Big%20O)
 
-# [Sequence](Sequence.md)
-
-Sequence or **sequence of numbers** problem include:
-* [Sum from 1 to n](#sum-from-1-to-n)
-* [Find if a given number is the sum of consecutive numbers](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-if-a-given-number-is-the-sum-of-consecutive-numbers)
-* [Find the nth digit of an infinite integer sequence](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-the-nth-digit-of-an-infinite-integer-sequence)
-## Sum from 1 to n
-
-Features: Number ``n`` entered as ``main()`` argument
-
-Handle error:
-
-* Must enter 1 parameter for n, less than 1 or more than 1 parameter is not accepted.
-* Accept value of ``n`` is integer ``2147483647``
-* Negative number is not accepted
-* Invalid number ``123abc`` is not accepted (for the parsing operation of ``atoi()``)
-
-For the max accepted number of ``2147483647``, the result must be ``unsigned long int``, not ``int``.
-
-Program: [sum_from_1_to_n.c](sum_from_1_to_n.c)
 # [Permutation](Permutation.md), [combination](Combination.md)
 # [Search](Search.md)
 # Sorting algorithms
