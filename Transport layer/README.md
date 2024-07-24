@@ -25,6 +25,8 @@ For TCP single receiver for a single TCP sender, [SIGIO](https://github.com/Tran
 </details>
 
 # Single TCP receiver for multiple TCP senders, handled by [epoll](../Physical%20layer/File%20IO/System%20call/epoll/)
+<details>
+ 
 ## Features
 1. Start a TCP sender (from [tcp_multiple_senders.c](src/tcp_multiple_senders.c)) when the TCP receiver (from [epoll_for_tcp_receiver.c](src/epoll_for_tcp_receiver.c)) is not started: TCP sender prints out ``TCP receiver hasn't been started or TCP receiver doesn't support connection``
 2. [TCP receiver](src/epoll_for_tcp_receiver.c) starts when there is no TCP sender connected/started, TCP receiver prints out **Waiting for a TCP sender to connect ...** until a TCP sender is connected.
@@ -45,6 +47,7 @@ For TCP socket, EPOLLIN event type is triggered in the TCP receiver when:
 **Program**:
 * [epoll_tcp_sgl_rx_multi_sndr.c](src/epoll_tcp_sgl_rx_multi_sndr.c)
 * [tcp_multi_sndr_epoll_sgl_rx.c](src/tcp_multi_sndr_epoll_sgl_rx.c)
+</details>
 
 # Single TCP receiver for multiple TCP senders, handled by fork()
 
