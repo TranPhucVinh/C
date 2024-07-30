@@ -177,7 +177,7 @@ int pthread_barrier_init(pthread_barrier_t *restrict barrier, const pthread_barr
 ```c
 pthread_barrier_wait(pthread_barrier_t *b):
 ```
-This function is called within each thread, just before it is ready to return. Once a thread’s function hits this, it will “wait” until all the other functions are also finished. As main() is also a thread, i.e the "main" thread of the process. Putting ``pthread_barrier_wait()`` inside main will cause main thread to wait for other threads of the process to finish to lift the thread barrier.
+This function is called within each thread, just before it is ready to return. Once a thread’s function hits this, it will “wait” until all the other functions are also finished. As **main() is also a thread**, i.e **the "main" thread of the process**. Putting ``pthread_barrier_wait()`` inside main will cause main thread to wait for other threads of the process to finish to lift the thread barrier.
 ## pthread_barrier_destroy()
 ```c
 int pthread_barrier_destroy(pthread_barrier_t *barrier);
