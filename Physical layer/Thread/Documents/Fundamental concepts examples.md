@@ -174,6 +174,7 @@ void *func_thread_1(void *ptr){
 # Enter values for struct member using thread 
 
 <details>
+	
 ```cpp
 #include <stdio.h>
 #include <pthread.h>
