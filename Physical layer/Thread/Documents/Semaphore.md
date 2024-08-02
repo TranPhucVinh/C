@@ -27,8 +27,6 @@ Types of semaphore:
 1. **Binary semaphore**: Semaphore with value can range only ``0`` and ``1``. In some systems, binary semaphores are known as mutex locks, as they are locks that provide mutual exclusions.
 2. **Counting semaphore**: Semaphore with value can range over an unrestricted domain. Counting semaphores that are used to manage resources are created so that their initial count value equals the number of resources that are available. To obtain control of a resource, a task must first obtain a semaphore—decrementing the semaphore’s count value. When the count value reaches zero, there are no free resources. When a task finishes with the resource, it ‘gives’ the semaphore back incrementing the semaphore’s count value. 
 
-A [mutex](../Mutex.md) can be **released by the same thread which acquired it** while **semaphore** (especially **binary semaphore** when compared to mutex) values can be changed by other thread also.
-
 # POSIX API
 
 * [sem_open()](): create a named semaphore
@@ -38,11 +36,11 @@ A [mutex](../Mutex.md) can be **released by the same thread which acquired it** 
 
 # One thread function handler to increase a shared value issue, solved by binary semaphore
 
-Solve the [one thread function handler to increase a share value issue](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Race%20condition.md#one-thread-function-handler-to-increase-a-share-value): [semaphore_multiple_threads_increase_shared_value.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/semaphore_multiple_threads_increase_shared_value.c)
+Solve the [one thread function handler to increase a share value issue](Race%20condition.md#one-thread-function-handler-to-increase-a-share-value): [semaphore_multiple_threads_increase_shared_value.c](../src/semaphore_multiple_threads_increase_shared_value.c)
 
 # Accessing a shared variable between 2 thread function handlers issue, solved by binary semaphore
 
-Program: [semaphore_multiple_threads_access_shared_value.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/semaphore_multiple_threads_access_shared_value.c)
+Program: [semaphore_multiple_threads_access_shared_value.c](../src/semaphore_multiple_threads_access_shared_value.c)
 
 **Result**
 
@@ -52,7 +50,7 @@ Program: [semaphore_multiple_threads_access_shared_value.c](https://github.com/T
 
 That problem happens as in some case thread 2 runs faster than thread 1.
 # Different between binary semaphore and mutex
-* A thread can't unlock a mutex for another thread. In mutex, the only way for a thread to unlock a mutex for another thread is to use [condition variable](). Take this example: [suspend_and_resume_threads_by_mutex_and_cond.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/suspend_and_resume_threads_by_mutex_and_cond.c). While **a thread can post binary semaphore to other thread**, take this example: [suspend_and_resume_threads_by_semaphore.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/suspend_and_resume_threads_by_semaphore.c)
+* A thread can't unlock a mutex for another thread. In mutex, the only way for a thread to unlock a mutex for another thread is to use [condition variable](). Take this example: [suspend_and_resume_threads_by_mutex_and_cond.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/suspend_and_resume_threads_by_mutex_and_cond.c). A [mutex](Mutex.md) can be **released by the same thread which acquired it** while **semaphore** (especially **binary semaphore** when compared to mutex) values can be changed by other thread also, take this example: [suspend_and_resume_threads_by_semaphore.c](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/src/suspend_and_resume_threads_by_semaphore.c)
 * Binary semaphore is used for multi-process, e.g in case of shared memory, while mutex can only be used inside a single process.
 # Counting semaphore
 
