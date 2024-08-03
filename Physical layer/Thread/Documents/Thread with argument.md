@@ -111,6 +111,8 @@ printf("value: %d\n", *thread_1_return);//123
 
 Using pointer:
 
+<details>
+	
 ```c
 int main()
 {  
@@ -135,8 +137,11 @@ void *func_thread_1(void *ptr){
 	return number;
 }
 ```
+</details>
 
 Using pointer to pointer:
+
+<details>
 
 ```c
 #include <stdio.h>
@@ -170,6 +175,7 @@ void *func_thread_1(void *ptr){
 	return number;
 }
 ```
+</details>
 
 # Enter values for struct member using thread 
 
