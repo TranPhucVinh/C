@@ -73,7 +73,7 @@ Hello, World !
 ```cpp
 int pthread_detach(pthread_t thread);
 ```
-Using **pthread_detach()** to detach the thread from the main thread. This is useful to avoid the thread which includes the infinitely loop blocking the program:
+**pthread_detach()** detaches the thread it specifies from the main thread. This is useful to avoid the thread which includes the infinitely loop blocking the program:
 In [the pthread_join() program above which blocks the process as its thread includes while(1)](#pthread_join-will-block-the-process-if-the-thread-it-specifies-included-while1), change pthread_join() to pthread_detach():
 ```cpp
 pthread_t thread_id;
