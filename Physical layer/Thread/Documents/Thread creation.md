@@ -132,3 +132,8 @@ Hello, World !
 ...
 ```
 To **view all threads created by a process**, Go to ``/proc/<pid>``, e.g ``/proc/1614500`` in this case. ``ls /proc/1614500/task`` returns ``1614500`` and ``1614501``
+# Concurrency and parallelism
+
+If 2 threads are doing work in parallel, it means they're doing their works at exactly the same time. **Parallelism** typically requires some kind of hardware support like multiple core or coprocessor.
+
+If a machine has 1 core, it can only runs 1 thread at a time. In order to run multithread as **concurrent**, system has to run one thread for a short amount of time then switch to the other and run that one for a short amount time, then keeps switching back and forth. The switching mechanism will be quick enough that the users don't notice the switching.
