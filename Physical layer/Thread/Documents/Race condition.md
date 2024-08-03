@@ -1,3 +1,5 @@
+A race condition is a situation where the result produced by two processes (or threads) operating on shared resources depends in an unexpected way on the relative order in which the processes gain access to the CPU(s). When 2 threads try to access a resource, data race might happen if the racing between the 2 tasks to that the resource happens in a long time, like being inside an iteration loop for too long (with more than 10000 times).
+
 # One thread function handler to increase a shared value
 Use one function handler in multiple threads to increase a shared value: [race_condition_multi_threads_increase_shared_value.c](../src/race_condition_multi_threads_increase_shared_value.c)
 
