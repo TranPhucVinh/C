@@ -20,15 +20,14 @@ The thread specified by pthread_join() which includes ``while(1)`` like this wil
 #include <unistd.h>
 #include <pthread.h>
 
-void *display_string(void *ptr){
+void *display_string(void *ptr) {
 	while (1){
         printf("%s\n", (char*)ptr);
         sleep(1);
     }
 }
 
-int main()
-{  
+int main() {  
 	pthread_t thread_id;
 	pthread_t str_thread;
     char str[] = "Hello, World !";
@@ -57,7 +56,7 @@ pthread_create(&str_thread, NULL, display_string, str);
 // pthread_join(str_thread, NULL);
 printf("str_thread finish executing\n");//This line of code won't be reached as pthread_join() has blocked the program
 printf("Thread ID %lu\n", thread_id);//This line of code won't be reached as pthread_join() has blocked the program
-while(1){//This while(1) loop won't be reached as pthread_join() has blocked the program
+while(1) {//This while(1) loop won't be reached as pthread_join() has blocked the program
 	printf("Thread display_string() is running now\n");
 	sleep(1);
 }
@@ -132,47 +131,3 @@ void *func_thread(void *ptr){
 	return number;//This return value setup won't be reached as pthread_exit() is called above
 }
 ```
-# pthread_self() and thread ID
-
-```c
-pthread_t pthread_self(void);
-```
-
-The ``pthread_self()`` function **returns the ID of the calling thread**. This is the same value that is returned in ``*thread`` in the **pthread_create()** call that created this thread.
-
-That ID is the special ID used by the POSIX Thread API, which is not equal to the thread ID returned by **syscall(SYS_gettid)**.
-
-**syscall(SYS_gettid)** returns the thread ID managed by the system, not by the POSIX Thread API. In a single-threaded process, **syscall(SYS_gettid)** value is equal to the process ID returned by **getpid()** as **main()** is a thread, i.e the main thread of the process.  In a multithreaded process, the **syscall(SYS_gettid)** value in each thread are unique.
-```c
-#include <sys/syscall.h> 
-
-pthread_barrier_t barrier;
-
-void *thread_func(void *ptr){
-    printf("thread ID: %ld\n", syscall(SYS_gettid));
-    while(1){
-        printf("Hello, World !\n");
-        sleep(1);
-    }
-}
-
-int main()
-{  
-    printf("PID: %d\n", getpid());
-    printf("Main thread ID: %ld\n", syscall(SYS_gettid));// Equal to getpid()
-	pthread_t thread_id;
-
-    pthread_create(&thread_id, NULL, thread_func, NULL);
-    pthread_join(thread_id, NULL);
-}
-```
-**Result**
-```
-PID: 1614500
-Main thread ID: 1614500
-thread ID: 1614501
-Hello, World !
-Hello, World !
-...
-```
-To view all threads created by a process. Go to ``/proc/<pid>``, e.g ``/proc/1614500`` in this case. ``ls /proc/1614500/task`` returns ``1614500`` and ``1614501``
