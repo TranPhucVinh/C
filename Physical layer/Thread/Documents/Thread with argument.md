@@ -1,23 +1,27 @@
 # Get the parameter of the thread by passing a variable
 
-## Get the parameter of main thread
-
+## Get the parameter sent main thread
+Get the parameter sent main thread then changes that parameter's value:
 ```c
-void *func_thread_1(void *ptr);
+void *func_thread(void *ptr);
 
-int main() {  
-    pthread_t thread_1;
-	int number = 56;
-    pthread_create(&thread_1, NULL, func_thread_1, &number);
-    pthread_join(thread_1, NULL);
+int main() {
+    pthread_t thread_create;    
+    int number = 1234;
+    printf("Before %d\n", number);
+	pthread_create(&thread_create, NULL, func_thread, &number);
+    pthread_join(thread_create, NULL);
+    printf("After %d\n", number);
+	sleep(1);
 }
 
-void *func_thread_1(void *ptr){
-	printf("Parameter is %d\n", *((int*)ptr));// 56
+void *func_thread(void *ptr){
+    printf("Parameter is %d\n", *((int*)ptr));// 1234
+   *((int*)ptr) = 5678;
 }
 ```
 
-## Get the parameter from other thread
+## Get the parameter sent from other thread
 ```c
 #include <stdio.h>
 #include <pthread.h>
