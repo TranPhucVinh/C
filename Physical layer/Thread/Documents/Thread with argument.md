@@ -1,6 +1,6 @@
 # Get the parameter of the thread by passing a variable
 
-**Wrong operation that gives right result**
+## Get the parameter of main thread
 
 ```c
 void *func_thread_1(void *ptr);
@@ -13,67 +13,37 @@ int main() {
 }
 
 void *func_thread_1(void *ptr){
-	printf("Parameter is %d\n", *((int*)ptr));//56
+	printf("Parameter is %d\n", *((int*)ptr));// 56
 }
 ```
 
-**Result**
-
-```
-Parameter is 56
-```
-
-Parameter ``number`` must have garbage value as it is the local variable inside ``main()`` but this example actually return its correct value. That happens as ``number`` can still keep because both ``func_thread_1()`` and ``main()`` will end their execution at the same time.
-
-When using 2 tasks with local variable, the garbage value will be received
-
+## Get the parameter from other thread
 ```c
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
+
 void *func_thread_1(void *ptr);
 void *func_thread_2(void *ptr);
-pthread_t thread_1_create;
-pthread_t thread_2_create;
-int main()
-{
+
+int main() {
+    pthread_t thread_1_create;
 	pthread_create(&thread_1_create, NULL, func_thread_1, NULL);
-	sleep(5);
+    pthread_join(thread_1_create, NULL);
+	sleep(1);
 }
 
 void *func_thread_1(void *ptr){
-	int number = 56;
+    pthread_t thread_2_create;
+	int number = 1234;
 	pthread_create(&thread_2_create, NULL, func_thread_2, &number);
+    pthread_join(thread_2_create, NULL);
 }
 
 void *func_thread_2(void *ptr){
-	sleep(1);
 	printf("Parameter is %d\n", *((int*)ptr));
 }
 ```
-**Result**
-```
-Parameter is 32719 (garbage value)
-```
-
-**Problem solve**: 
-
-Solution 1: Use ``static``
-
-```c
-void *func_thread_1(void *ptr) {
-	static int number = 56;
-	pthread_create(&thread_2_create, NULL, func_thread_2, &number);
-}
-```
-
-Solution 2: Use ``malloc()``
-
-```c
-void *func_thread_1(void *ptr) {
-	int *number = (int*)malloc(sizeof(int));
-	*number = 123;
-	pthread_create(&thread_2_create, NULL, func_thread_2, number);
-}
-```
-
 # Get return from threads and store to a variable
 
 ## Single thread
