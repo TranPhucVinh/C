@@ -8,10 +8,10 @@ void *func_thread(void *ptr);
 int main() {
     pthread_t thread_create;    
     int number = 1234;
-    printf("Before %d\n", number);
+    printf("Before %d\n", number);// 1234
 	pthread_create(&thread_create, NULL, func_thread, &number);
     pthread_join(thread_create, NULL);
-    printf("After %d\n", number);
+    printf("After %d\n", number);// 5678
 	sleep(1);
 }
 
