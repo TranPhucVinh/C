@@ -37,21 +37,20 @@ int main()
 ```c
 int a = 10, b = 20;
 int add_function(int);
-int main() 
-{ 
+int main() { 
    int a = 5;
    a = add_function(a);    
-   printf("a: %d", a);//15
+   printf("a: %d", a);// 25
    return 0; 
 } 
 
-int add_function(int b){
+int add_function(int a){
    /*
-      a=10 as using global a
-      global variable b is not use, as using local variable b
+      b = 20 as using global b
+      global variable a is not use, as using local variable a
    */   
-   b = b + a;
-   return b;
+   a = b + a;
+   return a;
 }
 ```
 
