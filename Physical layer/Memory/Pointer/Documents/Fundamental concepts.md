@@ -14,36 +14,6 @@ int* intPointer;
 char *p0; //pointer to character
 double *p1; // pointer to double
 ```
-
-## Address of function
-
-```c
-void displayString(){
-	printf("Hello, World !\n");
-}
-
-int main(int argc, char *argv[]) {
-	printf("%d\n", displayString);//Has same value with  &displayString
-	printf("%d\n", &displayString);//Has same value with displayString
-}	
-```
-
-# Size of the pointer variable
-
-To get size of the pointer variable, use ``sizeof()``. Size of the pointer variable doesn't depend on its type as it stores the address of other variable and address of a variable has ``int`` type. So size of a pointer variable is ``int``.
-
-In 64-bit computer
-
-```c
-int a;
-sizeof(&a); //8
-```
-
-```c
-char *test = "1";
-printf("%d", sizeof(test)); //8
-```
-
 # Get value of pointer
 
 ```c
@@ -109,4 +79,32 @@ To work with the program above with an address like ``6295624``, the address ``6
 ```c
 int dummy_variable;
 printf("%d", &pdummy_variable);//print out the address of dummy_variable first to find the allowable address
+```
+# Size of the pointer variable
+
+To get size of the pointer variable, use ``sizeof()``. Size of the pointer variable doesn't depend on its type as it stores the address of other variable and address of a variable has ``int`` type. So size of a pointer variable is ``int``.
+
+In 64-bit computer
+
+```c
+int a;
+sizeof(&a); //8
+```
+
+```c
+char *test = "1";
+printf("%d", sizeof(test)); //8
+```
+
+# Address of function
+
+```c
+void displayString(){
+	printf("Hello, World !\n");
+}
+
+int main() {
+	printf("%p\n", displayString);//Has same value with  &displayString
+	printf("%p\n", &displayString);//Has same value with displayString
+}	
 ```
