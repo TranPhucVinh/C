@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 int a = 20;
-int main(int argc, char *argv[])
+int main()
 {
    {
       int a = 10;
