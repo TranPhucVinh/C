@@ -44,7 +44,7 @@ int main() {
    return 0; 
 } 
 
-int add_function(int a){
+int add_function(int a) {
    /*
       b = 20 as using global b
       global variable a is not use, as using local variable a
@@ -73,9 +73,17 @@ Then the same random number will be generated every time we run the program but 
 
 ```c
 while (1){
-    printf("Random number %d\n", rand());
+   printf("Random number %d\n", rand());
 	sleep(1);
 }
+```
+
+Multiple random numbers can be generated at the same time. This example will generate 3 random number less than 100:
+
+```c
+printf("Random number 1 %d\n", rand()%100);
+printf("Random number 2 %d\n", rand()%100);
+printf("Random number 3 %d\n", rand()%100);
 ```
 
 To generate a new number every time:
@@ -86,9 +94,9 @@ To generate a new number every time:
 #include <stdlib.h>
 
 int main() {
-    srand(time(NULL));
-    printf("Random number %d\n", rand());
-    return(0);
+   srand(time(NULL));
+   printf("Random number %d\n", rand());
+   return(0);
 }
 ```
 
@@ -102,14 +110,12 @@ Generate a float random number from range:
 #define LOWER 	35
 #define UPPER	40
 
-void generate_random_number(float lower, float upper)
-{
+void generate_random_number(float lower, float upper) {
 	float number = (float)rand()/(float)(RAND_MAX) * (upper- lower) + lower;
 	printf("%f", number);
 }
   
-int main()
-{ 
+int main() { 
     srand(time(0));
   
     generate_random_number(LOWER, UPPER);
