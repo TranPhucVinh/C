@@ -1,7 +1,7 @@
-# Get the parameter of the thread by passing a variable
+# Get the parameter of the thread
 
-## Get the parameter sent main thread
-Get the parameter sent main thread then changes that parameter's value:
+## Get the parameter sent from main thread
+Get the parameter sent from main thread then changes that parameter's value:
 ```c
 void *func_thread(void *ptr);
 
