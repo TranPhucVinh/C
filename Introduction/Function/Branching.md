@@ -27,7 +27,30 @@ if ((1 < a) && (a < 2)){
 	printf(a);// Won't be printed as failed condition
 }
 ```
-# [for](for%20loop.md)
+# Set variable to 0 in a condition will return false
+
+Condition when setting variable can be false (``0``) when the variable is set to ``0``:
+
+```c
+int a = 20, b = 0;
+
+int main(){
+    if (a=b) printf("true");
+    else printf("false");
+}
+```
+**Result**: ``false``
+
+# Condition with !=0 number
+
+```c
+int main(){
+	if(-12) printf("%s", "hello");
+}
+```
+**Result**: ``hello``
+
+Negative number results in true condition.
 # switch case
 
 Error ``jump to case label [-fpermissive]`` might happen if the instruction inside ``case`` is not put inside ``{}``. 
@@ -50,7 +73,7 @@ switch (number){
 ```
 
 String char can't be passed into ``switch case``.
-
+# [for](for%20loop.md)
 # break
 **break** will break the execution of its current loop
 ```c
