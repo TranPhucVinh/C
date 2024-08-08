@@ -15,30 +15,6 @@ while (i < a){
 
 Take [Find the nth digit of an infinite integer sequence](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-the-nth-digit-of-an-infinite-integer-sequence) as an example when the condition is changed during execution.
 
-# Set variable to 0 in a condition will return false
-
-Condition when setting variable can be false (``0``) when the variable is set to ``0``:
-
-```c
-int a = 20, b = 0;
-
-int main(){
-    if (a=b) printf("true");
-    else printf("false");
-}
-```
-**Result**: ``false``
-
-# Condition with !=0 number
-
-```c
-int main(){
-	if(-12) printf("%s", "hello");
-}
-```
-**Result**: ``hello``
-
-Negative number results in true condition.
 # Short-circuiting
 Short-circuiting is one of the optimization steps of the compiler, in this step unnecessary calculation is avoided during the evaluation of an expression. Expression is evaluated from left to right. It works under && and || operator, when the value of the expression can be calculated certainly by only evaluating parts of the expression.
 ```cpp
