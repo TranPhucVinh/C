@@ -61,7 +61,8 @@ int binVal1 = 0b111;
 int binResult = binVal0 & binVal1;
 printf("%d", binResult); //6 (0b110)
 ```
-
+# Bitwise NOT
+We implement NOT opertor with [complement operator ~](Unary%20operators.md#complement-operator-).
 # XOR operator (^)
 
 ```
