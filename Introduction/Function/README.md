@@ -172,10 +172,10 @@ It is possible to pass some values from the command line to your C programs when
 #include <stdio.h>
 
 int main(int argc, char *argv[])  {
-    printf("argv[0]: %s \n", argv[0]);
-    printf("argv[1]: %s \n", argv[1]);
-    printf("argv[1][0]: %c \n", argv[1][0]);
-    printf("Total argument: %d", argc);
+   printf("argv[0]: %s \n", argv[0]);
+   printf("argv[1]: %s \n", argv[1]);
+   printf("argv[1][0]: %c \n", argv[1][0]);
+   printf("Total argument: %d", argc);
 }
 ```
 **Input**: ``./a.out Hello``
@@ -204,18 +204,8 @@ Total argument: 2
 **Example**: [Sum from 1 to n](https://github.com/TranPhucVinh/C/tree/master/Introduction/Examples#sum-from-1-to-n)
 # [Function pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Function%20pointer.md)
 
-# [Conditional statements](Conditional%20statements.md)
-* if else (short hand)
-* for
-* swith case
-* go to
-* break, continue, return
 # [Conditional statements expression](Conditional%20statements%20expression.md)
-* Condition changed during execution
-* Set variable to 0 in a condition will return false
-* Condition with !=0 number
-* Short circuiting
-* assert
+
 # [Other concepts](Other%20concepts.md)
 * [Callback function](Callback%20function.md)
 * [Variadic function and variable length argument](Variadic%20function.md)
