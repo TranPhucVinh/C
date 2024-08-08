@@ -47,6 +47,7 @@ Binary operators are operators that take two operands. These operators are used 
 * [Mask or bitmask]()
 * [OR operator |]()
 * [AND operator &]()
+* **NOT operator with complement operator ~**
 * [XOR operator ^]()
 * [Bit shifting](): << Left shift and >> Right shift
 
