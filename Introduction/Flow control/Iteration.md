@@ -95,7 +95,8 @@ goto LABEL_0;
 ```c
 #include <stdio.h>
 
-int main(){
+int main(){* Short circuiting
+* assert
 	PRINT_LABEL:
 		puts("Enter print label");
 	
