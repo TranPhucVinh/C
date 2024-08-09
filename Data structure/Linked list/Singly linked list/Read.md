@@ -1,6 +1,6 @@
 # Read the whole linked list
 
-Check [create_and_read_linked_list.c](create_and_read_linked_list.c) source code, with function ``display_linked_list()`` to display the whole linked list. Note that ``first_node`` as parameter of ``display_linked_list()`` must be passed by reference as linked list performs traversing based on the address, which started from first node.
+Check [linked_list_operations.c](linked_list_operations.c) source code, with function ``display_linked_list()`` to display the whole linked list. Note that ``first_node`` as parameter of ``display_linked_list()`` must be passed by reference as linked list performs traversing based on the address, which started from first node.
 
 # Read a node at specific index
 
