@@ -36,7 +36,7 @@ int array[6] = {
     [5] = 5
 };
 ```
-## Assign array to array by memcpy()
+## Copy an array to another one by memcpy()
 ```c
 int array[3];
 int _array[] = {1, 2, 3};
