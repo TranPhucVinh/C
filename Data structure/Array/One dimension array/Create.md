@@ -1,4 +1,5 @@
-Create array **on stack memory** and manually enter the value for each array member: [create_array.c](create_array.c)
+# Create array on stack memory
+## Create array on stack memory and manually enter the value for each array member
 
 ```c
 #include <stdio.h>
@@ -22,7 +23,7 @@ void main() {
 }
 ```
 
-An array can be created like this:
+## Setup array value at specific index during initialization
 
 ```c
 int array[6] = {
@@ -35,7 +36,13 @@ int array[6] = {
     [5] = 5
 };
 ```
-
+## Assign array to array by memcpy()
+```c
+int array[3];
+int _array[] = {1, 2, 3};
+memcpy(array, _array, sizeof(_array));
+```
+# Create array on heap memory
 Use [Dynamic memory allocation](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Dynamic%20memory%20allocation/API.md) with **stdlib** to create an array **on heap memory**.
 
 # Must not dynamically assign array size
