@@ -1,6 +1,6 @@
 # if else
 
-Short hand
+## Short hand
 
 ```c
 variable = (condition) ? expressionTrue : expressionFalse;
@@ -11,16 +11,23 @@ Example:
 int number = 20;
 number = 20 ? printf("true") : printf("false");
 ```
-Must not use double condition in one check:
+## Double condition
 ```c
-// MUST NOT DO THAT
 int a = 3;
-if ((1 < a < 2)){// This condition will always return true, and give no compilation error
-	printf(a);// Won't be printed as failed condition
+if ((1 < a < 2)){
+	printf(a);// Result: 3 is printed out
 }
-
 ```
-Use that instead:
+**Analyse**: As we expected with Math logical, (1 < a < 3) is to whether a is inside the (1, 3). However, C interprets it diffently from the expected Math logic. 
+
+In C, the expression (1 < a < 2) is interpreted differently than you might expect. It is evaluated in two steps:
+
+* ``1 < a`` is evaluated first, which results in either 1 (true) or 0 (false).
+* The result from step 1 is then compared to 2 in the second comparison.
+
+For a = 3, the expression ``1 < a`` evaluates to ``1`` (``true``), and then ``1 < 2`` is ``true``, so the whole expression is true. Therefore, printf("%d\n", a); will be executed, printing 3.
+
+To implement that logic, use that AND conditions instead:
 ```c
 int a = 3;
 if ((1 < a) && (a < 2)){
