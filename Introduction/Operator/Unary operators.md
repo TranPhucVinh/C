@@ -9,7 +9,7 @@ The **subtraction operator** and **the minus operator** refer to the same symbol
 
 # NOT operator !
 
-Change the whole value from ``0`` to ``1`` and ``diffrent from 0`` to ``0``:
+Change the value which is equal to ``0`` to ``1`` and ``different from 0`` to ``0``:
 
 ```c
 int a = 100;
