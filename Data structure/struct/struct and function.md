@@ -19,7 +19,59 @@ void structFunction(struct StructObject node){
 	printf("id is %d and string value is %s \n", node.id, node.stringValue);
 }
 ```
+# Function returns struct
 
+```c
+#include <stdio.h>
+#include <string.h>
+
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+struct databaseNode displayString();
+
+main(){
+    struct databaseNode returnNode = displayString();
+    printf("returnNode.id: %d, returnNode.stringValue: %s", returnNode.id, returnNode.stringValue);
+}
+
+struct databaseNode displayString(){
+    struct databaseNode node;
+    node.id = 1;
+    strcpy(node.stringValue, "Hello, World !");
+
+    return node;
+}
+```
+
+``struct`` a type with ``typedef``:
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+struct databaseNode {
+	int id;
+	char stringValue[50];
+};
+
+typedef struct databaseNode Database;
+
+Database displayString();
+
+int main() {
+	displayString();
+}
+
+Database displayString(){
+    Database node;
+    node.id = 1;
+    strcpy(node.stringValue, "Hello, World !");
+    printf("node.id %d, node.stringValue: %s\n", node.id, node.stringValue);
+}
+```
 # Function as member of a struct
 
 Functions as struct members must be defined by using function pointer.
