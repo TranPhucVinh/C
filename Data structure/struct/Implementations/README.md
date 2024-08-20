@@ -1,7 +1,7 @@
 # Nested struct
-
+A nested struct is a structure that contains another structure as a member:
 ```c
-struct linkedDatabaseNode{
+struct linkedDatabaseNode {
     int id;
     char stringValue[50];
 };
