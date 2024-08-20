@@ -1,26 +1,3 @@
-# Enter value for struct member using scanf()
-
-```cpp
-#include <stdio.h>
-#include <string.h>
-
-struct StructObject {
-	int id;
-	char stringValue[50];
-} struct_obj;
-
-int main(){
-	printf("Enter ID: ");
-	scanf("%d", &struct_obj.id);
-	getc(stdin); //To handle with issue scanf before fgets
-
-	printf("Enter string value: ");
-	fgets(struct_obj.stringValue, 50, stdin); //fgets allow to enter value with space
-
-	printf("StructObject0 has id %d with string value %s \n", struct_obj.id, struct_obj.stringValue);
-}		
-```
-
 # Nested struct
 
 ```c
