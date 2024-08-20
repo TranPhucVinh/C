@@ -1,6 +1,6 @@
 # [Fundamental concepts](Fundamental%20concepts.md)
 
-* [Define a struct](Fundamental%20concepts.md#define-a-struct) then creates a single struct object and a struct array, [address of a struct](Fundamental%20concepts.md#address-of-a-struct), [flexible array member](Fundamental%20concepts.md#flexible-array-member)
+* [Define a struct](Fundamental%20concepts.md#define-a-struct) then creates a single struct object and a struct array, [enter value for struct member using scanf()](), [address of a struct](Fundamental%20concepts.md#address-of-a-struct), [flexible array member](Fundamental%20concepts.md#flexible-array-member)
 * [Struct and function](struct%20and%20function.md): [Function returns struct](struct%20and%20function.md#function-returns-struct), [struct as a function argument](struct%20and%20function.md#struct-as-a-function-argument), [Function as member of a struct](struct%20and%20function.md#function-as-member-of-a-struct): [Function without arguments](struct%20and%20function.md#function-without-arguments) and [Function with arguments](struct%20and%20function.md#function-with-arguments)
 * **Memory problem with struct**: Check [overflow memset() in Memory](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/API/memset.md#overflow-memset) for the overflow issue with struct
 * [Size of struct](Size%20of%20struct.md)
@@ -10,7 +10,6 @@
 
 # [Implementations](Implementations)
 
-* [Enter value for struct member using scanf()]()
 * [Nested struct]()
 * [Form an uint16_t number from 2 uint8_t numbers with struct]()
 * [Use struct for string parsing](Implementations/Use%20struct%20for%20string%20parsing.md)
