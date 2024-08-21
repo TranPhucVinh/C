@@ -50,9 +50,29 @@ printf("Member databaseNode0 has id %d with string value %s \n", databaseNode0.i
 ```
 Member databaseNode0 has id 2 with string value Name 
 ```
+# Enter value for struct member using scanf()
 
-## Address of a struct
+```cpp
+#include <stdio.h>
+#include <string.h>
 
+struct StructObject {
+	int id;
+	char stringValue[50];
+} struct_obj;
+
+int main(){
+	printf("Enter ID: ");
+	scanf("%d", &struct_obj.id);
+	getc(stdin); //To handle with issue scanf before fgets
+
+	printf("Enter string value: ");
+	fgets(struct_obj.stringValue, 50, stdin); //fgets allow to enter value with space
+
+	printf("StructObject0 has id %d with string value %s \n", struct_obj.id, struct_obj.stringValue);
+}		
+```
+# Address of a struct
 ```c
 struct student{
 		int id;
@@ -71,7 +91,7 @@ int main() {
 ```
 
 Address of ``student_object`` and ``student_object.id`` are the same.
-## Flexible array member
+# Flexible array member
 struct allows declaring an array as its member without the initial size, which is called **flexible array member**. struct object with that flexible array member then must be a pointer as it needs to initialize the size. 
 
 **Flexible array member** of a struct must be the last member of that struct
@@ -98,58 +118,5 @@ int main(){
 
     // This is wrong as size of struct object is not declared for str_value
     // struct struct_data_type value_0 = {0, "Hello, World !"};//Wrong, compilation error
-}
-```
-# struct as data type of function
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-struct databaseNode {
-	int id;
-	char stringValue[50];
-};
-
-struct databaseNode displayString();
-
-main(){
-    struct databaseNode returnNode = displayString();
-    printf("returnNode.id: %d, returnNode.stringValue: %s", returnNode.id, returnNode.stringValue);
-}
-
-struct databaseNode displayString(){
-    struct databaseNode node;
-    node.id = 1;
-    strcpy(node.stringValue, "Hello, World !");
-
-    return node;
-}
-```
-
-``struct`` a type with ``typedef``:
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-struct databaseNode {
-	int id;
-	char stringValue[50];
-};
-
-typedef struct databaseNode Database;
-
-Database displayString();
-
-int main() {
-	displayString();
-}
-
-Database displayString(){
-    Database node;
-    node.id = 1;
-    strcpy(node.stringValue, "Hello, World !");
-    printf("node.id %d, node.stringValue: %s\n", node.id, node.stringValue);
 }
 ```
