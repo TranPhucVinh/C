@@ -120,3 +120,32 @@ int main(){
     // struct struct_data_type value_0 = {0, "Hello, World !"};//Wrong, compilation error
 }
 ```
+# Nested struct
+A nested struct is a structure that contains another structure as a member:
+```c
+struct linkedDatabaseNode {
+    int id;
+    char stringValue[50];
+};
+
+struct databaseNode  
+{
+   int id;
+   struct linkedDatabaseNode nextNode;
+};
+
+int main()
+{
+    struct databaseNode databaseNode0 = {1, 2, "Displayed string"};
+    printf("Member databaseNode0 has id %d\n", databaseNode0.id); 
+
+    printf("ID of databaseNode0 from linkedDatabaseNode is %d, and the displayed string: %s", databaseNode0.nextNode.id, databaseNode0.nextNode.stringValue);
+}
+```
+
+**Output**
+
+```
+Member databaseNode0 has id 1
+ID of databaseNode0 from linkedDatabaseNode is 2, and the displayed string: Displayed string
+```

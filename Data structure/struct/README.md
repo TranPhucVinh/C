@@ -8,8 +8,8 @@
 * [Bit field](Bit%20field.md)
 * [Self referential struct](Self%20referential%20struct.md)
 
-# [Implementations](Implementations)
+# [struct for data structure]()
 
-* [Nested struct]()
 * [Form an uint16_t number from 2 uint8_t numbers with struct]()
-* [Use struct for string parsing](Implementations/Use%20struct%20for%20string%20parsing.md)
+* [Split a string into specific sequences]()
+* [Parsing a hex char array]()
