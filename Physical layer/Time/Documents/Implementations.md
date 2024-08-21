@@ -32,41 +32,11 @@ int ticks = clock();
 printf("total second: %f", (float) ticks/CLOCKS_PER_SEC);//total second: 4.766941
 ```
 
-# Get current time of day by gettimeofday() in Unix-alike system
+# Get current time of day by gettimeofday() in Unix-alike system and display in ISO 8601 timestamp
 
-```c
-#include <stdio.h>
-#include <time.h>
-#include <sys/time.h>
+Program: [get_current_time_iso_8061.c](get_current_time_iso_8061.c)
 
-#define TIMEZONE NULL
-
-void get_time_of_day(struct timezone *tz);
-
-int main() {
-    get_time_of_day(NULL);
-    return 0;
-}
-
-void get_time_of_day(struct timezone *tz){
-    struct timeval tv;
-    struct tm *_tm;
-    time_t _localtime;
-    char buffer[64];
-    
-    gettimeofday(&tv, NULL);
-    _localtime = tv.tv_sec;
-
-    _tm = localtime(&_localtime);
-    printf("%s", asctime(_tm));
-    strftime (buffer, sizeof buffer, "Today is %A, %B %d.\n", _tm);
-    printf("%s", buffer);
-    strftime (buffer, sizeof buffer, "The time is %I:%M %p.\n", _tm);
-    printf("%s",buffer);
-}
-```
-
-**Convert Epoch time to human readable time**
+# Convert Epoch time to human readable time
 
 ```c
 time_t currentTime;
