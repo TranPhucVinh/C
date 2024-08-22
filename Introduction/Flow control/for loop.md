@@ -1,3 +1,10 @@
+**Increase the index by 2**:
+```c
+for (int i = 0; i <= 10; i=i+2) {
+        printf("%d ", i);
+} // Result: 0 2 4 6 8 10
+```
+
 # Omit 1st expression
 
 ```c
@@ -27,12 +34,6 @@ for(int index = 0;index<10;){
 
 ``for(;;)`` is equal to ``while(1)``.
 
-Increase by a number in the 3rd expression
-```c
-for (int i = 0; i <= 10; i=i+2) {
-        printf("%d ", i);
-} // Result: 0 2 4 6 8 10
-```
 # Omit 1st and 3rd expressions
 ```c
 int index = 0;
