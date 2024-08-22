@@ -9,6 +9,16 @@ uint8_t dcd_header[1], id[2];
 uint8_t env_humid[2], env_temp[2], soil_humid[2], soil_temp[2];
 uint8_t checksum[1];
 
+struct protocol_msg {
+    uint8_t dcd_header[1];
+    uint8_t id[2];
+    uint8_t env_humid[2];
+    uint8_t env_temp[2];
+    uint8_t soil_humid[2];
+    uint8_t soil_temp[2];
+    uint8_t checksum[1];
+};
+
 void struct_data_parsing(uint8_t *data);
 
 int main(){
@@ -26,25 +36,16 @@ int main(){
 }
 
 void struct_data_parsing(uint8_t *data){
-    struct data {
-        uint8_t dcd_header[1];
-        uint8_t id[2];
-        uint8_t env_humid[2];
-        uint8_t env_temp[2];
-        uint8_t soil_humid[2];
-        uint8_t soil_temp[2];
-        uint8_t checksum[1];
-    } data_frame;
+    struct protocol_msg msg;
+    memcpy(&msg, data, sizeof(struct protocol_msg));//As uint8_t* data is an array, so use fix value here (12), not strlen(data)
 
-    memcpy(&data_frame, data, sizeof(struct data));//As uint8_t* data is an array, so use fix value here (12), not strlen(data)
+    memcpy(dcd_header, msg.dcd_header, sizeof(dcd_header));
+    memcpy(id, msg.id, sizeof(id));
 
-    memcpy(dcd_header, data_frame.dcd_header, sizeof(dcd_header));
-    memcpy(id, data_frame.id, sizeof(id));
+    memcpy(env_humid, msg.env_humid, sizeof(env_humid));
+    memcpy(env_temp, msg.env_temp, sizeof(env_temp));
+    memcpy(soil_humid, msg.soil_humid, sizeof(soil_humid));
+    memcpy(soil_temp, msg.soil_temp, sizeof(soil_temp));
 
-    memcpy(env_humid, data_frame.env_humid, sizeof(env_humid));
-    memcpy(env_temp, data_frame.env_temp, sizeof(env_temp));
-    memcpy(soil_humid, data_frame.soil_humid, sizeof(soil_humid));
-    memcpy(soil_temp, data_frame.soil_temp, sizeof(soil_temp));
-
-    memcpy(checksum, data_frame.checksum, sizeof(checksum));
+    memcpy(checksum, msg.checksum, sizeof(checksum));
 }
