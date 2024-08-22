@@ -80,7 +80,57 @@ switch (number){
 ```
 
 String char can't be passed into ``switch case``.
+# goto
 
+## Simple goto example
+```c
+#include <stdio.h>
+
+int main(){
+    goto LABEL_0;
+	LABEL_0:
+		puts("Label 0");
+    LABEL_1:    
+        puts("Label 1");
+        printf("outside goto\n");
+
+	return 0;
+}
+```
+**Result**
+
+```
+Label 0
+Label 1
+outside goto
+```
+
+To enter only ``LABEL_0``:
+
+```c
+goto LABEL_0;
+	LABEL_0:
+		puts("Label 0");
+		return 0;		
+    LABEL_1:    
+        puts("Label 1");
+        printf("outside goto\n");
+		
+	return 0;
+```
+## Infinite loop with goto
+
+```c
+#include <stdio.h>
+
+int main() {
+	PRINT_LABEL:
+		puts("Enter print label");
+	
+	goto PRINT_LABEL;
+	return 0;
+}
+```
 # Short-circuiting
 Short-circuiting is one of the optimization steps of the compiler, in this step unnecessary calculation is avoided during the evaluation of an expression. Expression is evaluated from left to right. It works under && and || operator, when the value of the expression can be calculated certainly by only evaluating parts of the expression.
 ```cpp
