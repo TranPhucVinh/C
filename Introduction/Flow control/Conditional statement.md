@@ -1,3 +1,19 @@
+# Condition changed during execution
+
+Condition of a loop can be changed normally. Example:
+
+```c
+//This program will run as an indefinite loop
+int i = 0;
+int a = 10;
+while (i < a){
+	i += 1;
+	a += 1;
+	printf("i %d, a %d\n", i, a);
+}
+```
+
+Take [Find the nth digit of an infinite integer sequence](https://github.com/TranPhucVinh/C/blob/master/Algorithms/Medium%20level.md#find-the-nth-digit-of-an-infinite-integer-sequence) as an example when the condition is changed during execution.
 # Short-circuiting
 Short-circuiting is one of the optimization steps of the compiler, in this step unnecessary calculation is avoided during the evaluation of an expression. Expression is evaluated from left to right. It works under && and || operator, when the value of the expression can be calculated certainly by only evaluating parts of the expression.
 ```cpp
