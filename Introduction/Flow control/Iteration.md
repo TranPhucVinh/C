@@ -1,4 +1,49 @@
-# [for](for%20loop.md)
+# for
+**Increase the index by 2**:
+```c
+for (int i = 0; i <= 10; i=i+2) {
+        printf("%d ", i);
+} // Result: 0 2 4 6 8 10
+```
+
+# Omit 1st expression
+
+```c
+int index = 0;
+for(; index < 10; index++){
+	printf("index: %d\n", index);
+}
+```
+**Result**: Print out from ``0`` to ``9``.
+
+# Omit 2nd expression
+The 2nd expression now is ``true``
+
+```c
+for(int index = 0;;index++){
+	printf("index: %d\n", index);// Infinite index count up by 1
+}
+```    
+# Omit 3nd expression
+```c
+int index = 0;
+for(int index = 0;index<10;){
+	printf("index: %d\n", index);
+}
+```
+**Result**: Print out ``0`` forever.
+
+``for(;;)`` is equal to ``while(1)``.
+
+# Omit 1st and 3rd expressions
+```c
+int index = 0;
+for(;index < 10;){
+	printf("index: %d\n", index);// index from 0 to 9
+	index++;
+}
+```
+
 # Condition changed during execution
 
 Condition of a loop can be changed normally. Example:
@@ -52,54 +97,58 @@ i value is 7
 i value is 8 
 i value is 9 
 ```
-# goto
-
-## Simple goto example
+# Draw a rectangle with dots
+```
+column  
+***
+* * row
+* *
+***
+```
 ```c
 #include <stdio.h>
+int main() {
+	int column = 3;
+    int row = 4;
 
-int main(){
-    goto LABEL_0;
-	LABEL_0:
-		puts("Label 0");
-    LABEL_1:    
-        puts("Label 1");
-        printf("outside goto\n");
-
-	return 0;
+	for (int i = 1; i <= row ; i++)
+	{
+		if ((i == 1) || (i == row))
+		{
+			for (int j = 1; j <= column; j++){
+				printf("*");
+			}
+			printf("\n");
+		}
+		else {
+			for (int j = 1; j <= column; j++)
+			{
+				if ((j == 1 ) || (j == column)) {
+					printf("*");
+				}
+				else printf(" ");
+			}
+			printf("\n");
+		}
+	}
 }
 ```
-**Result**
-
+# Draw staircase
+n = 6
 ```
-Label 0
-Label 1
-outside goto
+     #
+    ##
+   ###
+  ####
+ #####
+######
 ```
-
-To enter only ``LABEL_0``:
-
 ```c
-goto LABEL_0;
-	LABEL_0:
-		puts("Label 0");
-		return 0;		
-    LABEL_1:    
-        puts("Label 1");
-        printf("outside goto\n");
-		
-	return 0;
-```
-## Infinite loop with goto
-
-```c
-#include <stdio.h>
-
-int main() {
-	PRINT_LABEL:
-		puts("Enter print label");
-	
-	goto PRINT_LABEL;
-	return 0;
+void staircase(int n) {
+    for (int i = 1; i <= n; i++){
+        for (int j = n - i; j > 0; j--) printf(" ");
+        for (int k = 1; k <= i; k++) printf("#");
+        printf("\n");
+    }
 }
 ```
