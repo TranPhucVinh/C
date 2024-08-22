@@ -5,9 +5,11 @@
     * Set variable to 0 in a condition will return false
     * Condition with !=0 number
 * switch case
-* Short circuiting
-* assert
+* go to
 # [Iteration](Iteration.md)
 * for
-* go to
 * break, continue, return
+# [Conditional statement](Conditional%20statement.md)
+* Condition changed during execution
+* Short circuiting
+* assert
