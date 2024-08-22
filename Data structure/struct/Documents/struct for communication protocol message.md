@@ -133,4 +133,4 @@ Parsing this char array into the following fields:
 * Soil temperature: ``23.32`` (``0x17`` ``0x20``)
 * Checksum: 0x61 (OR 11 bytes give 0x0261, 0x61 is the lower byte)
 
-**Program**: [struct_data_parsing.c](struct_data_parsing.c)
+**Program**: [parse_protocol_msg_by_struct.c](src/parse_protocol_msg_by_struct.c)
