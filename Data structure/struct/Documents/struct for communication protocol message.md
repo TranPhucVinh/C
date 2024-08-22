@@ -119,7 +119,7 @@ So parsing a raw string containing number into string number will cause errror.
 
 **Problem solved**: Convert string to hex value, check [Parsing a hex char array](#parsing-a-hex-char-array).
 
-# Parsing a hex char array
+# Parse a communication protocol message by struct
 
 Char array: ``0x24 0x00 0x01 0x1A 0x05 0x1F 0x20 0x2F 0x1C 0x17 0x20 0x61``
 
