@@ -8,8 +8,8 @@
 * [Bit field](Bit%20field.md)
 * [Self referential struct](Self%20referential%20struct.md)
 
-# [struct for data structure]()
+# [struct for communication protocol message](Documents/struct%20for%20communication%20protocol%20message.md)
 
-* [Form an uint16_t number from 2 uint8_t numbers with struct]()
-* [Split a string into specific sequences]()
-* [Parsing a hex char array]()
+* [Form an uint16_t number from 2 uint8_t numbers with struct](Documents/struct%20for%20communication%20protocol%20message.md#form-an-uint16_t-number-from-2-uint8_t-numbers-with-struct)
+* [Split a string into specific sequences](Documents/struct%20for%20communication%20protocol%20message.md#split-a-string-into-specific-string-sequences)
+* [Parse a communication protocol message by struct](Documents/struct%20for%20communication%20protocol%20message.md#parse-a-communication-protocol-message-by-struct)
