@@ -1,70 +1,50 @@
 #include <stdio.h>
+#include <stdint.h>
 #include <string.h>
 #include <unistd.h>
 
-#define STDOUT_FD 1
-char value[] = {0x24, 0x00, 0x01, 0x1A, 0x05, 0x1f, 0x20, 0x2F, 0x1C, 0x17, 0x20, 0x61};
+uint8_t value[] = {0x24, 0x00, 0x01, 0x1A, 0x05, 0x1f, 0x20, 0x2F, 0x1C, 0x17, 0x20, 0x61};
 
-void struct_data_parsing(char *data);
+uint8_t dcd_header[1], id[2];
+uint8_t env_humid[2], env_temp[2], soil_humid[2], soil_temp[2];
+uint8_t checksum[1];
+
+void struct_data_parsing(uint8_t *data);
 
 int main(){
     struct_data_parsing(value);
+    printf("dcd_header: 0x%x\n", dcd_header[0]);
+    printf("ID: 0x%x 0x%x\n", id[0], id[1]);
+
+    printf("env_humid: 0x%x 0x%x\n", env_humid[0], env_humid[1]);
+    printf("env_temp: 0x%x 0x%x\n", env_temp[0], env_temp[1]);
+
+    printf("soil_humid: 0x%x 0x%x\n", soil_humid[0], soil_humid[1]);
+    printf("soil_temp: 0x%x 0x%x\n", soil_temp[0], soil_temp[1]);
+
+    printf("checksum: 0x%x\n", checksum[0]);
 }
 
-void struct_data_parsing(char *data){
-    char dcd_header[1], id[8], checksum[8];
-    char environment_humidity[9], environment_temperature[9], soil_humidity[9], soil_temperature[9];
-
+void struct_data_parsing(uint8_t *data){
     struct data {
-        char dcd_header[1];
-        char id[2];
-        char environment_humidity[2];
-        char environment_temperature[2];
-        char soil_humidity[2];
-        char soil_temperature[2];
-        char checksum[1];
+        uint8_t dcd_header[1];
+        uint8_t id[2];
+        uint8_t env_humid[2];
+        uint8_t env_temp[2];
+        uint8_t soil_humid[2];
+        uint8_t soil_temp[2];
+        uint8_t checksum[1];
     } data_frame;
 
-    memcpy(&data_frame, data, 12);//As char* data is an array, so use fix value here (12), not strlen(data)
+    memcpy(&data_frame, data, sizeof(struct data));//As uint8_t* data is an array, so use fix value here (12), not strlen(data)
 
-    //dcd_header parsing
-    sprintf(dcd_header, "%c", data_frame.dcd_header[0]);
+    memcpy(dcd_header, data_frame.dcd_header, sizeof(dcd_header));
+    memcpy(id, data_frame.id, sizeof(id));
 
-    //id parsing
-    if (data_frame.id[0] < 10) sprintf(id, "0%d", data_frame.id[0]);
-    else sprintf(id, "%d", data_frame.id[0]);
+    memcpy(env_humid, data_frame.env_humid, sizeof(env_humid));
+    memcpy(env_temp, data_frame.env_temp, sizeof(env_temp));
+    memcpy(soil_humid, data_frame.soil_humid, sizeof(soil_humid));
+    memcpy(soil_temp, data_frame.soil_temp, sizeof(soil_temp));
 
-    if (data_frame.id[1] < 10) sprintf(id, "%s0%d", id, data_frame.id[1]);
-    else sprintf(id, "%s%d", id, data_frame.id[1]);
-
-    //environment_humidity parsing
-    if (data_frame.environment_humidity[0] < 10) sprintf(environment_humidity, "0%d", data_frame.environment_humidity[0]);
-    else sprintf(environment_humidity, "%d", data_frame.environment_humidity[0]);
-
-    if (data_frame.environment_humidity[1] < 10) sprintf(environment_humidity, "%s.0%d", environment_humidity, data_frame.environment_humidity[1]);
-    else sprintf(environment_humidity, "%s.%d", environment_humidity, data_frame.environment_humidity[1]);
-
-    //environment_temperature parsing
-    if (data_frame.environment_temperature[0] < 10) sprintf(environment_temperature, "0%d", data_frame.environment_temperature[0]);
-    else sprintf(environment_temperature, "%d", data_frame.environment_temperature[0]);
-
-    if (data_frame.environment_temperature[1] < 10) sprintf(environment_temperature, "%s.0%d", environment_temperature, data_frame.environment_temperature[1]);
-    else sprintf(environment_temperature, "%s.%d", environment_temperature, data_frame.environment_temperature[1]);
-
-    //soil_humidity parsing
-    if (data_frame.soil_humidity[0] < 10) sprintf(soil_humidity, "0%d", data_frame.soil_humidity[0]);
-    else sprintf(soil_humidity, "%d", data_frame.soil_humidity[0]);
-
-    if (data_frame.soil_humidity[1] < 10) sprintf(soil_humidity, "%s.0%d", soil_humidity, data_frame.soil_humidity[1]);
-    else sprintf(soil_humidity, "%s.%d", soil_humidity, data_frame.soil_humidity[1]);
-
-    //soil_temperature parsing
-    if (data_frame.soil_temperature[0] < 10) sprintf(soil_temperature, "0%d", data_frame.soil_temperature[0]);
-    else sprintf(soil_temperature, "%d", data_frame.soil_temperature[0]);
-
-    if (data_frame.soil_temperature[1] < 10) sprintf(soil_temperature, "%s.0%d", soil_temperature, data_frame.soil_temperature[1]);
-    else sprintf(soil_temperature, "%s.%d", soil_temperature, data_frame.soil_temperature[1]);
-
-    // checksum parsing
-    sprintf(checksum, "%x", data_frame.checksum[0]);
+    memcpy(checksum, data_frame.checksum, sizeof(checksum));
 }
