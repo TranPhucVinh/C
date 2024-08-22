@@ -23,12 +23,14 @@ int main()
 	printf("0x%x\n", number_3); //0x3412
 }
 ```
-# Split a string into specific sequences
+# Split a string into specific string sequences
 
 Split a string into the following sequence: ``host`` and ``port``
 
 ```c
 #include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 char displayed[] = "demo.thingsboard.io443";
 char host[19];
@@ -38,6 +40,11 @@ void struct_data_parsing(char *data);
 
 int main() {
 	struct_data_parsing(displayed);
+
+    // printf("%s %s\n", host, port); // printf() will print out the wrong string
+    write(STDOUT_FILENO, host, sizeof(host)); // demo.thingsboard.io
+    printf("\n");
+    write(STDOUT_FILENO, port, sizeof(port)); // 443
 } 
 
 void struct_data_parsing(char *data){
@@ -57,7 +64,9 @@ Result: View the result by ``gdb``
 * host: demo.thingsboard.io
 * port: 443
 
-**Error when parsing the string array into the string numbers**:
+However, the way of parsing the communication protocol message from string into smaller strings isn't an effective way. Take this example as a failure of this method.
+
+**Error when parsing the string array into the string as numbers**:
 
 Parse string array ``130.8175.0016.40`` into:
 
