@@ -1,7 +1,4 @@
-HTTP client implemented by
-
-* [TCP socket API](TCP%20socket)
-* [libcurl](libcurl)
+HTTP client implemented byy **TCP socket API**.
 
 # API
 
