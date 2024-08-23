@@ -3,7 +3,7 @@ Modbus RTU master/client reads multiple holding register of **ES-SM-TH-01S** soi
 # Modbus TCP
 Modbus TCP master/client reads multiple holding register of Modbus TCP slave/server on localhost, port 8000: [modbus_tcp_master.c](modbus_tcp_master.c). This program is intended for comprehensive and easy to understand the Modbus TCP frame's initialization.
 
-Modbus TCP slave/server is initiated by [diagslave](). Result when running [modbus_tcp_master.c](modbus_tcp_master.c):
+Modbus TCP slave/server is initiated by [diagslave](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Application%20layer/Modbus#diagslave-modbus-slave-simulator). Result when running [modbus_tcp_master.c](modbus_tcp_master.c):
 
 ```sh
 tranphucvinh@tranphucvinh:~/Documents/Gitlab/work-in-progress/CPP_workspace$  diagslave -m tcp -p 8000 -a 1
