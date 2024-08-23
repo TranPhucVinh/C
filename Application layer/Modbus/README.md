@@ -18,3 +18,5 @@ Listening to network (Ctrl-C to stop)
 validateMasterIpAddr: accepting connection from 127.0.0.1
 Slave   1: readHoldingRegisters from 2, 1 references
 ```
+
+For program inheritance and readability, the Modbus frame is better to be formed by a struct. Program: [modbus_tcp_master_struct.c](modbus_tcp_master_struct.c)
