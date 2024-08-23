@@ -16,10 +16,9 @@
 #define HLD_REG_LSB    	        0x01 // LSB of holding register address to start reading 
 #define NUM_OF_REG_MSB   	    0x00
 #define NUM_OF_REG_LSB   	    0x01 
-
 #define FUNCTION_CODE           0x03 //Read multiple holding registers
+
 int socket_parameter_init(const char *host, int port);
-void error(const char *msg);
 
 int main(){
     int trans_id = 0x1234;//Transaction identifier, can be any number to be unique to be distinguished
@@ -43,11 +42,6 @@ int main(){
 
     close(sender_fd); //Close socket
     return 0;
-}
-
-void error(const char *msg){
-    perror(msg);
-    exit(0);
 }
  
 int socket_parameter_init(const char *host, int port){
