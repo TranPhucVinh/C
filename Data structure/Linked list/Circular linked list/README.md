@@ -24,3 +24,12 @@ This two-pointer method will also be able to verify this type of circular linked
 ![](https://github.com/TranPhucVinh/C/blob/master/Environment/Images/circular_linked_list.jpg)
 
 Program: [verify_linked_list.c](verify_linked_list.c)
+
+# Find the index where the circular linked list start
+
+**Algorithm**: After successfully detecting the linked list is circular, finding the index where the circular linked list starts by:
+
+* Reset the **slow** pointer to the head of the list.
+* From this point, move both pointers **slow** and **fast** one step at a time until they meet again. The node where they meet is the start of the cycle.
+
+Program: [find_index_where_circular_linked_list_starts.c](find_index_where_circular_linked_list_starts.c)
