@@ -28,17 +28,21 @@ void display_link_list(struct database_node *first_node, int size){
 }
 
 void verify_circular_linked_list(struct database_node *first_node){
-    struct database_node *p1, *p2;
+    /*
+        * slow pointer moves one step at a time 
+        * fast pointer moves two steps at a time 
+    */
+    struct database_node *slow, *fast;
     int jump = 0;
     
-    p1 = first_node;
-    p2 = first_node;
+    slow = first_node;
+    fast = first_node;
 
-    while ((p1->next_node) && (p1->next_node->next_node)){
-        p2 = p2->next_node;
-        p1 = p1->next_node->next_node;
+    while ((slow->next_node) && (slow->next_node->next_node)){
+        slow = slow->next_node;
+        fast = fast->next_node->next_node;
         jump += 1;
-        if (p1 == p2) {
+        if (slow == fast) {
             printf("This is a circular linked list, traverse poiner has to jump %d times to verify\n", jump);
             return;
         }
@@ -46,8 +50,7 @@ void verify_circular_linked_list(struct database_node *first_node){
     printf("This is a singly linked list\n");
 }
 
-int main() 
-{ 
+int main() { 
     // Create a circular linked list then verify if it's a circular linked list
 	struct database_node *node_0, *node_1, *node_2;
 	node_0 = (struct database_node *)malloc(sizeof(struct database_node));
