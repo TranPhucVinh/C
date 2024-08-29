@@ -19,17 +19,13 @@ Program:
 ```cpp
 vector<int> twoSum(vector<int>& numbers, int target) {
     vector<int> found_index;
-    int *start_ptr = &numbers[0];
-    int *end_ptr = &numbers[numbers.size()-1];
     int start_ptr_index = 0;
     int end_ptr_index = numbers.size()-1;
 
     while (start_ptr_index != end_ptr_index ){
-        if ((*start_ptr + *end_ptr) > target) {
-            end_ptr--;
+          if ((numbers[start_ptr_index] + numbers[end_ptr_index]) > target) {
             end_ptr_index--;
-        } else if ((*start_ptr + *end_ptr) < target){
-            start_ptr++;
+        } else if ((numbers[start_ptr_index] + numbers[end_ptr_index]) < target){
             start_ptr_index++;
         } else {
             found_index.push_back(start_ptr_index);
