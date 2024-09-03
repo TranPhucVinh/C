@@ -1,4 +1,4 @@
-An array is collection of items stored at **continuous memory** locations.
+An array is a collection of items with the same data type stored at **continuous memory** locations.
 
 # [One dimension array](One%20dimension%20array)
 
