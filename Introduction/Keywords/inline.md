@@ -39,7 +39,25 @@ static inline int inline_function()
    return 2;
 }
 ```
+## Inline function to find min and max
+```c
+#include <stdio.h>
 
+static inline int MAX(int a, int b) {
+    return ((a) > (b) ? (a) : (b));
+} 
+
+static inline int MIN(int a, int b) {
+   return ((a) < (b) ? (a) : (b));
+}
+
+int main() {
+    int x = 10, y = 20;
+
+    printf("Max of %d and %d is %d\n", x, y, MAX(x, y));
+    printf("Min of %d and %d is %d\n", x, y, MIN(x, y));
+}
+```
 ## Compare macro function and inline function
 
 With macro function, we can write type insensitive functions but it is also the disadvantage of macro function as macro functions can't do validation check.
