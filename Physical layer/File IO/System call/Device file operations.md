@@ -80,16 +80,16 @@ For reading from USB port with other baudrate value like 4800, 9600,... use ``te
 #include <termios.h>
 #include <errno.h> 
 
-const char filePath[] = "/dev/ttyUSB0";
-char bufferRead[20];
+#define DEV_FILE    "/dev/ttyUSB0"
 
-int serial_port;
 struct termios tty;
 
 int main(){
-    serial_port = open(filePath, O_RDONLY); //READ ONLY
+    char buffer[20];
+    int fd = open(DEV_FILE, O_RDONLY); //READ ONLY
+
     // Read in existing settings, and handle any error
-    if(tcgetattr(serial_port, &tty) != 0) {
+    if(tcgetattr(fd, &tty) != 0) {
         printf("Error %i from tcgetattr: %s\n", errno, strerror(errno));
         return 1;
     }
@@ -99,19 +99,23 @@ int main(){
     cfsetospeed(&tty, B9600);
 
     // Save tty settings, also checking for error
-    if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
+    if (tcsetattr(fd, TCSANOW, &tty) != 0) {
         printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
         return 1;
     }
-
-    while(1){
-        if(serial_port < 0) return 1;
-        else {
-            read(serial_port, bufferRead, sizeof(bufferRead));
-            printf("%s", bufferRead);
+   
+    if(fd < 0) {
+        printf("Unable to open USB port\n");
+        return 1;
+    }
+    else {
+        printf("Open USB port and setup baudrate 9600 successfully\n");
+        while(1) {
+            read(fd, buffer, sizeof(buffer));
+            printf("%s\n", buffer);
+            memset(buffer, 0, sizeof(buffer));
+            sleep(1);
         }
-        memset(bufferRead, 0, sizeof(bufferRead));
-        sleep(1);
     }
    
     return 0;
