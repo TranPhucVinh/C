@@ -11,7 +11,7 @@ int number = NUMBER;
 pthread_mutex_t lock;
 
 int main() {
-    pthread_mutex_init(&lock, NULL); // This will cause deadlock
+    pthread_mutex_init(&lock, NULL);
 
     pthread_t thread_odd, thread_even;
     int thread_odd_return, thread_even_return;
