@@ -36,7 +36,7 @@ Even number: 7
 # Recursive mutex
 Recursive mutex is a mutex that may be locked multiple times by the same process/thread, without causing a deadlock.
 
-In this example, where 2 threads count down from a number with thread_odd only prints odd numbers and thread_even only prints even numbers, and both of those threads are defined recursively, a recursive mutex is mandatorily used.
+In this example, where 2 threads count down from a number with thread_odd only prints odd numbers and thread_even only prints even numbers, and both of those threads are defined recursively, a recursive mutex is suggested to use to avoid deadlock.
 
 Program: [recursive_mutex_threads_print_odd_and_even_numbers.c](../src/recursive_mutex_threads_print_odd_and_even_numbers.c)
 
