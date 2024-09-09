@@ -18,7 +18,7 @@ void *thread_function(void *ptr){
    }   
 }
 ```
-## Deadlock occurs when using a mutex for 2 threads to print odd and even numbers respectively
+## Deadlock doesn't occur when using a mutex for 2 threads to print odd and even numbers respectively
 
 **Program**: [deadlock_with_mutex_for_threads_print_odd_and_even_numbers.c](../src/deadlock_with_mutex_for_threads_print_odd_and_even_numbers.c)
 
