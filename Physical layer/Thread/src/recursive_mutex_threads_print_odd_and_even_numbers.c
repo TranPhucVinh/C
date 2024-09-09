@@ -16,8 +16,6 @@ int main() {
     pthread_mutexattr_settype(&recursiveMutexAttr, PTHREAD_MUTEX_RECURSIVE);
     pthread_mutex_init(&lock, &recursiveMutexAttr);
 
-    // pthread_mutex_init(&lock, NULL); -> This will cause deadlock
-
     pthread_t thread_odd, thread_even;
     int thread_odd_return, thread_even_return;
 
@@ -37,9 +35,11 @@ void *odd_number(void *ptr) {
             printf("Odd number: %d\n", *(int*)ptr);
 
             *(int*)ptr -= 1;
+            pthread_mutex_unlock(&lock);
             even_number(ptr);           
-		} 
-        pthread_mutex_unlock(&lock);// With recursive mutex, it must be unlocked after using the shared resource 
+		} else {
+            pthread_mutex_unlock(&lock);// With recursive mutex, it must be unlocked after using the shared resource 
+        }
     } else printf("Fail to lock mutex\n");
 }
 
@@ -51,7 +51,8 @@ void *even_number(void *ptr) {
             *(int*)ptr -= 1;
             pthread_mutex_unlock(&lock);
             odd_number(ptr);
-        } 
-        pthread_mutex_unlock(&lock);// With recursive mutex, it must be unlocked after using the shared resource 
+        } else {
+            pthread_mutex_unlock(&lock);// With recursive mutex, it must be unlocked after using the shared resource 
+        }        
     } else printf("Fail to lock mutex\n");
 }
