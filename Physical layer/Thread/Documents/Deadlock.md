@@ -20,7 +20,7 @@ void *thread_function(void *ptr){
 ```
 ## Deadlock occurs when using a mutex for 2 threads to print odd and even numbers respectively
 
-**Program**: [deadlock_with_mutex_for_threads_print_odd_and_even_numbers.c](src/deadlock_with_mutex_for_threads_print_odd_and_even_numbers.c)
+**Program**: [deadlock_with_mutex_for_threads_print_odd_and_even_numbers.c](../src/deadlock_with_mutex_for_threads_print_odd_and_even_numbers.c)
 
 **Result**: Odd and even numbers are printed out from 7 to 1. However there will times ``odd number: 7`` is printed first and times when ``even number: 7`` is printed first
 ```
