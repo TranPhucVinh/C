@@ -74,12 +74,12 @@ As n>0, so take the postive root of $f(n)$ as $1-\sqrt{1+8A} \over -2$. This wil
 Finally, the unsigned integer number $a$ need to be found needs to sastified:
 
 $$
-\left\{
+\{
     \begin{array}{ll}
-        \ a={A\over {n+1} } - {n\over 2 }\\
-        \ {0 < n < {1-\sqrt{1+8A} \over -2}}
+        a = \frac{A}{n+1} - \frac{n}{2}, \\
+        0 < n < \frac{1 - \sqrt{1 + 8A}}{-2}
     \end{array}
-\right\}
+\}
 $$
 
 ## Program
