@@ -79,7 +79,7 @@ $$
         \ a={A\over {n+1} } - {n\over 2 }\\
         \ {0 < n < {1-\sqrt{1+8A} \over -2}}
     \end{array}
-\right.
+\right\}
 $$
 
 ## Program
