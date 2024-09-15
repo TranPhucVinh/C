@@ -49,7 +49,7 @@ void left_rotate(int *array, int arr_sz){
 }
 /* Result:
    int arr[] = {1, 2, 3, 4, 5, 6};
-   right_rotate(arr, 6);
+   left_rotate(arr, 6);
    arr = 6 1 2 3 4 5
 */
 ```
