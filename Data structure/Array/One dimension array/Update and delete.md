@@ -27,13 +27,18 @@ array[5] = 10;//Insert a new member at index 5, the unallocated location, result
 Program: [insert_member_at_index.c](insert_member_at_index.c)
  
 ## Rotate an array
-**Left rotation** means moving the last element of a sequence to its first.
+**Left rotation** is moving the last element of a sequence to its first.
 
 Beside the normal approach to re-write the value in all array member, the best approach is to use the formular:
 
 ```c
 int rotation_time = 1;
 new_array[(i + rotation_time) % array_size] = old_array[i];
+```
+**Right rotation** is moving the first element of a sequence to its last. The best approach for right rotation is this formular:
+```c
+int rotation_time = 1;
+new_array[(i + array_size - rotation_time) % array_size] = old_array[i];
 ```
 ```c
 void left_rotate(int *array, int arr_sz){
@@ -47,10 +52,23 @@ void left_rotate(int *array, int arr_sz){
         array[(i + rotate_time) % arr_sz] = _tmp_array[i];
     }
 }
+
+void right_rotate(int *array, int arr_sz){
+    int rotate_time = 1;
+
+    int _tmp_array[arr_sz];
+
+    memcpy(_tmp_array, array, sizeof(_tmp_array));
+
+    for (int i = 0; i < arr_sz; i++){
+        array[(i + arr_sz - rotate_time) % arr_sz] = _tmp_array[i];
+    }
+}
+
 /* Result:
    int arr[] = {1, 2, 3, 4, 5, 6};
-   left_rotate(arr, 6);
-   arr = 6 1 2 3 4 5
+   left_rotate(arr, 6);// arr = 6 1 2 3 4 5
+   right_rotate(arr, 6);// arr = 2 3 4 5 6 1
 */
 ```
 # Delete
