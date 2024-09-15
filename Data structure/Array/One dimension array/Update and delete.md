@@ -27,7 +27,7 @@ array[5] = 10;//Insert a new member at index 5, the unallocated location, result
 Program: [insert_member_at_index.c](insert_member_at_index.c)
  
 ## Rotate an array
-**Right rotation** means moving the last element of a sequence to its first.
+**Left rotation** means moving the last element of a sequence to its first.
 
 Beside the normal approach to re-write the value in all array member, the best approach is to use the formular:
 
@@ -36,7 +36,7 @@ int rotation_time = 1;
 new_array[(i + rotation_time) % array_size] = old_array[i];
 ```
 ```c
-void right_rotate(int *array, int arr_sz){
+void left_rotate(int *array, int arr_sz){
     int rotate_time = 1;
 
     int _tmp_array[arr_sz];
