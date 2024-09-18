@@ -54,3 +54,28 @@ Tasks performed by the kernel:
 Kernel can be divided into 3 types: monolithic, microkernel, and hybrid. Linux use monolithic kernel. OS X (XNU) and Windows 7 use hybrid kernel.
 
 Android use Linux Kernel. Windows and Windows Phone use NT kernel. OS X and iOS use Darwin kernel. 
+
+# Automotive embedded system
+
+## OSEK
+
+OSEK (English: "Open Systems and their Interfaces for the Electronics in Motor Vehicles") is a standards body that has produced specifications for an **embedded operating system**, a communications stack, and a network management protocol for **automotive embedded systems**. **OSEK** is an open standard, published by a consortium founded by the automobile industry. Some parts of OSEK are standardized in **ISO 17356**.
+
+## Architecture
+
+Layer -> Subsystem -> Component
+
+Layer examples: Application layer, HardwareAbstraction layer
+
+Subsystem examples: SteeringFunctions, Sensors, MicrocontrollerAbstraction
+
+Component examples: SteeringControl, AnalogSensors, MemoryMonitor
+
+AUTOSAR is layered architecture. Layers of AUTOSAR are **ASW**, **RTE** and **BSW**.
+
+**AAL Layer**: The AAL-Layer provides the possibility to integrate AUTOSAR SWCs into the EPSDriveSW-Architecture.
+
+## Abbreviations
+
+* **ECU**: An electronic control unit (ECU) is an **embedded system** in automotive electronics that controls one or more of the electrical systems or subsystems in a vehicle.
+* **VRTE**: Vehicle Runtime Environment
