@@ -1,8 +1,8 @@
 # [Fundamental concepts](Fundamental%20concepts.md)
-# [Linux booting process document](Linux%20booting%20process.md)
- 
-* [KBuild](KBuild.md) is the build system used by the Linux kernel.
-* [bootloader](Linux%20booting%20process.md#linux-bootloader)
+# [Linux build system](Linux%20build%20system.md)
+* [Building a Linux Embedded System](Linux%20build%20system.md#building-a-linux-embedded-system)
+* [KBuild](Linux%20build%20system.md#kbuild) is the build system used by the Linux kernel.
+* [Linux booting process](Linux%20booting%20process.md), [bootloader](Linux%20booting%20process.md#linux-bootloader)
 
 # Loadable kernel module
 
