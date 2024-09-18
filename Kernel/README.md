@@ -1,26 +1,8 @@
-The **Linux kernel** is the lowest level of software running on a Linux system. It is charged with managing the hardware, running user programs, and maintaining the overall security and integrity of the whole system.
-
-Tasks performed by the kernel:
-
-* Process scheduling
-* Memory management
-* Provision of a file system
-* Creation and termination of processes
-* Access to devices
-* Networking
-* Provision of a system call application programming interface (API)
-
-Kernel can be divided into 3 types: monolithic, microkernel, and hybrid. Linux use monolithic kernel. OS X (XNU) and Windows 7 use hybrid kernel.
-
-Android use Linux Kernel. Windows and Windows Phone use NT kernel. OS X and iOS use Darwin kernel. 
-
-Modules which are included in the kernel are installed by the vendor in this directory ``/lib/modules/$(KERNELRELEASE)/kernel/``
-
-And external modules are installed by the vendor in this directory:	``/lib/modules/$(KERNELRELEASE)/extra/``. Ubuntu 18.04 doesn't have that ``extra`` folder.
+# [Fundamental concepts](Fundamental%20concepts.md)
+# [Linux booting process document](Linux%20booting%20process.md)
  
-[KBuild](KBuild.md) is the build system used by the Linux kernel.
-
-For [bootloader](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linux%20booting%20process.md#linux-bootloader) and the [Linux booting process](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linux%20booting%20process.md#linux-booting-process), check [Linux booting process document](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linux%20booting%20process.md)
+* [KBuild](KBuild.md) is the build system used by the Linux kernel.
+* [bootloader](Linux%20booting%20process.md#linux-bootloader)
 
 # Loadable kernel module
 
