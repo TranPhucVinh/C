@@ -8,11 +8,11 @@ Building an embedded Linux system requires:
 There are 2 ways to build an embedded linux system:
 
 1. **Manually (creating your own scripts)**: It requires a good understanding of the software component installation process. For example, create a root filesystem from the ground up by yourself means:
-  * Download the source code of all software components (libraries, utilities, or applications).
-  *	Solve all dependencies and version conflicts and apply patches.
-  *	Configure each software component.
-  *	Cross-compile each software component.
-  *	Install each software component.
+* Download the source code of all software components (libraries, utilities, or applications).
+* Solve all dependencies and version conflicts and apply patches.
+* Configure each software component.
+* Cross-compile each software component.
+* Install each software component.
 2. **Using Build frameworks (e.g., Buildroot, Yocto)**: This option allows you to customize and reproduce builds easily. This is becoming the most popular option in the Linux embedded space. A Build framework typically consists of scripts and configuration meta-data that control the build process. The Build framework typically downloads, configures, compiles and installs all required components of the system taking version conflicts and dependencies into account. It allows for example to create a customized root filesystem. **The Build framework output is a complete image including toolchain, bootloader, kernel and root filesystem**.
 # KBuild
 ## config file for KConfig in Ubuntu PC
