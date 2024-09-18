@@ -2,6 +2,8 @@
 
 A loadable kernel module (LKM) is an object file that contains code to extend the running kernel, or so-called base kernel, of an operating system. LKMs are typically used to add support for new hardware (as device drivers) and/or filesystems, or for adding system calls.
 
+Modules which are included in the kernel are installed by the vendor in this directory ``/lib/modules/$(KERNELRELEASE)/kernel/``. External modules are installed by the vendor in ``/lib/modules/$(KERNELRELEASE)/extra/``. Ubuntu 18.04 doesn't have that ``extra`` folder.
+
 # Build the very first kernel module
 
 All OS built-in kernel modules are stored in ``/lib/modules``.
