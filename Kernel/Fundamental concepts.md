@@ -1,3 +1,33 @@
+# OS and embedded Linux
+An OS in general does 3 main work:
+
+* Process management
+* Memory management
+* **Scheduling**: The scheduler determines which task to execute. There are few mechanisms controlling access to CPU for tasks (timeslice, preemption, idle)
+
+Embedded Linux is the usage of the Linux kernel and various open-source components in embedded systems.
+
+**Embedded Linux vs Desktop Linux**
+
+Desktop Linux, which are also **Linux distribution**, are Ubuntu, Gentoo, Debian,... But these Dekstop Linux are not well suited for embedded system and hard to customize. Those Linux distribution have a preselected kernel version and a root filesystem with a preselected set of libraries, utilities and applications.
+
+EMAC OE linux is an Embedded Linux. EMAC OE is EMAC's standard Linux distribution, based on the OpenEmbedded build framework for embedded Linux systems.
+
+**Main components of a Linux embedded system**:
+* **Bootloader**
+* [Kernel](#kernel)
+* **System call interface**
+* **C-Runtime library**
+* **System shared libraries** 
+* **Root filesystem**
+
+When an embedded Linux is commercialized, e.g Raspberry Pi board, IMX board, Beaglebone board, their vendors will provide us the 4 main components (Bootloader, Kernel, Rootfs and toolchain) in a single package, known as  **BSP** - **Board Support Package**.
+
+Embedded Linux software development can be separated into 3 categories:
+* Linux system programming: Linux IPC (FileIO, Process, Thread, Signal, etc), multithread programming
+* Linux Porting: Optimize and customize embedded Linux system. This requires knowledge on Makefile, shell scripts; build system like build-root, yocto; OS booting process, bootloader modification, rootfs package modification
+* Linux device driver: Develop driver for I2C, SPI, UART, USB, Watchdog,…
+
 # User-space and kernel-space
 * **User-space** refers to the environment where user applications run, and they have limited privileges. Processes running in user-space cannot directly interact with hardware or system resources (e.g., memory, devices) and need to request services through system calls.
 * **Kernel-space** is where the operating system kernel operates, with full control over the system’s hardware and resources. IPC mechanisms often involve the kernel since the kernel manages processes, memory, and hardware resources.
