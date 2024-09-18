@@ -43,7 +43,7 @@ void head2(){
 void head1();
 void head2();
 
-int main(){
+int main() {
 	head1();
 	head2();
 }
@@ -66,25 +66,32 @@ CPP also supports [unnamed namespace](https://github.com/TranPhucVinh/Cplusplus/
 
 # Global static and [ODR](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr)
 
-``head.h``
+``header.h``
 
 ```c
 #include <stdio.h>
 static int a = 10;
+
+void address();
 ```
-``head.c``
+``header.c``
 ```c
-#include "head.h"
+#include "header.h"
+
+void address() {
+	printf("&a: 0x%p\n", &a);
+}
 ```
 ``main.c``
 ```c
-#include "head.h"
+#include "header.h"
 
 int main(){ 
-  printf("a: %d", a);
+    address(); // &a: 0x0x561d2e5fc014
+    printf("&a: 0x%p\n", &a); // &a: 0x0x561d2e5fc010
 }
 ```
-Compile ``gcc main.c head.c`` normally and there will be no [ODR issue](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr).
+Compile ``gcc main.c header.c`` normally and there will be no [ODR issue](https://github.com/TranPhucVinh/C/blob/master/Introduction/Header/README.md#one-definition-rule-odr).
 
 For global static variable ``a`` in this case, it is included in two separate ``.c`` files, which result in two discrete copies of it so that there is no compilation error.
 
