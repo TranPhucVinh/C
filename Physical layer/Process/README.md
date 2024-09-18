@@ -1,14 +1,15 @@
 # Inter-process communication
 
-Inter-process communication methods are:
-* [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md)
-* [FIFO](../File%20IO/FIFO)
-* [Semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Documents/Semaphore.md)
-* [Message queue](Message%20queue)
-* [Shared memory](Shared%20memory)
-* [Socket](https://github.com/TranPhucVinh/C/tree/master/Transport%20layer)
-* [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal)
-
+IPC (Inter-Process Communication) refers to a set of mechanisms that allow processes to communicate with each other and synchronize their actions in a Linux environment. There are two main aspects of IPC:
+1. **Data Exchange**: This involves sending and receiving data between processes. The communication can be achieved through mechanisms like:
+* [pipe](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/pipe.md): Used for one-way communication between a parent and child process.
+* [File IO](../File%20IO/): Files can act as a medium to share data between processes.
+* [Message queue](Message%20queue): Allow messages to be exchanged between processes asynchronously.
+* [Shared memory](Shared%20memory): A region of memory accessible by multiple processes, offering the fastest data exchange.
+* [Socket](https://github.com/TranPhucVinh/C/tree/master/Transport%20layer): Enable communication between processes in the same or across different systems. 
+* [Signal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Signal): Simple communication via notifications to signal events or state changes between processes.
+2. **Synchronization**: Ensures processes are properly coordinated, especially when accessing shared resources. This is typically handled by [Semaphore](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Documents/Semaphore.md)
+  
 Command [ipcs](https://github.com/TranPhucVinh/Linux-Shell/blob/master/Physical%20layer/Process/System%20V%20IPC.md#ipcs) is useful for checking the message queue, shared memory and semaphore information.
 # [Process cloning](Process%20cloning)
 # RPC
