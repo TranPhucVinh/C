@@ -71,6 +71,46 @@ void right_rotate(int *array, int arr_sz){
    right_rotate(arr, 6);// arr = 2 3 4 5 6 1
 */
 ```
+## Reorder an array
+Reorder an array from ``L0 → L1 → … → Ln - 1 → Ln`` to ``L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …``
+
+```c
+#include <stdio.h>
+
+#define SIZE 4
+// #define SIZE 5
+
+void main() {
+    int array[SIZE] = {1, 2, 3, 4};
+    // int array[SIZE] = {1, 2, 3, 4, 5};
+
+	for (int i=0; i < SIZE; i++){
+		printf("%d ", array[i]);
+	}
+    printf("\n");
+
+    int new_arr[SIZE];
+
+    // Form new_arr at even position
+    int _iterate = 0;
+    for (int i = 0; i < SIZE; i = i+2) {
+        new_arr[i] = array[_iterate];
+        _iterate += 1;
+    }
+
+    _iterate = 0;
+
+    // Form new_arr at odd position
+    for (int i=1; i < SIZE; i=i+2) {
+        new_arr[i] = array[SIZE - 1 - _iterate];
+        _iterate += 1;
+	}
+
+    for (int i=0; i < SIZE; i++){
+		printf("%d ", new_arr[i]);
+	}
+}
+```
 # Delete
 
 * Delete member in array at specific index: [delete_at_index.c](delete_at_index.c)
