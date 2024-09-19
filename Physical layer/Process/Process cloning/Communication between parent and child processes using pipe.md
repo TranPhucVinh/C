@@ -1,12 +1,13 @@
 # R/W between parent and child process
 
-Write int value to ``fd[1]`` in parent process and read from ``fd[0]`` in child process.
-
+Parent process writes int value to ``fd[1]`` and child process reads from ``fd[0]``.
+<details>
+	
 ```c
 #include <stdio.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[])  {
+int main()  {
 	int fd[2];
 	if(pipe(fd) == -1){
 		printf("An error occured when opening the pipe\n");
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])  {
 	}	
 }
 ```
-
+</details>
 For string:
 
 ```c
@@ -89,7 +90,8 @@ int main(int argc, char *argv[])  {
 # R/W between parent and child process: Modified string
 
 Parent process send a string to child process, child process receives that string and modifies it then sends back to the parent process.
-
+<details>
+	
 ```c
 #include <stdio.h>
 #include <unistd.h>
@@ -125,3 +127,46 @@ int main(int argc, char *argv[])  {
 	close(fd[0]);
 }
 ```
+</details>
+
+# Both parent and child process read and write to pipe
+Parent process write int value to pipe (fd[1]), then wait for child process to send a string to pipe (fd[0]) to read out. Child process reads out the int sent from parent then sends a string to parent.
+<details>
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+	int fd[2];
+	if(pipe(fd) == -1){
+		printf("An error occured when opening the pipe\n");
+		return 1;
+	}
+	int pid = fork();
+	if (!pid) {
+		int x = 123;
+		printf("Writting to fd[1]\n");
+		write(fd[1], &x, sizeof(int));
+		
+        sleep(1);// There must be sleep() to give time for child process to read out data
+
+        char buffer[50];
+        read(fd[0], buffer, sizeof(buffer));
+        printf("%s\n", buffer);
+        close(fd[0]);
+	}	
+	else {
+		int y;
+		read(fd[0], &y, sizeof(int));
+		
+		printf("Data from fd[0] %d\n", y);
+
+        sleep(1);// Should have sleep() for child process to end at the same time with parent
+        char child_str[] = "Child process write to parent";
+        write(fd[1], child_str, sizeof(child_str));
+        close(fd[1]);
+	}	
+}
+```
+</details>
