@@ -24,9 +24,9 @@ EMAC OE linux is an Embedded Linux. EMAC OE is EMAC's standard Linux distributio
 When an embedded Linux is commercialized, e.g Raspberry Pi board, IMX board, Beaglebone board, their vendors will provide us the 4 main components (Bootloader, Kernel, Rootfs and toolchain) in a single package, known as  **BSP** - **Board Support Package**.
 
 Embedded Linux software development can be separated into 3 categories:
-* Linux system programming: Linux IPC (FileIO, Process, Thread, Signal, etc), multithread programming
-* Linux Porting: Optimize and customize embedded Linux system. This requires knowledge on Makefile, shell scripts; build system like build-root, yocto; OS booting process, bootloader modification, rootfs package modification
-* Linux device driver: Develop driver for I2C, SPI, UART, USB, Watchdog,…
+* **Linux system programming**: Linux IPC, multithread programming
+* **Linux porting**: Optimize and customize embedded Linux system. This requires knowledge on Makefile, shell scripts; build system like build-root, yocto; OS booting process, bootloader modification, rootfs package modification
+* **Linux device driver**: Develop driver for I2C, SPI, UART, USB, Watchdog,…
 
 # User-space and kernel-space
 * **User-space** refers to the environment where user applications run, and they have limited privileges. Processes running in user-space cannot directly interact with hardware or system resources (e.g., memory, devices) and need to request services through system calls.
