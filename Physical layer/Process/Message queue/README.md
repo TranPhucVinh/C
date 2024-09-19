@@ -1,4 +1,4 @@
-Message queue allows the process to exchange the data in the form of messages.
+Message queue allows the process to exchange the data in the form of messages through a queue system managed by the kernel.
 
 Message queue is the slowest IPC as when two process want to communicate by message queue, kernel has to make a linked list to send the data to it. By that, kernel has to do lots of work.
 
