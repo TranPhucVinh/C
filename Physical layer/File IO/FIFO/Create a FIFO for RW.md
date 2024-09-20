@@ -1,4 +1,7 @@
-# Singly open FIFO with O_WRONLY and O_RDONLY mode
+# Half-duplex communication with FIFO
+FIFOs are typically half-duplex, meaning they can either send or receive data at any given time, but not both simultaneously. i.e not full-duplex or bidirectional communication. If you open a FIFO with O_RDWR (read/write mode) in both of the 2 process, it can lead to issues like deadlocks or blocking reads/writes, depending on how the programs are structured. The only option to use FIFO for full-duplex is to use 2 FIFO, 1 for read and 1 for write.
+
+**Blocking Behavior**: When one process opens a FIFO for reading (``O_RDONLY``), it will block until another process opens the same FIFO for writing (``O_WRONLY``). Similarly, the writing process will block if there's no reader on the other end.
 
 Create a FIFO then open it with ``O_WRONLY`` to **write** data to it
 
@@ -11,7 +14,7 @@ Create a FIFO then open it with ``O_WRONLY`` to **write** data to it
 #define FIFO_NAME 		"FIFO"
 #define FILE_PERMISSION	 0777 //Octal value for file permission 777
 
-int main(int argc, char *argv[])  {
+int main()  {
 	char writeString[] = "Hello, World !";
 
 	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
@@ -44,8 +47,6 @@ In this case, while the program is blocking, running another program to **read**
 
 ``cat FIFO`` will result in ``Hello, World !`` (the string written before to that FIFO). For FIFO name with space like ``FIFO 1``, use ``\``, e.g ``cat FIFO\ 1``.
 
-**Blocking Behavior**: When one process opens a FIFO for reading (``O_RDONLY``), it will block until another process opens the same FIFO for writing (``O_WRONLY``). Similarly, the writing process will block if there's no reader on the other end.
-
 **Write int number to FIFO**
 
 ```c
@@ -71,7 +72,8 @@ if (write(fd, &a, sizeof(int)) == -1) printf("Unable to write to FIFO");
 #define FIFO_NAME 		"FIFO"
 #define FILE_PERMISSION	 0777 //Octal value for file permission 777
 #define BUFF_SIZE   10
-int main()  {
+
+int main() {
 	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
 		printf("WARNING: A FIFO with the same name has already existed\n");
 
