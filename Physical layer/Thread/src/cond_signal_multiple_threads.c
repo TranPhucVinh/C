@@ -20,7 +20,8 @@ int main() {
 
     pthread_mutex_init(&lock, MUTEX_ATTR);
     pthread_cond_init(&thread_2_run_condition, NULL);
-
+	pthread_cond_init(&thread_3_run_condition, NULL);
+	
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
     pthread_create(&thread_2, NULL, func_thread_2, NULL);
     pthread_create(&thread_3, NULL, func_thread_3, NULL);
