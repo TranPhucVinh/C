@@ -8,7 +8,7 @@ A **named pipe** (also known as a **FIFO** for its behavior) is an extension to 
 
 int mkfifo(const char *pathname, mode_t mode);
 ```
-
+FIFO is a [half-duplex communication, not full-duplex, bidirection communication](Create%20a%20FIFO%20for%20RW.md#half-duplex-communication-with-fifo).
 ## mkfifo command
 
 A FIFO can be created with ``mkfifo`` command:
