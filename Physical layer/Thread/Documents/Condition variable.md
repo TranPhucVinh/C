@@ -91,4 +91,4 @@ Not ready to run
 share_value after executing 3 threads: 9000000
 ```
 # Run multiple threads respectively by condition variables
-Run thread 1, 2 and 3 respectively by using condition variables: [cond_signal_multiple_threads.c](../src/cond_signal_multiple_threads.c). Also note that this program implementation doesn't include mutex
+Run thread 1, 2 and 3 respectively by using condition variables: [cond_signal_multiple_threads.c](../src/cond_signal_multiple_threads.c).
