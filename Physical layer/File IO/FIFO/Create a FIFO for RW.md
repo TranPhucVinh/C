@@ -44,7 +44,7 @@ In this case, while the program is blocking, running another program to **read**
 
 ``cat FIFO`` will result in ``Hello, World !`` (the string written before to that FIFO).
 
-**Once you have created a FIFO special file in this way, any process can open it for reading or writing, in the same way as an ordinary file. However, it has to be open at both ends simultaneously before you can proceed to do any input or output operations on it.**
+**Blocking Behavior**: When one process opens a FIFO for reading (``O_RDONLY``), it will block until another process opens the same FIFO for writing (``O_WRONLY``). Similarly, the writing process will block if there's no reader on the other end.
 
 For FIFO name with space like ``FIFO 1``, use ``\``, e.g ``cat FIFO\ 1``.
 
