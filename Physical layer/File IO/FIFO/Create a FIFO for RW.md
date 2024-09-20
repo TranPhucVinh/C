@@ -42,11 +42,9 @@ That happens as opening a FIFO created by ``mkfifo()`` for writing normally bloc
 
 In this case, while the program is blocking, running another program to **read** the ``FIFO`` like ``cat FIFO`` will read out the data written into that FIFO then the FIFO will then stop blocking.
 
-``cat FIFO`` will result in ``Hello, World !`` (the string written before to that FIFO).
+``cat FIFO`` will result in ``Hello, World !`` (the string written before to that FIFO). For FIFO name with space like ``FIFO 1``, use ``\``, e.g ``cat FIFO\ 1``.
 
 **Blocking Behavior**: When one process opens a FIFO for reading (``O_RDONLY``), it will block until another process opens the same FIFO for writing (``O_WRONLY``). Similarly, the writing process will block if there's no reader on the other end.
-
-For FIFO name with space like ``FIFO 1``, use ``\``, e.g ``cat FIFO\ 1``.
 
 **Write int number to FIFO**
 
