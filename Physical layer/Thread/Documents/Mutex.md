@@ -139,7 +139,7 @@ Thread 2 isn't ready to run
 ...// Loop forever
 ```
 
-**Problem solved by pthread condition variable**: [cond_signal.c](../src/cond_signal.c)
+**Problem solved by pthread condition variable**: [cond_signal_2_threads.c](../src/cond_signal_2_threads.c)
 
 **Result**
 ```
@@ -161,3 +161,5 @@ Not ready to run
 Not ready to run
 share_value after executing 3 threads: 9000000
 ```
+## Run multiple threads respectively by condition variables
+Run thread 1, 2 and 3 respectively by using condition variables: [cond_signal_multiple_threads.c](../src/cond_signal_multiple_threads.c)
