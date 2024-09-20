@@ -54,7 +54,31 @@ Tasks performed by the kernel:
 Kernel can be divided into 3 types: monolithic, microkernel, and hybrid. Linux use monolithic kernel. OS X (XNU) and Windows 7 use hybrid kernel.
 
 Android use Linux Kernel. Windows and Windows Phone use NT kernel. OS X and iOS use Darwin kernel. 
+# POSIX and System V
 
+POSIX (Portable Operating System Interface) and System V are both standards or operating system environments, but they represent different philosophies and purposes in the evolution of Unix-like systems.
+## POSIX (Portable Operating System Interface)
+* POSIX is a family of standards specified by the IEEE (Institute of Electrical and Electronics Engineers) to ensure compatibility between different Unix-like operating systems. It defines APIs, shell utilities, and tools to make it easier for software to run on various Unix systems without modification.
+* Goal: The goal of POSIX is to promote portability and interoperability between Unix-like systems (e.g., Linux, macOS, BSD, etc.).
+* Key features:
+1. Standardization of system calls and APIs, such as for file handling, process control, threading, and inter-process communication (IPC).
+2. Standardized shell environment and commands.
+3. Threading (e.g., pthread for multi-threaded applications).
+4. Signal handling, process scheduling, and other lower-level OS interactions.
+
+POSIX-compliant systems adhere to the standards to ensure that programs written for one POSIX system can generally be compiled and run on other POSIX systems with minimal changes.
+## System V (System Five)
+* System V is a version of the Unix operating system initially developed by AT&T and released in 1983. It represents a specific line of Unix development that introduced many features and subsystems that became standard in Unix-like systems. It became the dominant Unix standard for many commercial Unix variants.
+* Key features:
+1. SysV init: Introduced the "init" system (the ancestor of Linux's systemd), which is responsible for booting the system and managing services (daemons) at different run levels.
+2. IPC (Inter-Process Communication): Includes mechanisms such as message queues, semaphores, and shared memory, which are still widely used.
+3. SysV File System: A widely used file system at the time.
+4. Run levels: Concept of different system states (single-user mode, multi-user mode, etc.).
+## Relationship between POSIX and System V
+* **POSIX compatibility**: Many features introduced by System V became part of the POSIX standard. For example, SysV IPC mechanisms were adopted into the POSIX standard for inter-process communication.
+* **Modern impact**: Today, POSIX compliance is more commonly referred to when discussing modern Unix-like systems. However, many of the concepts and subsystems in System V, like the init system, still exist in legacy systems or have evolved into newer replacements (e.g., systemd in Linux has replaced SysVinit).
+
+In summary, POSIX is a standard for Unix-like systems to ensure portability, while System V is a specific Unix version that introduced important features like the init system and IPC mechanisms.
 # Automotive embedded system
 
 ## OSEK
