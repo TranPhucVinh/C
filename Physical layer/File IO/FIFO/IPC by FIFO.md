@@ -13,7 +13,7 @@ Process ``fifo_write`` writes data to FIFO ``FIFO 1`` every 1 second. Process ``
 #define FIFO_NAME 		"FIFO"
 #define FILE_PERMISSION	 0777
 
-int main(int argc, char *argv[])  {
+int main()  {
 	char write_string[50];
 
 	if(mkfifo(FIFO_NAME, FILE_PERMISSION) == -1){
@@ -56,13 +56,14 @@ int main(int argc, char *argv[])  {
 
 ```c
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 
 #define FIFO_NAME 		"FIFO"
 #define FILE_PERMISSION	 0777
 
-int main(int argc, char *argv[])  {
+int main()  {
 	char readBuffer[50];
     
 	int fd = open(FIFO_NAME, O_RDONLY);//Open for read
@@ -74,9 +75,12 @@ int main(int argc, char *argv[])  {
 	printf("Opened\n");
 
     while(1){
-        read(fd, readBuffer, sizeof(readBuffer));
-        printf("Received: %s", readBuffer);
-        sleep(1); 
+        int bytes_received = read(fd, readBuffer, sizeof(readBuffer));
+        if (bytes_received > 0) {
+            printf("Received: %s", readBuffer);
+            bzero(readBuffer, sizeof(readBuffer));         //Delete buffer
+            sleep(1); 
+        } 
     }
 
 	close(fd);
