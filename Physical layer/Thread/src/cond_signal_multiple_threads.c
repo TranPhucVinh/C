@@ -12,11 +12,9 @@ void *func_thread_3(void *ptr);
 
 bool thread_2_run = false, thread_3_run = false;
 
-// pthread_mutex_t mutex;
 pthread_cond_t thread_2_run_condition, thread_3_run_condition;
 
 int main() {  
-    // pthread_mutex_init(&mutex, MUTEX_ATTR);
 	pthread_t thread_1, thread_2, thread_3;
 
 	pthread_create(&thread_1, NULL, func_thread_1, NULL);
