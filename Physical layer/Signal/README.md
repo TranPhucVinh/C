@@ -55,10 +55,10 @@ All **Unix** and **Unix-like** standards signals are divided into:
 * **Signal set**: All of the signal blocking functions use a data structure called a signal set (``sigset_t``) to specify what signals are affected.
 
 Implementations include:
-* [IPC by signal](IPC%20by%20signal.md)
-* [Process signal mask](Process%20signal%20mask.md)
+* [IPC by signal](Documents/IPC%20by%20signal.md)
+* [Process signal mask](Documents/Process%20signal%20mask.md)
 * [Stopping and interrupting signals](): SIGTSTP, SIGINT and SIGKILL; SIGHUP, SIGUSR1, SIGUSR2 can stop a process without ``signal_handler()``
-* [Working with specific signals](Working%20with%20specific%20signals.md)
+* [Working with specific signals](Documents/Working%20with%20specific%20signals.md)
 
 # [API](API.md)
 
