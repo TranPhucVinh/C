@@ -36,6 +36,16 @@ void signal_handler(int signal_number);
 ```
 
 ``signal_handler()`` runs asynchronously, it can interrupt the program at any point. Some functions are listed a async-signal-safe, which includes ``write()``, not ``printf()``. So using ``printf()`` is not recommended and may cause the program with signal to crash in some case.
+# trap as signal handler function
+[trap](https://github.com/TranPhucVinh/Linux-Shell/tree/master/Bash%20script/Conditional%20statement#trap) command can be used to add signal function handler to any signal in **Bash script**. This is corresponded to [signal()](#signal) with ``signal_handler()`` function in C:
+```sh
+trap  "echo 'SIGINT is caught'" SIGINT
+while ((1))
+do
+    sleep 1
+done
+exit 0
+```
 
 # sigaction()
 
