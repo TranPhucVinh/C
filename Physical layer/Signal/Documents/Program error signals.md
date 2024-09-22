@@ -31,10 +31,10 @@ Check the [sem_init implementation for process race condition: Two processes inc
 # SIGSEGV
 Write value to a string char pointer like this will trigger **SIGSEGV** signal:
 ```c
-int main( int argc, char ** argv ) {
+int main() {
 	signal(SIGSEGV, signal_handler);
-  char *p = NULL ;
-  *p = 'A' ;
+    char *p = NULL;
+    *p = 'A';
 }
 ```
 As assigning value to the deallocated pointer result in unexpected behavior, this won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
