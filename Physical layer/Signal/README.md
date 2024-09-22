@@ -33,10 +33,10 @@ All **Unix** and **Unix-like** standards signals are divided into:
 ## [Asynchronous I/O signals](Documents/Asynchronous%20IO%20signals.md)
 * [SIGIO](Documents/Asynchronous%20IO%20signals.md): SIGIO is sent when a file descriptor is ready to perform I/O, especially terminals and sockets.
 * SIGURG
-## Job Control Signals
+## [Job control signals](Documents/Job%20control%20signals.md)
 * [SIGCHLD](../Process/Process%20cloning/Signal%20for%20fork().md#sigchld): When a child process stops or terminates, SIGCHLD is sent to the parent process.
-* [SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGCONT** will continue the process continue from the state where it is stopped by **SIGSTOP**. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
-* [SIGSTOP](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
+* [SIGSTOP](Documents/Job%20control%20signals.md#sigstop-and-sigcont): **SIGSTOP** will suspend a process. **SIGCONT** will let that process continue from the state where it is stopped.
+* [SIGCONT](Documents/Job%20control%20signals.md#sigstop-and-sigcont): **SIGCONT** will continue the process continue from the state where it is stopped by **SIGSTOP**.
 * [SIGTSTP](Documents/Termination%20signals.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**. When adding ``signal_handler()`` function to this signal, Ctr+Z won't stop this process but trigger the signal_handler() function instead.
 * [SIGTTIN](Documents/SIGTTIN%20and%20SIGTTOU.md): When a background job tries to read from its current terminal, SIGTTIN will be triggered
 * [SIGTTOU](Documents/SIGTTIN%20and%20SIGTTOU.md): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
