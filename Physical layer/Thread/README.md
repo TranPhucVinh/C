@@ -24,7 +24,7 @@
 * [Semaphore](Documents/Semaphore.md)
 * [Mutex](Documents/Mutex.md)
 * Deadlock, recursive mutex and spin lock
-### pthread doesn't have API for suspending and resuming thread
+### Suspending and resuming thread
 
 **Suspend a thread when reaching a specific value then resume that thread by another one** can be implemented by
 * [mutex with condition variable](Documents/Mutex.md): [suspend a thread when reaching a specific value then resume that thread by another thread](src/suspend_and_resume_threads_by_mutex_and_cond.c)
@@ -33,6 +33,7 @@
 
 For efficient implementation, suspend and resume threads must be implemented with OOP. Check [the corresponding document in CPP](https://github.com/TranPhucVinh/Cplusplus/tree/master/Physical%20layer/Thread#suspend-and-resume-threads) for that implementation.
 
+**Must not use pthread_kill() with SIGSTOP and SIGCONT to suspend and resume thread**: Although pthread_kill() can send signal between threads, SIGSTOP and SIGCONT are supported only for process, not thread so we can't use those 2 signals to suspend and resume threads.
 # [API](API)
 * Thread creation
 * Inter-task communication
