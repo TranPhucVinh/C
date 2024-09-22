@@ -1,15 +1,13 @@
 # SIGTTOU
 SIGTTOU is generated when a process in a background job attempts to write to the terminal and the TOSTOP output mode is set. [termios.h](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/README.md#termiosh) functions ``tcgetattr()`` and ``tcsetattr()`` are required to set ``TOSTOP`` flag.
 
-Program: [sigttou.c](../src/sigttou.c)
+
 
 # SIGTTIN
 When a background job tries to read from its current terminal, **SIGTTIN** will be triggered
 ## Trigger SIGTTIN as the background job
-``sigttin.c``
-```c
+Program: [sigttin_triggered_as_background_job.c](../src/sigttin_triggered_as_background_job.c)
 
-```
 Running ``./sigttin&`` in the terminal will result in ``Signal SIGTTIN is caught`` is printed out infinitely.
 ## Can't trigger SIGTTIN when a foreground job starts the background job which wants to have SIGGTTIN
 This ``foreground_job`` will start the ``sigttin.c`` program aboves as the background job and intends to have SIGGTTIN triggered when typing input to the current terminal
