@@ -50,7 +50,7 @@ Task is suspended
 [1]+  Stopped                 ./a.out
 ```
 
-When you send a SIGSTOP to suspend_thread inside suspend_thread_func, the thread is halted. But once halted, it cannot process any further code, meaning it can’t resume on its own.
+When you send a SIGSTOP to thread ID ``suspend_thread`` inside ``suspend_thread_func``, the thread is halted. But once halted, it cannot process any further code, meaning it can’t resume on its own.
 
 # Recursive mutex
 Recursive mutex is a mutex that may be locked multiple times by the same process/thread, without causing a deadlock.
