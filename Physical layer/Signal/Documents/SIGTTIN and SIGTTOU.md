@@ -1,3 +1,52 @@
+# SIGTTOU
+SIGTTOU is generated when a process in a background job attempts to write to the terminal and the TOSTOP output mode is set. [termios.h](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/README.md#termiosh) functions ``tcgetattr()`` and ``tcsetattr()`` are required to set ``TOSTOP`` flag:
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <fcntl.h>
+#include <signal.h>   
+#include <termios.h>
+#include <errno.h> 
+
+#define TERMINAL "/dev/pts/1"
+
+struct termios tty;
+
+void signal_handler(int signal_number){
+	char displayed_string[50];
+	bzero(displayed_string, 50);
+    if (signal_number == SIGTTOU) {
+        int sz = snprintf(displayed_string, sizeof(displayed_string), "Signal SIGTTOU is caught\n");
+    	write(STDOUT_FILENO, displayed_string, sz); 
+    }
+}
+
+int main() {
+    signal(SIGTTOU, signal_handler);
+	int fd = open(TERMINAL, O_RDWR);
+	if (fd > 0){
+        printf("open %s successfully\n", TERMINAL);
+
+		// Read in existing settings, and handle any error
+		if(tcgetattr(fd, &tty) != 0) {
+			printf("Error %i from tcgetattr: %s\n", errno, strerror(errno));
+			return 1;
+		}
+
+		tty.c_iflag |= TOSTOP;
+
+		// Save tty settings, also checking for error
+		if (tcsetattr(fd, TCSANOW, &tty) != 0) {
+			printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
+			return 1;
+		}
+
+		char hw[] = "Hello, World !";
+        write(fd, hw, sizeof(hw));
+	} else printf("Unable to open\n");
+}
+```
 # SIGTTIN
 When a background job tries to read from its current terminal, **SIGTTIN** will be triggered
 ## Trigger SIGTTIN as the background job
@@ -117,53 +166,4 @@ Signal 21 is caught
 That happens because:
 ```sh
 lrwx------ 1 vinhtran vinhtran 64 Aug 28 18:01 /proc/29714/fd/1 -> /dev/pts/5 # This fd points to the current terminal
-```
-# SIGTTOU
-SIGTTOU is generated when a process in a background job attempts to write to the terminal and the TOSTOP output mode is set. [termios.h](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/File%20IO/System%20call/README.md#termiosh) functions ``tcgetattr()`` and ``tcsetattr()`` are required to set ``TOSTOP`` flag:
-```c
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
-#include <fcntl.h>
-#include <signal.h>   
-#include <termios.h>
-#include <errno.h> 
-
-#define TERMINAL "/dev/pts/1"
-
-struct termios tty;
-
-void signal_handler(int signal_number){
-	char displayed_string[50];
-	bzero(displayed_string, 50);
-    if (signal_number == SIGTTOU) {
-        int sz = snprintf(displayed_string, sizeof(displayed_string), "Signal SIGTTOU is caught\n");
-    	write(STDOUT_FILENO, displayed_string, sz); 
-    }
-}
-
-int main() {
-    signal(SIGTTOU, signal_handler);
-	int fd = open(TERMINAL, O_RDWR);
-	if (fd > 0){
-        printf("open %s successfully\n", TERMINAL);
-
-		// Read in existing settings, and handle any error
-		if(tcgetattr(fd, &tty) != 0) {
-			printf("Error %i from tcgetattr: %s\n", errno, strerror(errno));
-			return 1;
-		}
-
-		tty.c_iflag |= TOSTOP;
-
-		// Save tty settings, also checking for error
-		if (tcsetattr(fd, TCSANOW, &tty) != 0) {
-			printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
-			return 1;
-		}
-
-		char hw[] = "Hello, World !";
-        write(fd, hw, sizeof(hw));
-	} else printf("Unable to open\n");
-}
 ```
