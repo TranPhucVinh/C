@@ -33,6 +33,24 @@ Odd number: 7
 Even number: 7
 ...
 ```
+## Deadlock when using SIGSTOP and SIGCONT to suspend and resume a thread
+In this program, suspend_thread_func() is suspended by SIGSTOP signal and we expect resume_thread_func() to continue suspend_thread_func() by SIGCONT. However, this is wrong and causes deadlock because SIGSTOP suspends the whole process, not a single thread inside that process.
+
+**Program**: [deadlock_with_sigstop_and_sigcont.c](../src/deadlock_with_sigstop_and_sigcont.c)
+
+**Result**:
+
+```
+user@hostname:~/workspace$ ./a.out
+number 1
+number 2
+number 3
+Task is suspended
+
+[1]+  Stopped                 ./a.out
+```
+
+When you send a SIGSTOP to suspend_thread inside suspend_thread_func, the thread is halted. But once halted, it cannot process any further code, meaning it can’t resume on its own.
 
 # Recursive mutex
 Recursive mutex is a mutex that may be locked multiple times by the same process/thread, without causing a deadlock.
