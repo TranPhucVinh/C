@@ -11,6 +11,8 @@ Program: [sigttin_triggered_as_background_job.c](../src/sigttin_triggered_as_bac
 Running ``./sigttin&`` in the terminal will result in ``Signal SIGTTIN is caught`` is printed out infinitely.
 ## Can't trigger SIGTTIN when a foreground job starts the background job which wants to have SIGGTTIN
 This ``foreground_job`` will start the ``sigttin_triggered_as_background_job.c`` program aboves as the background job and intends to have SIGGTTIN triggered when typing input to the current terminal
+<details>
+	
 ```c
 #include <iostream>
 #include <unistd.h>
@@ -32,6 +34,8 @@ int main() {
     while(1);
 }
 ```
+</details>
+
 **Result**: There is no SIGTTIN triggered in this ``foreground_job`` program.
 
 **Explain**: For **SIGTTIN** to be triggered, a background job must try to read from its current terminal, i.e it must try to read from its **parent process** as the [PID of this terminal is the PPID of this process/background process](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process#getpid-and-getppid).
@@ -39,6 +43,9 @@ int main() {
 However, [PPID of a background job isn't the PID of the process starting it and is also not the PID of the current running terminal](https://github.com/TranPhucVinh/C/tree/master/Physical%20layer/Process/Background%20job#ppid-of-a-background-job-isnt-the-pid-of-the-process-starting-it).
 
 This ``background_job.c`` program as the background job will try to open the file descriptor of its parent process in order to trigger SIGTTIN:
+
+<details>
+	
 ```c
 #include <iostream>
 #include <unistd.h>
@@ -71,6 +78,8 @@ int main() {
 	} else printf("Unable to open\n");
 }
 ```
+</details>
+
 Then embedded/call this ``background_job`` inside ``foreground_job.c`` like before then start ``foreground_job`` by sudo (Must start ``foreground_job`` to open the fd of this background job's parent process) then SIGTTIN isn't triggered:
 ```sh
 username@hostname:~/$ sudo ./foreground_job
@@ -95,3 +104,5 @@ That happens because:
 ```sh
 lrwx------ 1 vinhtran vinhtran 64 Aug 28 18:01 /proc/29714/fd/1 -> /dev/pts/5 # This fd points to the current terminal
 ```
+# SIGSTOP and SIGCONT
+## [Suspend a background process by SIGSTOP and continue it by SIGCONT from the parent process](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Background%20job/Background%20job%20with%20infinite%20loop.md#stop-background_job-by-sigstop-and-continue-it-by-sigcont)
