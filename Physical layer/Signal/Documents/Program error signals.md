@@ -37,15 +37,14 @@ int main() {
     *p = 'A';
 }
 ```
-As assigning value to the deallocated pointer result in unexpected behavior, this won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
+As assigning value to the deallocated pointer result in unexpected behavior, this code snippet won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
 ```c
 signal(SIGSEGV, signal_handler);
 int *intPointer;
 
 // This won't trigger SIGSEGV when running on WSL 20.04 and Xilinx Linux 5.15 board
 intPointer = (int *) malloc(1);
-*intPointer = 12;
-	
+*intPointer = 12;	
 printf("Int value before: %d \n", *intPointer); //12
 free(intPointer);
 printf("Int value after: %d \n", *intPointer); //0
