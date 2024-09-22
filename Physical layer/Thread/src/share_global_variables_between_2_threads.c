@@ -6,14 +6,13 @@ void *start_routine_thread_2(void *ptr);
 
 int a;
 int main(void){
-	int start_routine_thread_return_1, start_routine_thread_return_2;
-	pthread_t start_routine_thread_id_1, start_routine_thread_id_2;//pointer thread for HTTP client
+	pthread_t thread_id_1, thread_id_2;
 
-	start_routine_thread_return_1 = pthread_create(&start_routine_thread_id_1, NULL, start_routine_thread_1, NULL);
-    start_routine_thread_return_2 = pthread_create(&start_routine_thread_id_2, NULL, start_routine_thread_2, NULL);
+	pthread_create(&thread_id_1, NULL, start_routine_thread_1, NULL);
+    pthread_create(&thread_id_2, NULL, start_routine_thread_2, NULL);
 
-	pthread_join(start_routine_thread_id_1, NULL);
-    pthread_join(start_routine_thread_id_2, NULL);
+	pthread_join(thread_id_1, NULL);
+    pthread_join(thread_id_2, NULL);
 
 	return 0;
 }
