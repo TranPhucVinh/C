@@ -105,4 +105,49 @@ That happens because:
 lrwx------ 1 vinhtran vinhtran 64 Aug 28 18:01 /proc/29714/fd/1 -> /dev/pts/5 # This fd points to the current terminal
 ```
 # SIGSTOP and SIGCONT
+## Suspend the current job and continue it by another process
+
+Run a process for 5 seconds then suspend it by itself with SIGSTOP. Another process resumes it by SIGCONT with kill() command:
+
+<details>
+	
+```c
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+int main() {
+    int pid = getpid();
+    printf("PID %d\n", pid);
+    int index = 0;
+    while (1) {
+        printf("Hello, index = %d\n", index);
+        if (index == 5) kill(pid, SIGSTOP);
+        index += 1;
+        sleep(1);
+    }
+}
+```
+</details>
+
+**Result**
+<details>
+	
+```sh
+username@hostname:~/workspace$ ./a.out
+PID 1874665
+Hello, index = 0
+Hello, index = 1
+Hello, index = 2
+Hello, index = 3
+Hello, index = 4
+Hello, index = 5
+
+[1]+  Stopped                 ./a.out
+username@hostnam:~/workspace$ kill -CONT 1874665
+username@hostnam:~/workspace$ Hello, index = 6
+...
+```
+</details>
+
 ## [Suspend a background process by SIGSTOP and continue it by SIGCONT from the parent process](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Process/Background%20job/Background%20job%20with%20infinite%20loop.md#stop-background_job-by-sigstop-and-continue-it-by-sigcont)
