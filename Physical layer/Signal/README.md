@@ -38,8 +38,8 @@ All **Unix** and **Unix-like** standards signals are divided into:
 * [SIGCONT](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGCONT** will continue the process continue from the state where it is stopped by **SIGSTOP**. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
 * [SIGSTOP](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop%20child_process%20by%20SIGSTOP%20and%20continue%20it%20by%20SIGCONT): **SIGSTOP** will stop/suspend a process. **SIGCONT** will let that process continue from the state where it is stopped. Implementation: [Stop a process by SIGSTOP and continue it by SIGCONT from another process](../Process/system()%20for%20a%20process%20with%20infinite%20loop%20in%20the%20background.md#stop-child_process-by-sigstop-and-continue-it-by-sigcont)
 * [SIGTSTP](Documents/Termination%20signals.md#sigtstp-and-sigint): Stop a process, mapped to **Ctr+Z**. When adding ``signal_handler()`` function to this signal, Ctr+Z won't stop this process but trigger the signal_handler() function instead.
-* [SIGTTIN](Working%20with%20specific%20signals.md#sigttin): When a background job tries to read from its current terminal, SIGTTIN will be triggered
-* [SIGTTOU](Working%20with%20specific%20signals.md#sigttou): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
+* [SIGTTIN](Documents/SIGTTIN%20and%20SIGTTOU.md): When a background job tries to read from its current terminal, SIGTTIN will be triggered
+* [SIGTTOU](Documents/SIGTTIN%20and%20SIGTTOU.md): When a background job tries to write from its current terminal and the current terminal has flag ``TOSTOP`` set, SIGTTOU will be triggered
 ## Operation Error Signals
 * SIGPIPE
 * SIGXCPU
