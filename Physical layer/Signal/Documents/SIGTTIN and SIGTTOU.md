@@ -10,7 +10,7 @@ Program: [sigttin_triggered_as_background_job.c](../src/sigttin_triggered_as_bac
 
 Running ``./sigttin&`` in the terminal will result in ``Signal SIGTTIN is caught`` is printed out infinitely.
 ## Can't trigger SIGTTIN when a foreground job starts the background job which wants to have SIGGTTIN
-This ``foreground_job`` will start the ``sigttin.c`` program aboves as the background job and intends to have SIGGTTIN triggered when typing input to the current terminal
+This ``foreground_job`` will start the ``sigttin_triggered_as_background_job.c`` program aboves as the background job and intends to have SIGGTTIN triggered when typing input to the current terminal
 ```c
 #include <iostream>
 #include <unistd.h>
@@ -25,7 +25,7 @@ void execPid(const char* cmd)
   return;
 }
 
-int main(){
+int main() {
     std::cout << "start\n";
     execPid("./background_job");
     std::cout << "end\n";
