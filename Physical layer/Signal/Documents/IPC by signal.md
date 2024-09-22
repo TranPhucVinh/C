@@ -1,4 +1,4 @@
-# sigqueue(): Sending signal and an int number from a process to other process
+# sigqueue(): Send int numbers between processes
 
 Send signal ``SIGUSR1`` and parameter with int value ``12`` to process with macro ``PID`` by using ``sigqueue()``
 
