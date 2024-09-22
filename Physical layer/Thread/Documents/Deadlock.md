@@ -1,6 +1,7 @@
 # Deadlock
-
-If a process remains indefinitely unable to change its state because resources requested by it are being used by another process that itself is waiting, then the system is said to be **in a deadlock**.
+Deadlock happens when a process or thread remains indefinitely unable to change its state because:
+* Resources requested by it are being used by another process that itself is waiting
+* It waits infinitely for the other process to take action
 
 ## Try to lock a mutex 2 times to create deadlock
 
