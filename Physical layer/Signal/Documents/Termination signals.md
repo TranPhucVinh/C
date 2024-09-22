@@ -54,3 +54,16 @@ signal(SIGINT, signal_handler);
 ^CYou have entered signal number: 2
 ^CYou have entered signal number: 2
 ```
+# SIGHUP
+Stop a process with SIGHUP via kill command:
+```c
+int main() {
+	while(1) {
+        printf("Hello, World !\n");
+        sleep(1);
+	}
+}
+```
+Run ``./a.out&`` to have process run in the background and get the PID, e.g ``1873788``.
+
+Then run ``kill -HUP 1873788`` to stop this process.
