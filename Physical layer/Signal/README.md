@@ -44,9 +44,9 @@ All **Unix** and **Unix-like** standards signals are divided into:
 * SIGPIPE
 * SIGXCPU
 * SIGXFSZ
-## Miscellaneous Signals
-* [SIGUSR1]() and [SIGUSR2]() are user defined signals, which are used for [IPC]() or [stopping other process](Documents/Termination%20signals.md#sighup) (just like SIGHUP)
-* [SIGWINCH](Working%20with%20specific%20signal.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
+## [Miscellaneous signals](Miscellaneous%20signals.md)
+* [SIGUSR1 and SIGUSR2](Miscellaneous%20signals.md#sigusr1-and-sigusr2) are user defined signals, which are used for [IPC](Documents/IPC%20by%20signal.md) or [stopping other process](Documents/Termination%20signals.md#sighup) (just like SIGHUP)
+* [SIGWINCH](Documents/Miscellaneous%20signals.md#sigwinch): a signal sent upon the resizing of a window. When the number of columns or rows changes, **SIGWINCH** is raised to the foreground processes attached to the terminal.
 
 # Implementation
 
