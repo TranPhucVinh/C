@@ -8,6 +8,18 @@ If ``pid=0``, ``sig`` is sent to every process in the process group of the calli
 
 **Return**: On success (at least one signal was sent), ``0`` is returned.  On error, ``-1`` is returned, and ``errno`` is set to indicate the error.
 
+**kill command** sends a signal to a process
+
+``kill [options] <pid> [...]``
+
+The  default  signal  for kill is ``TERM`` (terminate).
+
+``kill 17375``: terminate process with PID ``17375``
+
+``kill -12 12976`` or ``kill -USR2 12976``: Send USR2 signal to PID ``12976``
+
+``kill -l``: display all the available signals
+
 # signal()
 
 ``signal()``: sets a function to handle signal
