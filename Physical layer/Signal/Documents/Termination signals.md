@@ -67,3 +67,11 @@ int main() {
 Run ``./a.out&`` to have process run in the background and get the PID, e.g ``1873788``.
 
 Then run ``kill -HUP 1873788`` to stop this process.
+
+Beside SIGHUP, SIGUSR1 and SIGUSR2 can be used to stop the above infinite process:
+```sh
+kill -USR1 1873830
+```
+```sh
+kill -USR2 1873867
+```
