@@ -33,7 +33,7 @@
 
 For efficient implementation, suspend and resume threads must be implemented with OOP. Check [the corresponding document in CPP](https://github.com/TranPhucVinh/Cplusplus/tree/master/Physical%20layer/Thread#suspend-and-resume-threads) for that implementation.
 
-**Must not use pthread_kill() with SIGSTOP and SIGCONT to suspend and resume thread**: Although pthread_kill() can send signal between threads, SIGSTOP and SIGCONT are supported only for process, not thread so we can't use those 2 signals to suspend and resume threads.
+**Must not use pthread_kill() with SIGSTOP and SIGCONT to suspend and resume thread**: Although pthread_kill() can send signal between threads, SIGSTOP and SIGCONT are supported only for process, not thread so we can't use those 2 signals to suspend and resume threads. This will also cause [deadlock](Documents/Deadlock.md#deadlock-when-using-sigstop-and-sigcont-to-suspend-and-resume-a-thread)
 # [API](API)
 * Thread creation
 * Inter-task communication
