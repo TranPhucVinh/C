@@ -1,4 +1,4 @@
-HTTP client implemented byy **TCP socket API**.
+HTTP client implemented by **TCP socket API**.
 
 # API
 
