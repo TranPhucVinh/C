@@ -1,20 +1,13 @@
 # [Installation](Install.md)
 # Telemetry
 
-## Telemetry with TCP client has HTTP client
-
-Features:
+Telemetry with TCP client has HTTP client. Features:
 
 * Internet isn't connected when program starts: Print ``gethostbyname: Host name lookup failure``
 * Internet is connected when program starts: Start the ThingsBoard telemetry process with HTTP request
 * While telemetry process is happening, Internet is disconnected: With ``DEBUG`` mode is on, program will get blocked. If Internet is then recovered, program exits.
 
 Program: [tcp_client_for_telemetry.c](tcp_client_for_telemetry.c)
-
-### Telemetry with libcurl as HTTP client
-
-* Telemetry to ThingsBoard Live Demo HTTP server (not HTTPS) with libcurl as HTTP client
-* Program: [libcurl_send_data.c](libcurl_send_data.c)
 
 # Server side API
 
