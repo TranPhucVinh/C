@@ -1,7 +1,7 @@
 # Available keywords
 
-* [const](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#const)
-* [auto](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#auto)
+* [const](#const)
+* [auto](#auto)
 * [extern](https://github.com/TranPhucVinh/C/tree/master/Introduction/Keywords#extern)
 * [inline](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/inline.md)
 * [static](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/static.md)
@@ -16,7 +16,7 @@ E.g: ``const int a = 19``
 
 To change ``const`` variable: Use pointer, check [example Change value of a variable with pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Implementations.md#change-value-of-a-variable-with-pointer)
 
-``const`` can be used to define local variable and gives no issue:
+``const`` can be local variable:
 
 ```c
 #include <stdio.h>
@@ -26,10 +26,10 @@ int const_test(int a){
     return b;
 }
 
-int main(int argc, char *argv[]) {
-    printf("%d\n", const_test(1));//1
-    printf("%d\n", const_test(2));//2
-    printf("%d\n", const_test(3));//3
+int main() {
+    printf("%d\n", const_test(1));// 1
+    printf("%d\n", const_test(2));// 2
+    printf("%d\n", const_test(3));// 3
 }
 ```
 
