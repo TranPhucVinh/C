@@ -1,6 +1,6 @@
-## Fundamental concepts
+# Fundamental concepts
 
-**Inline function** are those function whose definitions are small and be substituted at the place where its function call is happened. Function substitution is totally compiler choice. The argument passing and stack maintenance is skipped and it results in faster code execution, but it increases code size, particularly if the inline function is large or one inline function is used often
+**Inline function** are those function whose definitions are small and can be substituted at the place where its function call is happened. Function substitution is totally compiler choice. The argument passing and stack maintenance is skipped and it results in faster code execution, but it increases code size, particularly if the inline function is large or one inline function is used often
 
 ```c
 #include <stdio.h>
@@ -58,7 +58,7 @@ int main() {
     printf("Min of %d and %d is %d\n", x, y, MIN(x, y));
 }
 ```
-## Compare macro function and inline function
+# Compare macro function and inline function
 
 With macro function, we can write type insensitive functions but it is also the disadvantage of macro function as macro functions can't do validation check.
 
