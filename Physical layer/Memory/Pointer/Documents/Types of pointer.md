@@ -90,9 +90,9 @@ error: scalar object ‘int_array’ requires one element in initializer
 
 To work with ``int *number`` and ``int **int_array``, check ``Dynamic memory allocation.md`` in ``Physical layer/Memory/``.
 
-# Pointer and const
+# Pointer to const
 
-## pointer to const
+Pointer to const is a pointer points to a constant value, meaning the value it points to cannot be modified through the pointer. However, the pointer itself can be modified to point to another location.
 
 String declaration with pointer is highly recommended to use ``const char*``:
 
