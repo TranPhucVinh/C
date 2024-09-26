@@ -39,7 +39,7 @@ static inline int inline_function()
    return 2;
 }
 ```
-## Inline function to find min and max
+# Inline function to find min and max
 ```c
 #include <stdio.h>
 
