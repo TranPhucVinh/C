@@ -121,26 +121,36 @@ If adding ``memset()`` and ``bzero()``, the same error still happens: ``memset(d
 ``strcat()`` and ``strncat()`` require ``hw`` to be the string char array to store the value while ``char *hw`` has fix address and memory size.
 
 # Char pointer as argument in function
-
+Change string as a pointer argument in a function:
 ```c
-void printStringPointer(char *hw){
-	printf("%s %d\n", hw, strlen(hw));
+#include <stdio.h>
+#include <string.h>
+
+void print_str_ptr(char *_str){
+	printf("%s %ld\n", _str, strlen(_str));
 }
 
+void change_string(char *_str) {
+    // This modifies _str inside change_string to point to "New string", but does not modify the original str in main.
+    // _str = "New string"; -> This won't change _str in main()
+    strcpy(_str, "New string"); // Must use strcpy() or memset()
+}
 int main(){
-	char str1[] = "Hello, World !";
-	printStringPointer(str1); //Hello, World ! 14
+	char str[] = "Hello, World !";
+	print_str_ptr(str); //Hello, World ! 14
+    change_string(str);
+    printf("New string: %s\n", str);
 }
 ```
 
 # Function returns a string
 
 ```c
-char *returnString(){
+char *returnString() {
   return "Hello, World !";
 }
 
-int main(){
+int main() {
 	printf("%s ", returnString());
 }
 ```
@@ -170,7 +180,7 @@ int main(){
 	printf("%s", returnedString);
 }
 
-char *returnString(){
+char *returnString() {
 	char *string;
 	string = (char*) malloc(stringSize);
 	strcpy(string, "Hello, World !");
