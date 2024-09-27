@@ -248,9 +248,7 @@ int main()
 }
 ```
 
-# Get value of pointer
-
-Can't change the pointing address of pointer when pointer is a function argument
+# Change address of a pointer as a function argument
 
 ```c
 #include <stdio.h>
