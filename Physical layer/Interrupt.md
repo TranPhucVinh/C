@@ -1,8 +1,4 @@
-**Must not use printf() inside ISR**: ``printf()`` function in ISR is not supported because ``printf()`` function is not reentrant, thread safe and uses dynamic memory allocation which takes a lot of time and can affect the speed of an ISR up to a great extent.
-
-**Can we put breakpoint inside ISR ?**: Putting a break point inside ISR is not a good idea because debugging will take some time and a difference of half or more seconds will lead to different behavior of hardware. To debug ISR, definitive logs are better.
-
-Interrupt is a response by the processor to an event that needs attention from the software. That event can be GPIO voltage level rising or falling, timer overflow,... Interrupts can be triggered internally – from a timer, for example – or externally, from peripherals.
+Interrupt is a **response by the processor to an event** that needs attention from the software. That event can be GPIO voltage level rising or falling, timer overflow,... Interrupts can be triggered internally – from a timer, for example – or externally, from peripherals.
 
 An interrupt condition alerts the processor and serves as a request for the processor to interrupt the currently executing code when permitted, so that the event can be processed in a timely manner.
 
@@ -19,6 +15,10 @@ We can use function inside ISR as long as that function is not invoked from othe
 Interrupt latency can be minimized by writing short ISR routine and by not delaying interrupts for more time.
 
 For implementation of ISR, check the corresponding document in C and other MCU repositories, like AVR Arduino framework.
+
+**Must not use printf() inside ISR**: ``printf()`` function in ISR is not supported because ``printf()`` function is not reentrant, thread safe and uses dynamic memory allocation which takes a lot of time and can affect the speed of an ISR up to a great extent.
+
+**Can we put breakpoint inside ISR ?**: Putting a break point inside ISR is not a good idea because debugging will take some time and a difference of half or more seconds will lead to different behavior of hardware. To debug ISR, definitive logs are better.
 
 # Linux interrupts
 
