@@ -1,4 +1,4 @@
-# Get address of a variable then store into a pointer
+# Change variable address by pointer as function argument
 
 ```c
 #include <stdio.h>
@@ -23,41 +23,13 @@ int main()
 ```
 We expect ``ptr`` to store the address value of ``a`` but ``ptr`` passed to ``foo()`` is the value of ``ptr`` (i.e ``&b``).
 
+That happens because the pointer ptr in ``foo()`` is a local copy of the pointer you passed in main. When you do ``ptr = &a``, you change this local copy to point to a, but the original pointer in main (ptr in main) remains unchanged.
+
 **Problem solved**: 
 
-Using recursive pointer:
+Use ``memcpy()``
 
 ```c
-#include <stdio.h>
-
-int a = 8;
-int b = 10;
-
-void foo(int *ptr)
-{
-	*ptr = (unsigned long int)&a;
-}
-
-int main()
-{
-	int* ptr;
-	ptr = &b;
-	printf("*ptr: %d\n", *ptr);//10
-	foo((int*)&ptr);
-	printf("*ptr: %d\n", *ptr);//10, expected 8
-	return 0;
-}
-```
-
-Using ``memcpy()``
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-int a = 8;
-int b = 10;
-
 void foo(int *ptr)
 {
 	memcpy(ptr, &a, sizeof(int));
@@ -73,36 +45,19 @@ int main()
 	return 0;
 }
 ```
-
-Use a variable to store the address of other variable then changes that variable value
-
+Use double pointer
 ```c
-#include <stdio.h>
-
-int a = 8;
-int b = 10;
-
-void foo(unsigned long int* pon)
-{
-	*pon = (unsigned long int)&a;
+void foo(int **ptr) {
+    *ptr = &a;  // Dereference the pointer to pointer and change the original pointer
 }
 
-int main()
-{
-	unsigned long int ptr;
-	ptr = (unsigned long int)&b;
-
-	//To view the value mapped by ptr before changing the function
-	int* ptr_b;
-    ptr_b = &b;
-	printf("*ptr: %d\n", *ptr_b);//10
-
-	foo(&ptr);
-
-	//To view the value mapped by ptr after changing the function
-    int expect_a = *(int*)(ptr);
-	printf("*ptr: %d\n", expect_a);//8
-	return 0;
+int main() {
+    int* ptr;
+    ptr = &b;
+    printf("*ptr: %d\n", *ptr); // 10
+    foo(&ptr);                  // Pass the address of ptr
+    printf("*ptr: %d\n", *ptr); // 8, now ptr points to 'a'
+    return 0;
 }
 ```
 
