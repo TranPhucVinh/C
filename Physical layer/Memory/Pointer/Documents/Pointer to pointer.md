@@ -61,3 +61,63 @@ char **char_array = (char**) malloc(ROW_SIZE * sizeof(char*));
 
 * Double pointer as a variable is used as the returned value from a POSIX thread, check [Thread creation: Get return from a thread and store to a variable](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Thread/Examples.md#get-return-from-a-thread-and-store-to-a-variable) for its implementation.
 * Function ``insert_node_at_index()`` for both [userspace](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/Linked%20list/Singly%20linked%20list/multiple_defines_for_insert_with_index.c) and [kernel space linked list](https://github.com/TranPhucVinh/C/blob/master/Kernel/Linked%20list/insert_with_index.c) use double pointer variable ``first_node`` to insert a new first node to replace it.
+# Double pointer as function argument
+At first, take a look at this example where a pointer wants to point to another variable address in order to change the orginal variable's value to the a new one:
+```c
+#include <stdio.h>
+
+int a = 8;
+int b = 10;
+
+void foo(int *ptr)
+{
+	ptr = &a;
+}
+
+int main()
+{
+	int* ptr;
+	ptr = &b;
+	printf("*ptr: %d", *ptr);//10
+	foo(ptr);
+	printf("*ptr: %d", *ptr);//10, expected 8
+	return 0;
+}
+```
+We expect ``ptr`` to store the address value of ``a`` but ``ptr`` passed to ``foo()`` is the value of ``ptr`` (i.e ``&b``).
+
+That happens because the pointer ptr in ``foo()`` is a local copy of the pointer you passed in main. When you do ``ptr = &a``, you change this local copy to point to a, but the original pointer in main (ptr in main) remains unchanged.
+
+**That's why we need to use double pointer**:
+```c
+void foo(int **ptr) {
+    *ptr = &a;  // Dereference the pointer to pointer and change the original pointer
+}
+
+int main() {
+    int* ptr;
+    ptr = &b;
+    printf("*ptr: %d\n", *ptr); // 10
+    foo(&ptr);                  // Pass the address of ptr
+    printf("*ptr: %d\n", *ptr); // 8, now ptr points to 'a'
+    return 0;
+}
+```
+Beside double pointer, we can use ``memcpy()``:
+
+```c
+void foo(int *ptr)
+{
+	memcpy(ptr, &a, sizeof(int));
+}
+
+int main()
+{
+	int* ptr;
+	ptr = &b;
+	printf("*ptr: %d", *ptr);//10
+	foo(ptr);
+	printf("*ptr: %d", *ptr);//8
+	return 0;
+}
+```
