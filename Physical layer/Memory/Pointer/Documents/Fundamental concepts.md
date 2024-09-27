@@ -95,6 +95,50 @@ sizeof(&a); //8
 char *test = "1";
 printf("%d", sizeof(test)); //8
 ```
+# Change value of a variable with pointer
+
+Change both local or global variable by using pointer
+```cpp
+int value = 10;
+printf("before %d \n", value); //10
+int *ptr = &value;
+*ptr = 90;
+printf("after %d \n", value); //90
+```
+
+Changing the value of local or global ``const`` variable.
+
+```cpp
+int main(){
+	const int value = 32;
+	int *ptr = &value;
+	*ptr = 0;
+}
+```
+This program gives warning on ``GCC`` (but ``value`` can still be changed from ``32`` to ``0``)
+
+```
+warning: initialization discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+     int *ptr = &value;
+```
+This program gives error on ``G++``:
+
+```
+error: invalid conversion from ‘const int*’ to ‘int*’ [-fpermissive]
+   int *ptr = &value;
+```
+
+Then do optimization in the above program: ``gcc -O test.c`` (same for ``-O1``, ``-O2``, ``-O3``), the warning and result still be like compiling with ``gcc test.c``. Notice that those compilation process are executed on Ubuntu 16.04.
+
+**Problem solved**: Use ``(int*)`` and [volatile](https://github.com/TranPhucVinh/C/blob/master/Introduction/Keywords/volatile.md)
+
+```c
+volatile const int value = 32;
+int *ptr = (int*)&value;
+*ptr = 0;
+```
+
+# [Change string as a pointer argument in a function](https://github.com/TranPhucVinh/C/blob/master/Data%20structure/String/Char%20pointer%20as%20string.md#char-pointer-as-argument-in-function)
 
 # Address of function
 
