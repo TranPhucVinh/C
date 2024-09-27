@@ -121,3 +121,10 @@ int main()
 	return 0;
 }
 ```
+Or setting the pointer directly:
+```c
+void foo(int *ptr) {
+	*ptr = a;
+}
+// main() kept same as memcpy()
+```
