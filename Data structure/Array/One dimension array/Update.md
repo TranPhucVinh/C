@@ -1,8 +1,10 @@
-# Update
+# Update member at specific index
 
-* Update array member at specific index: ``array[index] = new_value``
+```c
+array[index] = new_value
+```
 
-## Insert a new member at specific index
+# Insert a new member at specific index
 
 **Precondition**: Size of the array to be inserted must bigger its total member
 
@@ -25,7 +27,7 @@ array[5] = 10;//Insert a new member at index 5, the unallocated location, result
 ```
 
 Program: [insert_member_at_index.c](insert_member_at_index.c)
-## Reverse 
+# Reverse 
 ```c
 void reverse_array(int arr[], int n) {
     int _tmp;
@@ -43,7 +45,7 @@ int main(){
 	return 0;
 }
 ```
-## Rotate an array
+# Rotate
 **Left rotation** is moving the last element of a sequence to its first.
 
 Beside the normal approach to re-write the value in all array member, the best approach is to use the formular:
@@ -88,7 +90,7 @@ void right_rotate(int *array, int arr_sz){
    right_rotate(arr, 6);// arr = 2 3 4 5 6 1
 */
 ```
-## Reorder an array
+# Reorder an array
 Reorder an array from ``L0 → L1 → … → Ln - 1 → Ln`` to ``L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …``
 
 ```c
