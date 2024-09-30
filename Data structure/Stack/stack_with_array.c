@@ -5,10 +5,11 @@
 int stack[STACK_SIZE];
 int top = -1;            
 
-int     isEmpty();
-int     isFull();   
-int     pop();
+int     is_empty();
+int     is_full();   
+void    pop();
 void    push(int data);
+int     get_top();
 
 int main() {
 	// push items into the stack 
@@ -19,46 +20,51 @@ int main() {
 	push(12);
 	push(15);
 
-    // print stack data 
-    while(!isEmpty()) {
-        int data = pop();
-        printf("%d ",data);
+    // print stack data by getting the top then pop it out
+    while(!is_empty()) {
+        int data = get_top();
+        printf("%d ", data);
+        pop();
     }
     printf("\n");
-    printf("Stack full: %s\n" , isFull()?"true":"false");
-    printf("Stack empty: %s\n" , isEmpty()?"true":"false");
+    printf("Stack full: %s\n" , is_full()?"true":"false");
+    printf("Stack empty: %s\n" , is_empty()?"true":"false");
    	return 0;
 }
 
-int isEmpty() {
+int is_empty() {
     if(top == -1) return 1;
     else return 0;
 }
 
-int isFull() {
+int is_full() {
 	if(top == STACK_SIZE) return 1;
 	else return 0;
 }
 
-int pop() {
-   	int data;
-	
-    if(!isEmpty()) {
-		data = stack[top];
+void pop() {	
+    if(!is_empty()) {
 		stack[top] = 0;// Reset value of stack[top]
 		top = top - 1;   
-		return data;
     } else {
-      printf("Could not retrieve data, Stack is empty.\n");
-	  return NULL;
+      printf("Could not retrieve data. Stack is empty.\n");
     }
+    return;
 }
 
 void push(int data) {
-    if(!isFull()) {
+    if(!is_full()) {
         top = top + 1;   
         stack[top] = data;
     } else {
         printf("Could not insert data, Stack is full.\n");
+    }
+}
+
+int get_top() {
+    if (top != -1) return stack[top];
+    else {
+        printf("Stack is empty\n");
+        return -1;
     }
 }
