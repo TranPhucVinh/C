@@ -128,6 +128,3 @@ void main() {
 	}
 }
 ```
-# Delete
-
-* Delete member in array at specific index: [delete_at_index.c](delete_at_index.c)
