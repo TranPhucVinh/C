@@ -25,7 +25,24 @@ array[5] = 10;//Insert a new member at index 5, the unallocated location, result
 ```
 
 Program: [insert_member_at_index.c](insert_member_at_index.c)
- 
+## Reverse 
+```c
+void reverse_array(int arr[], int n) {
+    int _tmp;
+    for (int i = 0; i < n / 2; i++) {
+        _tmp = arr[i];
+        arr[i] = arr[n - i - 1];
+        arr[n - i - 1] = _tmp;
+    }
+}
+
+int main(){
+	int arr[] = {1, 2, 3};
+    reverse_array(arr, 3);
+    for (int i = 0; i < 3; i++) printf("%d ", arr[i]);
+	return 0;
+}
+```
 ## Rotate an array
 **Left rotation** is moving the last element of a sequence to its first.
 
