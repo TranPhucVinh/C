@@ -2,7 +2,10 @@ OS provides every process a separated memory space. In order for processes to co
 
 Shared memory allows 2 or more process to share the same region of physical memory. When one process copies the data into a shared memory, that data is immediately available to all other process sharing the same segment. That's why shared memory is **the fastest IPC**.
 
-The disadvantages of shared memory is **race condition** and **no automatic cleanup**. For **no automatic cleanup**, shared memory segments may persist even after the processes using them terminate (unlike other IPC mechanisms (e.g., pipes or sockets). This can lead to **memory leaks** if the shared memory is not explicitly deallocated.
+The disadvantages of shared memory are:
+* **Race condition**
+* **No automatic cleanup**: shared memory segments may persist even after the processes using them terminate (unlike other IPC mechanisms (e.g., pipes or sockets). This can lead to **memory leaks** if the shared memory is not explicitly deallocated.
+* **Unable to detect how many clients are connected to a shared memory region by default**: Detecting how many clients are connected to a shared memory region isn't straightforward because shared memory itself doesn't maintain any connection or tracking of clients.
 
 # POSIX API
 **Note**: POSIX shared memory API don't support read and write. They support creating, deleting and mapping (e.g mmap()). Read and write for shared memory is supported in System V API.
