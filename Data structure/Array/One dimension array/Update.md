@@ -46,7 +46,7 @@ int main(){
 }
 ```
 # Rotate
-**Left rotation** is moving the last element of a sequence to its first.
+**Left rotation** is moving the last element of a sequence to its first. To **reverse right rotate**, use left rotation.
 
 Beside the normal approach to re-write the value in all array member, the best approach is to use the formular:
 
@@ -54,7 +54,9 @@ Beside the normal approach to re-write the value in all array member, the best a
 int rotation_time = 1;
 new_array[(i + rotation_time) % array_size] = old_array[i];
 ```
-**Right rotation** is moving the first element of a sequence to its last. The best approach for right rotation is this formular:
+**Right rotation** is moving the first element of a sequence to its last. To **reverse left rotate**, use right rotation.
+
+The best approach for right rotation is this formular:
 ```c
 int rotation_time = 1;
 new_array[(i + array_size - rotation_time) % array_size] = old_array[i];
