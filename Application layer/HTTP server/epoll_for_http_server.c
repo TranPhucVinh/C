@@ -47,6 +47,7 @@ int main(){
     http_client_length = sizeof(http_client_addr);//Get address size of sender
     http_server_fd = socket_parameters_init();
 
+    // http_server_fd must be added to monitor to detect the EPOLLIN event when a new TCP client connect to it
     http_client_conn_evt.events  = EPOLLIN;
     http_client_conn_evt.data.fd = http_server_fd;
     if(epoll_ctl(epfd, EPOLL_CTL_ADD, http_server_fd, &http_client_conn_evt)){
@@ -64,17 +65,11 @@ int main(){
         int ready_socket_fds = epoll_wait(epfd, happened_events, MAXEVENTS, TIMEOUT);
         if (ready_socket_fds == 0) printf("Timeout after %d miliseconds\n", TIMEOUT);
         else {
-            /*
-                By using while(1) and this for() loop, happened_events() is updated in 
-                everytime the EPOLLIN happens to HTTP server and HTTP clients
-            */
+            // By using while(1) and this for() loop, happened_events() is updated in everytime the EPOLLIN happens to HTTP server and HTTP clients
             for(int i = 0; i < ready_socket_fds; i++){
                 int socket_fd = happened_events[i].data.fd;
-
-                /*
-                    A new HTTP client connects to HTTP server will trigger
-                    the EPOLLIN event in that HTTP server
-                */
+		    
+                // A new HTTP client connects to HTTP server will trigger the EPOLLIN event in that HTTP server
                 if(socket_fd == http_server_fd){
                     int http_client_fd;
                     if ((http_client_fd = accept(http_server_fd, (struct sockaddr *) &http_client_addr, &http_client_length)) > 0){
