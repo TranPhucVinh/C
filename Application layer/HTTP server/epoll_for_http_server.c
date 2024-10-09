@@ -68,10 +68,10 @@ int main(){
             // By using while(1) and this for() loop, happened_events() is updated in everytime the EPOLLIN happens to HTTP server and HTTP clients
             for(int i = 0; i < ready_socket_fds; i++){
                 int socket_fd = happened_events[i].data.fd;
-		    
+                int http_client_fd;
+
                 // A new HTTP client connects to HTTP server will trigger the EPOLLIN event in that HTTP server
                 if(socket_fd == http_server_fd){
-                    int http_client_fd;
                     if ((http_client_fd = accept(http_server_fd, (struct sockaddr *) &http_client_addr, &http_client_length)) > 0){
                         inet_ntop(AF_INET, &(http_client_addr.sin_addr.s_addr), ip_str, INET_ADDRSTRLEN);
                         printf("New HTTP client with fd %d connected with IP %s\n", http_client_fd, ip_str);
@@ -93,13 +93,14 @@ int main(){
 
                 // Any connected HTTP client writes data to HTTP server will trigger the EPOLLIN event in that HTTP server
                 else {
+                    http_client_fd = socket_fd;
                     char req_buf[BUFFSIZE];// Buffer for HTTP request from HTTP client
                     bzero(req_buf, BUFFSIZE);//Delete buffer
 
-                    int bytes_received = read(socket_fd, req_buf, BUFFSIZE);
+                    int bytes_received = read(http_client_fd, req_buf, BUFFSIZE);
                     if (bytes_received > 0) {
                         // printf("Message from HTTP client with socket fd %d: %s", socket_fd, req_buf);
-                        printf("New HTTP client with socket fd %d\n", socket_fd);
+                        printf("New HTTP client with socket fd %d\n", http_client_fd);
                         char* method = strtok(req_buf, " ");
                         char* uri    = strtok(NULL, " ");
 
@@ -119,7 +120,7 @@ int main(){
                                     snprintf(res_buf, rsp_buf_sz, httpd_hdr_str, "200 OK", "text/html", rsp_buf_sz);
                                     strcat(res_buf, "\r\n");
                                     strcat(res_buf, html);
-                                    write(socket_fd, res_buf, strlen(res_buf));
+                                    write(http_client_fd, res_buf, strlen(res_buf));
                                     free(res_buf);
                                     free(html);
                                     // printf("%s\n", res_buf);
@@ -130,7 +131,7 @@ int main(){
                                     strcat(res_buf, "\r\n");
                                     strcat(res_buf, no_file);
                                     // printf("%s\n", res_buf);
-                                    write(socket_fd, res_buf, sizeof(res_buf));
+                                    write(http_client_fd, res_buf, sizeof(res_buf));
                                 }
                             } else if (!strcmp(uri, "/favicon.ico")){// URL favicon.ico is always requested by the web browser
                                 printf("Simply return HTTP/1.1 200 for /favicon.ico\n");
@@ -140,7 +141,7 @@ int main(){
 
                                 snprintf(res_buf, rsp_buf_sz, httpd_hdr_str, "200 OK", "text/html", rsp_buf_sz);
                                 strcat(res_buf, "\r\n");
-                                write(socket_fd, res_buf, strlen(res_buf));
+                                write(http_client_fd, res_buf, strlen(res_buf));
                                 free(res_buf);
                             }
                             else {
@@ -150,21 +151,21 @@ int main(){
                                 snprintf(res_buf, sizeof(res_buf), httpd_hdr_str, "200 OK", "text/html", sz);
                                 strcat(res_buf, "\r\n");
                                 strcat(res_buf, no_uri);
-                                write(socket_fd, res_buf, sizeof(res_buf));
+                                write(http_client_fd, res_buf, sizeof(res_buf));
                                 printf("%s\n", no_uri);
                             }
                         } else {
                             printf("Unhandle METHOD: %s\n", method);
                         }
                     } else {
-                        auto pos = find(http_client_fd_list.begin(), http_client_fd_list.end(), socket_fd);
+                        auto pos = find(http_client_fd_list.begin(), http_client_fd_list.end(), http_client_fd);
                         if(pos != http_client_fd_list.end()){
                             http_client_fd_list.erase(pos);
                         }
-                        epoll_ctl(epfd, EPOLL_CTL_DEL, socket_fd, NULL);
-                        printf("HTTP client with fd %d and IP %s is disconnected\n", socket_fd, ip_str);
+                        epoll_ctl(epfd, EPOLL_CTL_DEL, http_client_fd, NULL);
+                        printf("HTTP client with fd %d and IP %s is disconnected\n", http_client_fd, ip_str);
                         printf("Totally %ld HTTP clients are connected now\n", http_client_fd_list.size());
-                        close(socket_fd); 
+                        close(http_client_fd); 
                     }
                 }
             } 
