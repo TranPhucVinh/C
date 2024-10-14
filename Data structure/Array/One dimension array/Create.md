@@ -125,4 +125,3 @@ int main(){
     array(10);
 }
 ```
-# [create a vector](create_vector.c)
