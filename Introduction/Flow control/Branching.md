@@ -13,9 +13,9 @@ number = 20 ? printf("true") : printf("false");
 ```
 ## Double condition
 ```c
-int a = 3;
-if ((1 < a < 2)){
-	printf(a);// Result: 3 is printed out
+ int a = 3;
+if (1 < a < 2) {
+	printf("%d", a);// Result: 3 is printed out
 }
 ```
 **Analyse**: As we expected with Math logical, (1 < a < 3) is to whether a is inside the (1, 3). However, C interprets it diffently from the expected Math logic. 
