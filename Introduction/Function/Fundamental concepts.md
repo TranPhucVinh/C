@@ -63,32 +63,6 @@ int main () {
 
 }
 ```
-# Inner function
-
-Inner function (also known as **nested function**) allows defining a function inside a function.
-
-C and CPP only support declaring a function inside a function, not defining it.
-
-This available with both GCC and G++:
-
-```c
-#include <stdio.h>
-
-void display_string(){
-   void inner_function();
-   printf("Hello, World !\n");//Hello, World !
-   inner_function();
-}
-
-int main(){
-   display_string();
-}
-
-void inner_function(){
-   printf("Don't call any inner");
-}
-```
-Inner function method is applied in [callback by function pointer](Callback%20function.md#handle-callback-by-function-pointer) where the [function pointer](https://github.com/TranPhucVinh/C/blob/master/Physical%20layer/Memory/Pointer/Function%20pointer.md) is declared inside the callback function.
 
 # Short term function data type
 
@@ -103,16 +77,6 @@ int main () {
 
 int add(int a, int b){
    return a+b;
-}
-```
-
-# Get function name with ``__FUNCTION__``, ``__func__`` and ``__PRETTY_FUNCTION__``:
-
-```c
-void displayString(){
-	printf("%s\n",  __FUNCTION__);//displayString
-	printf("%s\n",  __func__);    //displayString
-	printf("%s\n",  __PRETTY_FUNCTION__);//displayString
 }
 ```
 
