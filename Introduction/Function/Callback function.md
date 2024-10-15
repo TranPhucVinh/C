@@ -1,6 +1,6 @@
 A callback is a piece of executable code that is passed as an argument to other code, which is expected to call back (execute) the argument at some convenient time.
 
-# Run a simple callback function
+# Define the very first callback function
 
 ```c
 #include <stdio.h>
@@ -9,12 +9,11 @@ void callback(){
 	printf("Call back function \n");
 }
 
-void run_callback(void function()){
+void run_callback(void function()) {
 	function();
 }
 
-int main()
-{  
+int main() {  
     run_callback(callback);
 }
 ```
