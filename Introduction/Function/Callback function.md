@@ -17,23 +17,22 @@ int main() {
     run_callback(callback);
 }
 ```
-# Call back function with parameters
+# Callback with arguments
 
 Using normal function
 
 ```c
 #include <stdio.h>
 
-void callback(int a, int b){
+void callback(int a, int b) {
 	printf("a: %d, b %d\n", a, b);
 }
 
-void run_callback(void function(), int a, int b){
+void run_callback(void function(), int a, int b) {
 	function(a, b);
 }
 
-int main()
-{  
+int main() {  
     run_callback(callback, 10, 11);
 }
 ```
@@ -55,8 +54,7 @@ void set_callback(void function()){
    display_pointer(1, 2);
 }
 
-int main()
-{
+int main() {
    set_callback(&callback);
 // Or: set_callback(&callback);
 }
