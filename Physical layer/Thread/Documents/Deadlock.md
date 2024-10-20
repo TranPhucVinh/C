@@ -62,3 +62,5 @@ Program: [recursive_mutex_threads_print_odd_and_even_numbers.c](../src/recursive
 # Spin lock
 
 If a resource is locked, a thread that wants to access that resource may repetitively check whether the resource is available. During that time, the thread may loop and check the resource without doing any useful work. Suck a lock is termed as spin lock.
+# Debug to discover deadlock
+In order to debug to know if the system is in deadlock, we can use the Banker's algorithm and Wait-for graph.
