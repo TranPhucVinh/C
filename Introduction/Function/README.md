@@ -13,3 +13,12 @@
 * [Variadic function and variable length argument](Variadic%20function.md)
 * [Scope](Scope.md)
 * [Random number generators](Random%20number.md)
+# C doesn't support function overloading
+
+C doesn't support function overloading as it is not an OOP language
+
+For function overloading in [CPP](https://github.com/TranPhucVinh/Cplusplus), check [CPP function overloading document](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#function-overloading).
+
+# C doesn't support default arguments
+
+Only CPP supports default arguments, check [CPP function for this implementation](https://github.com/TranPhucVinh/Cplusplus/tree/master/Introduction/Function#default-arguments).
