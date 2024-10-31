@@ -18,7 +18,7 @@
 * C doesn't support try catch
 * errno: EBUSY, EFAULT
 * strerror()
-# Validation
+# [Validation](Validation.md)
 * [Unit test with Unity framework](Validation.md#Unit%20test%20with%20Unity%20framework)
 * [Stub function](Validation.md#Stub%20function)
 # Comparison to OOP
