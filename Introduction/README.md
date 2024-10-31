@@ -5,7 +5,8 @@
 * Short term function data type
 * return keyword
 * Command line arguments with main()
-[Other concepts](Function/Other%20concepts.md)
+
+[Other concepts](Function/Other%20concepts.md):
 * [Callback function](Callback%20function.md)
 * [Variadic function and variable length argument](Variadic%20function.md)
 * [Scope](Scope.md)
@@ -17,12 +18,7 @@
 * C doesn't support try catch
 * errno: EBUSY, EFAULT
 * strerror()
-# Get libc version
 
-```c
-#include <gnu/libc-version.h>
-printf("%s\n", gnu_get_libc_version());
-```
 # [Unity unit test framework](Unit%20test.md)
 ## Stub function
 
