@@ -27,18 +27,18 @@ Declaration of a function provides the compiler the name of the function, the nu
 For example:
 
 ```c
-//function add() is declared here
+// function add() is declared here
 int add(int, int);
 
-//Other operations go here
+// Other operations go here
 
-//Now, function add() is defined
-int add(int a, int b)
-{
+// Now, function add() is defined
+int add(int a, int b) {
   return (a+b);
 }
 ```
 
+**Scalar variables** hold a single value (either a number, string, or reference). 
 # Define variables
 
 Must not define by this way:
