@@ -1,4 +1,4 @@
-# Unit test with Unity framework
+# Unit test with Unity
 [Unity](https://github.com/ThrowTheSwitch/Unity) is a C unit test framework.
 
 Download Unity zip file or clone the Unity Github then include the Unity source path while running

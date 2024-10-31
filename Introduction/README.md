@@ -18,23 +18,9 @@
 * C doesn't support try catch
 * errno: EBUSY, EFAULT
 * strerror()
-
-# [Unity unit test framework](Unit%20test.md)
-## Stub function
-
-A **stub** is a dummy or a testable replacement for a function or a variable.
-
-**How to stub a function**: If there is a call to a function that handles a hardware functionality (for example a function to read temperature from a sensor), but this function is not testable in an offline environment like a standalone computer or in your local compiler, then you **STUB** it (or **REPLACE** it) with a dummy function, that does nothing or just increments a dummy variable, like ``x``.
-
-So after you run you code, if you find that the variable ``x`` has been incremented, you know that the function (temperature sensor function) has been called.
-
-For example, the temperature sensor function is ``Read_TempSens()``. We stub it with a dummy variable ``Test_ReadTemp`` as shown below
-
-```c
-int Test_ReadTemp;
-#undef Read_TempSens()
-#define Read_TempSens() Test_ReadTemp++
-```
+# Validation
+* [Unit test with Unity framework](Validation.md#Unit%20test%20with%20Unity%20framework)
+* [Stub function](Validation.md#Stub%20function)
 # Comparison to OOP
 
 There are several cases where OOP with CPP must be implemented when comparing to their corresponding ones in C:
