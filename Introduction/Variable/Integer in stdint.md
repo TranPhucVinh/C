@@ -1,6 +1,6 @@
 ``int``: overflow value is ``2147483647`` (4-byte)
 
-### stdint.h
+# stdint.h
 
 Library **stdint** include integer types.
 
@@ -19,7 +19,7 @@ Library **stdint** include integer types.
 
 ``int`` uses its first bit for number's sign. If the first bit is ``1``, this number will be marked as negative number.
 
-### Examples
+# Examples
 
 **Example 1**
 
@@ -37,7 +37,7 @@ for (uint8_t i = 0; i < 256; i++){
 
 This for loop will run forever as max value of ``uint8_t`` is ``255``. When ``i`` reaches ``256``, it will be ``0``.
 
-### Convert to char
+# Convert to char
 
 **1st way**
 
@@ -69,7 +69,7 @@ int main (){
 Char with correspond ASCII code: P
 ```
 
-### Convert unsigned int to string char array
+# Convert unsigned int to string char array
 
 ```c
 uint32_t return8BitNumber(uint32_t number){
@@ -88,7 +88,7 @@ int main (){
 String is: 80    
 ```
 
-### size_t
+# size_t
 
 **size_t** is actually **long unsigned int**.
 

@@ -1,4 +1,4 @@
-### ASCII code
+# ASCII code
 
 **Decimal value**
 
@@ -18,7 +18,7 @@ printf("%c", 0x30);//0 (Character '0')
 printf("ASCII value: %d \n", ' ');//ASCII value: 32 
 ```
 
-### char variable
+# char variable
 
 Convert character to ASCII value: ``printf("b: %d \n", '6')``: ``b: 54``
 
@@ -49,7 +49,7 @@ printf("number: %d ", number); //-128
 
 **Explain**: As char is defined as signed char by default (1 byte of char includes 1 sign bit and 6 bits for storing number), so 128 has overflow 7 bit data, so it returns the signed number.
 
-### unsigned char
+# unsigned char
 
 ``unsigned char`` is ``unint_8``
 
@@ -103,7 +103,7 @@ varB: 237
 varC: 0
 ```
 
-### signed char
+# signed char
 
 In GCC and G++, the default ``char`` type is ``signed char``.
 

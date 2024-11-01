@@ -1,4 +1,4 @@
-# Definition and Declaration
+# Definition and declaration
 
 * Variable declaration : a variable is first declared or introduced before its first use.
 * Variable definition: the variable is assigned a memory location and a value.
@@ -39,7 +39,7 @@ int add(int a, int b) {
 ```
 
 **Scalar variables** hold a single value (either a number, string, or reference). 
-# Define variables
+# Define variable
 
 Must not define by this way:
 

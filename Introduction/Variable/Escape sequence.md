@@ -13,7 +13,7 @@ New line ``LF`` (line feed) has ASCII code ``0x0a``
 
 The escape sequence ``\n`` does not stand for a backslash followed by the letter n, because the backslash causes an "escape" from the normal way characters are interpreted by the compiler. After seeing the backslash, the compiler expects another character to complete the escape sequence, and then translates the escape sequence into the bytes it is intended to represent. 
 
-### Hexadecimal character escape
+# Hexadecimal character escape
 
 ``\x`` indicates a hexadecimal character escape
 
@@ -23,7 +23,7 @@ char number_2 = 0x1234;
 printf("%d\n", number_1 - number_2);//0
 ```
 
-### ASCII code with escape symbol
+# ASCII code with escape symbol
 
 ```c
 printf("ASCII value: %d \n", '\\');
@@ -76,7 +76,7 @@ printf("ASCII value: %d \n", 'a');//97
 printf("ASCII value: %d \n", '\a');//7
 ```
 
-### char type and escape sequence
+# char type and escape sequence
 
 ```c
 printf("Char value: %c \n", '\\'); //Char value: \
@@ -91,7 +91,7 @@ printf("b: %c \n", '\0');
 b:  
 ```
 
-### Escape sequence: octal vs decimal
+# Escape sequence: octal vs decimal
 
 ```c
 printf("ASCII value: %d \n", '\10');
@@ -105,7 +105,7 @@ ASCII value: 8
 
 C compiler will understand that the passed-in value after escape sequencer ``\`` is a octal number (Octal value ``10`` has decimal value ``8``)
 
-### Other escape sequences
+# Other escape sequences
 
 ``'\0'``: null
 
@@ -140,7 +140,7 @@ char b = '\6'; //b: 6
 char b = '\12'; //b: 10
 ```
 
-### Problem with data type
+# Problem with data type
 
 ```c
 printf("b: %d \n", '\a');
