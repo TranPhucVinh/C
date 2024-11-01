@@ -1,4 +1,4 @@
-# [Function](#function)
+# [Function](Function)
 [Fundamental concepts](Function/Fundamental%20concepts.md):
 * Create the very first function
 * Function with arguments: Function prototype, function arguments as void
@@ -13,8 +13,10 @@
 * [Random number generators](Random%20number.md)
 * C doesn't support function overloading
 * C doesn't support default arguments
+# [Variable](Variable)
+* Define variable
+* All data types for variable
 # [Error handling](Error%20handling.md)
-
 * C doesn't support try catch
 * errno: EBUSY, EFAULT
 * strerror()
