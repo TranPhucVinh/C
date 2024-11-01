@@ -67,10 +67,12 @@ error: 'number' does not name a type
 
 # Special character
 
+The ``_`` character:
 ```c
 int _ = 9;
 printf("_: %d\n", _);//9
 ```
+Define a variable by its name:
 ```c
 #include <stdio.h> 
 
@@ -86,6 +88,6 @@ So this gives the same result:
 int var = 9;
 int main() { 
 	int var = var;
-	printf("var: %d\n", var);//var: 0
+	printf("var: %d\n", var);//var: 0, not 9
 }
 ```
